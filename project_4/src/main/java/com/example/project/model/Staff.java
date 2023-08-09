@@ -1,14 +1,14 @@
 package com.example.project.model;
 
 public class Staff {
-	//사원
 	private String sName;
 	private String sNo;
 	private String sPhone;
 	private String sPart;
-	private String sPosition;
+	private char sPosition;
 	private String sBoss;
-	
+	private int cnt;
+
 	public String getsName() {
 		return sName;
 	}
@@ -33,10 +33,10 @@ public class Staff {
 	public void setsPart(String sPart) {
 		this.sPart = sPart;
 	}
-	public String getsPosition() {
+	public char getsPosition() {
 		return sPosition;
 	}
-	public void setsPosition(String sPosition) {
+	public void setsPosition(char sPosition) {
 		this.sPosition = sPosition;
 	}
 	public String getsBoss() {
@@ -45,6 +45,11 @@ public class Staff {
 	public void setsBoss(String sBoss) {
 		this.sBoss = sBoss;
 	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 
-	
 }
