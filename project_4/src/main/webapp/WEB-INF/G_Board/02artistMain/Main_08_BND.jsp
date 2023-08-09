@@ -56,18 +56,18 @@
 	</div>
 	
 	    	<div class="write">
-	    		<textarea rows="5" cols="3"></textarea>
+	    		<textarea rows="5" cols="3" v-model="content"></textarea>
 		    	<button  @click="fnAdd">게시글 등록</button>
 	    	</div>
 	    
 	    <div class="container">
 	    	
-	        <ul>
-	            <li>게시글 작성자</li>
-	            <li>작성 날짜</li>
-	            <li>작성자</li>
-	            <li>내용</li>
-	            <li>좋아요 수</li>
+	        <ul v-for="item in list">
+	            <li>{{item.mArtist}}</li>
+	            <li>{{item.uId}}</li>
+	            <li>{{item.gDate}}</li>
+	            <li>{{item.gContent}}</li>
+	            <li>{{item.gLike}}</li>
 	            <li>신고</li>
 	            <li>작성자 차단</li>
 <!-- 	            <li>
@@ -88,13 +88,15 @@
 	            no : "",
 	            keyword: "",
 	            bUser : "${sessionId}",
-	            selectItem : []
+	            selectItem : [],
+	            content : "",
+	            artist : "BND"
 	            
 	        },// data
 	        methods: {
 	            fnGetList: function() {
 	                var self = this;
-	                var nparmap = {};
+	                var nparmap = {artist : self.artist };
 	                $.ajax({
 	                    url: "list.dox",
 	                    dataType: "json",
@@ -123,8 +125,23 @@
 	                    }
 	                });
 	            }, fnAdd: function () {
-	            	location.href="add.do";
-	            	
+ 					var self = this;
+	                 
+	            	 if(!confirm("등록할까요?")){
+	                 	return;
+	                 }
+	                 var nparmap = {content : self.content, artist : self.artist};
+	                 
+	                  $.ajax({
+	                     url : "add.dox",
+	                     dataType:"json",
+	                     type : "POST",
+	                     data : nparmap,
+	                     success : function(data) {
+	     	               alert("등록되었어요.");
+	     	               self.fnGetList(); 
+	                     }
+	                 });   
 	            }, fnRemove: function () {
 	            	 var self = this;
 	                 
@@ -149,12 +166,13 @@
 	                 });   
 	                 
 	            }, fnMove: function () {
-					location.href = "/user/main.do";
+					location.href = "main.do";
 					
 	            }
 	        }, // methods
 	        created: function () {
 	            var self = this;
+	            self.fnGetList();
 	        }// created
 	    });
 	</script>
