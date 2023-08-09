@@ -374,7 +374,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
+		/* self.fnGetList(); */
 	}// created
 });
 </script>
