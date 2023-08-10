@@ -70,7 +70,7 @@ var app = new Vue({
 			location.href="";
 		},
 		fnABoard : function() {
-			location.href="";
+			location.href="../aboard/list.do";
 		},
 		fnStaff : function() {
 			location.href="../staff/Management.do";

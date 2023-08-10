@@ -30,29 +30,29 @@ public class StaffController {
 	@RequestMapping("/staff/login.do") 
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		session.invalidate();
-        return "/staff-login";
+        return "/Staff/staff-login";
     }
 	@RequestMapping("/staff/main.do") 
 	public String main(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		
-		return "/staff-main";
+		return "/Staff/staff-main";
 	}
 	@RequestMapping("/staff/Management.do") 
 	public String Management(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		
-		return "/staff-Management";
+		return "/Staff/staff-Management";
 	}
 	
 	@RequestMapping("/staff/add.do") 
 	public String add(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		
-		return "/staff-add";
+		return "/Staff/staff-add";
 	}
 	
 	@RequestMapping("/staff/edit.do") 
 	public String edit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/staff-edit";
+		return "/Staff/staff-edit";
 	}
 	
 	@RequestMapping(value = "/staff/staffLogin.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

@@ -4,7 +4,7 @@ public class ABoard {
 	//게시판(A)
 	private int aNo;
 	private String aTitle;
-	private String aContents;
+	private String aContent;
 	private String aDate;
 	private String aKind;
 	private int hits;
@@ -23,11 +23,11 @@ public class ABoard {
 	public void setaTitle(String aTitle) {
 		this.aTitle = aTitle;
 	}
-	public String getaContents() {
-		return aContents;
+	public String getaContent() {
+		return aContent;
 	}
-	public void setaContents(String aContents) {
-		this.aContents = aContents;
+	public void setaContent(String aContent) {
+		this.aContent = aContent;
 	}
 	public String getaDate() {
 		return aDate;
