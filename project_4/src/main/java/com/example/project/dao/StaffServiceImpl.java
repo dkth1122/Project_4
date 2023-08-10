@@ -56,7 +56,7 @@ public class StaffServiceImpl implements StaffService{
 	@Override
 	public int updateStaff(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return staffMapper.addStaffInfo(map);
+		return staffMapper.updateStaff(map);
 	}
 
 	@Override

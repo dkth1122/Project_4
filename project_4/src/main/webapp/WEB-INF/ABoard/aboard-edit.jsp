@@ -8,22 +8,20 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
+
+	span{
+		color: #ccc;
+		font-size: small;
 	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
+	
 </style>
 </head>
 <body>
 <div id="app">
 
-	<div><input placeholder="제목" v-model="info.aTitle"></div>
-	<div><input placeholder="내용" v-model="info.aContent"></div>
+	<div>제목 : <input v-model="info.aTitle"></div>
+	<div>아이디 : <input v-model="info.aContent"></div>
+	
 	<div> 종류 : <select v-model="info.aKind">
 		<option value="공지">공지</option>
 		<option value="이벤트">이벤트</option>
@@ -42,9 +40,10 @@
 	</select></div>
 	
 	
-	
-	<button @click="fnABoardAdd">공지추가</button>
 
+
+
+	<button @click="fnABoardEdit">수정</button>
 
 	
 </div>
@@ -54,6 +53,7 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		aNo: "${map.aNo}",
 		info : {
 		aTitle : "",
 		aContent : "",
@@ -62,23 +62,36 @@ var app = new Vue({
 		}
 	},// data
 	methods : {
-        fnABoardAdd : function(){
-        	 var self = this;
-             var nparmap = self.info;
-             $.ajax({
-                 url : "/aboard/add.dox",
-                 dataType:"json",	
-                 type : "POST", 
-                 data : nparmap,
-                 success : function(data) {
-                 	alert("공지가 등록되었습니다.");
-                 	location.href="list.do";
-                 }
-             }); 
-         }      	
+		fnGetList : function(){
+            var self = this;
+            var nparmap = {aNo : self.aNo};
+            $.ajax({
+                url : "/aboard/info.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	self.info = data.info;
+                }
+            }); 
+        },
+        fnABoardEdit : function(){
+        	var self = this;
+            var nparmap = self.info;
+            $.ajax({
+                url : "/aboard/edit.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	alert("수정되었습니다.");
+                }
+            }); 
+        }
 	}, // methods
 	created : function() {
 		var self = this;
+		self.fnGetList();
 	}// created
 });
 </script>

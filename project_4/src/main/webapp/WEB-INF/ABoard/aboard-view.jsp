@@ -22,7 +22,7 @@
 	<div>제목 : {{info.aTitle}} <span>{{info.hits}}</span></div>
 	<div>등록일 : {{info.aDate}}</div>
 	<div>내용 : {{info.aContent}}</div>
-	<div><span>{{info.aTitle}} / {{info.artist}}</span></div>
+	<div><span>{{info.aKind}} / {{info.artist}}</span></div>
 	
 	
 
@@ -58,7 +58,25 @@ var app = new Vue({
             }); 
         },
         fnABoardEdit : function(){
-        	
+        	 var self = this;
+             $.pageChange("../aboard/edit.do", {aNo : self.aNo});
+        },
+        fnABoardDel : function(){
+        	var self = this;
+            var nparmap = {aNo : self.aNo};
+            if(!confirm("정말 삭제하시겠습니까?")){
+                return;
+            }
+            $.ajax({
+                url : "/aboard/delete.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	alert("삭제되었습니다.");
+                	location.href="../aboard/list.do";
+                }
+            }); 
         }
 	}, // methods
 	created : function() {

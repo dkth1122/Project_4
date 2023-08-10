@@ -13,5 +13,9 @@ public interface ABoardService {
 	int insertABoard(HashMap<String, Object> map);
 	
 	ABoard selectABoardInfo(HashMap<String, Object> map);
+	
+	int updateABoard(HashMap<String, Object> map);
+	
+	int deleteABoard(HashMap<String, Object> map);
 
 }

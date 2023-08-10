@@ -22,4 +22,21 @@
 		FROM T4_ABOARD
 		WHERE A_NO = #{aNo}
 	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateABoard" parameterType="hashmap">
+		UPDATE T4_ABOARD
+		SET
+			A_TITLE = #{aTitle},
+			A_CONTENT = #{aContent},
+			A_KIND = #{aKind},
+			ARTIST = #{artist}
+		WHERE A_NO = #{aNo}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteABoard" parameterType="hashmap">
+		DELETE FROM T4_ABOARD
+		WHERE A_NO = #{aNo}
+	</delete>
 </mapper>

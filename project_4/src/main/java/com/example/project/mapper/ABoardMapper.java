@@ -20,4 +20,9 @@ public interface ABoardMapper {
 	//공지 상세 보기
 	ABoard selectABoardInfo(HashMap<String, Object> map);
 	
+	//게시글 수정
+	int updateABoard(HashMap<String, Object> map);
+	
+	//게시글 삭제
+	int deleteABoard(HashMap<String, Object> map);
 }

@@ -33,4 +33,16 @@ public class ABoardServiceImpl implements ABoardService{
 		// TODO Auto-generated method stub
 		return aboardMapper.selectABoardInfo(map);
 	}
+
+	@Override
+	public int updateABoard(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return aboardMapper.updateABoard(map);
+	}
+
+	@Override
+	public int deleteABoard(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return aboardMapper.deleteABoard(map);
+	}
 }

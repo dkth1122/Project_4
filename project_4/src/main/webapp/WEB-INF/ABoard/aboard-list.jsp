@@ -24,7 +24,6 @@
 
 <table>
 		<tr>
-			<th></th>
 			<th>아티스트</th>
 			<th>게시번호</th>
 			<th>제목</th>
@@ -32,7 +31,6 @@
 		</tr>
 		
 		<tr v-for="(item, index) in list">
-			<td><input type="radio" :value="item.aNo" v-model="selectItem"></td>
 			<td>{{item.artist}}</td>
 			<td>{{item.aNo}}</td>
 			<td><a href="javascript:;" @click="fnABoardView(item)">{{item.aTitle}}</a></td>

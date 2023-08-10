@@ -103,6 +103,7 @@ public class StaffController {
 	public String edit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		staffService.updateStaff(map);
+		
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}

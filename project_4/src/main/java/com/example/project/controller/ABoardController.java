@@ -42,6 +42,11 @@ public class ABoardController {
 		request.setAttribute("map", map);
 		return "/ABoard/aboard-view";
 	}
+	@RequestMapping("/aboard/edit.do") 
+	public String edit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/ABoard/aboard-edit";
+	}
 	
 	
 	
@@ -69,6 +74,24 @@ public class ABoardController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		ABoard info = aboardService.selectABoardInfo(map);
 		resultMap.put("info", info);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/aboard/edit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String edit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		aboardService.updateABoard(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/aboard/delete.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String delete(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		aboardService.deleteABoard(map);
+		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 }
