@@ -27,6 +27,10 @@ public class TestController {
     public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/test";
     }
+	@RequestMapping("/header.do") 
+	public String header(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/join/header";
+	}
 	
 	@RequestMapping(value = "/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
