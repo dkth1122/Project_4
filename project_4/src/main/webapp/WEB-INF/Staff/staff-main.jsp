@@ -55,7 +55,7 @@ var app = new Vue({
 			location.href="";
 		},
 		fnGBoard : function() {
-			location.href="";
+			location.href="../gboard/main.do";
 		},
 		fnInquiry : function() {
 			location.href="";
