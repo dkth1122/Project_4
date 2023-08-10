@@ -1,0 +1,64 @@
+package com.example.project.service;
+
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.project.mapper.UserMapper;
+import com.example.project.model.User;
+
+@Service
+public class UserServiceImpl implements UserService{
+
+	@Autowired
+	UserMapper userMapper;
+
+	@Override
+	public int addUser(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.insertUser(map);
+	
+	}
+	
+	@Override
+	public HashMap<String, Object> userLogin(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User user = userMapper.selectUser(map);
+		if(user != null) {
+			if(user.getCnt() >= 5) {
+				resultMap.put("success", false);
+				resultMap.put("message", "5회 이상 실패, 관리자에게 문의하세요.");
+			} else {
+				userMapper.resetUserCnt(map);
+				resultMap.put("success", true);
+				resultMap.put("message", user.getuName() + "님 환영합니다!");
+				resultMap.put("user", user);
+			}
+		} else {
+			resultMap.put("success", false);
+			User tempUser = userMapper.userCheckId(map) ;
+			if(tempUser != null) {
+				userMapper.updateUserCnt(map);
+				int cnt = tempUser.getCnt() + 1;
+				String message = cnt + "번 실패! \n패스워드를 확인해주세요.";
+				if(cnt >= 5) {
+					message = "5회 이상 실패, 관리자에게 문의하세요.";
+				}
+				resultMap.put("message", message);
+			} else {
+				resultMap.put("message", "존재하지않는 아이디입니다.");
+			}
+		}
+		
+		return resultMap;
+	}
+
+	@Override
+	public User searchUserId(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.findUserId(map);
+	}
+	
+}
