@@ -20,4 +20,12 @@ public interface UserMapper {
 	User userCheckId(HashMap<String, Object> map);
 	//유저 아이디 찾기
 	User findUserId(HashMap<String, Object> map);
+	//회원가입 아이디 중복체크
+	int userCnt(HashMap<String, Object> map);
+	//유저id 핸드폰번호로 검색
+	User selectUserId(HashMap<String, Object> map);
+	//유저 비밀번호 찾기
+	User findUserPw(HashMap<String, Object> map);
+	//유저pw 아이디로 검색
+	User selectUserPw(HashMap<String, Object> map);
 }

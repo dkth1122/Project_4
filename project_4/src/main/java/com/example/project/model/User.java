@@ -11,7 +11,14 @@ public class User {
 	private char uEventyn;
 	private int Cnt;
 	private String joindate;
+	private String gArtist;
 	
+	public String getgArtist() {
+		return gArtist;
+	}
+	public void setgArtist(String gArtist) {
+		this.gArtist = gArtist;
+	}
 	public String getuId() {
 		return uId;
 	}

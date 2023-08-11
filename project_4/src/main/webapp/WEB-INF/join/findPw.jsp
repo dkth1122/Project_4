@@ -23,7 +23,10 @@
 </head>
 <body>
 <div id="app">
-	<h2>아이디 찾기</h2>
+	<h2>비밀번호 찾기</h2>
+		<div>
+		<input type="text" name="uId" v-model = "uId" placeholder="아이디">
+		</div>
 		<div>
 		<input type="text" name="uName" v-model = "uName" placeholder="사용자이름">
 		</div>
@@ -41,39 +44,38 @@ var app = new Vue({
 	data : {
 		list : [],
 		uName : "",
-		uPhone : ""
+		uPhone : "",
+		uId : ""
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "/findId.dox",
+                url : "/findPw.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
                 	self.list = data.user;
-                	console.log(self.list);
                 }
             }); 
 		},
 		fnSearch : function(){
 			var self = this;
-			var param = {uName : self.uName, uPhone : self.uPhone};
+			var param = {uId : self.uId, uName : self.uName, uPhone : self.uPhone};			
 			$.ajax({
-                url : "findId.dox",
+                url : "findPw.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
-                success : function(data) {
+                success : function(data) {          
                 	console.log(data.user);
-                	if(data.user != undefined){
-                		alert("아이디 찾기 성공")
-                		$.pageChange("findIdView.do", {uPhone : self.uPhone});
-                  		
-                	} else {
-                		alert("존재하는 정보가 없습니다.");
+                	if(data.user != undefined){            
+                		$.pageChange("findPwView.do", {uId : self.uId});
+                		alert("비번찾았다!");
+                	}else{
+                		alert("정보가 일치하지 않습니다.");
                 	}
                 }
             }); 

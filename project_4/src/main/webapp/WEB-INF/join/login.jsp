@@ -20,7 +20,7 @@
 	</div>
 	<div><a href="findId.do">아이디 찾기</a></div>
 	<div><a href="">비회원 주문조회</a></div>
-	<div><a href="">비밀번호 찾기</a></div>
+	<div><a href="findPw.do">비밀번호 찾기</a></div>
 </div>
 </body>
 </html>

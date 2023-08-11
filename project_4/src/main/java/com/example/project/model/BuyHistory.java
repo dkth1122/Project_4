@@ -3,7 +3,7 @@ package com.example.project.model;
 public class BuyHistory {
 
 	private String uId;
-	private String pName;
+	private String pNo;
 	private int price;
 	private String bhArtist;
 	private int bhPoint;
@@ -15,11 +15,11 @@ public class BuyHistory {
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
-	public String getpName() {
-		return pName;
+	public String getpNo() {
+		return pNo;
 	}
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setpName(String pNo) {
+		this.pNo = pNo;
 	}
 	public int getPrice() {
 		return price;

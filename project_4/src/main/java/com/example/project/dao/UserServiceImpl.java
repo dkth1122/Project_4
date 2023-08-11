@@ -1,4 +1,4 @@
-package com.example.project.service;
+package com.example.project.dao;
 
 import java.util.HashMap;
 
@@ -59,6 +59,30 @@ public class UserServiceImpl implements UserService{
 	public User searchUserId(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return userMapper.findUserId(map);
+	}
+
+	@Override
+	public int searchUserCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.userCnt(map);
+	}
+
+	@Override//유저 핸드폰번호로 검색
+	public User viewUserId(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.selectUserId(map);
+	}
+
+	@Override
+	public User searchUserPw(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.findUserPw(map);
+	}
+
+	@Override
+	public User viewUserPw(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.selectUserPw(map);
 	}
 	
 }
