@@ -58,7 +58,7 @@ var app = new Vue({
 			location.href="../gboard/main.do";
 		},
 		fnInquiry : function() {
-			location.href="";
+			location.href="../inquiry/list.do";
 		},
 		fnComplaint : function() {
 			location.href="";
@@ -67,7 +67,7 @@ var app = new Vue({
 			location.href="";
 		},
 		fnProduct : function() {
-			location.href="";
+			location.href="../product/list.do";
 		},
 		fnABoard : function() {
 			location.href="../aboard/list.do";

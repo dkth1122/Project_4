@@ -98,7 +98,7 @@ var app = new Vue({
         data: nparmap,
         success(data) {
           alert(self.info.sName + '님이 수정되었습니다.');
-          location.href = 'main.do';
+          location.href = 'Management.do';
         },
       });
     },

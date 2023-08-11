@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
 	table{
@@ -22,30 +22,41 @@
 <body>
 <div id="app">
 
-	<table>
+<table>
 		<tr>
-			<th>ë¬¸ì˜ë²ˆí˜¸</th>
-			<th>ë¬¸ì˜ì œëª©</th>
-			<th>ë¬¸ì˜ë‚ ì§œ</th>
-			<th>ì¹´í…Œê³ ë¦¬</th>
-			<th>ë¬¸ì˜ê³ ê°</th>
-			<th>ìƒíƒœ</th>
-			<th>ë¯¼ì›ì—¬ë¶€</th>
+			<th></th>
+			<th>¾ÆÆ¼½ºÆ®</th>
+			<th>»óÇ°ÄÚµå</th>
+			<th>ÀÌ¸§</th>
+			<th>°¡°İ</th>
+			<th>Àç°í</th>
+			<th>¸â¹ö½Ê</th>
+			<th>ÆÇ¸ÅÀÏ</th>
+			<th>Ç°Àı¿©ºÎ</th>
+			<th>Á¾·ù</th>
 		</tr>
+		
 		<tr v-for="(item, index) in list">
-			<td>{{item.iNo}}</td>
-			<td><a href="javascript:;" @click="fnAnswer(item)">{{item.iQtitle}}</a></td>
-			<td>{{item.iQtime}}</td>
+			<td><input type="radio" value="item.pNo"></td>
+			<td>{{item.artist}}</td>
+			<td>{{item.pNo}}</td>
+			<td>{{item.pName}}</td>
+			<td>{{item.price}}</td>
+			<td>{{item.stock}}</td>
+			<td>{{item.membership}}</td>
+			<td>{{item.pDate}}</td>
+			<td>{{item.soldout}}</td>
 			<td>{{item.category}}</td>
-			<td>{{item.uId}}</td>
-			<td>{{item.state}}</td>
-			<td>{{item.iComplain}}</td>
 		</tr>
-	</table>
 	
-	<div><button @click="fnBack">ë˜ëŒì•„ê°€ê¸°</button></div>
+	</table>
+	<button @click="fnProductAdd">»óÇ° Ãß°¡</button>
+	
+	
+	<div><button @click="fnBack">µÇµ¹¾Æ°¡±â</button></div>
 
 
+	
 </div>
 </body>
 </html>
@@ -53,14 +64,15 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		list : [],
+		selectItem : ""
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
             var nparmap = {};
             $.ajax({
-                url : "/inquiry/list.dox",
+                url : "/product/list.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
@@ -69,13 +81,12 @@ var app = new Vue({
                 }
             }); 
         },
-        fnAnswer : function(item){
-            var self = this;
-            $.pageChange("../inquiry/view.do", {iNo : item.iNo});
-          },
-          fnBack : function(){
-            	location.href = '../staff/main.do';
-            }
+        fnProductAdd : function(){
+        	location.href="../product/add.do";
+        },
+        fnBack : function(){
+        	location.href = '../staff/main.do';
+        }
 	}, // methods
 	created : function() {
 		var self = this;

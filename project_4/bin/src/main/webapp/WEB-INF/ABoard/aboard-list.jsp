@@ -39,7 +39,7 @@
 	
 	</table>
 	<button @click="fnABoardAdd">공지추가</button>
-
+	<div><button @click="fnBack">되돌아가기</button></div>
 
 	
 </div>
@@ -72,6 +72,9 @@ var app = new Vue({
         fnABoardView : function(item){
             var self = this;
             $.pageChange("../aboard/view.do", {aNo : item.aNo});
+          },
+          fnBack : function(){
+          	location.href = '../staff/main.do';
           }
 	}, // methods
 	created : function() {
