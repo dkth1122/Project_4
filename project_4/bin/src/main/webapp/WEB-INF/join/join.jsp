@@ -19,7 +19,8 @@
 <div id="wc">
 	<h2>회원가입</h2>
 	<div>
-		<input type="text" v-model="user.uId" placeholder="아이디">
+		<input type="text" v-model="user.uId" placeholder="아이디" @keyup="fnIdCheck">
+		<div v-if="user.uId != ''">{{message}}</div>
 	</div>
 	<div><input type="password" v-model="user.uPw" placeholder="비밀번호"></div>
 	<div><input type="password" v-model="user.uPw2" placeholder="확인 비밀번호"></div>
@@ -29,10 +30,10 @@
 	<div><input type="text" v-model="user.uEmail" placeholder="이메일주소"></div>
 	
 	<div id="evtyn">
-		<div><label><input type="checkbox" v-model="userList">전체 동의</label></div>
-		<div><label><input type="checkbox" v-model="userList"><strong><a href="javascript:;">(필수)개인회원 약관에 동의</a></strong></label></div>
-		<div><label><input type="checkbox" v-model="userList"><strong><a href="javascript:;">(필수)개인회원 수집 및 이용에 동의</a></strong></label></div>
-		<div><label><input type="checkbox" v-model="userList">(선택)마케팅 정보 수신 동의-SMS/MMS</label></div>
+		<div><label><input type="checkbox" v-model="check" @click="fnCheck">전체 동의</label></div>
+		<div><label><input type="checkbox" v-model="check1"><strong><a href="javascript:;">(필수)개인회원 약관에 동의</a></strong></label></div>
+		<div><label><input type="checkbox" v-model="check2"><strong><a href="javascript:;">(필수)개인회원 수집 및 이용에 동의</a></strong></label></div>
+		<div><label><input type="checkbox" v-model="check3">(선택)마케팅 정보 수신 동의-SMS/MMS</label></div>
 	</div>
 
 	<div><button @click="fnJoin" >가입하기</button></div>
@@ -54,7 +55,10 @@ var app = new Vue({
 			uEventyn : ""
 		},
 		message : "",
-		userList : "",
+		check : "",
+		check1 : "",
+		check2 : "",
+		check3 : "",
 		list : []
 	},// data
 	methods : {
@@ -76,10 +80,10 @@ var app = new Vue({
 				alert("이름 입력해라");
 				return;
 			}
-			if(self.userList == true){
+			if(self.check1 == true && self.check2 == true){
 				self.user.uEventyn = "Y";
 			}else{
-				alert("약관동의해라");
+				alert("필수약관동의해라");
 				return;
 			}
 		 	var nparmap = self.user;
@@ -90,16 +94,41 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	
-                	alert("가입 ㅊㅋ");
+                	alert("가입 완ㄹ");
+                	location.href='login.do';
                 }
             });
 		},
-	   	fnCheck : function(uEventyn){ 
-
+	   	fnCheck : function(){ 
 	   		var self = this; 
-	   		self.user.uEventyn = "Y";
-	   		
-	   	}   		  	
+	   		if(self.check != true){
+	   			self.check1 = true;
+		   		self.check2 = true;
+		   		self.check3 = true;	
+	   		}else{
+	   			self.check1 = false;
+		   		self.check2 = false;
+		   		self.check3 = false;
+	   		}
+	   	},
+	   	fnIdCheck : function(){
+	   		var self = this;
+			var nparmap = {uId : self.user.uId};
+            $.ajax({
+                url : "check.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	if(data.cnt > 0){
+                		self.message = "중복된 아이디가 존재합니다.";
+                	} else {
+                		self.message = "사용 가능한 아이디입니다.";
+                		self.joinFlg = true;
+                	}
+                }
+            });
+	   	}
 	}, // methods
 	created : function() {
 		var self = this;

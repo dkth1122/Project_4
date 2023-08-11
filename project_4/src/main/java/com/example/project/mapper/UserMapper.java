@@ -28,4 +28,8 @@ public interface UserMapper {
 	User findUserPw(HashMap<String, Object> map);
 	//유저pw 아이디로 검색
 	User selectUserPw(HashMap<String, Object> map);
+	
+	
+	
+	
 }

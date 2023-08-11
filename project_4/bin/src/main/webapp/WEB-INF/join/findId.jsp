@@ -25,10 +25,10 @@
 <div id="app">
 	<h2>아이디 찾기</h2>
 		<div>
-		<input type="text" name="uName" placeholder="사용자이름">
+		<input type="text" name="uName" v-model = "uName" placeholder="사용자이름">
 		</div>
 		<div>
-		<input type="text" name="uPhone" placeholder="핸드폰번호">
+		<input type="text" name="uPhone"  v-model = "uPhone" placeholder="핸드폰번호">
 		</div>
 		<div><button @click="fnSearch">검색</button></div>
 		<div><button @click="fnBack">취소</button></div>
@@ -48,12 +48,12 @@ var app = new Vue({
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "list.dox",
+                url : "/findId.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
+                	self.list = data.user;
                 	console.log(self.list);
                 }
             }); 
@@ -66,10 +66,12 @@ var app = new Vue({
                 dataType:"json",	
                 type : "POST",
                 data : param,
-                success : function(data) { 
-                	if(data.success){
-                		alert("아이디 찾기 성공 \n아이디 알려주는 페이지 만들어야함~")
-                		location.href='main.do';
+                success : function(data) {
+                	console.log(data.user);
+                	if(data.user != undefined){
+                		alert("아이디 찾기 성공")
+                		$.pageChange("findIdView.do", {uPhone : self.uPhone});
+                  		
                 	} else {
                 		alert("존재하는 정보가 없습니다.");
                 	}
