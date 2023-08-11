@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.DeliveryService;
+import com.example.project.dao.OrderService;
 import com.example.project.model.DeliveryUser;
+import com.example.project.model.Order;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +25,9 @@ public class MyPagController {
 	
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	OrderService orderService;
 	
 	@Autowired
 	DeliveryService deliveryService;
@@ -53,6 +58,22 @@ public class MyPagController {
 		
 		return "/myPag/jusoPopup";
     }
+	//주문내역
+	@RequestMapping("/mypag/productInformation.do") 
+    public String myProductInformation(Model model) throws Exception{
+        return "/myPag/myProductInformation";
+    }
+
+	//마이페이지 상단 프로필  구매 / 환불 /반품 카운터  정보
+	@RequestMapping(value = "/mypag/listExchange.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String listExchange(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			List<Order> list = orderService.orderCntsearch(map);
+			resultMap.put("list", list);
+			return new Gson().toJson(resultMap);
+	}
+	
 	
 	//마이페이지 사용자 정보
 	@RequestMapping(value = "/mypag/Info.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -71,5 +92,14 @@ public class MyPagController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	//마이페이지 주문내역
+		@RequestMapping(value = "/mypag/productInformation.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String productInformation(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Order> list = orderService.orderProductSearch(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+		}
 
 }

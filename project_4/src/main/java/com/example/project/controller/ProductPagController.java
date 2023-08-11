@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProductPagController {
 	
 	
-	@RequestMapping("/product/a_1.do") 
+	@RequestMapping("/product/main.do") 
     public String memberBoard5(Model model) throws Exception{
 
         return "/Product/productPag";
