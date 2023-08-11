@@ -3,28 +3,36 @@ package com.example.project.model;
 public class Product {
 	
 	private String pName;
-	private int pNo;
+	private String pNo;
 	private int price;
 	private int point;
 	private int stock;
 	private char membership;
 	private char soldout;
 	private int pLimit;
+	private String pDate;
 	private String category;
 	private String artist;
-	private char fYn;
+	private String fYn;
 	private int afNo;
 	
+	
+	public String getpDate() {
+		return pDate;
+	}
+	public void setpDate(String pDate) {
+		this.pDate = pDate;
+	}
 	public String getpName() {
 		return pName;
 	}
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
-	public int getpNo() {
+	public String getpNo() {
 		return pNo;
 	}
-	public void setpNo(int pNo) {
+	public void setpNo(String pNo) {
 		this.pNo = pNo;
 	}
 	public int getPrice() {
@@ -75,10 +83,10 @@ public class Product {
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
-	public char getfYn() {
+	public String getfYn() {
 		return fYn;
 	}
-	public void setfYn(char fYn) {
+	public void setfYn(String fYn) {
 		this.fYn = fYn;
 	}
 	public int getAfNo() {

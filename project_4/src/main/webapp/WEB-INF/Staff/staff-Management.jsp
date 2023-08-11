@@ -44,6 +44,7 @@
 	<button @click="fnStaffDelete">삭제</button>	
 	<button @click="fnStaffAdd">직원추가</button>
 
+	<div><button @click="fnBack">되돌아가기</button></div>
 </div>
 </body>
 </html>
@@ -95,6 +96,9 @@ var app = new Vue({
                     self.fnGetList();
                 }
             });
+        },
+        fnBack : function(){
+        	location.href = '../staff/main.do';
         }
 	}, // methods
 	created : function() {
