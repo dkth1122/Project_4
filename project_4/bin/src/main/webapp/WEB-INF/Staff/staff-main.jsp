@@ -55,7 +55,7 @@ var app = new Vue({
 			location.href="";
 		},
 		fnGBoard : function() {
-			location.href="";
+			location.href="../gboard/main.do";
 		},
 		fnInquiry : function() {
 			location.href="";
@@ -70,7 +70,7 @@ var app = new Vue({
 			location.href="";
 		},
 		fnABoard : function() {
-			location.href="";
+			location.href="../aboard/list.do";
 		},
 		fnStaff : function() {
 			location.href="../staff/Management.do";
