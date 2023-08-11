@@ -26,5 +26,17 @@ public class GBoardServiceImpl implements GBoardService{
 		return gboardMapper.insertGBoard(map);
 	}
 
+	@Override
+	public int removeGBoard(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.deleteGBoard(map);
+	}
+
+	@Override	
+	public List<GBoard> searchGBoardInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.selectGBoardInfo(map);
+	}
+
 
 }

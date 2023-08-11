@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project.mapper.GBoardMapper">
+	
+	<select id="selectGBoardList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT *
+		FROM T4_GBOARD G
+		INNER JOIN T4_USER U ON G.U_ID = U.U_ID
+		WHERE M_ARTIST = #{artist}
+	</select>
+	
+	
+	<insert id="insertGBoard" parameterType="hashmap">
+		INSERT INTO T4_GBOARD VALUES
+		<!--
+			유저 테이블에 G_ARTIST가 입력되어 있다면, 나중에 조인해서 아티스트 글만 보이는 기능에 추가
+		 -->
+		(NULL, NOW(), '임시uId', 0 , #{artist}, #{content}, NULL)
+	</insert>
+	
+	<update id="deleteGBoard" parameterType="hashmap">
+		UPDATE T4_GBOARD SET 
+			G_DELYN = 'Y'
+		WHERE U_ID = #{uId}
+	</update>
+		
+	<select id="selectGBoardInfo" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT *
+		FROM T4_GBOARD G
+		INNER JOIN T4_USER U ON G.U_ID = U.U_ID
+		WHERE  M_ARTIST = #{artist} AND (U_NAME2 = #{keyword} OR G_CONTENT = #{keyword} OR G.U_ID = #{keyword}) 
+	</select>
+	
+	
+</mapper>

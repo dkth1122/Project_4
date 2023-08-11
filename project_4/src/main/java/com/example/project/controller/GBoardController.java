@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.GBoardService;
-import com.example.project.mapper.GBoardMapper;
 import com.example.project.model.GBoard;
 import com.google.gson.Gson;
 
@@ -91,5 +90,22 @@ public class GBoardController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		  gboardService.addGBoard(map);
 	      return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/gboard/remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String remove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		  gboardService.removeGBoard(map);
+	      return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/gboard/search.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String selectInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<GBoard> info = gboardService.searchGBoardInfo(map);
+		resultMap.put("info", info);
+		return new Gson().toJson(resultMap);
 	}
 }

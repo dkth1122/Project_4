@@ -10,8 +10,16 @@ import com.example.project.model.GBoard;
 
 @Mapper
 public interface GBoardMapper {
+	
+	//게시글 전체 출력
 	List<GBoard> selectGBoardList(HashMap<String, Object> map);
 	
+	//게시글 등록
 	int insertGBoard(HashMap<String, Object> map);
-	//ㅇㅇㅇㅇㅇㅇ
+	
+	//게시글 삭제
+	int deleteGBoard(HashMap<String, Object> map);
+	
+	//게시글 검색 
+	List<GBoard> selectGBoardInfo(HashMap<String, Object> map);
 }
