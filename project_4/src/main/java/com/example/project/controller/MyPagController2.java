@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class MyPagController {
+public class MyPagController2 {
 	
 	@Autowired
 	HttpSession session;

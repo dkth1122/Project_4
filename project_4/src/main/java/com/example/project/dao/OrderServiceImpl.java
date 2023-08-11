@@ -16,11 +16,17 @@ public class OrderServiceImpl implements OrderService{
 	OrderMapper orderMapper;
 	
 	@Override
-	public Order orderCntsearch(HashMap<String, Object> map) {
+	public List<Order> orderCntsearch(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return orderMapper.orderCntselect(map);
 	}
+	
 
+	@Override
+	public List<Order> orderProductSearch(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return orderMapper.orderProductSelect(map);
+	}
 
 	
 }

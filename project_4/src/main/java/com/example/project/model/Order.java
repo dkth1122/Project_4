@@ -6,7 +6,7 @@ import lombok.Data;
 public class Order {
 	
 	private String oNo;
-	private int pNo;
+	private String pNo;
 	private String uId;
 	private String payment;
 	private String oDate;
@@ -18,17 +18,43 @@ public class Order {
 	private int orderCnt;
 	
 	
+//	상품 JOIN 	
+	private String pName;
+	private String price;
+	private String artist;
 	
+	
+	
+	
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getArtist() {
+		return artist;
+	}
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
 	public String getoNo() {
 		return oNo;
 	}
 	public void setoNo(String oNo) {
 		this.oNo = oNo;
 	}
-	public int getpNo() {
+	
+	public String getpNo() {
 		return pNo;
 	}
-	public void setpNo(int pNo) {
+	public void setpNo(String pNo) {
 		this.pNo = pNo;
 	}
 	public String getuId() {
