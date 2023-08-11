@@ -6,7 +6,14 @@ public class DeliveryUser {
 	private String uDaddr;
 	private String uDphone;
 	private String uDmessage;
+	private int duNo;
 	
+	public int getDuNo() {
+		return duNo;
+	}
+	public void setDuNo(int duNo) {
+		this.duNo = duNo;
+	}
 	public String getuId() {
 		return uId;
 	}

@@ -23,4 +23,6 @@ public interface UserService {
 	User searchNonOrder(HashMap<String, Object> map);
 	//비회원 주문조회 출력
 	User searchNonOrderNo(HashMap<String, Object> map);
+	//회원정보수정
+	int editInfo(HashMap<String, Object> map);
 }

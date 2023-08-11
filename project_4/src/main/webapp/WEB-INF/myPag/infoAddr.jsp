@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="../js/jquery.js"></script>  
+  <script src="../js/jquery.js"></script>    
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
@@ -218,20 +218,31 @@ height: 300px;
                            
                            <div id="right">
                            <div class="View">
-                              <div class="lowerBox"> 회원 정보 수정 </div>
+                              <div class="lowerBox"> 배송 주소록 관리 </div>
                                  <div> 
-                                 	<div>· 아이디<span>{{info.uId}}</span></div>
-                                 	<div>· 닉네임<span><input type="text" v-model="info.uName2"></span></div>                                 	
-                                 	<div>· 비밀번호<span><input type="password" v-model="info.uPw" placeholder="영문/숫자/특수문자 중 2가지 이상 조합,10자~16자"></span></div>
-                                 	<div>· 새 비밀번호 확인<span><input type="password" v-model="info.uPw2"></span></div>
-                                 	<div>· 이름<span><input type="text" v-model="info.uName" ></span></div>                    
-                                 	<div>· 연락처<span><input type="text" v-model="info.uPhone"  ></span></div>
-                                 	<div>· 수신여부<span>SMS/메일 수신동의 
-                                 		<label><input type="radio" name="evtyn"  v-model="info.uSmsyn" value="Y">수신함</label>
-                                 		<label><input type="radio" name="evtyn" v-model="info.uSmsyn" value="N">수신안함</label>
-                                 	</span></div>
+                                 	<table>
+                                 		<tr>
+                                 			<th>선택</th>
+                                 			<th>배송지</th>
+                                 			<th>주소</th>
+                                 			<th>연락처</th>
+                                 			<th>배송지 관리</th>
+                                 		</tr>
+                                 		<tr v-for = "item in info">
+                                 			<td><input type="radio" :value="info.dUno"></td>
+                                 			<td>{{item.uDname}}</td>
+                                 			<td>{{item.uDaddr}}</td>
+                                 			<td>{{item.uDphone}}</td>
+                                 			<td><button @click="editAddr">수정</button></td>
+                                 		</tr>
+                                 	</table>
+                                 	<div>
+                                 		<button>선택 주소록 삭제</button>
+                                 		<button>배송지 등록</button>
+                                 	</div>
                                  </div>
-                                 <div><button @click="fnUpdate">회원정보 수정</button></div>
+                                <div class="lowerBox"> 배송 주소록 유의사항 </div>
+                                 <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
                         
                            </div>
                    
@@ -247,71 +258,30 @@ height: 300px;
 var app = new Vue({
     el: '#app',
     data: {
-       info : [
-       ],
-       user : {
-    	   uName2 : "",
-    	   uPw : "",
-    	   uPw2 : "",
-    	   uName : "",
-    	   uPhone : "",
-    	   uSmsyn : ""
-       },
-       uId : "${sessionId}",
+       list : [],
+       info :{},
+       uId : "${sessionId}"
+       
     },
     methods: {
        fnGetList : function(){
             var self = this;
+            self.info.uId = self.uId;
             var nparmap = {uId : self.uId};
             $.ajax({
-                url : "/user2.dox",
+                url : "/delivery/list.dox",
                 dataType:"json",   
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.findPw; //사용자
-                   console.log(self.info);
-                   self.user = self.info;
-               	   console.log(self.user);
+                   self.info = data.list; //사용자
+                 
                 }
             }); 
         },
-        fnUpdate : function(){
-        	var self = this;
-        	self.info.uId = self.uId;
-        	
-        	if(self.info.uName2 == ""){
-				alert("아이디를 입력해주세요.");
-				return;
-			}
-        	if(self.info.uPw == ""){
-				alert("패스워드를 입력해주세요.");
-				return;
-			}
-        	if(self.info.uPw != self.user.uPw2){
-				alert("확인패스워드가 일치하지 않습니다.");
-				return;
-			}
-        	if(self.info.uName == ""){
-				alert("이름을 입력해주세요.");
-				return;
-			}
-        	if(self.info.uPhone == ""){
-				alert("연락처를 입력해주세요.");
-				return;
-			}
-        	var nparmap = self.user;
-            $.ajax({
-                url : "/editInfo.dox",
-                dataType:"json",   
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-                   self.info = data.findPw; //사용자
-                   alert("정상 수정 되었습니다.");
-                   self.fnGetList();
-                 }
-             }); 
+        editAddr : function(){
+            var self = this;
+            $.pageChange("editAddr.do", {uId : self.uId});
         }
     },
     created: function() {
