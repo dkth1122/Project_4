@@ -1,13 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
   <script src="../js/jquery.js"></script>  
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-  <meta charset="EUC-KR">
+ <meta charset="UTF-8">
   <title>마이페이지</title>
   <style type="text/css">
-
+  
+ .nickname{
+  line-height:  127px;
+  margin-left: 70px;
+ } 
+ 
+ .name{
+   margin-left: 45px;
+  font-size: 4em;
+  font-weight: bold;
+ }
   body{
   	margin : 0px;
   	padding : 0px;}
@@ -102,7 +114,7 @@
  li {
  
   list-style-type: none;
-  line-height: 35px;
+  line-height: 55px;
 }
 a {
   text-decoration: none;
@@ -134,29 +146,29 @@ height: 300px;
 					    	 	 <a href="#"><div id="profileImg"></div></a>
 					    	</div >
 					    	<div class="topBox">
-					    	 <h1>name</h1>
+					    	<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
 					    	</div>
 					    	
 					    	<div class="topBox">
 					    	
 					    		<div class="details" >
 					    		
-					    			<div>Order</div>
-					    			<div>2</div>
+					    			<div>주문내역</div>
+					    			<div>{{orderCnt.orderCnt}}</div>
 					    			
 					    		</div>
 					    		
 					    		<div class="details" >
 					    		
-					    			<div>Refund</div>
+					    			<div>교환/환불</div>
 					    			<div>
-					    				<span>0/</span><span>0/</span><span>0</span>
+					    				<span>0 /</span><span> 0</span>
 					    			</div>
 					    			
 					    		</div>
 					    		<div class="details" >
-					    			<div>Point</div>
-					    			<div>0 P</div>
+					    			<div>포인트</div>
+					    			<div>{{info.uPoint}} P</div>
 					    		</div>
 					    		<div class="details" >
 					    			<div>Jelly</div>
@@ -166,41 +178,40 @@ height: 300px;
 					    </div>
 					    	
 					    	 
-					    </div>
-					    
+					    </div>					    
 					    <div id="body">
 					    
 							      <div id="left">
 							      	<div class="categories"> MY PAGE</div>
 							      	<div style="text-align: left;">
 							      	<ul style="padding: 0px;">
-							      		<li>1234 </li>
+							      		<li>나의 쇼핑 정보 </li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#">1</a></li>
-								      			<li><a href="#">2</a></li>
-								      			<li><a href="#">3</a></li>
-								      			<li><a href="#">4</a></li>							      		
+								      			<li><a href="#">주문내역</a></li>
+								      			<li><a href="#">관심상품</a></li>
+								      			<li><a href="#">최근 본 상품</a></li>
+								      			<li><a href="#">적림금</a></li>							      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
 							      	<ul style="padding: 0px;">
-							      		<li>1234 </li>
+							      		<li>회원 정보</li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#">1</a></li>
-								      			<li><a href="#">2</a></li>					      		
+								      			<li><a href="#">회원 정보 수정</a></li>
+								      			<li><a href="#">배송주소록</a></li>					      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
 							      	   	<ul style="padding: 0px;">
-							      		<li>customer's questions</li>
+							      		<li>고객센터</li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#">1</a></li>
-								      			<li><a href="#">2</a></li>
-								      			<li><a href="#">3</a></li>
-								      			<li><a href="#">4</a></li>							      		
+								      			<li><a href="#">1:1 문의</a></li>
+								      			<li><a href="#">공지사항</a></li>
+								      			<li><a href="#">이용안내</a></li>
+								      			<li><a href="#">FAQ</a></li>							      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
@@ -209,22 +220,24 @@ height: 300px;
 							      	</div>
 							      	 </div>
 							      
-							      <div id="right">
+					<div id="right">
+					
 							      <div class="View">
-							    	  <div class="lowerBox"> Recent Products </div>
-							    	  	<div class="nodata"> ìµê·¼ ì£¼ë¬¸ ë´ì­ì´ ììµëë¤ </div>
+							    	  <div class="lowerBox"> 최근 주문상품 </div>
+							    	  	<div class="nodata"> 내역이 없습니다</div>
 							     </div> 
 							     
 							      <div class="View">
-							    	  <div class="lowerBox"> Recent Products </div>
-							    	  	<div class="nodata"> ìµê·¼ ì£¼ë¬¸ ë´ì­ì´ ììµëë¤ </div>
+							    	  <div class="lowerBox"> 관심상품 </div>
+							    	  	<div class="nodata"> 내역이 없습니다 </div>
 							     </div> 
 							     
 							      <div class="View">
-							    	  <div class="lowerBox"> Recent Products </div>
-							    	  	<div class="nodata"> ìµê·¼ ì£¼ë¬¸ ë´ì­ì´ ììµëë¤ </div>
+							    	  <div class="lowerBox"> 최근 본 상품 </div>
+							    	  	<div class="nodata"> 내역이 없습니다 </div>
 							     </div> 
-							      </div>
+							     
+					</div>
 					    
 					    </div>
 			    
@@ -238,26 +251,43 @@ var app = new Vue({
     el: '#app',
     data: {
     	info : [],
+    	orderCnt : [],
     	uId : "dcsdsd3",
     },
     methods: {
-    	fnAdd : function(){
+    	fnGetList : function(){
             var self = this;
             var nparmap = {uId : self.uId};
             $.ajax({
-                url : "/mypag/Info.dox",
+                url : "/user2.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	location.href = "list.do";
+                	self.info = data.findPw; //사용자
+                
                 }
             }); 
-        }
+        },    
+	    fnGetList : function(){
+	        var self = this;
+	        var nparmap = {uId : self.uId};
+	        $.ajax({
+	            url : "/mypag/infoCnt.dox",
+	            dataType:"json",	
+	            type : "POST", 
+	            data : nparmap,
+	            success : function(data) { 
+	            	self.orderCnt = data.infoCnt; // 주문내역
+	            	
+	            }
+	        }); 
+	    },
+	    
     },
     created: function() {
       var self = this;
-      // Vue.js ì½ë ìì± ê°ë¥
+      self.fnGetList();
     }
 });
 </script>

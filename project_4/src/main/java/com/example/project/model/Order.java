@@ -1,5 +1,8 @@
 package com.example.project.model;
 
+import lombok.Data;
+
+@Data
 public class Order {
 	
 	private String oNo;
@@ -12,6 +15,9 @@ public class Order {
 	private int oPoint;
 	private String oMessage;
 	private int afNo;
+	private int orderCnt;
+	
+	
 	
 	public String getoNo() {
 		return oNo;
@@ -73,6 +79,13 @@ public class Order {
 	public void setAfNo(int afNo) {
 		this.afNo = afNo;
 	}
+	public int getOrderCnt() {
+		return orderCnt;
+	}
+	public void setOrderCnt(int orderCnt) {
+		this.orderCnt = orderCnt;
+	}
+	
 	
 	
 	
