@@ -13,19 +13,19 @@
 <body>
 <div id="app">
 
-	<div><input placeholder="ÀÌ¸§" v-model="sName"></div>
-	<div><input placeholder="»ç¹ø" v-model="sNo"></div>
-	<div><input placeholder="Á÷Åë¹øÈ£" v-model="sPhone"></div>
-	<div><select v-model="selectItem">
+	<div><input placeholder="ÀÌ¸§" v-model="info.sName"></div>
+	<div><input placeholder="»ç¹ø" v-model="info.sNo"></div>
+	<div><input placeholder="Á÷Åë¹øÈ£" v-model="info.sPhone"></div>
+	<div><select v-model="info.selectItem">
 		<option value="°í°´°ü¸®ÆÀ">°í°´°ü¸®ÆÀ</option>
 		<option value="¹Î¿ø°ü¸®ÆÀ">¹Î¿ø°ü¸®ÆÀ</option>
 		<option value="¹è¼Û°ü¸®ÆÀ">¹è¼Û°ü¸®ÆÀ</option>
 		<option value="»óÇ°°ü¸®ÆÀ">»óÇ°°ü¸®ÆÀ</option>
 		<option value="ÀÌ»ç">ÀÌ»ç</option>
 	</select>
-	   <input :disabled="valueDisabled" v-model="value">
+	   <input :disabled="valueDisabled" v-model="info.value">
 	</div>
-	<div><input placeholder="»ó»ç" v-model="sBoss"></div>
+	<div><input placeholder="»ó»ç" v-model="info.sBoss"></div>
 	
 	<button @click="fnAdd()">µî·Ï</button>
 	
@@ -37,12 +37,14 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		info : {
 		sName : "",
 		sNo : "",
 		sPhone : "",
 		sBoss : "",
 		selectItem : "",
 		value : ""
+		}
 	},
 	  computed: {
 		    valueDisabled: function () {
@@ -50,41 +52,41 @@ var app = new Vue({
 		    },
 		  },
 		  watch: {
-		    selectItem: function () {
-		      switch (this.selectItem) {
-		        case "°í°´°ü¸®ÆÀ":
-		          this.value = "A";
-		          break;
-		        case "¹Î¿ø°ü¸®ÆÀ":
-		          this.value = "C";
-		          break;
-		        case "¹è¼Û°ü¸®ÆÀ":
-		          this.value = "B";
-		          break;
-		        case "»óÇ°°ü¸®ÆÀ":
-		          this.value = "D";
-		          break;
-		        case "ÀÌ»ç":
-		          this.value = "M";
-		          break;
-		        default:
-		          this.value = "";
-		          break;
-		      }
-		    },
-		  },
+			  'info.selectItem': function(newVal, oldVal) {
+			    switch (newVal) {
+			      case "°í°´°ü¸®ÆÀ":
+			        this.info.value = "A";
+			        break;
+			      case "¹Î¿ø°ü¸®ÆÀ":
+			        this.info.value = "C";
+			        break;
+			      case "¹è¼Û°ü¸®ÆÀ":
+			        this.info.value = "B";
+			        break;
+			      case "»óÇ°°ü¸®ÆÀ":
+			        this.info.value = "D";
+			        break;
+			      case "ÀÌ»ç":
+			        this.info.value = "M";
+			        break;
+			      default:
+			        this.info.value = "";
+			        break;
+			    }
+			  },
+			},
 	methods : {
 		fnAdd : function(){
             var self = this;
-            var nparmap = {sName : self.sName, sNo : self.sNo, sPhone : self.sPhone, sBoss : self.sBoss, sPart : self.selectItem, sPosition : self.value};
+            var nparmap = self.info;
             $.ajax({
-                url : "/staff/add.dox",
+                url : "../staff/add.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
                 success : function(data) {
-                	alert(self.sName + "´ÔÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
-                	location.href="main.do";
+                	alert(self.info.sName + "´ÔÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+                	location.href="Management.do";
                 }
             }); 
         }

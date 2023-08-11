@@ -13,4 +13,5 @@ public interface GBoardMapper {
 	List<GBoard> selectGBoardList(HashMap<String, Object> map);
 	
 	int insertGBoard(HashMap<String, Object> map);
+	//ㅇㅇㅇㅇㅇㅇ
 }

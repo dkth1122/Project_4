@@ -24,7 +24,7 @@
       <option value="惑前包府评">惑前包府评</option>
       <option value="捞荤">捞荤</option>
     </select>
-    <input disabled v-model="value">
+    <input disabled v-model="info.value">
   </div>
   <div>惑荤 : <input v-model="info.sBoss"></div>
   <button @click="fnEdit()">荐沥窍扁</button>
@@ -36,13 +36,14 @@ var app = new Vue({
   data: {
     ssisonsNo: "${map.sNo}",
     info: {
-      sName: '',
-      sNo: '',
-      sPhone: '',
-      sBoss: '',
-      sPart: '',
+      sName: "",
+      sNo: "",
+      sPhone: "",
+      sBoss: "",
+      sPart: "",
+      sPosition: "",
+      value : ""
     },
-    value: '',
   },
   computed: {
     valueDisabled() {
@@ -53,22 +54,22 @@ var app = new Vue({
     'info.sPart'(newVal) {
       switch (newVal) {
         case '绊按包府评':
-          this.value = 'A';
+          this.info.value = 'A';
           break;
         case '刮盔包府评':
-          this.value = 'C';
+          this.info.value = 'C';
           break;
         case '硅价包府评':
-          this.value = 'B';
+          this.info.value = 'B';
           break;
         case '惑前包府评':
-          this.value = 'D';
+          this.info.value = 'D';
           break;
         case '捞荤':
-          this.value = 'M';
+          this.info.value = 'M';
           break;
         default:
-          this.value = '';
+          this.info.value = '';
           break;
       }
     },
@@ -89,15 +90,7 @@ var app = new Vue({
     },
     fnEdit() {
       const self = this;
-      const nparmap = {
-        sNo: self.info.sNo,
-        sName: self.info.sName,
-        sPhone: self.info.sPhone,
-        sBoss: self.info.sBoss,
-        sPart: self.info.sPart,
-        sPosition: self.value,
-      };
-
+      const nparmap = self.info;
       $.ajax({
         url: "/staff/edit.dox",
         dataType: 'json',

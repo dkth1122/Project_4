@@ -21,7 +21,7 @@
 	<!-- 사원 등록 -->
 	<insert id="addStaffInfo" parameterType="hashmap">
 		INSERT INTO T4_STAFF VALUES 
-		(#{sName}, #{sNo}, #{sPhone}, #{sPart}, #{sPosition}, #{sBoss})
+		(#{sName}, #{sNo}, #{sPhone}, #{selectItem}, #{value}, #{sBoss})
 	</insert>
 	
 	<!-- 사원 한 명 조회 -->
@@ -38,7 +38,7 @@
 			S_NAME = #{sName},
 			S_PHONE = #{sPhone},
 			S_PART = #{sPart},
-			S_POSITION = #{sPosition},
+			S_POSITION = #{value},
 			S_BOSS = #{sBoss}
 		WHERE S_NO = #{sNo}
 	</update>
