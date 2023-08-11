@@ -29,5 +29,18 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return productMapper.selectProductList(map);
 	}
+
+	@Override
+	public Product selectProductInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return productMapper.selectProductInfo(map);
+	}
+
+	@Override
+	public int deleteProduct(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return productMapper.deleteProduct(map);
+	}
+
 	
 }

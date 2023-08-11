@@ -73,7 +73,6 @@
 	
 	<div><button @click="fnProductAdd">상품 추가</button></div>
 
-
 	
 </div>
 </body>
@@ -99,8 +98,7 @@ var app = new Vue({
 		fnProductAdd: function() {
 			  var self = this;
 			  var nparmap = self.info;
-			  // 가격의 2%를 계산해서 pNo에 담기
-			  nparmap.point = parseFloat(nparmap.price) * 0.02; // parseFloat() 함수를 사용하여 문자열로 입력된 가격을 실수형으로 변환합니다.
+			  nparmap.point = parseFloat(nparmap.price) * 0.02;
 			  nparmap.pNo = (nparmap.artist + nparmap.pNo + nparmap.category);
 			  $.ajax({
 			    url : "/product/add.dox",
@@ -109,7 +107,7 @@ var app = new Vue({
 			    data : nparmap,
 			    success : function(data) {
 			      alert("상품이 등록되었습니다.");
-			      location.href = "main.do";
+			      location.href = "list.do";
 			    }
 			  });
 			}    	

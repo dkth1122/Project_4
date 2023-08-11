@@ -35,6 +35,11 @@ public class ProductController {
 		
 		return "/Product/product-list";
 	}
+	@RequestMapping("/product/stockpopup.do") 
+	public String stockpopup(Model model) throws Exception{
+		
+		return "/Product/product-stockpopup";
+	}
 	
 	@RequestMapping(value = "/product/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -47,10 +52,28 @@ public class ProductController {
 	
 	@RequestMapping(value = "/product/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String List(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<Product> list = productService.selectProductList(map);
 		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/product/info.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String info(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		Product info = productService.selectProductInfo(map);
+		resultMap.put("info", info);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/product/delete.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String delete(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		productService.deleteProduct(map);
+		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 	
