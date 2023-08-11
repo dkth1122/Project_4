@@ -12,26 +12,31 @@
   <style type="text/css">
   .box-border-bottom{
   	border-bottom: 2px solid #83828277;
-  	width: 800px;
+  	width: 850px;
   	height: 80px;
   }
   .box { 
-  	border: 1px solid black; 
   	margin-top: 30px;
-  	width: 800px;
+  	width: 850px;
   	height: 300px;
   	display: flex;
   }
   .p_content{
    padding : 20px 0px;
-  	border: 1px solid black; 
-  	width: 485px;
+  	width: 540px;
   }
   
   .p_img{
   padding : 20px 29px;
   width: 250px;
-    border: 1px solid black; 
+  }
+  td{
+  width: 170px;
+  height: 80px;
+  }
+   .responsive-image {
+    max-width: 100%;
+    height: 250px;
   }
   </style>
 </head>
@@ -128,10 +133,27 @@
 							      <div class="View">
 							    	  <div class="lowerBox" style="border-bottom-color: black;"> 주문 상품 정보 </div>
 							    	  <div class="box-border-bottom"></div>
-							    	  <div class="box">
-							    	  	<div class="p_img">df</div>
+							    	  
+							    	  <div class="box" v-for="item in productList">
+							    	  	<div class="p_img"><img class="responsive-image" src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202009/09/f663c475-26e6-45de-9644-46170134d718.jpg"> </div>
 							    	  	<div class="p_content">
-										
+										   <table>
+										   			<tr>
+										   				<td colspan="2">주문번호 : {{item.oNo}}</td>
+										   				
+										   				<td> 배송중/배송완료 </td>
+										   			</tr>
+										   			<tr>
+										   				<td colspan="2">{{item.pName}}</td>
+										   				
+										   				<td>Artist : {{item.artist}}</td>
+										   			</tr>
+										   			<tr>
+										   				<td>{{item.oDate}}</td>
+										   				<td style="text-align: center;">{{item.oCount}}개</td>
+										   				<td>{{item.price}}원</td>
+										   			</tr>
+										   </table>
 										
 										</div>
 							    	  
