@@ -22,7 +22,7 @@ public class User {
 		return uPw;
 	}
 	public void setuPw(String uPw) {
-		this.uPw = uPw;
+		this.uPw = uPw;	
 	}
 	public String getuPhone() {
 		return uPhone;
