@@ -33,6 +33,15 @@
 		</select>
 	</div>
 	<div><input type="date"></div>
+	<div>
+		<select>
+			<option value="¾Ù¹ü">¾Ù¹ü</option>
+			<option value="¸ÓÄ¡">¸ÓÄ¡</option>
+			<option value="DVD">DVD</option>
+			<option value="Æ÷ÅäºÏ">Æ÷ÅäºÏ</option>
+			<option value="¸â¹ö½Ê">¸â¹ö½Ê</option>
+		</select>
+	</div>
 	
 
 	
