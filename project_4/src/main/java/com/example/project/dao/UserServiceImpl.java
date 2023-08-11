@@ -90,5 +90,11 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userMapper.selectNonOrder(map);
 	}
+
+	@Override
+	public User searchNonOrderNo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.selectNonOrderNo(map);
+	}
 	
 }

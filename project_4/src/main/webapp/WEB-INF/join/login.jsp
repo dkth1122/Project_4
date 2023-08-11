@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="js/jquery.js"></script>
+<script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
@@ -19,7 +19,7 @@
 		<button @click="fnJoin">회원가입</button>
 	</div>
 	<div><a href="findId.do">아이디 찾기</a></div>
-	<div><a href="">비회원 주문조회</a></div>
+	<div><a href="nonOrder.do">비회원 주문조회</a></div>
 	<div><a href="findPw.do">비밀번호 찾기</a></div>
 </div>
 </body>
@@ -37,14 +37,14 @@ var app = new Vue({
 			var self = this;
 			var param = {uId : self.uId, uPw : self.uPw};
 			$.ajax({
-                url : "login.dox",
+                url : "/login.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
                 	if(data.success){
                 		alert(data.message);
-                		location.href='main.do';
+                		$.pageChange("main.do", {uId : self.uId});
                 		
                 	} else {
                 		alert(data.message);

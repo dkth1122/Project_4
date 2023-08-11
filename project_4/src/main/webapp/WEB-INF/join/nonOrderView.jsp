@@ -53,7 +53,7 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
+                	self.list = data.nonOrder;
                 	console.log(self.list);
                 	console.log(self.nmNo);
                 }

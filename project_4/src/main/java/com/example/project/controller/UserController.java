@@ -25,6 +25,13 @@ public class UserController {
 	@Autowired
 	HttpSession session;
 	
+	
+	@RequestMapping("user/test.do") 
+    public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/join/test";
+    }
+	
+	
 	@RequestMapping("user/join.do") 
     public String join(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/join";
@@ -59,6 +66,10 @@ public class UserController {
     public String nonOrder(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/nonOrder";
     }
+	@RequestMapping("user/nonOrderView.do") 
+    public String nonOrderView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/join/nonOrderView";
+    }
 	
 	@RequestMapping(value = "/user.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -74,6 +85,14 @@ public class UserController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		User findPw = userService.viewUserPw(map);
 		resultMap.put("findPw", findPw);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/user3.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String viewNonOrder(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User nonOrder = userService.searchNonOrderNo(map);
+		resultMap.put("nonOrder", nonOrder);
 		return new Gson().toJson(resultMap);
 	}
 	
@@ -94,6 +113,8 @@ public class UserController {
 			User user = (User)resultMap.get("user");
 			session.setAttribute("sessionId", user.getuId());
 			session.setAttribute("sessionName", user.getuName());
+			//세션유지시간 1시간지정
+			session.setMaxInactiveInterval(120*60);
 			//session.setAttribute("sessionStatus", user.getStatus());
 		}
 		return new Gson().toJson(resultMap);

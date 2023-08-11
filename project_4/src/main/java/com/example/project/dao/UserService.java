@@ -19,6 +19,8 @@ public interface UserService {
 	User searchUserPw(HashMap<String, Object> map);
 	//비밀번호찾기 유저출력
 	User viewUserPw(HashMap<String, Object> map);
-	//비회원 주문조회
+	//비회원 주문조회 찾기
 	User searchNonOrder(HashMap<String, Object> map);
+	//비회원 주문조회 출력
+	User searchNonOrderNo(HashMap<String, Object> map);
 }
