@@ -3,132 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="../js/jquery.js"></script>    
+  <script src="../js/jquery.js"></script>  
+   <link href="../css/mypag.css" rel="stylesheet" type="text/css">  
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
  <meta charset="UTF-8">
   <title>마이페이지</title>
   <style type="text/css">
- .nickname{
-  line-height:  127px;
-  margin-left: 70px;
- } 
- .name{
-   margin-left: 45px;
-  font-size: 4em;
-  font-weight: bold;
- }
-  body{
-     margin : 0px;
-     padding : 0px;}
-  #app {
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  #container {
-    width: 1200px;
-  }
-  #top {
-     background-color: #FADBEE;
-    width: 1200px;
-    height: 400px;
-    
-  }
-  #body {
-  margin-top : 40px;
-    width: 1200px;
-    display: flex;
-    justify-content: center;
-    font-size: 1.5em;
-    
-  }
-  #left {
-    
-    width: 250px;
-    height: 800px;
-  }
-  #right {
-   margin-left : 90px;
-    width: 950px;
-    height: 800px;
-  }
-  #profileImg{
-     border-radius: 50%;
-     background-color: purple;
-     width: 200px;
-     height: 200px;
-     margin-left: 55px;
-     margin-top : -15px;
-  }
-  .left{
-  float: left;
-  }
-  .topImgBoxwid{
-      width: 300px;
-     height: 240px;
-  }
-  .topBoxwid{
-      width: 200px;
-     height: 250px;
-  }
-  .userName{
-     height: 245px;
-     
-  }
-  .a{
-     height: 245px;
-  }
-  .topBox{
-  width : 889px;
-   height: 120px;
-    float: left;
-     display: flex;
-  }
-  .details{  
-     margin: 0px 30px;
-     width: 200px;
-     text-align: center;
-     font-size: 2em;
-  }
- h1{
- margin-left: 30px;
- } 
-  .categories{
-    padding-bottom : 25px;
-      widows : 200px;
-     border-bottom:3px solid black;
-     border-bottom-color: #a1a1a1da;
-     margin-bottom: 40px;
-  }
-  .lowerBox{
-    padding-bottom : 25px;
-      width : 800px;        
-     border-bottom:3px solid black;
-     border-bottom-color: #a1a1a1da;
-  }
- li {
- 
-  list-style-type: none;
-  line-height: 55px;
-}
-a {
-  text-decoration: none;
-  color: black; 
-}
-.nodata{
- color: #888888;
- line-height: 200px;
- text-align: center;
-}
-.View{
-height: 300px;
- margin-bottom: 150px;
-}
-  
+
   </style>
 </head>
 <body>
@@ -238,9 +121,10 @@ height: 300px;
   
 	</div>
 </div>
+</div>
 </body>
 </html>
-<script type="text/javascript">
+<script>
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 	app.fnResult(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo);
 }
@@ -280,7 +164,22 @@ var app = new Vue({
         editAddr : function(){
             var self = this;
             $.pageChange("infoAddr2.do", {uId : self.uId});
-        }
+        },
+        fnSearchAddr : function (){
+			var self = this;
+    		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    		window.open("addr.do", "test", option);
+		},
+		fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+    		var self = this;
+    		self.user.addr = roadAddrPart1;
+    		self.user.addrDetail = addrDetail;
+    		// 콘솔 통해 각 변수 값 찍어보고 필요한거 가져다 쓰면 됩니다.
+    		console.log(roadFullAddr);
+    		console.log(roadAddrPart1);
+    		console.log(addrDetail);
+    		console.log(engAddr);
+    	}
     },
     created: function() {
       var self = this;
