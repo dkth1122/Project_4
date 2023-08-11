@@ -28,8 +28,8 @@ public interface UserMapper {
 	User findUserPw(HashMap<String, Object> map);
 	//유저pw 아이디로 검색
 	User selectUserPw(HashMap<String, Object> map);
-	
-	
-	
-	
+	//비회원 주문조회
+	User selectNonOrder(HashMap<String, Object> map);
+	//비회원 주문 주문번호로 검색
+	User selectNonOrderNo(HashMap<String, Object> map);
 }

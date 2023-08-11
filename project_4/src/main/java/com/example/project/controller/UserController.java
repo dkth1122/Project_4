@@ -25,19 +25,19 @@ public class UserController {
 	@Autowired
 	HttpSession session;
 	
-	@RequestMapping("/join.do") 
+	@RequestMapping("user/join.do") 
     public String join(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/join";
     }
-	@RequestMapping("/login.do") 
+	@RequestMapping("user/login.do") 
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/login";
     }
-	@RequestMapping("/main.do") 
+	@RequestMapping("user/main.do") 
     public String main(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/main";
     }
-	@RequestMapping("/findId.do") 
+	@RequestMapping("user/findId.do") 
     public String findId(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/findId";
     }
@@ -46,14 +46,18 @@ public class UserController {
 		request.setAttribute("map", map);
         return "/join/findIdView";
     }
-	@RequestMapping("/findPw.do") 
+	@RequestMapping("user/findPw.do") 
     public String findPw(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/findPw";
     }
-	@RequestMapping("/findPwView.do") 
+	@RequestMapping("user/findPwView.do") 
     public String findPwView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
         return "/join/findPwView";
+    }
+	@RequestMapping("user/nonOrder.do") 
+    public String nonOrder(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/join/nonOrder";
     }
 	
 	@RequestMapping(value = "/user.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -119,6 +123,14 @@ public class UserController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		User user = userService.searchUserPw(map);
 		resultMap.put("user", user);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/nonOrder.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String nonOrder(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User list = userService.searchUserId(map);
+		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
 	
