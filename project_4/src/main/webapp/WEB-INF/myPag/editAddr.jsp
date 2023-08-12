@@ -79,8 +79,8 @@
                                  <li>회원 정보</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">회원 정보 수정</a></li>
-                                       <li><a href="#">배송주소록</a></li>                           
+                                       <li><a @click="infoUpdate">회원 정보 수정</a></li>
+                                       <li><a @click="infoAddr">배송주소록</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
@@ -103,13 +103,15 @@
                            <div id="right">
                            <div class="View">
                               <div class="lowerBox"> 배송 주소록 관리 </div>
-                                <div>· 배송지명 <span><input v-model="info.uDname"></span>
-                                <div>· 휴대전화 <span><input v-model="info.uDphone"></span>
-                                <div>· 주소 : <button @click="fnSearchAddr">주소 검색</button> 
-									<div v-if="user.addr != ''" ><label>도로명 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
-									<div v-if="user.addrDetail != ''"><label>상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
-							   </div>
-                                </div>
+                               	<div v-for ="item in list">
+                              	  <div>· 배송지명 <span><input v-model="item.uDname"></span>
+		                          <div>· 휴대전화 <span><input v-model="item.uDphone"></span>
+		                          <div>· 주소 : <button @click="fnSearchAddr">주소 검색</button> 
+								 		<div v-if="user.addr != ''" ><label>도로명 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
+											<div v-if="user.addrDetail != ''"><label>상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
+							   	 		</div>
+							    	</div>
+                               </div>
                               <div class="lowerBox"> 배송 주소록 유의사항 </div>
                               <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
                         
@@ -128,9 +130,6 @@
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 	app.fnResult(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo);
 }
-
-const userCode = "imp50081124";
-IMP.init(userCode);
 
 var app = new Vue({
     el: '#app',
@@ -156,7 +155,8 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.list; //사용자
+                   self.list = data.list; //사용자
+                   console.log(self.info);
                  
                 }
             }); 
@@ -179,7 +179,15 @@ var app = new Vue({
     		console.log(roadAddrPart1);
     		console.log(addrDetail);
     		console.log(engAddr);
-    	}
+    	},
+    	infoAddr : function(){
+ 	    	var self = this;
+ 	    	$.pageChange("infoAddr.do", {uId : self.uId});
+ 	    },
+ 	   infoUpdate : function(){
+	    	var self = this;
+	    	$.pageChange("infoUpdate.do", {uId : self.uId});
+	    }
     },
     created: function() {
       var self = this;

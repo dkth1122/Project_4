@@ -64,7 +64,7 @@ var app = new Vue({
 			location.href="";
 		},
 		fnCustomer : function() {
-			location.href="";
+			location.href="../user2/list.do";
 		},
 		fnProduct : function() {
 			location.href="../product/list.do";

@@ -6,12 +6,24 @@
 	<!-- 상품등록 -->
 	<insert id="insertProduct" parameterType="hashmap" >
 		INSERT INTO T4_PRODUCT VALUES
-		(#{pNo}, #{pName}, #{price}, #{point}, #{stock}, #{membership}, NOW(), 'N', #{pLimit}, #{category}, #{artist}, 'N', #{fYn}, 0)
+		(#{pNo}, #{pName}, #{price}, #{stock}, #{membership}, NOW(), #{pLimit}, #{category}, #{artist}, 'N', 0, #{fYn})
 	</insert>
 	
 	<!-- 상품출력 -->
 	<select id="selectProductList" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT * FROM T4_PRODUCT
 	</select>
+	
+	<!-- 상품 조회-->
+	<select id="selectProductInfo" parameterType="hashmap" resultType="com.example.project.model.Product">
+		SELECT * FROM T4_PRODUCT
+		WHERE P_NO = #{pNo}
+	</select>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteProduct" parameterType="hashmap">
+		DELETE FROM T4_PRODUCT
+		WHERE P_NO = #{pNo}
+	</delete>
 	
 </mapper>

@@ -12,9 +12,11 @@
 </head>
 <body>
 <div id="app">
-	<div><input type="text" placeholder="이름" v-model="staffName"></div>
-	<div><input type="text" placeholder="사번" v-model="staffNo"></div>
-	<div><button @click="fnStaffLogin">로그인</button></div>
+	<form @submit.prevent="fnStaffLogin">
+	    <div><input type="text" placeholder="이름" v-model="staffName"></div>
+	    <div><input type="text" placeholder="사번" v-model="staffNo"></div>
+	    <div><button type="submit">로그인</button></div>
+    </form>
 </div>
 </body>
 </html>

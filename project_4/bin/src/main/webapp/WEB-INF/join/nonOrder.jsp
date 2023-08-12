@@ -40,8 +40,8 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		uName : "",
-		uPhone : ""
+		nmNo : "",
+		nmName : ""
 	},// data
 	methods : {
 		fnGetList : function(){

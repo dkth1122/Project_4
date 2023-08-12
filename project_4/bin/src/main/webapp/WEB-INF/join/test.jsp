@@ -31,7 +31,8 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		list : [],
+		uId : "${sessionId}"
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -43,7 +44,7 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
+                	self.list = data.user;
                 	console.log(self.list);
                 }
             }); 

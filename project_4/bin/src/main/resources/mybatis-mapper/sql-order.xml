@@ -4,12 +4,23 @@
 
 <mapper namespace="com.example.project.mapper.OrderMapper">
 
-	<select id="orderCntselect" resultType="com.example.project.model.Order">
-	 SELECT 
-	 	U_ID,
-	 	COUNT(*) AS orderCnt
-	 FROM 
-	 	T4_ORDER GROUP BY #{uId}
+	<select id="orderCntselect" parameterType="hashmap" resultType="com.example.project.model.Order">
+	SELECT
+    	U_ID, EXCHANGE,
+    COUNT(*) AS orderCnt
+	FROM
+	    T4_ORDER
+	  WHERE U_ID = #{uId}
+		GROUP BY #{uId}, EXCHANGE
+	</select>
+	
+	
+	<select id="orderProductSelect" parameterType="hashmap" resultType="com.example.project.model.Order">
+	
+	 SELECT * FROM
+	 T4_ORDER O INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+	 WHERE U_ID = #{uId}
+	 
 	</select>
 	
 </mapper>
