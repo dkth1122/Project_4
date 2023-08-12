@@ -63,12 +63,13 @@ padding-right :30px;
               </p>
             </div>
             <div class="body" style="margin-top: 80px;">
-                <select class="select">
-                    <option>최신순</option>
+                <select class="select" v-model="selectedSort" @change="sortList">
+                    <option value="">최신순</option>
                     <option>상품명</option>
-                    <option>낮은가격</option>
-                    <option>높은가격</option>
+                    <option value="lowToHigh">낮은가격</option>
+  					<option value="highToLow">높은가격</option>
                 </select>
+                
                 <div class="body2" style=" width: 198px; height: 600px;" >
 
                     <div id="CategoryTitle" class="CategoryTitle"> BTS </div>
@@ -187,13 +188,16 @@ var app = new Vue({
     el: '#app',
     data: {
     	list : [],
-    	
+    	category : "DVD",
+    	artist : "BTS",
+    	selectedSort: "", 
     	
     },
     methods: {
     	fnGetList : function(){
             var self = this;
-            var nparmap = {   }
+            var nparmap = {category :self.category ,  artist : self.artist}
+            
             $.ajax({
                 url : "/product/list.dox",
                 dataType:"json",	
@@ -201,13 +205,39 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) {                 	
                 	self.list = data.list;                	
-                	 console.log(self.list[0].pImg);
+                	 
                 	
                 }
             }); 
            		 
            	 	
-        }, 
+        }, // "상품명" 옵션 선택 시 알파벳 A부터 시작되는 순으로 정렬
+        sortByName: function() {
+            this.list.sort((a, b) => a.pName.localeCompare(b.pName));
+        },
+        sortLowToHigh: function() {
+            this.list.sort((a, b) => a.price - b.price);
+        },
+
+        // 높은 가격 순으로 상품을 정렬하는 메서드
+        sortHighToLow: function() {
+            this.list.sort((a, b) => b.price - a.price);
+        },
+
+        // 선택된 정렬 옵션에 따라 정렬하는 메서드
+        sortList: function() {
+            if (this.selectedSort === "") {
+                // "최신순" 옵션 선택 시, 초기 리스트 순서로 정렬
+                this.fnGetList();
+            } else if (this.selectedSort === "상품명") {
+                this.sortByName();
+            } else if (this.selectedSort === "lowToHigh") {
+                this.sortLowToHigh();
+            } else if (this.selectedSort === "highToLow") {
+                this.sortHighToLow();
+            }
+        },
+        
         
     },
     created: function() {
