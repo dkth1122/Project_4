@@ -8,7 +8,7 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <meta charset="EUC-KR">
-  <title>Insert title here</title>
+  <title>상품 페이지</title>
 </head>
 <body>
 
@@ -158,7 +158,7 @@
 var app = new Vue({
     el: '#app',
     data: {
-      
+    	
     },
     methods: {
       

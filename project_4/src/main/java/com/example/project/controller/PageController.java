@@ -23,6 +23,12 @@ public class PageController {
 	@Autowired
 	TestService testService;
 	
+
+	@RequestMapping("/hetest.do") 
+	public String head(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/page/haedtest";
+	}
+	
 	@RequestMapping("/test.do") 
     public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/test";

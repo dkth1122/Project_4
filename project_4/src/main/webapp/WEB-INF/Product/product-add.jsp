@@ -107,7 +107,7 @@ var app = new Vue({
 			    data : nparmap,
 			    success : function(data) {
 			      alert("상품이 등록되었습니다.");
-			      location.href = "list.do";
+			       location.href = "list.do"; 
 			    }
 			  });
 			}    	

@@ -15,8 +15,15 @@ public class Product {
 	private String artist;
 	private String fYn;
 	private int afNo;
+	private String pImg;
 	
 	
+	public String getpImg() {
+		return pImg;
+	}
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
+	}
 	public String getpDate() {
 		return pDate;
 	}
