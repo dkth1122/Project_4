@@ -11,14 +11,26 @@
   <title>BTS DVD PAGE</title>
 <style type="text/css">
 .productImg{
-	border:  1px solid black;	
+
 	height:  250px;
 }
 .box_img{
 	max-width : 300px;
 	max-height: 100%;
 	}
-
+.pname{
+	
+	margin-left: 20px;
+}
+#pname{
+padding-top : 20px;
+height : 90px;
+line-height : 30px;
+}
+.price{
+padding-right :30px;
+	text-align: right;
+}
 
 </style>
 </head>
@@ -150,12 +162,13 @@
 
                 <div class="body2 " style=" width: 1000px; height: 2000px;">
 
-                   <div >
-                   	 	<div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-                        	<div class="productImg">  
-                        	<img id="dynamic_img" class="box_img" src="">   
+                   <div v-for="item in list">
+                   	 	<div class="magin body2" style="width: 300px; height: 400px;  ">
+                        	<div class="productImg">                        	 
+                        	<img id="dynamic_img" class="box_img" :src="item.pImg"> 
                         	</div>
-                        	
+                        	<div id="pname" class="pname">{{item.pName}}</div>
+                        	<div class="price">\ {{item.price}}</div>
                    		</div>
                    </div> 
                     
@@ -170,13 +183,11 @@
 </body>
 </html>
 <script type="text/javascript">
-var imgElement = document.getElementById("dynamic_img");
-var imageUrl = "";
 var app = new Vue({
     el: '#app',
     data: {
     	list : [],
-    	img : ""
+    	
     	
     },
     methods: {
@@ -189,9 +200,8 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) {                 	
-                	self.list = data.list;
-                	imageUrl = self.list[0].pImg;
-                	 console.log(imageUrl);
+                	self.list = data.list;                	
+                	 console.log(self.list[0].pImg);
                 	
                 }
             }); 
@@ -207,7 +217,6 @@ var app = new Vue({
     }
   });
 
-imgElement.src = imageUrl;
 
 let subToggle=true;
 
