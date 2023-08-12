@@ -25,18 +25,19 @@
 <table>
 		<tr>
 			<th>아이디</th>
+			<th>이름</th>
 			<th>닉네임</th>
 			<th>연락처</th>
 			<th>비밀번호오류횟수</th>
-			<th>정지</th>
 
 		</tr>
 		<tr v-for="(item, index) in list">
-			<td>{{item.uId}}</td>
+			<td><a href="javascript:;" @click="fnuserInformation(item)">{{item.uId}}</a></td>
+			<td>{{item.uName}}</td>
 			<td>{{item.uName2}}</td>
 			<td>{{item.uPhone}}</td>
-			<td>{{item.uCnt}}</td>
-			<td><button>추후추가</button></td>
+			<td v-if="item.uCnt >= 5"><button @click="fnCntReset(item)">오류초기화</button></td>
+			<td v-else></td>
 
 		</tr>
 	</table>
@@ -50,6 +51,7 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
+		uId : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -62,6 +64,24 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.list = data.list;
+                }
+            }); 
+        },
+        fnuserInformation : function(item){
+        	 var self = this;
+             $.pageChange("../user2/view.do", {uId : item.uId});
+        },
+        fnCntReset : function(item){
+            var self = this;
+            var nparmap = {uId : item.uId};
+            $.ajax({
+                url : "/user2/cntReset.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	alert("초기화되었습니다.");
+                	self.fnGetList();
                 }
             }); 
         },

@@ -30,9 +30,15 @@ public class User2Controller {
 	 
 	
 	@RequestMapping("user2/list.do") 
-    public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+    public String list(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/User2/user2-list";
     }
+	
+	@RequestMapping("user2/view.do") 
+	public String view(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/User2/user2-view";
+	}
 	
 	@RequestMapping(value = "/user2/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -43,5 +49,39 @@ public class User2Controller {
 		return new Gson().toJson(resultMap);
 	}
 	
+	@RequestMapping(value = "/user2/cntReset.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String cntReset(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		user2Service.userCntReset(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
 	
+	@RequestMapping(value = "/user2/view.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String boardInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User info = user2Service.selectUserInfo(map);
+		resultMap.put("info", info);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/user2/pointAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String pointAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		user2Service.userPointAdd(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/user2/userPwReset.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String userPwReset(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		user2Service.userPwReset(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
 }

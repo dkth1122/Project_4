@@ -5,7 +5,14 @@ public class Ban {
 	private String uId;
 	private char bYn;
 	private String bReasons;
+	private String bDate;
 	
+	public String getbDate() {
+		return bDate;
+	}
+	public void setbDate(String bDate) {
+		this.bDate = bDate;
+	}
 	public String getuId() {
 		return uId;
 	}

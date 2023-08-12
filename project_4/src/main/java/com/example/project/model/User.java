@@ -9,15 +9,39 @@ public class User {
 	private String uName2;
 	private String uEmail;
 	private char uEventyn;
-	private int Cnt;
+	private int uCnt;
+	private int uPoint;
 	private String joindate;
 	private String gArtist;
+	private String bYn;
+	private String bReasons;
+	private String bDate;
 	
-	public String getgArtist() {
-		return gArtist;
+	
+	
+	public int getuPoint() {
+		return uPoint;
 	}
-	public void setgArtist(String gArtist) {
-		this.gArtist = gArtist;
+	public void setuPoint(int uPoint) {
+		this.uPoint = uPoint;
+	}
+	public String getbDate() {
+		return bDate;
+	}
+	public void setbDate(String bDate) {
+		this.bDate = bDate;
+	}
+	public String getbYn() {
+		return bYn;
+	}
+	public void setbYn(String bYn) {
+		this.bYn = bYn;
+	}
+	public String getbReasons() {
+		return bReasons;
+	}
+	public void setbReasons(String bReasons) {
+		this.bReasons = bReasons;
 	}
 	public String getuId() {
 		return uId;
@@ -29,7 +53,7 @@ public class User {
 		return uPw;
 	}
 	public void setuPw(String uPw) {
-		this.uPw = uPw;	
+		this.uPw = uPw;
 	}
 	public String getuPhone() {
 		return uPhone;
@@ -62,10 +86,10 @@ public class User {
 		this.uEventyn = uEventyn;
 	}
 	public int getCnt() {
-		return Cnt;
+		return uCnt;
 	}
-	public void setCnt(int cnt) {
-		Cnt = cnt;
+	public void setCnt(int uCnt) {
+		this.uCnt = uCnt;
 	}
 	public String getJoindate() {
 		return joindate;
@@ -73,7 +97,12 @@ public class User {
 	public void setJoindate(String joindate) {
 		this.joindate = joindate;
 	}
+	public String getgArtist() {
+		return gArtist;
+	}
+	public void setgArtist(String gArtist) {
+		this.gArtist = gArtist;
+	}
 	
-
 	
 }

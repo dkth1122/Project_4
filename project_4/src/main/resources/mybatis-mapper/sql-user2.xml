@@ -3,9 +3,43 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.project.mapper.User2Mapper">
+
+	<!-- admin전용 회원 정보 출력 -->
 	<select id="selectUserList" parameterType="hashmap" resultType="com.example.project.model.User">
 		SELECT *
-		FROM T4_USER
+		FROM T4_USER U
+		LEFT JOIN T4_BAN B ON U.U_ID = B.U_ID
 	</select>
+	
+	<!-- 고객 비밀번호 오류 횟수 초기화 -->
+	<update id="userCntReset" parameterType="hashmap">
+		UPDATE T4_USER
+		SET
+			U_CNT = 0
+		WHERE U_ID = #{uId}
+	</update>
+	
+	<!--회원 정보 상세보기 -->
+	<select id="selectUserInfo" parameterType="hashmap" resultType="com.example.project.model.User">
+		SELECT *
+		FROM T4_USER U
+		LEFT JOIN T4_BAN B ON U.U_ID = B.U_ID
+		WHERE U.U_ID = #{uId}
+	</select>
+	
+	<!-- 고객 비밀번호 초기화 -->
+	<update id="userPwReset" parameterType="hashmap">
+	    UPDATE T4_USER
+	    SET U_PW = RIGHT(#{uResetPw}, 4)
+	    WHERE U_ID = #{uId}
+	</update>
+	
+	<!-- 고객 포인트 변경 -->
+	<update id="userPointAdd" parameterType="hashmap">
+		UPDATE T4_USER
+		SET
+			U_POINT = U_POINT + (#{pointAdd})
+		WHERE U_ID = #{uId}
+	</update>
 	
 </mapper>
