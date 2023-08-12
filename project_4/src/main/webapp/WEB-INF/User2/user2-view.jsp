@@ -62,7 +62,7 @@
 		<td>{{info.bDate}}</td>
 	</tr>
 	</table>
-	<button>정지 해제</button>
+	<button @click="fnUserBanDel">정지 해제</button>
 	</div>
 	<div v-else><button @click="fnUserBan">정지</button></div>
 	</div>
@@ -176,6 +176,23 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                     alert("정지되었습니다.");
+                    self.fnGetList();
+                }
+            }); 
+        },
+        fnUserBanDel : function(){
+            var self = this;
+            if(!confirm("정지를 해제하겠습니까?")){
+                return;
+            }
+            var nparmap = {uId : self.uId};
+            $.ajax({
+                url : "/user2/userBanDel.dox",
+                dataType : "json", 
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                    alert("해제되었습니다.");
                     self.fnGetList();
                 }
             }); 
