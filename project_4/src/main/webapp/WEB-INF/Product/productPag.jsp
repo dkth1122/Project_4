@@ -58,10 +58,10 @@
             <div class="slide_wrapper_main">
                 <div class="slide_wrapper">
                     <ul class="slides">
-                      <li ><img src="https://blog.kakaocdn.net/dn/BAiIZ/btrHwluAwlT/1Y7iw7Y3pvF2VWgWL8Vvu1/img.jpg"></li>
-                      <li ><img src="https://i.ytimg.com/vi/AKHJMLeZ4N8/maxresdefault.jpg"></li>
-                      <li ><img src="https://cdn.topstarnews.net/news/photo/202111/14647891_721352_4352.jpg"></li>
-                      <li ><img src="https://i.pinimg.com/originals/3d/04/83/3d0483a943e61b82fb4740601bbebd8c.jpg"></li>
+                      <li ><img src="https://cdn.topstarnews.net/news/photo/first/201604/img_192402_1.jpg"></li>
+                      <li ><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyPLo3%2Fbtrz6qShOq3%2FIa3mcJQ7WPrIApAN3ZlH70%2Fimg.jpg"></li>
+                      <li ><img src="https://cdn.eyesmag.com/content/uploads/sliderImages/2022/07/22/NEW-JEANS-01-94cfa2f0-0e0e-493a-a811-07d3db1fa6d5.jpg"></li>
+                      <li ><img src="https://blog.kakaocdn.net/dn/SbnII/btqEMwrZGyP/qsc0F50OjuXal84GGGP1ek/img.png"></li>
                
                 </div>
                 <p class="controls">

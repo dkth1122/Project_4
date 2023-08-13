@@ -165,9 +165,9 @@ padding-right :30px;
                    <div v-for="item in list">
                    	 	<div class="magin body2" style="width: 300px; height: 400px;  ">
                         	<div class="productImg">                        	 
-                        	<img id="dynamic_img" class="box_img" :src="item.pImg"> 
+                        	<img id="dynamic_img" class="box_img" src="../../img/btsProduct/BTS0001DVD.png"> 
                         	</div>
-                        	<div id="pname" class="pname">{{item.pName}}</div>
+                        	<div id="pname" class="pname">{{item.pName}} {{item.pImg}}</div>
                         	<div class="price">\ {{item.price}}</div>
                    		</div>
                    </div> 
@@ -201,7 +201,7 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) {                 	
                 	self.list = data.list;                	
-                	 console.log(self.list[0].pImg);
+                	 console.log(self.list);
                 	
                 }
             }); 
