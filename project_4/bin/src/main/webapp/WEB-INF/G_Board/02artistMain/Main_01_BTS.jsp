@@ -6,6 +6,7 @@
 <meta charset="EUC-KR">
  <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버십 게시판</title>
 <style>
 	.header{
@@ -19,9 +20,9 @@
 	}
 	.feedType{
 		width: 1000px;
-		height: 100px;
+		height: 300px;
 	}
-	.feedType > span{
+	.feedType > ul{
 		position: absolute;
 		border: 1px solid tomato;
 		padding: 32px;
@@ -32,6 +33,16 @@
 		border: 1px solid tomato;
 		padding: 32px;
 	}
+	a{
+        	text-decoration: none;
+        	color: inherit;
+        }
+   .write{
+   	width: 1000px;
+		height: 300px;
+		border: 1px solid tomato;
+		padding: 32px;
+   }
 </style>
 </head>
 <body>
@@ -48,10 +59,32 @@
 	    </div>
 	
 	<div class="artistNewFeed">
-		<div class="feedType">
-			<span style="left:0.5%">아티스트 최신 글1</span>
-			<span style="left:15%">아티스트 최신 글2</span>
-			<span style="left:30%">아티스트 최신 글3</span>
+		<div class="feedType" v-if="item.gArtist == 'Y'" v-for="item in list" >
+		<!-- 날짜 빠른 순으로 정렬 후 출력 -->
+			<ul style="left:0.5%">
+		            <li>{{item.mArtist}}</li>
+		            <li>{{item.uName2}}</li>
+		            <li>{{item.gDate}}</li>
+		            <li>{{item.gContent}}</li>
+		            <li>{{item.gLike}}</li>
+		            <li><button>신고</button></li>
+			</ul>
+			<ul style="left:30%">
+		            <li>{{item.mArtist}}</li>
+		            <li>{{item.uName2}}</li>
+		            <li>{{item.gDate}}</li>
+		            <li>{{item.gContent}}</li>
+		            <li>{{item.gLike}}</li>
+		            <li><button>신고</button></li>
+			</ul>
+			<ul style="left:50%">
+	            <li>{{item.mArtist}}</li>
+	            <li>{{item.uName2}}</li>
+	            <li>{{item.gDate}}</li>
+	            <li>{{item.gContent}}</li>
+	            <li>{{item.gLike}}</li>
+	            <li><button>신고</button></li>
+			</ul>
 		</div>
 	</div>
 	
@@ -64,19 +97,19 @@
 	    	
 	        <ul v-for="item in list">
 	            <li>{{item.mArtist}}</li>
-	            <li>{{item.uId}}</li>
+	            <li>{{item.uName2}}</li>
 	            <li>{{item.gDate}}</li>
 	            <li>{{item.gContent}}</li>
 	            <li>{{item.gLike}}</li>
-	            <li>신고</li>
-	            <li>작성자 차단</li>
-<!-- 	            <li>
-				    <button v-if="item.uId == uId">삭제</button>
-				</li> -->
+	            <li><button>신고</button></li>
+	            <li> 
+	            <!-- v-if="cUser == item.cUser && item.delYn == 'N' || status == 'A'" v-model="item.gNo" -->
+		            <a href="javascript:;" >
+		            	<div ><i class="fa-regular fa-circle-xmark fa-xs"  @click="fnRemove"></i></div>
+		            </a>
+				</li>
 	        </ul>
-	   <div class="dd">
-	    </div>
-	    </div>
+	        </div>
 	</div>
 	</body>
 	</html>
@@ -87,11 +120,11 @@
 	            list: [],
 	            no : "",
 	            keyword: "",
-	            bUser : "${sessionId}",
+	            uId : "${sessionId}",
 	            selectItem : [],
 	            content : "",
-	            artist : "BTS"
-	            
+	            artist : "BTS",
+	            info : {}
 	        },// data
 	        methods: {
 	            fnGetList: function() {
@@ -107,20 +140,29 @@
 	                        console.log(data);
 	                    }
 	                });
-	            }, fnView : function (no) {
-	            	 var self = this;
-	            	 $.pageChange("view.do", {no : no});
-	            	 
+	            }, fnGetList2 : function() {
+	                var self = this;
+	                var nparmap = {artist : self.artist };
+	                $.ajax({
+	                    url: "list.dox",
+	                    dataType: "json",
+	                    type: "POST",
+	                    data: nparmap,
+	                    success: function (data) {
+	                        self.list = data.list;
+	                        console.log(data);
+	                    }
+	                });
 	            }, fnSearch: function() {
 	                var self = this;
-	                var nparmap = {keyword: self.keyword};
+	                var nparmap = {artist:self.artist, keyword: self.keyword};
 	                $.ajax({
 	                    url: "search.dox",
 	                    dataType: "json",
 	                    type: "POST",
 	                    data: nparmap,
 	                    success: function (data) {
-	                    	self.list = data.list;
+	                    	self.list = data.info;
 			                console.log(self.list);
 	                    }
 	                });
@@ -139,20 +181,15 @@
 	                     data : nparmap,
 	                     success : function(data) {
 	     	               alert("등록되었어요.");
-	     	               self.fnGetList(); 
+	     	               self.fnGetList();
 	                     }
 	                 });   
 	            }, fnRemove: function () {
 	            	 var self = this;
-	                 
-	            	 if(!confirm("정말루?;;")){
+	            	 if(!confirm("삭제하시겠어요?")){
 	                 	return;
 	                 }
-	                 
-	            	 var noList = JSON.stringify(self.selectItem);
-	            	 
-	                 var nparmap = {selectItem : noList};
-	                 
+	                 var nparmap = {gNo : self.gNo};
 	                  $.ajax({
 	                     url : "remove.dox",
 	                     dataType:"json",
@@ -161,10 +198,8 @@
 	                     success : function(data) {
 	     	               alert("삭제되었습니다.");
 	     	               self.fnGetList(); 
-	     	               self.selectItem = [] ;
 	                     }
 	                 });   
-	                 
 	            }, fnMove: function () {
 					location.href = "main.do";
 					

@@ -138,44 +138,11 @@
 
                 <div class="body2 " style=" width: 1000px; height: 2000px;">
 
-                   
+                   <div v-for="index in 99" :key="index">
                     <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
                         
                     </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-
-                    </div>
+                   </div> 
                     
                 </div>
 

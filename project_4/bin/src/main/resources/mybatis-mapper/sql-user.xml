@@ -67,4 +67,15 @@
 		WHERE NM_NO = #{nmNo} AND NM_NAME = #{nmName}
 	</select>
 	
+	<update id="infoUpdate" parameterType="hashmap">
+		UPDATE T4_USER
+		SET
+			U_NAME2 = #{uName2},
+			U_PW = #{uPw},
+			U_NAME = #{uName},
+			U_PHONE = #{uPhone},
+			U_SMSYN = #{uSmsyn}
+		WHERE U_ID = #{uId}
+	</update>
+	
 </mapper>

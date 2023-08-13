@@ -8,22 +8,20 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-<style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-</style>
+
 </style>
 </head>
 <body>
 <div id="app">
-	test
+
+	<div>상품코드 : {{info.pNo}}</div>
+	<div>상품명 : {{info.pName}}</div>
+	<div>재고 : {{info.stock}}</div>
+	
+	
+
+
+	
 </div>
 </body>
 </html>
@@ -31,25 +29,30 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : [],
-		uId : "${sessionId}"
+		info : {},
+		selectItem : ""
+		pNo : "${map.pNo}"
 	},// data
 	methods : {
 		fnGetList : function(){
-			var self = this;
-			var param = {};
-			$.ajax({
-                url : "list.dox",
+            var self = this;
+            var nparmap = {pNo : self.pNo};
+            $.ajax({
+                url : "/product/info.dox",
                 dataType:"json",	
-                type : "POST",
-                data : param,
+                type : "POST", 
+                data : nparmap,
                 success : function(data) { 
-                	self.list = data.user;
-                	console.log(self.list);
+                	self.info = data.info;
                 }
             }); 
-		}
-		
+        },
+        fnProductAdd : function(){
+        	location.href="../product/add.do";
+        },
+        fnBack : function(){
+        	location.href = '../staff/main.do';
+        }
 	}, // methods
 	created : function() {
 		var self = this;

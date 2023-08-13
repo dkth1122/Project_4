@@ -4,7 +4,7 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
- <link href="css/join.css" rel="stylesheet" type="text/css">
+ <link href="../css/join.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
@@ -88,7 +88,7 @@ var app = new Vue({
 			}
 		 	var nparmap = self.user;
             $.ajax({
-                url : "add.dox",
+                url : "/userJoin/add.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
@@ -115,7 +115,7 @@ var app = new Vue({
 	   		var self = this;
 			var nparmap = {uId : self.user.uId};
             $.ajax({
-                url : "check.dox",
+                url : "/userJoin/check.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
@@ -132,6 +132,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
+		
 	}// created
 });
 </script>

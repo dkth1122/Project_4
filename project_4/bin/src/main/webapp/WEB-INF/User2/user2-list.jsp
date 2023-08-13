@@ -24,40 +24,25 @@
 
 <table>
 		<tr>
-			<th></th>
-			<th>아티스트</th>
-			<th>상품코드</th>
+			<th>아이디</th>
 			<th>이름</th>
-			<th>가격</th>
-			<th>재고</th>
-			<th>재고조정</th>
-			<th>멤버십</th>
-			<th>판매일</th>
-			<th>종류</th>
+			<th>닉네임</th>
+			<th>연락처</th>
+			<th>비밀번호오류횟수</th>
+
 		</tr>
-		
 		<tr v-for="(item, index) in list">
-			<td><input type="radio" name="뭐하지" :value="item.pNo" v-model="pNo"></td>
-			<td>{{item.artist}}</td>
-			<td>{{item.pNo}}</td>
-			<td>{{item.pName}}</td>
-			<td>{{item.price}}</td>
-			<td>{{item.stock}}</td>
-			<td><button @click="fnStockPopup(item)">재고</button></td>
-			<td>{{item.membership}}</td>
-			<td>{{item.pDate}}</td>
-			<td>{{item.category}}</td>
+			<td><a href="javascript:;" @click="fnuserInformation(item)">{{item.uId}}</a></td>
+			<td>{{item.uName}}</td>
+			<td>{{item.uName2}}</td>
+			<td>{{item.uPhone}}</td>
+			<td v-if="item.uCnt >= 5"><button @click="fnCntReset(item)">오류초기화</button></td>
+			<td v-else></td>
+
 		</tr>
-	
 	</table>
-	<button @click="fnProductAdd">상품 추가</button>
-	<button @click="fnProductDelete">상품 삭제</button>
-	
 	
 	<div><button @click="fnBack">되돌아가기</button></div>
-
-
-	
 </div>
 </body>
 </html>
@@ -66,15 +51,14 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		selectItem : "",
-		pNo : ""
+		uId : ""
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
             var nparmap = {};
             $.ajax({
-                url : "/product/list.dox",
+                url : "/user2/list.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
@@ -83,34 +67,27 @@ var app = new Vue({
                 }
             }); 
         },
-        fnProductAdd : function(){
-        	location.href="../product/add.do";
+        fnuserInformation : function(item){
+        	 var self = this;
+             $.pageChange("../user2/view.do", {uId : item.uId});
         },
-        fnBack : function(){
-        	location.href = '../staff/main.do';
-        },
-        fnStockPopup : function(item) {
-        	  var self = this;
-        	  window.open("../product/stockpopup.do?pNo=" + item.pNo, "stockPopup", "width=700,height=500");
-        	},
-        fnProductDelete : function() {
-        	var self = this;
-            var nparmap = {pNo : self.pNo};
-            if(!confirm("정말 삭제하시겠습니까?")){
-                return;
-            }
+        fnCntReset : function(item){
+            var self = this;
+            var nparmap = {uId : item.uId};
             $.ajax({
-                url : "/product/delete.dox",
+                url : "/user2/cntReset.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("삭제되었습니다.");
+                	alert("초기화되었습니다.");
                 	self.fnGetList();
                 }
             }); 
-        }
-
+        },
+        fnBack : function(){
+            location.href = '../staff/main.do';
+         }
 	}, // methods
 	created : function() {
 		var self = this;
