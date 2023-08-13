@@ -31,6 +31,10 @@ public class MyPagController2 {
 	@Autowired
 	DeliveryService deliveryService;
 	
-
+	//마이페이지 보이기
+		@RequestMapping("/main/hd.do") 
+	    public String mainGBoard(Model model) throws Exception{
+	        return "/Product/hd";
+	    }
 
 }
