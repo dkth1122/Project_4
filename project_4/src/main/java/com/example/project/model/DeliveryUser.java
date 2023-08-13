@@ -2,11 +2,34 @@ package com.example.project.model;
 
 public class DeliveryUser {
 	private String uId;
+	private int duNo;
 	private String uDname;
 	private String uDaddr;
+	private String uDaddrDetail;
+	private String zipNo;
+	private String fixAddr;
 	private String uDphone;
 	private String uDmessage;
-	private int duNo;
+	
+	
+	public String getuDaddrDetail() {
+		return uDaddrDetail;
+	}
+	public void setuDaddrDetail(String uDaddrDetail) {
+		this.uDaddrDetail = uDaddrDetail;
+	}
+	public String getZipNo() {
+		return zipNo;
+	}
+	public void setZipNo(String zipNo) {
+		this.zipNo = zipNo;
+	}
+	public String getFixAddr() {
+		return fixAddr;
+	}
+	public void setFixAddr(String fixAddr) {
+		this.fixAddr = fixAddr;
+	}
 	
 	public int getDuNo() {
 		return duNo;

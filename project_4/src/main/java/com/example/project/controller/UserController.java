@@ -114,7 +114,7 @@ public class UserController {
 			session.setAttribute("sessionId", user.getuId());
 			session.setAttribute("sessionName", user.getuName());
 			//세션유지시간 1시간지정
-			session.setMaxInactiveInterval(120*60);
+			session.setMaxInactiveInterval(360*60);
 			//session.setAttribute("sessionStatus", user.getStatus());
 		}
 		return new Gson().toJson(resultMap);

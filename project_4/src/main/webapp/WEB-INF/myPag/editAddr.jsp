@@ -103,26 +103,30 @@
                            <div id="right">
                            <div class="View">
                               <div class="lowerBox"> 배송 주소록 관리 </div>
-                               	<div v-for ="item in list">
-                              	  <div>· 배송지명 <span><input v-model="item.uDname"></span>
-		                          <div>· 휴대전화 <span><input v-model="item.uDphone"></span>
-		                          <div>· 주소 : <button @click="fnSearchAddr">주소 검색</button> 
-								 		<div v-if="user.addr != ''" ><label>도로명 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
-											<div v-if="user.addrDetail != ''"><label>상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
-							   	 		</div>
-							    	</div>
-                               </div>
+                               	<div v-for ="item in list" v-if="item.duNo == duNo">
+                              	  <div>· 배송지명 <span><input v-model="item.uDname"></span> </div>
+		                          <div>· 휴대전화 <span><input v-model="item.uDphone"></span> </div>
+		                          <div v-if="user.addr == ''">· 주소 : <input v-model="item.uDaddr" disabled/></div> 
+		                          <div v-if="user.addrDetail == ''">· 상세주소 : <input v-model="item.uDaddrDetail" disabled/></div>
+		                          <div v-if="user.zipNo == ''">· 우편주소 : <input v-model="item.zipNo" disabled/></div>		                          		
+								 		<div v-if="user.addr != ''" ><label>· 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
+										<div v-if="user.addrDetail != ''"><label>· 상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
+										<div v-if="user.zipNo != ''"><label>· 우편번호 : <input  style="width : 300px;" type="text" v-model="user.zipNo"></label></div>
+							   	  
+							   	  <button @click="fnSearchAddr">주소 검색</button> 
+							   	  <div><button @click="fnEdit()">수정하기</button></div>
+							   	</div>							  
                               <div class="lowerBox"> 배송 주소록 유의사항 </div>
                               <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
                         
-                           </div>
+                        		</div>
                    
-                   </div>
+                 		   </div>
              
-           </div>
+           			</div>
   
-	</div>
-</div>
+			</div>
+		</div>
 </div>
 </body>
 </html>
@@ -135,13 +139,17 @@ var app = new Vue({
     el: '#app',
     data: {
        user : {
-			
+    	   	uId : "",
+    	   	uDname : "",
+    	   	uDphone : "",
 			addr : "",
-			addrDetail : ""
+			addrDetail : "",
+			zipNo : ""
 		},
        list : [],
        info :{},
-       uId : "${sessionId}"
+       uId : "${sessionId}",
+       duNo : "${map.duNo}"
        
     },
     methods: {
@@ -156,10 +164,30 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                    self.list = data.list; //사용자
-                   console.log(self.info);
-                 
+                   self.user.uId = self.uId;
+                   for(var i=0; i<data.list.length; i++){
+                	   self.user.uDname = data.list[i].uDname;
+                	   self.user.uDphone = data.list[i].uDphone;
+                   }                                   
+                   console.log(self.duNo);                    
+                   console.log(self.user);                    
                 }
             }); 
+        },
+        fnEdit : function(){
+        	 var self = this;
+             var nparmap = self.user;
+             $.ajax({
+                 url : "editAddr.dox",
+                 dataType:"json",	
+                 type : "POST", 
+                 data : nparmap,
+                 success : function(data) { 
+                 	alert("주소 수정 완료!");
+                 	 $.pageChange("infoAddr.do", {uId : self.uId});
+                 }
+             }); 
+        
         },
         editAddr : function(){
             var self = this;
@@ -174,6 +202,7 @@ var app = new Vue({
     		var self = this;
     		self.user.addr = roadAddrPart1;
     		self.user.addrDetail = addrDetail;
+    		self.user.zipNo = zipNo;
     		// 콘솔 통해 각 변수 값 찍어보고 필요한거 가져다 쓰면 됩니다.
     		console.log(roadFullAddr);
     		console.log(roadAddrPart1);

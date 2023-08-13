@@ -49,7 +49,8 @@ public class MyPagController {
     }
 	//배송주소록 수정
 	@RequestMapping("/mypag/editAddr.do") 
-    public String editAddr(Model model) throws Exception{
+    public String editAddr(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
         return "/myPag/editAddr";
     }
 	//주소API
@@ -101,5 +102,13 @@ public class MyPagController {
 		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 		}
-
+		
+	//마이페이지 배송주소록수정
+		@RequestMapping(value = "/mypag/editAddr.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String editAddr(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			deliveryService.editAddr(map);
+			return new Gson().toJson(resultMap);
+		}
 }

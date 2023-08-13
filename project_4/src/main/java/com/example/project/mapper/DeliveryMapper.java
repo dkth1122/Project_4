@@ -11,4 +11,6 @@ import com.example.project.model.DeliveryUser;
 public interface DeliveryMapper {
 	//유저배송주소록 출력
 	List<DeliveryUser> selectDeliveryUser(HashMap<String, Object> map);
+	//유저배송주소록 수정
+	int updateAddr(HashMap<String, Object> map);
 }

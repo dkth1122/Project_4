@@ -21,6 +21,12 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryMapper.selectDeliveryUser(map);
 	}
 
+	@Override
+	public int editAddr(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return deliveryMapper.updateAddr(map);
+	}
+
 	
 	
 }
