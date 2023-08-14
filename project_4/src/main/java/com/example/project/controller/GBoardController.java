@@ -26,7 +26,7 @@ public class GBoardController {
 	@RequestMapping("/gboard/main.do") 
     public String mainGBoard(Model model) throws Exception{
 
-        return "/GBoard/01main/gboard_Main_01";
+        return "GBoard/01main/gboard_Main_01";
     }
 	
 	//BTS 아티스트 페이지 
