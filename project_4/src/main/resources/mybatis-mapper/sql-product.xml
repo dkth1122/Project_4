@@ -31,4 +31,12 @@
 		WHERE P_NO = #{pNo}
 	</delete>
 	
+	<!-- 상품 재고 추가 -->
+	<update id="productStockPLUS" parameterType="hashmap">
+		UPDATE T4_PRODUCT
+		SET
+			STOCK = #{stock}
+		WHERE P_NO = #{pNo}
+	</update>
+	
 </mapper>

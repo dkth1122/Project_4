@@ -16,5 +16,7 @@ public interface ProductService {
 	Product selectProductInfo(HashMap<String, Object> map);
 	
 	int deleteProduct(HashMap<String, Object> map);
+	
+	int productStockPLUS(HashMap<String, Object> map);
 
 }

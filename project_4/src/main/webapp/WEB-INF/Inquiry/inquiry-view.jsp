@@ -81,7 +81,7 @@ var app = new Vue({
         },
         fnAnswer : function(){
         	var self = this;
-        	 var nparmap = {iNo : self.iNo, category : self.info.category, state : self.info.state, pNo : self.info.state, iAcontent : self.info.iAcontent, iComplain : self.info.iComplain};
+        	 var nparmap = {iNo : self.iNo, category : self.info.category, state : self.info.state, pNo : self.info.pNo, iAcontent : self.info.iAcontent, iComplain : self.info.iComplain};
              $.ajax({
                  url : "/inquiry/answer.dox",
                  dataType:"json",	

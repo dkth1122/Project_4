@@ -22,4 +22,7 @@ public interface ProductMapper {
 	//상품 삭제
 	int deleteProduct(HashMap<String, Object> map);
 	
+	//상품 재고 조정
+	int productStockPLUS(HashMap<String, Object> map);
+	
 }

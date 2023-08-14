@@ -42,5 +42,12 @@ public class ProductServiceImpl implements ProductService{
 		return productMapper.deleteProduct(map);
 	}
 
+	@Override
+	public int productStockPLUS(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		
+		return productMapper.productStockPLUS(map);
+	}
+
 	
 }

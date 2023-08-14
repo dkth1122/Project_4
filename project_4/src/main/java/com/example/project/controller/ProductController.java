@@ -17,6 +17,8 @@ import com.example.project.model.ABoard;
 import com.example.project.model.Product;
 import com.google.gson.Gson;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 
 
 @Controller
@@ -36,8 +38,8 @@ public class ProductController {
 		return "/Product/product-list";
 	}
 	@RequestMapping("/product/stockpopup.do") 
-	public String stockpopup(Model model) throws Exception{
-		
+	public String stockpopup(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
 		return "/Product/product-stockpopup";
 	}
 	
@@ -59,7 +61,7 @@ public class ProductController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	@RequestMapping(value = "/product/info.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/product/selectProductInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String info(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -73,6 +75,15 @@ public class ProductController {
 	public String delete(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		productService.deleteProduct(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/product/produckStockPlus.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String productStockPLUS(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		productService.productStockPLUS(map);
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.mapper.User2Mapper;
 import com.example.project.model.User;
+import com.example.project.model.User2;
 
 @Service
 public class User2ServiceImpl implements User2Service{
@@ -28,9 +29,17 @@ public class User2ServiceImpl implements User2Service{
 	}
 
 	@Override
-	public User selectUserInfo(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectUserInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return user2Mapper.selectUserInfo(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		resultMap.put("Info", user2Mapper.selectUserInfo(map));
+		resultMap.put("Inquiry", user2Mapper.user2SelectInquiry(map));
+		resultMap.put("Order", user2Mapper.user2SelectOrder(map));
+		resultMap.put("Apply", user2Mapper.user2SelectApply(map));
+		resultMap.put("Delivery", user2Mapper.user2SelectDelivery(map));
+		
+		return resultMap; 
 	}
 
 	@Override

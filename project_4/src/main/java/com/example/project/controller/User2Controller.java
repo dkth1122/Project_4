@@ -15,6 +15,7 @@ import com.example.project.dao.User2Service;
 import com.example.project.dao.UserService;
 import com.example.project.model.Staff;
 import com.example.project.model.User;
+import com.example.project.model.User2;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -62,8 +63,7 @@ public class User2Controller {
 	@ResponseBody
 	public String boardInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		User info = user2Service.selectUserInfo(map);
-		resultMap.put("info", info);
+		resultMap = user2Service.selectUserInfo(map);
 		return new Gson().toJson(resultMap);
 	}
 	
