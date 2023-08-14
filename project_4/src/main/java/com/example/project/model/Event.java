@@ -2,56 +2,37 @@ package com.example.project.model;
 
 public class Event {
 	//응모
-	private String uId;
-	private String eName;
-	private String eNo;
-	private String pNo;
-	private String eUname;
-	private String eUphone;
-	private char eYn;
+	private String evtName;
+	private String evtNo;
+	private String artist;
+	private char evtYn;
 	
-	public String getuId() {
-		return uId;
+	public char getEvtYn() {
+		return evtYn;
 	}
-	public void setuId(String uId) {
-		this.uId = uId;
+	public void setEvtYn(char evtYn) {
+		this.evtYn = evtYn;
 	}
-	public String geteName() {
-		return eName;
+	public String getEvtName() {
+		return evtName;
 	}
-	public void seteName(String eName) {
-		this.eName = eName;
+	public void setEvtName(String evtName) {
+		this.evtName = evtName;
 	}
-	public String geteNo() {
-		return eNo;
+	public String getEvtNo() {
+		return evtNo;
 	}
-	public void seteNo(String eNo) {
-		this.eNo = eNo;
+	public void setEvtNo(String evtNo) {
+		this.evtNo = evtNo;
 	}
-	public String getpNo() {
-		return pNo;
+	public String getArtist() {
+		return artist;
 	}
-	public void setpNo(String pNo) {
-		this.pNo = pNo;
+	public void setArtist(String artist) {
+		this.artist = artist;
 	}
-	public String geteUname() {
-		return eUname;
-	}
-	public void seteUname(String eUname) {
-		this.eUname = eUname;
-	}
-	public String geteUphone() {
-		return eUphone;
-	}
-	public void seteUphone(String eUphone) {
-		this.eUphone = eUphone;
-	}
-	public char geteYn() {
-		return eYn;
-	}
-	public void seteYn(char eYn) {
-		this.eYn = eYn;
-	}
+	
+	
 	
 	
 }

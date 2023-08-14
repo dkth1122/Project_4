@@ -285,7 +285,11 @@ var app = new Vue({
                     self.fnGetList();
                 }
             }); 
-        }
+        },
+        fnInquiryInfo : function(item){
+            var self = this;
+            $.pageChange("../inquiry/view.do", {iNo : item.iNo});
+          },
 	}, // methods
 	created : function() {
 		var self = this;
