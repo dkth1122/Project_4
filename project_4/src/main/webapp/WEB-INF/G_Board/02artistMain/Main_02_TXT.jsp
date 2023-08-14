@@ -125,7 +125,7 @@ var app = new Vue({
         uId: "${sessionId}",
         selectItem: [],
         content: "",
-        artist: "LSP",
+        artist: "TXT",
         info: {}
     },// data
     methods: {

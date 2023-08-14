@@ -19,5 +19,7 @@ public interface GBoardService {
 	//게시글 검색
 	List<GBoard> searchGBoardInfo(HashMap<String, Object> map);
 	
-	
+	//좋아요 기능
+	int likeGBoard(HashMap<String, Object> map);
+
 }

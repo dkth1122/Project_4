@@ -50,7 +50,7 @@
 	            		location.href = 'bts.do'; 
 	            	}
 	            	else if(artist == 't'){
-	            		location.href = 'tbt.do'; 
+	            		location.href = 'txt.do'; 
 	            	}
 	            	else if(artist == 'e'){
 	            		location.href = 'ehp.do'; 

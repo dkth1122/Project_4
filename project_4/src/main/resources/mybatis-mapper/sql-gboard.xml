@@ -3,35 +3,72 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.project.mapper.GBoardMapper">
-	
+
+	<!-- 게시글 조회 기능 -->
 	<select id="selectGBoardList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT *
 		FROM T4_GBOARD G
 		INNER JOIN T4_USER U ON G.U_ID = U.U_ID
-		WHERE M_ARTIST = #{artist}
+		WHERE ARTIST = #{artist}
+		ORDER BY G_DATE DESC
 	</select>
 	
-	
+	<!-- 게시글 작성 기능 -->
 	<insert id="insertGBoard" parameterType="hashmap">
 		INSERT INTO T4_GBOARD VALUES
 		<!--
 			유저 테이블에 G_ARTIST가 입력되어 있다면, 나중에 조인해서 아티스트 글만 보이는 기능에 추가
 		 -->
-		(NULL, NOW(), '임시uId', 0 , #{artist}, #{content}, NULL)
+		(NULL,'N', NOW(), #{uId}, 0 , #{artist}, #{content}, NULL)
 	</insert>
 	
+	<!-- 게시글 삭제 기능 -->
 	<update id="deleteGBoard" parameterType="hashmap">
 		UPDATE T4_GBOARD SET 
 			G_DELYN = 'Y'
 		WHERE U_ID = #{uId}
 	</update>
-		
+	
+	<!-- 검색 기능 -->
 	<select id="selectGBoardInfo" parameterType="hashmap" resultType="com.example.project.model.GBoard">
-		SELECT *
+	 SELECT *
 		FROM T4_GBOARD G
 		INNER JOIN T4_USER U ON G.U_ID = U.U_ID
-		WHERE  M_ARTIST = #{artist} AND (U_NAME2 = #{keyword} OR G_CONTENT = #{keyword} OR G.U_ID = #{keyword}) 
+		WHERE ARTIST = #{artist} 
+		AND (U_NAME2 LIKE CONCAT('%', #{keyword}, '%') OR G_CONTENT LIKE CONCAT('%', #{keyword}, '%') OR G.U_ID LIKE CONCAT('%', #{keyword}, '%'))
 	</select>
 	
+	<!-- 게시글 테이블 좋아요 +1 기능 -->
+	<update id="plusLikeGBoard" parameterType="hashmap">
+	    UPDATE T4_GBOARD SET
+	    G_LIKE = G_LIKE + 1
+	    WHERE ARTIST = #{artist} AND G_NO = #{gNo}
+	</update>
+	
+	<!-- 게시글 테이블 좋아요 -1 기능 -->
+	<update id="minusLikeGBoard" parameterType="hashmap">
+	    UPDATE T4_GBOARD SET
+	    G_LIKE = G_LIKE - 1
+	    WHERE ARTIST = #{artist} AND G_NO = #{gNo}
+	</update>
+	
+	<!-- 좋아요 테이블에 좋아요 +1 기능 -->
+	<insert id="plusLike" parameterType="hashmap">
+	    INSERT INTO T4_GBOARD_LIKE (U_ID, G_NO)
+	    VALUES( #{uId}, #{gNo} )
+	</insert>
+	
+	<!-- 좋아요 테이블에 좋아요 -1 기능 -->
+	<delete id="minusLike" parameterType="hashmap">
+		DELETE FROM T4_GBOARD_LIKE
+	    WHERE G_NO = #{gNo} AND U_ID = #{uId}
+	</delete>
+	
+	<!-- 좋아요 여부 확인 -->
+	<select id="checkLike" parameterType="hashmap" resultType="int">
+	    SELECT COUNT(*)
+	    FROM T4_GBOARD_LIKE
+	    WHERE G_NO = #{gNo} AND U_ID = #{uId}
+	</select>
 	
 </mapper>
