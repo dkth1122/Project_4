@@ -4,6 +4,13 @@
 <html>
 <head>
   <script src="../js/jquery.js"></script>  
+    <link href="../css/mypag.css" rel="stylesheet" type="text/css">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="../js/jquery.js"></script>  
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -22,7 +29,7 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 <a href="#"><div id="profileImg"></div></a>
+					    	 	 <a @click="fnVuwmain" href="#"><div id="profileImg"></div></a>
 					    	</div >
 					    	<div class="topBox">
 					    	<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -67,10 +74,10 @@
 							      		<li>나의 쇼핑 정보 </li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#">주문내역</a></li>
-								      			<li><a href="#">관심상품</a></li>
-								      			<li><a href="#">최근 본 상품</a></li>
-								      			<li><a href="#">적림금</a></li>							      		
+								      			<li><a href="#" @click="fnInformation">주문내역</a></li>
+								      			<li><a href="#" @click="fnInterest">관심상품</a></li>
+								      			<li><a href="#" @click="">최근 본 상품</a></li>
+								      			<li><a href="#" @click="fnReserves">적립금</a></li>							      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
@@ -78,8 +85,8 @@
 							      		<li>회원 정보</li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#">회원 정보 수정</a></li>
-								      			<li><a href="#">배송주소록</a></li>					      		
+								      			<li><a href="#" @click="infoUpdate">회원 정보 수정</a></li>
+								      			<li><a href="#" @click="infoAddr">배송주소록</a></li>					      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
@@ -102,19 +109,40 @@
 					<div id="right">
 					
 							      <div class="View">
-							    	  <div class="lowerBox"> 최근 주문상품 </div>
-							    	  	<div class="nodata"> 내역이 없습니다</div>
+							    	  <div class="lowerBox" style="border-bottom-color: black;"> 주문 상품 정보 </div>
+							    	  <div class="box-border-bottom"></div>
+							    	  
+							    	  <div class="box" v-for="item in productList">
+							    	  	<div class="p_img"><img class="responsive-image" :src="item.pImg"> </div>
+							    	  	<div class="p_content">
+										   <table>
+										   			<tr>
+										   				<td colspan="2">주문번호 : {{item.oNo}}</td>
+										   				
+										   				<td> 배송중/배송완료 </td>
+										   			</tr>
+										   			<tr>
+										   				<td colspan="2">{{item.pName}}</td>
+										   				
+										   				<td>Artist : {{item.artist}}</td>
+										   			</tr>
+										   			<tr>
+										   				<td>{{item.oDate}}</td>
+										   				<td style="text-align: center;">{{item.oCount}}개</td>
+										   				<td>{{item.price}}원</td>
+										   			</tr>
+										   </table>
+										
+										</div>
+							    	  
+							    	  </div>
 							     </div> 
 							     
-							      <div class="View">
+							    <!--   <div class="View">
 							    	  <div class="lowerBox"> 관심상품 </div>
 							    	  	<div class="nodata"> 내역이 없습니다 </div>
-							     </div> 
+							     </div>  -->
 							     
-							      <div class="View">
-							    	  <div class="lowerBox"> 최근 본 상품 </div>
-							    	  	<div class="nodata"> 내역이 없습니다 </div>
-							     </div> 
 							     
 					</div>
 					    
@@ -131,11 +159,11 @@ var app = new Vue({
     data: {
     	info : [],
     	orderCntList : [],
-    	uId : "dcsdsd3",
+    	uId : "${sessionId}",
     	order  : "",
     	exchange : "",
     	refund : "",
-    	list : []
+    	productList : [],
     },
     methods: {
     	fnGetList : function(){
@@ -149,6 +177,7 @@ var app = new Vue({
                 success : function(data) { 
                 	self.info = data.findPw; //사용자
                 	self.fnCntList();
+                	self.fnProduct();
                 }
             }); 
         },    
@@ -164,8 +193,7 @@ var app = new Vue({
 	            	var listCnt = data.list;
 	            	for(var i=0; i<listCnt.length; i++){
 	            		if(listCnt[i].exchange == "N"){	            			
-	            			self.order = listCnt[i].orderCnt;
-	            			console.log(self.order);	            			
+	            			self.order = listCnt[i].orderCnt;          			
 	            		}else if(listCnt[i].exchange == "E"){
 	            			self.exchange = listCnt[i].orderCnt;
 	            		}else{
@@ -176,6 +204,53 @@ var app = new Vue({
 	            	
 	            }
 	        }); 
+	    },
+	    fnProduct : function(){
+	        var self = this;
+	        var nparmap = {uId : self.uId};
+	        $.ajax({
+	            url : "/mypag/productInformation.dox",
+	            dataType:"json",	
+	            type : "POST", 
+	            data : nparmap,
+	            success : function(data) { 	
+					self.productList = data.list;
+					console.log(self.productList);
+	            	
+	            	
+	            	
+	            }
+	        }); 
+	    },
+	    /* 메인 */
+	    fnVuwmain : function(){
+	    	var self = this;
+	    	$.pageChange("main.do", {uId : self.uId});
+	    },
+	    /* 주문내역 */
+	    fnInformation : function(){
+	    	var self = this;
+	    	$.pageChange("productInformation.do", {uId : self.uId});
+	    },
+	    /* 관심상품 */
+	    fnInterest : function(){
+	    	var self = this;
+	    	$.pageChange("myPageInterest.do", {uId : self.uId});
+	    },
+	    /* 적립금 */
+	    fnReserves : function(){
+	    	var self = this;
+	    	$.pageChange("mypageReserves.do", {uId : self.uId});
+	    },
+	    /* 배송주소록 */
+	    infoAddr : function(){
+	    	var self = this;
+	    	$.pageChange("infoAddr.do", {uId : self.uId});
+	    },
+	    /* 회원 정보 수정 */
+	    infoUpdate : function(){
+	    	var self = this;
+	    	$.pageChange("infoUpdate.do", {uId : self.uId});
 	    },
 	    
     },

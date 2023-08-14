@@ -65,10 +65,11 @@ public class MyPagController {
 		
 		return "/myPag/jusoPopup";
     }
+	
 	//주문내역
-	@RequestMapping("/mypag/productInformation.do") 
-    public String myProductInformation(Model model) throws Exception{
-        return "/myPag/myProductInformation";
+	@RequestMapping("/mypag/myInformation.do") 
+    public String myProductInformation1(Model model) throws Exception{
+        return "/myPag/myInformation";
     }
 
 	//마이페이지 상단 프로필  구매 / 환불 /반품 카운터  정보

@@ -36,5 +36,14 @@ public class MyPagController2 {
 	    public String mainGBoard(Model model) throws Exception{
 	        return "/Product/hd";
 	    }
-
+//		관심 상품 페이지
+		@RequestMapping("/mypag/myPageInterest.do") 
+	    public String myPageInterest(Model model) throws Exception{
+	        return "/myPag/myPageInterest";
+	    }
+//		적립금 페이지
+		@RequestMapping("/mypag/mypageReserves.do") 
+	    public String mypageReserves(Model model) throws Exception{
+	        return "/myPag/mypageReserves";
+	    }
 }

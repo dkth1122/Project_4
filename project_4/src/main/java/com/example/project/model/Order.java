@@ -22,6 +22,7 @@ public class Order {
 	private String pName;
 	private String price;
 	private String artist;
+	private String pImg;
 	
 	
 	
