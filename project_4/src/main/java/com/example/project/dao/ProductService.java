@@ -9,7 +9,7 @@ import com.example.project.model.Product;
 
 public interface ProductService {
 
-	int insertProduct(HashMap<String, Object> map);
+	HashMap<String, Object> insertProduct(HashMap<String, Object> map);
 	
 	List<Product>selectProductList(HashMap<String, Object> map);
 	
@@ -18,5 +18,7 @@ public interface ProductService {
 	int deleteProduct(HashMap<String, Object> map);
 	
 	int productStockPLUS(HashMap<String, Object> map);
+	
+	int insertProductImg(HashMap<String, Object> map);
 
 }

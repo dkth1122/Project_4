@@ -24,5 +24,7 @@ public interface ProductMapper {
 	
 	//상품 재고 조정
 	int productStockPLUS(HashMap<String, Object> map);
+	//이미지등록
+	int insertProductImg(HashMap<String, Object> map);
 	
 }

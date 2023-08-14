@@ -19,11 +19,22 @@ public class ProductServiceImpl implements ProductService{
 	ProductMapper productMapper;
 
 	@Override
-	public int insertProduct(HashMap<String, Object> map) {
+	public HashMap<String, Object> insertProduct(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return productMapper.insertProduct(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		productMapper.insertProduct(map);
+		resultMap.put("pNo", map.get("pNo"));
+		System.out.println(resultMap);
+		return resultMap;
 	}
 
+	
+	@Override
+	public int insertProductImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return productMapper.insertProductImg(map);
+	}
+	
 	@Override
 	public List<Product> selectProductList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
