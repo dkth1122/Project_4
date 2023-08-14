@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="../css/join.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
@@ -23,6 +24,7 @@
 </head>
 <body>
 <div id="app">
+	<div id="wc">
 	<h2>아이디 찾기</h2>
 		<div>
 		<input type="text" name="uName" v-model = "uName" placeholder="사용자이름">
@@ -32,6 +34,7 @@
 		</div>
 		<div><button @click="fnSearch">검색</button></div>
 		<div><button @click="fnBack">취소</button></div>
+	</div>
 </div>
 </body>
 </html>

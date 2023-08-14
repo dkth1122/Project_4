@@ -170,7 +170,8 @@ public class MyPagController {
 				inquiryService.myPageAddBoard(map);
 				return new Gson().toJson(resultMap);
 		}
-	//마이페이지 문의글 상세보기
+	//마이페이지 문의 첨부파일추가
+		
 		
 	
 

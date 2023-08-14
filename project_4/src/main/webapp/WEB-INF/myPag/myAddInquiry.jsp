@@ -152,6 +152,13 @@
 							    	  	<button @click="fnBack">취소</button>
 							    	  	<button @click="addBoard">등록</button>
 							    	  	</div>
+							    	  	
+							    	  	
+							    	  	<div>
+							    	  		<div><span>첨부파일 1 <input type="file" id="file1" name="file1"></span></div>
+							    	  		<div><span>첨부파일 2 <input type="file" id="file2" name="file2"></span></div>
+							    	  		<div><span>첨부파일 3 <input type="file" id="file3" name="file3"></span></div>							    	  		
+							    	  	</div>
 							     </div> 
 							     
 							     
@@ -227,9 +234,30 @@ var app = new Vue({
                 success : function(data) { 
                 	alert("문의글이 정상등록 되었습니다.");
                 	$.pageChange("myInquiry.do", {uId : self.uId});
+                	
+                	
+                	var form = new FormData();
+	       	        form.append( "file1",  $("#file1")[0].files[0] );
+	       	     	form.append( "idx",  data.idx); // pk
+	           		self.upload(form); 
                 }
             }); 
         },
+     // 파일 업로드
+	    upload : function(form){
+	    	var self = this;
+	         $.ajax({
+	             url : "/fileUpload.dox"
+	           , type : "POST"
+	           , processData : false
+	           , contentType : false
+	           , data : form
+	           , success:function(response) { 
+	        	   
+	           }
+	           
+	       });
+		},
         myInquiry : function(){
        	    	var self = this;
        	    	$.pageChange("myInquiry.do", {uId : self.uId});
