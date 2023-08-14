@@ -86,7 +86,7 @@
                                  <li>고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">1:1 문의</a></li>
+                                       <li><a href="#" @click="myInquiry">1:1 문의</a></li>
                                        <li><a href="#">공지사항</a></li>
                                        <li><a href="#">이용안내</a></li>
                                        <li><a href="#">FAQ</a></li>                                 
@@ -182,6 +182,10 @@ var app = new Vue({
         	var self = this;
         	$.pageChange("addAddr.do", {uId : self.uId});
         },
+        myInquiry : function(){
+	    	var self = this;
+	    	$.pageChange("myInquiry.do", {uId : self.uId});
+	    },
         removeAddr : function(duNo){
         	var self = this;
         	if(!confirm("선택주소를 삭제하시겠습니까?")){

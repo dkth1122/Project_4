@@ -29,6 +29,24 @@
 		WHERE I_NO = #{iNo}
 	</update>
 	
+	<!-- 마이페이지 1:1문의내역 출력 -->
+	<select id="selectMypageInquiry" parameterType="hashmap" resultType="com.example.project.model.Inquiry">
+		SELECT * FROM T4_INQUIRY
+		<if test='iNo == null'>
+		WHERE U_ID = #{uId} 
+		</if>
+		<if test='iNo != null'>
+		WHERE U_ID = #{uId} AND I_NO = #{iNo}
+		</if>
+	</select>
+	
+	<!-- 마이페이지 1:1문의 게시글등록 -->
+	<insert id="myPageinsertBoard" parameterType="hashmap">
+		INSERT INTO T4_INQUIRY (I_QTITLE, I_QCONTENT, I_QTIME, U_ID, CATEGORY)VALUES
+		(#{iQtitle}, #{iQcontent}, NOW(), #{uId}, #{category})
+	</insert>
+	
+	
 	
 	
 </mapper>

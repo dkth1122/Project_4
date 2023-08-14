@@ -20,4 +20,10 @@ public interface InquiryMapper {
 	//답변
 	int updateInquiryAnswer(HashMap<String, Object> map);
 	
+	//마이페이지 1:1문의내역 출력
+	List<Inquiry> selectMypageInquiry(HashMap<String, Object> map);
+	
+	//마이페이지 1:1문의글 등록
+	int myPageinsertBoard(HashMap<String, Object> map);
+	
 }

@@ -13,5 +13,10 @@ public interface InquiryService {
 	Inquiry selectProductInfo(HashMap<String, Object> map);
 	
 	int updateInquiryAnswer(HashMap<String, Object> map);
-
+	
+	//마이페이지 1:1문의내역 출력
+	List<Inquiry> searchMypageInquiry(HashMap<String, Object> map);
+	
+	//마이페이지 1:1문의글 등록
+	int myPageAddBoard(HashMap<String, Object> map);
 }

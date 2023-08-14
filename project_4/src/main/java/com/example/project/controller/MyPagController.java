@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.DeliveryService;
+import com.example.project.dao.InquiryService;
 import com.example.project.dao.OrderService;
 import com.example.project.model.DeliveryUser;
+import com.example.project.model.Inquiry;
 import com.example.project.model.Order;
 import com.google.gson.Gson;
 
@@ -31,6 +33,9 @@ public class MyPagController {
 	
 	@Autowired
 	DeliveryService deliveryService;
+	
+	@Autowired
+	InquiryService inquiryService;
 	
 	//마이페이지 보이기
 	@RequestMapping("/mypag/main.do") 
@@ -65,13 +70,27 @@ public class MyPagController {
 		
 		return "/myPag/jusoPopup";
     }
-	
 	//주문내역
 	@RequestMapping("/mypag/myInformation.do") 
     public String myProductInformation1(Model model) throws Exception{
         return "/myPag/myInformation";
     }
-
+	//마이페이지 1:1문의 myInquiry
+	@RequestMapping("/mypag/myInquiry.do") 
+	public String myInquiry(Model model) throws Exception{
+		return "/myPag/myInquiry";
+	}
+	//마이페이지 1:1문의 글쓰기
+		@RequestMapping("/mypag/myAddInquiry.do") 
+		public String myAddInquiry(Model model) throws Exception{
+			return "/myPag/myAddInquiry";
+	}
+	//마이페이지 문의글 상세보기
+		@RequestMapping("/mypag/myInquiryView.do") 
+		public String myInquiryView(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
+			request.setAttribute("map", map);
+			return "/myPag/myInquiryView";
+	}
 	//마이페이지 상단 프로필  구매 / 환불 /반품 카운터  정보
 	@RequestMapping(value = "/mypag/listExchange.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -134,4 +153,25 @@ public class MyPagController {
 			deliveryService.deleteAddr(map);
 			return new Gson().toJson(resultMap);
 		}
+	//마이페이지 1:1문의내역 출력
+		@RequestMapping(value = "/mypag/userInquiry.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String userInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			List<Inquiry> list = inquiryService.searchMypageInquiry(map);
+			resultMap.put("list", list);
+			return new Gson().toJson(resultMap);
+		}
+	//마이페이지 배송주소록등록
+		@RequestMapping(value = "/mypag/myPageAddInquiry.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String myPageAddInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+				HashMap<String, Object> resultMap = new HashMap<String, Object>();
+				inquiryService.myPageAddBoard(map);
+				return new Gson().toJson(resultMap);
+		}
+	//마이페이지 문의글 상세보기
+		
+	
+
 }
