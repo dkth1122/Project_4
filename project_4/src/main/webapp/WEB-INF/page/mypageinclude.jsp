@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <meta charset="EUC-KR">
 
  <style type="text/css">
-	.nickname{
+	/* .nickname{
   line-height:  127px;
   margin-left: 70px;
  } 
@@ -129,12 +130,11 @@ a {
 height: 300px;
  margin-bottom: 150px;
 }
-  
+   */
   </style>
 </head>
 <body>
 <div id="app">
-
            <div id="container">
            
                    <div id="top">

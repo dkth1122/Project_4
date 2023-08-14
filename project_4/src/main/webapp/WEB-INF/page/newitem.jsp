@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<%@ include file="header.jsp" %>
 <title>Insert title here</title>
+<%@ include file="header.jsp" %>
 </head>
 <body>
- 
- 공지사항 
+
 </body>
 </html>
+
+
+

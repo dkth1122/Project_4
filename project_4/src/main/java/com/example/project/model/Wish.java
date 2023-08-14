@@ -1,10 +1,26 @@
 package com.example.project.model;
 
+import lombok.Data;
+
+@Data
 public class Wish {
 
 	private String uId;
-	private int pNo;
+	private String pNo;
 	private int afNo;
+	
+	private int price;
+	private int point;
+	private int stock;
+	private char membership;
+	private char soldout;
+	private int pLimit;
+	private String pDate;
+	private String category;
+	private String artist;
+	private String fYn;
+	private String pImg;
+	private String pName;
 	
 	public String getuId() {
 		return uId;
@@ -12,10 +28,10 @@ public class Wish {
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
-	public int getpNo() {
+	public String getpNo() {
 		return pNo;
 	}
-	public void setpNo(int pNo) {
+	public void setpNo(String pNo) {
 		this.pNo = pNo;
 	}
 	public int getAfNo() {
