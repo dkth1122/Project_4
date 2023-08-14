@@ -53,6 +53,12 @@ public class MyPagController {
 		request.setAttribute("map", map);
         return "/myPag/editAddr";
     }
+	//배송주소록 등록
+	@RequestMapping("/mypag/addAddr.do") 
+    public String addAddr(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+        return "/myPag/addAddr";
+    }
 	//주소API
 	@RequestMapping("/mypag/addr.do") 
     public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
@@ -109,6 +115,22 @@ public class MyPagController {
 		public String editAddr(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
 			deliveryService.editAddr(map);
+			return new Gson().toJson(resultMap);
+		}
+	//마이페이지 배송주소록등록
+		@RequestMapping(value = "/mypag/addAddr.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String addAddr(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			deliveryService.addAddr(map);
+			return new Gson().toJson(resultMap);
+		}
+	//마이페이지 배송주소록삭제
+		@RequestMapping(value = "/mypag/deleteAddr.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String deleteAddr(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			deliveryService.deleteAddr(map);
 			return new Gson().toJson(resultMap);
 		}
 }

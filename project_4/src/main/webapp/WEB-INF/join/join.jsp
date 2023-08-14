@@ -93,9 +93,8 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	
                 	alert("°¡ÀÔ ¿Ï¤©");
-                	location.href='login.do';
+                	$.pageChange("joinWelcome.do", {uId : self.user.uId});
                 }
             });
 		},

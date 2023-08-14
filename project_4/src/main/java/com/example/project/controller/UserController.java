@@ -70,6 +70,11 @@ public class UserController {
     public String nonOrderView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/nonOrderView";
     }
+	@RequestMapping("user/joinWelcome.do") 
+    public String joinWelcome(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+        return "/join/joinWelcome";
+    }
 	
 	@RequestMapping(value = "/user.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

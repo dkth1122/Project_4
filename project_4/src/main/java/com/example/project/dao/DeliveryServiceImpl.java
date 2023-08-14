@@ -27,6 +27,18 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryMapper.updateAddr(map);
 	}
 
+	@Override
+	public int addAddr(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return deliveryMapper.insertAddr(map);
+	}
+
+	@Override
+	public int deleteAddr(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return deliveryMapper.deleteAddr(map);
+	}
+
 	
 	
 }

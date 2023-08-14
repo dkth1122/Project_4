@@ -16,7 +16,7 @@
 </head>
 <body>
 <div id="app">
-
+	<h1>배송주소록등록</h1>
            <div id="container">
            
                    <div id="top">
@@ -102,20 +102,15 @@
                            
                            <div id="right">
                            <div class="View">
-                              <div class="lowerBox"> 배송 주소록 관리 </div>
-                               	<div v-for ="item in list" v-if="item.duNo == duNo">
-                              	  <div>· 배송지명 <span><input v-model="item.uDname"></span> </div>
-		                          <div>· 휴대전화 <span><input v-model="item.uDphone"></span> </div>
-		                          <div v-if="user.addr == ''">· 주소 : <input v-model="item.uDaddr" disabled/></div> 
-		                          <div v-if="user.addrDetail == ''">· 상세주소 : <input v-model="item.uDaddrDetail" disabled/></div>
-		                          <div v-if="user.zipNo == ''">· 우편주소 : <input v-model="item.zipNo" disabled/></div>		                          		
-								 		<div v-if="user.addr != ''" ><label>· 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
-										<div v-if="user.addrDetail != ''"><label>· 상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
-										<div v-if="user.zipNo != ''"><label>· 우편번호 : <input  style="width : 300px;" type="text" v-model="user.zipNo"></label></div>
-							   	  
-							   	  <button @click="fnSearchAddr">주소 검색</button>
-							   	  <div><button @click="back">취소</button> 
-							   	  <div><button @click="fnEdit()">수정</button></div>
+                              <div class="lowerBox"> 배송 주소록 관리 </div>                               
+                              	  <div>· 배송지명 <span><input v-model="user.uDname"></span> </div>
+		                          <div>· 휴대전화 <span><input v-model="user.uDphone"></span> </div>		                        		                          	
+								 		<div><label>· 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label>
+								 			<button @click="fnSearchAddr">주소 검색</button> 
+								 		</div>
+										<div><label>· 상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
+										<div v-if="user.zipNo != ''"><label>· 우편번호 : <input  style="width : 300px;" type="text" v-model="user.zipNo"></label></div>							   	  							   	  
+							   	  <div><button @click="addAddr">등록하기</button></div>
 							   	</div>							  
                               <div class="lowerBox"> 배송 주소록 유의사항 </div>
                               <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
@@ -156,8 +151,8 @@ var app = new Vue({
     methods: {
        fnGetList : function(){
             var self = this;
-            self.info.uId = self.uId;
-            var nparmap = {uId : self.uId};
+            self.user.uId = self.uId;
+            var nparmap = self.user;
             $.ajax({
                 url : "/delivery/list.dox",
                 dataType:"json",   
@@ -165,34 +160,24 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                    self.list = data.list; //사용자
-                   self.user.uId = self.uId;
-                   for(var i=0; i<data.list.length; i++){
-                	   self.user.uDname = data.list[i].uDname;
-                	   self.user.uDphone = data.list[i].uDphone;
-                   }                                   
-                   console.log(self.duNo);                    
-                   console.log(self.user);                    
+                   console.log(self.user);
                 }
             }); 
         },
-        fnEdit : function(){
+        addAddr : function(){
         	 var self = this;
              var nparmap = self.user;
              $.ajax({
-                 url : "editAddr.dox",
+                 url : "addAddr.dox",
                  dataType:"json",	
                  type : "POST", 
                  data : nparmap,
                  success : function(data) { 
-                 	alert("주소 수정 완료!");
+                 	alert("배송주소가 추가 되었습니다!");
                  	 $.pageChange("infoAddr.do", {uId : self.uId});
                  }
              }); 
         
-        },
-        editAddr : function(){
-            var self = this;
-            $.pageChange("infoAddr2.do", {uId : self.uId});
         },
         fnSearchAddr : function (){
 			var self = this;
