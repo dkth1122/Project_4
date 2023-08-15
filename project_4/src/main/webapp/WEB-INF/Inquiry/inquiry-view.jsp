@@ -26,7 +26,7 @@
 			<select v-model="info.state">
 				<option value="OPEN">OPEN</option>
 				<option value="PENDING">PENDING</option>
-				<option value="SOLVE">SOLVE</option>
+				<option value="SOLVED">SOLVED</option>
 			</select>
 		</div>
 		<div>상품번호 : <input v-model="info.pNo"></div>
@@ -45,6 +45,8 @@
 		</div>
 		
 		<button @click="fnAnswer">답변하기</button>
+		
+		<div><button @click="fnBack">되돌아가기</button></div>
 		
 		
 
@@ -92,7 +94,10 @@ var app = new Vue({
                 	 self.fnGetList();
                  }
              }); 
-         }
+         },
+         fnBack : function() {
+        	 window.history.back();
+        	 }
 	}, // methods
 	created : function() {
 		var self = this;

@@ -8,4 +8,20 @@
 		FROM T4_DELIVERY_USER
 		WHERE U_ID = #{uId}
 	</select>
+	<!-- 배송주소록 수정 -->
+	<update id="updateAddr" parameterType="hashmap">
+		UPDATE T4_DELIVERY_USER
+		SET
+			U_DADDR = #{addr},
+			U_DADDRDETAIL = #{addrDetail},
+			U_DNAME = #{uDname},
+			U_DPHONE = #{uDphone},
+			ZIPNO = #{zipNo}
+		WHERE U_ID = #{uId} AND DU_NO = #{duNo}
+	</update>
+	<!-- 배송주소지 등록 -->
+	<insert id="insertAddr" parameterType="hashmap" >
+		INSERT INTO T4_DELIVERY_USER (U_ID, U_DNAME, U_DPHONE, U_DADDR, U_DADDRDETAIL, ZIPNO) VALUES
+		(#{uId}, #{uDname}, #{uDphone}, #{uDaddr}, #{uDaddrDetail}, #{zipNo})
+	</insert>
 </mapper>

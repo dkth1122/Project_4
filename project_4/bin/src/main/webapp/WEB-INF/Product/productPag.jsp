@@ -3,30 +3,65 @@
 <html>
 <head>
   <link href="../css/ProductPag.css" rel="stylesheet" type="text/css">
+  <link href="../css/header.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.js"></script>  
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <meta charset="EUC-KR">
   <title>상품 페이지</title>
+  <style type="text/css">
+  .nonMember{
+  margin: 0px 10px;
+  }
+  .login_loginout{  
+  	color : #8a8a8a;
+  	text-align: right;
+  }
+  #login{
+  margin-top :15px;
+
+  }
+  #header.fixed{
+  position: fixed; 
+  left: 50%;
+  width: 100%;
+  z-index: 1;
+  transform: translateX(-50%);
+  transition: top 1s ease;
+  background-color: rgba(255, 255, 255);
+  }
+
+#header{
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+  </style>
 </head>
 <body>
 
 <div id="app">
+
    <div id="wrap">
         <div id="container">
+        <div id="login">
+        <div class="login_loginout"><span class="nonMember">로그인</span>  |  <span class="nonMember">회원가입</span></div>
+        <div class="login_loginout" v-if="false"> 로그아웃</div>
+        </div>
             <div id="header" >
-             
+            
+                <%@ include file="hd.jsp" %>
                 
             </div>
 
             <div class="slide_wrapper_main">
                 <div class="slide_wrapper">
                     <ul class="slides">
-                      <li ><img src="https://blog.kakaocdn.net/dn/BAiIZ/btrHwluAwlT/1Y7iw7Y3pvF2VWgWL8Vvu1/img.jpg"></li>
-                      <li ><img src="https://i.ytimg.com/vi/AKHJMLeZ4N8/maxresdefault.jpg"></li>
-                      <li ><img src="https://cdn.topstarnews.net/news/photo/202111/14647891_721352_4352.jpg"></li>
-                      <li ><img src="https://i.pinimg.com/originals/3d/04/83/3d0483a943e61b82fb4740601bbebd8c.jpg"></li>
+                      <li ><img src="https://cdn.topstarnews.net/news/photo/first/201604/img_192402_1.jpg"></li>
+                      <li ><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyPLo3%2Fbtrz6qShOq3%2FIa3mcJQ7WPrIApAN3ZlH70%2Fimg.jpg"></li>
+                      <li ><img src="https://cdn.eyesmag.com/content/uploads/sliderImages/2022/07/22/NEW-JEANS-01-94cfa2f0-0e0e-493a-a811-07d3db1fa6d5.jpg"></li>
+                      <li ><img src="https://blog.kakaocdn.net/dn/SbnII/btqEMwrZGyP/qsc0F50OjuXal84GGGP1ek/img.png"></li>
                
                 </div>
                 <p class="controls">
@@ -138,7 +173,7 @@
 
                 <div class="body2 " style=" width: 1000px; height: 2000px;">
 
-                   <div v-for="index in 99" :key="index">
+                   <div v-for="index in 10" :key="index">
                     <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
                         
                     </div>
@@ -149,7 +184,7 @@
             </div>        
         </div>
     </div>
-  
+ 
 </div>
 
 </body>
@@ -168,6 +203,30 @@ var app = new Vue({
       // Vue.js 코드 작성 가능
     }
   });
+var lnb = $("#header").offset().top;
+$(window).scroll(function() {
+    var window = $(this).scrollTop();
+
+    if(lnb <= window) {
+        $("#header").addClass("fixed");
+        $("#header").css("top", "0"); // 스크롤 내릴 때 애니메이션 효과
+    } else {
+        $("#header").removeClass("fixed");
+        $("#header").css("top", "-100px"); // 스크롤 올릴 때 애니메이션 효과
+    }
+});
+
+var lnb = $("#header").offset().top;
+$(window).scroll(function() {
+  	var window = $(this).scrollTop();
+
+    if(lnb <= window) {
+      $("#header").addClass("fixed");
+    } else {
+      $("#header").removeClass("fixed");
+    }
+})
+
 
 let subToggle=true;
 

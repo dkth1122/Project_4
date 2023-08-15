@@ -43,6 +43,7 @@
 	
 	</table>
 	<button @click="fnEventAdd">이벤트 등록</button>
+	<div><button @click="fnBack">되돌아가기</button></div>
 	
 </div>
 </body>
@@ -85,7 +86,10 @@ var app = new Vue({
     	        alert("이벤트가 업데이트 되었습니다.");
     	      }
     	    }); 
-    	  }
+    	  },
+          fnBack : function(){
+          	location.href = '../staff/main.do';
+          }
 	}, // methods
 	created : function() {
 		var self = this;
