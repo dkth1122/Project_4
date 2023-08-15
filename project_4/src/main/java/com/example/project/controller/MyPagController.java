@@ -72,7 +72,7 @@ public class MyPagController {
     }
 	//주문내역
 	@RequestMapping("/mypag/myInformation.do") 
-    public String myProductInformation1(Model model) throws Exception{
+    public String myProductInformation1(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
         return "/myPag/myInformation";
     }
 	//마이페이지 1:1문의 myInquiry
