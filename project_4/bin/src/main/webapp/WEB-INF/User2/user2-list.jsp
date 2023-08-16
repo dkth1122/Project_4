@@ -69,7 +69,7 @@ var app = new Vue({
         },
         fnuserInformation : function(item){
         	 var self = this;
-             $.pageChange("../user2/view.do", {uId : item.uId});
+        	 window.open("../user2/view.do?uId=" + item.uId, "stockPopup", "width=700,height=500");
         },
         fnCntReset : function(item){
             var self = this;

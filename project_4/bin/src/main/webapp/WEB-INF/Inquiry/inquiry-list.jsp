@@ -38,7 +38,8 @@
 			<td>{{item.iQtime}}</td>
 			<td>{{item.category}}</td>
 			<td>{{item.uId}}</td>
-			<td>{{item.state}}</td>
+			<td v-if="item.state == 'PENDING'" :style="{'color': 'blue'}">{{item.state}}</td>
+			<td v-else :style="{'color': 'red'}">{{item.state}}</td>
 			<td>{{item.iComplain}}</td>
 		</tr>
 	</table>

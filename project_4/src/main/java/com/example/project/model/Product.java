@@ -1,5 +1,8 @@
 package com.example.project.model;
 
+import lombok.Data;
+
+@Data
 public class Product {
 	
 	private String pName;
@@ -16,8 +19,15 @@ public class Product {
 	private String fYn;
 	private int afNo;
 	private String pImg;
+	private String path;
 	
 	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 	public String getpImg() {
 		return pImg;
 	}

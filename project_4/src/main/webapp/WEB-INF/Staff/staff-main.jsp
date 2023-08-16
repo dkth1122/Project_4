@@ -75,7 +75,7 @@ var app = new Vue({
 			location.href="../aboard/list.do";
 		},
 		fnEvent : function() {
-			location.href="../aboard/list.do";
+			location.href="../event/list.do";
 		},
 		fnStaff : function() {
 			location.href="../staff/Management.do";

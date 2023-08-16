@@ -89,6 +89,7 @@
 	</template>
 	
 	<button @click="fnEventAdd">이벤트 등록</button>
+	<div><button @click="fnBack">되돌아가기</button></div>
 	
 </div>
 </body>
@@ -140,6 +141,7 @@ var app = new Vue({
     	      }
     	    }); 
     	  },
+<<<<<<< HEAD
     	  fnSearch : function(pageNum){
   			var self = this;
   			self.selectPage = pageNum;
@@ -158,6 +160,11 @@ var app = new Vue({
   				}
   			});
   		}
+=======
+          fnBack : function(){
+          	location.href = '../staff/main.do';
+          }
+>>>>>>> branch 'main' of https://github.com/dkth1122/Project_4.git
 	}, // methods
 	created : function() {
 		var self = this;

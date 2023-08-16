@@ -12,6 +12,11 @@
 	<!-- 상품출력 -->
 	<select id="selectProductList" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT * FROM T4_PRODUCT
+		WHERE 1=1
+		<!-- 상품페이지 카테고리 / 아티스트로 종류 출력 -->
+		<if test="category != null and artist != null">
+        	AND CATEGORY = #{category} AND ARTIST = #{artist}
+    	</if> 
 	</select>
 	
 	<!-- 상품 조회-->
@@ -25,5 +30,21 @@
 		DELETE FROM T4_PRODUCT
 		WHERE P_NO = #{pNo}
 	</delete>
+	
+	<!-- 상품 재고 추가 -->
+	<update id="productStockPLUS" parameterType="hashmap">
+		UPDATE T4_PRODUCT
+		SET
+			STOCK = #{stock}
+		WHERE P_NO = #{pNo}
+	</update>
+	
+	
+	<!-- 이미지등록 -->
+	<insert id="insertProductImg" parameterType="hashmap" >
+		INSERT INTO T4_PRODUCT_IMG(P_NO, path)
+		VALUES
+		(#{pNo}, #{path})
+	</insert>
 	
 </mapper>

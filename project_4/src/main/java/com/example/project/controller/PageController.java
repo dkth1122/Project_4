@@ -98,6 +98,17 @@ public class PageController {
 		return "/page/bookmark";
 	}
 	
+	@RequestMapping("/dhpage1.do") 
+	public String dhpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/page/dhpage";
+	}
+	
+	
+	@RequestMapping("/newitem.do") 
+	public String newitem(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/page/newitem";
+	}
+	
 	@RequestMapping(value = "/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

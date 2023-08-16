@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link href="../css/join.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
@@ -12,6 +13,8 @@
 </head>
 <body>
 <div id="app">
+	<div id="wc">
+	<h2>로그인</h2>
 	<div><label>아이디 : <input v-model="uId" @keyup.enter="fnLogin"></label></div>
 	<div><label>패스워드 : <input type="password" v-model="uPw" @keyup.enter="fnLogin"></label></div>
 	<div>
@@ -21,6 +24,7 @@
 	<div><a href="findId.do">아이디 찾기</a></div>
 	<div><a href="nonOrder.do">비회원 주문조회</a></div>
 	<div><a href="findPw.do">비밀번호 찾기</a></div>
+	</div>
 </div>
 </body>
 </html>

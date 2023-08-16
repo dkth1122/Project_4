@@ -10,6 +10,7 @@
 
 <style>
 
+
 .icon {
 float : right;
 margin-left :30px;
@@ -17,7 +18,9 @@ color:black;
 }
 
 .mark{
-
+position: absolute;
+top: 60%;
+right: 50%;
 transform: translate(50%, -50%);
 }
 * {
@@ -50,14 +53,18 @@ nav {
 <!--
 로고 있는 부분 -->.
 
-nav{ width:100%; height:135px;position:relative; z-index:9999;}
-		.navWrap{ width:100%; height:120px; overflow:hidden; transition: all 0.6s; position:relative;}
-		.navWrap:hover{ height:500px; background:rgb(245, 235, 236);}
+nav{ width:100%; height:160px;position:relative; z-index:9999;}
+		.navWrap{ width:100%; height:35px; overflow:hidden; transition: all 0.6s; position:absolute; top:20%; font-size: 30px;}
+		.navWrap:hover{ height:550px; background:rgb(245, 235, 236);}
 			h1{ width:100%; height:93px; text-align:center; padding-top:12px; box-sizing:border-box;}
 			hr{ width:1381px; height:1px; background:rgba(255,255,255,0.8); text-align:center; margin-left:257px; border:none;}
 			
-nav .menu {
+nav.menu {
+position: absolute;
+top: 60%;
+right: 50%;
 	font-weight : bold;
+
 	width: 1230px;
 	margin: 0 auto;
 	height: 36px;
@@ -70,7 +77,7 @@ nav .menu a {
 
 /* 간격 조정 */
 nav .menu>li {
-	width: 105px;
+	width: 130px;
 	float: left;
 	margin-right: 40px;
 	height: 43px;
@@ -87,7 +94,7 @@ nav .menu>li:last-child {
 
 nav .menu>li a {
 	display: block;
-	width: 105px;
+	width: 132px;
 	height: 100%;
 	text-align: center;
 	line-height: 43px;
@@ -102,7 +109,8 @@ nav .menu .depths li {
 }
 
 nav .menu .depths li a {
-	font-size: 1rem;
+	font-size: 1.27rem;
+	margin-top :18px;
 	line-height: 38px;
 }
 
@@ -139,12 +147,14 @@ header #container1 {
 
 
 		<nav>
-			<div class="navWrap">
-				
-<div class="mark"><a href="home.do"><img src="img/head_logo.png" alt="" /></a></div>
+		
+		<div class="mark"><a href="home.do"><img src="img/veryperiii.png"  alt="" style="height : 100px; width:auto;"/></a></div>
 				<hr>
+				
+<div class="navWrap">
 
 				<ul class="menu">
+				
 					<li><a href="artistpage.do">ARTIST</a>
 						<ul class="depths">
 							<li><a href="#">BTS</a></li>
@@ -188,7 +198,11 @@ header #container1 {
 							<li><a href="#">4</a></li>
 							<li><a href="#">5</a></li>
 						</ul>
-					</li>							
+					</li>	
+					
+			
+				
+											
 						<div class="icon">
 						<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark" style="color: #8a8a8a;"></i></a></span>
 						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass" style="color: #8a8a8a;"></i></a></span>

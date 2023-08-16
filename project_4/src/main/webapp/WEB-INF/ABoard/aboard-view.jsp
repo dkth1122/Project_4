@@ -61,23 +61,25 @@ var app = new Vue({
         	 var self = this;
              $.pageChange("../aboard/edit.do", {aNo : self.aNo});
         },
-        fnABoardDel : function(){
-        	var self = this;
-            var nparmap = {aNo : self.aNo};
-            if(!confirm("정말 삭제하시겠습니까?")){
-                return;
-            }
-            $.ajax({
-                url : "/aboard/delete.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-                	alert("삭제되었습니다.");
-                	location.href="../aboard/list.do";
-                }
-            }); 
-        }
+        fnABoardDel: function(){
+        	  var self = this;
+        	  var nparmap = {aNo : self.aNo};
+        	  if(!confirm("정말 삭제하시겠습니까?")){
+        	    return;
+        	  }
+        	  $.ajax({
+        	    url : "/aboard/delete.dox",
+        	    dataType:"json",	
+        	    type : "POST", 
+        	    data : nparmap,
+        	    success : function(data) { 
+        	      alert("삭제되었습니다.");
+        	      window.opener.fnPopupClose(); // 팝업을 닫는 함수 호출
+        	      window.close(); // 팝업창 닫기
+        	      window.opener.location.reload(); // 부모창 새로고침
+        	    }
+        	  }); 
+        	}
 	}, // methods
 	created : function() {
 		var self = this;

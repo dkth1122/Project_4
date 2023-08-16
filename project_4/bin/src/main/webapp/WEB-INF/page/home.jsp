@@ -13,13 +13,16 @@
 .slider {
 	width: 640px;
 	height: 480px;
-	margin: 0 auto;
+	margin: auto;
 }
 
 .slider input[type=radio] {
 	display: none;
 }
-
+.imgs{
+width : 2630px;
+height : 2630px;
+}
 ul.imgs {
 	padding: 0;
 	margin: 0;
@@ -511,10 +514,10 @@ img.imgslide3 {
 			name="slide" id="slide3"> <input type="radio" name="slide"
 			id="slide4"> <input type="radio" name="slide" id="slide5">
 		<ul id="imgholder" class="imgs">
-			<li><img src="img/seventeen_main.jpg"></li>
+			<li><img src="img/seventeen_main.jpg" ></li>
 			<li><img src="img/lsf_main.jpg"></li>
-			<li><img src="img/newjins_main.jpeg"></li>
-			<li><img src="img/promiss_main.jpg"></li>
+			<li><img src="img/newjins_main.jpeg" ></li>
+			<li><img src="img/promiss_main.jpg" ></li>
 			<li><img src="img/boynext.jpg"></li>
 		</ul>
 		<div class="bullets">
@@ -527,7 +530,7 @@ img.imgslide3 {
 
 		<!-- !!!!!!!!!!!!!!!!!!!!  뉴 아이템 !!!!!!!!!!!!!!!!!!!!!!! -->
 		<section class="sect2">
-			<h2>NEW ITEM</h2>
+			<h2><a href="newitem.do">NEW ITEM</a></h2>
 			<div class="Sbox1">
 				<p class="more">
 					<a href="#">More</a>
@@ -628,6 +631,10 @@ img.imgslide3 {
 </body>
 </html>
 <script>
+
+//슬라이드를 수동으로 변경하는 함수
+
+
 // 슬라이드를 자동으로 변경하는 함수
 function changeSlide() {
   var currentSlide = document.querySelector('input[type="radio"]:checked');

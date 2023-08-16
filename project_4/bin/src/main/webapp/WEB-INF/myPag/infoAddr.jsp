@@ -77,8 +77,8 @@
                                  <li>회원 정보</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">회원 정보 수정</a></li>
-                                       <li><a href="#">배송주소록</a></li>                           
+                                       <li><a @click="infoUpdate">회원 정보 수정</a></li>
+                                       <li><a @click="infoAddr">배송주소록</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
@@ -86,7 +86,7 @@
                                  <li>고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">1:1 문의</a></li>
+                                       <li><a href="#" @click="myInquiry">1:1 문의</a></li>
                                        <li><a href="#">공지사항</a></li>
                                        <li><a href="#">이용안내</a></li>
                                        <li><a href="#">FAQ</a></li>                                 
@@ -105,22 +105,24 @@
                                  	<table>
                                  		<tr>
                                  			<th>선택</th>
+                                 			<th>No.</th>
                                  			<th>배송지</th>
                                  			<th>주소</th>
                                  			<th>연락처</th>
                                  			<th>배송지 관리</th>
                                  		</tr>
                                  		<tr v-for = "item in info">
-                                 			<td><input type="radio" :value="info.dUno"></td>
+                                 			<td><input type="radio" v-model="duNo" :value="item.duNo"></td>
+                                 			<td>{{item.duNo}}</td>
                                  			<td>{{item.uDname}}</td>
-                                 			<td>{{item.uDaddr}}</td>
+                                 			<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
                                  			<td>{{item.uDphone}}</td>
-                                 			<td><button @click="editAddr">수정</button></td>
+                                 			<td><button @click="editAddr(item)">수정</button></td>
                                  		</tr>
                                  	</table>
                                  	<div>
-                                 		<button>선택 주소록 삭제</button>
-                                 		<button>배송지 등록</button>
+                                 		<button @click="removeAddr(duNo)">선택 주소록 삭제</button>
+                                 		<button @click="addAddr">배송지 등록</button>
                                  	</div>
                                  </div>
                                 <div class="lowerBox"> 배송 주소록 유의사항 </div>
@@ -142,13 +144,15 @@ var app = new Vue({
     data: {
        list : [],
        info :{},
-       uId : "${sessionId}"
+       uId : "${sessionId}",
+       duNo : ""
        
     },
     methods: {
        fnGetList : function(){
             var self = this;
             self.info.uId = self.uId;
+            self.info.duNo = self.duNo;
             var nparmap = {uId : self.uId};
             $.ajax({
                 url : "/delivery/list.dox",
@@ -156,14 +160,49 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.list; //사용자
+                   self.info = data.list; //사용자                  
+                
                  
                 }
             }); 
         },
-        editAddr : function(){
+        editAddr : function(item){
             var self = this;
-            $.pageChange("editAddr.do", {uId : self.uId});
+            $.pageChange("editAddr.do", {uId : self.uId, duNo : item.duNo});
+        },
+        infoAddr : function(){
+        	var self = this;
+        	$.pageChange("infoAddr.do", {uId : self.uId});
+        },
+        infoUpdate : function(){
+        	var self = this;
+        	$.pageChange("infoUpdate.do", {uId : self.uId});
+        },
+        addAddr : function(){
+        	var self = this;
+        	$.pageChange("addAddr.do", {uId : self.uId});
+        },
+        myInquiry : function(){
+	    	var self = this;
+	    	$.pageChange("myInquiry.do", {uId : self.uId});
+	    },
+        removeAddr : function(duNo){
+        	var self = this;
+        	if(!confirm("선택주소를 삭제하시겠습니까?")){
+        		return;
+        	}
+            var nparmap = {duNo : self.duNo};
+            console.log(duNo);
+            $.ajax({
+                url : "deleteAddr.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	alert("해당주소가 삭제되었습니다.");
+                	self.fnGetList();
+                }
+            });
         }
     },
     created: function() {

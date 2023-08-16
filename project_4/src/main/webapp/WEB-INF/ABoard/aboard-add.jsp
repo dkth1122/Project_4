@@ -70,7 +70,9 @@ var app = new Vue({
 		        data : nparmap,
 		        success : function(data) {
 		            alert("공지가 등록되었습니다.");
-		            location.href="list.do";
+		            window.opener.fnPopupClose(); // 팝업을 닫는 함수 호출
+	        	    window.close(); // 팝업창 닫기
+	        	    window.opener.location.reload(); // 부모창 새로고침
 		        }
 		    }); 
 		}        	

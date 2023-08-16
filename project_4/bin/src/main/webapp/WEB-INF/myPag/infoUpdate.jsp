@@ -195,8 +195,8 @@ height: 300px;
                                  <li>회원 정보</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">회원 정보 수정</a></li>
-                                       <li><a href="#">배송주소록</a></li>                           
+                                       <li><a @click="infoUpdate">회원 정보 수정</a></li>
+                                       <li><a @click="infoAddr">배송주소록</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
@@ -204,7 +204,7 @@ height: 300px;
                                  <li>고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">1:1 문의</a></li>
+                                       <li><a href="#" @click="myInquiry">1:1 문의</a></li>
                                        <li><a href="#">공지사항</a></li>
                                        <li><a href="#">이용안내</a></li>
                                        <li><a href="#">FAQ</a></li>                                 
@@ -312,7 +312,19 @@ var app = new Vue({
                    self.fnGetList();
                  }
              }); 
-        }
+        },
+        infoAddr : function(){
+	    	var self = this;
+	    	$.pageChange("infoAddr.do", {uId : self.uId});
+	    },
+	    infoUpdate : function(){
+	    	var self = this;
+	    	$.pageChange("infoUpdate.do", {uId : self.uId});
+	    },
+	    myInquiry : function(){
+	    	var self = this;
+	    	$.pageChange("myInquiry.do", {uId : self.uId});
+	    }
     },
     created: function() {
       var self = this;

@@ -30,7 +30,9 @@
 	<button @click="fnCustomer">绊按 包府</button>
 	<button @click="fnProduct" v-if="sStatus == 'D' ||  sStatus == 'M'">惑前 包府</button>
 	<span v-else></span>
-	<button @click="fnABoard" v-if="sStatus == 'D' || sStatus == 'M'">霸矫魄 包府</button>
+	<button @click="fnABoard" v-if="sStatus == 'D' || sStatus == 'M'">傍瘤 包府</button>
+	<span v-else></span>
+	<button @click="fnEvent" v-if="sStatus == 'D' || sStatus == 'M'">捞亥飘 包府</button>
 	<span v-else></span>
 	<button @click="fnStaff" v-if="sStatus == 'C' || sStatus == 'M'">流盔 包府</button>
 	<span v-else></span>
@@ -52,7 +54,7 @@ var app = new Vue({
 	},// data
 	methods : {
 		fnMain : function() {
-			location.href="";
+			location.href="../home.do";
 		},
 		fnGBoard : function() {
 			location.href="../gboard/main.do";
@@ -71,6 +73,9 @@ var app = new Vue({
 		},
 		fnABoard : function() {
 			location.href="../aboard/list.do";
+		},
+		fnEvent : function() {
+			location.href="../event/list.do";
 		},
 		fnStaff : function() {
 			location.href="../staff/Management.do";

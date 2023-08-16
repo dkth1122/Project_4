@@ -46,6 +46,8 @@
 		
 		<button @click="fnAnswer">답변하기</button>
 		
+		<div><button @click="fnBack">되돌아가기</button></div>
+		
 		
 
 
@@ -92,7 +94,10 @@ var app = new Vue({
                 	 self.fnGetList();
                  }
              }); 
-         }
+         },
+         fnBack : function() {
+        	 window.history.back();
+        	 }
 	}, // methods
 	created : function() {
 		var self = this;
