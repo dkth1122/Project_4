@@ -102,6 +102,11 @@ public class MyPagController {
 			request.setAttribute("map", map);
 			return "/myPag/noticeView";
 	}
+	//마이페이지 이용안내
+		@RequestMapping("/mypag/useGuide.do") 
+		public String useGuide(Model model) throws Exception{
+			return "/myPag/useGuide";
+	}
 		
 	//마이페이지 상단 프로필  구매 / 환불 /반품 카운터  정보
 	@RequestMapping(value = "/mypag/listExchange.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -182,7 +187,7 @@ public class MyPagController {
 				inquiryService.myPageAddBoard(map);
 				return new Gson().toJson(resultMap);
 		}
-	//마이페이지 공지사항
+	//마이페이지 
 		
 		
 		

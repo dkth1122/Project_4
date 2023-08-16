@@ -359,7 +359,6 @@ var app = new Vue({
 	    	var self = this;
 	    	$.pageChange("infoUpdate.do", {uId : self.uId});
 	    }
-	    
     },
     created: function() {
       var self = this;
