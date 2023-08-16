@@ -107,6 +107,11 @@ public class MyPagController {
 		public String useGuide(Model model) throws Exception{
 			return "/myPag/useGuide";
 	}
+	//마이페이지 FAQ
+		@RequestMapping("/mypag/faq.do") 
+		public String faq(Model model) throws Exception{
+			return "/myPag/faq";
+	}
 		
 	//마이페이지 상단 프로필  구매 / 환불 /반품 카운터  정보
 	@RequestMapping(value = "/mypag/listExchange.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
