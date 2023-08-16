@@ -6,7 +6,7 @@
 <meta charset="EUC-KR">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<title>Insert title here</title>
+<title>멤버쉽 메인 페이지</title>
 </head>
 <body>
 	<div id="app">
@@ -50,7 +50,7 @@
 	            		location.href = 'bts.do'; 
 	            	}
 	            	else if(artist == 't'){
-	            		location.href = 'tbt.do'; 
+	            		location.href = 'txt.do'; 
 	            	}
 	            	else if(artist == 'e'){
 	            		location.href = 'ehp.do'; 

@@ -31,4 +31,20 @@
 		WHERE P_NO = #{pNo}
 	</delete>
 	
+	<!-- 상품 재고 추가 -->
+	<update id="productStockPLUS" parameterType="hashmap">
+		UPDATE T4_PRODUCT
+		SET
+			STOCK = #{stock}
+		WHERE P_NO = #{pNo}
+	</update>
+	
+	
+	<!-- 이미지등록 -->
+	<insert id="insertProductImg" parameterType="hashmap" >
+		INSERT INTO T4_PRODUCT_IMG(P_NO, path)
+		VALUES
+		(#{pNo}, #{path})
+	</insert>
+	
 </mapper>

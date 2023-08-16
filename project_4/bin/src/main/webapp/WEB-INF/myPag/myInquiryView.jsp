@@ -4,41 +4,12 @@
 <html>
 <head>
   <script src="../js/jquery.js"></script>  
-    <link href="../css/mypag.css" rel="stylesheet" type="text/css">
+  <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
   <title>마이페이지</title>
-  <style type="text/css">
-  .box-border-bottom{
-  	border-bottom: 2px solid #83828277;
-  	width: 850px;
-  	height: 80px;
-  }
-  .box { 
-  	margin-top: 30px;
-  	width: 850px;
-  	height: 300px;
-  	display: flex;
-  }
-  .p_content{
-   padding : 20px 0px;
-  	width: 540px;
-  }
-  
-  .p_img{
-  padding : 20px 29px;
-  width: 250px;
-  }
-  td{
-  width: 170px;
-  height: 80px;
-  }
-   .responsive-image {
-    max-width: 100%;
-    height: 250px;
-  }
-  </style>
+
 </head>
 <body>
 <div id="app">
@@ -107,8 +78,8 @@
 							      		<li>회원 정보</li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#">회원 정보 수정</a></li>
-								      			<li><a href="#">배송주소록</a></li>					      		
+								      			<li><a @click="infoUpdate">회원 정보 수정</a></li>
+								      			<li><a @click="infoAddr">배송주소록</a></li>					      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
@@ -131,39 +102,28 @@
 					<div id="right">
 					
 							      <div class="View">
-							    	  <div class="lowerBox" style="border-bottom-color: black;"> 주문 상품 정보 </div>
-							    	  <div class="box-border-bottom"></div>
-							    	  
-							    	  <div class="box" v-for="item in productList">
-							    	  	<div class="p_img"><img class="responsive-image" src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202009/09/f663c475-26e6-45de-9644-46170134d718.jpg"> </div>
-							    	  	<div class="p_content">
-										   <table>
-										   			<tr>
-										   				<td colspan="2">주문번호 : {{item.oNo}}</td>
-										   				
-										   				<td> 배송중/배송완료 </td>
-										   			</tr>
-										   			<tr>
-										   				<td colspan="2">{{item.pName}}</td>
-										   				
-										   				<td>Artist : {{item.artist}}</td>
-										   			</tr>
-										   			<tr>
-										   				<td>{{item.oDate}}</td>
-										   				<td style="text-align: center;">{{item.oCount}}개</td>
-										   				<td>{{item.price}}원</td>
-										   			</tr>
-										   </table>
-										
-										</div>
-							    	  
+							    	  <div class="lowerBox"> 1:1문의 </div>
+							    	  	<div v-for="item in info">
+								    	  		<div><h4>{{item.iQtitle}}</h4></div>
+								    	  		<div>작성일<span>{{item.iQtime}}</span>답변여부<span>{{item.state}}</span></div>
+								    	  		<hr>
+								    	  		<div><pre v-html="item.iQcontent"></pre></div>							    	  	
+								    	  	<div v-if="item.iAcontent == null && iNo == item.iNo">
+								    	  		<hr>
+								    	  			<div>빠른시간내에 답변드리겠습니다. 잠시만 기다려 주세요!</div>
+								    	  		<hr>
+								    	  	</div>
+								    	  	<div v-else>
+								    	  		<hr>
+								    	  		<div>답변날짜 {{item.iAtime}}</div>
+								    	  		<hr>
+								    	  		<div>{{item.iAcontent}}</div>
+								    	  	</div>
+							    	  	</div>
+							    	  <div>
+							    	  	<div><button @click="fnList">목록</button></div>
 							    	  </div>
 							     </div> 
-							     
-							    <!--   <div class="View">
-							    	  <div class="lowerBox"> 관심상품 </div>
-							    	  	<div class="nodata"> 내역이 없습니다 </div>
-							     </div>  -->
 							     
 							     
 					</div>
@@ -179,72 +139,47 @@
 var app = new Vue({
     el: '#app',
     data: {
-    	info : [],
+    	info : {},
     	orderCntList : [],
-    	uId : "dcsdsd3",
+    	uId : "${sessionId}",
     	order  : "",
     	exchange : "",
     	refund : "",
-    	productList : [],
+    	list : [],
+    	iNo : "${map.iNo}"
     },
     methods: {
     	fnGetList : function(){
             var self = this;
-            var nparmap = {uId : self.uId};
+            var nparmap = {uId : self.uId, iNo : self.iNo};
+            self.info.uId = self.uId;
             $.ajax({
-                url : "/user2.dox",
+                url : "/mypag/userInquiry.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	self.info = data.findPw; //사용자
-                	self.fnCntList();
-                	self.fnProduct();
+                	self.info = data.list; //사용자
+                	console.log(self.info);
                 }
             }); 
-        },    
-        fnCntList : function(){
-	        var self = this;
-	        var nparmap = {uId : self.uId};
-	        $.ajax({
-	            url : "/mypag/listExchange.dox",
-	            dataType:"json",	
-	            type : "POST", 
-	            data : nparmap,
-	            success : function(data) { 	
-	            	var listCnt = data.list;
-	            	for(var i=0; i<listCnt.length; i++){
-	            		if(listCnt[i].exchange == "N"){	            			
-	            			self.order = listCnt[i].orderCnt;          			
-	            		}else if(listCnt[i].exchange == "E"){
-	            			self.exchange = listCnt[i].orderCnt;
-	            		}else{
-	            			self.refund = listCnt[i].orderCnt;
-	            		}
-	            	}
-	            	
-	            	
-	            }
-	        }); 
+        },
+	    infoAddr : function(){
+	    	var self = this;
+	    	$.pageChange("infoAddr.do", {uId : self.uId});
 	    },
-	    fnProduct : function(){
-	        var self = this;
-	        var nparmap = {uId : self.uId};
-	        $.ajax({
-	            url : "/mypag/productInformation.dox",
-	            dataType:"json",	
-	            type : "POST", 
-	            data : nparmap,
-	            success : function(data) { 	
-					self.productList = data.list;
-					console.log(self.productList);
-	            	
-	            	
-	            	
-	            }
-	        }); 
-	    }
-	    
+	    infoUpdate : function(){
+	    	var self = this;
+	    	$.pageChange("infoUpdate.do", {uId : self.uId});
+	    },
+	    addBoard : function(){
+            var self = this;
+                $.pageChange("myAddInquiry.do", {uId : self.uId});
+        },
+        fnList : function(){
+        	var self = this;
+        	$.pageChange("myInquiry.do", {uId : self.uId});
+        }
     },
     created: function() {
       var self = this;

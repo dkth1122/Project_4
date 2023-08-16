@@ -41,6 +41,7 @@
 			<option value="MEM">멤버십</option>
 		</select>
 	</div>
+	<div><input type="file" id="file1" name="file1" accept="image/*" @change="setThumbnail"></div>
 	<div> 최대구매 갯수 : 
 		<select v-model="info.pLimit">
 			<option value="10">10개</option>
@@ -72,7 +73,7 @@
 	<div><input type="text" placeholder="특전코드" v-model="info.fYn"></div>
 	
 	<div><button @click="fnProductAdd">상품 추가</button></div>
-
+ <div id="image_container"></div>
 	
 </div>
 </body>
@@ -106,11 +107,49 @@ var app = new Vue({
 			    type : "POST",
 			    data : nparmap,
 			    success : function(data) {
-			      alert("상품이 등록되었습니다.");
-			       location.href = "list.do"; 
+			    	 alert("상품이 등록되었습니다.");
+			      /*  location.href = "list.do";  */
+			      var form = new FormData();
+                  form.append("file1", $("#file1")[0].files[0]);
+                  form.append("pNo", data.pNo); // pk
+                  console.log(form);
+                  self.upload(form);
+           
 			    }
 			  });
-			}    	
+			},
+			upload: function(form) {
+	            var self = this;
+	            $.ajax({
+	                url: "/product/fileUpload.dox",
+	                type: "POST",
+	                processData: false,
+	                contentType: false,
+	                data: form,
+	                success: function(response) {
+	                	
+
+	                }
+
+	            });
+	        },
+	        setThumbnail: function(event){
+	            var reader = new FileReader();
+	            var imageContainer = document.querySelector("div#image_container");
+		
+	            while (imageContainer.firstChild) {
+	                imageContainer.removeChild(imageContainer.firstChild);
+	            }
+	            
+	            reader.onload = function(event) {
+	                var img = document.createElement("img");
+	                img.setAttribute("src", event.target.result);
+	                document.querySelector("div#image_container").appendChild(img);
+	            };
+
+	            reader.readAsDataURL(event.target.files[0]);
+	        }
+	    
 	}, // methods
 	created : function() {
 		var self = this;

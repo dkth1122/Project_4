@@ -64,6 +64,12 @@ var app = new Vue({
 	methods : {
 		fnJoin : function(){
 			var self = this;
+			var regex = /^[a-zA-Z0-9]*$/;
+			if (!regex.test(self.user.uId))
+			{
+				alert("아이디는 영어 대소문자와 숫자로만 가능합니다.");
+				return;
+			}
 			if(self.user.uId == ""){
 				alert("아이디 입력해라");
 				return;
@@ -93,9 +99,8 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	
                 	alert("가입 완ㄹ");
-                	location.href='login.do';
+                	$.pageChange("joinWelcome.do", {uId : self.user.uId});
                 }
             });
 		},

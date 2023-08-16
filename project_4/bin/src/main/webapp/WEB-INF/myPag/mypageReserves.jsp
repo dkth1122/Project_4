@@ -68,8 +68,8 @@
 								      	<li>
 								      		<ul>
 								      			<li><a href="#" @click="fnInformation">주문내역</a></li>
-								      			<li><a href="#" @click="fnInterest">장바구니</a></li>
-								      			<li><a href="#" @click="">관심 상품</a></li>
+								      			<li><a href="#" @click="fnInterest">관심상품</a></li>
+								      			<li><a href="#" @click="">최근 본 상품</a></li>
 								      			<li><a href="#" @click="fnReserves">적립금</a></li>							      		
 								      		</ul>	
 								      	</li>  
@@ -87,7 +87,7 @@
 							      		<li>고객센터</li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#" @click="myInquiry">1:1 문의</a></li>
+								      			<li><a href="#">1:1 문의</a></li>
 								      			<li><a href="#">공지사항</a></li>
 								      			<li><a href="#">이용안내</a></li>
 								      			<li><a href="#">FAQ</a></li>							      		
@@ -131,7 +131,7 @@ var app = new Vue({
     data: {
     	info : [],
     	orderCntList : [],
-    	uId : "dcsdsd3",/* 여기 나중에 세션으로 받기 */
+    	uId : "${sessionId}",
     	order  : "",
     	exchange : "",
     	refund : "",
@@ -206,10 +206,6 @@ var app = new Vue({
 	    infoUpdate : function(){
 	    	var self = this;
 	    	$.pageChange("infoUpdate.do", {uId : self.uId});
-	    },
-	    myInquiry : function(){
-	    	var self = this;
-	    	$.pageChange("myInquiry.do", {uId : self.uId});
 	    }
 	    
     },

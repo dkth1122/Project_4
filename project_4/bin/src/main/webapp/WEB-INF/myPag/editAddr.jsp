@@ -88,7 +88,7 @@
                                  <li>고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">1:1 문의</a></li>
+                                       <li><a href="#" @click="myInquiry">1:1 문의</a></li>
                                        <li><a href="#">공지사항</a></li>
                                        <li><a href="#">이용안내</a></li>
                                        <li><a href="#">FAQ</a></li>                                 
@@ -113,8 +113,9 @@
 										<div v-if="user.addrDetail != ''"><label>· 상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
 										<div v-if="user.zipNo != ''"><label>· 우편번호 : <input  style="width : 300px;" type="text" v-model="user.zipNo"></label></div>
 							   	  
-							   	  <button @click="fnSearchAddr">주소 검색</button> 
-							   	  <div><button @click="fnEdit()">수정하기</button></div>
+							   	  <button @click="fnSearchAddr">주소 검색</button>
+							   	  <div><button @click="back">취소</button> 
+							   	  <div><button @click="fnEdit()">수정</button></div>
 							   	</div>							  
                               <div class="lowerBox"> 배송 주소록 유의사항 </div>
                               <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
@@ -216,6 +217,10 @@ var app = new Vue({
  	   infoUpdate : function(){
 	    	var self = this;
 	    	$.pageChange("infoUpdate.do", {uId : self.uId});
+	    },
+ 	   myInquiry : function(){
+	    	var self = this;
+	    	$.pageChange("myInquiry.do", {uId : self.uId});
 	    }
     },
     created: function() {
