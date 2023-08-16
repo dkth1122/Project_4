@@ -26,7 +26,7 @@
 			<select v-model="info.state">
 				<option value="OPEN">OPEN</option>
 				<option value="PENDING">PENDING</option>
-				<option value="SOLVE">SOLVE</option>
+				<option value="SOLVED">SOLVED</option>
 			</select>
 		</div>
 		<div>상품번호 : <input v-model="info.pNo"></div>
