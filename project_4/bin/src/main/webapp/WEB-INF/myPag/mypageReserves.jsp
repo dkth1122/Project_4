@@ -87,9 +87,9 @@
 							      		<li>고객센터</li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#">1:1 문의</a></li>
-								      			<li><a href="#">공지사항</a></li>
-								      			<li><a href="#">이용안내</a></li>
+								      			<li><a href="#" @click="inquiry">1:1 문의</a></li>
+								      			<li><a href="#" @click="noticeList">공지사항</a></li>
+								      			<li><a href="#" @click="useGuide">이용안내</a></li>
 								      			<li><a href="#">FAQ</a></li>							      		
 								      		</ul>	
 								      	</li>  
@@ -206,8 +206,23 @@ var app = new Vue({
 	    infoUpdate : function(){
 	    	var self = this;
 	    	$.pageChange("infoUpdate.do", {uId : self.uId});
+	    },
+	    /* 이용안내 */
+	    useGuide : function(){
+	    	var self = this;
+	    	$.pageChange("useGuide.do", {uId : self.uId});
+	    },
+	    ,
+	    /* 공지사항 */
+	    noticeList : function(){
+	    	var self = this;
+	    	$.pageChange("noticeList.do", {uId : self.uId});
+	    },
+	    /* 1:1문의 */
+	    inquiry : function(){
+	    	var self = this;
+	    	$.pageChange("myInquiry.do", {uId : self.uId});
 	    }
-	    
     },
     created: function() {
       var self = this;

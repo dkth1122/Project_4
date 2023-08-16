@@ -5,6 +5,8 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -16,6 +18,37 @@
 	th, td {
 		border : 1px solid black;
 		padding : 5px 10px;
+	}
+	.pagination {
+        margin:24px;
+        display: inline-flex;
+        
+    }
+    ul {
+    }
+	.pagination li {
+	    min-width:32px;
+	    padding:2px 6px;
+	    text-align:center;
+	    margin:0 3px;
+	    border-radius: 6px;
+	    border:1px solid #eee;
+	    color:#666;
+	    display : inline;
+	}
+	.pagination li:hover {
+	    background: #E4DBD6;
+	}
+	.page-item a {
+	    color:#666;
+	    text-decoration: none;
+	}
+	.pagination li.active {
+	    background-color : #E7AA8D;
+	    color:#fff;
+	}
+	.pagination li.active a {
+	    color:#fff;
 	}
 </style>
 </head>
@@ -41,7 +74,7 @@
 			<td>{{item.artist}}</td>
 			<td>{{item.pNo}}</td>
 			<td>{{item.pName}}</td>
-			<td>{{item.price}}</td>
+			<td>{{Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'})}}</td>
 			<td>{{item.stock}}</td>
 			<td><button @click="fnStockPopup(item)">재고</button></td>
 			<td>{{item.membership}}</td>
@@ -50,8 +83,23 @@
 		</tr>
 	
 	</table>
+	<template>
+	  <paginate
+	    :page-count="pageCount"
+	    :page-range="3"
+	    :margin-pages="2"
+	    :click-handler="fnSearch"
+	    :prev-text="'<'"
+	    :next-text="'>'"
+	    :container-class="'pagination'"
+	    :page-class="'page-item'">
+	  </paginate>
+	</template>
+	
+	<div>
 	<button @click="fnProductAdd">상품 추가</button>
 	<button @click="fnProductDelete">상품 삭제</button>
+	</div>
 	
 	
 	<div><button @click="fnBack">되돌아가기</button></div>
@@ -62,17 +110,23 @@
 </body>
 </html>
 <script>
+Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
 		selectItem : "",
-		pNo : ""
+		pNo : "",
+		selectPage: 1,
+		pageCount: 1,
+		cnt : 0
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
-            var nparmap = {};
+            var startNum = ((self.selectPage-1) * 10);
+    		var lastNum = 10;
+            var nparmap = {startNum : startNum, lastNum : lastNum};
             $.ajax({
                 url : "/product/list.dox",
                 dataType:"json",	
@@ -80,18 +134,21 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.list = data.list;
+                	self.cnt = data.cnt;
+	                self.pageCount = Math.ceil(self.cnt / 10);
                 }
             }); 
         },
         fnProductAdd : function(){
-        	location.href="../product/add.do";
+        	var self = this;
+      		window.open("../product/add.do", "addPopup", "width=700,height=500,left=500,top=100");
         },
         fnBack : function(){
         	location.href = '../staff/main.do';
         },
         fnStockPopup : function(item) {
         	  var self = this;
-        	  window.open("../product/stockpopup.do?pNo=" + item.pNo, "stockPopup", "width=700,height=500");
+        	  window.open("../product/stockpopup.do?pNo=" + item.pNo, "stockPopup", "width=700,height=500,left=500,top=100");
         	},
         fnProductDelete : function() {
         	var self = this;
@@ -109,7 +166,24 @@ var app = new Vue({
                 	self.fnGetList();
                 }
             }); 
-        }
+        }, fnSearch : function(pageNum){
+			var self = this;
+			self.selectPage = pageNum;
+			var startNum = ((pageNum-1) * 10);
+			var lastNum = 10;
+			var nparmap = {startNum : startNum, lastNum : lastNum};
+			$.ajax({
+				url : "/product/list.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {
+					self.list = data.list;
+					self.cnt = data.cnt;
+					self.pageCount = Math.ceil(self.cnt / 10);
+				}
+			});
+		}
 
 	}, // methods
 	created : function() {

@@ -78,6 +78,28 @@ var app = new Vue({
         fnABoardEdit : function(){
         	var self = this;
             var nparmap = self.info;
+            if(self.info.aTitle == "" || self.info.aTitle == undefined){
+		        alert("제목을 입력해주세요");
+		        return;
+		    } else if(self.info.aTitle.length > 50){
+		        alert("제목은 최대 50자까지 입력 가능합니다.");
+		        return;
+		    }
+		    if(self.info.aContent == "" || self.info.aContent == undefined){
+		        alert("내용은 입력해주세요");
+		        return;
+		    } else if(self.info.aContent.length > 3000){
+		        alert("내용은 최대 3000자까지 입력 가능합니다.");
+		        return;
+		    }
+		    if(self.info.aKind == "" || self.info.aKind == undefined){
+		        alert("종류를 선택해주세요");
+		        return;
+		    }
+		    if(self.info.artist == "" || self.info.artist == undefined){
+		        alert("아티스트를 선택 해주세요");
+		        return;
+		    }
             $.ajax({
                 url : "/aboard/edit.dox",
                 dataType:"json",	
@@ -85,6 +107,8 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	alert("수정되었습니다.");
+                	window.close(); // 팝업창 닫기
+ 	        	    window.opener.location.reload(); // 부모창 새로고침
                 }
             }); 
         }

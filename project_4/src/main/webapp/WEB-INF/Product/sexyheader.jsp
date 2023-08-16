@@ -26,6 +26,7 @@ padding-right : 30px;
 margin-right : 10px;
 color:black;
 height: 80px;
+
 padding-top: 35px;
 
 
@@ -73,7 +74,7 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;}
 			
 nav .menu {
 	font-weight : bold;
-	width: 1200px;
+	width: 1700px;
 	margin: 0 auto;
 	height: 100px;
 
@@ -120,6 +121,7 @@ nav .menu .depths {
 
 nav .menu .depths li {
 	width: 300px;
+
 }
 
 nav .menu .depths li a {
@@ -135,10 +137,10 @@ nav .menu .depths li:hover a {
  margin: 0xp;
 }
 #logo{
-margin-left : 50px;
-	width: 300px;
+margin-left : 455px;
+	width: 100px;
 	height: auto;
-	top: -10px;
+	margin-top:45px;
 	z-index:1;
 }
 .mene{
@@ -195,13 +197,13 @@ margin: 0 auto;
 					</li>					
 					
 					
-						<span><img id="logo" src="../../img/logo/VeryPeriLogo.png"></span>
+						<span><img id="logo" src="../../img/logo/veryperiii.png"></span>
 					
 						
 						<div class="icon">
-						<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-2xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="mypage.do"><i class="fa-solid fa-user fa-2xl" style="color: #8a8a8a;"></i></a></span>
+						<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
+						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a></span>
+						<span class="icon"><a href="mypage.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
 						</div>
 						
 					</ul>

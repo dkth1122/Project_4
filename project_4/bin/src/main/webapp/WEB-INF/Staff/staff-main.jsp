@@ -54,10 +54,10 @@ var app = new Vue({
 	},// data
 	methods : {
 		fnMain : function() {
-			location.href="../home.do";
+			 window.open('../home.do', '_blank');
 		},
 		fnGBoard : function() {
-			location.href="../gboard/main.do";
+			window.open('../gboard/main.do', '_blank');
 		},
 		fnInquiry : function() {
 			location.href="../inquiry/list.do";

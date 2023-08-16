@@ -90,9 +90,9 @@ var app = new Vue({
 			stock : "",
 			membership : "",
 			category : "",
-			pLimit : "",
 			artist : "",
-			fYn : ""
+			fYn : "",
+			pLimit : ""
 		}
 	},// data
 	methods : {
@@ -101,6 +101,39 @@ var app = new Vue({
 			  var nparmap = self.info;
 			  nparmap.point = parseFloat(nparmap.price) * 0.02;
 			  nparmap.pNo = (nparmap.artist + nparmap.pNo + nparmap.category);
+			  if(self.info.pNo.length != 10){
+			        alert("상품번호를 확인하시오");
+			        return;
+			    }
+			  if(self.info.pName == "" || self.info.pName == undefined){
+			        alert("상품 이름을 입력해주세요");
+			        return;
+			    }
+			  if(self.info.price == "" || self.info.price == undefined){
+					alert("가격을 입력해주세요");
+					self.info.price.focus();
+					return;
+				}
+			  if(self.info.stock == "" || self.info.stock == undefined || self.info.stock == 0){
+					alert("재고를 입력해주세요");
+					return;
+				}
+			  if(self.info.membership == "" || self.info.membership == undefined){
+					alert("멤버십여부를 선택해주세요");
+					return;
+				}
+			  if(self.info.category == "" || self.info.category == undefined){
+					alert("카테고리를 선택해주세요");
+					return;
+				}
+			  if(self.info.artist == "" || self.info.artist == undefined){
+					alert("아티스트를 선택해주세요");
+					return;
+				}
+			  if(self.info.pLimit == "" || self.info.pLimit == undefined){
+					alert("최대구매 갯수 선택해주세요");
+					return;
+				}
 			  $.ajax({
 			    url : "/product/add.dox",
 			    dataType : "json",
@@ -108,12 +141,13 @@ var app = new Vue({
 			    data : nparmap,
 			    success : function(data) {
 			    	 alert("상품이 등록되었습니다.");
-			      /*  location.href = "list.do";  */
 			      var form = new FormData();
                   form.append("file1", $("#file1")[0].files[0]);
                   form.append("pNo", data.pNo); // pk
                   console.log(form);
                   self.upload(form);
+              	  window.close(); // 팝업창 닫기
+	        	  window.opener.location.reload(); // 부모창 새로고침
            
 			    }
 			  });
@@ -127,8 +161,6 @@ var app = new Vue({
 	                contentType: false,
 	                data: form,
 	                success: function(response) {
-	                	
-
 	                }
 
 	            });

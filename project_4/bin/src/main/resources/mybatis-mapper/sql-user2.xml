@@ -9,6 +9,12 @@
 		SELECT *
 		FROM T4_USER U
 		LEFT JOIN T4_BAN B ON U.U_ID = B.U_ID
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 페이징용 카운트 -->
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_USER
 	</select>
 	
 	<!-- 고객 비밀번호 오류 횟수 초기화 -->

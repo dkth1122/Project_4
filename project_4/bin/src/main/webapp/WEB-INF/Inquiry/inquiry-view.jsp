@@ -46,8 +46,6 @@
 		
 		<button @click="fnAnswer">답변하기</button>
 		
-		<div><button @click="fnBack">되돌아가기</button></div>
-		
 		
 
 
@@ -84,6 +82,21 @@ var app = new Vue({
         fnAnswer : function(){
         	var self = this;
         	 var nparmap = {iNo : self.iNo, category : self.info.category, state : self.info.state, pNo : self.info.pNo, iAcontent : self.info.iAcontent, iComplain : self.info.iComplain};
+        	 if(self.info.category == "" || self.info.category == undefined){
+ 		        alert("카테고리를 선택해주세요");
+ 		        return;
+ 		    }
+        	 if(self.info.state == "" || self.info.state == undefined || self.info.state == "OPEN"){
+   		        alert("상태를 확인해주세요! ");
+   		        return;
+   		    }
+        	 if(self.info.iAcontent == "" || self.info.iAcontent== undefined){
+  		        alert("답변을 입력해주세요");
+  		        return;
+  		    } else if(self.info.iAcontent > 10000){
+  		        alert("답변은 최대 10,000자까지 입력 가능합니다.");
+  		        return;
+  		    }
              $.ajax({
                  url : "/inquiry/answer.dox",
                  dataType:"json",	
@@ -94,10 +107,7 @@ var app = new Vue({
                 	 self.fnGetList();
                  }
              }); 
-         },
-         fnBack : function() {
-        	 window.history.back();
-        	 }
+         }
 	}, // methods
 	created : function() {
 		var self = this;

@@ -8,6 +8,13 @@
 	<select id="selectProductList" parameterType="hashmap" resultType="com.example.project.model.Inquiry">
 		SELECT * FROM T4_INQUIRY
 		WHERE STATE != 'SOLVED'
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 페이징용 카운트 -->
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_INQUIRY
+		WHERE STATE != 'SOLVED'
 	</select>
 	
 	<!-- 문의 보기 -->
