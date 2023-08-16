@@ -16,9 +16,12 @@ public class EventServiceImpl implements EventService{
 	EventMapper eventMapper;
 
 	@Override
-	public List<Event> selectEventList(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectEventList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return eventMapper.selectEventList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", eventMapper.selectEventList(map));
+		resultMap.put("cnt", eventMapper.selectCnt(map));
+		return resultMap;
 	}
 
 	@Override

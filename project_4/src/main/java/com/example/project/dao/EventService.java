@@ -9,7 +9,7 @@ import com.example.project.model.User2;
 
 public interface EventService {
 	
-	List<Event> selectEventList(HashMap<String, Object> map);
+	HashMap<String, Object> selectEventList(HashMap<String, Object> map);
 	
 	int insertEvent(HashMap<String, Object> map);
 	

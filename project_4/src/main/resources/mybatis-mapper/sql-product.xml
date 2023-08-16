@@ -17,6 +17,12 @@
 		<if test="category != null and artist != null">
         	AND CATEGORY = #{category} AND ARTIST = #{artist}
     	</if> 
+    	LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 페이징용 갯수 -->
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_PRODUCT
 	</select>
 	
 	<!-- 상품 조회-->

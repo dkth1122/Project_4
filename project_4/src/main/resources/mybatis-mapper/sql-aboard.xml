@@ -8,6 +8,12 @@
 	<select id="selectABoardList" parameterType="hashmap" resultType="com.example.project.model.ABoard">
 		SELECT *
 		FROM T4_ABOARD
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 페이징용 카운트 -->
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_ABOARD
 	</select>
 	
 	<!-- 게시글 등록 -->

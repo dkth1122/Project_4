@@ -56,8 +56,11 @@ public class ProductController {
 	@ResponseBody
 	public String List(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> list = productService.selectProductList(map);
-		resultMap.put("list", list);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = productService.selectProductList(map);
 		return new Gson().toJson(resultMap);
 	}
 	

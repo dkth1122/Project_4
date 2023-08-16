@@ -17,9 +17,12 @@ public class ABoardServiceImpl implements ABoardService{
 	ABoardMapper aboardMapper;
 	
 	@Override
-	public List<ABoard> selectABoardList(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectABoardList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return aboardMapper.selectABoardList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", aboardMapper.selectABoardList(map));
+		resultMap.put("cnt", aboardMapper.selectCnt(map));
+		return resultMap;
 	}
 
 	@Override

@@ -16,6 +16,9 @@ public interface ProductMapper {
 	//상품 리스트
 	List<Product>selectProductList(HashMap<String, Object> map);
 	
+	//상품페이징용 갯수
+	int selectCnt(HashMap<String, Object> map);
+	
 	//상품 하나 조회
 	Product selectProductInfo(HashMap<String, Object> map);
 	

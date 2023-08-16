@@ -8,7 +8,7 @@ import com.example.project.model.ABoard;
 
 public interface ABoardService {
 	
-	List<ABoard> selectABoardList(HashMap<String, Object> map);
+	HashMap<String, Object> selectABoardList(HashMap<String, Object> map);
 	
 	int insertABoard(HashMap<String, Object> map);
 	

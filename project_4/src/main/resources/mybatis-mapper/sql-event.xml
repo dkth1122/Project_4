@@ -9,6 +9,12 @@
 		SELECT *
 		FROM T4_EVENT
 		ORDER BY EVT_YN DESC
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 페이징용 카운트 -->
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_EVENT
 	</select>
 	
 	<!-- 이벤트 추가 -->

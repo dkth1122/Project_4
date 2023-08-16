@@ -17,9 +17,12 @@ public class User2ServiceImpl implements User2Service{
 	User2Mapper user2Mapper;
 
 	@Override
-	public List<User> selectUserList(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectUserList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return user2Mapper.selectUserList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", user2Mapper.selectUserList(map));
+		resultMap.put("cnt", user2Mapper.selectCnt(map));
+		return resultMap;
 	}
 
 	@Override

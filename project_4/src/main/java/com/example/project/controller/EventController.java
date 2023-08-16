@@ -41,8 +41,11 @@ public class EventController {
 	@ResponseBody
 	public String eventlist(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Event> list = eventService.selectEventList(map);
-		resultMap.put("list", list);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = eventService.selectEventList(map);
 		return new Gson().toJson(resultMap);
 	}
 	

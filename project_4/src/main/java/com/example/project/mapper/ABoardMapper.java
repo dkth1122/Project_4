@@ -14,6 +14,9 @@ public interface ABoardMapper {
 	//공지 리스트 출력
 	List<ABoard> selectABoardList (HashMap<String, Object> map);
 	
+	// 페이징용 카운트
+	int selectCnt(HashMap<String, Object> map);
+	
 	//공지 등록
 	int insertABoard(HashMap<String, Object> map);
 	

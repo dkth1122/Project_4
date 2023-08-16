@@ -17,9 +17,12 @@ public class InquiryServiceImpl implements InquiryService{
 	InquiryMapper inquiryMapper;
 
 	@Override
-	public List<Inquiry> selectProductList(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectProductList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return inquiryMapper.selectProductList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", inquiryMapper.selectProductList(map));
+		resultMap.put("cnt", inquiryMapper.selectCnt(map));
+		return resultMap;
 	}
 
 	@Override

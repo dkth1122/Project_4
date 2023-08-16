@@ -13,6 +13,8 @@ public interface InquiryMapper {
 	
 	//미답변 문의 목록 출력
 	List<Inquiry> selectProductList(HashMap<String, Object> map);
+	// 페이징용 카운트
+	int selectCnt(HashMap<String, Object> map);
 	
 	//문의 상세 보기
 	Inquiry selectProductInfo(HashMap<String, Object> map);

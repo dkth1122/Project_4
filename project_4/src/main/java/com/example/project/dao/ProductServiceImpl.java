@@ -25,9 +25,12 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<Product> selectProductList(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectProductList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return productMapper.selectProductList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", productMapper.selectProductList(map));
+		resultMap.put("cnt", productMapper.selectCnt(map));
+		return resultMap;
 	}
 
 	@Override

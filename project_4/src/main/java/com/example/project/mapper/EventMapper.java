@@ -19,6 +19,9 @@ public interface EventMapper {
 	//이벤트 활성화 수정
 	int updateEvent(HashMap<String, Object> map);
 	
+	// 페이징용 카운트
+	int selectCnt(HashMap<String, Object> map);
+	
 	
 	
 }
