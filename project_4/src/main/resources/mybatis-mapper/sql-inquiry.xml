@@ -7,18 +7,15 @@
 	<!-- 미답변 문의 목록 출력 -->
 	<select id="selectProductList" parameterType="hashmap" resultType="com.example.project.model.Inquiry">
 		SELECT * FROM T4_INQUIRY
-<<<<<<< HEAD
 		WHERE STATE = 'OPEN' OR STATE = 'PENDING'
 		LIMIT #{startNum}, #{lastNum}
 	</select>
 	
 	<!-- 페이징용 카운트 -->
-	<select id="selectCnt" resultType="int">
+	<select id="selectCnt3" resultType="int">
 		SELECT COUNT(*) FROM T4_INQUIRY
 		WHERE STATE = 'OPEN' OR STATE = 'PENDING'
-=======
 		WHERE STATE != 'SOLVED'
->>>>>>> branch 'main' of https://github.com/dkth1122/Project_4.git
 	</select>
 	
 	<!-- 문의 보기 -->
