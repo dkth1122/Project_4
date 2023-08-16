@@ -120,10 +120,10 @@ var app = new Vue({
                 }
             }); 
         },
-        fnuserInformation : function(item){
-        	 var self = this;
-             $.pageChange("../user2/view.do", {uId : item.uId});
-        },
+        fnuserInformation: function(item) {
+        	  var self = this;
+        	  window.open("../user2/view.do?uId=" + item.uId, "popup", "width=800,height=1000,left=500,top=100");
+        	},
         fnCntReset : function(item){
             var self = this;
             var nparmap = {uId : item.uId};

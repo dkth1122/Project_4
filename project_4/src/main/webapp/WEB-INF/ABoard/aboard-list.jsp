@@ -84,7 +84,7 @@
 	    :page-class="'page-item'">
 	  </paginate>
 	</template>
-	
+	<div></div>
 	<button @click="fnABoardAdd">공지추가</button>
 	<div><button @click="fnBack">되돌아가기</button></div>
 
@@ -122,11 +122,12 @@ var app = new Vue({
             }); 
         },
         fnABoardAdd : function(){
-        	location.href="../aboard/add.do";
-        },
+        	var self = this;
+      	  window.open("../aboard/add.do", "popup1", "width=800,height=600,left=500,top=100");
+      	},
         fnABoardView : function(item){
             var self = this;
-            $.pageChange("../aboard/view.do", {aNo : item.aNo});
+            window.open("../aboard/view.do?aNo=" + item.aNo, "popup2", "width=500,height=600,left=500,top=100");
           },
           fnBack : function(){
           	location.href = '../staff/main.do';
