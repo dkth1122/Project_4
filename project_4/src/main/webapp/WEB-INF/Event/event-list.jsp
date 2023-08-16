@@ -88,7 +88,7 @@
 	  </paginate>
 	</template>
 	
-	<button @click="fnEventAdd">이벤트 등록</button>
+	<div><button @click="fnEventAdd">이벤트 등록</button></div>
 	<div><button @click="fnBack">되돌아가기</button></div>
 	
 </div>
@@ -123,7 +123,8 @@ var app = new Vue({
             }); 
         },
        fnEventAdd : function(){
-    	   location.href="add.do";
+    	 var self = this;
+      	 window.open("add.do", "Popup", "width=700,height=500,left=500,top=100");
        },
        fnUpdateEvent: function(item, index) {
     	    var self = this;
@@ -136,12 +137,10 @@ var app = new Vue({
     	        evtYn: item.evtYn
     	      },
     	      success: function(data) {
-    	        // 업데이트 성공 시 alert 창을 보여줍니다.
     	        alert("이벤트가 업데이트 되었습니다.");
     	      }
     	    }); 
     	  },
-<<<<<<< HEAD
     	  fnSearch : function(pageNum){
   			var self = this;
   			self.selectPage = pageNum;
@@ -159,12 +158,10 @@ var app = new Vue({
   					self.pageCount = Math.ceil(self.cnt / 10);
   				}
   			});
-  		}
-=======
+  		},
           fnBack : function(){
           	location.href = '../staff/main.do';
           }
->>>>>>> branch 'main' of https://github.com/dkth1122/Project_4.git
 	}, // methods
 	created : function() {
 		var self = this;

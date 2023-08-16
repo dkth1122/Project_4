@@ -7,14 +7,13 @@
 	<!-- 미답변 문의 목록 출력 -->
 	<select id="selectProductList" parameterType="hashmap" resultType="com.example.project.model.Inquiry">
 		SELECT * FROM T4_INQUIRY
-		WHERE STATE = 'OPEN' OR STATE = 'PENDING'
+		WHERE STATE != 'SOLVED'
 		LIMIT #{startNum}, #{lastNum}
 	</select>
 	
 	<!-- 페이징용 카운트 -->
-	<select id="selectCnt3" resultType="int">
+	<select id="selectCnt" resultType="int">
 		SELECT COUNT(*) FROM T4_INQUIRY
-		WHERE STATE = 'OPEN' OR STATE = 'PENDING'
 		WHERE STATE != 'SOLVED'
 	</select>
 	

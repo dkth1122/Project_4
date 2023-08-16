@@ -51,6 +51,18 @@ var app = new Vue({
 			  var self = this;
 			  var nparmap = self.info;
 			  nparmap.evtNo = (nparmap.artist + nparmap.evtNo);
+			  if(self.info.evtNo.length != 7){
+			        alert("이벤트코드를 확인하시오");
+			        return;
+			    }
+			  if(self.info.evtName == "" || self.info.evtName == undefined){
+			        alert("이벤트 이름을 입력해주세요");
+			        return;
+			    }
+			  if(self.info.artist == "" || self.info.artist == undefined){
+					alert("아티스트를 선택해주세요");
+					return;
+				}
 			  $.ajax({
 			    url : "/event/add.dox",
 			    dataType : "json",
@@ -58,7 +70,8 @@ var app = new Vue({
 			    data : nparmap,
 			    success : function(data) {
 			      alert("이벤트가 등록되었습니다.");
-			       location.href = "list.do"; 
+	        	  window.close(); // 팝업창 닫기
+	        	  window.opener.location.reload(); // 부모창 새로고침
 			    }
 			  });
 			}    	

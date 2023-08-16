@@ -74,7 +74,7 @@
 			<td>{{item.artist}}</td>
 			<td>{{item.pNo}}</td>
 			<td>{{item.pName}}</td>
-			<td>{{item.price}}</td>
+			<td>{{Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'})}}</td>
 			<td>{{item.stock}}</td>
 			<td><button @click="fnStockPopup(item)">재고</button></td>
 			<td>{{item.membership}}</td>
@@ -96,8 +96,10 @@
 	  </paginate>
 	</template>
 	
+	<div>
 	<button @click="fnProductAdd">상품 추가</button>
 	<button @click="fnProductDelete">상품 삭제</button>
+	</div>
 	
 	
 	<div><button @click="fnBack">되돌아가기</button></div>
@@ -138,14 +140,15 @@ var app = new Vue({
             }); 
         },
         fnProductAdd : function(){
-        	location.href="../product/add.do";
+        	var self = this;
+      		window.open("../product/add.do", "addPopup", "width=700,height=500,left=500,top=100");
         },
         fnBack : function(){
         	location.href = '../staff/main.do';
         },
         fnStockPopup : function(item) {
         	  var self = this;
-        	  window.open("../product/stockpopup.do?pNo=" + item.pNo, "stockPopup", "width=700,height=500");
+        	  window.open("../product/stockpopup.do?pNo=" + item.pNo, "stockPopup", "width=700,height=500,left=500,top=100");
         	},
         fnProductDelete : function() {
         	var self = this;

@@ -98,7 +98,8 @@ var app = new Vue({
         data: nparmap,
         success(data) {
           alert(self.info.sName + '님이 수정되었습니다.');
-          location.href = 'Management.do';
+          window.close(); // 팝업창 닫기
+     	  window.opener.location.reload(); // 부모창 새로고침
         },
       });
     },

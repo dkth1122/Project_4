@@ -70,16 +70,21 @@ var app = new Vue({
             }); 
         },
         fnStaffAdd : function(){
-        	location.href="../staff/add.do";
+        	var self = this;
+         	window.open("../staff/add.do", "popup1", "width=700,height=500,left=500,top=100");
         },
         fnStaffUpdate : function(item){
             var self = this;
-          $.pageChange("../staff/edit.do", {sNo : self.selectItem});
+            if (self.selectItem == "") {
+                alert("수정할 사원을 선택해주세요.");
+                return;
+            }
+            window.open("../staff/edit.do?sNo=" + self.selectItem, "popup2", "width=700,height=500,left=500,top=100");
         },
         fnStaffDelete : function () {
             var self = this;
-            if (self.sNo === "") {
-                alert("게시글을 선택해주세요.");
+            if (self.selectItem == "") {
+                alert("삭제할 사원을 선택해주세요.");
                 return;
             }
             if(!confirm("정말 삭제하시겠습니까?")){

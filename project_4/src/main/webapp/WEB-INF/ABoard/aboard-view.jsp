@@ -74,7 +74,6 @@ var app = new Vue({
         	    data : nparmap,
         	    success : function(data) { 
         	      alert("삭제되었습니다.");
-        	      window.opener.fnPopupClose(); // 팝업을 닫는 함수 호출
         	      window.close(); // 팝업창 닫기
         	      window.opener.location.reload(); // 부모창 새로고침
         	    }

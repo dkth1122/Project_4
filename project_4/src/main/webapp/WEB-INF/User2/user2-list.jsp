@@ -120,17 +120,14 @@ var app = new Vue({
                 }
             }); 
         },
-<<<<<<< HEAD
         fnuserInformation: function(item) {
         	  var self = this;
         	  window.open("../user2/view.do?uId=" + item.uId, "popup", "width=800,height=1000,left=500,top=100");
         	},
-=======
         fnuserInformation : function(item){
         	 var self = this;
-        	 window.open("../user2/view.do?uId=" + item.uId, "stockPopup", "width=700,height=500");
+        	 window.open("../user2/view.do?uId=" + item.uId, "stockPopup", "width=700,height=500,left=500,top=100");
         },
->>>>>>> branch 'main' of https://github.com/dkth1122/Project_4.git
         fnCntReset : function(item){
             var self = this;
             var nparmap = {uId : item.uId};

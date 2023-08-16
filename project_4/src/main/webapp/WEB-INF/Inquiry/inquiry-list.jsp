@@ -125,7 +125,8 @@ var app = new Vue({
         },
         fnAnswer : function(item){
             var self = this;
-            $.pageChange("../inquiry/view.do", {iNo : item.iNo});
+            var self = this;
+       	 window.open("../inquiry/view.do?iNo=" + item.iNo, "stockPopup", "width=700,height=800,left=500,top=100");
           },
           fnBack : function(){
             	location.href = '../staff/main.do';
