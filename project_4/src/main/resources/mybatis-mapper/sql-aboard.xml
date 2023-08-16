@@ -19,7 +19,7 @@
 	<!-- 게시글 등록 -->
 	<insert id="insertABoard" parameterType="hashmap">
 		INSERT INTO T4_ABOARD 
-		VALUES(NULL, #{aTitle}, #{aContent}, NOW(), #{aKind}, '0', #{artist})
+		VALUES(NULL, #{aTitle}, #{aContent}, NOW(), #{aKind}, '0', #{artist}, NULL)
 	</insert>
 	
 	<!-- 게시글 보기 -->
