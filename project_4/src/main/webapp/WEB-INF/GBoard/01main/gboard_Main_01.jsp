@@ -6,7 +6,7 @@
 <meta charset="EUC-KR">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<title>멤버쉽 메인 페이지</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<div id="app">

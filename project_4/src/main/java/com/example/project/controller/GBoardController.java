@@ -1,5 +1,7 @@
 package com.example.project.controller;
 
+import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project.dao.GBoardService;
 import com.example.project.model.GBoard;
 import com.google.gson.Gson;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class GBoardController {
@@ -26,7 +32,14 @@ public class GBoardController {
 	@RequestMapping("/gboard/main.do") 
     public String mainGBoard(Model model) throws Exception{
 
-        return "GBoard/01main/gboard_Main_01";
+        return "/GBoard/01main/gboard_Main_01";
+    }
+	
+	//마이페이지
+	@RequestMapping("/gboard/myPage.do") 
+    public String mypage(Model model) throws Exception{
+
+        return "/GBoard/01main/gboard_Mypage_01";
     }
 	
 	//BTS 아티스트 페이지 
@@ -92,6 +105,27 @@ public class GBoardController {
         return "/GBoard/02artistMain/Main_09_JICO";
     }
 	
+	//게시글에 댓글 다는 페이지
+	@RequestMapping("/gboard/view.do") 
+	public String view(HttpServletRequest request,Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+    return "/GBoard/02artistMain/Main_01_view_BTS";
+	}
+	
+	//신고 팝업 페이지
+	@RequestMapping("/gboard/report.do") 
+	public String report(HttpServletRequest request,Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+    return "/GBoard/Report_pop";
+	}
+	
+	//댓글 대댓글 신고 팝업 페이지
+	@RequestMapping("/gboard/report2.do") 
+	public String report2(HttpServletRequest request,Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+    return "/GBoard/Report_pop2";
+	}
+	
 	
 	
 	//게시글 전체 조회 기능
@@ -100,18 +134,84 @@ public class GBoardController {
 	public String select(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<GBoard> list = gboardService.searchGBoardList(map);
+		List<GBoard> list2 = gboardService.searchArtistGBoard(map);
 		resultMap.put("list", list);
+		resultMap.put("list2", list2);
 		return new Gson().toJson(resultMap);
 	}
 	
-	//게시글 전체 조회 기능
+	//게시글 작성 기능
 	@RequestMapping(value = "/gboard/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String add(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		  gboardService.addGBoard(map);
+		resultMap = gboardService.addGBoard(map);
 	      return new Gson().toJson(resultMap);
 	}
+	
+	//이미지 추가 기능
+	@RequestMapping("/gboard/fileUpload.dox")
+    public String result(@RequestParam("file1") MultipartFile multi, @RequestParam("gNo") int gNo, HttpServletRequest request,HttpServletResponse response, Model model)
+    {
+        System.out.println("test");
+		String url = null;
+        String path="c:\\img";
+        try {
+ 
+            //String uploadpath = request.getServletContext().getRealPath(path);
+            String uploadpath = path;
+            String originFilename = multi.getOriginalFilename();
+            String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
+            long size = multi.getSize();
+            String saveFileName = genSaveFileName(extName);
+            
+            System.out.println("uploadpath : " + uploadpath);
+            System.out.println("originFilename : " + originFilename);
+            System.out.println("extensionName : " + extName);
+            System.out.println("size : " + size);
+            System.out.println("saveFileName : " + saveFileName);
+            String path2 = System.getProperty("user.dir");
+            System.out.println("Working Directory = " + path2 + "\\src\\webapp\\img\\GBoardIMG");
+            if(!multi.isEmpty())
+            {
+                File file = new File(path2 + "\\src\\main\\webapp\\img\\GBoardIMG", saveFileName);
+                multi.transferTo(file);
+                
+                HashMap<String, Object> map = new HashMap<String, Object>();
+                map.put("filename", saveFileName);
+                map.put("path", "../img/GBoardIMG/" + saveFileName);
+                map.put("gNo", gNo);
+                
+                // insert 쿼리 실행
+                gboardService.addGBoardImg(map);
+                
+                model.addAttribute("filename", multi.getOriginalFilename());
+                model.addAttribute("uploadPath", file.getAbsolutePath());
+                
+                return "redirect:main.do";
+            }
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+        return "redirect:main.do";
+    }
+    
+    // 현재 시간을 기준으로 파일 이름 생성
+    private String genSaveFileName(String extName) {
+        String fileName = "";
+        
+        Calendar calendar = Calendar.getInstance();
+        fileName += calendar.get(Calendar.YEAR);
+        fileName += calendar.get(Calendar.MONTH);
+        fileName += calendar.get(Calendar.DATE);
+        fileName += calendar.get(Calendar.HOUR);
+        fileName += calendar.get(Calendar.MINUTE);
+        fileName += calendar.get(Calendar.SECOND);
+        fileName += calendar.get(Calendar.MILLISECOND);
+        fileName += extName;
+        
+        return fileName;
+    }
 	
 	//게시글 삭제 기능
 	@RequestMapping(value = "/gboard/remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -137,10 +237,95 @@ public class GBoardController {
     @ResponseBody
     public String like(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
         HashMap<String, Object> resultMap = new HashMap<String, Object>();
-        int suc = gboardService.likeGBoard(map);
+        int test = gboardService.likeGBoard(map);
         resultMap.put("message", "성공" );
-        resultMap.put("test", suc );
+        resultMap.put("test", test );
         return new Gson().toJson(resultMap);
     }
+    
+    //댓글 조회 기능
+	@RequestMapping(value = "/gboard/commentList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String commentList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<GBoard> list = gboardService.searchComment(map);
+		resultMap.put("commentList", list);
+		return new Gson().toJson(resultMap);
+	}
+	
+    //댓글 작성 기능
+	@RequestMapping(value = "/gboard/addComment.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addComment(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		gboardService.addComment(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+    //댓글 삭제 기능
+	@RequestMapping(value = "/gboard/commentRemove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String commentRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		gboardService.removeComment(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+    // 댓글 좋아요 기능
+    @RequestMapping(value = "/gboard/commentLike.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String commentLike(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        int test = gboardService.likeComment(map);
+        resultMap.put("message", "성공" );
+        resultMap.put("test", test );
+        return new Gson().toJson(resultMap);
+    }
+    
+    //대댓글 작성 기능
+	@RequestMapping(value = "/gboard/cocomment.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addCocomment(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		gboardService.addCocomment(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+    //대댓글 조회 기능
+	@RequestMapping(value = "/gboard/cocommentList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String cocommentList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<GBoard> list = gboardService.searchCocomment(map);
+		resultMap.put("cocommentList", list);
+		return new Gson().toJson(resultMap);
+	}
+	
+    //대댓글 삭제 기능
+	@RequestMapping(value = "/gboard/cocommentRemove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String cocommentRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		gboardService.removeCocomment(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+    //게시글 신고 + cnt 증가 기능 
+	@RequestMapping(value = "/gboard/report.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String report(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		gboardService.addReport(map);
+		return new Gson().toJson(resultMap);
+	}
+    
+    //댓글 대댓글 신고 + cnt 증가 기능 
+	@RequestMapping(value = "/gboard/report2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String report2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		gboardService.addGCReport(map);
+		return new Gson().toJson(resultMap);
+	}
 
 }
