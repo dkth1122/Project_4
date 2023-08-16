@@ -2,18 +2,18 @@ package com.example.project.model;
 
 public class Afile {
 	//첨부파일
-	private int afNo;
+	private int aafNo;
 	private String thumbnail;
-	private String afPhoto1;
-	private String afPhoto2;
-	private String afPhoto3;
-	private String afCategory;
+	private String aafPhoto1;
+	private String aafPhoto2;
+	private String aafPhoto3;
+	private String aafCategory;
 	
-	public int getAfNo() {
-		return afNo;
+	public int getAafNo() {
+		return aafNo;
 	}
-	public void setAfNo(int afNo) {
-		this.afNo = afNo;
+	public void setAafNo(int aafNo) {
+		this.aafNo = aafNo;
 	}
 	public String getThumbnail() {
 		return thumbnail;
@@ -21,30 +21,32 @@ public class Afile {
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
-	public String getAfPhoto1() {
-		return afPhoto1;
+	public String getAafPhoto1() {
+		return aafPhoto1;
 	}
-	public void setAfPhoto1(String afPhoto1) {
-		this.afPhoto1 = afPhoto1;
+	public void setAafPhoto1(String aafPhoto1) {
+		this.aafPhoto1 = aafPhoto1;
 	}
-	public String getAfPhoto2() {
-		return afPhoto2;
+	public String getAafPhoto2() {
+		return aafPhoto2;
 	}
-	public void setAfPhoto2(String afPhoto2) {
-		this.afPhoto2 = afPhoto2;
+	public void setAafPhoto2(String aafPhoto2) {
+		this.aafPhoto2 = aafPhoto2;
 	}
-	public String getAfPhoto3() {
-		return afPhoto3;
+	public String getAafPhoto3() {
+		return aafPhoto3;
 	}
-	public void setAfPhoto3(String afPhoto3) {
-		this.afPhoto3 = afPhoto3;
+	public void setAafPhoto3(String aafPhoto3) {
+		this.aafPhoto3 = aafPhoto3;
 	}
-	public String getAfCategory() {
-		return afCategory;
+	public String getAafCategory() {
+		return aafCategory;
 	}
-	public void setAfCategory(String afCategory) {
-		this.afCategory = afCategory;
+	public void setAafCategory(String aafCategory) {
+		this.aafCategory = aafCategory;
 	}
+	
+	
 	
 	
 }

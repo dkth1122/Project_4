@@ -32,6 +32,8 @@
 		<option value="지코">지코</option>
 	</select></div>
 	
+	<div><input type="file" id="file1" name="file1"></div>
+	
 	
 	
 	<button @click="fnABoardAdd">공지추가</button>
@@ -84,12 +86,31 @@ var app = new Vue({
 		        type : "POST", 
 		        data : nparmap,
 		        success : function(data) {
-		            alert("공지가 등록되었습니다.");
-	        	    window.close(); // 팝업창 닫기
-	        	    window.opener.location.reload(); // 부모창 새로고침
+	        	   alert("공지가 등록되었습니다.");
+		            console.log(data.idx);
+	           		var form = new FormData();
+	       	        form.append( "file1",  $("#file1")[0].files[0] );
+	       	     	form.append( "idx",  data.idx);
+	           		self.upload(form);
 		        }
 		    }); 
-		}        	
+		}, 
+		upload : function(form){
+	    	var self = this;
+	         $.ajax({
+	           url : "/fileUpload.dox",
+	           type : "POST",
+	           processData : false,
+	           contentType : false,
+	           data : form,
+	           success:function(response) { 
+			       window.close(); // 팝업창 닫기
+			       window.opener.location.reload(); // 부모창 새로고침
+	        	   
+	           }
+	           
+	       });
+		} 	
 	}, // methods
 	created : function() {
 		var self = this;

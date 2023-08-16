@@ -23,6 +23,9 @@
 	<div>등록일 : {{info.aDate}}</div>
 	<div>내용 : {{info.aContent}}</div>
 	<div><span>{{info.aKind}} / {{info.artist}}</span></div>
+	<div>
+		<img :src="info.thumbnail">
+	</div>
 	
 	
 

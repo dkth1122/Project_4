@@ -25,11 +25,20 @@ public class ABoardServiceImpl implements ABoardService{
 	}
 
 	@Override
-	public int insertABoard(HashMap<String, Object> map) {
+	public HashMap<String, Object> insertABoard(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return aboardMapper.insertABoard(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		aboardMapper.insertABoard(map);
+		resultMap.put("idx", map.get("idx"));
+		return resultMap;
 	}
 
+	@Override
+	public int insertAboardImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return aboardMapper.insertAboardImg(map);
+	}
+	
 	@Override
 	public ABoard selectABoardInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -45,6 +54,7 @@ public class ABoardServiceImpl implements ABoardService{
 	@Override
 	public int deleteABoard(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
+		aboardMapper.deleteABoardImg(map);
 		return aboardMapper.deleteABoard(map);
 	}
 
@@ -56,6 +66,7 @@ public class ABoardServiceImpl implements ABoardService{
 		resultMap.put("list",aboardMapper.selectABoardList2(map));
 		return resultMap;				
 	}
+
 
 	
 }

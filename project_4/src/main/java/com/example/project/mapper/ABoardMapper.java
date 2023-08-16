@@ -23,6 +23,9 @@ public interface ABoardMapper {
 	//공지 등록
 	int insertABoard(HashMap<String, Object> map);
 	
+	//공지 첨부파일
+	int insertAboardImg(HashMap<String, Object> map);
+	
 	//공지 상세 보기
 	ABoard selectABoardInfo(HashMap<String, Object> map);
 	
@@ -31,6 +34,9 @@ public interface ABoardMapper {
 	
 	//게시글 삭제
 	int deleteABoard(HashMap<String, Object> map);
+	
+	//첨부파일 삭제
+	int deleteABoardImg(HashMap<String, Object> map);
 	
 	//공지사항 조회수증가
 	int ABoardCnt(HashMap<String, Object> map);

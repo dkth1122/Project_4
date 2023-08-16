@@ -10,7 +10,12 @@ public class ABoard {
 	private int hits;
 	private String artist;
 	private int afNo;
-	
+	private int aafNo;
+	private String thumbnail;
+	private String filename;
+	private String aafPhoto1;
+	private String aafPhoto2;
+	private String aafPhoto3;
 	public int getaNo() {
 		return aNo;
 	}
@@ -59,6 +64,43 @@ public class ABoard {
 	public void setAfNo(int afNo) {
 		this.afNo = afNo;
 	}
+	public int getAafNo() {
+		return aafNo;
+	}
+	public void setAafNo(int aafNo) {
+		this.aafNo = aafNo;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public String getAafPhoto1() {
+		return aafPhoto1;
+	}
+	public void setAafPhoto1(String aafPhoto1) {
+		this.aafPhoto1 = aafPhoto1;
+	}
+	public String getAafPhoto2() {
+		return aafPhoto2;
+	}
+	public void setAafPhoto2(String aafPhoto2) {
+		this.aafPhoto2 = aafPhoto2;
+	}
+	public String getAafPhoto3() {
+		return aafPhoto3;
+	}
+	public void setAafPhoto3(String aafPhoto3) {
+		this.aafPhoto3 = aafPhoto3;
+	}
+	
 	
 	
 }

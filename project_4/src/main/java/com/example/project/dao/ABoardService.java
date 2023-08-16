@@ -12,7 +12,9 @@ public interface ABoardService {
 	
 	HashMap<String, Object> selectABoardList2(HashMap<String, Object> map);
 	
-	int insertABoard(HashMap<String, Object> map);
+	HashMap<String, Object> insertABoard(HashMap<String, Object> map);
+	
+	int insertAboardImg(HashMap<String, Object> map);
 	
 	ABoard selectABoardInfo(HashMap<String, Object> map);
 	

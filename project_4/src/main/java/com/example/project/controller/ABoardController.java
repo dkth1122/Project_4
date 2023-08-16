@@ -1,7 +1,8 @@
 package com.example.project.controller;
 
+import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project.dao.ABoardService;
 import com.example.project.model.ABoard;
-import com.example.project.model.Inquiry;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -75,10 +77,72 @@ public class ABoardController {
 	@ResponseBody
 	public String add(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		aboardService.insertABoard(map);
+		resultMap = aboardService.insertABoard(map);
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
+	
+	@RequestMapping("/fileUpload.dox")
+	public String result(@RequestParam("file1") MultipartFile multi, @RequestParam("idx") int idx, HttpServletRequest request, HttpServletResponse response, Model model) {
+	    String url = null;
+	    String path = "c:\\img";
+	    try {
+	        String uploadpath = path;
+	        String originFilename = multi.getOriginalFilename();
+	        String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
+	        long size = multi.getSize();
+	        String saveFileName = genSaveFileName(extName);
+
+	        System.out.println("uploadpath : " + uploadpath);
+	        System.out.println("originFilename : " + originFilename);
+	        System.out.println("extensionName : " + extName);
+	        System.out.println("size : " + size);
+	        System.out.println("saveFileName : " + saveFileName);
+
+	        if(!multi.isEmpty()) {
+	            String path2 = System.getProperty("user.dir");
+	            System.out.println("Working Directory = " + path2 + "\\src\\webapp\\img\\logo");
+	            File file = new File(path2 + "\\src\\main\\webapp\\img\\logo", saveFileName);
+	            multi.transferTo(file);
+
+	            HashMap<String, Object> map = new HashMap<String, Object>();
+	            map.put("filename", saveFileName);
+	            map.put("path", "../img/logo/" + saveFileName);
+	            map.put("idx", idx);
+
+	            // insert 쿼리 실행
+	            aboardService.insertAboardImg(map);
+
+	            model.addAttribute("filename", multi.getOriginalFilename());
+	            model.addAttribute("uploadPath", file.getAbsolutePath());
+	            
+	            // JavaScript를 사용하여 팝업 창 닫기
+	            return "<script type='text/javascript'>window.opener.location.reload(); window.close();</script>";
+	        }
+	    } catch(Exception e) {
+	        System.out.println(e);
+	    }
+	    return "redirect:list.do";
+	}
+
+    
+    // 현재 시간을 기준으로 파일 이름 생성
+    private String genSaveFileName(String extName) {
+        String fileName = "";
+        
+        Calendar calendar = Calendar.getInstance();
+        fileName += calendar.get(Calendar.YEAR);
+        fileName += calendar.get(Calendar.MONTH);
+        fileName += calendar.get(Calendar.DATE);
+        fileName += calendar.get(Calendar.HOUR);
+        fileName += calendar.get(Calendar.MINUTE);
+        fileName += calendar.get(Calendar.SECOND);
+        fileName += calendar.get(Calendar.MILLISECOND);
+        fileName += extName;
+        
+        return fileName;
+    }
+
 	
 	@RequestMapping(value = "/aboard/info.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
