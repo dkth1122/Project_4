@@ -1,7 +1,6 @@
 package com.example.project.dao;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,4 +47,15 @@ public class ABoardServiceImpl implements ABoardService{
 		// TODO Auto-generated method stub
 		return aboardMapper.deleteABoard(map);
 	}
+
+	@Override
+	public HashMap<String, Object> selectABoardList2(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("hits", aboardMapper.ABoardCnt(map));
+		resultMap.put("list",aboardMapper.selectABoardList2(map));
+		return resultMap;				
+	}
+
+	
 }

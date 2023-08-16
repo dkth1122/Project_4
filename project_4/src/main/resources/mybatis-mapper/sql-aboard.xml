@@ -4,11 +4,16 @@
 
 <mapper namespace="com.example.project.mapper.ABoardMapper">
 	
-	<!-- 게시글 리스트 -->
+	<!-- 게시글 리스트 페이징 -->
 	<select id="selectABoardList" parameterType="hashmap" resultType="com.example.project.model.ABoard">
 		SELECT *
 		FROM T4_ABOARD
 		LIMIT #{startNum}, #{lastNum}
+	</select>
+	<!-- 게시글 리스트 -->
+	<select id="selectABoardList2" parameterType="hashmap" resultType="com.example.project.model.ABoard">
+		SELECT *
+		FROM T4_ABOARD
 	</select>
 	
 	<!-- 페이징용 카운트 -->
@@ -45,4 +50,12 @@
 		DELETE FROM T4_ABOARD
 		WHERE A_NO = #{aNo}
 	</delete>
+	
+	<!-- 공지사항 조회수 증가 -->
+	<update id="ABoardCnt" parameterType="hashmap">
+		UPDATE T4_ABOARD
+		SET
+			HITS = HITS + 1
+		WHERE A_NO = #{aNo}
+	</update>
 </mapper>

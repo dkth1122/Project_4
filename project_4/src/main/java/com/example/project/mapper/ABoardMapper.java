@@ -11,8 +11,11 @@ import com.example.project.model.ABoard;
 @Mapper
 public interface ABoardMapper {
 	
-	//공지 리스트 출력
+	//공지 리스트 출력(페이징용)
 	List<ABoard> selectABoardList (HashMap<String, Object> map);
+	
+	//공지 리스트 출력
+	List<ABoard> selectABoardList2 (HashMap<String, Object> map);
 	
 	// 페이징용 카운트
 	int selectCnt(HashMap<String, Object> map);
@@ -28,4 +31,7 @@ public interface ABoardMapper {
 	
 	//게시글 삭제
 	int deleteABoard(HashMap<String, Object> map);
+	
+	//공지사항 조회수증가
+	int ABoardCnt(HashMap<String, Object> map);
 }

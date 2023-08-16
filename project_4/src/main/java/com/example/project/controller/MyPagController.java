@@ -91,6 +91,18 @@ public class MyPagController {
 			request.setAttribute("map", map);
 			return "/myPag/myInquiryView";
 	}
+	//마이페이지 공지사항 목록
+		@RequestMapping("/mypag/noticeList.do") 
+		public String noticeList(Model model) throws Exception{
+			return "/myPag/noticeList";
+	}
+	//마이페이지 공지사항 상세보기
+		@RequestMapping("/mypag/noticeView.do") 
+		public String noticeView(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
+			request.setAttribute("map", map);
+			return "/myPag/noticeView";
+	}
+		
 	//마이페이지 상단 프로필  구매 / 환불 /반품 카운터  정보
 	@RequestMapping(value = "/mypag/listExchange.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -170,7 +182,8 @@ public class MyPagController {
 				inquiryService.myPageAddBoard(map);
 				return new Gson().toJson(resultMap);
 		}
-	//마이페이지 문의 첨부파일추가
+	//마이페이지 공지사항
+		
 		
 		
 	

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.ABoardService;
 import com.example.project.model.ABoard;
+import com.example.project.model.Inquiry;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -59,6 +60,14 @@ public class ABoardController {
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
 		resultMap = aboardService.selectABoardList(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/aboard/list2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String userInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = aboardService.selectABoardList2(map);
 		return new Gson().toJson(resultMap);
 	}
 	
