@@ -70,7 +70,7 @@
 		</tr>
 		
 		<tr v-for="(item, index) in list">
-			<td><input type="radio" name="뭐하지" :value="item.pNo" v-model="pNo"></td>
+			<td><input type="radio" name="product" :value="item.pNo" v-model="pNo"></td>
 			<td>{{item.artist}}</td>
 			<td>{{item.pNo}}</td>
 			<td>{{item.pName}}</td>
@@ -153,6 +153,10 @@ var app = new Vue({
         fnProductDelete : function() {
         	var self = this;
             var nparmap = {pNo : self.pNo};
+            if (self.pNo == "") {
+                alert("삭제할 상품을 선택해주세요.");
+                return;
+            }
             if(!confirm("정말 삭제하시겠습니까?")){
                 return;
             }

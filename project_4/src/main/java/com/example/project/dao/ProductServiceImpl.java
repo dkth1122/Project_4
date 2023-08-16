@@ -10,6 +10,7 @@ import com.example.project.mapper.ABoardMapper;
 import com.example.project.mapper.ProductMapper;
 import com.example.project.model.ABoard;
 import com.example.project.model.Product;
+import com.example.project.model.Wish;
 
 
 @Service
@@ -63,5 +64,38 @@ public class ProductServiceImpl implements ProductService{
 		return productMapper.productStockPLUS(map);
 	}
 
+	
+	//체크박스 찜목록 삭제
+		@Override
+		public int removeWishProduct(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.deleteWishProduct(map);
+		}
+		
+		//찜목록 상품 출력
+		@Override
+		public List<Wish> searchWishProdeuct(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.selectWishProdeuct(map);
+		}
+
+		//단일상품 제거
+		@Override
+		public int removeSingleProdeuctWish(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.deleteSingleProdeuctWish(map);
+		}
+		//찜목록 전체 제거
+		@Override
+		public int removeAllWish(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.deleteAllWish(map);
+		}
+		//장바구니 등록
+		@Override
+		public int editcart(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.insertcart(map);
+		}
 	
 }

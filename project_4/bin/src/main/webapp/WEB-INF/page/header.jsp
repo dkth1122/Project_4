@@ -53,10 +53,10 @@ nav {
 <!--
 로고 있는 부분 -->.
 
-nav{ width:100%; height:160px;position:relative; z-index:9999;}
-		.navWrap{ width:100%; height:35px; overflow:hidden; transition: all 0.6s; position:absolute; top:20%; font-size: 30px;}
+nav{ width:2000px; height:160px; z-index:9999;}
+		.navWrap{ width:2000px; height:35px; overflow:hidden; transition: all 0.6s; position:absolute; top:20%; font-size: 30px;}
 		.navWrap:hover{ height:550px; background:rgb(245, 235, 236);}
-			h1{ width:100%; height:93px; text-align:center; padding-top:12px; box-sizing:border-box;}
+			h1{ width :2000px; height:93px; text-align:center; padding-top:12px; box-sizing:border-box;}
 			hr{ width:1381px; height:1px; background:rgba(255,255,255,0.8); text-align:center; margin-left:257px; border:none;}
 			
 nav.menu {
@@ -78,10 +78,10 @@ nav .menu a {
 /* 간격 조정 */
 nav .menu>li {
 	width: 130px;
-	float: left;
+	float:left;
 	margin-right: 40px;
 	height: 43px;
-	position: relative;
+	
 }
 
 nav .menu>li:hover>a {
@@ -101,7 +101,7 @@ nav .menu>li a {
 }
 
 nav .menu .depths {
-	position: absolute;
+	
 }
 
 nav .menu .depths li {
@@ -148,7 +148,7 @@ header #container1 {
 
 		<nav>
 		
-		<div class="mark"><a href="home.do"><img src="img/veryperiii.png"  alt="" style="height : 100px; width:auto;"/></a></div>
+		<div class="mark"><a href="home.do"><img src="img/btsProduct/veryperiii.png"  alt="" style="height : 100px; width:auto;"/></a></div>
 				<hr>
 				
 <div class="navWrap">

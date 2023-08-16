@@ -22,16 +22,24 @@
 	</select>
 	
 	<!-- 게시글 등록 -->
-	<insert id="insertABoard" parameterType="hashmap">
+	<insert id="insertABoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="idx" keyColumn="AAF_NO">
 		INSERT INTO T4_ABOARD 
 		VALUES(NULL, #{aTitle}, #{aContent}, NOW(), #{aKind}, '0', #{artist}, NULL)
+	</insert>
+	
+	<!-- 첨부파일 등록 -->
+	<insert id="insertAboardImg" parameterType="hashmap">
+		INSERT INTO T4_A_ATTACHED_FILE_ABOARD(AAF_NO, THUMBNAIL, FILENAME)
+		VALUES
+			(#{idx}, #{path}, #{filename})
 	</insert>
 	
 	<!-- 게시글 보기 -->
 	<select id="selectABoardInfo" parameterType="hashmap" resultType="com.example.project.model.ABoard">
 		SELECT *
-		FROM T4_ABOARD
-		WHERE A_NO = #{aNo}
+		FROM T4_ABOARD B
+		LEFT JOIN T4_A_ATTACHED_FILE_ABOARD P ON B.A_NO = P.AAF_NO
+		WHERE B.A_NO = #{aNo}
 	</select>
 	
 	<!-- 게시글 수정 -->
@@ -50,6 +58,11 @@
 		DELETE FROM T4_ABOARD
 		WHERE A_NO = #{aNo}
 	</delete>
+	<!-- 게시글 삭제 -->
+	<delete id="deleteABoardImg" parameterType="hashmap">
+		DELETE FROM T4_A_ATTACHED_FILE_ABOARD
+		WHERE AAF_NO = #{aNo}
+	</delete>
 	
 	<!-- 공지사항 조회수 증가 -->
 	<update id="ABoardCnt" parameterType="hashmap">
@@ -58,4 +71,5 @@
 			HITS = HITS + 1
 		WHERE A_NO = #{aNo}
 	</update>
+	
 </mapper>

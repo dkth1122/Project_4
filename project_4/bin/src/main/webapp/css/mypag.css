@@ -4,16 +4,16 @@
   margin-left: 70px;
  } 
  *{
-	 border: 1px solid black; }
+}
  .name{
    margin-left: 45px;
   font-size: 4em;
   font-weight: bold;
  }
   body{
-  	margin : 0px;
-  	padding : 0px;
-  	}
+     margin : 0px;
+     padding : 0px;
+     }
   #app {
   
     display: flex;
@@ -22,17 +22,17 @@
     
   }
   #container {
-    width: 2000px;
+    width: 100%;
   }
   #top {
-  	background-color: #FADBEE;
-    width: 2000px;
+     background-color: #FADBEE;
+    width:100%;
     height: 400px;
     
   }
   #body {
   margin-top : 40px;
-    width: 2000px;
+    width: 100%;
     display: flex;
     justify-content: center;
     font-size: 1.5em;
@@ -49,34 +49,34 @@
     height: 800px;
   }
   #profileImg{
-  	border-radius: 50%;
-  	background-color: purple;
-  	width: 200px;
-  	height: 200px;
-  	margin-left: 55px;
-  	margin-top : -15px;
+     border-radius: 50%;
+     background-color: purple;
+     width: 200px;
+     height: 200px;
+     margin-left: 55px;
+     margin-top : -15px;
   }
   .left{
   float: left;
   }
   .topImgBoxwid{
-   	width: 300px;
-  	height: 240px;
+      width: 300px;
+     height: 240px;
   }
   .topBoxwid{
-   	width: 200px;
-  	height: 250px;
+      width: 200px;
+     height: 250px;
   }
   .userName{
-  	height: 245px;
-  	
+     height: 245px;
+     
   }
   .a{
-  	height: 245px;
-  	width:1200px;
-  	margin: 0px auto;
+     height: 245px;
+     width:1200px;
+     margin: 0px auto;
 
-  	  }
+       }
   .topBox{
   width : 889px;
    height: 120px;
@@ -84,26 +84,27 @@
      display: flex;
   }
   .details{  
-  	margin: 0px 30px;
-  	width: 200px;
-  	text-align: center;
-  	font-size: 2em;
+     margin: 0px 30px;
+     width: 200px;
+     text-align: center;
+     font-size: 2em;
   }
  h1{
  margin-left: 30px;
  } 
   .categories{
     padding-bottom : 25px;
-   	widows : 200px;
-  	border-bottom:3px solid black;
-  	border-bottom-color: #a1a1a1da;
-  	margin-bottom: 40px;
+      widows : 200px;
+     border-bottom:3px solid black;
+     border-bottom-color: #a1a1a1da;
+     margin-bottom: 40px;
+ 
   }
   .lowerBox{
     padding-bottom : 25px;
-   	width : 1404px;   	  
-  	border-bottom:3px solid black;
-  	border-bottom-color: #a1a1a1da;
+      width : 1404px;        
+     border-bottom:3px solid black;
+     border-bottom-color: #a1a1a1da;
   }
  li {
  
@@ -123,37 +124,4 @@ a {
 height: 300px;
  margin-bottom: 150px;
 }
-#radioMenu input{
-	display:inline-block;
-	margin-left: 100px;
-	
-}
-[type="radio"] {
-        vertical-align: middle;
-        appearance: none;
-        background-color: white;
-        box-shadow: none;
-        padding: 2px;
-        width: 2px;
-        
-}
-label:hover{
-            border-bottom: 3px solid #6667AB;
-            cursor: pointer;
-}
-input:checked + label {
-            color:#6667AB;
-            border-bottom: 3px solid #6667AB;
-            font-weight: bold;
-}
-input {
-            background: #eee;
-            padding: 16px;
-            margin: 8px 0;
-            width: 60%;
-            border: 0;
-            outline: none;
-            border-radius: 20px;
-            box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff;
-        }
   

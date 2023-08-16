@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.project.model.Product;
+import com.example.project.model.Wish;
 
 @Mapper
 public interface ProductMapper {
@@ -29,5 +30,17 @@ public interface ProductMapper {
 	int productStockPLUS(HashMap<String, Object> map);
 	//이미지등록
 	int insertProductImg(HashMap<String, Object> map);
+	
+	//------- 찜목록 삭제 체크박스 선택 
+		int deleteWishProduct(HashMap<String, Object> map);
+		
+		// 찜목록 상품 출력
+		List<Wish> selectWishProdeuct(HashMap<String, Object> map);
+		// 단일찜목록 제거
+		int deleteSingleProdeuctWish(HashMap<String, Object> map);
+		// 찜목록 전체제거
+		int deleteAllWish(HashMap<String, Object> map);
+		//장바구니 등록 > 이동
+		int insertcart(HashMap<String, Object> map);
 	
 }

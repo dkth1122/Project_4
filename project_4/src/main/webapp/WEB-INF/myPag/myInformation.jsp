@@ -15,13 +15,15 @@
 #table {
 	width: 1400px;
 }
+th{
 
+}
 td {
 	height: 60px;
 	text-align: center;
 }
 </style>
-<title>마이페이지</title>
+<title>찜목록</title>
 
 </head>
 <body>
@@ -100,9 +102,9 @@ td {
 							<li>고객센터</li>
 							<li>
 								<ul>
-									<li><a href="#" @click="inquiry">1:1 문의</a></li>
-									<li><a href="#" @click="noticeList">공지사항</a></li>
-									<li><a href="#" @click="useGuide">이용안내</a></li>
+									<li><a href="#">1:1 문의</a></li>
+									<li><a href="#">공지사항</a></li>
+									<li><a href="#">이용안내</a></li>
 									<li><a href="#">FAQ</a></li>
 								</ul>
 							</li>
@@ -118,48 +120,41 @@ td {
 						<div class="lowerBox" style="border-bottom-color: black;">
 							주문 상품 정보</div>
 						<div class="box-border-bottom"></div>
-
-						<div class="box" v-for="item in productList">
-							<div class="p_img">
-								<img class="responsive-image" :src="item.pImg">
-							</div>
-							<div class="p_content">
-								<table id="table">
-									<tr>
-										<th style="width: 500px;" rowspan="4">1</th>
-
-									</tr>
-									<tr>
-
-										<td></td>
-										<td>{{item.oNo}}</td>
-										<td></td>
-										<td>배송중/배송완료</td>
-									
-									</tr>
-									<tr>
-										<td></td>
-										<td>{{item.pName}}</td>
-										<td></td>
-										<td> {{item.artist}}</td>
-									</tr>
-									<tr>
-										
-										<td colspan="2">{{item.oDate}}</td>
-										<td style="text-align: center;">{{item.oCount}}개</td>
-										<td>{{item.price}}원</td>
-									</tr>
-								</table>
-
-							</div>
-
-						</div>
+						<table border-bottum="1">
+						<thead>
+							<tr>
+								
+								<th><input type="checkbox" @click="fnAllCheck" ></th>
+								<th colspan="2">상품정보</th>
+								<th>적립금</th>
+								<th>배송비</th>
+								<th>판매가</th>
+								<th>선택</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr  v-for="item in wishList">
+								<td><input type="checkbox" :value="item.wnum" v-model="selectItem"></td>
+								<td><img class="responsive-image" :src="item.pImg" ></td>
+								<td>{{item.pName}}</td>
+								<td>적립금</td>
+								<td>배송비</td>
+								<td>판매가</td>
+								<td>
+								<button @click="insertCart(item)"> 장바구니 </button>
+								주문하기
+								<button @click="fnRemoveOne(item)">사악제</button>
+								
+								</td>
+							</tr>
+						</tbody>
+				
+						</table>
+						<button @click="fnRemove">삭제</button>
+						<button @click="fnRemoveAll">찜목록 지우기 </button>
+						
 					</div>
-
-					<!--   <div class="View">
-							    	  <div class="lowerBox"> 관심상품 </div>
-							    	  	<div class="nodata"> 내역이 없습니다 </div>
-							     </div>  -->
 
 
 				</div>
@@ -172,6 +167,7 @@ td {
 </body>
 </html>
 <script type="text/javascript">
+var cnt = "Y";
 var app = new Vue({
     el: '#app',
     data: {
@@ -181,9 +177,33 @@ var app = new Vue({
     	order  : "",
     	exchange : "",
     	refund : "",
-    	productList : [],
+    	wishList : [],
+    	selectItem : [],
+ 
     },
     methods: {
+    	fnAllCheck : function(){
+    		var self = this;
+    		if(cnt == "Y" ){
+    			self.selectItem = [];
+    			for(var i=0;  i < self.wishList.length; i++){
+                    self.selectItem.push(self.wishList[i].wnum);
+                 } 
+    			cnt = "N";
+    		}else{
+    			self.selectItem = [];
+    			cnt = "Y";
+    		}    		
+    				
+    	},
+    	  selectAllItems: function() {
+    	        // 전체 선택 상태에 따라 selectItem 배열을 업데이트
+    	        if (this.selectAll) {
+    	            this.selectItem = this.wishList.map(item => item.wnum);
+    	        } else {
+    	            this.selectItem = [];
+    	        }
+    	    },
     	fnGetList : function(){
             var self = this;
             var nparmap = {uId : self.uId};
@@ -193,6 +213,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
+                	console.log(data);
                 	self.info = data.findPw; //사용자
                 	self.fnCntList();
                 	self.fnProduct();
@@ -227,19 +248,88 @@ var app = new Vue({
 	        var self = this;
 	        var nparmap = {uId : self.uId};
 	        $.ajax({
-	            url : "/mypag/productInformation.dox",
+	            url : "/mypag/wishlist.dox",
 	            dataType:"json",	
 	            type : "POST", 
 	            data : nparmap,
 	            success : function(data) { 	
-					self.productList = data.list;
-					console.log(self.productList);
-	            	
-	            	
-	            	
+					self.wishList = data.list;
+					console.log(data);	            	
 	            }
 	        }); 
 	    },
+	    fnRemove : function(){
+			var self = this;
+			if(!confirm("정말 삭제할거냐?")){
+				return;
+			}
+			var noList = JSON.stringify(self.selectItem);
+			var param = {selectItem : noList};
+			$.ajax({
+                url : "/mypag/removeWishProduct.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("삭제되었다!");
+                	self.fnGetList();
+                	self.selectItem = [];
+                }
+            });
+		},
+		fnRemoveAll : function(){
+			var self = this;
+			if(!confirm("정말 삭제할거냐?")){
+				return;
+			}
+			var param = {uId : self.uId};
+			$.ajax({
+                url : "/mypag/removeAllProdeuctWish.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("삭제되었다!");
+                	self.fnGetList();
+                	
+                }
+            });
+		},		
+		fnRemoveOne : function(item){		
+			var self = this;			
+				if(!confirm("정말 삭제할거냐?")){
+					return;
+				}
+				var param ={wnum : item.wnum};
+				console.log(param);
+				$.ajax({
+	                url : "/mypag/removeSingleProdeuctWish.dox",
+	                dataType:"json",	
+	                type : "POST",
+	                data : param,
+	                success : function(data) { 
+	                	alert(data.list);
+	                	self.fnGetList();
+	                	self.selectItem = [];
+	                }
+	            });
+			 	
+			},
+		insertCart : function(item){
+				var self = this;			
+				var param ={uId : self.uId, pNo : item.pNo};
+				console.log(param);
+				$.ajax({
+	                url : "/mypag/editCart.dox",
+	                dataType:"json",	
+	                type : "POST",
+	                data : param,
+	                success : function(data) {
+	                	/* 카트로 상품등록수 장바구니로 갈거냐 말꺼냐 창띄우기 */
+	                	alert(data.list);
+	                }
+	            });
+		},	   
 	    /* 메인 */
 	    fnVuwmain : function(){
 	    	var self = this;
@@ -270,21 +360,6 @@ var app = new Vue({
 	    	var self = this;
 	    	$.pageChange("infoUpdate.do", {uId : self.uId});
 	    },
-	    /* 이용안내 */
-	    useGuide : function(){
-	    	var self = this;
-	    	$.pageChange("useGuide.do", {uId : self.uId});
-	    },
-	    /* 공지사항 */
-	    noticeList : function(){
-	    	var self = this;
-	    	$.pageChange("noticeList.do", {uId : self.uId});
-	    },
-	    /* 1:1문의 */
-	    inquiry : function(){
-	    	var self = this;
-	    	$.pageChange("myInquiry.do", {uId : self.uId});
-	    }
 	    
     },
     created: function() {

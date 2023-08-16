@@ -1,17 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
+  <%@ include file="/page/header.jsp" %>
   <script src="../js/jquery.js"></script>  
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
- <meta charset="UTF-8">
-  <title>ë§ˆì´í˜ì´ì§€Â€</title>
-
+ <meta charset="EUC-KR">
+<title>¸¶ÀÌÆäÀÌÁö</title>
 </head>
 <body>
+
+
 <div id="app">
 
 			  <div id="container">
@@ -32,21 +34,21 @@
 					    	
 					    		<div class="details" >
 					    		
-					    			<div>ì£¼ë¬¸ë‚´ì—­</div>
+					    			<div>ÁÖ¹®³»¿ª</div>
 					    			<div>{{order}}</div>
 					    			
 					    		</div>
 					    		
 					    		<div class="details" >
 					    		
-					    			<div>êµí™˜/í™˜ë¶ˆ</div>
+					    			<div>±³È¯/È¯ºÒ</div>
 					    			<div>
 					    				<span>{{refund}} /</span><span> {{exchange}}</span>
 					    			</div>
 					    			
 					    		</div>
 					    		<div class="details" >
-					    			<div>í¬ì¸íŠ¸</div>
+					    			<div>Æ÷ÀÎÆ®</div>
 					    			<div>{{info.uPoint}} P</div>
 					    		</div>
 					    		<div class="details" >
@@ -64,32 +66,32 @@
 							      	<div class="categories"> MY PAGE</div>
 							      	<div style="text-align: left;">
 							      	<ul style="padding: 0px;">
-							      		<li>ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
+							      		<li>³ªÀÇ ¼îÇÎ Á¤º¸ </li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#">ì£¼ë¬¸ë‚´ì—­</a></li>
-								      			<li><a href="#">ê´€ì‹¬ìƒí’ˆ</a></li>
-								      			<li><a href="#">ìµœê·¼ ë³¸ ìƒí’ˆ</a></li>
-								      			<li><a href="#">ì ë¦¼ê¸ˆ</a></li>							      		
+								      			<li><a href="#">ÁÖ¹®³»¿ª</a></li>
+								      			<li><a href="#">°ü½É»óÇ°</a></li>
+								      			<li><a href="#">ÃÖ±Ù º» »óÇ°</a></li>
+								      			<li><a href="#">Àû¸²±İ</a></li>							      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
 							      	<ul style="padding: 0px;">
-							      		<li>íšŒì› ì •ë³´</li>
+							      		<li>È¸¿ø Á¤º¸</li>
 								      	<li>
 								      		<ul>
-								      			<li><a @click="infoUpdate">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
-								      			<li><a @click="infoAddr">ë°°ì†¡ì£¼ì†Œë¡</a></li>					      		
+								      			<li><a @click="infoUpdate">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
+								      			<li><a @click="infoAddr">¹è¼ÛÁÖ¼Ò·Ï</a></li>					      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
 							      	   	<ul style="padding: 0px;">
-							      		<li>ê³ ê°ì„¼í„°</li>
+							      		<li>°í°´¼¾ÅÍ</li>
 								      	<li>
 								      		<ul>
-								      			<li><a href="#" @click="inquiry">1:1 ë¬¸ì˜</a></li>
-								      			<li><a href="#" @clikc="noticeList">ê³µì§€ì‚¬í•­</a></li>
-								      			<li><a href="#" @click="useGuide">ì´ìš©ì•ˆë‚´</a></li>
+								      			<li><a href="#" @click="inquiry">1:1 ¹®ÀÇ</a></li>
+								      			<li><a href="#" @clikc="noticeList">°øÁö»çÇ×</a></li>
+								      			<li><a href="#" @click="useGuide">ÀÌ¿ë¾È³»</a></li>
 								      			<li><a href="#">FAQ</a></li>							      		
 								      		</ul>	
 								      	</li>  
@@ -102,7 +104,7 @@
 					<div id="right">
 					
 							      <div class="View">
-							    	  <div class="lowerBox"> 1:1ë¬¸ì˜ </div>
+							    	  <div class="lowerBox"> 1:1¹®ÀÇ </div>
 							    	  	<div v-if="info.length > 0" v-for="item in info">
 							    	  		<hr>
 							    	  		<div>{{item.iNo}}
@@ -113,8 +115,8 @@
 							    	  		</div>
 							    	  		
 							    	  	</div>
-							    	  	<div v-if="info.length == 0" class="nodata"> ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤</div>
-							    	  	<div><button @click="addBoard">ê¸€ì“°ê¸°</button></div>
+							    	  	<div v-if="info.length == 0" class="nodata"> °Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù</div>
+							    	  	<div><button @click="addBoard">±Û¾²±â</button></div>
 							     </div> 
 							     
 							     
@@ -149,7 +151,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	self.info = data.list; //ì‚¬ìš©ì
+                	self.info = data.list; //»ç¿ëÀÚ
                 	console.log(self.info);
                 }
             }); 
@@ -170,17 +172,17 @@ var app = new Vue({
         	var self = this;
         	$.pageChange("myInquiryView.do", {iNo : item.iNo});        	
         },
-	    /* ì´ìš©ì•ˆë‚´ */
+	    /* ÀÌ¿ë¾È³» */
 	    useGuide : function(){
 	    	var self = this;
 	    	$.pageChange("useGuide.do", {uId : self.uId});
 	    },
-	    /* ê³µì§€ì‚¬í•­ */
+	    /* °øÁö»çÇ× */
 	    noticeList : function(){
 	    	var self = this;
 	    	$.pageChange("noticeList.do", {uId : self.uId});
 	    },
-	    /* 1:1ë¬¸ì˜ */
+	    /* 1:1¹®ÀÇ */
 	    inquiry : function(){
 	    	var self = this;
 	    	$.pageChange("myInquiry.do", {uId : self.uId});
