@@ -43,4 +43,5 @@ public interface ProductMapper {
 		//장바구니 등록 > 이동
 		int insertcart(HashMap<String, Object> map);
 	
+		
 }

@@ -75,6 +75,7 @@ public class MyPagController {
     public String myProductInformation1(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
         return "/myPag/myInformation";
     }
+	
 	//마이페이지 1:1문의 myInquiry
 	@RequestMapping("/mypag/myInquiry.do") 
 	public String myInquiry(Model model) throws Exception{
@@ -91,11 +92,13 @@ public class MyPagController {
 			request.setAttribute("map", map);
 			return "/myPag/myInquiryView";
 	}
-	//마이페이지 공지사항 목록
+		
+		//마이페이지 공지사항 목록
 		@RequestMapping("/mypag/noticeList.do") 
 		public String noticeList(Model model) throws Exception{
 			return "/myPag/noticeList";
 	}
+		
 	//마이페이지 공지사항 상세보기
 		@RequestMapping("/mypag/noticeView.do") 
 		public String noticeView(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
@@ -192,7 +195,6 @@ public class MyPagController {
 				inquiryService.myPageAddBoard(map);
 				return new Gson().toJson(resultMap);
 		}
-	//마이페이지 
 		
 		
 		
