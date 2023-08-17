@@ -31,6 +31,15 @@
 		WHERE P_NO = #{pNo}
 	</select>
 	
+	<!-- 아티스트별 상품 조회 > 어드민 페이지 -->
+	<select id="searchProductList" parameterType="hashmap" resultType="com.example.project.model.Product">
+	  SELECT * FROM T4_PRODUCT
+	  <if test="artist != 'All'">
+	    WHERE ARTIST = #{artist}
+	  </if>
+	  LIMIT #{startNum}, #{lastNum}
+	</select>
+	
 	<!-- 상품 삭제 -->
 	<delete id="deleteProduct" parameterType="hashmap">
 		DELETE FROM T4_PRODUCT

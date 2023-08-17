@@ -12,12 +12,12 @@ import com.example.project.model.Inquiry;
 public interface InquiryMapper {
 	
 	//미답변 문의 목록 출력
-	List<Inquiry> selectProductList(HashMap<String, Object> map);
+	List<Inquiry> selectInquiryList(HashMap<String, Object> map);
 	// 페이징용 카운트
 	int selectCnt(HashMap<String, Object> map);
 	
 	//문의 상세 보기
-	Inquiry selectProductInfo(HashMap<String, Object> map);
+	Inquiry selectInquiryInfo(HashMap<String, Object> map);
 	
 	//답변
 	int updateInquiryAnswer(HashMap<String, Object> map);
@@ -27,5 +27,8 @@ public interface InquiryMapper {
 	
 	//마이페이지 1:1문의글 등록
 	int myPageinsertBoard(HashMap<String, Object> map);
+	
+	//1:1문의 검색
+	List<Inquiry> searchInquiryList(HashMap<String, Object> map);
 	
 }

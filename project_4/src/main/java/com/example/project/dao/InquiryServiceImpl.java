@@ -17,18 +17,18 @@ public class InquiryServiceImpl implements InquiryService{
 	InquiryMapper inquiryMapper;
 
 	@Override
-	public HashMap<String, Object> selectProductList(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectInquiryList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", inquiryMapper.selectProductList(map));
+		resultMap.put("list", inquiryMapper.selectInquiryList(map));
 		resultMap.put("cnt", inquiryMapper.selectCnt(map));
 		return resultMap;
 	}
 
 	@Override
-	public Inquiry selectProductInfo(HashMap<String, Object> map) {
+	public Inquiry selectInquiryInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return inquiryMapper.selectProductInfo(map);
+		return inquiryMapper.selectInquiryInfo(map);
 	}
 
 	@Override
@@ -47,6 +47,12 @@ public class InquiryServiceImpl implements InquiryService{
 	public int myPageAddBoard(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return inquiryMapper.myPageinsertBoard(map);
+	}
+
+	@Override
+	public List<Inquiry> searchInquiryList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return inquiryMapper.searchInquiryList(map);
 	}
 
 }

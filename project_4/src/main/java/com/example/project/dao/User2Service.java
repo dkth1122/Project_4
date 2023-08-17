@@ -16,4 +16,6 @@ public interface User2Service {
 	int userPwReset(HashMap<String, Object> map);
 	
 	int userPointAdd(HashMap<String, Object> map);
+	
+	List<User> searchUserList (HashMap<String, Object> map);
 }

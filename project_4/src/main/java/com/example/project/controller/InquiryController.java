@@ -47,7 +47,7 @@ public class InquiryController {
 		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
-		resultMap = inquiryService.selectProductList(map);
+		resultMap = inquiryService.selectInquiryList(map);
 		return new Gson().toJson(resultMap);
 	}
 	
@@ -55,7 +55,7 @@ public class InquiryController {
 	@ResponseBody
 	public String inquiryInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		Inquiry info = inquiryService.selectProductInfo(map);
+		Inquiry info = inquiryService.selectInquiryInfo(map);
 		resultMap.put("info", info);
 		return new Gson().toJson(resultMap);
 	}
@@ -69,4 +69,12 @@ public class InquiryController {
 		return new Gson().toJson(resultMap);
 	}
 
+	@RequestMapping(value = "/inquiry/search.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String inquiryListSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Inquiry> list2 = inquiryService.searchInquiryList(map);
+		resultMap.put("list2", list2);
+		return new Gson().toJson(resultMap);
+	}
 }

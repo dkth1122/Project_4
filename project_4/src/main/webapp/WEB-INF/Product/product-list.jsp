@@ -55,6 +55,25 @@
 <body>
 <div id="app">
 
+<div>
+<input type="text"> <button>검색</button>
+</div>
+
+	<div>
+		<select v-model="artist" @change="fnArtistSearch">
+		  <option value="All">전체</option>
+		  <option value="BTS">방탄소년단</option>
+		  <option value="TXT">투모로우바이투게더</option>
+		  <option value="EHP">엔하이픈</option>
+		  <option value="SVT">세븐틴</option>
+		  <option value="FMN">프로미스나인</option>
+		  <option value="LSF">르세라핌</option>
+		  <option value="NJS">뉴진스</option>
+		  <option value="BND">보이넥스트도어</option>
+		  <option value="ZIC">지코</option>
+		</select>
+	</div>
+
 <table>
 		<tr>
 			<th></th>
@@ -119,7 +138,8 @@ var app = new Vue({
 		pNo : "",
 		selectPage: 1,
 		pageCount: 1,
-		cnt : 0
+		cnt : 0,
+		artist: ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -187,8 +207,24 @@ var app = new Vue({
 					self.pageCount = Math.ceil(self.cnt / 10);
 				}
 			});
-		}
-
+		},
+		 fnArtistSearch : function() {
+		    var self = this;
+		    var startNum = 0;
+		    var lastNum = 10;
+		    var nparmap = {startNum: startNum, lastNum: lastNum, artist: self.artist};
+		    $.ajax({
+		      url: "/product/search.dox",
+		      dataType: "json",   
+		      type: "POST", 
+		      data: nparmap,
+		      success: function (data) {
+		        self.list = data.list;
+		        self.cnt = data.cnt;
+		        self.pageCount = Math.ceil(self.cnt / 10);
+		      },
+		    });
+		  }
 	}, // methods
 	created : function() {
 		var self = this;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.User2Service;
 import com.example.project.dao.UserService;
+import com.example.project.model.Inquiry;
 import com.example.project.model.Staff;
 import com.example.project.model.User;
 import com.example.project.model.User2;
@@ -87,4 +88,14 @@ public class User2Controller {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
+	
+	@RequestMapping(value = "/user2/search.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String user2ListSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<User> list2 = user2Service.searchUserList(map);
+		resultMap.put("list2", list2);
+		return new Gson().toJson(resultMap);
+	}
+	
 }

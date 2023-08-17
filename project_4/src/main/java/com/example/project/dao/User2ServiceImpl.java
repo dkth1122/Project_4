@@ -56,5 +56,11 @@ public class User2ServiceImpl implements User2Service{
 		// TODO Auto-generated method stub
 		return user2Mapper.userPointAdd(map);
 	}
+
+	@Override
+	public List<User> searchUserList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return user2Mapper.searchUserList(map);
+	}
 	
 }

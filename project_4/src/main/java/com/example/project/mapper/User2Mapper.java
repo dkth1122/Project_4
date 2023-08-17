@@ -43,4 +43,7 @@ public interface User2Mapper {
 	
 	//회원 배송정보 조회
 	List<DeliveryUser> user2SelectDelivery (HashMap<String, Object> map);
+	
+	//회원 아이디로 검색
+	List<User> searchUserList (HashMap<String, Object> map);
 }
