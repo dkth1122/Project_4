@@ -17,12 +17,16 @@ import com.example.project.model.User;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PageController {
 	
 	@Autowired
 	PageService pageService;
+	
+	@Autowired
+	HttpSession session;
 	
 
 	@RequestMapping("/hetest.do") 

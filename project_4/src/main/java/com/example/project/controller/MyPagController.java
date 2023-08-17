@@ -44,7 +44,13 @@ public class MyPagController {
 	//마이페이지 보이기
 	@RequestMapping("/mypag/main.do") 
     public String mainGBoard(Model model) throws Exception{
-        return "/myPag/myPag01";
+		  String sId = (String)session.getAttribute("sessionId");
+		  
+		  if(sId == null || sId == "") {
+			  return "redirect:/user/login.do";
+		  }else {
+			  return "/myPag/myPag01";
+		  }
     }
 	//회원정보수정 페이지
 	@RequestMapping("/mypag/infoUpdate.do") 

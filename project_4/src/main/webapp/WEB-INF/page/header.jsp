@@ -181,22 +181,13 @@ header #container1 {
 					</li>
 						
 						
-					<li><a href="eventpage.do">EVENT</a>
+					<li><a href="#">EVENT</a>
 						<ul class="depths">
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
 						</ul>
 					</li>
 
-					<li><a href="notifypage.do">NOTIFY</a>
+					<li><a href="/mypag/noticeList.do">NOTIFY</a>
 						<ul class="depths">
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
 						</ul>
 					</li>	
 					
@@ -206,7 +197,10 @@ header #container1 {
 						<div class="icon">
 						<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark" style="color: #8a8a8a;"></i></a></span>
 						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="mypage.do"><i class="fa-solid fa-user" style="color: #8a8a8a;"></i></a></span>
+						<span class="icon"><a href="/mypag/main.do"><i class="fa-solid fa-user" style="color: #8a8a8a;"></i></a></span>
+						<span class="icon"><a href="/gboard/main.do"><i class="fa-solid fa-feather" style="color: #8a8a8a;"></i></i></a></span>
+						<span class="icon"><a href="/user/join.do">회원가입</a></span>
+						<span class="icon"><a href="/user/login.do">로그인</a></span>
 						</div>
 						
 					</ul>

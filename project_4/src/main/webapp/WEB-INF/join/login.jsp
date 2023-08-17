@@ -48,7 +48,7 @@ var app = new Vue({
                 success : function(data) { 
                 	if(data.success){
                 		alert(data.message);
-                		$.pageChange("main.do", {uId : self.uId});
+                		$.pageChange("../home.do", {uId : self.uId});
                 		
                 	} else {
                 		alert(data.message);
