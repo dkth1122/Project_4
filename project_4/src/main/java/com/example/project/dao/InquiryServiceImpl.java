@@ -44,9 +44,17 @@ public class InquiryServiceImpl implements InquiryService{
 	}
 
 	@Override
-	public int myPageAddBoard(HashMap<String, Object> map) {
+	public HashMap<String, Object> myPageAddBoard(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return inquiryMapper.myPageinsertBoard(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		inquiryMapper.myPageinsertBoard(map);
+		resultMap.put("iNo", map.get("iNo"));
+		return resultMap;
+	}
+	@Override
+	public int addBoardImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return inquiryMapper.myPageinsertBoardImg(map);
 	}
 
 	@Override

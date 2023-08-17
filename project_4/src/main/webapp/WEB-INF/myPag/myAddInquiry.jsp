@@ -155,9 +155,7 @@
 							    	  	
 							    	  	
 							    	  	<div>
-							    	  		<div><span>첨부파일 1 <input type="file" id="file1" name="file1"></span></div>
-							    	  		<div><span>첨부파일 2 <input type="file" id="file2" name="file2"></span></div>
-							    	  		<div><span>첨부파일 3 <input type="file" id="file3" name="file3"></span></div>							    	  		
+							    	  		<div><span>첨부파일 1 <input type="file" id="file1" name="file1"></span></div>							    	  								    	  
 							    	  	</div>
 							     </div> 
 							     
@@ -232,14 +230,15 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
+                	
                 	alert("문의글이 정상등록 되었습니다.");
                 	$.pageChange("myInquiry.do", {uId : self.uId});
-                	
-                	
+                	                	
                 	var form = new FormData();
 	       	        form.append( "file1",  $("#file1")[0].files[0] );
-	       	     	form.append( "idx",  data.idx); // pk
+	       	     	form.append( "iNo",  data.iNo); // pk
 	           		self.upload(form); 
+	       	     	
                 }
             }); 
         },
@@ -247,15 +246,13 @@ var app = new Vue({
 	    upload : function(form){
 	    	var self = this;
 	         $.ajax({
-	             url : "/fileUpload.dox"
+	             url : "/mypag/fileUpload2.dox"
 	           , type : "POST"
 	           , processData : false
 	           , contentType : false
 	           , data : form
 	           , success:function(response) { 
-	        	   
 	           }
-	           
 	       });
 		},
         myInquiry : function(){

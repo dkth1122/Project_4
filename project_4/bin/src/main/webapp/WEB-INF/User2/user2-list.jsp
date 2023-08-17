@@ -55,6 +55,8 @@
 <body>
 <div id="app">
 
+<input type="text" placeholder="아이디 검색" v-model="keyword" @keyup.enter="fnUsertSearch"> <button @click="fnUsertSearch">검색</button>
+
 <table>
 		<tr>
 			<th>아이디</th>
@@ -100,7 +102,8 @@ var app = new Vue({
 		uId : "",
 		selectPage: 1,
 		pageCount: 1,
-		cnt : 0
+		cnt : 0,
+		keyword : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -160,6 +163,19 @@ var app = new Vue({
 					self.list = data.list;
 					self.cnt = data.cnt;
 					self.pageCount = Math.ceil(self.cnt / 10);
+				}
+			});
+		},
+		fnUsertSearch : function(){
+			var self = this;
+			var nparmap = {keyword : self.keyword};
+			$.ajax({
+				url : "/user2/search.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {
+					self.list = data.list2;
 				}
 			});
 		}

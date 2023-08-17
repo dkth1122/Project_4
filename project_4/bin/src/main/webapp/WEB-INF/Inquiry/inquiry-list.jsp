@@ -55,6 +55,7 @@
 <body>
 <div id="app">
 
+	<input type="text" placeholder="문의번호 혹은 고객 아이디" v-model="keyword"@keyup.enter="fnSearchList"><button @click="fnSearchList">검색</button>
 	<table>
 		<tr>
 			<th>문의번호</th>
@@ -103,14 +104,15 @@ var app = new Vue({
 		list : [],
 		selectPage: 1,
 		pageCount: 1,
-		cnt : 0
+		cnt : 0,
+		keyword : ""
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
             var startNum = ((self.selectPage-1) * 10);
     		var lastNum = 10;
-            var nparmap = {startNum : startNum, lastNum : lastNum};
+            var nparmap = {startNum : startNum, lastNum : lastNum, keyword : self.keyword};
             $.ajax({
                 url : "/inquiry/list.dox",
                 dataType:"json",	
@@ -146,6 +148,20 @@ var app = new Vue({
   					self.list = data.list;
   					self.cnt = data.cnt;
   					self.pageCount = Math.ceil(self.cnt / 10);
+  				}
+  			});
+  		},
+  		fnSearchList : function(){
+  			var self = this;
+  			var nparmap = {keyword : self.keyword};
+  			$.ajax({
+  				url : "/inquiry/search.dox",
+  				dataType : "json",
+  				type : "POST",
+  				data : nparmap,
+  				success : function(data) {
+  					self.list = data.list2;
+  					
   				}
   			});
   		}

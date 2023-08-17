@@ -30,7 +30,7 @@
 			</select>
 		</div>
 		<div>상품번호 : <input v-model="info.pNo"></div>
-		<div>문의고객 : {{info.uId}}</div>
+		<div>문의고객 : <a href="javascript:;" @click="fnuserInformation">{{info.uId}}</a></div>
 		<div>문의 제목 : {{info.iQtitle}}</div>
 		<div>문의 내용 : {{info.iQcontent}}</div>
 		
@@ -99,15 +99,19 @@ var app = new Vue({
   		    }
              $.ajax({
                  url : "/inquiry/answer.dox",
-                 dataType:"json",	
-                 type : "POST", 
+                 dataType:"json",
+                 type : "POST",
                  data : nparmap,
                  success : function(data) { 
                 	 alert("답변이 등록되었습니다.");
                 	 self.fnGetList();
                  }
              }); 
-         }
+         },
+         fnuserInformation: function() {
+       	  var self = this;
+       	  window.open("../user2/view.do?uId=" + self.info.uId, "popup2", "width=800,height=1000,left=500,top=100");
+       	}
 	}, // methods
 	created : function() {
 		var self = this;

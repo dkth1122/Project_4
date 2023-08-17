@@ -31,6 +31,26 @@
 		WHERE P_NO = #{pNo}
 	</select>
 	
+	<!-- 아티스트별 상품 조회 > 어드민 페이지 -->
+	<select id="searchProductList" parameterType="hashmap" resultType="com.example.project.model.Product">
+	  SELECT * FROM T4_PRODUCT
+	  <if test="artist != 'All'">
+	    WHERE ARTIST = #{artist}
+	  </if>
+	  LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 상품 조회 > 어드민 페이지 -->
+	<select id="searchProductList2" parameterType="hashmap" resultType="com.example.project.model.Product">
+	  SELECT * FROM T4_PRODUCT
+	  <if test="keyword != '' and keyword != null">
+	    WHERE P_NAME LIKE CONCAT('%', #{keyword}, '%')
+	      OR P_NO LIKE CONCAT('%', #{keyword}, '%')
+	  </if>
+	  LIMIT #{startNum}, #{lastNum}
+	</select>
+
+	
 	<!-- 상품 삭제 -->
 	<delete id="deleteProduct" parameterType="hashmap">
 		DELETE FROM T4_PRODUCT
@@ -52,5 +72,42 @@
 		VALUES
 		(#{pNo}, #{path})
 	</insert>
+	
+	
+	<!--  체크박스로  찜목록 제거  -->
+   <delete id="deleteWishProduct" parameterType="hashmap">
+      DELETE FROM T4_WISH
+      WHERE WNUM IN   
+   <foreach collection="list" item="item" open="(" close=")" separator=",">
+         #{item}
+   </foreach>
+   </delete>
+   
+   <!-- 찜목록 출력 -->
+   <select id="selectWishProdeuct" parameterType="hashmap" resultType="com.example.project.model.Wish">
+      SELECT *
+      FROM T4_WISH W
+      LEFT JOIN T4_PRODUCT P ON W.P_NO = P.P_NO
+      WHERE U_ID = #{uId}
+   </select>
+   
+   <!-- 찜목록 단일 삭제 -->
+   <delete id="deleteSingleProdeuctWish" parameterType="hashmap">
+      DELETE FROM T4_WISH
+      WHERE WNUM = #{wnum}   
+   </delete>
+   
+   <!-- 찜목록 전체 삭제 -->
+   <delete id="deleteAllWish" parameterType="hashmap">
+      DELETE FROM T4_WISH
+      WHERE U_ID = #{uId}   
+   </delete>
+   <!-- 카트 장바구니 등록 -->
+   <insert id="insertcart" parameterType="hashmap">   
+   INSERT INTO T4_CART (U_ID , P_NO) VALUES 
+   (#{uId} , #{pNo})
+   </insert>	
+	
+	
 	
 </mapper>

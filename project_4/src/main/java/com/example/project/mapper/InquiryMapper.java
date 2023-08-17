@@ -31,4 +31,7 @@ public interface InquiryMapper {
 	//1:1문의 검색
 	List<Inquiry> searchInquiryList(HashMap<String, Object> map);
 	
+	//마이페이지 1:1문의 첨부파일등록
+	int myPageinsertBoardImg(HashMap<String, Object> map);
+	
 }

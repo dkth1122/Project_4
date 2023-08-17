@@ -102,18 +102,7 @@
 					<div id="right">
 					
 							      <div class="View">
-							    	  <div class="lowerBox"> 최근 주문상품 </div>
-							    	  	<div class="nodata"> 내역이 없습니다</div>
-							     </div> 
-							     
-							      <div class="View">
-							    	  <div class="lowerBox"> 관심상품 </div>
-							    	  	<div class="nodata"> 내역이 없습니다 </div>
-							     </div> 
-							     
-							      <div class="View">
-							    	  <div class="lowerBox"> 최근 본 상품 </div>
-							    	  	<div class="nodata"> 내역이 없습니다 </div>
+							    
 							     </div> 
 							     
 					</div>

@@ -18,7 +18,11 @@ public interface InquiryService {
 	List<Inquiry> searchMypageInquiry(HashMap<String, Object> map);
 	
 	//마이페이지 1:1문의글 등록
-	int myPageAddBoard(HashMap<String, Object> map);
+	HashMap<String, Object> myPageAddBoard(HashMap<String, Object> map);
 	
 	List<Inquiry>searchInquiryList(HashMap<String, Object> map);
+	
+	//마이페이지 1:1문의 첨부파일등록
+	int addBoardImg(HashMap<String, Object> map);
+		
 }

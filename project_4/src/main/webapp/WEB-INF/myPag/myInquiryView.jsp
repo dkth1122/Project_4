@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%@ include file="/page/header.jsp" %>
+ 
   <script src="../js/jquery.js"></script>  
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -120,17 +120,19 @@
 								    	  		<hr>
 								    	  		<div>{{item.iAcontent}}</div>
 								    	  	</div>
-							    	  	</div>
+								    	  	<div>
+								    	  		<img :src="item.path">
+								    	  	</div>					
 							    	  <div>
 							    	  	<div><button @click="fnList">¸ñ·Ï</button></div>
 							    	  </div>
 							     </div> 
 							     
 							     
-					</div>
+							</div>
 					    
 					    </div>
-			    
+			    	</div>
 			  </div>
   
 </div>
