@@ -8,7 +8,22 @@ public class Membership {
 	private String mExpDate;
 	private String uId;
 	private String mArtist;
+	private char kitYn;
 	
+	
+	
+	public int getmNo() {
+		return mNo;
+	}
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+	public char getKitYn() {
+		return kitYn;
+	}
+	public void setKitYn(char kitYn) {
+		this.kitYn = kitYn;
+	}
 	public String getmArtist() {
 		return mArtist;
 	}

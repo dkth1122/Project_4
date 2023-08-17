@@ -40,6 +40,17 @@
 	  LIMIT #{startNum}, #{lastNum}
 	</select>
 	
+	<!-- 상품 조회 > 어드민 페이지 -->
+	<select id="searchProductList2" parameterType="hashmap" resultType="com.example.project.model.Product">
+	  SELECT * FROM T4_PRODUCT
+	  <if test="keyword != '' and keyword != null">
+	    WHERE P_NAME LIKE CONCAT('%', #{keyword}, '%')
+	      OR P_NO LIKE CONCAT('%', #{keyword}, '%')
+	  </if>
+	  LIMIT #{startNum}, #{lastNum}
+	</select>
+
+	
 	<!-- 상품 삭제 -->
 	<delete id="deleteProduct" parameterType="hashmap">
 		DELETE FROM T4_PRODUCT

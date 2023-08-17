@@ -23,6 +23,7 @@ public interface ProductService {
 	int insertProductImg(HashMap<String, Object> map);
 	
 	HashMap<String, Object> searchProductList(HashMap<String, Object> map);
+	HashMap<String, Object> searchProductList2(HashMap<String, Object> map);
 	
 	// 체크박스 찜목록 삭제
 	int removeWishProduct(HashMap<String, Object> map);	

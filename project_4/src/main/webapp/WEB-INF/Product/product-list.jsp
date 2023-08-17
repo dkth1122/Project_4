@@ -55,9 +55,10 @@
 <body>
 <div id="app">
 
-<div>
-<input type="text"> <button>검색</button>
-</div>
+	<div>
+	    <input type="text" v-model="keyword" @keyup.enter="fnProduckSearch"> 
+	    <button @click="fnProduckSearch">검색</button>
+	</div>
 
 	<div>
 		<select v-model="artist" @change="fnArtistSearch">
@@ -139,7 +140,8 @@ var app = new Vue({
 		selectPage: 1,
 		pageCount: 1,
 		cnt : 0,
-		artist: ""
+		artist: "",
+		keyword : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -224,7 +226,24 @@ var app = new Vue({
 		        self.pageCount = Math.ceil(self.cnt / 10);
 		      },
 		    });
-		  }
+		  },
+		  fnProduckSearch : function() {
+			    var self = this;
+			    var startNum = 0;
+			    var lastNum = 10;
+			    var nparmap = {startNum: startNum, lastNum: lastNum, keyword : self.keyword};
+			    $.ajax({
+			      url: "/product/search2.dox",
+			      dataType: "json",   
+			      type: "POST", 
+			      data: nparmap,
+			      success: function (data) {
+			        self.list = data.list;
+			        self.cnt = data.cnt;
+			        self.pageCount = Math.ceil(self.cnt / 10);
+			      },
+			    });
+			  }
 	}, // methods
 	created : function() {
 		var self = this;

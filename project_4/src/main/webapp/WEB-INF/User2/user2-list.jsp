@@ -55,7 +55,7 @@
 <body>
 <div id="app">
 
-<input type="text" placeholder="아이디 검색" v-model="keyword"> <button @click="fnUsertSearch">검색</button>
+<input type="text" placeholder="아이디 검색" v-model="keyword" @keyup.enter="fnUsertSearch"> <button @click="fnUsertSearch">검색</button>
 
 <table>
 		<tr>

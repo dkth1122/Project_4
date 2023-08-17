@@ -55,7 +55,7 @@
 <body>
 <div id="app">
 
-	<input type="text" placeholder="문의번호 혹은 고객 아이디" v-model="keyword"><button @click="fnSearchList">검색</button>
+	<input type="text" placeholder="문의번호 혹은 고객 아이디" v-model="keyword"@keyup.enter="fnSearchList"><button @click="fnSearchList">검색</button>
 	<table>
 		<tr>
 			<th>문의번호</th>
