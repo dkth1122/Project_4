@@ -25,8 +25,9 @@
 	
 	<select id="selectUser" parameterType="hashmap" resultType="com.example.project.model.User">
 		SELECT *
-		FROM T4_USER
-		WHERE U_ID = #{uId} AND U_PW = #{uPw}
+		FROM T4_USER U
+		LEFT JOIN T4_BAN B ON U.U_ID = B.U_ID
+		WHERE U.U_ID = #{uId} AND U_PW = #{uPw}
 	</select>
 	
 	<update id="updateUserCnt" parameterType="hashmap">

@@ -27,10 +27,16 @@ public class UserServiceImpl implements UserService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		User user = userMapper.selectUser(map);
 		if(user != null) {
-			if(user.getCnt() >= 5) {
+			if("Y".equals(user.getbYn()) || user.getbYn()!= null){
+				resultMap.put("success", false);
+				resultMap.put("message", "정지사유 : "+user.getbReasons());
+				return resultMap;
+			}
+			else if(user.getCnt() >= 5) {
 				resultMap.put("success", false);
 				resultMap.put("message", "5회 이상 실패, 관리자에게 문의하세요.");
-			} else {
+			}
+			else {
 				userMapper.resetUserCnt(map);
 				resultMap.put("success", true);
 				resultMap.put("message", user.getuName() + "님 환영합니다!");
@@ -38,7 +44,7 @@ public class UserServiceImpl implements UserService{
 			}
 		} else {
 			resultMap.put("success", false);
-			User tempUser = userMapper.userCheckId(map) ;
+			User tempUser = userMapper.userCheckId(map) ;			
 			if(tempUser != null) {
 				userMapper.updateUserCnt(map);
 				int cnt = tempUser.getCnt() + 1;
