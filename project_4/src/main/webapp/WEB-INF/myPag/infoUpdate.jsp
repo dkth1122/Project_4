@@ -207,7 +207,7 @@ height: 300px;
                                        <li><a href="#" @click="myInquiry">1:1 문의</a></li>
                                        <li><a href="#" @click="noticeList">공지사항</a></li>
                                        <li><a href="#" @click="useGuide">이용안내</a></li>
-                                       <li><a href="#">FAQ</a></li>                                 
+                                       <li><a href="#" @click="faq">FAQ</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
@@ -231,7 +231,11 @@ height: 300px;
                                  		<label><input type="radio" name="evtyn" v-model="info.uSmsyn" value="N">수신안함</label>
                                  	</span></div>
                                  </div>
-                                 <div><button @click="fnUpdate">회원정보 수정</button></div>
+                                 <div>
+                                 	<button @click="back">취소</button>
+                                 	<button @click="fnUpdate">수정</button>
+                                 </div>
+                                 <div><button @click="userRemove">회원 탈퇴</button></div>
                         
                            </div>
                    
@@ -334,6 +338,31 @@ var app = new Vue({
 	    noticeList : function(){
 	    	var self = this;
 	    	$.pageChange("noticeList.do", {uId : self.uId});
+	    },//뒤로가기
+	    back : function(){
+	    	var self = this;
+	    	$.pageChange("main.do", {uId : self.uId});
+	    },
+	    userRemove : function(){
+	    	var self = this;
+	    	if(!confirm("정말 탈퇴하시겠습니까?")){
+				return;
+			}
+	    	var nparmap = {uId : self.uId};
+            $.ajax({
+                url : "/removeUser.dox",
+                dataType:"json",   
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                   alert("이용해주셔서 감사합니다.");
+                   location.href="main.do";
+                }
+            }); 
+	    },
+	    faq : function(){
+	    	var self = this;
+	    	$.pageChange("faq.do", {uId : self.uId});
 	    }
     },
     created: function() {

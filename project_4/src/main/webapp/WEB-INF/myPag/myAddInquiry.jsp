@@ -98,7 +98,7 @@
 								      			<li><a href="#" @click="myInquiry">1:1 문의</a></li>
 								      			<li><a href="#" @click="noticeList">공지사항</a></li>
 								      			<li><a href="#" @click="useGuide">이용안내</a></li>
-								      			<li><a href="#">FAQ</a></li>							      		
+								      			<li><a href="#" @click="faq">FAQ</a></li>							      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
@@ -268,6 +268,10 @@ var app = new Vue({
 	    noticeList : function(){
 	    	var self = this;
 	    	$.pageChange("noticeList.do", {uId : self.uId});
+	    },
+	    faq : function(){
+	    	var self = this;
+	    	$.pageChange("faq.do", {uId : self.uId});
 	    }
     },
     created: function() {

@@ -92,7 +92,7 @@
 								      			<li><a href="#" @click="inquiry">1:1 문의</a></li>
 								      			<li><a href="#" @clikc="noticeList">공지사항</a></li>
 								      			<li><a href="#" @click="useGuide">이용안내</a></li>
-								      			<li><a href="#">FAQ</a></li>							      		
+								      			<li><a href="#" @click="faq">FAQ</a></li>							      		
 								      		</ul>	
 								      	</li>  
 							      	</ul>
@@ -186,6 +186,11 @@ var app = new Vue({
 	    inquiry : function(){
 	    	var self = this;
 	    	$.pageChange("myInquiry.do", {uId : self.uId});
+	    },
+	    /* FAQ */
+	    faq : function(){
+	    	var self = this;
+	    	$.pageChange("faq.do", {uId : self.uId});
 	    }
     },
     created: function() {

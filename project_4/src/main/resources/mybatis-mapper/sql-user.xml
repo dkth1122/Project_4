@@ -78,4 +78,9 @@
 		WHERE U_ID = #{uId}
 	</update>
 	
+	<delete id="deleteUser" parameterType="hashmap">
+		DELETE FROM T4_USER
+		WHERE U_ID = #{uId}
+	</delete>
+	
 </mapper>

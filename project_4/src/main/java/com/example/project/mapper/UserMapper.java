@@ -34,6 +34,9 @@ public interface UserMapper {
 	User selectNonOrderNo(HashMap<String, Object> map);
 	//회원정보 수정
 	int infoUpdate(HashMap<String, Object> map);
+	//회원탈퇴
+	int deleteUser(HashMap<String, Object> map);
+	
 	
 	
 	

@@ -25,4 +25,6 @@ public interface UserService {
 	User searchNonOrderNo(HashMap<String, Object> map);
 	//회원정보수정
 	int editInfo(HashMap<String, Object> map);
+	//회원탈퇴
+	int removeUser(HashMap<String, Object> map);
 }

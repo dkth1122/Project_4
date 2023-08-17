@@ -166,6 +166,13 @@ public class UserController {
 		userService.editInfo(map);
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping(value = "/removeUser.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String removeUser(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		userService.removeUser(map);
+		return new Gson().toJson(resultMap);
+	}
 	
 	
 }

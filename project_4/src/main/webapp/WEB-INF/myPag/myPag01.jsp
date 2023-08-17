@@ -96,7 +96,7 @@
 										<li><a href="#" @click="myInquiry">1:1 문의</a></li>
 										<li><a href="#" @click="noticeList">공지사항</a></li>
 										<li><a href="#" @click="useGuide">이용안내</a></li>
-										<li><a href="#">FAQ</a></li>
+										<li><a href="#" @click="faq">FAQ</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -246,6 +246,13 @@
 			useGuide : function() {
 				var self = this;
 				$.pageChange("useGuide.do", {
+					uId : self.uId
+				});
+			},
+			/* FAQ */
+			faq : function() {
+				var self = this;
+				$.pageChange("faq.do", {
 					uId : self.uId
 				});
 			}
