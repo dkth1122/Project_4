@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.project.dao.TestService;
+import com.example.project.dao.PageService;
 import com.example.project.model.Test;
+import com.example.project.model.User;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class PageController {
 	
 	@Autowired
-	TestService testService;
+	PageService pageService;
 	
 
 	@RequestMapping("/hetest.do") 
@@ -109,11 +110,13 @@ public class PageController {
 		return "/page/newitem";
 	}
 	
-	@RequestMapping(value = "/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+
+	
+	@RequestMapping(value = "/pointList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String pointList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Test> list = testService.searchTest();
+		List<User> list = pageService.userPoint(map);
 		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}

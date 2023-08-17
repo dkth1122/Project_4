@@ -166,6 +166,21 @@ var app = new Vue({
 	            }
 	        }); 
 	    },
+	    fnPoint : function(){
+	        var self = this;
+	        var nparmap = {uId : self.uId};
+	        $.ajax({
+	            url : "/pointList.dox",
+	            dataType:"json",	
+	            type : "POST", 
+	            data : nparmap,
+	            success : function(data) { 	
+	            	console.log(data);
+	            	
+	            	
+	            }
+	        }); 
+	    },
 	    /* 메인 */
 	    fnVuwmain : function(){
 	    	var self = this;
@@ -201,7 +216,7 @@ var app = new Vue({
 	    	var self = this;
 	    	$.pageChange("useGuide.do", {uId : self.uId});
 	    },
-	    ,
+	    
 	    /* 공지사항 */
 	    noticeList : function(){
 	    	var self = this;
@@ -216,6 +231,8 @@ var app = new Vue({
     created: function() {
       var self = this;
       self.fnGetList();
+      self.fnPoint();
     }
+
 });
 </script>
