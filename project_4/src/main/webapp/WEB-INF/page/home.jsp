@@ -167,7 +167,7 @@ right: 50%;
 transform: translate(50%, -50%);
 	width: 2000px;
 	height: 706px;
-	background: url(img/s2_back.jpg) no-repeat;
+	background: url(img/homeimg/s2_back.jpg) no-repeat;
 	color: #000;
 }
 
@@ -197,16 +197,16 @@ transform: translate(50%, -50%);
 }
 
 .ostimg .img1 {
-	background: url(img/ost1.png);
+	background: url(img/homeimg/homeimg/homeimg/ost1.png);
 }
 
 .ostimg .img2 {
-	background: url(img/lsf_album.jpg);
+	background: url(img/homeimg/homeimg/homeimg/lsf_album.jpg);
 	background-size: contain;
 }
 
 .ostimg .img3 {
-	background: url(img/bts_album.gif);
+	background: url(img/homeimg/bts_album.gif);
 	background-size: contain;
 	width: 370px;
 	height: 370px;
@@ -214,11 +214,11 @@ transform: translate(50%, -50%);
 }
 
 .ostimg .img4 {
-	background: url(img/ost4.png);
+	background: url(img/homeimg/ost4.png);
 }
 
 .ostimg .img5 {
-	background: url(img/ost5.png);
+	background: url(img/homeimg/ost5.png);
 }
 
 /*SECT1- animation*/
@@ -307,66 +307,66 @@ position: absolute;
 /*new item*/
 .sect2 .Sbox1 {
 	margin-left: 272px;
-	background: url(img/seson1.jpg);
+	background: url(img/homeimg/seson1.jpg);
 }
 
 .sect2 .Sbox2 {
-	background: url(img/seson2.jpg);
+	background: url(img/homeimg/seson2.jpg);
 }
 
 .sect2 .Sbox3 {
-	background: url(img/seson3.jpg);
+	background: url(img/homeimg/seson3.jpg);
 }
 
 .sect2 .Sbox4 {
-	background: url(img/seson4.jpg);
+	background: url(img/homeimg/seson4.jpg);
 }
 .sect2 .Sbox5 {
 	margin-left: 272px;
-	background: url(img/seson1.jpg);
+	background: url(img/homeimg/seson1.jpg);
 }
 
 .sect2 .Sbox6 {
-	background: url(img/seson2.jpg);
+	background: url(img/homeimg/seson2.jpg);
 }
 
 .sect2 .Sbox7 {
-	background: url(img/seson3.jpg);
+	background: url(img/homeimg/seson3.jpg);
 }
 
 .sect2 .Sbox8 {
-	background: url(img/seson4.jpg);
+	background: url(img/homeimg/seson4.jpg);
 }
 
 .sect2 .Sbox1:hover {
-	background: url(img/seson1_hover.jpg);
+	background: url(img/homeimg/seson1_hover.jpg);
 }
 
 .sect2 .Sbox2:hover {
-	background: url(img/seson2_hover.jpg);
+	background: url(img/homeimg/seson2_hover.jpg);
 }
 
 .sect2 .Sbox3:hover {
-	background: url(img/seson3_hover.jpg);
+	background: url(img/homeimg/seson3_hover.jpg);
 }
 
 .sect2 .Sbox4:hover {
-	background: url(img/seson4_hover.jpg);
+	background: url(img/homeimg/seson4_hover.jpg);
 }
 .sect2 .Sbox5:hover {
-	background: url(img/seson1_hover.jpg);
+	background: url(img/homeimg/seson1_hover.jpg);
 }
 
 .sect2 .Sbox6:hover {
-	background: url(img/seson2_hover.jpg);
+	background: url(img/homeimg/seson2_hover.jpg);
 }
 
 .sect2 .Sbox7:hover {
-	background: url(img/seson3_hover.jpg);
+	background: url(img/homeimg/seson3_hover.jpg);
 }
 
 .sect2 .Sbox8:hover {
-	background: url(img/seson4_hover.jpg);
+	background: url(img/homeimg/seson4_hover.jpg);
 }
 
 .sect2 div:hover a {
@@ -453,7 +453,7 @@ right: 50%;
 transform: translate(50%, -50%);
 	width: 100%;
 	height: 163px;
-	background: url(img/footer.jpg);
+	background: url(img/homeimg/footer.jpg);
 	text-align: center;
 	font-size: 13.8pt;
 	padding-top: 43px;
@@ -514,11 +514,11 @@ img.imgslide3 {
 			name="slide" id="slide3"> <input type="radio" name="slide"
 			id="slide4"> <input type="radio" name="slide" id="slide5">
 		<ul id="imgholder" class="imgs">
-			<li><img src="img/seventeen_main.jpg" ></li>
-			<li><img src="img/lsf_main.jpg"></li>
-			<li><img src="img/newjins_main.jpeg" ></li>
-			<li><img src="img/promiss_main.jpg" ></li>
-			<li><img src="img/boynext.jpg"></li>
+			<li><img src="img/homeimg/seventeen_main.jpg" ></li>
+			<li><img src="img/homeimg/lsf_main.jpg"></li>
+			<li><img src="img/homeimg/newjins_main.jpeg" ></li>
+			<li><img src="img/homeimg/promiss_main.jpg" ></li>
+			<li><img src="img/homeimg/boynext.jpg"></li>
 		</ul>
 		<div class="bullets">
 			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
@@ -585,18 +585,18 @@ img.imgslide3 {
 			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 스토어!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
 			<ul class="sale">
-				<li><a href="#"><img src="img/sale1.jpg" alt="" />
+				<li><a href="#"><img src="img/homeimg/sale1.jpg" alt="" />
 						<p>
 							아이템1 - 이름<br>8,000원</a></li>
-				<li><a href="#"><img src="img/sale2.jpg" alt="" />
+				<li><a href="#"><img src="img/homeimg/sale2.jpg" alt="" />
 						<p>
 							아이템2 - 이름<br>8,000원
 						</p></a></li>
-				<li><a href="#"><img src="img/sale3.jpg" alt="" />
+				<li><a href="#"><img src="img/homeimg/sale3.jpg" alt="" />
 						<p>
 							아이템3 - 이름<br>7,000원
 						</p></a></li>
-				<li><a href="#"><img src="img/sale4.jpg" alt="" />
+				<li><a href="#"><img src="img/homeimg/sale4.jpg" alt="" />
 						<p>
 							아이템4 - 이름<br>5,500원</a></li>
 			</ul>
@@ -626,7 +626,7 @@ img.imgslide3 {
 				 대표번호 4444-4444 / 4zomotchamchi@veryperi.com 
 				<br> VeriPeri의 모든 콘텐츠는 저작권의 보호를 받고 있습니다
 			</p>
-			<img src="img/footerlogo.png" alt="" />
+			<img src="img/homeimg/footerlogo.png" alt="" />
 		</footer>
 </body>
 </html>
