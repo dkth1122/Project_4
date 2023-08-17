@@ -1,5 +1,8 @@
 package com.example.project.model;
 
+import lombok.Data;
+
+@Data
 public class User {
 	//고객(유저)
 	private String uId;
@@ -16,9 +19,43 @@ public class User {
 	private String bYn;
 	private String bReasons;
 	private String bDate;
+	private String point;
+	private String usepoint;
+	private String repoint;
+	private String podata;
 	
 	
 	
+	public int getuCnt() {
+		return uCnt;
+	}
+	public void setuCnt(int uCnt) {
+		this.uCnt = uCnt;
+	}
+	public String getPoint() {
+		return point;
+	}
+	public void setPoint(String point) {
+		this.point = point;
+	}
+	public String getUsepoint() {
+		return usepoint;
+	}
+	public void setUsepoint(String usepoint) {
+		this.usepoint = usepoint;
+	}
+	public String getRepoint() {
+		return repoint;
+	}
+	public void setRepoint(String repoint) {
+		this.repoint = repoint;
+	}
+	public String getPodata() {
+		return podata;
+	}
+	public void setPodata(String podata) {
+		this.podata = podata;
+	}
 	public int getuPoint() {
 		return uPoint;
 	}
