@@ -51,7 +51,7 @@ padding-right :30px;
                       <li ><img src="https://i.ytimg.com/vi/AKHJMLeZ4N8/maxresdefault.jpg"></li>
                       <li ><img src="https://cdn.topstarnews.net/news/photo/202111/14647891_721352_4352.jpg"></li>
                       <li ><img src="https://i.pinimg.com/originals/3d/04/83/3d0483a943e61b82fb4740601bbebd8c.jpg"></li>
-               
+					</ul>
                 </div>
                 <p class="controls">
                 <a class="next_prev" href="Javascript:;"><i class="fa-solid fa-chevron-left fa-2xl prev"></i></a>
