@@ -13,4 +13,10 @@ public interface OrderMapper {
 	List<Order> orderCntselect(HashMap<String, Object> map);
 	//구매한 상품 확인 (join)
 	List<Order> orderProductSelect(HashMap<String, Object> map);
+	// 주문정보 확인
+	List<Order> selectOrderList(HashMap<String, Object> map);
+	//페이징용 카운트
+	int selectCnt3(HashMap<String, Object> map);
+	
+	
 }

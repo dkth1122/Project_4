@@ -23,4 +23,23 @@
 	 
 	</select>
 	
+	<!-- 주문정보 확인 -->
+	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.project.model.Order">
+		SELECT *
+		FROM T4_ORDER O
+		JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+		JOIN T4_DELIVERY_USER U ON D.U_ID = U.U_ID
+		WHERE D_STATE = '업체확인중';
+	</select>
+	
+	<!-- 페이징용 카운트 -->
+	<select id="selectCnt3" resultType="int">
+	
+	SELECT COUNT(*)
+		FROM T4_ORDER O
+		JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+		JOIN T4_DELIVERY_USER U ON D.U_ID = U.U_ID
+		WHERE D_STATE = '업체확인중';
+	</select>
+	
 </mapper>

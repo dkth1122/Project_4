@@ -28,5 +28,15 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.orderProductSelect(map);
 	}
 
+
+	@Override
+	public HashMap<String, Object> selectOrderList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", orderMapper.selectOrderList(map));
+		resultMap.put("cnt", orderMapper.selectCnt3(map));
+		return resultMap;
+	}
+
 	
 }

@@ -11,4 +11,6 @@ public interface OrderService {
 	List<Order> orderCntsearch(HashMap<String, Object> map);
 	//구매한 상품 확인 (join)
 	List<Order> orderProductSearch(HashMap<String, Object> map);
+	
+	HashMap<String, Object> selectOrderList(HashMap<String, Object> map);
 }

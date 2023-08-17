@@ -17,6 +17,11 @@ public class Order {
 	private int afNo;
 	private int orderCnt;
 	
+	//배송 JOIN
+	private String dDate;
+	private String dState;
+	
+	
 	
 //	상품 JOIN 	
 	private String pName;
@@ -27,6 +32,24 @@ public class Order {
 	
 	
 	
+	public String getdDate() {
+		return dDate;
+	}
+	public void setdDate(String dDate) {
+		this.dDate = dDate;
+	}
+	public String getdState() {
+		return dState;
+	}
+	public void setdState(String dState) {
+		this.dState = dState;
+	}
+	public String getpImg() {
+		return pImg;
+	}
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
+	}
 	public String getpName() {
 		return pName;
 	}

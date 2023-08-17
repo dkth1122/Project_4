@@ -51,6 +51,8 @@
 	<span v-else></span>
 	<button @click="fnStaff" v-if="sStatus == 'C' || sStatus == 'M'">流盔 包府</button>
 	<span v-else></span>
+	<button @click="fnOrder" v-if="sStatus == 'B' || sStatus == 'M'">林巩 包府</button>
+	<span v-else></span>
 	<button @click="fnDelivery" v-if="sStatus == 'B' || sStatus == 'M'">硅价 包府</button>
 	<span v-else></span>
 	</div>
@@ -93,6 +95,9 @@ var app = new Vue({
 		},
 		fnStaff : function() {
 			location.href="../staff/Management.do";
+		},
+		fnOrder : function() {
+			location.href="../order/list.do";
 		},
 		fnDelivery : function() {
 			location.href="";

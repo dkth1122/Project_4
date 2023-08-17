@@ -109,16 +109,18 @@
 	<template v-if="order.length > 0 && order[0].hasOwnProperty('oNo')">
     <table>
       <tr>
-        <th>상품코드</th>
+        <th>주문번호</th>
         <th>상품명</th>
+        <th>상품코드</th>
         <th>구매갯수</th>
         <th>주문날짜</th>
         <th>가격</th>
         <th>결제금액</th>
       </tr>
       <tr v-for="(item, index) in order">
-        <td>{{item.pNo}}</td>
+        <td>{{item.oNo}}</td>
         <td>{{item.pName}}</td>
+        <td>{{item.pNo}}</td>
         <td>{{item.oCount}}</td>
         <td>{{item.oDate}}</td>
         <td>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
