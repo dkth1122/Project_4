@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>  
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <!-- 1. vue2editor ì—ë””í„° cdn -->
+  <!-- 1. vue2editor ¿¡µğÅÍ cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
 <script src="https://unpkg.com/vue2-editor@2.3.11/dist/index.js"></script>
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
- <meta charset="UTF-8">
-  <title>ë§ˆì´í˜ì´ì§€Â€</title>
+ <meta charset="EUC-KR">
+
 <style>
 	#iQtext{
 		 min-height : 600px;
@@ -30,7 +30,7 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 <a href="#"><div id="profileImg"></div></a>
+					    	 	 <div id="profileImg"></div>
 					    	</div >
 					    	<div class="topBox">
 					    	<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -40,21 +40,23 @@
 					    	
 					    		<div class="details" >
 					    		
-					    			<div>ì£¼ë¬¸ë‚´ì—­</div>
-					    			<div>{{order}}</div>
+							    	<div>Order</div>
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div>{{order}}</div>
+                          			</a></label>
 					    			
 					    		</div>
 					    		
 					    		<div class="details" >
 					    		
-					    			<div>êµí™˜/í™˜ë¶ˆ</div>
+					    			<div>±³È¯/È¯ºÒ</div>
 					    			<div>
 					    				<span>{{refund}} /</span><span> {{exchange}}</span>
 					    			</div>
 					    			
 					    		</div>
 					    		<div class="details" >
-					    			<div>í¬ì¸íŠ¸</div>
+					    			<div>Æ÷ÀÎÆ®</div>
 					    			<div>{{info.uPoint}} P</div>
 					    		</div>
 					    		<div class="details" >
@@ -72,36 +74,36 @@
 							      	<div class="categories"> MY PAGE</div>
 							      	<div style="text-align: left;">
 							      	<ul style="padding: 0px;">
-							      		<li>ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
-								      	<li>
-								      		<ul>
-								      			<li><a href="#">ì£¼ë¬¸ë‚´ì—­</a></li>
-								      			<li><a href="#">ê´€ì‹¬ìƒí’ˆ</a></li>
-								      			<li><a href="#">ìµœê·¼ ë³¸ ìƒí’ˆ</a></li>
-								      			<li><a href="#">ì ë¦¼ê¸ˆ</a></li>							      		
-								      		</ul>	
-								      	</li>  
-							      	</ul>
-							      	<ul style="padding: 0px;">
-							      		<li>íšŒì› ì •ë³´</li>
-								      	<li>
-								      		<ul>
-								      			<li><a @click="infoUpdate">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
-								      			<li><a @click="infoAddr">ë°°ì†¡ì£¼ì†Œë¡</a></li>					      		
-								      		</ul>	
-								      	</li>  
-							      	</ul>
-							      	   	<ul style="padding: 0px;">
-							      		<li>ê³ ê°ì„¼í„°</li>
-								      	<li>
-								      		<ul>
-								      			<li><a href="#" @click="myInquiry">1:1 ë¬¸ì˜</a></li>
-								      			<li><a href="#" @click="noticeList">ê³µì§€ì‚¬í•­</a></li>
-								      			<li><a href="#" @click="useGuide">ì´ìš©ì•ˆë‚´</a></li>
-								      			<li><a href="#" @click="faq">FAQ</a></li>							      		
-								      		</ul>	
-								      	</li>  
-							      	</ul>
+		                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
+		                                 <li>
+		                                    <ul>
+		                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
+		                                       <li><a href="/mypag/myPageInterest.do  ">Àå¹Ù±¸´Ï</a></li>
+		                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
+		                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
+		                                    </ul>   
+		                                 </li>  
+		                              </ul>
+		                              <ul style="padding: 0px;">
+		                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
+		                                 <li>
+		                                    <ul>
+		                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
+		                                       <li><a href="/mypag/addAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
+		                                    </ul>   
+		                                 </li>  
+		                              </ul>
+		                               <ul style="padding: 0px;">
+		                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
+		                                 <li>
+		                                    <ul>
+		                                       <li><a href="/mypag/myAddInquiry.do">1:1 ¹®ÀÇ</a></li>
+		                                       <li><a href="/mypag/noticeList.do">°øÁö»çÇ×</a></li>
+		                                       <li><a href="/mypag/useGuide.do">ÀÌ¿ë¾È³»</a></li>
+		                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+		                                    </ul>   
+		                                 </li>  
+		                              </ul>
 							      	
 							      									      	
 							      	</div>
@@ -110,52 +112,52 @@
 					<div id="right">
 					
 							      <div class="View">
-							    	  <div class="lowerBox"> 1:1ë¬¸ì˜ </div>
-							    	  <div>ì§ˆë¬¸ìœ í˜•
+							    	  <div class="lowerBox"> 1:1¹®ÀÇ </div>
+							    	  <div>Áú¹®À¯Çü
 							    	  		<select v-model="info.category">
-							    	  			<option value="ìƒí’ˆë¬¸ì˜">ìƒí’ˆë¬¸ì˜</option>
-							    	  			<option value="ê²°ì œ/ë³€ê²½">ê²°ì œ/ë³€ê²½</option>
-							    	  			<option value="ì·¨ì†Œ/í™˜ë¶ˆ">ì·¨ì†Œ/í™˜ë¶ˆ</option>
-							    	  			<option value="ë°°ì†¡ë¬¸ì˜">ë°°ì†¡ë¬¸ì˜</option>
-							    	  			<option value="ë¶ˆëŸ‰ë¬¸ì˜">ë¶ˆëŸ‰ë¬¸ì˜</option>
-							    	  			<option value="ê¸°íƒ€ë¬¸ì˜">ê¸°íƒ€ë¬¸ì˜</option>
+							    	  			<option value="»óÇ°¹®ÀÇ">»óÇ°¹®ÀÇ</option>
+							    	  			<option value="°áÁ¦/º¯°æ">°áÁ¦/º¯°æ</option>
+							    	  			<option value="Ãë¼Ò/È¯ºÒ">Ãë¼Ò/È¯ºÒ</option>
+							    	  			<option value="¹è¼Û¹®ÀÇ">¹è¼Û¹®ÀÇ</option>
+							    	  			<option value="ºÒ·®¹®ÀÇ">ºÒ·®¹®ÀÇ</option>
+							    	  			<option value="±âÅ¸¹®ÀÇ">±âÅ¸¹®ÀÇ</option>
 							    	  		</select>
 							    	  </div>
-							    	  <div>ë¬¸ì˜ì œëª© <input v-model="info.iQtitle"></div>
-							    	  <div><span>ë‚´ìš©
-							    	  <!-- 2. í™”ë©´ ì—ë””í„° ì¶”ê°€ -->
-							    	  		<vue-editor id="iQtext" v-model="info.iQcontent" placeholder="1. ì£¼ë¬¸ë²ˆí˜¸
+							    	  <div>¹®ÀÇÁ¦¸ñ <input v-model="info.iQtitle"></div>
+							    	  <div><span>³»¿ë
+							    	  <!-- 2. È­¸é ¿¡µğÅÍ Ãß°¡ -->
+							    	  		<vue-editor id="iQtext" v-model="info.iQcontent" placeholder="1. ÁÖ¹®¹øÈ£
 
-2. ë¬¸ì˜ìƒí’ˆ
-- ìƒí’ˆëª… : (ìƒí’ˆ ë’·ë©´ì— ê¸°ì¬ëœ í•œê¸€ ë˜ëŠ” ì˜ë¬¸ì˜ ìƒí’ˆëª…)
-- ë°”ì½”ë“œ : (ìƒí’ˆ ë’·ë©´ì— ê¸°ì¬ëœ 880ìœ¼ë¡œ ì‹œì‘ë˜ëŠ” 13ìë¦¬ì˜ ìˆ«ì)
-- ìˆ˜ëŸ‰ :
+2. ¹®ÀÇ»óÇ°
+- »óÇ°¸í : (»óÇ° µŞ¸é¿¡ ±âÀçµÈ ÇÑ±Û ¶Ç´Â ¿µ¹®ÀÇ »óÇ°¸í)
+- ¹ÙÄÚµå : (»óÇ° µŞ¸é¿¡ ±âÀçµÈ 880À¸·Î ½ÃÀÛµÇ´Â 13ÀÚ¸®ÀÇ ¼ıÀÚ)
+- ¼ö·® :
 
-3. ì ‘ìˆ˜ ë‚´ìš©
-ã€€- ì •í™•í•œ êµ¬ì„±í’ˆ ì¢…ë¥˜ì™€ ì´ ìš”ì²­ìˆ˜ëŸ‰ì„ ê¸°ì¬í•´ì£¼ì…”ì•¼ ë¹ ë¥¸ ì ‘ìˆ˜ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
-( ì˜ˆì‹œ. í¬í† ì¹´ë“œ ì°í˜ 1ì¥ êµ¬ê²¨ì§ 2ì¥ )
+3. Á¢¼ö ³»¿ë
+¡¡- Á¤È®ÇÑ ±¸¼ºÇ° Á¾·ù¿Í ÃÑ ¿äÃ»¼ö·®À» ±âÀçÇØÁÖ¼Å¾ß ºü¸¥ Á¢¼ö°¡ °¡´ÉÇÕ´Ï´Ù.
+( ¿¹½Ã. Æ÷ÅäÄ«µå ÂïÈû 1Àå ±¸°ÜÁü 2Àå )
 
 
-â€» ì£¼ì˜ì‚¬í•­
-1) ëœë¤ ìƒí’ˆ ë˜ëŠ” êµ¬ì„±í’ˆì˜ ê²½ìš° êµí™˜ ì§„í–‰ ì‹œ êµí™˜í’ˆë„ ëœë¤ìœ¼ë¡œ ë°œì†¡ ë©ë‹ˆë‹¤.
-2) ìƒí’ˆ ë¶ˆëŸ‰ ë° ì˜¤ì‘ë™ í•˜ëŠ” ê²½ìš°, ì‚¬ì§„ ë˜ëŠ” ë™ì˜ìƒ ì²¨ë¶€ ë¶€íƒë“œë¦½ë‹ˆë‹¤.
-3) íŒŒì¼ ì²¨ë¶€ ì‹œ ì•„ë˜ ì‚¬í•­ì€ ìƒí’ˆì˜ ë¶ˆëŸ‰ìœ¼ë¡œ í™•ì¸í•˜ê¸° ì–´ë ¤ìš°ë‹ˆ ì°¸ê³ í•˜ì‹œì–´ ì²¨ë¶€ ë°”ëë‹ˆë‹¤.
-ã€€- ë¹› ë°˜ì‚¬ê°€ ì‹¬í•œ ì‚¬ì§„, íŠ¹ì • ë¶€ë¶„ë§Œ í™•ëŒ€í•´ì„œ ì´¬ì˜í•œ ì‚¬ì§„, ë™ì˜ìƒ ìº¡ì³ë³¸
-ã€€- íŒ¨í‚¤ì§€ ë´‰íˆ¬ ë˜ëŠ” ê²‰í¬ì¥ì§€ë‚˜ PVC íŒŒìš°ì¹˜ë¥¼ ì œê±°í•˜ì§€ ì•Šì€ ì‚¬ì§„
-4) ìƒí’ˆ ê°œë´‰ ì „ ë°œìƒëœ ë¶ˆëŸ‰ ë˜ëŠ” ëˆ„ë½ì„ì„ í™•ì¸í•˜ê¸° ìœ„í•´ ê°œë´‰ ì˜ìƒ ì´¬ì˜ì„ ê¶Œì¥ ë“œë¦½ë‹ˆë‹¤.
-5) ì²¨ë¶€íŒŒì¼ì€ íŒŒì¼ ë‹¹ ìµœëŒ€ 10MBì˜ ìš©ëŸ‰ ì œí•œì´ ìˆìœ¼ë©° ìš©ëŸ‰ì„ ì´ˆê³¼í•  ê²½ìš° ì•„ë˜ ì£¼ì†Œë¡œ ë©”ì¼ ë°œì†¡ í›„ ê²Œì‹œê¸€ ë“±ë¡ ë°”ëë‹ˆë‹¤.
-ã€€- CSCENTER@SMTOWN.COM
-ã€€- ì œëª©ì–‘ì‹: ì£¼ë¬¸ë²ˆí˜¸/ì£¼ë¬¸ìëª… ë¶ˆëŸ‰CS í™•ì¸ìš”ì²­ (ì˜ˆì‹œ) 20230101-0000000/í™ê¸¸ë™ ë¶ˆëŸ‰CS í™•ì¸ìš”ì²­">							    	  		
+¡Ø ÁÖÀÇ»çÇ×
+1) ·£´ı »óÇ° ¶Ç´Â ±¸¼ºÇ°ÀÇ °æ¿ì ±³È¯ ÁøÇà ½Ã ±³È¯Ç°µµ ·£´ıÀ¸·Î ¹ß¼Û µË´Ï´Ù.
+2) »óÇ° ºÒ·® ¹× ¿ÀÀÛµ¿ ÇÏ´Â °æ¿ì, »çÁø ¶Ç´Â µ¿¿µ»ó Ã·ºÎ ºÎÅ¹µå¸³´Ï´Ù.
+3) ÆÄÀÏ Ã·ºÎ ½Ã ¾Æ·¡ »çÇ×Àº »óÇ°ÀÇ ºÒ·®À¸·Î È®ÀÎÇÏ±â ¾î·Á¿ì´Ï Âü°íÇÏ½Ã¾î Ã·ºÎ ¹Ù¶ø´Ï´Ù.
+¡¡- ºû ¹İ»ç°¡ ½ÉÇÑ »çÁø, Æ¯Á¤ ºÎºĞ¸¸ È®´ëÇØ¼­ ÃÔ¿µÇÑ »çÁø, µ¿¿µ»ó Ä¸ÃÄº»
+¡¡- ÆĞÅ°Áö ºÀÅõ ¶Ç´Â °ÑÆ÷ÀåÁö³ª PVC ÆÄ¿ìÄ¡¸¦ Á¦°ÅÇÏÁö ¾ÊÀº »çÁø
+4) »óÇ° °³ºÀ Àü ¹ß»ıµÈ ºÒ·® ¶Ç´Â ´©¶ôÀÓÀ» È®ÀÎÇÏ±â À§ÇØ °³ºÀ ¿µ»ó ÃÔ¿µÀ» ±ÇÀå µå¸³´Ï´Ù.
+5) Ã·ºÎÆÄÀÏÀº ÆÄÀÏ ´ç ÃÖ´ë 10MBÀÇ ¿ë·® Á¦ÇÑÀÌ ÀÖÀ¸¸ç ¿ë·®À» ÃÊ°úÇÒ °æ¿ì ¾Æ·¡ ÁÖ¼Ò·Î ¸ŞÀÏ ¹ß¼Û ÈÄ °Ô½Ã±Û µî·Ï ¹Ù¶ø´Ï´Ù.
+¡¡- CSCENTER@SMTOWN.COM
+¡¡- Á¦¸ñ¾ç½Ä: ÁÖ¹®¹øÈ£/ÁÖ¹®ÀÚ¸í ºÒ·®CS È®ÀÎ¿äÃ» (¿¹½Ã) 20230101-0000000/È«±æµ¿ ºÒ·®CS È®ÀÎ¿äÃ»">							    	  		
 							    	  		</vue-editor> 							    	  		
 							    	  		</span></div>							    	
 							    	  	<div>
-							    	  	<button @click="fnBack">ì·¨ì†Œ</button>
-							    	  	<button @click="addBoard">ë“±ë¡</button>
+							    	  	<button @click="fnBack">Ãë¼Ò</button>
+							    	  	<button @click="addBoard">µî·Ï</button>
 							    	  	</div>
 							    	  	
 							    	  	
 							    	  	<div>
-							    	  		<div><span>ì²¨ë¶€íŒŒì¼ 1 <input type="file" id="file1" name="file1"></span></div>							    	  								    	  
+							    	  		<div><span>Ã·ºÎÆÄÀÏ 1 <input type="file" id="file1" name="file1"></span></div>							    	  								    	  
 							    	  	</div>
 							     </div> 
 							     
@@ -170,7 +172,7 @@
 </body>
 </html>
 <script type="text/javascript">
-//3. ë·°ì— vue2editor ì¶”ê°€
+//3. ºä¿¡ vue2editor Ãß°¡
 console.log(Vue);
 Vue.use(Vue2Editor);
 const VueEditor = Vue2Editor.VueEditor;
@@ -182,7 +184,7 @@ var app = new Vue({
     		iQtitle : "",
     		uId : "",
     		iQtime : "",
-    		category : "ìƒí’ˆë¬¸ì˜"
+    		category : "»óÇ°¹®ÀÇ"
     		
     	},
     	orderCntList : [],
@@ -231,7 +233,7 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	
-                	alert("ë¬¸ì˜ê¸€ì´ ì •ìƒë“±ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+                	alert("¹®ÀÇ±ÛÀÌ Á¤»óµî·Ï µÇ¾ú½À´Ï´Ù.");
                 	$.pageChange("myInquiry.do", {uId : self.uId});
                 	                	
                 	var form = new FormData();
@@ -242,7 +244,7 @@ var app = new Vue({
                 }
             }); 
         },
-     // íŒŒì¼ ì—…ë¡œë“œ
+     // ÆÄÀÏ ¾÷·Îµå
 	    upload : function(form){
 	    	var self = this;
 	         $.ajax({
@@ -259,12 +261,12 @@ var app = new Vue({
        	    	var self = this;
        	    	$.pageChange("myInquiry.do", {uId : self.uId});
        	},
-	    /* ì´ìš©ì•ˆë‚´ */
+	    /* ÀÌ¿ë¾È³» */
 	    useGuide : function(){
 	    	var self = this;
 	    	$.pageChange("useGuide.do", {uId : self.uId});
 	    },
-	    /* ê³µì§€ì‚¬í•­ */
+	    /* °øÁö»çÇ× */
 	    noticeList : function(){
 	    	var self = this;
 	    	$.pageChange("noticeList.do", {uId : self.uId});

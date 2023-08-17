@@ -34,8 +34,10 @@
 					    	
 					    		<div class="details" >
 					    		
-					    			<div>주문내역</div>
-					    			<div>{{order}}</div>
+					    			<div>Order</div>
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div>{{order}}</div>
+                          			</a></label>
 					    			
 					    		</div>
 					    		
@@ -66,36 +68,36 @@
 							      	<div class="categories"> MY PAGE</div>
 							      	<div style="text-align: left;">
 							      	<ul style="padding: 0px;">
-							      		<li>나의 쇼핑 정보 </li>
-								      	<li>
-								      		<ul>
-								      			<li><a href="#">주문내역</a></li>
-								      			<li><a href="#">관심상품</a></li>
-								      			<li><a href="#">최근 본 상품</a></li>
-								      			<li><a href="#">적림금</a></li>							      		
-								      		</ul>	
-								      	</li>  
-							      	</ul>
-							      	<ul style="padding: 0px;">
-							      		<li>회원 정보</li>
-								      	<li>
-								      		<ul>
-								      			<li><a @click="infoUpdate">회원 정보 수정</a></li>
-								      			<li><a @click="infoAddr">배송주소록</a></li>					      		
-								      		</ul>	
-								      	</li>  
-							      	</ul>
-							      	   	<ul style="padding: 0px;">
-							      		<li>고객센터</li>
-								      	<li>
-								      		<ul>
-								      			<li><a href="#" @click="inquiry">1:1 문의</a></li>
-								      			<li><a href="#" @clikc="noticeList">공지사항</a></li>
-								      			<li><a href="#" @click="useGuide">이용안내</a></li>
-								      			<li><a href="#" @click="faq">FAQ</a></li>							      		
-								      		</ul>	
-								      	</li>  
-							      	</ul>
+                                 <li class="ulh1">나의 쇼핑 정보 </li>
+                                 <li>
+                                    <ul>
+                                       <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
+                                       <li><a href="/mypag/myPageInterest.do  ">장바구니</a></li>
+                                       <li><a href="/mypag/myInformation.do">찜 목록</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
+                                    </ul>   
+                                 </li>  
+                              </ul>
+                              <ul style="padding: 0px;">
+                                 <li class="ulh1">회원 정보</li>
+                                 <li>
+                                    <ul>
+                                       <li><a href="/mypag/infoUpdate.do">회원 정보 수정</a></li>
+                                       <li><a href="/mypag/addAddr.do">배송주소록</a></li>                           
+                                    </ul>   
+                                 </li>  
+                              </ul>
+                               <ul style="padding: 0px;">
+                                 <li class="ulh1">고객센터</li>
+                                 <li>
+                                    <ul>
+                                       <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
+                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
+                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
+                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                    </ul>   
+                                 </li>  
+                              </ul>
 							      	
 							      									      	
 							      	</div>

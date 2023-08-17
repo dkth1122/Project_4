@@ -17,9 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.project.dao.DeliveryService;
 import com.example.project.dao.InquiryService;
 import com.example.project.dao.OrderService;
+import com.example.project.dao.ProductService;
 import com.example.project.model.DeliveryUser;
 import com.example.project.model.Inquiry;
 import com.example.project.model.Order;
+import com.example.project.model.Wish;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,6 +44,13 @@ public class MyPagController {
 	
 	@Autowired
 	InquiryService inquiryService;
+	
+
+	@Autowired
+	ProductService productService;
+	
+
+	
 	
 	//마이페이지 보이기
 	@RequestMapping("/mypag/main.do") 
@@ -80,7 +91,7 @@ public class MyPagController {
 		
 		return "/myPag/jusoPopup";
     }
-	//주문내역
+	//찜목록
 	@RequestMapping("/mypag/myInformation.do") 
     public String myProductInformation1(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
         return "/myPag/myInformation";
@@ -125,6 +136,87 @@ public class MyPagController {
 		public String faq(Model model) throws Exception{
 			return "/myPag/faq";
 	}
+		
+//		장바구니
+		@RequestMapping("/mypag/myPageInterest.do") 
+	    public String myPageInterest(Model model) throws Exception{
+	        return "/myPag/myPageInterest";
+	    }
+		
+//		적립금 페이지
+		@RequestMapping("/mypag/mypageReserves.do") 
+	    public String mypageReserves(Model model) throws Exception{
+	        return "/myPag/mypageReserves";
+	    }
+		
+		
+//		주문내역
+		@RequestMapping("/mypag/myPagOrderdetails.do") 
+	    public String myPagOrderdetails(Model model) throws Exception{
+	        return "/myPag/myPagOrderdetails";
+	    }	
+		
+		
+		
+		
+		
+		
+		
+		
+		//마이페이지 찜목록 리스트
+		 @RequestMapping(value = "/mypag/wishlist.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String wishlist(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			List<Wish> list = productService.searchWishProdeuct(map);
+			resultMap.put("list", list);
+			return new Gson().toJson(resultMap);
+		}
+	
+		//마이페이지 찜목록 단일 삭제
+		@RequestMapping(value = "/mypag/removeSingleProdeuctWish.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String removeSingle(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			productService.removeSingleProdeuctWish(map);
+			resultMap.put("list", "삭제 완료");
+			return new Gson().toJson(resultMap);
+		}
+		//마이페이지 찜목록 전체 삭제
+		@RequestMapping(value = "/mypag/removeAllProdeuctWish.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String removeAll(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			productService.removeAllWish(map);
+			resultMap.put("list", "삭제 완료");
+			return new Gson().toJson(resultMap);
+		}
+		
+		//마이페이지 찜목록 장바구니 등록 
+		@RequestMapping(value = "/mypag/editCart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String eidtcart(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			productService.editcart(map);
+			resultMap.put("list", "장바구니이동완료");
+			return new Gson().toJson(resultMap);
+		}
+//삭제 전체 삭제 
+	  @RequestMapping(value = "/mypag/removeWishProduct.dox", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")  
+	  @ResponseBody
+	  public String remove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	  HashMap<String, Object> resultMap = new HashMap<String, Object>();
+	  String json = map.get("selectItem").toString();
+	  ObjectMapper mapper = new ObjectMapper();
+	  List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
+	  map.put("list", list);
+	  productService.removeWishProduct(map); 
+	  return new Gson().toJson(resultMap);
+		}	
+		
+		
+		
+		
 		
 	//마이페이지 상단 프로필  구매 / 환불 /반품 카운터  정보
 	@RequestMapping(value = "/mypag/listExchange.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

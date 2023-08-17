@@ -8,8 +8,8 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
- <meta charset="UTF-8">
-  <title>마이페이지</title>
+ <meta charset="EUC-KR">
+
   <style type="text/css">
 
   </style>
@@ -25,17 +25,17 @@
                       
                    <div class="a">
                       <div class="left topImgBoxwid">
-                           <a href="#"><div id="profileImg"></div></a>
+                           <a href="/mypag/main.do"><div id="profileImg"></div></a>
                       </div >
                       <div class="topBox">
                       <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
                       </div>                    
                       <div class="topBox">                      
                          <div class="details" >
-                         	<label><a href="#" name="메모:누르면 주문내역 페이지로전환">
-                            <div>Order</div>
-                            <div>2</div>
-                            </a></label>
+                         <div>Order</div>
+			             <label><a href="/mypag/myPagOrderdetails.do">                            
+			               <div>{{order}}</div>
+                          </a></label>
                          </div>
                          
                          <div class="details" >
@@ -64,34 +64,34 @@
                            <div id="left">
                               <div class="categories"> MY PAGE</div>
                               <div style="text-align: left;">
-                              <ul style="padding: 0px;">
-                                 <li>나의 쇼핑 정보 </li>
+                             <ul style="padding: 0px;">
+                                 <li class="ulh1">나의 쇼핑 정보 </li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">주문내역</a></li>
-                                       <li><a href="#">관심상품</a></li>
-                                       <li><a href="#">최근 본 상품</a></li>
-                                       <li><a href="#">적림금</a></li>                                 
+                                       <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
+                                       <li><a href="/mypag/myPageInterest.do  ">장바구니</a></li>
+                                       <li><a href="/mypag/myInformation.do">찜 목록</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
                               <ul style="padding: 0px;">
-                                 <li>회원 정보</li>
+                                 <li class="ulh1">회원 정보</li>
                                  <li>
                                     <ul>
-                                       <li><a @click="infoUpdate">회원 정보 수정</a></li>
-                                       <li><a @click="infoAddr">배송주소록</a></li>                           
+                                       <li><a href="/mypag/infoUpdate.do">회원 정보 수정</a></li>
+                                       <li><a href="/mypag/addAddr.do">배송주소록</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
-                                    <ul style="padding: 0px;">
-                                 <li>고객센터</li>
+                               <ul style="padding: 0px;">
+                                 <li class="ulh1">고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#" @click="myInquiry">1:1 문의</a></li>
-                                       <li><a href="#" @click="noticeList">공지사항</a></li>
-                                       <li><a href="#" @click="useGuide">이용안내</a></li>
-                                       <li><a href="#" @click="faq">FAQ</a></li>                                 
+                                       <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
+                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
+                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
+                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
@@ -195,33 +195,7 @@ var app = new Vue({
     		console.log(addrDetail);
     		console.log(engAddr);
     	},
-    	infoAddr : function(){
- 	    	var self = this;
- 	    	$.pageChange("infoAddr.do", {uId : self.uId});
- 	    },
- 	   infoUpdate : function(){
-	    	var self = this;
-	    	$.pageChange("infoUpdate.do", {uId : self.uId});
-	    },
-	    myInquiry : function(){
-	    	var self = this;
-	    	$.pageChange("myInquiry.do", {uId : self.uId});
-	    },
-	    /* 이용안내 */
-	    useGuide : function(){
-	    	var self = this;
-	    	$.pageChange("useGuide.do", {uId : self.uId});
-	    },
-	    /* 공지사항 */
-	    noticeList : function(){
-	    	var self = this;
-	    	$.pageChange("noticeList.do", {uId : self.uId});
-	    },
-	    /* FAQ */
-	    faq : function(){
-	    	var self = this;
-	    	$.pageChange("faq.do", {uId : self.uId});
-	    }
+
     },
     created: function() {
       var self = this;

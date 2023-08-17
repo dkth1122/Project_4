@@ -35,8 +35,10 @@
 					    	
 					    		<div class="details" >
 					    		
-					    			<div>주문내역</div>
-					    			<div>{{order}}</div>
+					    			<div>Order</div>
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div>{{order}}</div>
+                          			</a></label>
 					    			
 					    		</div>
 					    		
