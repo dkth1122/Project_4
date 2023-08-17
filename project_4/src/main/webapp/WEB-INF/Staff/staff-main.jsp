@@ -63,7 +63,7 @@ var app = new Vue({
 			location.href="../inquiry/list.do";
 		},
 		fnComplaint : function() {
-			location.href="";
+			location.href="../complain/list.do";
 		},
 		fnCustomer : function() {
 			location.href="../user2/list.do";

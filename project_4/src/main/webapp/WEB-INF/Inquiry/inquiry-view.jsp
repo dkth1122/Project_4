@@ -37,10 +37,11 @@
 		<textarea rows="30" cols="50" v-model="info.iAcontent"></textarea>
 		
 		<div>민원 : 
-			<select v-model="info.iComplain">
-				<option value="N">N</option>
-				<option value="Y">Y</option>
-			</select>
+		<select v-model="info.iComplain" @change="fnUpdateComplain(info, $index)">
+		  <option value="N">N</option>
+		  <option value="Y">Y</option>
+		</select>
+
 			답변시간 : {{info.iAtime}}
 		</div>
 		
@@ -111,7 +112,22 @@ var app = new Vue({
          fnuserInformation: function() {
        	  var self = this;
        	  window.open("../user2/view.do?uId=" + self.info.uId, "popup2", "width=800,height=1000,left=500,top=100");
-       	}
+       	},
+       	fnUpdateComplain: function(item, index) {
+    	    var self = this;
+    	    $.ajax({
+    	      url: "/complain/update.do",
+    	      dataType: "json",
+    	      type: "POST",
+    	      data: {
+    	    	  iNo: item.iNo,
+    	    	  iComplain: item.iComplain
+    	      },
+    	      success: function(data) {
+    	        alert("민원 여부가 업데이트 되었습니다.");
+    	      }
+    	    }); 
+    	  }
 	}, // methods
 	created : function() {
 		var self = this;
