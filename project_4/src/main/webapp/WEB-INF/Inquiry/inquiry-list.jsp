@@ -9,48 +9,62 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-	.pagination {
-        margin:24px;
-        display: inline-flex;
-        
-    }
-    ul {
-    }
-	.pagination li {
-	    min-width:32px;
-	    padding:2px 6px;
-	    text-align:center;
-	    margin:0 3px;
-	    border-radius: 6px;
-	    border:1px solid #eee;
-	    color:#666;
-	    display : inline;
-	}
-	.pagination li:hover {
-	    background: #E4DBD6;
-	}
-	.page-item a {
-	    color:#666;
-	    text-decoration: none;
-	}
-	.pagination li.active {
-	    background-color : #E7AA8D;
-	    color:#fff;
-	}
-	.pagination li.active a {
-	    color:#fff;
-	}
-</style>
+    <style>
+        body{
+               background-color: #decfdf;
+           }
+        #app{
+               width: 800px;
+               margin: 0px auto;
+           }
+       table{
+           border : 1px solid black;
+           border-collapse: collapse;
+           text-align : center;
+           background-color: #eae2eb;
+       }
+       th, td {
+           border : 1px solid black;
+           padding : 5px 10px;
+       }
+       .pagination {
+           margin:24px;
+           display: inline-flex;
+           
+       }
+       ul {
+       }
+       .pagination li {
+           min-width:32px;
+           padding:2px 6px;
+           text-align:center;
+           margin:0 3px;
+           border-radius: 6px;
+           border:1px solid #eee;
+           color:#666;
+           display : inline;
+       }
+       .pagination li:hover {
+           background: #E4DBD6;
+       }
+       .page-item a {
+           color:#666;
+           text-decoration: none;
+       }
+       .pagination li.active {
+           background-color : #E7AA8D;
+           color:#fff;
+       }
+       .pagination li.active a {
+           color:#fff;
+       }
+       button{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+
+       }
+   </style>
 </head>
 <body>
 <div id="app">

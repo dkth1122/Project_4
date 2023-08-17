@@ -9,6 +9,10 @@
 <title>Insert title here</title>
 <style>
 
+	body {
+		background-color: #eae2eb;
+	}
+
 </style>
 </head>
 <body>

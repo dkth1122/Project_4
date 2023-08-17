@@ -7,8 +7,26 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-</style>
+    <style>
+        body{
+            background-color: #decfdf;
+            }
+        #app{
+                width: 370px;
+                margin: 0px auto;
+            }
+        button{
+            width: 90px;
+            height: 50px;
+            margin-top: 20px;
+            margin-left: 120px;
+            background-color: #c094c4;
+            border: none;
+            border-radius: 10px;
+        }
+
+                
+       </style>
 </head>
 <body>
 <div id="app">

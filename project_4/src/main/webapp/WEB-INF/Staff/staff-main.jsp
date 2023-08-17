@@ -8,18 +8,33 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	.but1 > button{
-		width: 200px;
-		height: 200px;
-		display: inline-block;
-		margin-right: 10px;
-		margin-bottom: 10px;
-	}
-</style>
+        body{
+            background-color: #decfdf;
+        }
+        #app{
+            width: 1200px;
+            margin: 0px auto;
+        }
+        .but1 > button{
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            border: none;
+        }
+
+        .but1 > button:hover {
+            background-color: #d7acff;
+            color: white;
+
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-	<h1> {{sName}}님, 오늘도 열일하세요~! </h1>
+	<h1> {{sName}}님, 오늘도 열일하세요~! <button @click="fnLogout">로그아웃</button></h1>
 	<div class="but1">
 	<button @click="fnMain">베리페리샵</button>
 	<button @click="fnGBoard">멤버십게시판</button>
@@ -39,7 +54,6 @@
 	<button @click="fnDelivery" v-if="sStatus == 'B' || sStatus == 'M'">배송 관리</button>
 	<span v-else></span>
 	</div>
-	<div><button @click="fnLogout">로그아웃</button></div>
 </div>
 </body>
 </html>

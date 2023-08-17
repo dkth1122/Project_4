@@ -10,47 +10,61 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-	.pagination {
-        margin:24px;
-        display: inline-flex;
-        
-    }
-    ul {
-    }
-	.pagination li {
-	    min-width:32px;
-	    padding:2px 6px;
-	    text-align:center;
-	    margin:0 3px;
-	    border-radius: 6px;
-	    border:1px solid #eee;
-	    color:#666;
-	    display : inline;
-	}
-	.pagination li:hover {
-	    background: #E4DBD6;
-	}
-	.page-item a {
-	    color:#666;
-	    text-decoration: none;
-	}
-	.pagination li.active {
-	    background-color : #E7AA8D;
-	    color:#fff;
-	}
-	.pagination li.active a {
-	    color:#fff;
-	}
-</style>
+        body{
+               background-color: #decfdf;
+           }
+        #app{
+               width: 800px;
+               margin: 0px auto;
+           }
+       table{
+           border : 1px solid black;
+           border-collapse: collapse;
+           text-align : center;
+           background-color: #eae2eb;
+       }
+       th, td {
+           border : 1px solid black;
+           padding : 5px 10px;
+       }
+       .pagination {
+           margin:24px;
+           display: inline-flex;
+           
+       }
+       ul {
+       }
+       .pagination li {
+           min-width:32px;
+           padding:2px 6px;
+           text-align:center;
+           margin:0 3px;
+           border-radius: 6px;
+           border:1px solid #eee;
+           color:#666;
+           display : inline;
+       }
+       .pagination li:hover {
+           background: #E4DBD6;
+       }
+       .page-item a {
+           color:#666;
+           text-decoration: none;
+       }
+       .pagination li.active {
+           background-color : #E7AA8D;
+           color:#fff;
+       }
+       .pagination li.active a {
+           color:#fff;
+       }
+       button{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+
+       }
+   </style>
 </head>
 <body>
 <div id="app">
@@ -108,8 +122,8 @@ var app = new Vue({
 	methods : {
 		fnGetList : function(){
             var self = this;
-            var startNum = ((self.selectPage-1) * 10);
-    		var lastNum = 10;
+            var startNum = ((self.selectPage-1) * 20);
+    		var lastNum = 20;
             var nparmap = {startNum : startNum, lastNum : lastNum};
             $.ajax({
                 url : "/user2/list.dox",
@@ -119,7 +133,7 @@ var app = new Vue({
                 success : function(data) { 
                 	self.list = data.list;
                 	self.cnt = data.cnt;
-	                self.pageCount = Math.ceil(self.cnt / 10);
+	                self.pageCount = Math.ceil(self.cnt / 20);
                 }
             }); 
         },
@@ -127,10 +141,6 @@ var app = new Vue({
         	  var self = this;
         	  window.open("../user2/view.do?uId=" + item.uId, "popup", "width=800,height=1000,left=500,top=100");
         	},
-        fnuserInformation : function(item){
-        	 var self = this;
-        	 window.open("../user2/view.do?uId=" + item.uId, "stockPopup", "width=700,height=500,left=500,top=100");
-        },
         fnCntReset : function(item){
             var self = this;
             var nparmap = {uId : item.uId};
@@ -151,7 +161,7 @@ var app = new Vue({
          fnSearch : function(pageNum){
 			var self = this;
 			self.selectPage = pageNum;
-			var startNum = ((pageNum-1) * 10);
+			var startNum = ((pageNum-1) * 20);
 			var lastNum = 10;
 			var nparmap = {startNum : startNum, lastNum : lastNum};
 			$.ajax({
@@ -162,7 +172,7 @@ var app = new Vue({
 				success : function(data) {
 					self.list = data.list;
 					self.cnt = data.cnt;
-					self.pageCount = Math.ceil(self.cnt / 10);
+					self.pageCount = Math.ceil(self.cnt / 20);
 				}
 			});
 		},

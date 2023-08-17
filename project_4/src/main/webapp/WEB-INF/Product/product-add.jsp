@@ -17,6 +17,9 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
+	body {
+		background-color: #eae2eb;
+	}
 </style>
 </head>
 <body>
