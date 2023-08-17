@@ -162,7 +162,7 @@ var app = new Vue({
 			var self = this;
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 20);
-			var lastNum = 10;
+			var lastNum = 20;
 			var nparmap = {startNum : startNum, lastNum : lastNum};
 			$.ajax({
 				url : "/user2/list.dox",
