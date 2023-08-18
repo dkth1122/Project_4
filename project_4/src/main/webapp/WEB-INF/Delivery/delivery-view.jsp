@@ -85,7 +85,7 @@
 		</tr>
 		
 		<tr v-for="(item, index) in list">
-			<td><a href="javascript:;" @click="fnProductPopup(item)">{{item.oNo}}</a></td>
+			<td><a href="javascript:;" @click="fnProductPopup">{{item.oNo}}</a></td>
 			<td v-if="item.cnt >= 2">{{ item.pName }}¿Ü {{ parseInt(item.cnt) - 1 }}°Ç</td>
 			<td v-else>{{ item.pName }}</td>
 			<td>{{item.pNo}}</td>
@@ -136,7 +136,8 @@ var app = new Vue({
 		list : [],
 		selectPage: 1,
 		pageCount: 1,
-		cnt : 0
+		cnt : 0,
+		oNo: "${map.oNo}",
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -193,11 +194,7 @@ var app = new Vue({
         	        self.fnGetList();
         	      }
         	    }); 
-        	  },
-        fnProductPopup : function(item){
-        	 window.open("../delivery/view.do?oNo=" + item.oNo, "productPopup", "width=700,height=800,left=500,top=100");
-        	
-        }
+        	  }
 	}, // methods
 	created : function() {
 		var self = this;

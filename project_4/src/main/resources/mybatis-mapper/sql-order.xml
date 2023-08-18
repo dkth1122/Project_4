@@ -25,11 +25,20 @@
 	
 	<!-- 주문정보 확인 -->
 	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.project.model.Order">
-		SELECT *
+	SELECT *
 		FROM T4_ORDER O
 		INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
 		INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
-		WHERE D_STATE = '업체확인중';
+		INNER JOIN (
+			SELECT O.O_NO, COUNT(*) AS CNT
+			FROM T4_ORDER O
+			INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+			WHERE D_STATE = '업체확인중' AND O.O_NO = O.O_NO AND EXCHANGE = ''
+			GROUP BY O.O_NO)A ON O.O_NO = A.O_NO
+		WHERE D_STATE = '업체확인중'
+	ORDER BY O.O_NO ASC
+
 	</select>
 	
 	<!-- 페이징용 카운트 -->

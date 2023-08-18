@@ -16,6 +16,7 @@ import com.example.project.model.DeliveryUser;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class DeliveryController {
@@ -23,11 +24,20 @@ public class DeliveryController {
 	@Autowired
 	DeliveryService deliveryService;
 	
+	@Autowired
+	HttpSession session;
+	
 	@RequestMapping("/delivery/list.do") 
-    public String mainGBoard(Model model) throws Exception{
+    public String deliveryList(Model model) throws Exception{
 
         return "/Delivery/delivery-list";
     }
+	
+	@RequestMapping("/delivery/view.do") 
+	public String deliveryView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/Delivery/delivery-view";
+	}
 	
 	
 	@RequestMapping(value = "/delivery/listSelect.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

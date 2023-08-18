@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Order {
 	
+	private String buyNo;
 	private String oNo;
 	private String pNo;
 	private String uId;
@@ -16,6 +17,7 @@ public class Order {
 	private String oMessage;
 	private int afNo;
 	private int orderCnt;
+	private int cnt;
 	
 	//배송 JOIN
 	private String dDate;
@@ -39,6 +41,12 @@ public class Order {
 	
 	
 	
+	public String getBuyNo() {
+		return buyNo;
+	}
+	public void setBuyNo(String buyNo) {
+		this.buyNo = buyNo;
+	}
 	public int getDuNo() {
 		return duNo;
 	}
