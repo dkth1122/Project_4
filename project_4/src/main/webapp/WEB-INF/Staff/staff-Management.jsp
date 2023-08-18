@@ -84,7 +84,7 @@
 </head>
 <body>
 <%@ include file="staff-header.jsp" %> 
-<%@ include file="staff-main.jsp" %> 
+<%@ include file="staff-left.jsp" %> 
 <div id="app">
 	<div class="mainBox">
 	

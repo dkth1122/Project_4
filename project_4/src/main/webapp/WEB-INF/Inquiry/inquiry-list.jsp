@@ -9,19 +9,30 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <style>
+<style>
         body{
-               background-color: #decfdf;
+     		   background-color: #decfdf;
+               
            }
         #app{
-               width: 800px;
+               width: 1000px;
                margin: 0px auto;
+
+           }
+       .mainBox{
+     		   width : 1000px;
+     		   height : 550px;
+               position: relative;
+               top : -550px;
+               left: 200px;
+               text-align: center;
            }
        table{
            border : 1px solid black;
            border-collapse: collapse;
            text-align : center;
            background-color: #eae2eb;
+           margin: 0 auto;
        }
        th, td {
            border : 1px solid black;
@@ -30,7 +41,7 @@
        .pagination {
            margin:24px;
            display: inline-flex;
-           
+
        }
        ul {
        }
@@ -58,13 +69,20 @@
        .pagination li.active a {
            color:#fff;
        }
-       button{
+       .mainPos1 > button{
         margin-top: 10px;
         margin-bottom: 10px;
         margin-left: 20px;
-
        }
-   </style>
+       hr{
+        	width: 800px;
+        }
+        .mainPos2{
+        	position: relative;
+        	left: 350px;
+        	color: white;
+        }
+ </style>
 </head>
 <body>
 <div id="app">

@@ -32,10 +32,10 @@ public class StaffController {
 		session.invalidate();
         return "/Staff/staff-login";
     }
-	@RequestMapping("/staff/main.do") 
-	public String main(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+	@RequestMapping("/staff/left.do") 
+	public String left(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		
-		return "/Staff/staff-main";
+		return "/Staff/staff-left";
 	}
 	@RequestMapping("/staff/home.do") 
 	public String home(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
