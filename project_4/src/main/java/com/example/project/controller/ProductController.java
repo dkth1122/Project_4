@@ -57,8 +57,8 @@ public class ProductController {
 		resultMap = productService.insertProduct(map);		
 		return new Gson().toJson(resultMap);
 	}
-	//이미지등록 가보자고
-	@RequestMapping("/product/fileUpload.dox")
+	//상품 이미지 
+	@RequestMapping("/product/fileUploadimg.dox")
     public String result(@RequestParam("file1") MultipartFile multi, @RequestParam("pNo") String pNo, HttpServletRequest request,HttpServletResponse response, Model model)
     {
         String url = null;

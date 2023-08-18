@@ -46,6 +46,14 @@ public class ㄷㅎㅋ {
 	
 		
 		
+	@RequestMapping(value = "/mypag/selectcartlist.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String selectcartlist(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Product> list = dd.selectcartlist(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
 		
 		
 		

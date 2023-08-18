@@ -13,6 +13,10 @@ public interface DDDDD {
 	//구매내역 확인
 	
 	List<Product> selectOrderp(HashMap<String, Object> map);
+	// 사용자 장바구니 출력
+	List<Product> selectcartlist(HashMap<String, Object> map);
+	
+	
 	
 	
 }

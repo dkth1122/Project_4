@@ -72,9 +72,9 @@
 	
 	<!-- 이미지등록 -->
 	<insert id="insertProductImg" parameterType="hashmap" >
-		INSERT INTO T4_PRODUCT_IMG(P_NO, path)
+		INSERT INTO T4_PRODUCT_IMG(P_NO, path, class)
 		VALUES
-		(#{pNo}, #{path})
+		(#{pNo}, #{path}, 'Y')
 	</insert>
 	
 	
