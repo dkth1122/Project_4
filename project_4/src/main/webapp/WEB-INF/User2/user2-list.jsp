@@ -11,17 +11,29 @@
 <title>Insert title here</title>
 <style>
         body{
-               background-color: #decfdf;
+     		   background-color: #decfdf;
+               
            }
         #app{
-               width: 800px;
+               width: 1000px;
                margin: 0px auto;
+               text-align: center;
+
+           }
+       .mainBox{
+     		   width : 1000px;
+     		   height : 550px;
+               position: relative;
+               top : -550px;
+               left: 200px;
+               text-align: center;
            }
        table{
            border : 1px solid black;
            border-collapse: collapse;
            text-align : center;
            background-color: #eae2eb;
+           margin: 0 auto;
        }
        th, td {
            border : 1px solid black;
@@ -30,7 +42,7 @@
        .pagination {
            margin:24px;
            display: inline-flex;
-           
+
        }
        ul {
        }
@@ -58,20 +70,41 @@
        .pagination li.active a {
            color:#fff;
        }
-       button{
+       .mainPos1 > button{
         margin-top: 10px;
         margin-bottom: 10px;
         margin-left: 20px;
-
        }
-   </style>
+       hr{
+        	width: 800px;
+        	margin-top : -50px;
+        	margin-bottom: 20px;
+        }
+        .mainPos2{
+        	position: relative;
+        	top : -55px;
+        	left: 350px;
+        	color: white;
+        }
+        .mainInput {
+        	margin-bottom: 10px;
+        	position: relative;
+        	left: 250px;
+        }
+ </style>
 </head>
 <body>
+<%@ include file="../Staff/staff-header.jsp" %>
+<%@ include file="../Staff/staff-left.jsp" %>
 <div id="app">
-
-<input type="text" placeholder="아이디 검색" v-model="keyword" @keyup.enter="fnUsertSearch"> <button @click="fnUsertSearch">검색</button>
-
-<table>
+	<div class="mainBox">
+	
+	<div class="mainPos2">고객 관리</div>
+	<hr>	
+	<div class="mainInput">
+	<input type="text" placeholder="아이디 검색" v-model="keyword" @keyup.enter="fnUsertSearch"> <button @click="fnUsertSearch">검색</button>
+	</div>
+    <table>
 		<tr>
 			<th>아이디</th>
 			<th>이름</th>
@@ -90,6 +123,7 @@
 
 		</tr>
 	</table>
+	
 	<template>
 	  <paginate
 	    :page-count="pageCount"
@@ -101,10 +135,13 @@
 	    :container-class="'pagination'"
 	    :page-class="'page-item'">
 	  </paginate>
+	  
 	</template>
-	
-	<div><button @click="fnBack">되돌아가기</button></div>
+    </div>
+    
+    <div><button @click="fnBack">되돌아가기</button></div>
 </div>
+
 </body>
 </html>
 <script>
