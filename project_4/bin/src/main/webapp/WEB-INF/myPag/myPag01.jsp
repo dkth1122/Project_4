@@ -1,17 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
+<link href="../css/mypage.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="../css/swiper.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<meta charset="UTF-8">
-<title>ë§ˆì´í˜ì´ì§€Â€</title>
+<meta charset="EUC-KR">
+<style type="text/css">
+.swiper-container {
+	margin-top : 50px;
+	height:420px;
+	border-radius:7px;
+}
+.swiper-slide {
+    line-height: 70px;
+	text-align:center;
+	align-items:center; /* À§¾Æ·¡ ±âÁØ Áß¾ÓÁ¤·Ä */
+	justify-content:center; /* ÁÂ¿ì ±âÁØ Áß¾ÓÁ¤·Ä */
+}
+.swiper-slide img {
+
+	max-width:100%; /* ÀÌ¹ÌÁö ÃÖ´ë³Êºñ¸¦ Á¦ÇÑ, ½½¶óÀÌµå¿¡ ÀÌ¹ÌÁö°¡ ¿©·¯°³°¡ º¸¿©Áú¶§ ÇÊ¿ä */
+	/* ÀÌ ¿¹Á¦¿¡¼­ ÇÊ¿äÇØ¼­ ¼³Á¤Çß½À´Ï´Ù. »óÈ²¿¡µû¶ó ´Ù¸¦ ¼ö ÀÖ½À´Ï´Ù. */
+}
+.b{ 
+
+	height: 350px;
+	display: flex;
+	width: 1200px;	
+}
+.c{
+
+	width: 250px;
+	height: 350px;
+	margin-right: 63px;
+}
+.justimg{
+	width: 250px;
+	height: 200px;
+}
+.justBox{
+ 	width: max-content;
+ 	word-break: break-all;
+	max-width: 170px;
+	display: inline-block;
+	font-size: 0.7em;
+	margin-bottom: 10px;
+	line-height: 20px;
+	
+}
+.justpay, .justBox {
+    text-align: right;
+    padding-right: 10px;
+}
+</style>
 
 </head>
 <body>
@@ -25,7 +75,7 @@
 
 						<div class="a">
 							<div class="left topImgBoxwid">
-								<a @click="fnVuwmain" href="#"><div id="profileImg"></div></a>
+								<a href="/mypag/main.do"><div id="profileImg"></div></a>
 							</div>
 							<div class="topBox">
 								<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -35,21 +85,28 @@
 
 								<div class="details">
 
-									<div>ì£¼ë¬¸ë‚´ì—­</div>
-									<div>{{order}}</div>
+									<div>Order</div>
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
+                          			</a></label>
 
 								</div>
 
 								<div class="details">
 
-									<div>êµí™˜/í™˜ë¶ˆ</div>
+									<div>±³È¯/È¯ºÒ</div>
 									<div>
-										<span>{{refund}} /</span><span> {{exchange}}</span>
+										<span v-if="refund != 0">{{refund}} /</span>
+										<span v-else>0 /</span>
+										
+										<span v-if="exchange != 0"> {{exchange}}</span>
+										<span v-else>0</span>
 									</div>
 
 								</div>
 								<div class="details">
-									<div>í¬ì¸íŠ¸</div>
+									<div>Æ÷ÀÎÆ®</div>
 									<div>{{info.uPoint}} P</div>
 								</div>
 								<div class="details">
@@ -70,36 +127,36 @@
 						<div class="categories">MY PAGE</div>
 						<div style="text-align: left;">
 							<ul style="padding: 0px;">
-								<li>ë‚˜ì˜ ì‡¼í•‘ ì •ë³´</li>
-								<li>
-									<ul>
-										<li><a href="#" @click="fnInformation">ì£¼ë¬¸ë‚´ì—­</a></li>
-										<li><a href="#" @click="fnInterest">ì¥ë°”êµ¬ë‹ˆ</a></li>
-										<li><a href="#" @click="">ê´€ì‹¬ ìƒí’ˆ</a></li>
-										<li><a href="#" @click="fnReserves">ì ë¦½ê¸ˆ</a></li>
-									</ul>
-								</li>
-							</ul>
-							<ul style="padding: 0px;">
-								<li>íšŒì› ì •ë³´</li>
-								<li>
-									<ul>
-										<li><a href="#" @click="infoUpdate">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
-										<li><a href="#" @click="infoAddr">ë°°ì†¡ì£¼ì†Œë¡</a></li>
-									</ul>
-								</li>
-							</ul>
-							<ul style="padding: 0px;">
-								<li>ê³ ê°ì„¼í„°</li>
-								<li>
-									<ul>
-										<li><a href="#" @click="myInquiry">1:1 ë¬¸ì˜</a></li>
-										<li><a href="#" @click="noticeList">ê³µì§€ì‚¬í•­</a></li>
-										<li><a href="#" @click="useGuide">ì´ìš©ì•ˆë‚´</a></li>
-										<li><a href="#">FAQ</a></li>
-									</ul>
-								</li>
-							</ul>
+                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
+                                 <li>
+                                    <ul>
+                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
+                                       <li><a href="/mypag/myPageInterest.do  ">Àå¹Ù±¸´Ï</a></li>
+                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
+                                    </ul>   
+                                 </li>  
+                              </ul>
+                              <ul style="padding: 0px;">
+                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
+                                 <li>
+                                    <ul>
+                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
+                                       <li><a href="/mypag/addAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
+                                    </ul>   
+                                 </li>  
+                              </ul>
+                               <ul style="padding: 0px;">
+                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
+                                 <li>
+                                    <ul>
+                                       <li><a href="/mypag/myAddInquiry.do">1:1 ¹®ÀÇ</a></li>
+                                       <li><a href="/mypag/noticeList.do">°øÁö»çÇ×</a></li>
+                                       <li><a href="/mypag/useGuide.do">ÀÌ¿ë¾È³»</a></li>
+                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                    </ul>   
+                                 </li>  
+                              </ul>
 
 
 						</div>
@@ -108,18 +165,62 @@
 					<div id="right">
 
 						<div class="View">
-							<div class="lowerBox">ìµœê·¼ ì£¼ë¬¸ìƒí’ˆ</div>
-							<div class="nodata">ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤</div>
+							<div class="lowerBox">ÁÖ¹®»óÇ°</div>
+							<div class="swiper-container">
+							<div class="swiper-wrapper">
+							
+								<div class="swiper-slide" v-for="item in orderlist">									
+								       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+							           <div class="justBox">{{item.pName}}</div>
+							           <div class="justpay">\ {{item.price}}</div>
+							          
+								</div>
+						
+							</div>
+						
+							<!-- ³×ºñ°ÔÀÌ¼Ç -->
+							<div class="swiper-button-next" ></div><!-- ´ÙÀ½ ¹öÆ° (¿À¸¥ÂÊ¿¡ ÀÖ´Â ¹öÆ°) -->
+							<div class="swiper-button-prev"></div><!-- ÀÌÀü ¹öÆ° -->
+						
+							<!-- ÆäÀÌÂ¡ -->
+							<div class="swiper-pagination"></div>
+						</div>
+				
+							
+							<div v-if="false">
+							<div class="nodata">³»¿ªÀÌ ¾ø½À´Ï´Ù</div>							 
+							</div>
+							
 						</div>
 
 						<div class="View">
-							<div class="lowerBox">ê´€ì‹¬ìƒí’ˆ</div>
-							<div class="nodata">ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤</div>
+							<div class="lowerBox">Àå¹Ù±¸´Ï</div>
+							<div class="swiper-container">
+							<div class="swiper-wrapper">
+					
+							</div>
+						
+							<!-- ³×ºñ°ÔÀÌ¼Ç -->
+							<div class="swiper-button-next" ></div><!-- ´ÙÀ½ ¹öÆ° (¿À¸¥ÂÊ¿¡ ÀÖ´Â ¹öÆ°) -->
+							<div class="swiper-button-prev"></div><!-- ÀÌÀü ¹öÆ° -->
+						
+							<!-- ÆäÀÌÂ¡ -->
+							<div class="swiper-pagination"></div>
+						</div>
+
+							
+							<div v-if="false">
+							<div class="nodata">³»¿ªÀÌ ¾ø½À´Ï´Ù</div>
+							</div>
+							
 						</div>
 
 						<div class="View">
-							<div class="lowerBox">ìµœê·¼ ë³¸ ìƒí’ˆ</div>
-							<div class="nodata">ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤</div>
+			
+
+							<div v-if="true">
+							<div class="nodata">³»¿ªÀÌ ¾ø½À´Ï´Ù</div>
+							</div>
 						</div>
 
 					</div>
@@ -137,40 +238,40 @@
 		data : {
 			info : [],
 			orderCntList : [],
-			uId : "dcsdsd3",/* ì—¬ê¸° ë‚˜ì¤‘ì— ì„¸ì…˜ìœ¼ë¡œ ë°›ê¸° */
+			uId : "${sessionId}",
 			order : "",
 			exchange : "",
 			refund : "",
-			list : []
+			wishlist : [],
+			orderlist : [],
+			cartlist : [],
 		},
 		methods : {
-			fnGetList : function() {
+			fnGetList : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ğ³×ÀÓ)
 				var self = this;
-				var nparmap = {
-					uId : self.uId
-				};
+				var nparmap = {uId : self.uId};				
 				$.ajax({
 					url : "/user2.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
-					success : function(data) {
-						self.info = data.findPw; //ì‚¬ìš©ì
-						self.fnCntList();
+					success : function(data) {						
+						self.info = data.findPw;
 					}
 				});
 			},
+			/* »ó´Ü ±¸¸Å³»¿ª Ä«¿îÆ® ¼ıÀÚ */
 			fnCntList : function() {
 				var self = this;
-				var nparmap = {
-					uId : self.uId
-				};
+				var nparmap = {uId : self.uId};
+				console.log(nparmap);
 				$.ajax({
 					url : "/mypag/listExchange.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
+						console.log(data);
 						var listCnt = data.list;
 						for (var i = 0; i < listCnt.length; i++) {
 							if (listCnt[i].exchange == "N") {
@@ -186,74 +287,92 @@
 					}
 				});
 			},
-			/* ë©”ì¸ */
-			fnVuwmain : function() {
+			 /* Âò¸ñ·Ï */
+			fnwish: function() {
 				var self = this;
-				$.pageChange("main.do", {
-					uId : self.uId
-				});
-			},
-			/* ì£¼ë¬¸ë‚´ì—­ */
-			fnInformation : function() {
-				var self = this;
-				$.pageChange("productInformation.do", {
-					uId : self.uId
-				});
-			},
-			/* ê´€ì‹¬ìƒí’ˆ */
-			fnInterest : function() {
-				var self = this;
-				$.pageChange("myPageInterest.do", {
-					uId : self.uId
-				});
-			},
-			/* ì ë¦½ê¸ˆ */
-			fnReserves : function() {
-				var self = this;
-				$.pageChange("mypageReserves.do", {
-					uId : self.uId
-				});
-			},
-			/* ë°°ì†¡ì£¼ì†Œë¡ */
-			infoAddr : function() {
-				var self = this;
-				$.pageChange("infoAddr.do", {
-					uId : self.uId
-				});
-			},
-			/* íšŒì› ì •ë³´ ìˆ˜ì • */
-			infoUpdate : function() {
-				var self = this;
-				$.pageChange("infoUpdate.do", {
-					uId : self.uId
-				});
-			},
-			/* 1:1ë¬¸ì˜ */
-			myInquiry : function() {
-				var self = this;
-				$.pageChange("myInquiry.do", {
-					uId : self.uId
-				});
-			},
-			/* ê³µì§€ì‚¬í•­ */
-			noticeList : function() {
-				var self = this;
-				$.pageChange("noticeList.do", {
-					uId : self.uId
-				});
-			},
-			/* ì´ìš©ì•ˆë‚´ */
-			useGuide : function() {
-				var self = this;
-				$.pageChange("useGuide.do", {
-					uId : self.uId
-				});
-			}
+				var nparmap = {uId : self.uId};
+				console.log(nparmap);
+				$.ajax({
+					url : "/mypag/wishlist.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						console.log(self.wishlist);
+						self.wishlist = data.list;
+						
 
-		},
-		created : function() {
+					}
+				});
+			},
+			 /* ±¸¸Å³»¿ª */
+			fnorder: function() {
+				var self = this;
+				var nparmap = {uId : self.uId};
+				console.log(nparmap);
+				$.ajax({
+					url : "/mypag/productInformation.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						self.orderlist = data.list;
+						
+
+					}
+				});
+			},
+			 /* Àå¹Ù±¸´Ï */
+			fncart: function() {
+				var self = this;
+				var nparmap = {uId : self.uId};
+				console.log(nparmap);
+				$.ajax({
+					url : "/mypag/selectcartlist.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						console.log(data);
+						self.cartlist = data.list;
+						
+
+					}
+				});
+			},
+
+		
+		},created : function() {
 			var self = this;
 			self.fnGetList();
+			self.fnCntList();
+			self.fnorder();
+			self.fncart();
+			self.fnwish();
 		}
 	});
+	
+
+	new Swiper('.swiper-container', {
+
+		slidesPerView : 3, // µ¿½Ã¿¡ º¸¿©ÁÙ ½½¶óÀÌµå °¹¼ö
+		spaceBetween : 30, // ½½¶óÀÌµå°£ °£°İ
+		slidesPerGroup : 3, // ±×·ìÀ¸·Î ¹­À» ¼ö, slidesPerView ¿Í °°Àº °ªÀ» ÁöÁ¤ÇÏ´Â°Ô ÁÁÀ½
+
+		// ±×·ì¼ö°¡ ¸ÂÁö ¾ÊÀ» °æ¿ì ºóÄ­À¸·Î ¸Ş¿ì±â
+		// 3°³°¡ ³ª¿Í¾ß µÇ´Âµ¥ 1°³¸¸ ÀÖ´Ù¸é 2°³´Â ºóÄ­À¸·Î Ã¤¿ö¼­ 3°³¸¦ ¸¸µë
+		loopFillGroupWithBlank : true,
+
+		loop : true, // ¹«ÇÑ ¹İº¹
+
+		pagination : { // ÆäÀÌÂ¡
+			el : '.swiper-pagination',
+			clickable : true, // ÆäÀÌÂ¡À» Å¬¸¯ÇÏ¸é ÇØ´ç ¿µ¿ªÀ¸·Î ÀÌµ¿, ÇÊ¿ä½Ã ÁöÁ¤ÇØ Áà¾ß ±â´É ÀÛµ¿
+		},
+		navigation : { // ³×ºñ°ÔÀÌ¼Ç
+			nextEl : '.swiper-button-next', // ´ÙÀ½ ¹öÆ° Å¬·¡½º¸í
+			prevEl : '.swiper-button-prev', // ÀÌ¹ø ¹öÆ° Å¬·¡½º¸í
+		},
+	});
+
 </script>

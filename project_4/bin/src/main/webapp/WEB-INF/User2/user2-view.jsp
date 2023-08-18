@@ -8,16 +8,24 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-</style>
+        body{
+               background-color: #decfdf;
+           }
+        #app{
+               width: 1200px;
+               margin: 0px auto;
+           }
+       table{
+           border : 1px solid black;
+           border-collapse: collapse;
+           text-align : center;
+           background-color: #eae2eb;
+       }
+       th, td {
+           border : 1px solid black;
+           padding : 5px 10px;
+       }
+   </style>
 </head>
 <body>
 <div id="app">
@@ -87,7 +95,9 @@
         <td>{{item.iNo}}</td>
         <td><a href="javascript:;" @click="fnInquiryInfo(item)">{{item.iQtitle}}</a></td>
         <td>{{item.iQtime}}</td>
-        <td>{{item.state}}</td>
+        <td v-if="item.state == 'PENDING'" :style="{'color': 'blue'}">{{item.state}}</td>
+        <td v-else-if="item.state == 'OPEN'" :style="{'color': 'red'}">{{item.state}}</td>
+        <td v-else :style="{'color': 'black'}">{{item.state}}</td>
       </tr>
     </table>
   </template>
@@ -99,16 +109,18 @@
 	<template v-if="order.length > 0 && order[0].hasOwnProperty('oNo')">
     <table>
       <tr>
-        <th>상품코드</th>
+        <th>주문번호</th>
         <th>상품명</th>
+        <th>상품코드</th>
         <th>구매갯수</th>
         <th>주문날짜</th>
         <th>가격</th>
         <th>결제금액</th>
       </tr>
       <tr v-for="(item, index) in order">
-        <td>{{item.pNo}}</td>
+        <td>{{item.oNo}}</td>
         <td>{{item.pName}}</td>
+        <td>{{item.pNo}}</td>
         <td>{{item.oCount}}</td>
         <td>{{item.oDate}}</td>
         <td>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
@@ -163,8 +175,6 @@
   <div v-else>등록된 배송 주소가 없습니다.</div>
 	</div>
 	
-	
-	<div><button @click="fnBack">되돌아가기</button></div>
 </div>
 </div>
 </body>
@@ -213,9 +223,6 @@ var app = new Vue({
                 }
             }); 
         },
-        fnBack : function(){
-            location.href = 'list.do';
-         },
         fnPwReset : function(){
             var self = this;
             var nparmap = {uId : self.uId , uResetPw : self.info.uPhone};
@@ -286,10 +293,11 @@ var app = new Vue({
                 }
             }); 
         },
-        fnInquiryInfo : function(item){
-            var self = this;
-            $.pageChange("../inquiry/view.do", {iNo : item.iNo});
-          }
+        fnInquiryInfo: function(item){
+        	  var self = this;
+        	  window.open("../inquiry/view.do?iNo=" + item.iNo, "inquiryView", "width=800, height=800, left=100, top=50, resizable=yes, scrollbars=yes");
+        	}
+
 	}, // methods
 	created : function() {
 		var self = this;

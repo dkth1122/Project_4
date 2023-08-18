@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <style>
 	table{
+
 		border : 1px solid black;
 		border-collapse: collapse;
 		text-align : center;
@@ -16,6 +17,9 @@
 	th, td {
 		border : 1px solid black;
 		padding : 5px 10px;
+	}
+	body {
+		background-color: #eae2eb;
 	}
 </style>
 </head>
@@ -56,6 +60,13 @@
 			<option value="1">1개</option>
 		</select>
 	</div>
+	
+	<div>
+	<div><input type="file" id="file2" name="file2" accept="image/*" ></div>
+	<div><input type="file" id="file3" name="file3" accept="image/*" ></div>
+	<div><input type="file" id="file4" name="file4" accept="image/*" ></div>
+	</div>
+	
 	<div>
 		아티스트 : 
 	<select v-model="info.artist">
@@ -141,13 +152,16 @@ var app = new Vue({
 			    data : nparmap,
 			    success : function(data) {
 			    	 alert("상품이 등록되었습니다.");
-			      var form = new FormData();
+			      var form = new FormData();			     
+			      
                   form.append("file1", $("#file1")[0].files[0]);
+                  
                   form.append("pNo", data.pNo); // pk
+                  
                   console.log(form);
                   self.upload(form);
-              	  window.close(); // 팝업창 닫기
-	        	  window.opener.location.reload(); // 부모창 새로고침
+              	/*   window.close(); // 팝업창 닫기
+	        	  window.opener.location.reload(); // 부모창 새로고침 */
            
 			    }
 			  });
@@ -155,7 +169,7 @@ var app = new Vue({
 			upload: function(form) {
 	            var self = this;
 	            $.ajax({
-	                url: "/product/fileUpload.dox",
+	                url: "/product/fileUploadimg.dox",
 	                type: "POST",
 	                processData: false,
 	                contentType: false,
@@ -179,6 +193,7 @@ var app = new Vue({
 	                document.querySelector("div#image_container").appendChild(img);
 	            };
 
+	            
 	            reader.readAsDataURL(event.target.files[0]);
 	        }
 	    
