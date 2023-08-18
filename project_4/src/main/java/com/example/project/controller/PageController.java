@@ -116,6 +116,12 @@ public class PageController {
 	
 
 	
+	@RequestMapping("practice.do") 
+	public String practice(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/page/practice";
+	}
+	
+
 	@RequestMapping(value = "/pointList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String pointList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
