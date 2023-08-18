@@ -180,11 +180,16 @@ var app = new Vue({
           },
          	fnUpdateState : function(item, index) {
         	    var self = this;
+        	    var exchangeVal = '';
+          	  if (item.dState.includes('°ÅÀý')) {
+          	    exchangeVal = 'R';
+          	  }
         	    $.ajax({
         	      url: "/order/update.dox",
         	      dataType: "json",
         	      type: "POST",
         	      data: {
+        	    	  exchange: exchangeVal,
         	    	  oNo: item.oNo,
         	    	  dState: item.dState
         	      },
@@ -195,7 +200,7 @@ var app = new Vue({
         	    }); 
         	  },
         fnProductPopup : function(item){
-        	 window.open("../delivery/view.do?oNo=" + item.oNo, "productPopup", "width=700,height=800,left=500,top=100");
+        	 window.open("../delivery/view.do?oNo=" + item.oNo, "productPopup", "width=1250,height=800,left=500,top=100");
         	
         }
 	}, // methods

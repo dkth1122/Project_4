@@ -50,5 +50,13 @@ public class OrderController {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping(value = "/order/updateOrderInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateOrderInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		orderService.updateOrderInfo(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
 	
 }

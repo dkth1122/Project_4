@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.mapper.DeliveryMapper;
 import com.example.project.model.DeliveryUser;
+import com.example.project.model.Order;
 
 @Service
 public class DeliveryServiceImpl implements DeliveryService{
@@ -46,6 +47,12 @@ public class DeliveryServiceImpl implements DeliveryService{
 		resultMap.put("list", deliveryMapper.deliveryListSelect(map));
 		resultMap.put("cnt", deliveryMapper.selectCnt4(map));
 		return resultMap;
+	}
+
+	@Override
+	public List<Order> deliveryInfoSelect(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return deliveryMapper.deliveryInfoSelect(map);
 	}
 
 	

@@ -182,11 +182,11 @@ var app = new Vue({
     fnUpdateState : function(item, index) {
       var self = this;
       $.ajax({
-        url: "/order/update.dox",
+        url: "/order/updateOrderInfo.dox",
         dataType: "json",
         type: "POST",
         data: {
-          oNo: item.oNo,
+          buyNo: item.buyNo,
           dState: item.dState
         },
         success: function(data) {

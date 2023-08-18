@@ -33,20 +33,21 @@
 	    WHERE DU_NO = #{duNo}
 	</delete>
 	
+	<!-- 주문정보 확인 -->
 	<select id="deliveryListSelect" parameterType="hashmap" resultType="com.example.project.model.Order">
 			SELECT COUNT(*) AS CNT, O.O_NO, O.*, P.*, D.*, U.*, A.*
 			FROM T4_ORDER O
 			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-			INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
 			INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
 			INNER JOIN (
 				SELECT O.O_NO, COUNT(*) AS CNT
 				FROM T4_ORDER O
-				INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+				INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
 				INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
 				WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중', '배송완료') AND O.O_NO = O.O_NO AND EXCHANGE = ''
 				GROUP BY O.O_NO)A ON O.O_NO = A.O_NO
-			WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중', '배송완료')
+			WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중', '배송완료') AND EXCHANGE = ''
 			GROUP BY O.O_NO
 			ORDER BY
 			  CASE D_STATE
@@ -62,8 +63,32 @@
 		SELECT COUNT(*)
 		FROM T4_ORDER O
 		INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-		INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+		INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
 		INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
 		WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중', '배송완료')
+	</select>
+	
+	<!-- 주문번호별 배송 현황 -->
+	<select id="deliveryInfoSelect" parameterType="hashmap" resultType="com.example.project.model.Order">
+		SELECT *
+		FROM T4_ORDER O
+		INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+		INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
+		INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
+		INNER JOIN (
+			SELECT O.O_NO, COUNT(*) AS CNT
+			FROM T4_ORDER O
+			INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+			WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중', '배송완료') AND O.O_NO = O.O_NO
+			GROUP BY O.O_NO)A ON O.O_NO = A.O_NO
+		WHERE O.O_NO = #{oNo}
+		ORDER BY
+			CASE D_STATE
+			WHEN '상품 준비중' THEN 1
+			WHEN '배송 준비중' THEN 2
+			WHEN '배송중' THEN 3
+			WHEN '배송완료' THEN 4
+		END
 	</select>
 </mapper>

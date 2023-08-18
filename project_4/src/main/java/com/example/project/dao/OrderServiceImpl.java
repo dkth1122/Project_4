@@ -45,5 +45,12 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.updateOrder(map);
 	}
 
+
+	@Override
+	public int updateOrderInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return orderMapper.updateOrderInfo(map);
+	}
+
 	
 }

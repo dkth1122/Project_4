@@ -15,4 +15,7 @@ public interface OrderService {
 	HashMap<String, Object> selectOrderList(HashMap<String, Object> map);
 	
 	int updateOrder(HashMap<String, Object> map);
+	
+	//오더 상태 개별 변경
+	int updateOrderInfo(HashMap<String, Object> map);
 }

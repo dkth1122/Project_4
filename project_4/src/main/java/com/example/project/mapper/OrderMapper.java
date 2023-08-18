@@ -19,6 +19,8 @@ public interface OrderMapper {
 	int selectCnt3(HashMap<String, Object> map);
 	//오더 상태 변경
 	int updateOrder(HashMap<String, Object> map);
+	//오더 상태 개별 변경
+	int updateOrderInfo(HashMap<String, Object> map);
 	
 	
 }

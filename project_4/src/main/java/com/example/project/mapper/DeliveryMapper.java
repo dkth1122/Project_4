@@ -23,4 +23,7 @@ public interface DeliveryMapper {
 	List<Order> deliveryListSelect(HashMap<String, Object> map);
 	//페이징용 카운트
 	int selectCnt4(HashMap<String, Object> map);
+	
+	//주문번호별 배송 현황
+	List<Order> deliveryInfoSelect(HashMap<String, Object> map);
 }
