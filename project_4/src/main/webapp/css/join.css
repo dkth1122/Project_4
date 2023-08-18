@@ -1,5 +1,7 @@
 @charset "EUC-KR";
 
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&family=Vina+Sans&display=swap');
+
 
 		body{
         	box-sizing: border-box; 
@@ -43,13 +45,14 @@
         box-shadow: none;
         padding: 2px;
         width: 2px;
-      
+    
         }
         [type="submit"]{
             width: 20%;
             padding: 10px;
         }
         #wc{
+			
             margin: 30px;
             width: 450px;
         }
@@ -60,14 +63,26 @@
         input:checked + label {
             
             font-weight: bold;
+            
         }
         input{
+			text-align: left;
 			padding: 10px;
 			height: 20px;
 			font-size: 16px;
 			line-height: 20px;
 			margin: 15px;
+			border-top: white;
+			border-left: white;
+			border-right: white;
+
 		}
+	
+	
+		
+input:focus {outline:none;
+ border-bottom: 2px solid rgb(255, 128, 128);}
+ 
 		a{
 			text-decoration: none;
 			color: black;
@@ -80,8 +95,14 @@
 		#evtyn {
 			width: 450px;
 			height: 200px;
-			margin: 0 auto;
+			text-align: center;
 		}
-		
+	
+	#wc{
+		text-align: left;
+	}
+	h2{
+		text-align: center;
+	}
 
 	

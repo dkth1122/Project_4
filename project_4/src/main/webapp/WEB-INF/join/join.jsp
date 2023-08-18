@@ -27,17 +27,18 @@
 <body id="Jbody">
 <div id="app">
 <div id="wc">
-	<h2>회원가입</h2>
-	<div class="input-container">
-    	<input type="text" v-model="user.uId" placeholder="아이디" @keyup="fnIdCheck" maxlength="16"
+	<h2>JOIN US</h2> 
+	<hr>
+	<div class="input-container">아이디
+    	<input type="text" v-model="user.uId" placeholder="영문 소문자/숫자, 4~16자" @keyup="fnIdCheck" maxlength="16"
            :style="{ 'border-color': uIdBorderColor }">
              <i v-if="isAvailable && user.uId !== ''" class="fas fa-check true-sign" style="color: green;"></i>
         	 <i v-else-if="user.uId !== ''" class="fas fa-times red-sign" style="color: red;"></i>
     	 <div v-if="user.uId != ''" :style="{ color: messageColor }">{{message}}</div>
 	</div>
 	
-	<div class="input-container">
-	    <input type="password" v-model="user.uPw" placeholder="비밀번호" maxlength="16">
+	<div class="input-container">비밀번호
+	    <input type="password" v-model="user.uPw" placeholder="영문/숫자/특문, 10자~16자" maxlength="16">
 	    <div v-if="user.uPw !== ''">
         	<progress max="4" :value="passwordStrength()" id="meter"></progress>
     	</div>
@@ -46,14 +47,14 @@
     {{ strengthLabel() }}
 	</div>
 	
-	<div><input type="password" v-model="user.uPw2" placeholder="확인 비밀번호" maxlength="16"></div>
-	<div><input type="text" v-model="user.uName" placeholder="이름" maxlength="8"></div>
-	<div><input type="text" v-model="user.uName2" placeholder="닉네임" maxlength="8"></div>
-	<div><input type="text" v-model="user.uPhone" placeholder="연락처" maxlength="16"></div>
-	<div><input type="text" v-model="user.uEmail" placeholder="이메일주소"></div>
+	<div>비밀번호 확인<input type="password" v-model="user.uPw2" placeholder="확인 비밀번호" maxlength="16"></div>
+	<div>이름<input type="text" v-model="user.uName" placeholder="이름" maxlength="8"></div>
+	<div>닉네임<input type="text" v-model="user.uName2" placeholder="닉네임" maxlength="8"></div>
+	<div>연락처<input type="text" v-model="user.uPhone" placeholder="연락처" maxlength="16"></div>
+	<div>이메일<input type="text" v-model="user.uEmail" placeholder="이메일주소"></div>
 	
 	<div id="evtyn">
-		<div><label><input type="checkbox" v-model="check" @click="fnCheck">전체 동의</label></div>
+		<div><label><input type="checkbox" v-model="check" @click="fnCheck">전체동의</label></div>
 		<div><label><input type="checkbox" v-model="check1"><strong><a href="javascript:;">(필수)개인회원 약관에 동의</a></strong></label></div>
 		<div><label><input type="checkbox" v-model="check2"><strong><a href="javascript:;">(필수)개인회원 수집 및 이용에 동의</a></strong></label></div>
 		<div><label><input type="checkbox" v-model="check3">(선택)마케팅 정보 수신 동의-SMS/MMS</label></div>
