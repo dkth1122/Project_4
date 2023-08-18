@@ -123,5 +123,19 @@ public class ProductServiceImpl implements ProductService{
 			// TODO Auto-generated method stub
 			return productMapper.selectVProductList(map);
 		}
+
+
+		@Override
+		public int insertProductBuy(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.insertProductBuy(map);
+		}
+
+
+		@Override
+		public int insertProductBuy2(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.insertProductBuy2(map);
+		}
 	
 }

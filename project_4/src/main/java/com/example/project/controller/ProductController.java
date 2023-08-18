@@ -194,5 +194,23 @@ public class ProductController {
 		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
+	 
+	 @RequestMapping(value = "/product/insertProductPayment.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String insertProductPayment(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			productService.insertProductBuy(map);
+			resultMap.put("message", "success");
+			return new Gson().toJson(resultMap);
+		}
+	 
+	 @RequestMapping(value = "/product/insertProductPayment2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String insertProductPayment2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			productService.insertProductBuy2(map);
+			resultMap.put("message", "success");
+			return new Gson().toJson(resultMap);
+		}
 	
 }

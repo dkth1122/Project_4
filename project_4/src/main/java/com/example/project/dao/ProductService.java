@@ -37,5 +37,10 @@ public interface ProductService {
 	int removeAllWish(HashMap<String, Object> map);
 	// 장바구니 등록 > 이동 
 	int editcart(HashMap<String, Object> map);
+	
+	//결제시 오더 테이블 등록
+		int insertProductBuy(HashMap<String, Object> map);
+		//결제시 딜리버리 테이블 등록
+		int insertProductBuy2(HashMap<String, Object> map);
 
 }

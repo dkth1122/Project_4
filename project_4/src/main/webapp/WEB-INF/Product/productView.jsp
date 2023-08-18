@@ -7,6 +7,7 @@
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <style>
@@ -175,7 +176,7 @@
 	<div id="container">
 		<div id="imgBox">
 			 <div id="mainImg">
-			 	<img :src="path">
+			 <img :src="path">
 			 </div>
 		</div>	
 		<div id="infoArea" style="display : block;, height: 623px; top:auto; ">
@@ -234,7 +235,7 @@
 			
 			<div class="buyArea" style="position: static; bottom: auto; width: auto; margin-left: 0px;">
 				<div style="position : relative;">
-					<button class="buyButton" @click="" style="display: block;">바로 구매하기</button>
+					<button class="buyButton" style="display: block" @click="requestPay">바로 구매하기</button>
 					<div>
 						<button class="button" @click="" >장바구니 담기</button><button class="button">위시리스트 담기</button>
 					</div>
@@ -383,7 +384,9 @@
 </div>
 </body>
 </html>
-<script type="text/javascript">
+<script>
+const userCode = "imp36711884";
+IMP.init(userCode);
 var app = new Vue({
     el: '#app',
     data: {    	
@@ -421,6 +424,45 @@ var app = new Vue({
                 	console.log(self.info);
                 }
             }); 
+        }, requestPay: function(){
+        	  var self = this;
+        	  IMP.request_pay({
+        	    pg: "nice",
+        	    pay_method: "card",
+        	    merchant_uid: 'merchant_' + new Date().getTime(),
+        	    name: '결제테스트',
+        	    amount: self.price,
+        	    buyer_name: self.uId
+        	  }, function (rsp) { // 콜백 함수
+        	    if (rsp.success) {
+        	      console.log("결제 성공");
+        	      console.log(rsp); // 결제 결과 정보 출력
+        	      
+        	      $.ajax({ // 첫 번째 ajax 호출
+        	        url: "/product/insertProductPayment.dox",
+        	        dataType: "json",
+        	        type: "POST",
+        	        data: rsp, {buyNo : data.buyNo},
+        	        success: function (data) {
+        	          // 첫 번째 ajax 호출 성공 후, 두 번째 ajax 호출 수행
+        	          $.ajax({ // 두 번째 ajax 호출
+        	            url: "/product/insertProductPayment2.dox",
+        	            dataType: "json",
+        	            type: "POST",
+        	            data: rsp,
+        	            success: function (data) {
+        	              console.log("결제 정보 저장2 완료");
+        	              alert("결제되었습니다.");
+        	            }
+        	          });
+        	        }
+        	      });
+
+        	    } else {
+        	      console.log("결제 실패");
+        	      console.log(rsp); // 결제 실패 정보 출력
+        	    }
+        	  });
         },
         formatPrice: function(price) {
         	// 가격 포맷 변환을 위한 함수
@@ -464,7 +506,7 @@ var app = new Vue({
 	watch: {
 	    totalPriceCalculation: function(newTotalPrice) {
 	        this.totalPrice = newTotalPrice.toLocaleString();
-	    },
+	    }
 	},
     created: function() {
       var self = this;
