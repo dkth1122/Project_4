@@ -20,8 +20,24 @@ public class Product {
 	private int afNo;
 	private String pImg;
 	private String path;
+	 
+	// order 구매내역 조인용
+	private String oNo;
+	private String oDate;
 	
 	
+	public String getoNo() {
+		return oNo;
+	}
+	public void setoNo(String oNo) {
+		this.oNo = oNo;
+	}
+	public String getoDate() {
+		return oDate;
+	}
+	public void setoDate(String oDate) {
+		this.oDate = oDate;
+	}
 	public String getPath() {
 		return path;
 	}

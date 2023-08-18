@@ -10,9 +10,27 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <style type="text/css">
+.swiper-container {
+	height:420px;
+	border:5px solid silver;
+	border-radius:7px;
+	box-shadow:0 0 20px #ccc inset;
+}
+.swiper-slide {
+	text-align:center;
+	display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	align-items:center; /* 위아래 기준 중앙정렬 */
+	justify-content:center; /* 좌우 기준 중앙정렬 */
+}
+.swiper-slide img {
+	box-shadow:0 0 5px #555;
+	max-width:100%; /* 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
+	/* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
+}
 .b{ 
 
 	height: 350px;
@@ -203,23 +221,32 @@
 
 						<div class="View">
 							<div class="lowerBox">찜목록</div>
-						<div class="slide_wrapper_main1">
-						    <div class="slide_wrapper1">
-						        <ul class="slides1">
-						            <li v-for="(item, index) in 12">
-						                <div class="c">
-						                    <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
-						                    <div class="justBox">V (BTS) 'Layover' (Set) + 'Layover' (Weverse Albums ver.) Set</div>
-						                    <div class="justpay">\ 13000</div>
-						                </div>
-						            </li>
-						        </ul>
-						    </div>
-						    <p class="controls1">
-						        <a class="next_prev" href="Javascript:;"><i class="fa-solid fa-chevron-left  prev1"></i></a>
-						        <button v-for="(item, index) in 12" class="button+index button"></button>
-						        <a class="next_prev" href="Javascript:;"><i class="fa-solid fa-chevron-right  next1"></i></a>
-						    </p>
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide"><img src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								<div class="swiper-slide" style="font-size:50pt;">- 끝 -</div>
+							</div>
+						
+							<!-- 네비게이션 -->
+							<div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+							<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+						
+							<!-- 페이징 -->
+							<div class="swiper-pagination"></div>
 						</div>
 
 							<div v-if="false">

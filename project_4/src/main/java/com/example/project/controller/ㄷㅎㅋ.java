@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.project.dao.DeliveryService;
 import com.example.project.dao.InquiryService;
 import com.example.project.dao.OrderService;
-import com.example.project.dao.ProductService;
-import com.example.project.model.DeliveryUser;
-import com.example.project.model.Order;
+import com.example.project.dao.dd;
+import com.example.project.model.Product;
 import com.example.project.model.Wish;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpSession;
@@ -32,19 +29,19 @@ public class ㄷㅎㅋ {
 	HttpSession session;
 	
 	@Autowired
-	OrderService orderService;
-	
-	@Autowired
-	DeliveryService deliveryService;
-	
-	@Autowired
-	InquiryService inquiryService;	
+	dd dd;
 
-	@Autowired
-	ProductService productService;
-
+	
+	@RequestMapping(value = "/mypag/Orderp.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Product> list = dd.searchOrderp(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
 		
-		
+	
 		
 	
 		

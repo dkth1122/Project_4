@@ -115,8 +115,13 @@
 					<div id="right">
 
 						<div class="View">
-							 	구매내역 나오게
-							</div>
+							<div v-for="item in list">
+								{{item.oNo}}
+								{{item.oDate}}
+								{{item.pName}}
+								{{item.price}}
+							</div>	 	
+						
 						</div>
 
 						
@@ -141,7 +146,7 @@
 			exchange : "",
 			refund : "",
 			list : []
-		},
+		}, 
 		methods : {
 			fnGetList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
 				var self = this;
@@ -153,6 +158,20 @@
 					data : nparmap,
 					success : function(data) {						
 						self.info = data.findPw;
+						self.fnOrderList();
+					}
+				});
+			},
+			fnOrderList : function() { // 사용자 구매 내역 
+				var self = this;
+				var nparmap = {uId : self.uId};				
+				$.ajax({
+					url : "/mypag/Orderp.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {						
+						self.list = data.list;
 					}
 				});
 			},
