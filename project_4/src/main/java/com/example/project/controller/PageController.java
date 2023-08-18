@@ -36,7 +36,7 @@ public class PageController {
 	
 	@RequestMapping("/test.do") 
     public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/test";
+        return "/page/test";
     }
 	@RequestMapping("/header.do") 
 	public String header(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
@@ -45,6 +45,10 @@ public class PageController {
 	@RequestMapping("/home.do") 
 	public String home(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/page/home";
+	}
+	@RequestMapping("/home2.do") 
+	public String home2(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/page/home2";
 	}
 	
 	@RequestMapping("/faq.do") 

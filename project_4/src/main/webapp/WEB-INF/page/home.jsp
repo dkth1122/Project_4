@@ -10,6 +10,7 @@
 <style>
 <!-- 슬라이드 영역 -->
 
+
 .slider {
 	width: 640px;
 	height: 480px;
@@ -205,7 +206,7 @@ transform: translate(50%, -50%);
 	background-size: contain;
 }
 
-.ostimg .img3 {
+.ostimg .imgse {
 	background: url(img/homeimg/bts_album.gif);
 	background-size: contain;
 	width: 370px;
@@ -508,7 +509,7 @@ img.imgslide3 {
 <body>
 
 	<!-- !!!!!!!!!!!!!!!!!!!!!    슬라이더 !!!!!!!!!!!!!!!!!! -->
-	<div class="slider">
+		<div class="slider">
 		<input type="radio" name="slide" id="slide1" checked=""> <input
 			type="radio" name="slide" id="slide2"> <input type="radio"
 			name="slide" id="slide3"> <input type="radio" name="slide"
@@ -525,7 +526,7 @@ img.imgslide3 {
 			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
 			<label for="slide5">&nbsp;</label>
 		</div>
-
+</div>
 		
 
 		<!-- !!!!!!!!!!!!!!!!!!!!  뉴 아이템 !!!!!!!!!!!!!!!!!!!!!!! -->

@@ -13,7 +13,7 @@ body {
     font-family: Graduate, Kelly Slab, Aldrich;
     font-size: 1.1em;
     color: #000;
-    display: flex;
+  
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -137,7 +137,7 @@ nav .menu .depths li:hover a {
  margin: 0xp;
 }
 #logo{
-margin-left : 455px;
+margin-left : 400px;
 	width: 100px;
 	height: auto;
 	margin-top:45px;
