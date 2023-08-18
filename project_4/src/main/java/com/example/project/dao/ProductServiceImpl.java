@@ -117,5 +117,11 @@ public class ProductServiceImpl implements ProductService{
 			resultMap.put("cnt", productMapper.selectCnt(map));
 			return resultMap;
 		}
+		
+		@Override
+		public List<Product> selectVProductList(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.selectVProductList(map);
+		}
 	
 }

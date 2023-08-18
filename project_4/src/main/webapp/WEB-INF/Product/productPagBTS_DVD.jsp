@@ -166,7 +166,7 @@ padding-right :30px;
                    <div v-for="item in list">
                    	 	<div class="magin body2" style="width: 300px; height: 400px;  ">
                         	<div class="productImg">                        	 
-                        	<img id="dynamic_img" class="box_img" :src="item.pImg"> 
+                        	<img id="dynamic_img" class="box_img" > 
                         	</div>
                         	<div id="pname" class="pname">{{item.pName}}</div>
                         	<div class="price">\ {{item.price}}</div>
@@ -194,16 +194,17 @@ var app = new Vue({
     	
     },
     methods: {
+    	
     	fnGetList : function(){
             var self = this;
-            var nparmap = {category :self.category ,  artist : self.artist}
-            
+            var nparmap = {}
+            console.log("Dfd");
             $.ajax({
-                url : "/product/list.dox",
+                url : "/mypag/selectVProductList.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
-                success : function(data) {                 	
+                success : function(data) {    
                 	self.list = data.list;                	
                 	 
                 	

@@ -20,6 +20,7 @@ import com.example.project.dao.ABoardService;
 import com.example.project.dao.ProductService;
 import com.example.project.model.ABoard;
 import com.example.project.model.Product;
+import com.example.project.model.Wish;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -183,5 +184,15 @@ public class ProductController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	
+	//마이페이지 찜목록 리스트
+	 @RequestMapping(value = "/mypag/selectVProductList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String selectVProductList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Product> list = productService.selectVProductList(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
 	
 }

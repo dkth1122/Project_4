@@ -16,6 +16,8 @@ public interface ProductMapper {
 	
 	//상품 리스트
 	List<Product>selectProductList(HashMap<String, Object> map);
+
+	List<Product>selectVProductList(HashMap<String, Object> map);
 	
 	//상품페이징용 갯수
 	int selectCnt(HashMap<String, Object> map);

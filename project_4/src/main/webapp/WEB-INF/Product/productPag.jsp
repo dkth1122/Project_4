@@ -51,7 +51,7 @@
         </div>
             <div id="header" >
             
-                <%@ include file="../hd.jsp" %>
+   
                 
             </div>
 
