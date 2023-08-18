@@ -37,6 +37,16 @@ public class StaffController {
 		
 		return "/Staff/staff-main";
 	}
+	@RequestMapping("/staff/home.do") 
+	public String home(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		
+		return "/Staff/staff-home";
+	}
+	@RequestMapping("/staff/header.do") 
+	public String header(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		
+		return "/Staff/staff-header";
+	}
 	@RequestMapping("/staff/Management.do") 
 	public String Management(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		

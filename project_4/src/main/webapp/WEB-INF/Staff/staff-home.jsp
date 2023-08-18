@@ -88,31 +88,12 @@
 <div id="app">
 	<div class="mainBox">
 	
-	<div class="mainPos2">직원 관리</div>
-<hr>	
-    <table>
-        <tr>
-            <th></th>
-            <th>이름</th>
-            <th>사번</th>
-            <th>연락처</th>
-            <th>부서</th>
-        </tr>
+	<div class="mainPos2">기본화면</div>
+<hr>
 
-        <tr v-for="(item, index) in list">
-            <td><input type="radio" :value="item.sNo" v-model="selectItem"></td>
-            <td>{{item.sName}}</td>
-            <td>{{item.sNo}}</td>
-            <td>{{item.sPhone}}</td>
-            <td>{{item.sPart}}</td>
-        </tr>
-
-    </table>
-    <div class="mainPos1">
-    <button @click="fnStaffUpdate">수정</button>
-    <button @click="fnStaffDelete">삭제</button>
-    <button @click="fnStaffAdd">직원추가</button>
-	</div>
+<img class="headerImg" src="../img/staffImg/staffMainHomeImg.jpg">
+    
+   
     </div>
 </div>
 </body>
@@ -137,42 +118,6 @@ var app = new Vue({
                     self.list = data.list;
                 }
             });
-        },
-        fnStaffAdd : function(){
-            var self = this;
-            window.open("../staff/add.do", "popup1", "width=700,height=500,left=500,top=100");
-        },
-        fnStaffUpdate : function(item){
-            var self = this;
-            if (self.selectItem == "") {
-                alert("수정할 사원을 선택해주세요.");
-                return;
-            }
-            window.open("../staff/edit.do?sNo=" + self.selectItem, "popup2", "width=700,height=500,left=500,top=100");
-        },
-        fnStaffDelete : function () {
-            var self = this;
-            if (self.selectItem == "") {
-                alert("삭제할 사원을 선택해주세요.");
-                return;
-            }
-            if(!confirm("정말 삭제하시겠습니까?")){
-                return;
-            }
-            var nparmap = {sNo : self.selectItem};
-            $.ajax({
-                url: "/staff/delete.dox",
-                dataType: "json",
-                type: "POST",
-                data: nparmap,
-                success: function (data) {
-                    alert("삭제되었습니다.");
-                    self.fnGetList();
-                }
-            });
-        },
-        fnBack : function(){
-            location.href = '../staff/main.do';
         }
     }, // methods
     created : function() {
