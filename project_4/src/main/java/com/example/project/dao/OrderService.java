@@ -13,4 +13,6 @@ public interface OrderService {
 	List<Order> orderProductSearch(HashMap<String, Object> map);
 	
 	HashMap<String, Object> selectOrderList(HashMap<String, Object> map);
+	
+	int updateOrder(HashMap<String, Object> map);
 }

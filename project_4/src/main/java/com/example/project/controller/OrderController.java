@@ -42,4 +42,13 @@ public class OrderController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	@RequestMapping(value = "/order/update.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String complainUpdate(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		orderService.updateOrder(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	
 }

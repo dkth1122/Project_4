@@ -74,6 +74,13 @@
 			<th>상품명</th>
 			<th>상품코드</th>
 			<th>현재상태</th>
+			<th>주문수량</th>
+			<th>주문자명</th>
+			<th>주문자 연락처</th>
+			<th>주문자 주소1</th>
+			<th>주문자 주소2</th>
+			<th>정제 주소</th>
+			<th>배송 메세지</th>
 			
 		</tr>
 		
@@ -83,11 +90,13 @@
 			<td>{{item.pNo}}</td>
 			<td>
 				<select v-model="item.dState" @change="fnUpdateState(item, $index)">
-					<option value="업체확인중">업체확인중</option>
-					<option value="상품 준비중">상품 준비중</option>
-					<option value="업체 사유로 거절">업체 사유로 거절</option>
+	                <option value="상품 준비중">상품 준비중</option>
+	                <option value="배송 준비중">배송 준비중</option>
+	                <option value="배송중">배송중</option>
+	                <option value="배송완료">배송완료</option>
+	                <option value="업체 사유로 거절">업체 사유로 거절</option>
 					<option value="고객 사유로 거절">고객 사유로 거절</option>
-					<option value="배송사 사유로 거절">고객 사유로 거절</option>
+					<option value="배송사 사유로 거절">배송사 사유로 거절</option>
 				</select>
 			</td>
 		</tr>
@@ -128,7 +137,7 @@ var app = new Vue({
     		var lastNum = 10;
             var nparmap = {startNum : startNum, lastNum : lastNum};
             $.ajax({
-                url : "/order/list.dox",
+                url : "/delivery/list.dox",
                 dataType:"json",
                 type : "POST", 
                 data : nparmap,
@@ -147,7 +156,7 @@ var app = new Vue({
   			var lastNum = 10;
   			var nparmap = {startNum : startNum, lastNum : lastNum};
   			$.ajax({
-  				url : "/order/list.dox",
+  				url : "/delivery/list.dox",
   				dataType : "json",
   				type : "POST",
   				data : nparmap,

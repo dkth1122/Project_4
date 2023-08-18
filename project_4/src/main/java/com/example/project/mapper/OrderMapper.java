@@ -17,6 +17,8 @@ public interface OrderMapper {
 	List<Order> selectOrderList(HashMap<String, Object> map);
 	//페이징용 카운트
 	int selectCnt3(HashMap<String, Object> map);
+	//오더 상태 변경
+	int updateOrder(HashMap<String, Object> map);
 	
 	
 }

@@ -23,6 +23,15 @@ public class DeliveryController {
 	@Autowired
 	DeliveryService deliveryService;
 	
+	@RequestMapping("/delivery/list.do") 
+    public String mainGBoard(Model model) throws Exception{
+
+        return "/Delivery/delivery-list";
+    }
+	
+	
+	
+	
 	/* 
 	 * @RequestMapping("mypag/infoAddr.do") public String
 	 * infoAddr(HttpServletRequest request, Model model, @RequestParam

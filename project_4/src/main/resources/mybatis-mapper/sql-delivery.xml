@@ -32,4 +32,20 @@
 		DELETE FROM T4_DELIVERY_USER
 	    WHERE DU_NO = #{duNo}
 	</delete>
+	
+	<select id="deliveryList" parameterType="hashmap" resultType="com.example.project.model.Order">
+		SELECT *
+		FROM T4_ORDER O
+		INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+		INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+		INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
+		WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중', '배송완료')
+		ORDER BY
+		  CASE D_STATE
+		    WHEN '상품 준비중' THEN 1
+		    WHEN '배송 준비중' THEN 2
+		    WHEN '배송중' THEN 3
+		    WHEN '배송완료' THEN 4
+		  END
+	</select>
 </mapper>
