@@ -8,6 +8,9 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+	body {
+		background-color: #eae2eb;
+	}
 
 	span{
 		color: #ccc;

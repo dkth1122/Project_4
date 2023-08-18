@@ -68,7 +68,7 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                		self.user = data.findPw;
-               		$.pageChange("login.do", {uId : ""});
+               		$.pageChange("../home.do", {uId : ""});
                		console.log(self.user);
                 }
             });

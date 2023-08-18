@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project.mapper.DDDDD">
+	<!-- 주문내역 조회  -->
+	<select id="selectOrderp" parameterType="hashmap" resultType="com.example.project.model.Product">
+		SELECT *
+		FROM
+	    T4_ORDER O INNER JOIN  T4_PRODUCT P
+	    ON O.P_NO = P.P_NO
+	    WHERE U_ID = #{uId}
+	</select>
+	<!-- 사용자 장바구니 출력 -->
+	<select id="selectcartlist" parameterType="hashmap" resultType="com.example.project.model.Product">
+		SELECT *
+		FROM
+		T4_CART C INNER JOIN  T4_PRODUCT P
+	    ON C.P_NO = P.P_NO
+	    WHERE U_ID = #{uId}		
+	</select>
+	
+</mapper>

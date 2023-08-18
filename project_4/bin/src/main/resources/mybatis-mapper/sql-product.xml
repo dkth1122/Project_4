@@ -19,6 +19,10 @@
     	</if> 
     	LIMIT #{startNum}, #{lastNum}
 	</select>
+	<!-- 상품페이지 출력 -->
+	<select id="selectVProductList" parameterType="hashmap" resultType="com.example.project.model.Product">
+		SELECT * FROM T4_PRODUCT
+	</select>
 	
 	<!-- 페이징용 갯수 -->
 	<select id="selectCnt" resultType="int">
@@ -68,9 +72,9 @@
 	
 	<!-- 이미지등록 -->
 	<insert id="insertProductImg" parameterType="hashmap" >
-		INSERT INTO T4_PRODUCT_IMG(P_NO, path)
+		INSERT INTO T4_PRODUCT_IMG(P_NO, path, class)
 		VALUES
-		(#{pNo}, #{path})
+		(#{pNo}, #{path}, 'Y')
 	</insert>
 	
 	

@@ -13,6 +13,9 @@
 		color: #ccc;
 		font-size: small;
 	}
+		body {
+		background-color: #eae2eb;
+	}
 	
 </style>
 </head>

@@ -164,7 +164,7 @@ padding-right :30px;
                 <div class="body2 " style=" width: 1000px; height: 2000px;">
 
                    <div v-for="item in list">
-                   	 	<div class="magin body2" style="width: 300px; height: 400px;  ">
+                   	 	<div @click="productView(item)" class="magin body2" style="width: 300px; height: 400px;  ">
                         	<div class="productImg">                        	 
                         	<img id="dynamic_img" class="box_img" > 
                         	</div>
@@ -191,6 +191,7 @@ var app = new Vue({
     	category : "DVD",
     	artist : "BTS",
     	selectedSort: "", 
+    	pName : ""
     	
     },
     methods: {
@@ -238,6 +239,10 @@ var app = new Vue({
                 this.sortHighToLow();
             }
         },
+        productView : function(item){
+        	var self = this;
+        	$.pageChange("productView.do", {pNo : item.pNo});        	
+        }
         
         
     },

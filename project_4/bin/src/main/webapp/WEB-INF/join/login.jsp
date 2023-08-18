@@ -46,12 +46,18 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
+                	console.log(data);
                 	if(data.success){
-                		alert(data.message);
-                		$.pageChange("main.do", {uId : self.uId});
-                		
+                		if(self.uId === "admin"){
+                			alert(self.uId+"님 환영합니다!");
+                		 	$.pageChange("/staff/login.do", {uId : self.uId}); 
+                		}else{
+	                		alert(data.message);
+	                	 	$.pageChange("main.do", {uId : self.uId}); 
+                		}
                 	} else {
                 		alert(data.message);
+                		console.log(data.uId);
                 	}
                 	
                 }

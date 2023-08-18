@@ -9,17 +9,29 @@
 <title>Insert title here</title>
 <style>
         body{
-               background-color: #decfdf;
+     		   background-color: #decfdf;
+               
            }
         #app{
-               width: 1200px;
+               width: 1000px;
                margin: 0px auto;
+               text-align: center;
+
+           }
+       .mainBox{
+     		   width : 1000px;
+     		   height : 550px;
+               position: relative;
+               top : -550px;
+               left: 200px;
+               text-align: center;
            }
        table{
            border : 1px solid black;
            border-collapse: collapse;
            text-align : center;
            background-color: #eae2eb;
+           margin: 0 auto;
        }
        th, td {
            border : 1px solid black;
@@ -28,7 +40,7 @@
        .pagination {
            margin:24px;
            display: inline-flex;
-           
+
        }
        ul {
        }
@@ -56,68 +68,83 @@
        .pagination li.active a {
            color:#fff;
        }
-       button{
+       .mainPos1 > button{
         margin-top: 10px;
         margin-bottom: 10px;
         margin-left: 20px;
-
        }
-   </style>
-</style>
+       hr{
+        	width: 800px;
+        	margin-top : -50px;
+        	margin-bottom: 20px;
+        }
+        .mainPos2{
+        	position: relative;
+        	top : -55px;
+        	left: 350px;
+        	color: white;
+        }
+ </style>
 </head>
 <body>
+<%@ include file="staff-header.jsp" %> 
+<%@ include file="staff-left.jsp" %> 
 <div id="app">
-
-	<table>
-		<tr>
-			<th></th>
-			<th>이름</th>
-			<th>사번</th>
-			<th>연락처</th>
-			<th>부서</th>
-		</tr>
-		
-		<tr v-for="(item, index) in list">
-			<td><input type="radio" :value="item.sNo" v-model="selectItem"></td>
-			<td>{{item.sName}}</td>
-			<td>{{item.sNo}}</td>
-			<td>{{item.sPhone}}</td>
-			<td>{{item.sPart}}</td>
-		</tr>
+	<div class="mainBox">
 	
-	</table>
-	<button @click="fnStaffUpdate">수정</button>
-	<button @click="fnStaffDelete">삭제</button>	
-	<button @click="fnStaffAdd">직원추가</button>
+	<div class="mainPos2">직원 관리</div>
+<hr>	
+    <table>
+        <tr>
+            <th></th>
+            <th>이름</th>
+            <th>사번</th>
+            <th>연락처</th>
+            <th>부서</th>
+        </tr>
 
-	<div><button @click="fnBack">되돌아가기</button></div>
+        <tr v-for="(item, index) in list">
+            <td><input type="radio" :value="item.sNo" v-model="selectItem"></td>
+            <td>{{item.sName}}</td>
+            <td>{{item.sNo}}</td>
+            <td>{{item.sPhone}}</td>
+            <td>{{item.sPart}}</td>
+        </tr>
+
+    </table>
+    <div class="mainPos1">
+    <button @click="fnStaffUpdate">수정</button>
+    <button @click="fnStaffDelete">삭제</button>
+    <button @click="fnStaffAdd">직원추가</button>
+	</div>
+    </div>
 </div>
 </body>
 </html>
 <script>
 var app = new Vue({
-	el : '#app',
-	data : {
-		list : [],
-		selectItem : ""
-	},// data
-	methods : {
-		fnGetList : function(){
+    el : '#app',
+    data : {
+        list : [],
+        selectItem : ""
+    },// data
+    methods : {
+        fnGetList : function(){
             var self = this;
             var nparmap = {};
             $.ajax({
                 url : "/staff/list.dox",
-                dataType:"json",	
-                type : "POST", 
+                dataType:"json",
+                type : "POST",
                 data : nparmap,
-                success : function(data) { 
-                	self.list = data.list;
+                success : function(data) {
+                    self.list = data.list;
                 }
-            }); 
+            });
         },
         fnStaffAdd : function(){
-        	var self = this;
-         	window.open("../staff/add.do", "popup1", "width=700,height=500,left=500,top=100");
+            var self = this;
+            window.open("../staff/add.do", "popup1", "width=700,height=500,left=500,top=100");
         },
         fnStaffUpdate : function(item){
             var self = this;
@@ -149,12 +176,12 @@ var app = new Vue({
             });
         },
         fnBack : function(){
-        	location.href = '../staff/main.do';
+            location.href = '../staff/main.do';
         }
-	}, // methods
-	created : function() {
-		var self = this;
-		self.fnGetList();
-	}// created
+    }, // methods
+    created : function() {
+        var self = this;
+        self.fnGetList();
+    }// created
 });
 </script>

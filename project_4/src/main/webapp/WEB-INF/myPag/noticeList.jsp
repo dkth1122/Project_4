@@ -13,10 +13,37 @@
  <meta charset="UTF-8">
   <title>마이페이지</title>
   <style type="text/css">
+  #wc, table{
+  	margin: 0px auto;
+  	text-align: center;  
+  }
+  template{
+  width: 1200px;
+
+  }
+  .acb{
+  padding : 20px;
+   font-size : 2rem;
+   text-align : left;
+  	margin: 0px auto;
+  	width: 1500px;
+  	border-bottom: 1px solid #eee;
+  	display: flex;
+
+  }
+  #contaienr{
+  	width: 100%;
+  	display: flex;
+  	flex-direction: column;
+  }
+ 
   	#notice{
-  		margin-top : 150px;
-		width: 1200px;
-		text-align: center;  		
+  	font-weight : bold;
+  	font-size : 4rem;
+  	margin-top : 150px;
+	text-align: center;
+	margin-bottom: 65px;
+				
   	}
   <!-- 페이징 추가 2-->
 	.pagination {
@@ -50,20 +77,83 @@
 	.pagination li.active a {
 	    color:#fff;
 	}
+	.date{
+		text-align: right;
+	}
+	.column-width-5{
+	  width: 10%; /* 첫 번째 열의 너비 20% */
+	}
+	.column-width-60 {
+    width: 60%; /* 두 번째 열의 너비 20% */
+	}
+	
+	.column-width-25{
+	    width: 25%; /* 세 번째 열의 너비 50% */
+	}
+	
+	.column-width-10 {
+	    width: 10%; /* 네 번째 열의 너비 10% */
+	    text-align: center;
+	}
+	.notice{
+	background-color : #E6CDFF;
+	  padding : 20px;
+   font-size : 2rem;
+   text-align : left;
+  	margin: 0px auto;
+  	width: 1500px;
+  	border-bottom: 1px solid #fff;
+  	display: flex;
+	}
   </style>
 </head>
 <body>
 <div id="app">
+<div id="container">
     <div id="wc">
-    	<h1 id="notice">Notice</h1>
+    	<div id="notice">Notice</div>
+    	<table>
+    		<tr class="notice"> 
+			    <th class="column-width-5">Notice</th>
+			    <th class="column-width-60">무슨말을 넣을까요?</th>
+			    <th class="column-width-25">2011-08-18</th>
+			    <th class="column-width-10">∞</th>
+			</tr>
+			<tr class="notice"> 
+			    <th class="column-width-5">Notice</th>
+			    <th class="column-width-60">무슨말을 넣을까요?</th>
+			    <th class="column-width-25">2023-03-12</th>
+			    <th class="column-width-10">∞</th>
+			</tr>
+			<tr class="notice"> 
+			    <th class="column-width-5">Notice</th>
+			    <th class="column-width-60">무슨말을 넣을까요?</th>
+			    <th class="column-width-25">2020-01-17</th>
+			    <th class="column-width-10">∞</th>
+			</tr>
+			<tr class="notice"> 
+			    <th class="column-width-5">Notice</th>
+			    <th class="column-width-60">무슨말을 넣을까요?</th>
+			    <th class="column-width-25">2023-08-18</th>
+			    <th class="column-width-10">∞</th>
+			</tr>
+    		
+    		<tr class="acb" v-for="item in list">
+    			<td class="column-width-5">{{item.aNo}}. </td>
+    			<td class="column-width-60"><a href="#" @click="noticeView(item)">{{item.aTitle}}</a></td>
+    			<td class="column-width-25">{{formatWithoutTime(item.aDate)}}</td>
+    			<td class="column-width-10">{{item.hits}}</td>
+    		</tr>
     	
-    	<div v-for="item in list">
-    		<div>{{item.aNo}}
+    	</table>
+    	
+    	<!-- <div class="acb" v-for="item in list">
+    		<div>{{item.aNo}}. 
     			<span @click="noticeView(item)">{{item.aTitle}}</span>
     			<span>{{formatWithoutTime(item.aDate)}}</span>
     			<span>{{item.hits}}</span>
     		</div>
-    	</div>    	
+    	</div> -->    	
     	<template>
 	  		<paginate
 			    :page-count="pageCount"
@@ -77,6 +167,7 @@
 		  </paginate>
 		</template>
 	</div>
+  </div>
 </div>
 </body>
 </html>
@@ -149,7 +240,7 @@ var app = new Vue({
     created: function() {
       var self = this;
       self.fnGetList();
-      // Vue.js ì½ë ìì± ê°ë¥
+      
     }
 });
 </script>

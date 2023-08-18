@@ -29,10 +29,12 @@
 		SELECT COUNT(*) FROM T4_PRODUCT
 	</select>
 	
-	<!-- 상품 조회-->
+	<!-- 상품 조회 이미테이블 조인 수정 여대현-->
 	<select id="selectProductInfo" parameterType="hashmap" resultType="com.example.project.model.Product">
-		SELECT * FROM T4_PRODUCT
-		WHERE P_NO = #{pNo}
+		SELECT * 
+		FROM T4_PRODUCT P
+		LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+		WHERE P.P_NO = #{pNo}
 	</select>
 	
 	<!-- 아티스트별 상품 조회 > 어드민 페이지 -->

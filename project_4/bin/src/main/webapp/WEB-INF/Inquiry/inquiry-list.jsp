@@ -10,47 +10,79 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-	.pagination {
-        margin:24px;
-        display: inline-flex;
-        
-    }
-    ul {
-    }
-	.pagination li {
-	    min-width:32px;
-	    padding:2px 6px;
-	    text-align:center;
-	    margin:0 3px;
-	    border-radius: 6px;
-	    border:1px solid #eee;
-	    color:#666;
-	    display : inline;
-	}
-	.pagination li:hover {
-	    background: #E4DBD6;
-	}
-	.page-item a {
-	    color:#666;
-	    text-decoration: none;
-	}
-	.pagination li.active {
-	    background-color : #E7AA8D;
-	    color:#fff;
-	}
-	.pagination li.active a {
-	    color:#fff;
-	}
-</style>
+        body{
+     		   background-color: #decfdf;
+               
+           }
+        #app{
+               width: 1000px;
+               margin: 0px auto;
+
+           }
+       .mainBox{
+     		   width : 1000px;
+     		   height : 550px;
+               position: relative;
+               top : -550px;
+               left: 200px;
+               text-align: center;
+           }
+       table{
+           border : 1px solid black;
+           border-collapse: collapse;
+           text-align : center;
+           background-color: #eae2eb;
+           margin: 0 auto;
+       }
+       th, td {
+           border : 1px solid black;
+           padding : 5px 10px;
+       }
+       .pagination {
+           margin:24px;
+           display: inline-flex;
+
+       }
+       ul {
+       }
+       .pagination li {
+           min-width:32px;
+           padding:2px 6px;
+           text-align:center;
+           margin:0 3px;
+           border-radius: 6px;
+           border:1px solid #eee;
+           color:#666;
+           display : inline;
+       }
+       .pagination li:hover {
+           background: #E4DBD6;
+       }
+       .page-item a {
+           color:#666;
+           text-decoration: none;
+       }
+       .pagination li.active {
+           background-color : #E7AA8D;
+           color:#fff;
+       }
+       .pagination li.active a {
+           color:#fff;
+       }
+       .mainPos1 > button{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+       }
+       hr{
+        	width: 800px;
+        }
+        .mainPos2{
+        	position: relative;
+        	left: 350px;
+        	color: white;
+        }
+ </style>
 </head>
 <body>
 <div id="app">
@@ -126,7 +158,6 @@ var app = new Vue({
             }); 
         },
         fnAnswer : function(item){
-            var self = this;
             var self = this;
        	 window.open("../inquiry/view.do?iNo=" + item.iNo, "stockPopup", "width=700,height=800,left=500,top=100");
           },

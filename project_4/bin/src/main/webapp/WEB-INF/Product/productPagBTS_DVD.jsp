@@ -51,7 +51,7 @@ padding-right :30px;
                       <li ><img src="https://i.ytimg.com/vi/AKHJMLeZ4N8/maxresdefault.jpg"></li>
                       <li ><img src="https://cdn.topstarnews.net/news/photo/202111/14647891_721352_4352.jpg"></li>
                       <li ><img src="https://i.pinimg.com/originals/3d/04/83/3d0483a943e61b82fb4740601bbebd8c.jpg"></li>
-               
+					</ul>
                 </div>
                 <p class="controls">
                 <a class="next_prev" href="Javascript:;"><i class="fa-solid fa-chevron-left fa-2xl prev"></i></a>
@@ -166,7 +166,7 @@ padding-right :30px;
                    <div v-for="item in list">
                    	 	<div class="magin body2" style="width: 300px; height: 400px;  ">
                         	<div class="productImg">                        	 
-                        	<img id="dynamic_img" class="box_img" :src="item.pImg"> 
+                        	<img id="dynamic_img" class="box_img" > 
                         	</div>
                         	<div id="pname" class="pname">{{item.pName}}</div>
                         	<div class="price">\ {{item.price}}</div>
@@ -194,16 +194,17 @@ var app = new Vue({
     	
     },
     methods: {
+    	
     	fnGetList : function(){
             var self = this;
-            var nparmap = {category :self.category ,  artist : self.artist}
-            
+            var nparmap = {}
+            console.log("Dfd");
             $.ajax({
-                url : "/product/list.dox",
+                url : "/mypag/selectVProductList.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
-                success : function(data) {                 	
+                success : function(data) {    
                 	self.list = data.list;                	
                 	 
                 	

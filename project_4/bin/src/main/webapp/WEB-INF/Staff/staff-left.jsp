@@ -7,37 +7,36 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<style>
-        body{
-            background-color: #decfdf;
-        }
-        #app{
-            width: 1200px;
-            margin: 0px auto;
-        }
-        .but1 > button{
-            width: 200px;
-            height: 200px;
-            display: inline-block;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            border-radius: 20px;
-            border: none;
-        }
+    <style>
+    body{
+    	width: 200px;
+    }
+	#app2 {
+	  width: 200px;
+	  margin-top: 50px;
+	}
+	
+	.leftBut1 > button {
+	  background-color: #eddcfd;
+	  width: 200px;
+	  height: 50px;
+	  display: inline;
+	  border-radius: 20px;
+	  border: none;
+	  margin-bottom: 1px;
+	}
+	
+	.leftBut1 > button:hover {
+	  background-color: #d7acff;
+	  color: white;
+	}
 
-        .but1 > button:hover {
-            background-color: #d7acff;
-            color: white;
-
-        }
     </style>
 </head>
 <body>
-<div id="app">
-	<h1> {{sName}}님, 오늘도 열일하세요~! <button @click="fnLogout">로그아웃</button></h1>
-	<div class="but1">
-	<button @click="fnMain">베리페리샵</button>
-	<button @click="fnGBoard">멤버십게시판</button>
+<div id="app2">
+	<div class="leftBut1">
+	<button @click="fnHome">메인 화면</button>
 	<button @click="fnInquiry" v-if="sStatus == 'A' || sStatus == 'C' || sStatus == 'M'">1:1 문의</button>
 	<span v-else></span>
 	<button @click="fnComplaint" v-if="sStatus == 'C' || sStatus == 'M'">민원 관리</button>
@@ -60,11 +59,10 @@
 	<span v-else></span>
 	</div>
 </div>
-</body>
 </html>
 <script>
-var app = new Vue({
-	el : '#app',
+var app2 = new Vue({
+	el : '#app2',
 	data : {
 		list : [],
 		sName : "${sName}",
@@ -72,6 +70,9 @@ var app = new Vue({
         sStatus : "${sStatus}"
 	},// data
 	methods : {
+		fnHome : function(){
+            location.href = '../staff/home.do';
+        },
 		fnMain : function() {
 			 window.open('../home.do', '_blank');
 		},
