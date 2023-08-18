@@ -32,7 +32,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/order/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String inquiryList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String orderList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
 		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
@@ -44,7 +44,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/order/update.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String complainUpdate(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String orderUpdate(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		orderService.updateOrder(map);
 		resultMap.put("message", "success");

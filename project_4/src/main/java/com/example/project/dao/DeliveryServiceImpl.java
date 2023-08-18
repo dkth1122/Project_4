@@ -39,6 +39,15 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryMapper.deleteAddr(map);
 	}
 
+	@Override
+	public HashMap<String, Object> deliveryListSelect(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", deliveryMapper.deliveryListSelect(map));
+		resultMap.put("cnt", deliveryMapper.selectCnt4(map));
+		return resultMap;
+	}
+
 	
 	
 }

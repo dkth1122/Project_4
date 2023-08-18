@@ -99,6 +99,13 @@
 					<option value="배송사 사유로 거절">배송사 사유로 거절</option>
 				</select>
 			</td>
+			<td>{{item.oCount}}</td>
+			<td>{{item.uDname}}</td>
+			<td>{{item.uDphone}}</td>
+			<td>{{item.uDaddr}}</td>
+			<td>{{item.uDaddrDetail}}</td>
+			<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
+			<td>{{item.uDmessage}}</td>
 		</tr>
 	
 	</table>
@@ -137,7 +144,7 @@ var app = new Vue({
     		var lastNum = 10;
             var nparmap = {startNum : startNum, lastNum : lastNum};
             $.ajax({
-                url : "/delivery/list.dox",
+                url : "/delivery/listSelect.dox",
                 dataType:"json",
                 type : "POST", 
                 data : nparmap,
@@ -156,7 +163,7 @@ var app = new Vue({
   			var lastNum = 10;
   			var nparmap = {startNum : startNum, lastNum : lastNum};
   			$.ajax({
-  				url : "/delivery/list.dox",
+  				url : "/delivery/listSelect.dox",
   				dataType : "json",
   				type : "POST",
   				data : nparmap,

@@ -13,4 +13,6 @@ public interface DeliveryService {
 	int addAddr(HashMap<String, Object> map);
 	//유저 배송주소록 삭제
 	int deleteAddr(HashMap<String, Object> map);
+	
+	HashMap<String, Object> deliveryListSelect(HashMap<String, Object> map);
 }

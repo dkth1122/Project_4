@@ -30,20 +30,15 @@ public class DeliveryController {
     }
 	
 	
-	
-	
-	/* 
-	 * @RequestMapping("mypag/infoAddr.do") public String
-	 * infoAddr(HttpServletRequest request, Model model, @RequestParam
-	 * HashMap<String, Object> map) throws Exception{ return "/myPag/infoAddr"; }
-	 * 
-	 * @RequestMapping(value = "/delivery/list.dox", method = RequestMethod.POST,
-	 * produces = "application/json;charset=UTF-8")
-	 * 
-	 * @ResponseBody public String infoAddr(Model model, @RequestParam
-	 * HashMap<String, Object> map) throws Exception { HashMap<String, Object>
-	 * resultMap = new HashMap<String, Object>(); List<DeliveryUser> list =
-	 * deliveryService.searchDeliveryUser(map); resultMap.put("list", list); return
-	 * new Gson().toJson(resultMap); }
-	 */
+	@RequestMapping(value = "/delivery/listSelect.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String deliveryList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = deliveryService.deliveryListSelect(map);
+		return new Gson().toJson(resultMap);
+	}
 }
