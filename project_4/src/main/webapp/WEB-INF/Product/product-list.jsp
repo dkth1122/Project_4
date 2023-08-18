@@ -18,7 +18,6 @@
                width: 1000px;
                margin: 0px auto;
                text-align: center;
-               font-size: 13px;
 
            }
        .mainBox{

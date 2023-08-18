@@ -97,8 +97,11 @@
 <%@ include file="../Staff/staff-header.jsp" %>
 <%@ include file="../Staff/staff-left.jsp" %>
 <div id="app">
-
-<table>
+	<div class="mainBox">
+	
+	<div class="mainPos2">공지 관리</div>
+<hr>	
+    <table>
 		<tr>
 			<th>아티스트</th>
 			<th>게시번호</th>
@@ -112,7 +115,6 @@
 			<td><a href="javascript:;" @click="fnABoardView(item)">{{item.aTitle}}</a></td>
 			<td>{{item.aDate}}</td>
 		</tr>
-	
 	</table>
 	
 	<template>
@@ -126,11 +128,10 @@
 	    :container-class="'pagination'"
 	    :page-class="'page-item'">
 	  </paginate>
+	  
 	</template>
-	<div></div>
+		<div></div>
 	<button @click="fnABoardAdd">공지추가</button>
-	<div><button @click="fnBack">되돌아가기</button></div>
-
 	
 </div>
 </body>
