@@ -87,6 +87,7 @@
  </style>
 </head>
 <body>
+<div>
 <%@ include file="staff-header.jsp" %> 
 <%@ include file="staff-left.jsp" %> 
 <div id="app">

@@ -97,7 +97,11 @@
 <%@ include file="../Staff/staff-header.jsp" %>
 <%@ include file="../Staff/staff-left.jsp" %>
 <div id="app">
-	<table>
+	<div class="mainBox">
+	
+	<div class="mainPos2">배송 관리</div>
+<hr>	
+    <table>
 		<tr>
 			<th>주문번호</th>
 			<th>상품명</th>
@@ -139,6 +143,7 @@
 		</tr>
 	
 	</table>
+	
 	<template>
 	  <paginate
 	    :page-count="pageCount"
@@ -150,10 +155,11 @@
 	    :container-class="'pagination'"
 	    :page-class="'page-item'">
 	  </paginate>
+	  
 	</template>
 	
-	<div><button @click="fnBack">되돌아가기</button></div>
-	
+</div>
+
 </div>
 </body>
 </html>

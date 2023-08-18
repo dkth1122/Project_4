@@ -424,46 +424,46 @@ var app = new Vue({
                 	console.log(self.info);
                 }
             }); 
-        }, requestPay: function(){
-        	  var self = this;
-        	  IMP.request_pay({
-        	    pg: "nice",
-        	    pay_method: "card",
-        	    merchant_uid: 'merchant_' + new Date().getTime(),
-        	    name: '결제테스트',
-        	    amount: self.price,
-        	    buyer_name: self.uId
-        	  }, function (rsp) { // 콜백 함수
-        	    if (rsp.success) {
-        	      console.log("결제 성공");
-        	      console.log(rsp); // 결제 결과 정보 출력
-        	      
-        	      $.ajax({ // 첫 번째 ajax 호출
-        	        url: "/product/insertProductPayment.dox",
-        	        dataType: "json",
-        	        type: "POST",
-        	        data: rsp, {buyNo : data.buyNo},
-        	        success: function (data) {
-        	          // 첫 번째 ajax 호출 성공 후, 두 번째 ajax 호출 수행
-        	          $.ajax({ // 두 번째 ajax 호출
-        	            url: "/product/insertProductPayment2.dox",
-        	            dataType: "json",
-        	            type: "POST",
-        	            data: rsp,
-        	            success: function (data) {
-        	              console.log("결제 정보 저장2 완료");
-        	              alert("결제되었습니다.");
-        	            }
-        	          });
-        	        }
-        	      });
-
-        	    } else {
-        	      console.log("결제 실패");
-        	      console.log(rsp); // 결제 실패 정보 출력
-        	    }
-        	  });
-        },
+        }, requestPay : function() {
+            var self = this;
+            IMP.request_pay({
+              pg: "nice",
+              pay_method: "card",
+              merchant_uid : 'merchant_'+new Date().getTime(),
+                 name : '결제테스트',
+                 amount : self.price,
+                 buyer_name : self.uId,
+            }, function (rsp) { // callback
+                if (rsp.success) {
+                  // 결제 성공 시
+              console.log("결제 성공");
+              console.log(rsp); // 결제 결과 정보 출력
+              var self = this;
+              var nparmap = rsp;            
+              $.ajax({
+                  url : "/product/insertProductPayment.dox",
+                  dataType:"json",	
+                  type : "POST", 
+                  data : nparmap,
+                  success : function(data) { 
+                  	self.info = data.info; //사용자
+                  	self.pName = self.info.pName;
+                  	self.price = self.info.price;
+                  	self.formattedPrice = self.formatPrice(self.price); // 가격 포맷 변환
+                  	self.artist = self.info.artist;
+                  	self.path = self.info.path;
+                  	self.category = self.info.category;
+                  	console.log(self.info);
+                  }
+              }); 
+              
+                } else {
+                  // 결제 실패 시
+                    console.log("결제 실패");
+              	console.log(rsp); // 결제 실패 정보 출력
+                }
+            });
+          },
         formatPrice: function(price) {
         	// 가격 포맷 변환을 위한 함수
         	return price.toLocaleString();

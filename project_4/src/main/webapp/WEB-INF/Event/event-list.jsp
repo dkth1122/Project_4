@@ -96,7 +96,12 @@
 <body>
 <%@ include file="../Staff/staff-header.jsp" %>
 <%@ include file="../Staff/staff-left.jsp" %>
+
 <div id="app">
+	<div class="mainBox">
+	
+	<div class="mainPos2">이벤트 관리</div>
+<hr>	
 	<table>
 		<tr>
 			<th>이벤트코드</th>
@@ -118,6 +123,7 @@
 		</tr>
 	
 	</table>
+	
 	<template>
 	  <paginate
 	    :page-count="pageCount"
@@ -129,10 +135,10 @@
 	    :container-class="'pagination'"
 	    :page-class="'page-item'">
 	  </paginate>
+	  
 	</template>
 	
-	<div><button @click="fnEventAdd">이벤트 등록</button></div>
-	<div><button @click="fnBack">되돌아가기</button></div>
+		<div><button @click="fnEventAdd">이벤트 등록</button></div>
 	
 </div>
 </body>
