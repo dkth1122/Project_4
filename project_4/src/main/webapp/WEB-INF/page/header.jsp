@@ -157,15 +157,15 @@ header #container1 {
 				
 					<li><a href="artistpage.do">ARTIST</a>
 						<ul class="depths">
-							<li><a href="#">BTS</a></li>
-							<li><a href="#">LE SSERAFIM</a></li>
-							<li><a href="#">SEVENTEEN</a></li>
-							<li><a href="#">fromis_9</a></li>
-							<li><a href="#">TXT</a></li>
-							<li><a href="#">NewJeans</a></li>
-							<li><a href="#">ENHYPEN</a></li>
-							<li><a href="#">BOYNEXTDOOR</a></li>
-							<li><a href="#">ZICO</a></li>
+							<li><a href="/product/BTS.do">BTS</a></li>
+							<li><a href="/product/LSF.do">LE SSERAFIM</a></li>
+							<li><a href="/product/SVT.do">SEVENTEEN</a></li>
+							<li><a href="/product/FMN.do">fromis_9</a></li>
+							<li><a href="/product/TXT.do">TXT</a></li>
+							<li><a href="/product/NJS.do">NewJeans</a></li>
+							<li><a href="/product/EHP.do">ENHYPEN</a></li>
+							<li><a href="/product/BND.do">BOYNEXTDOOR</a></li>
+							<li><a href="/product/ZIC.do">ZICO</a></li>
 						</ul>
 					</li>
 						
