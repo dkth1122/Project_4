@@ -11,7 +11,7 @@
 <style>
 
         #app1{
-            width: 1200px;
+            width: 1500px;
             height: 100px;
             margin: 0px auto;
         }

@@ -56,7 +56,7 @@ var app = new Vue({
                 success : function(data) { 
                 	if(data.success){
                 		alert(data.message);
-                		location.href="../staff/main.do";
+                		location.href="../staff/home.do";
                 	} else {
                 		alert("성함 혹은 사번을 확인해주세요");
                 	}

@@ -13,18 +13,19 @@
                
            }
         #app{
-               width: 1000px;
+               width: 800px;
                margin: 0px auto;
                text-align: center;
 
            }
        .mainBox{
-     		   width : 1000px;
+     		   width : 1200px;
      		   height : 550px;
                position: relative;
                top : -550px;
                left: 200px;
                text-align: center;
+        	   margin-left: 50px;
            }
        table{
            border : 1px solid black;
@@ -74,14 +75,14 @@
         margin-left: 20px;
        }
        hr{
-        	width: 800px;
+        	width: 1000px;
         	margin-top : -50px;
         	margin-bottom: 20px;
         }
         .mainPos2{
         	position: relative;
         	top : -55px;
-        	left: 350px;
+        	left: 450px;
         	color: white;
         }
  </style>
