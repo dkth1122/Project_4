@@ -15,17 +15,16 @@
                
            }
         #app{
-               width: 800px;
+               width: 80%;
                margin: 0px auto;
                text-align: center;
+               float: left;
+               margin-left: 20px;
 
            }
        .mainBox{
      		   width : 1200px;
      		   height : 550px;
-               position: relative;
-               top : -550px;
-               left: 200px;
                text-align: center;
         		margin-left: 50px;
            }
@@ -78,13 +77,8 @@
        }
        hr{
         	width: 1000px;
-        	margin-top : -50px;
-        	margin-bottom: 20px;
         }
         .mainPos2{
-        	position: relative;
-        	top : -55px;
-        	left: 450px;
         	color: white;
         }
  </style>

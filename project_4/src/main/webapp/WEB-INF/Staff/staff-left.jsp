@@ -8,12 +8,12 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
     <style>
-    body{
-    	width: 200px;
-    }
+   
 	#app2 {
-	  width: 200px;
-	  margin-top: 50px;
+	  /* width: 200px; */
+	  width: 10%;
+	  float: left;
+	  
 	}
 	
 	.leftBut1 > button {

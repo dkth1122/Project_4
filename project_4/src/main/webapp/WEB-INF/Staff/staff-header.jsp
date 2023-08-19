@@ -14,6 +14,8 @@
             width: 1500px;
             height: 100px;
             margin: 0px auto;
+            float: left;
+            margin-bottom: 50px;
         }
         .headerBut1 > button{
         	width : 100px;

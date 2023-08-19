@@ -68,10 +68,9 @@
 </head>
 <body>
 <div id="app">
+	<div>주문번호 : {{oNo}}</div>
 	<table>
-  <thead>
     <tr>
-      <th>주문번호</th>
       <th>상품명</th>
       <th>상품코드</th>
       <th>현재상태</th>
@@ -83,20 +82,11 @@
       <th>정제 주소</th>
       <th>배송 메시지</th>
     </tr>
-  </thead>
-  <tbody>
-    <template v-for="(order, index) in list">
-      <tr :key="index">
-        <td
-          v-if="index === 0 || order.oNo !== list[index - 1].oNo"
-          :rowspan="list.filter(o => o.oNo === order.oNo).length"
-        >
-          {{ order.oNo }}
-        </td>
-        <td>{{ order.pName }}</td>
-        <td>{{ order.pNo }}</td>
+      <tr v-for="(item, index) in list">
+        <td>{{ item.pName }}</td>
+        <td>{{ item.pNo }}</td>
         <td>
-          <select v-model="order.dState" @change="fnUpdateState(order)">
+          <select v-model="item.dState" @change="fnUpdateState(item)">
             <option value="상품 준비중">상품 준비중</option>
             <option value="배송 준비중">배송 준비중</option>
             <option value="배송중">배송중</option>
@@ -106,30 +96,24 @@
             <option value="배송사 사유로 거절">배송사 사유로 거절</option>
           </select>
         </td>
-        <td>{{ order.oCount }}</td>
-        <td>{{ order.uDname }}</td>
-        <td>{{ order.uDphone }}</td>
-        <td>{{ order.uDaddr }}</td>
-        <td>{{ order.uDaddrDetail }}</td>
-        <td>{{ order.uDaddr }} {{ order.uDaddrDetail }}</td>
-        <td>{{ order.uDmessage }}</td>
+        <td>{{ item.oCount }}</td>
+        <td>{{ item.uDname }}</td>
+        <td>{{ item.uDphone }}</td>
+        <td>{{ item.uDaddr }}</td>
+        <td>{{ item.uDaddrDetail }}</td>
+        <td>{{ item.uDaddr }} {{ item.uDaddrDetail }}</td>
+        <td>{{ item.uDmessage }}</td>
       </tr>
-    </template>
-  </tbody>
 </table>
 
 </div>
 </body>
 <script>
-Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-        selectPage: 1,
-		pageCount: 1,
-		cnt : 0,
-        oNo: ""
+        oNo: '' // 데이터 정의
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -144,9 +128,6 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.list = data.list;
-                	self.cnt = data.cnt;
-	                self.pageCount = Math.ceil(self.cnt / 10);
-	                console.log(data);
                 }
             }); 
         },
@@ -173,8 +154,8 @@ var app = new Vue({
         	}
 	}, // methods
 	created : function() {
+	  this.oNo = "${map.oNo}"; // 데이터 할당
 		var self = this;
-        self.oNo = "${map.oNo}";
 		self.fnGetList();
 	}// created
 });
