@@ -143,10 +143,10 @@ i{
 	padding: 0px;
 }
 .nameinput{
-	width: 760px;
+	width: 100%;
 }
 .addrinput2{
-width: 760px;
+width: 100%;
 }
 .adr input{ 
 	height: 40px;
@@ -160,6 +160,10 @@ width: 760px;
 }
 select{
 	margin-right: 20px;
+	height: 42px;
+	width: 83px;
+	border-width: 0px 0px 1px;
+	outline: none;
 }
 #viewpoint{
 	border:  1px solid #e3e3e3; 
@@ -200,6 +204,14 @@ select{
 	color: #fff;
 	border: 0px;
 }
+input {
+  outline: none;
+}
+.select2{
+margin-left :20px;
+text-align: center;
+	width: 114px;
+}
 
 </style>
 </head>
@@ -220,7 +232,7 @@ select{
 						<th>주문금액</th>						
 					</tr>
 
-					<tr v-for="(item, index) in 5">
+					<tr v-for="(item, index) in 3">
 						
 						<td class="a">이미지</td>
 						<td class="b">이름</td>
@@ -292,8 +304,19 @@ select{
 						</tr>
 						
 						<tr>
-							<th>　배송메시지</th>
-							<td><textarea rows="7" cols="110"></textarea> </td>
+							<th>　<i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>이메일</th>
+							<td><div style="width: 793px;">
+								<input class="numinput" type="text"> @ <input class="numinput" type="text"  :v-model="email">	
+									<select class="select2"  :v-model="email">
+											<option value="">-이메일 선택-</option>
+											<option value="naver.com">naver.com</option>
+											<option value="daum.net">daum.net</option>
+											<option value="nate.com">nate.com</option>
+											<option value="hotmail.com">hotmail.com</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="직접입력">직접입력</option>
+									</select>
+								</div></td>
 						</tr>
 						
 					</table>
@@ -438,6 +461,7 @@ select{
 			cart : [],
 			pNo : ""
 		},
+		email: "",
 		methods : {
 			
 			fnRemove : function() {
