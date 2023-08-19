@@ -9,110 +9,179 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버십 게시판</title>
 <style>
-	body{
+	*{
 		font-family: a타이틀고딕2;
+	}
+	body{
 		width : 1250px;
 		margin : 10px auto;
+            background-color: #F2DAED;
 	}
-	ul, li{
-		text-decoration : none;
-		list-style : none;	
-	}
-	.header{
-		width: 1000px;
-		height: 100px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	.artistNewFeed{
-		width: 1000px;
-		height: 300px;
-	}
-	.feedType{
-		width: 300px;
-		height: 200px;
-	    display: inline-block; 
-	}	
-	 .feedType > a > div {
-	 	width: 300px;
-		height: 200px;
-	    position: relative; 
-	   	display: inline-block; 
-	    border: 1px solid tomato;
-	    padding: 32px;
-	    margin: 10px; 
-	    vertical-align: top; 
-	    box-sizing: border-box; 
-	  }
-	.container{
-		width: 1000px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	a{
-        text-decoration: none;
-        color: inherit;
-   }
-   .write{
-   		width: 1000px;
-		height: 300px;
-		border: 1px solid tomato;
-		padding: 32px;
-   }
+        #app {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #FC8E9B;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .header label {
+            margin-right: 20px;
+        }
+        
+        .feedType {
+            display: inline-block;
+            width: calc(30% - 2%); /* 너비 계산 (각각의 요소는 1%의 margin을 갖기 때문에 2%를 빼줌) */
+            height: 200px; /* 원하는 높이 값 설정 */
+        	margin: 0 1%; /* 1%의 margin을 좌우로 추가 */
+            box-sizing: border-box;
+            vertical-align: top;
+            border: 1px solid #BB91E7;
+            padding: 20px;
+            background-color: #FFFFFF;
+            list-style: none;
+        }
+        
+        .feedType a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .write textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+        
+        .write button {
+            background-color: #FC8E9B;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        
+        .container ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .container ul li {
+            margin-bottom: 10px;
+        }
+        
+        .container ul li span {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .container ul li button {
+            background-color: #FFFFFF;
+            border: 1px solid #BB91E7;
+            color: #BB91E7;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        
+        .container ul li button:hover {
+            background-color: #BB91E7;
+            color: white;
+        }
    
-   .container > ul{
-   		border: 1px solid tomato;
-   }
+	   .profile-image {
+		    width: 50px; /* 원하는 이미지 크기 조절 */
+		    height: 50px;
+		    border : 1px solid #BB91E7;
+		    border-radius: 50%; /* 50%로 설정하여 동그라미 모양으로 자름 */
+		    object-fit: cover; /* 이미지를 화면에 맞게 조절하여 잘린 부분이 잘 보이도록 함 */
+		}
+		
+		hr{
+			border: none; /* 기본 테두리 제거 */
+	        height: 2px; /* 높이 설정 */
+	        background: linear-gradient(to right, #BB91E7, #F2DAED); /* 그라디언트 배경 설정 */
+	        margin: 20px 0; /* 위아래 마진 설정 */
+		}
+		.image{
+			border : none;
+			width : 300px;
+			height : 300px;
+		}
+		.imageX{
+			display: none;
+		}
 </style>
 </head>
 <body>
 <div id="app">
     <button @click="fnMove">뒤로가기</button>
+    <button @click="fnMove('my')">마이페이지</button>
+        <button>알림</button>
+        <hr>
     <div class="header">
         <label>제목, 작성자 :  
             <input type="text" v-model="keyword">
             <button @click="fnSearch">검색</button>
         </label>
         
-        <button>알림</button>
-        <button>마이페이지</button>
     </div>
     
     <div class="artistNewFeed">
         <!-- 날짜 빠른 순으로 정렬 후 출력 -->
-        	<ul class="feedType" v-if="index  < 3 " v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
+        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
 		        <a href="javascript:;">
 	            <div>
-	            	<li>{{item.gcCnt}}</li>
+	            	<li><span>댓글수 : </span>{{item.gcCnt}}</li>
 	                <li>{{item.artist}}</li>
-	                <li>{{item.uName2}}</li>
+	            	<li>{{item.nickName}}</li>
+	            	<li><img :src = "item.gpPath" class="profile-image"></li>
 	                <li>{{item.gDate}}</li>
 	                <li>{{item.gContent}}</li>
-	                <li>{{item.gLike}}</li>
-	                <img :src="item.path">
+	                <li><span>좋아요 : </span>{{item.gLike}}</li>
 	            </div>
 		       </a>
        	 	</ul>
     </div>
     
+    <hr>
     <div class="write">
         <textarea rows="10" cols="100" v-model="content"></textarea>
-        <button @click="fnAdd">게시글 등록</button>
-        <div>
 			<span>파일</span>
-			<span><input type="file" id="file1" name="file1"></span>
-		</div>
+			<span><input type="file" id="file1" name="file1" accept=".gif, .jpg, .png" @change="handleFileChange"></span>
+        <button @click="fnAdd">게시글 등록</button>
     </div>
-    
+    <hr>
     <div class="container">
         <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
-        	<li>{{item.gcCnt}}</li>
+        	<li><span>댓글수 : </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
-            <li>{{item.uName2}}</li>
+	        <li>{{item.nickName}}<img :src = "item.gpPath" class="profile-image"></li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
-            <li>{{item.gLike}}</li>
-            <img :src="item.path">
+            <li><span>좋아요 : </span>{{item.gLike}}</li>
+            <img v-if="item.path" :src="item.path" class="image" />
+			<img v-else class="imageX" />
             <li><button @click="fnLike(item.gNo)">좋아요</button></li>
             <li><button @click="fnComment(item.gNo)">댓글</button></li>
             <li><button @click="reportPost(item.gNo)">신고</button></li>
@@ -121,8 +190,10 @@
                     <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item)"></i></div>
                 </a>
             </li>
+            <hr>
         </ul>
     </div>
+    <hr>
     
 </div>
 </body>
@@ -156,6 +227,8 @@ var app = new Vue({
                 success: function (data) {
                     self.list = data.list;
                     self.list2 = data.list2;
+                    console.log(self.list);
+                    console.log(self.list2);
                 }
             });
         },
@@ -182,6 +255,11 @@ var app = new Vue({
             var self = this;
 
             if (!confirm("등록할까요?")) {
+                return;
+            }
+            
+            if(self.content == null || self.content == ""){
+            	alert("내용을 입력해주세요");
                 return;
             }
             var nparmap = {content: self.content, artist: self.artist, uId : self.uId };
@@ -233,8 +311,12 @@ var app = new Vue({
                 }
             });
             
-        },fnMove: function (gNo) {
-	            location.href = "main.do";
+        },fnMove: function (where) {
+        	  window.history.back();
+	            
+	            if(where == 'my'){
+	            	location.href = "myPage.do";
+	            }
 	            
         },fnLike: function(gNo) {
             var self = this;
@@ -251,7 +333,11 @@ var app = new Vue({
             });
         }, fnComment : function(gNo){
             var self = this;
-            var option = "width=500,height=500,top=100,left";
+            var width = 700;
+            var height = 500;
+            var left = (window.innerWidth - width) / 2;
+            var top = (window.innerHeight - height) / 2;
+            var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
             var url = "view.do?gNo=" + gNo + "&uId=" + self.uId;
             window.open(url, "gNo", option);
         	
@@ -262,11 +348,25 @@ var app = new Vue({
             self.reportDescription = ""; // 초기화
             self.showReportModal = true;
             
-            var option = "width=500,height=500,top=100,right";
+            var option = "width=700,height=500,top=100,right";
             var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
             window.open(url, "gNo", option);
+            
+          }, handleFileChange: function(event) {
+              var self = this;
+              var file = event.target.files[0];
+              
+              if (file) {
+                  var ext = file.name.split('.').pop().toLowerCase(); // 파일 확장자 추출
+
+                  if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
+                      alert('이미지 파일은 gif, jpg, png 확장자만 허용됩니다.');
+                      // 파일 선택을 취소하도록 처리 (선택한 파일을 초기화)
+                      event.target.value = '';
+                  }
+              }
           }
-        
+        	
     }, // methods
     created: function () {
         var self = this;

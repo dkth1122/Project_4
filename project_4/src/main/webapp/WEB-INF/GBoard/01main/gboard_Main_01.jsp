@@ -11,16 +11,17 @@
 <body>
 	<div id="app">
 	<h1>아티스트 게시판 메인 페이지지롱~</h1>
+	   <button @click="fnMove('my')">마이페이지</button>
 	<div>멤버십 테이블 조인해서 그 아티스트만 버튼 보이도록~!</div>
 		<button @click="fnMove('b')">방탄소년단</button>
 		<button @click="fnMove('t')">투모로우바이투게더</button>
 		<button @click="fnMove('e')">엔하이픈</button>
 		<button @click="fnMove('s')">세븐틴</button>
-		<button @click="fnMove('p')">프로미스나인</button>
+		<button @click="fnMove('f')">프로미스나인</button>
 		<button @click="fnMove('l')">르세라핌</button>
 		<button @click="fnMove('n')">뉴진스</button>
 		<button @click="fnMove('d')">보이넥스트도어</button>
-		<button @click="fnMove('j')">지코</button>
+		<button @click="fnMove('z')">지코</button>
 	</div>
 </body>
 </html>
@@ -58,11 +59,11 @@
 	            	else if(artist == 's'){
 	            		location.href = 'svt.do'; 
 	            	}
-	            	else if(artist == 'p'){
-	            		location.href = 'pm9.do'; 
+	            	else if(artist == 'f'){
+	            		location.href = 'fmn.do'; 
 	            	}
 	            	else if(artist == 'l'){
-	            		location.href = 'lsp.do'; 
+	            		location.href = 'lsf.do'; 
 	            	}
 	            	else if(artist == 'n'){
 	            		location.href = 'njs.do'; 
@@ -70,10 +71,12 @@
 	            	else if(artist == 'd'){
 	            		location.href = 'bnd.do'; 
 	            	}
-	            	else if(artist == 'j'){
-	            		location.href = 'jico.do'; 
+	            	else if(artist == 'z'){
+	            		location.href = 'zic.do'; 
 	            	}
-	            	
+	            	else if(artist == 'my'){
+	            		location.href = "myPage.do";
+	            	}
 	            }
 	        }, // methods
 	        created: function () {

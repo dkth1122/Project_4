@@ -3,6 +3,7 @@ package com.example.project.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.example.project.model.DeliveryUser;
 import com.example.project.model.GBoard;
 
 public interface GBoardService {
@@ -25,6 +26,9 @@ public interface GBoardService {
 	//게시글 검색
 	List<GBoard> searchGBoardInfo(HashMap<String, Object> map);
 	
+	
+	//댓글 기능
+	
 	//좋아요 기능
 	int likeGBoard(HashMap<String, Object> map);
 	
@@ -40,6 +44,9 @@ public interface GBoardService {
 	//댓글 좋아요 기능 
 	int likeComment(HashMap<String, Object> map);
 	
+	
+	//대댓글
+	
 	//대댓글 달기 기능
 	int addCocomment(HashMap<String, Object> map);
 	
@@ -49,6 +56,8 @@ public interface GBoardService {
 	//대댓글 삭제 기능
 	int removeCocomment(HashMap<String, Object> map);
 	
+	
+	
 	//신고 기능 구현
 	
 	//1. 신고 ->  Report 테이블에 추가 + 게시글 테이블에 신고 횟수 증가
@@ -56,6 +65,32 @@ public interface GBoardService {
 	
 	//2. 신고 ->  댓글용 Report 테이블에 추가 + 댓글 테이블에 신고 횟수 증가
 	int addGCReport(HashMap<String, Object> map);
+	
+	
+	
+	//마이페이지 구현
+	//마이페이지 작성글 모두 출력 : 게시글 -> 댓글 -> 대댓글 순
+	List<GBoard> searchsMypageGBoard(HashMap<String, Object> map);
+	List<GBoard> searchMypageComment(HashMap<String, Object> map);
+	List<GBoard> searchMypageCoComment(HashMap<String, Object> map);
+	
+	//마이페이지 프로필 출력
+	List<GBoard> searchProfile(HashMap<String, Object> map);
+	
+	//멤버쉽 출력
+	List<GBoard> searchsMembership(HashMap<String, Object> map);
+	
+	// 프로필 등록 
+	HashMap<String, Object> addProfile(HashMap<String, Object> map);
+	
+	// 프로필 닉네임 변경 
+	int updateProfile(HashMap<String, Object> map);
+	
+	//프로필 이미지 변경
+	int updateProfileImg(HashMap<String, Object> map);
+	
+	//프로필 이미지 제거
+	int removeProfileImg(HashMap<String, Object> map);
 
 
 }

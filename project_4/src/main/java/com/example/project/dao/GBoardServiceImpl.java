@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.project.mapper.GBoardMapper;
+import com.example.project.model.DeliveryUser;
 import com.example.project.model.GBoard;
 
 @Service
 public class GBoardServiceImpl implements GBoardService{
 	@Autowired
 	GBoardMapper gboardMapper;
+	
 
 	//전체 게시글 출력
 	@Override
@@ -138,5 +140,71 @@ public class GBoardServiceImpl implements GBoardService{
 		gboardMapper.gcBanCnt(map);
 		return gboardMapper.insertGCReport(map);
 	}
+
+	
+	//마이페이지 작성글 모두 출력 : 게시글 -> 댓글 -> 대댓글 순
+	@Override
+	public List<GBoard> searchsMypageGBoard(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.selectMypageGBoard(map);
+	}
+	@Override
+	public List<GBoard> searchMypageComment(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.selectMypageComment(map);
+	}
+	
+	@Override
+	public List<GBoard> searchMypageCoComment(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.selectMypageCoComment(map);
+	}
+	
+	
+	//마이페이지 프로필 출력
+	@Override
+	public List<GBoard> searchProfile(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.selectProfile(map);
+	}
+
+	//마이페이지 멤버쉽 정보 출력
+	@Override
+	public List<GBoard> searchsMembership(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.selectMembership(map);
+	}
+
+	//프로필 추가 기능
+	@Override
+	public HashMap<String, Object> addProfile(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("gpNo", map.get("gpNo"));
+		 gboardMapper.insertProfile(map);
+		 return resultMap;
+	}
+
+	//프로필 닉네임 업데이트 (수정)
+	@Override
+	public int updateProfile(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.updateProfile(map);
+	}
+
+	//프로필 이미지 업데이트 (수정)
+	@Override
+	public int updateProfileImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.updateProfileImg(map);
+	}
+
+	@Override
+	public int removeProfileImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.deleteProfileImg(map);
+	}
+
+	
 
 }
