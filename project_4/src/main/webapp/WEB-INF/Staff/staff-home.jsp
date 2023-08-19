@@ -19,6 +19,7 @@
                text-align: center;
                float: left;
                margin-left: 20px;
+               
 
            }
        .mainBox{
