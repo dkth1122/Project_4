@@ -30,8 +30,10 @@ public class GBoard {
     private int gcNo;
     private String gcContent;
     private String gcDelYN;
+    private String gcDate;
     private int gcLike;
     private int gcGroup;
+    
     
     //좋아요 댓글 테이블 join
     private int gcLikeNo;
@@ -46,6 +48,21 @@ public class GBoard {
     private int gfNo;
     private String fileName;
     private String path;
+    
+    //멤버쉽 테이블 join
+    private int mNo;
+    private String mStatus;
+    private String mRegDate;
+    private String mExpDate;
+    private String kitYN;
+    
+    
+    //프로필 테이블
+    private int gpNo;
+    private String nickName;
+    private String gpPath;
+    private String gpFileName;
+    
     
 	public int getgNo() {
 		return gNo;
@@ -191,5 +208,72 @@ public class GBoard {
 	public void setGcCnt(int gcCnt) {
 		this.gcCnt = gcCnt;
 	}
+	public String getGcDate() {
+		return gcDate;
+	}
+	public void setGcDate(String gcDate) {
+		this.gcDate = gcDate;
+	}
+	public int getGfNo() {
+		return gfNo;
+	}
+	public void setGfNo(int gfNo) {
+		this.gfNo = gfNo;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public int getmNo() {
+		return mNo;
+	}
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+	public String getmStatus() {
+		return mStatus;
+	}
+	public void setmStatus(String mStatus) {
+		this.mStatus = mStatus;
+	}
+	public String getmRegDate() {
+		return mRegDate;
+	}
+	public void setmRegDate(String mRegDate) {
+		this.mRegDate = mRegDate;
+	}
+	public String getmExpDate() {
+		return mExpDate;
+	}
+	public void setmExpDate(String mExpDate) {
+		this.mExpDate = mExpDate;
+	}
+	public String getKitYN() {
+		return kitYN;
+	}
+	public void setKitYN(String kitYN) {
+		this.kitYN = kitYN;
+	}
+	public int getGpNo() {
+		return gpNo;
+	}
+	public void setGpNo(int gpNo) {
+		this.gpNo = gpNo;
+	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
     
+	
 }

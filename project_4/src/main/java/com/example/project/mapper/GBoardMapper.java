@@ -1,13 +1,9 @@
 	package com.example.project.mapper;
-	
 	import java.util.HashMap;
 	import java.util.List;
-	
 	import org.apache.ibatis.annotations.Mapper;
-
 import com.example.project.model.DeliveryUser;
 import com.example.project.model.GBoard;
-	
 	
 	@Mapper
 	public interface GBoardMapper {
