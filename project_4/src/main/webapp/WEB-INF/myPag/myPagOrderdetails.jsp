@@ -9,9 +9,59 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>\
 <meta charset="EUC-KR">
+<!-- 페이징 추가 1 -->
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 
+<style type="text/css">
+
+.orderchart{
+padding-left : 30px;
+	margin: 30px 0px;
+}
+.table{
+   border-collapse: collapse;
+	border : 1px solid black;
+	width: 1200px;
+	text-align: center;
+}
+th{
+	background-color: #DACDFB;
+	color: #a1a1a1da;
+}
+
+
+th,td {
+ border: 1px solid black;
+}
+td{
+	height: 60px;
+}
+.column-width1{
+	width: 15%;
+}
+.column-width2{
+	width: 20%;
+}
+.column-width3{
+	width: 40%;
+}
+.column-width4{
+	width: 5%;
+}
+.column-width5{
+	width: 10%;
+}
+.find{
+	padding: 40px;
+}
+.date{ 
+	margin-right: 40px;
+}
+
+</style>
 
 </head>
 <body>
@@ -81,7 +131,7 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
-                                       <li><a href="/mypag/myPageInterest.do  ">장바구니</a></li>
+                                       <li><a href="/mypag/myPageInterest.do">장바구니</a></li>
                                        <li><a href="/mypag/myInformation.do">찜 목록</a></li>
                                        <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
                                     </ul>   
@@ -115,11 +165,39 @@
 					<div id="right">
 
 						<div class="View">
-							<div v-for="item in list">
-								{{item.oNo}}
-								{{item.oDate}}
-								{{item.pName}}
-								{{item.price}}
+							 <div class="lowerBox"> 구매내역 </div>
+							 <div class="find">
+							 	
+							 	 
+									<span class="date"> 결제 일자 </span> <input  type='date' > ~ <input type='date'>
+									    
+							 </div>
+							 
+							  <div class="orderchart"> 구매목록 </div>
+							<div>
+								<table class="table">
+										<tr>
+											<th class="column-width1">주문번호</th>
+											<th class="column-width2">구입 날짜</th>
+											<th class="column-width3" >제품 이름 </th>
+											<th class="column-width4">수량</th>
+											<th class="column-width5">금액</th>
+										</tr>
+										
+										<tr  v-for="item in list">
+											<td class="column-width1">{{item.oNo}}</td>
+											<td class="column-width2">{{item.oDate}}</td>
+											<td class="column-width3">{{item.pName}}</td>
+											<td class="column-width5">{{item.quantity}}</td>
+											<td class="column-width4">{{item.price}}</td>
+										
+										<tr>
+										
+								
+								
+								</table>
+
+							
 							</div>	 	
 						
 						</div>
@@ -145,7 +223,10 @@
 			order : "",
 			exchange : "",
 			refund : "",
-			list : []
+			list : [],
+			price : [],
+			dat : "",
+	
 		}, 
 		methods : {
 			fnGetList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
@@ -172,6 +253,7 @@
 					data : nparmap,
 					success : function(data) {						
 						self.list = data.list;
+						
 					}
 				});
 			},

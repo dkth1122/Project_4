@@ -24,8 +24,15 @@ public class Product {
 	// order 구매내역 조인용
 	private String oNo;
 	private String oDate;
+	private int quantity;
 	
 	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public String getoNo() {
 		return oNo;
 	}

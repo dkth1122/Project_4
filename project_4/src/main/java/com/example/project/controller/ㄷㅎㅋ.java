@@ -31,7 +31,15 @@ public class ㄷㅎㅋ {
 	@Autowired
 	dd dd;
 
+	//결제 페이지
+	@RequestMapping("/mypag/Order.do") 
+    public String mainGBoard(Model model) throws Exception{
+
+        return "/myPag/Order";
+    }
 	
+	
+	//구매자 리스트
 	@RequestMapping(value = "/mypag/Orderp.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

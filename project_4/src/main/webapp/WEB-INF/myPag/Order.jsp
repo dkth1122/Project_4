@@ -24,16 +24,19 @@
 }
 
 table {
+	
 	margin: 0px auto;
 	border-collapse: collapse;
 	width: 1500px;
 	margin-top: 100px;
 	margin-bottom: 30px;
 }
-
+th{
+	text-align: center;
+}
 th, td {
-	padding: 8px;
-	text-align: left;
+	text-align: center;
+	height: 100px;
 }
 
 tr th, tr td {
@@ -54,10 +57,11 @@ tr th, tr td {
 .ch_deletebutton{
 	width: 1500px;
 	margin: 0px auto;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
+	text-align: right;
 }
 .border-bottom{
-	border-bottom: 2px solid black;
+	border-bottom: 1px solid #e3e3e3;
 	width: 1500px;
 	margin: 0px auto;
 }
@@ -77,9 +81,27 @@ span {
 }
 .baybutton{
 	width: 1500px;
-	text-align: center;
+	text-align: right;
 	margin: 0px auto;
+	color: #4b4b4bda;
+	font-size: 0.8em;
 }
+.a{
+	width: 15%
+}
+.b{
+	width: 60%
+}
+.c{
+	width: 5%;
+}
+.d{
+	width: 10%
+}
+.e{
+	width: 10%
+}
+
 </style>
 </head>
 <body>
@@ -87,44 +109,36 @@ span {
 
 		<div id="container">
 		
-			<div id="title">CART</div>
+			<div id="title">Order</div>
 
 			<div class="body">
 				<table>
-
 					<tr>
-						<th><input type="checkbox"></th>
+						
 						<th colspan="2">상품정보</th>
 						<th>수량</th>
 						<th>배송비</th>
-						<th>주문금액</th>
-						<th>선택</th>
+						<th>주문금액</th>						
 					</tr>
 
 					<tr v-for="(item, index) in 5">
-						<td><input type="checkbox"></td>
-						<td>이미지</td>
-						<td>이름</td>
-						<td>
 						
-						<input  :id="quantiy_id+index" :value="0">
+						<td class="a">이미지</td>
+						<td class="b">이름</td>
+						<td class="c">
+								넘어온 숫자					
+						</td>
+						<td class="d">배송비</td>
+						<td class="e">가격</td>
 						
-						</td>
-						<td>배송비</td>
-						<td>가격</td>
-						<td>
-							<button>삭제</button>
-							<br>
-							<button>주문하기</button>
-						</td>
 
 					</tr>
 
 				</table>
-				<div class="ch_deletebutton"><button>선택상품삭제</button></div>
-				<div class="border-bottom"></div>
-				<div class="payment"><h3><span>\ 금액</span> + <span>\ 배송</span> = <span class="red">\ 합</span></h3></div>
-				<div class="baybutton"><button>전체상품 주문</button>  <button>선택 상품 주문</button></div>
+				<div class="ch_deletebutton"><span>\ 금액</span> + <span>\ 배송</span> ｜ <span class="red">\ 합</span></div>
+			
+				<div class="payment"></div>
+				<div class="baybutton">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</div>
 			</div>
 
 		</div>
