@@ -53,6 +53,7 @@
 	    display: block;
 	    margin-bottom: 4px;	 
 	    padding: 14px;
+	    margin-top : 20px;
 	}
 	#totalPrice {
 	    margin: 20px 0 0;
@@ -63,14 +64,29 @@
 	    vertical-align: middle;
 	    background: #fff;
 	    font-size: 14px;
+	    margin-bottom : 20px;
 	}
 	#itemSlideArea{
+	 	display: flex;
+	 	justify-content: center;
+   		align-items: center;
 		width : 350px;
-		height: 420px;
+		height: 300px;
 	}
 	.itemSlide{
+		margin: 0 20px;
+    	text-align: center;
 		width : 175px;
 		height: 260px;
+	}
+	.itemContainer {
+	    display: inline-block;
+    	vertical-align: top; /* div요소에 있는 이미지와 텍스트 상단 정렬 */
+	}
+	.txt-box {
+    	margin-top: 10px; 
+    	font-weight : bold;
+    	font-size : 13px;
 	}
 	.pc-wrap .slider-type2 .swiper-slide .txt-box {
 	    min-height: 76px;
@@ -137,7 +153,9 @@
 	  border : 1px solid #d4d5d9;
 	  cursor: pointer;
 	  transition: background-color 0.3s;
-	  width : 50%;
+	  width : 49%;
+	  margin-right : 3px;
+	  margin-bottom : 30px;
 	  
 	}
 	
@@ -160,6 +178,7 @@
 	    cursor: pointer; 
 	    border: none; /* 테두리 없애기 */
 	    width : 100%;
+	    margin-bottom : 10px;
   }
 
   .buyButton:hover {
@@ -167,6 +186,47 @@
   }
   .buyButton:active {
 	   background-color: rgb(91, 92, 161);
+	}
+	em{
+		color:#d4d5d9;
+		font-size : 14px;
+	}
+	.category{
+		font-size : 15px;
+	}
+	.notice{
+		color : tomato;
+		font-size : 12px;
+		font-weight : bold;
+	}
+	.pointArea{
+		border-bottom : 1px solid #d4d5d9;
+		padding-bottom : 15px;
+		margin-bottom : 15px;
+	}
+	.jeokrip{
+		margin : 40px;
+	}
+	#totalProducts{
+		margin-bottom : 10px;
+	}
+	#quantity{
+		border: none; /* 입력 상자 테두리 없애기 */
+		background-color: transparent; /* 배경색 없애기 */
+		outline: none; /* 포커스 시 나타나는 테두리 없애기 */
+		font-weight:bold;
+		width: 16px;
+		margin-left : 6px;
+	}
+	.total{
+		float:right;
+	}
+	.price{
+		font-weight : bold;
+		font-size : 14px;
+	}
+	.h3 {
+    	margin-bottom: 0; 
 	}
 </style>
 </head>
@@ -183,33 +243,34 @@
 			<div class="headingArea">
 				<h2 class="cboth">
 					<em>[CONNECTION] {{artist}}</em>
-					<div>{{category}}</div>
+					<div class="category">{{category}}</div>
+					<div>{{pName}}</div>
 				</h2>
 				<div class="priceArea">
 					<span><i class="fa-solid fa-won-sign"></i></span>
-					<span>{{formattedPrice}}</span>
+					<span><strong>{{formattedPrice}}</strong></span>
 				</div>
 			</div>	
 			
 			<div class="infoDetail">
-				<table>
-					<tr>
-						<th width="100px" height="30px">
-							<span style="font-size:14px;color:#232744; text-align:left;" >적립금</span>
-						</th>
-						<td width="250px" height="30px" >
-							<span style="font-size:14px;color:#232744;">0.50% ({{price*0.005}} P)</span>
-						</td>
-					</tr>
-					<tr>
-						<th></th>
-						<td width="360px" height="60px" >
-							<span>
-								<div style="color : tomato;">*해당 상품은 결제 후 7~10일(주말,공휴일 제외) 이내 배송이 시작될 예정입니다.</div>
+				<div>
+					<div class="pointArea">
+						<span width="100px" height="30px">
+							<span style="font-size:14px;color:#232744; font-weight:bold; text-align:left;" >적립금</span>
+						</span>
+						<span class="pointArea" width="250px" height="30px" >
+							<span class="jeokrip" style="font-size:14px;color:#232744;">최대 0.50% ({{price*0.005}} P)</span>
+						</span>
+					</div>
+					<div>
+						<div width="360px" height="60px" >
+							<span class="notice">								
+								<div v-if='membership == "N"'>*GOT the beat Stamp On It MD끼리만 주문 가능합니다.</div>
+								<div style="margin-bottom:20px;">*해당 상품은 결제 후 7~10일(주말,공휴일 제외) 이내 배송이 시작될 예정입니다.</div>
 							</span>
-						</td>
-					</tr>
-				</table>
+						</div>
+					</div>
+				</div>
 			</div>	
 			
 			<div class="productsAddList">
@@ -222,7 +283,8 @@
 						<span class="quantity">
 							<a href="#none" @click="decreaseQuantity"><i class="fa-solid fa-minus"></i></a>
 							<input id="quantity" name="quantity_opt[]" v-model="quantity" @input="formatQuantity" type="text">
-							<a href="#none" @click="increaseQuantity"><i class="fa-solid fa-plus"></i></a>							
+							<a href="#none" @click="increaseQuantity"><i class="fa-solid fa-plus"></i></a>
+							<span style="font-weight:bold; font-size:15px; float:right;">₩{{ totalPrice }}</span>							
 						</span>
 					</div>
 				</div>
@@ -230,7 +292,7 @@
 			
 			<div id="totalPrice">
 				<span>TOTAL</span>
-				<span class="total"><strong><em>₩{{ totalPrice }}</em></strong> ({{ quantity }}개)</span>
+				<span class="total"><strong style="font-size:25px;">₩{{ totalPrice }}</strong> ({{ quantity }}개)</span>
 			</div>
 			
 			<div class="buyArea" style="position: static; bottom: auto; width: auto; margin-left: 0px;">
@@ -242,24 +304,39 @@
 				</div>				
 			</div>
 			
-			<div id="itemSlideArea">
-				<h2>함께하면 좋은 상품</h2>
-				<div class="itemSlide">
-					<div>
-						<img src="#none">
-					</div>
-					<div class="txt-box">
-						<span class="xname">SuperM The 1st Mini Album - SuperM (United Ver.)</span>
-						<div>
-							<span class="price" style="color:undefined"><em class="price1">₩ 18,300</em></span>
-						</div>
-					</div>
-				</div>
+			<div class="h3"><h3>함께하면 좋은 상품!</h3></div>
+			<div id="itemSlideArea">		  
+			    <div class="itemSlide">
+			        <div class="itemContainer">
+			            <div>
+			                <img style="width:155px;" src="../img/aespaFilm.jpg">
+			            </div>
+			            <div class="txt-box">
+			                <span class="xname">SuperM The 1st Mini Album</span>
+			                <div>
+			                    <span class="price" style="color:undefined">₩ 18,300</span>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="itemSlide">
+			        <div class="itemContainer">
+			            <div>
+			                <img style="width:155px;" src="../img/aespaA4photo.jpg">
+			            </div>
+			            <div class="txt-box">
+			                <span class="xname">aespa A4 PHOTO - Girls</span>
+			                <div>
+			                    <span class="price">₩ 9,900</span>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
 			</div>
 		</div>	
 		
 		<div class="explanation">
-			<img alt="상품상세설명" src="../img/exo_detail.jpg">
+			<img alt="상품상세설명" src="../img/detail01.jpg">
 			
 			<div id="radioMenu">
 	    		<input id="1" type="radio" name="Menu" value="상품정보" v-model="selectedMenu">
@@ -400,6 +477,7 @@ var app = new Vue({
     	artist : "",
     	path : "",
     	category : "",
+    	membership : "",
     	quantity: "1", // 기본 수량 값
     	totalPrice : 0, // 총 가격 초기값 0
     	selectedMenu : "상품정보"
@@ -421,6 +499,7 @@ var app = new Vue({
                 	self.artist = self.info.artist;
                 	self.path = self.info.path;
                 	self.category = self.info.category;
+                	self.membership = self.info.membership;
                 	console.log(self.info);
                 }
             }); 

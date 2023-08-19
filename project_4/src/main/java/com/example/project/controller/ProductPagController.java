@@ -21,20 +21,18 @@ public class ProductPagController {
 
         return "/Product/productPag";
     }
-	
 	// BTS DVD 상품 리스트
 	@RequestMapping("/product/productPagBTS_DVD.do") 
     public String BTS_DVD(Model model) throws Exception{
 
         return "/Product/productPagBTS_DVD";
     }
-	
 	// 상품 상세 페이지
 		@RequestMapping("/product/productView.do") 
 		public String productView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 			request.setAttribute("map", map);
 	        return "/Product/productView";
-	    }
+	}
 	
 	
 	
