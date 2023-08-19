@@ -36,12 +36,12 @@
 					<div><span>소속사 페이지</span></div>					
 				</div>
 				<div class="imgboxArea">
-					<img src="../img/SM.png">
-					<img src="../img/star.png">								
-					<img src="../img/HIBE.png">
-					<img src="../img/AOMG.jpg">
-					<img src="../img/JYP.jpg">					
-					<img src="../img/KOZ.png">												
+					<a href="https://www.smtown.com/"><img src="../img/SM.png"></a>
+					<a href="http://www.starship-ent.com/"><img src="../img/star.png"></a>						
+					<A href="https://hybecorp.com/kor/main"><img src="../img/HIBE.png"></a>
+					<a href="https://www.aomgofficial.com/"><img src="../img/AOMG.jpg"></a>
+					<a href="https://www.jype.com/"><img src="../img/JYP.jpg"></a>					
+					<a href="https://kozofficial.com/"><img src="../img/KOZ.png"></a>												
 				</div>
 			</div>
 		</div>
