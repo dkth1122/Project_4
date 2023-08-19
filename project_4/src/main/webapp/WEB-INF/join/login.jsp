@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link href="../css/join.css" rel="stylesheet" type="text/css">
+<link href="../css/login.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
@@ -13,17 +13,38 @@
 </head>
 <body>
 <div id="app">
-	<div id="wc">
-	<h2>로그인</h2>
-	<div><label>아이디 : <input v-model="uId" @keyup.enter="fnLogin"></label></div>
-	<div><label>패스워드 : <input type="password" v-model="uPw" @keyup.enter="fnLogin"></label></div>
-	<div>
-		<button @click="fnLogin">로그인</button>
-		<button @click="fnJoin">회원가입</button>
-	</div>
-	<div><a href="findId.do">아이디 찾기</a></div>
-	<div><a href="nonOrder.do">비회원 주문조회</a></div>
-	<div><a href="findPw.do">비밀번호 찾기</a></div>
+	<div class="container">		
+		<h2 class="h2">Login</h2>
+		<div class="login-box">
+			<div class="login-box2">
+				<div class="idpw">	
+					<div><label>ID  <span><input v-model="uId" @keyup.enter="fnLogin"></span></label></div>
+					<div><label>PASSWORD  <span><input type="password" v-model="uPw" @keyup.enter="fnLogin"></span></label></div>
+				</div>
+				<div class="login">
+					<button @click="fnLogin">LOGIN</button>
+				</div>
+				<div class="join">
+					<button @click="fnJoin">JOIN US</button>
+				</div>
+				<div class="bottomArea">
+					<div class="findArea">
+						<a href="findId.do">아이디 찾기</a>
+						<a href="nonOrder.do">비회원 주문조회</a>
+						<a href="findPw.do">비밀번호 찾기</a>
+					</div>
+					<div><span>소속사 페이지</span></div>					
+				</div>
+				<div class="imgboxArea">
+					<img src="../img/SM.png">
+					<img src="../img/star.png">								
+					<img src="../img/HIBE.png">
+					<img src="../img/AOMG.jpg">
+					<img src="../img/JYP.jpg">					
+					<img src="../img/KOZ.png">												
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 </body>
