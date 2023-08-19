@@ -79,7 +79,7 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/infoUpdate.do">회원 정보 수정</a></li>
-                                       <li><a href="/mypag/addAddr.do">배송주소록</a></li>                           
+                                       <li><a href="/mypag/infoAddr.do">배송주소록</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
@@ -144,7 +144,7 @@ var app = new Vue({
     	   uPhone : "",
     	   uSmsyn : ""
        },
-       uId : "${sessionId}",
+       uId : "${sessionId}"
     },
     methods: {
        fnGetList : function(){
@@ -160,6 +160,7 @@ var app = new Vue({
                    console.log(self.info);
                    self.user = self.info;
                	   console.log(self.user);
+               	   self.info.uSmsyn = self.user.uSmsyn === 'Y' ? 'Y' : 'N';
                 }
             }); 
         },
