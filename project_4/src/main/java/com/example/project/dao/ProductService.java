@@ -43,4 +43,7 @@ public interface ProductService {
 		//결제시 딜리버리 테이블 등록
 		int insertProductBuy2(HashMap<String, Object> map);
 
+		
+	//아티스트별 상품 페이지 구현
+		HashMap<String, Object> searchProductMain(HashMap<String, Object> map);
 }

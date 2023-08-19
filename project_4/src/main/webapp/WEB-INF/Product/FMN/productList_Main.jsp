@@ -8,35 +8,77 @@
   <script src="../js/jquery.js"></script>  
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <!-- 페이징 추가 1 -->
+  <script src="https://unpkg.com/vuejs-paginate@latest"></script>
+  <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
   <meta charset="EUC-KR">
   <title>상품 페이지</title>
   <style type="text/css">
-  .nonMember{
-  margin: 0px 10px;
-  }
-  .login_loginout{  
-  	color : #8a8a8a;
-  	text-align: right;
-  }
-  #login{
-  margin-top :15px;
+	  .nonMember{
+	  margin: 0px 10px;
+	  }
+	  .login_loginout{  
+	  	color : #8a8a8a;
+	  	text-align: right;
+	  }
+	  #login{
+	  margin-top :15px;
+	
+	  }
+	  #header.fixed{
+	  position: fixed; 
+	  left: 50%;
+	  width: 100%;
+	  z-index: 1;
+	  transform: translateX(-50%);
+	  transition: top 1s ease;
+	  background-color: rgba(255, 255, 255);
+	  }
 
-  }
-  #header.fixed{
-  position: fixed; 
-  left: 50%;
-  width: 100%;
-  z-index: 1;
-  transform: translateX(-50%);
-  transition: top 1s ease;
-  background-color: rgba(255, 255, 255);
-  }
-
-#header{
-	margin-bottom: 20px;
-	width: 100%;
-}
-
+	#header{
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	<!-- 페이징 추가 2 -->
+	.pagination {
+        margin:24px;
+        display: inline-flex;
+    }
+    ul {
+    }
+	.pagination li {
+	    min-width:32px;
+	    padding:2px 6px;
+	    text-align:center;
+	    margin:0 3px;
+	    border-radius: 6px;
+	    border:1px solid #eee;
+	    color:#666;
+	    display : inline;
+	}
+	.pagination li:hover {
+	    background: #E4DBD6;
+	}
+	.page-item a {
+	    color:#666;
+	    text-decoration: none;
+	}
+	.pagination li.active {
+	    background-color : #E7AA8D;
+	    color:#fff;
+	}
+	.pagination li.active a {
+	    color:#fff;
+	}
+	.pImg{
+		width:300px;
+		height:400px;
+	}
+	.productList{
+		width:1000px;
+		margin-top:30px;
+		margin-left: 100px;
+	}
   </style>
 </head>
 <body>
@@ -51,8 +93,6 @@
         </div>
             <div id="header" >
             
-   
-                
             </div>
 
             <div class="slide_wrapper_main">
@@ -62,144 +102,174 @@
                       <li ><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyPLo3%2Fbtrz6qShOq3%2FIa3mcJQ7WPrIApAN3ZlH70%2Fimg.jpg"></li>
                       <li ><img src="https://cdn.eyesmag.com/content/uploads/sliderImages/2022/07/22/NEW-JEANS-01-94cfa2f0-0e0e-493a-a811-07d3db1fa6d5.jpg"></li>
                       <li ><img src="https://blog.kakaocdn.net/dn/SbnII/btqEMwrZGyP/qsc0F50OjuXal84GGGP1ek/img.png"></li>
-               
+                     </ul> 
                 </div>
-                <p class="controls">
+                
+              <p class="controls">
                 <a class="next_prev" href="Javascript:;"><i class="fa-solid fa-chevron-left fa-2xl prev"></i></a>
                   <button class="button1 button"></button>
                   <button class="button2 button"></button>
                   <button class="button3 button"></button>
                   <button class="button4 button"></button>
-                  <a class="next_prev" href="Javascript:;"><i class="fa-solid fa-chevron-right fa-2xl next"></i></a>
+                <a class="next_prev" href="Javascript:;"><i class="fa-solid fa-chevron-right fa-2xl next"></i></a>
               </p>
             </div>
+            
+            
             <div class="body" style="margin-top: 80px;">
-                <select class="select">
-                    <option>최신순</option>
-                    <option>상품명</option>
-                    <option>낮은가격</option>
-                    <option>높은가격</option>
+                <select class="select" v-model="selectedOption" @change="fnGetList">
+                    <option selected>전체</option>
+                    <option value="nameList">상품명</option>
+                    <option value="minPrice">낮은가격</option>
+                    <option value="maxPrice">높은가격</option>
                 </select>
-                <div class="body2" style=" width: 198px; height: 600px;" >
+                
+                
+                <div class="body2" style=" width: 198px; height: 600px;">
 
                     <div id="CategoryTitle" class="CategoryTitle"> PRODUCT</div>
                   
-                  
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;">MUSIC</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('A')">ALBUM</a>
                             <ul class="sub">
-                                <li><a href="Javascript:;">CD</a></li>
-                                <li><a href="Javascript:;">DVD</a></li>
-                                <li><a href="Javascript:;">etc.</a></li>
+                                <li><a href="Javascript:;">TEST</a></li>
+                                <li><a href="Javascript:;">TEST</a></li>
+                                <li><a href="Javascript:;">TEST</a></li>
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;">PHOTO</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('M')">MERCH</a>
                         <ul class="sub2">
-                            <li><a href="Javascript:;">Printed</a></li>
-                            <li><a href="Javascript:;">Photo Book</a></li>
+                            <li><a href="Javascript:;">TEST</a></li>
+                            <li><a href="Javascript:;">TEST</a></li>
                         </ul>
-                 </div>
+                	 </div>
 
-                 <div class="menu3">
-                    <a class="aTitle" href="Javascript:;">CONCERT</a>
-                    <ul class="sub3">
-                        <li><a href="Javascript:;">Offcial Fanlight</a></li>
-                        <li><a href="Javascript:;">Conert Gods</a></li>
-                    </ul>
-             </div>
+                 	<div class="menu3">
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('D')">DVD</a>
+	                    <ul class="sub3">
+	                        <li><a href="Javascript:;">TEST</a></li>
+	                        <li><a href="Javascript:;">TEST</a></li>
+                    	</ul>
+             		</div>
 
-             <div class="menu4">
-                <a class="aTitle" href="Javascript:;">LIVING</a>
-                <ul class="sub4">
-                    <li><a href="Javascript:;">Home</a></li>
-                    <li><a href="Javascript:;">Kitchen</a></li>
-                    <li><a href="Javascript:;">F & B</a></li>
-                    <li><a href="Javascript:;">Tech</a></li>
-                    <li><a href="Javascript:;">Book</a></li>
-                    <li><a href="Javascript:;">Pet</a></li>
-                </ul>
-         </div>
-          
-
-         <div class="menu5">
-            <a class="aTitle" href="Javascript:;">BEAUTY</a>
-            <ul class="sub5">
-                <li><a href="Javascript:;">Skin Care</a></li>
-                <li><a href="Javascript:;">Make UP</a></li>
-                <li><a href="Javascript:;">Cleansing</a></li>
-                <li><a href="Javascript:;">Body & Hair</a></li>
-                <li><a href="Javascript:;">Pack & masks</a></li>
-                <li><a href="Javascript:;">Perfume</a></li>
-                <li><a href="Javascript:;">Tool</a></li>
-                <li><a href="Javascript:;">Men's</a></li>
-            </ul>
-     </div>
-
-     <div class="menu6">
-        <a class="aTitle" href="Javascript:;">STATIONERY</a>
-        <ul class="sub6">
-            <li><a href="Javascript:;">Note</a></li>
-            <li><a href="Javascript:;">Office</a></li>
-            <li><a href="Javascript:;">Pen</a></li>
-            <li><a href="Javascript:;">Deco</a></li>
-            <li><a href="Javascript:;">Binder</a></li>
-            <li><a href="Javascript:;">Toy</a></li>
-        </ul>
- </div>
-
-            <div class="menu7">
-                <a class="aTitle" href="Javascript:;">FASHION</a>
-                <ul class="sub7">
-                    <li><a href="Javascript:;">Clothing</a></li>
-                    <li><a href="Javascript:;">Acc</a></li>
-                    <li><a href="Javascript:;">jewelry</a></li>
-                </ul>
-            </div>
-
-            <div class="menu8">
-            <a class="aTitle" href="Javascript:;">CUSTOMIZING</a>
-            <ul class="sub8">
-                <li><a href="Javascript:;">Phone Case</a></li>
-                <li><a href="Javascript:;">Fashion</a></li>
-                <li><a href="Javascript:;">Acc</a></li>
-            </ul>
-            </div>
-
-                  
-                    
+			         <div class="menu4">
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('P')">PHOTOBOOK</a>
+			            <ul class="sub4">
+			                <li><a href="Javascript:;">TEST</a></li>
+			                <li><a href="Javascript:;">TEST</a></li>
+			                <li><a href="Javascript:;">TEST</a></li>
+			            </ul>
+			   		  </div>
+			
+				     <div class="menu5">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Mem')">MEMBERSHIP</a>
+				        <ul class="sub5">
+				            <li><a href="Javascript:;">TEST</a></li>
+				            <li><a href="Javascript:;">TEST</a></li>
+				        </ul>
+				 	</div>
                 </div>
 
                 <div class="body2 " style=" width: 1000px; height: 2000px;">
-
-                   <div v-for="index in 10" :key="index">
-                    <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-                        
-                    </div>
-                   </div> 
-                    
+								<div v-for="item in list" class="productList">
+									<span><img :src = "item.path" class="pImg"></span>
+									<div>{{item.pName}}</div>
+									<div>{{item.price}}</div>
+								</div>
                 </div>
-
+                <!-- 페이징 추가 3 -->
             </div>        
         </div>
     </div>
- 
+				<template>
+				  <paginate
+				    :page-count="pageCount"
+				    :page-range="3"
+				    :margin-pages="2"
+				    :click-handler="fnSearch"
+				    :prev-text="'<'"
+				    :next-text="'>'"
+				    :container-class="'pagination'"
+				    :page-class="'page-item'">
+				  </paginate>
+				</template>
 </div>
-
 </body>
 </html>
-<script type="text/javascript">
+<script>
+<!-- 페이징 추가 4 -->
+Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
     el: '#app',
     data: {
-    	
+    	  list: [],
+          keyword: "",
+          uId: "${sessionId}",
+          artist: "FMN",
+  		<!-- 페이징 추가 5 -->
+		  selectPage: 1,
+		  pageCount: 1,
+		  cnt : 0,
+		  selectedOption : "전체",
+		  ctg : ""
     },
     methods: {
-      
+    	fnGetList: function (ctg) {
+            var self = this;
+			<!-- 페이징 추가 6 -->
+			var startNum = ((self.selectPage-1) * 10);
+    		var lastNum = 10;
+    		
+    		if(ctg == 'A'){
+    			self.ctg = "ALB";
+    		}else if(ctg == 'M'){
+    			self.ctg = "MER";
+    		}else if(ctg == 'D'){
+    			self.ctg = "DVD";
+    		}else if(ctg == 'P'){
+    			self.ctg = "PTB";
+    		}else if(ctg == 'Mem'){
+    			self.ctg = "MEM";
+    		}
+            var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum, selectedOption : self.selectedOption, ctg : self.ctg};
+            $.ajax({
+                url: "producListMain.dox",
+                dataType: "json",
+                type: "POST",
+                data: nparmap,
+                success: function (data) {
+                    self.list = data.list;
+                	self.cnt = data.cnt;
+	                self.pageCount = Math.ceil(self.cnt / 10);
+                    console.log("data ==>", data);
+                    console.log("list ==>", self.list);
+                }
+            });
+        },	<!-- 페이징 추가 7-->
+		fnSearch : function(pageNum){
+			var self = this;
+			self.selectPage = pageNum;
+			var startNum = ((pageNum-1) * 10);
+			var lastNum = 10;
+			var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum};
+			$.ajax({
+				url : "producListMain.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {
+					self.list = data.list;
+					self.cnt = data.cnt;
+					self.pageCount = Math.ceil(self.cnt / 10);
+				}
+			});
+		}
     },
     created: function() {
       var self = this;
+      self.fnGetList();
       // Vue.js 코드 작성 가능
     }
   });

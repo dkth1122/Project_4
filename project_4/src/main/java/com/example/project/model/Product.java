@@ -5,17 +5,20 @@ import lombok.Data;
 @Data
 public class Product {
 	
-	private String pName;
 	private String pNo;
+	private String pName;
 	private int price;
-	private int point;
 	private int stock;
 	private char membership;
-	private char soldout;
-	private int pLimit;
 	private String pDate;
+	private int pLimit;
 	private String category;
 	private String artist;
+	private String reservation;//예약 상품 여부
+	private String fNo; //특전 조인용
+	
+	private int point;
+	private char soldout;
 	private String fYn;
 	private int afNo;
 	private String pImg;

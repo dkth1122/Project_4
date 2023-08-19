@@ -36,6 +36,7 @@ public class ProductServiceImpl implements ProductService{
 		return productMapper.insertProductImg(map);
 	}
 	
+	
 	@Override
 	public HashMap<String, Object> selectProductList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -136,6 +137,17 @@ public class ProductServiceImpl implements ProductService{
 		public int insertProductBuy2(HashMap<String, Object> map) {
 			// TODO Auto-generated method stub
 			return productMapper.insertProductBuy2(map);
+		}
+
+//아티스트별 제품 메인 페이지 구현
+		//BTS_Main + 페이징
+		@Override
+		public HashMap<String, Object> searchProductMain(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("list", productMapper.selectProductMain(map));
+			resultMap.put("cnt", productMapper.selectMainCnt(map));
+			return resultMap;
 		}
 	
 }

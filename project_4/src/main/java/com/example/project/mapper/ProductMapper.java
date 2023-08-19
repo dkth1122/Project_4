@@ -55,5 +55,10 @@ public interface ProductMapper {
 	//결제시 딜리버리 테이블 등록
 	int insertProductBuy2(HashMap<String, Object> map);
 	
+	//아티스트별 상품 메인 페이지 구현 
+	List<Product> selectProductMain(HashMap<String, Object> map);
+	//페이징용 cnt
+	int selectMainCnt(HashMap<String, Object> map);
+	
 		
 }
