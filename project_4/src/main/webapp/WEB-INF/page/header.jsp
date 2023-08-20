@@ -186,7 +186,8 @@ header #container1 {
 						</ul>
 					</li>
 
-					<li><a href="/mypag/noticeList.do">NOTIFY</a>
+					<li><a href="/mypag/noticeList.do" onclick="window.open(this.href, 'ÆË¾÷Ã¢ ÀÌ¸§', 'width=1000,height=500'); return false;">NOTIFY</a>
+
 						<ul class="depths">
 						</ul>
 					</li>	
