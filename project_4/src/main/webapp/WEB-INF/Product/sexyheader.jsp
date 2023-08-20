@@ -56,20 +56,21 @@ nav {
 }
 
 <!--
-·Î°í ÀÖ´Â ºÎºÐ -->.
+ï¿½Î°ï¿½ ï¿½Ö´ï¿½ ï¿½Îºï¿½ -->.
 
 nav{ width:100%; height:135px;position:relative; z-index:9999;}
+
 		.navWrap {
       width: 100%;
       height: 180px;
       overflow: hidden;
       transition: all 0.6s;
       position: relative;
-
+	  z-index: 1;
     }
 		.navWrap:hover {
-      height:600px; /* È­¸éÀÇ ÀüÃ¼ ³ôÀÌ·Î È®Àå */
-      background: rgba(245, 235, 236); /* È£¹ö ½Ã ¹è°æ»ö ºÒÅõ¸íÇÏ°Ô º¯°æ */
+      height:600px; /* È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Ì·ï¿½ È®ï¿½ï¿½ */
+      background: rgba(245, 235, 236); /* È£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     }
 			
 nav .menu {
@@ -77,6 +78,7 @@ nav .menu {
 	width: 1700px;
 	margin: 0 auto;
 	height: 100px;
+	 z-index: 1;
 
 }
 
@@ -88,7 +90,7 @@ nav .menu a {
     justify-content: center;
 }
 
-/* °£°Ý Á¶Á¤ */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 nav .menu>li {
 	width: 100px;
 	float: left;

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
+<html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -11,20 +12,38 @@
 	widows: 100%
 }
 #container{
-  	text-align: center; 
+  text-align: center; 
 	width: auto;
 	height: 1200px;
+	
+}
+img.topimg{
+margin-top:50px; 
+    vertical-align: middle;
+	width:auto;
+	height: 800px;
+
+}
+<!-- nav{
+	widows: 1800px;
+	height: 1500px;
+	margin-bottom: 50px;
+}-->
+nav1{
+	widows: 1800px;
+	height: 800px;
+	margin-bottom: 50px;
+
 }
 
-img.topimg{
-	display: block; 
-	margin: 0px auto;
-	height: 800px;
-	 z-index: 9999;
+nav2{
+widows: 1800px;
+	height: 1800px;
+	margin-bottom: 50px;
 }
 
 .sect2 {
-	margin :  0px auto;
+margin :  0px auto;
 	width: 1800px;
 	height: 1500px;
 	background: #f0f0f0;
@@ -35,7 +54,7 @@ img.topimg{
 	height: 102px;
 	padding: 56px 0 56px 0;
 	box-sizing: border-box;
-
+}
 
 .sect2 div {
 	width: 307px;
@@ -162,6 +181,7 @@ margin :  0px auto;
     box-sizing: border-box; /* �е��� �׵θ��� ��� ũ�⿡ ���� */
 }
 
+
 </style>
 <!-- Start HEAD section -->
 <link href="../css/mainpageslideshow.css" rel="stylesheet" type="text/css">
@@ -169,48 +189,158 @@ margin :  0px auto;
 <!-- End HEAD section -->
 </head>
 
-
 <body>
 
 	<div id="app">
+
+		<div id="container">
+		
+
 			<nav id="slid">
-				
 				<div class="slideshow-container">
-					<div class="mySlides fade">
-				  	<div class="numbertext">1 / 3</div>
-				  	<img class="topimg" src="img/homeimg/boynext.jpg" >
+				
+				<div class="mySlides fade">
+				  <div class="numbertext">1 / 3</div>
+				  <img class="topimg" src="img/homeimg/boynext.jpg" >
+				  
 				</div>
 				
 				<div class="mySlides fade">
-					<div class="numbertext">2 / 3</div>
-				 	<img class="topimg" src="img/homeimg/seventeen_main.jpg" >
+				  <div class="numbertext">2 / 3</div>
+				  <img class="topimg" src="img/homeimg/seventeen_main.jpg" >
+				  
+
 				</div>
-							
+				
 				<div class="mySlides fade">
-					<div class="numbertext">3 / 3</div>
-					<img class="topimg" src="img/homeimg/promiss_main.jpg">
-			 	</div>
-			 	
+				  <div class="numbertext">3 / 3</div>
+				  <img class="topimg" src="img/homeimg/promiss_main.jpg">
+			
+				</div>
+				
+				</div>
 				<br>
 				
 				<div style="text-align:center">
-					<span class="dot"></span> 
-					<span class="dot"></span> 
-					<span class="dot"></span> 
+				  <span class="dot"></span> 
+				  <span class="dot"></span> 
+				  <span class="dot"></span> 
 				</div>
 				
 			</nav>
+			<nav id="nav2">
+						<section class="sect2">
+			<h2><a href="newitem.do">NEW ITEM</a></h2>
+			<div class="Sbox1">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">��Ƽ��Ʈ</li>
+					<li>��ǰ ��</li>
+					<li>����</li>
+				</ul>
 			</div>
-				
-<footer> 
-	<p>한나라 푸터 시발</p>
-</footer>
+
+
+			<div class="Sbox2">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">��Ƽ��Ʈ</li>
+					<li>��ǰ ��</li>
+					<li>����</li>
+				</ul>
+			</div>
+
+			<div class="Sbox3">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">��Ƽ��Ʈ</li>
+					<li>��ǰ ��</li>
+					<li>����</li>
+				</ul>
+			</div>
+
+			<div class="Sbox4">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">��Ƽ��Ʈ</li>
+					<li>��ǰ ��</li>
+					<li>����</li>
+				</ul>
+			</div>
+			
+
+
+		</section>
+</nav>
+		<nav id="nav3">
+			<section class="sect3">
+			<h2>STORE</h2>
+			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! �����!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+			<ul class="sale">
+				<li><a href="#"><img src="img/homeimg/sale1.jpg" alt="" />
+						<p>
+							������1 - �̸�<br>8,000��</a></li>
+				<li><a href="#"><img src="img/homeimg/sale2.jpg" alt="" />
+						<p>
+							������2 - �̸�<br>8,000��
+						</p></a></li>
+				<li><a href="#"><img src="img/homeimg/sale3.jpg" alt="" />
+						<p>
+							������3 - �̸�<br>7,000��
+						</p></a></li>
+				<li><a href="#"><img src="img/homeimg/sale4.jpg" alt="" />
+						<p>
+							������4 - �̸�<br>5,500��</a></li>
+			</ul>
+
+		</section>
+		
+<nav>
+</nav>
+
+			<nav>
+		
+	<footer> <p>
+				<br> ȸ��� (��)VeryPeri Corp. ��ǥ�ڸ� ������
+				 <br>�ּ� ��õ������ ���� ���� 534-48 7��
+				 ��ǥ��ȣ 4444-4444 / 4zomotchamchi@veryperi.com 
+				<br> VeriPeri�� ��� �������� ���۱��� ��ȣ�� �ް� �ֽ��ϴ�
+			</p>
+			<img src="img/homeimg/footerlogo.png" alt="" /></footer>
+	
+			
+			</nav>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	</div>
 	
 	
 </body>
 </html>
-
-
 <script>
 var app = new Vue({
 	el : '#app',

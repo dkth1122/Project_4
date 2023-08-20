@@ -7,10 +7,10 @@
  <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>¸â¹ö½Ê °Ô½ÃÆÇ</title>
+<title>å ì™ì˜™å ì™ì˜™å ï¿½ å ìŒ‰ì™ì˜™å ì™ì˜™</title>
 <style>
 	*{
-		font-family: aÅ¸ÀÌÆ²°íµñ2;
+		font-family: aíƒ€å ì™ì˜™í‹€å ì™ì˜™å ï¿½2;
 	}
 	body{
 		width : 1250px;
@@ -25,10 +25,22 @@
         
         button {
             padding: 10px 20px;
-            background-color: #FC8E9B;
-            border: none;
-            color: white;
-            cursor: pointer;
+            border:none;
+            cursor:pointer;
+        }
+        button:hover{
+         background-color: #FFDADA;
+        }
+        
+        #buttons {
+        	height: 50px;
+         	background-color: white;
+         	padding : 30px;
+         	margin-bottom:50px;
+        
+        }
+        .btn {
+        float:left;
         }
         
         .header {
@@ -42,11 +54,19 @@
             margin-right: 20px;
         }
         
+        input {
+        border: 2px solid rgb(215, 215, 215); }
+        
+        input:focus {outline:none;
+ 		border: 2px solid rgb(255, 128, 128);}
+ 
+        
         .feedType {
             display: inline-block;
-            width: calc(30% - 2%); /* ³Êºñ °è»ê (°¢°¢ÀÇ ¿ä¼Ò´Â 1%ÀÇ marginÀ» °®±â ¶§¹®¿¡ 2%¸¦ »©ÁÜ) */
-            height: 200px; /* ¿øÇÏ´Â ³ôÀÌ °ª ¼³Á¤ */
-        	margin: 0 1%; /* 1%ÀÇ marginÀ» ÁÂ¿ì·Î Ãß°¡ */
+            width: calc(30% - 2%); /* å ì‹­ë¸ì˜™ å ì™ì˜™å ï¿½ (å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å¹´å ï¿½ 1%å ì™ì˜™ marginå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ 2%å ì™ì˜™ å ì™ì˜™å ì™ì˜™) */
+            height: 200px; /* å ì™ì˜™å ì‹¹ëŒì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+        	margin: 0 1%; /* 1%å ì™ì˜™ marginå ì™ì˜™ å ìŠ¹ìš¸ì˜™å ï¿½ å ìŒ©ê³¤ì˜™ */
+        	margin-bottom: 30px;
             box-sizing: border-box;
             vertical-align: top;
             border: 1px solid #BB91E7;
@@ -58,6 +78,11 @@
         .feedType a {
             text-decoration: none;
             color: inherit;
+        }
+        
+        #writearea{
+        background-color: white;
+        padding:30px;
         }
         
         .profile-image {
@@ -110,18 +135,18 @@
         }
    
 	   .profile-image {
-		    width: 50px; /* ¿øÇÏ´Â ÀÌ¹ÌÁö Å©±â Á¶Àı */
+		    width: 50px; /* å ì™ì˜™å ì‹¹ëŒì˜™ å ì‹±ë±„ì˜™å ì™ì˜™ í¬å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
 		    height: 50px;
 		    border : 1px solid #BB91E7;
-		    border-radius: 50%; /* 50%·Î ¼³Á¤ÇÏ¿© µ¿±×¶ó¹Ì ¸ğ¾çÀ¸·Î ÀÚ¸§ */
-		    object-fit: cover; /* ÀÌ¹ÌÁö¸¦ È­¸é¿¡ ¸Â°Ô Á¶ÀıÇÏ¿© Àß¸° ºÎºĞÀÌ Àß º¸ÀÌµµ·Ï ÇÔ */
+		    border-radius: 50%; /* 50%å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ìš¸ì˜™ å ì™ì˜™å ìŒ“ë°ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ï¿½ å ìŒ˜ëªŒì˜™ */
+		    object-fit: cover; /* å ì‹±ë±„ì˜™å ì™ì˜™å ì™ì˜™ í™”å ì½ì— å ìŠ¹ê³¤ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ìš¸ì˜™ å ìŒ©ëªŒì˜™ å ì‹¸ë¸ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì‹±ë“¸ì˜™å ì™ì˜™ å ì™ì˜™ */
 		}
 		
 		hr{
-			border: none; /* ±âº» Å×µÎ¸® Á¦°Å */
-	        height: 2px; /* ³ôÀÌ ¼³Á¤ */
-	        background: linear-gradient(to right, #BB91E7, #F2DAED); /* ±×¶óµğ¾ğÆ® ¹è°æ ¼³Á¤ */
-	        margin: 20px 0; /* À§¾Æ·¡ ¸¶Áø ¼³Á¤ */
+			border: none; /* å ì©ë³¸ å ìŒ“ë‘ëªŒì˜™ å ì™ì˜™å ì™ì˜™ */
+	        height: 2px; /* å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+	        background: linear-gradient(to right, #BB91E7, #F2DAED); /* å ìŒ“ë°ì˜™å ì™ì˜™íŠ¸ å ì™ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™ */
+	        margin: 20px 0; /* å ì™ì˜™å ì‹£ë¤„ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
 		}
 		.image{
 			border : none;
@@ -134,57 +159,65 @@
 </style>
 </head>
 <body>
-<div id="app">
-    <button @click="fnMove">µÚ·Î°¡±â</button>
-    <button @click="fnMove('my')">¸¶ÀÌÆäÀÌÁö</button>
-        <button>¾Ë¸²</button>
-        <hr>
-    <div class="header">
-        <label>Á¦¸ñ, ÀÛ¼ºÀÚ :  
-            <input type="text" v-model="keyword">
-            <button @click="fnSearch">°Ë»ö</button>
-        </label>
+ <nav id="app">
+
+	<nav id="buttons">
+	<div class="header">
+	<div class="btn">
+    <button @click="fnMove">back</button>
+    <button @click="fnMove('my')">menu</button>
+        <button>å ì‹¯ëªŒì˜™</button>
+      </div> 
         
-    </div>
+    
+        <label>  
+            <input type="text" v-model="keyword">
+            <button @click="fnSearch">search</button>
+        </label>
+        </div>
+        <hr>
+    </nav>
     
     <div class="artistNewFeed">
-        <!-- ³¯Â¥ ºü¸¥ ¼øÀ¸·Î Á¤·Ä ÈÄ Ãâ·Â -->
+        <!-- å ì™ì˜™ì§œ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ï¿½ -->
         	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
 		        <a href="javascript:;">
 	            <div>
-	            	<li><span>´ñ±Û¼ö : </span>{{item.gcCnt}}</li>
+	            	<li><span>å ì™ì˜™è’¡å ï¿½ : </span>{{item.gcCnt}}</li>
 	                <li>{{item.artist}}</li>
 	            	<li>{{item.nickName}}</li>
 	            	<li><img :src = "item.gpPath" class="profile-image"></li>
 	                <li>{{item.gDate}}</li>
 	                <li>{{item.gContent}}</li>
-	                <li><span>ÁÁ¾Æ¿ä : </span>{{item.gLike}}</li>
+	                <li><span>å ì™ì˜™å ì‹£ìš¸ì˜™ : </span>{{item.gLike}}</li>
 	            </div>
 		       </a>
        	 	</ul>
     </div>
     
     <hr>
+    <nav id= "writearea">
     <div class="write">
         <textarea rows="10" cols="100" v-model="content"></textarea>
-			<span>ÆÄÀÏ</span>
+			<span>å ì™ì˜™å ì™ì˜™</span>
 			<span><input type="file" id="file1" name="file1" accept=".gif, .jpg, .png" @change="handleFileChange"></span>
-        <button @click="fnAdd">°Ô½Ã±Û µî·Ï</button>
+        <button @click="fnAdd">å ìŒ‰ì‹œê¹ì˜™ å ì™ì˜™å ï¿½</button>
     </div>
+    </nav>
     <hr>
     <div class="container">
         <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
-        	<li><span>´ñ±Û¼ö : </span>{{item.gcCnt}}</li>
+        	<li><span>å ì™ì˜™è’¡å ï¿½ : </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
 	        <li>{{item.nickName}}<img :src = "item.gpPath" class="profile-image"></li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
-            <li><span>ÁÁ¾Æ¿ä : </span>{{item.gLike}}</li>
+            <li><span>å ì™ì˜™å ì‹£ìš¸ì˜™ : </span>{{item.gLike}}</li>
             <img v-if="item.path" :src="item.path" class="image" />
 			<img v-else class="imageX" />
-            <li><button @click="fnLike(item.gNo)">ÁÁ¾Æ¿ä</button></li>
-            <li><button @click="fnComment(item.gNo)">´ñ±Û</button></li>
-            <li><button @click="reportPost(item.gNo)">½Å°í</button></li>
+            <li><button @click="fnLike(item.gNo)">å ì™ì˜™å ì‹£ìš¸ì˜™</button></li>
+            <li><button @click="fnComment(item.gNo)">å ì™ì˜™å ï¿½</button></li>
+            <li><button @click="reportPost(item.gNo)">å ì‹ ê³¤ì˜™</button></li>
             <li v-if="uId == item.uId">
                 <a href="javascript:;">
                     <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item)"></i></div>
@@ -242,11 +275,11 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     if (self.keyword === "") {
-                        self.fnGetList(); // Å°¿öµå°¡ ºñ¾îÀÖÀ¸¸é ÀüÃ¼ ¸ñ·ÏÀ» º¸¿©ÁÜ
+                        self.fnGetList(); // í‚¤å ì™ì˜™å ì²ê°€ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ï¿½ å ì™ì˜™ì²´ å ì™ì˜™å ì™ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™å ì™ì˜™
                         self.search = "";
                     } else {
-                        self.list = data.info; // Å°¿öµå°¡ ÀÖÀ¸¸é °Ë»ö °á°ú¸¦ º¸¿©ÁÜ
-                        self.search = "°Ë»ö";
+                        self.list = data.info; // í‚¤å ì™ì˜™å ì²ê°€ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™ å ì™ì˜™å ì™ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™å ì™ì˜™
+                        self.search = "å ì‹¯ì‚¼ì˜™";
                     }
                 }
             });
@@ -254,12 +287,12 @@ var app = new Vue({
         fnAdd: function () {
             var self = this;
 
-            if (!confirm("µî·ÏÇÒ±î¿ä?")) {
+            if (!confirm("å ì™ì˜™å ì™ì˜™è€å ì™ì˜™?")) {
                 return;
             }
             
             if(self.content == null || self.content == ""){
-            	alert("³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+            	alert("å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ‰ë¤„ì˜™å ì™ì˜™å ìŒì‡½ì˜™å ì™ì˜™");
                 return;
             }
             var nparmap = {content: self.content, artist: self.artist, uId : self.uId };
@@ -270,7 +303,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("µî·ÏµÇ¾ú¾î¿ä.");
+                    alert("å ì™ì˜™æºí“¸å ì™ì˜™å ì™ì˜™.");
                     self.comment = "";
                     self.fnGetList();
  	           		var form = new FormData();
@@ -280,7 +313,7 @@ var app = new Vue({
                 }
             });
         },
-     // ÆÄÀÏ ¾÷·Îµå
+     // å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹¸ë“¸ì˜™
 	     upload : function(form){
 	    	var self = this;
 	         $.ajax({
@@ -296,7 +329,7 @@ var app = new Vue({
 		}
         ,fnRemove: function (item) {
             var self = this;
-            if (!confirm("»èÁ¦ÇÏ½Ã°Ú¾î¿ä?")) {
+            if (!confirm("å ì™ì˜™å ì™ì˜™å ì‹¹ì‹œê² ì–µì˜™å ï¿½?")) {
                 return;
             }
             var nparmap = item;
@@ -306,7 +339,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("»èÁ¦µÇ¾ú½À´Ï´Ù.");
+                    alert("å ì™ì˜™å ì™ì˜™å ì‹¤ì–µì˜™å ì™ì˜™å ì‹¹ëŒì˜™.");
                     self.fnGetList();
                 }
             });
@@ -343,9 +376,9 @@ var app = new Vue({
         	
         },  reportPost : function(gNo) {
             var self = this;
-            self.selectedReason = ""; // ÃÊ±âÈ­
-            self.otherReason = ""; // ÃÊ±âÈ­
-            self.reportDescription = ""; // ÃÊ±âÈ­
+            self.selectedReason = ""; // å ì‹­ê¹ì˜™í™”
+            self.otherReason = ""; // å ì‹­ê¹ì˜™í™”
+            self.reportDescription = ""; // å ì‹­ê¹ì˜™í™”
             self.showReportModal = true;
             
             var option = "width=700,height=500,top=100,right";
@@ -357,11 +390,11 @@ var app = new Vue({
               var file = event.target.files[0];
               
               if (file) {
-                  var ext = file.name.split('.').pop().toLowerCase(); // ÆÄÀÏ È®ÀåÀÚ ÃßÃâ
+                  var ext = file.name.split('.').pop().toLowerCase(); // å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 
                   if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
-                      alert('ÀÌ¹ÌÁö ÆÄÀÏÀº gif, jpg, png È®ÀåÀÚ¸¸ Çã¿ëµË´Ï´Ù.');
-                      // ÆÄÀÏ ¼±ÅÃÀ» Ãë¼ÒÇÏµµ·Ï Ã³¸® (¼±ÅÃÇÑ ÆÄÀÏÀ» ÃÊ±âÈ­)
+                      alert('å ì‹±ë±„ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ gif, jpg, png í™•å ì™ì˜™å ìŒ˜ëªŒì˜™ å ì™ì˜™å ì‹¯ë‹ˆëŒì˜™.');
+                      // å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™æºå ì™ì˜™å ï¿½ ì²˜å ì™ì˜™ (å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹­ê¹ì˜™í™”)
                       event.target.value = '';
                   }
               }
