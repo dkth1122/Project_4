@@ -13,20 +13,24 @@
  <meta charset="UTF-8">
   <title>마이페이지</title>
   <style type="text/css">
+  #app{
+  	width: 600px;
+  }
   #wc, table{
   	margin: 0px auto;
   	text-align: center;  
+  	width: 500px;
   }
   template{
-  width: 1200px;
+  /* width: 1200px; */
 
   }
   .acb{
   padding : 20px;
-   font-size : 2rem;
+   font-size : 20px;
    text-align : left;
   	margin: 0px auto;
-  	width: 1500px;
+  	width: 800px;
   	border-bottom: 1px solid #eee;
   	display: flex;
 
@@ -51,32 +55,30 @@
         display: inline-flex;
         
     }
-    ul {
-    }
-	.pagination li {
-	    min-width:32px;
-	    padding:2px 6px;
-	    text-align:center;
-	    margin:0 3px;
-	    border-radius: 6px;
-	    border:1px solid #eee;
-	    color:#666;
-	    display : inline;
-	}
-	.pagination li:hover {
-	    background: #E4DBD6;
-	}
-	.page-item a {
-	    color:#666;
-	    text-decoration: none;
-	}
-	.pagination li.active {
-	    background-color : #E7AA8D;
-	    color:#fff;
-	}
-	.pagination li.active a {
-	    color:#fff;
-	}
+    .pagination li {
+           min-width:32px;
+           padding:2px 6px;
+           text-align:center;
+           margin:0 3px;
+           border-radius: 6px;
+           border:1px solid #eee;
+           color:#666;
+           display : inline;
+       }
+       .pagination li:hover {
+           background: #e2d6e4;
+       }
+       .page-item a {
+           color:#666;
+           text-decoration: none;
+       }
+       .pagination li.active {
+           background-color : #bb76c4;
+           color:white;
+       }
+       .pagination li.active a {
+           color:#fff;
+       }
 	.date{
 		text-align: right;
 	}
@@ -101,7 +103,7 @@
    font-size : 2rem;
    text-align : left;
   	margin: 0px auto;
-  	width: 1500px;
+  	width: 800px;
   	border-bottom: 1px solid #fff;
   	display: flex;
 	}
@@ -113,47 +115,14 @@
     <div id="wc">
     	<div id="notice">Notice</div>
     	<table>
-    		<tr class="notice"> 
-			    <th class="column-width-5">Notice</th>
-			    <th class="column-width-60">무슨말을 넣을까요?</th>
-			    <th class="column-width-25">2011-08-18</th>
-			    <th class="column-width-10">∞</th>
-			</tr>
-			<tr class="notice"> 
-			    <th class="column-width-5">Notice</th>
-			    <th class="column-width-60">무슨말을 넣을까요?</th>
-			    <th class="column-width-25">2023-03-12</th>
-			    <th class="column-width-10">∞</th>
-			</tr>
-			<tr class="notice"> 
-			    <th class="column-width-5">Notice</th>
-			    <th class="column-width-60">무슨말을 넣을까요?</th>
-			    <th class="column-width-25">2020-01-17</th>
-			    <th class="column-width-10">∞</th>
-			</tr>
-			<tr class="notice"> 
-			    <th class="column-width-5">Notice</th>
-			    <th class="column-width-60">무슨말을 넣을까요?</th>
-			    <th class="column-width-25">2023-08-18</th>
-			    <th class="column-width-10">∞</th>
-			</tr>
-    		
     		<tr class="acb" v-for="item in list">
     			<td class="column-width-5">{{item.aNo}}. </td>
     			<td class="column-width-60"><a href="#" @click="noticeView(item)">{{item.aTitle}}</a></td>
     			<td class="column-width-25">{{formatWithoutTime(item.aDate)}}</td>
-    			<td class="column-width-10">{{item.hits}}</td>
+    			<td class="column-width-10" style="font-size: 15px; color: #ccc;">{{item.hits}}</td>
     		</tr>
     	
     	</table>
-    	
-    	<!-- <div class="acb" v-for="item in list">
-    		<div>{{item.aNo}}. 
-    			<span @click="noticeView(item)">{{item.aTitle}}</span>
-    			<span>{{formatWithoutTime(item.aDate)}}</span>
-    			<span>{{item.hits}}</span>
-    		</div>
-    	</div> -->    	
     	<template>
 	  		<paginate
 			    :page-count="pageCount"

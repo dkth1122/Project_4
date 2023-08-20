@@ -20,6 +20,8 @@
 </head>
 <body>
 <div id="app">
+
+	<div onclick="history.back();"><a href="javascript:;">← 되돌아가기</a></div>
     <div id="wc">
     	<h1 id="notice">Notice</h1>
     	
@@ -31,9 +33,13 @@
     				<span><strong>조회수</strong> {{item.hits}}</span></div>
     			<hr>
     		</div>
+    			<div>
+					<img :src="item.thumbnail">
+				</div>
     		<div>
     			{{item.aContent}}
-    			<div><button @click="noticeList">전체 목록</button></div>
+    			<div>
+    			<button @click="noticeList">전체 목록</button></div>
     			<hr>
     		</div>
     		<div v-if="index > 0">
