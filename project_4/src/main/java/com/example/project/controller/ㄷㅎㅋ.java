@@ -37,7 +37,12 @@ public class ㄷㅎㅋ {
 
         return "/myPag/Order";
     }
-	
+	//결제 페이지
+	@RequestMapping("sexyheader.do") 
+	public String sexyheader(Model model) throws Exception{
+
+	return "/Product/sexyheader";
+	}
 	
 	//구매자 리스트
 	@RequestMapping(value = "/mypag/Orderp.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

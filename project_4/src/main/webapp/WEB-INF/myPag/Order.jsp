@@ -260,7 +260,7 @@ text-align: center;
 					<table class="adr" border="0">
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문하시는 분 </th>
-							<td><input  class="nameinput " type="text"> </td>
+							<td><input  class="nameinput " type="text" v-model="name"> </td>
 						</tr>
 						
 						<tr>
@@ -306,7 +306,7 @@ text-align: center;
 						<tr>
 							<th>　<i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>이메일</th>
 							<td><div style="width: 793px;">
-								<input class="numinput" type="text"> @ <input class="numinput" type="text"  :v-model="email">	
+								<input class="numinput" type="text"> @ <input class="numinput" type="text" :v-model="mail">	
 									<select class="select2"  :v-model="email">
 											<option value="">-이메일 선택-</option>
 											<option value="naver.com">naver.com</option>
@@ -330,8 +330,12 @@ text-align: center;
 					
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 배송지선택 </th>
-							<td><div >
-							<label><input name="addr"  class=" " type="radio">주문자 정보와 동일</label> <label><input name="addr"  class=" " type="radio"> 새로운 배송지</label> <button>주소록 보기</button></div>
+							<td>
+								<div id="to" >
+										<label><input name="addr" type="radio" style="height: 12px; width: 30px;">주문자 정보와 동일</label> 
+										<label><input name="addr" type="radio" style="height: 12px; width: 20px;" > 새로운 배송지</label>
+										<button>주소록 보기</button>
+							 	</div>
 							</td>
 						
 						</tr>
@@ -378,7 +382,7 @@ text-align: center;
 								<option>018</option>
 								<option>019</option>
 							</select>
-							<input class="numinput" type="text">	- <input class="numinput" type="text">			
+							<input class="numinput" type="text"> - <input class="numinput" type="text">			
 							</td>						
 						</tr>
 						
@@ -451,127 +455,21 @@ text-align: center;
 	var app = new Vue({
 		el : '#app',
 		data : {
-			info : [],
-			orderCntList : [],
 			uId : "dcsdsd3",/* "${sessionId}" */
-			order : "",
-			exchange : "",
-			refund : "",
-			list : [],
-			cart : [],
-			pNo : ""
+			name : "",
+			addr : "",
+			ph : "",
+			ph2 : "",
+			ph3 : "",
+			email : "",
+			mail : "",
 		},
-		email: "",
 		methods : {
-			
-			fnRemove : function() {
-				var self = this;
-				var nparmap = {
-					pNo : self.pNo
-				};
-				$.ajax({
-					url : "/mypag/deletecart.dox",
-					dataType : "json",
-					type : "POST",
-					data : nparmap,
-					success : function(data) {
-						alert("장바구니에서 삭제되었습니다.");
-						console.log(self.pNo);
-					}
-				});
-			},
-			fnOrder : function() {
-				var self = this;
-				var nparmap = {
-					uId : self.uId
-				};
-				$.ajax({
-					url : "/mypag/listExchange.dox",
-					dataType : "json",
-					type : "POST",
-					data : nparmap,
-					success : function(data) {
-						var listCnt = data.list;
-						for (var i = 0; i < listCnt.length; i++) {
-							if (listCnt[i].exchange == "N") {
-								self.order = listCnt[i].orderCnt;
-								console.log(self.order);
-							} else if (listCnt[i].exchange == "E") {
-								self.exchange = listCnt[i].orderCnt;
-							} else {
-								self.refund = listCnt[i].orderCnt;
-							}
-						}
-
-					}
-				});
-			},
-
-			fnGetProduct : function() {
-				var self = this;
-				var nparmap = {};
-				$.ajax({
-					url : "/mypag/cart.dox",
-					dataType : "json",
-					type : "POST",
-					data : nparmap,
-					success : function(data) {
-						self.cart = data.list;
-						console.log(self.cart);
-
-					}
-				});
-			},
-
-			fnGetList : function() {
-				var self = this;
-				var nparmap = {
-					uId : self.uId
-				};
-				$.ajax({
-					url : "/user2.dox",
-					dataType : "json",
-					type : "POST",
-					data : nparmap,
-					success : function(data) {
-						self.info = data.findPw; //사용자
-						self.fnCntList();
-					}
-				});
-			},
-			fnCntList : function() {
-				var self = this;
-				var nparmap = {
-					uId : self.uId
-				};
-				$.ajax({
-					url : "/mypag/listExchange.dox",
-					dataType : "json",
-					type : "POST",
-					data : nparmap,
-					success : function(data) {
-						var listCnt = data.list;
-						for (var i = 0; i < listCnt.length; i++) {
-							if (listCnt[i].exchange == "N") {
-								self.order = listCnt[i].orderCnt;
-								console.log(self.order);
-							} else if (listCnt[i].exchange == "E") {
-								self.exchange = listCnt[i].orderCnt;
-							} else {
-								self.refund = listCnt[i].orderCnt;
-							}
-						}
-
-					}
-				});
-
-			},
+		
 
 		},
 		created : function() {
 			var self = this;
-			self.fnGetList();
-			self.fnGetProduct();
 		}
 	});
 </script>
