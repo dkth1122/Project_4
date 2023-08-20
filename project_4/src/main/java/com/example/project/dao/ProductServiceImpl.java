@@ -138,15 +138,26 @@ public class ProductServiceImpl implements ProductService{
 			// TODO Auto-generated method stub
 			return productMapper.insertProductBuy2(map);
 		}
-
+		
+//----------------------------------------------------------------------------------------------------------나연 작업 중
 //아티스트별 제품 메인 페이지 구현
-		//BTS_Main + 페이징
+		//Artist_Main + 페이징
 		@Override
 		public HashMap<String, Object> searchProductMain(HashMap<String, Object> map) {
 			// TODO Auto-generated method stub
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
 			resultMap.put("list", productMapper.selectProductMain(map));
 			resultMap.put("cnt", productMapper.selectMainCnt(map));
+			return resultMap;
+		}
+
+//제품별 전체 목록 출력 페이지 구현
+		//Category_Main + 페이징
+		@Override
+		public HashMap<String, Object> searchProductALL(HashMap<String, Object> map) {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("list", productMapper.selectProductALL(map));
+			resultMap.put("cnt", productMapper.selectProductCnt(map));
 			return resultMap;
 		}
 	

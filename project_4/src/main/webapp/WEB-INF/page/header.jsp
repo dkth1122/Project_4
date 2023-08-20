@@ -172,11 +172,11 @@ header #container1 {
 						
 					<li><a href="productpage.do">PRODUCT</a>
 						<ul class="depths">
-							<li><a href="#">MEMBERSHIP</a></li>
-							<li><a href="#">ALBUM</a></li>
-							<li><a href="#">MERCHANDISE</a></li>
-							<li><a href="#">DVD</a></li>
-							<li><a href="#">PHOTO BOOK</a></li>
+							<li><a href="/product/membership.do">MEMBERSHIP</a></li>
+							<li><a href="/product/album.do">ALBUM</a></li>
+							<li><a href="/product/merch.do">MERCHANDISE</a></li>
+							<li><a href="/product/dvd.do">DVD</a></li>
+							<li><a href="/product/photoBook.do">PHOTO BOOK</a></li>
 						</ul>
 					</li>
 						

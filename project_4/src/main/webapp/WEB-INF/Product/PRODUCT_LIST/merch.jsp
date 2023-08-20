@@ -127,10 +127,10 @@
                 
                 <div class="body2" style=" width: 198px; height: 600px;">
 
-                    <div id="CategoryTitle" class="CategoryTitle"><a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
+                    <div id="CategoryTitle" class="CategoryTitle"><a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                   
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnGetList('A')">ALBUM</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('BTS')">BTS</a>
                             <ul class="sub">
                                 <li><a href="Javascript:;">TEST</a></li>
                                 <li><a href="Javascript:;">TEST</a></li>
@@ -139,7 +139,7 @@
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnGetList('M')">MERCH</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('LSF')">LE SSERAFIM</a>
                         <ul class="sub2">
                             <li><a href="Javascript:;">TEST</a></li>
                             <li><a href="Javascript:;">TEST</a></li>
@@ -147,7 +147,7 @@
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('D')">DVD</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('SVT')">SEVENTEEN</a>
 	                    <ul class="sub3">
 	                        <li><a href="Javascript:;">TEST</a></li>
 	                        <li><a href="Javascript:;">TEST</a></li>
@@ -155,7 +155,7 @@
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnGetList('P')">PHOTOBOOK</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('FMN')">FROMIS_9</a>
 			            <ul class="sub4">
 			                <li><a href="Javascript:;">TEST</a></li>
 			                <li><a href="Javascript:;">TEST</a></li>
@@ -164,12 +164,45 @@
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Mem')">MEMBERSHIP</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('TXT')">TXT</a>
 				        <ul class="sub5">
 				            <li><a href="Javascript:;">TEST</a></li>
 				            <li><a href="Javascript:;">TEST</a></li>
 				        </ul>
 				 	</div>
+				 	
+				 	<div class="menu6">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('NJS')">NEWJEANS</a>
+				        <ul class="sub6">
+				            <li><a href="Javascript:;">TEST</a></li>
+				            <li><a href="Javascript:;">TEST</a></li>
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu7">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('EHP')">ENHYPEN</a>
+				        <ul class="sub7">
+				            <li><a href="Javascript:;">TEST</a></li>
+				            <li><a href="Javascript:;">TEST</a></li>
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu8">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BND')">BOYNEXTDOOR</a>
+				        <ul class="sub8">
+				            <li><a href="Javascript:;">TEST</a></li>
+				            <li><a href="Javascript:;">TEST</a></li>
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu9">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('ZIC')">ZICO</a>
+				        <ul class="sub9">
+				            <li><a href="Javascript:;">TEST</a></li>
+				            <li><a href="Javascript:;">TEST</a></li>
+				        </ul>
+				 	</div>
+				 	
                 </div>
 
                 <div class="body2 " style=" width: 1000px; height: 2000px;">
@@ -207,35 +240,43 @@ var app = new Vue({
     	  list: [],
           keyword: "",
           uId: "${sessionId}",
-          artist: "NJS",
+          artist: "",
   		<!-- 페이징 추가 5 -->
 		  selectPage: 1,
 		  pageCount: 1,
 		  cnt : 0,
 		  selectedOption : "전체",
-		  ctg : ""
+		  ctg : "MER"
     },
     methods: {
-    	fnGetList: function (ctg) {
+    	fnGetList: function (artist) {
             var self = this;
 			<!-- 페이징 추가 6 -->
 			var startNum = ((self.selectPage-1) * 10);
     		var lastNum = 10;
     		
-    		if(ctg == 'A'){
-    			self.ctg = "ALB";
-    		}else if(ctg == 'M'){
-    			self.ctg = "MER";
-    		}else if(ctg == 'D'){
-    			self.ctg = "DVD";
-    		}else if(ctg == 'P'){
-    			self.ctg = "PTB";
-    		}else if(ctg == 'Mem'){
-    			self.ctg = "MEM";
+    		if(artist == 'BTS'){
+    			self.artist = "BTS";
+    		}else if(artist == 'TXT'){
+    			self.artist = "TXT";
+    		}else if(artist == 'EHP'){
+    			self.artist = "EHP";
+    		}else if(artist == 'SVT'){
+    			self.artist = "SVT";
+    		}else if(artist == 'FMN'){
+    			self.artist = "FMN";
+    		}else if(artist == 'LSF'){
+    			self.artist = "LSF";
+    		}else if(artist == 'NJS'){
+    			self.artist = "NJS";
+    		}else if(artist == 'BND'){
+    			self.artist = "BND";
+    		}else if(artist == 'ZIC'){
+    			self.artist = "ZIC";
     		}
             var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum, selectedOption : self.selectedOption, ctg : self.ctg};
             $.ajax({
-                url: "producListMain.dox",
+                url: "producListMain2.dox",
                 dataType: "json",
                 type: "POST",
                 data: nparmap,

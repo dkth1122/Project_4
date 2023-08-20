@@ -47,6 +47,7 @@ public class ProductPagController {
 	        return "/Product/productView";
 	}
 	
+//---------------------------------------------------------------------나연 작업-------------		
 	//BTS 상품 메인 페이지 (전체 상품 최신순 정렬)
 	@RequestMapping("/product/BTS.do") 
 	public String productPrintBTS(Model model) throws Exception{
@@ -110,7 +111,7 @@ public class ProductPagController {
 		return "/Product/ZIC/productList_Main";
 	}
 	
-	// 게시글 전체 조회 기능
+	// 해당 아티스트 제품 전체 조회 기능
 	@RequestMapping(value = "/product/producListMain.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String select(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -122,5 +123,58 @@ public class ProductPagController {
 		resultMap = productService.searchProductMain(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+//메인에서 PRODUCT 연결된 부분 (카테고리별 전체 상품 출력)
+	
+	//1. 멤버쉽 상품 전체 출력
+	@RequestMapping("/product/membership.do") 
+	public String productMembership(Model model) throws Exception{
+			
+		return "/Product/PRODUCT_LIST/membership";
+	}
+	
+	//2. 앨범 상품 전체 출력
+	@RequestMapping("/product/album.do") 
+	public String productAlbum(Model model) throws Exception{
+			
+		return "/Product/PRODUCT_LIST/album";
+	}
+
+	
+	//3. 머치 상품 전체 출력
+	@RequestMapping("/product/merch.do") 
+	public String productMerch(Model model) throws Exception{
+			
+		return "/Product/PRODUCT_LIST/merch";
+	}
+
+	
+	//4. DVD 상품 전체 출력
+	@RequestMapping("/product/dvd.do") 
+	public String productDVD(Model model) throws Exception{
+			
+		return "/Product/PRODUCT_LIST/dvd";
+	}
+
+	
+	//5. 포토북 상품 전체 출력
+	@RequestMapping("/product/photoBook.do") 
+	public String productPhotoBook(Model model) throws Exception{
+			
+		return "/Product/PRODUCT_LIST/photoBook";
+	}
+
+	@RequestMapping(value = "/product/producListMain2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String producListMain2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = productService.searchProductALL(map);
+		return new Gson().toJson(resultMap);
+	}
+	
 
 }

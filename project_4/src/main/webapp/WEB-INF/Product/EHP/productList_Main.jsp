@@ -127,7 +127,7 @@
                 
                 <div class="body2" style=" width: 198px; height: 600px;">
 
-                    <div id="CategoryTitle" class="CategoryTitle"> PRODUCT</div>
+                    <div id="CategoryTitle" class="CategoryTitle"><a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
                   
                       <div class="menu">
                             <a class="aTitle" href="Javascript:;" @click="fnGetList('A')">ALBUM</a>
@@ -265,6 +265,9 @@ var app = new Vue({
 					self.pageCount = Math.ceil(self.cnt / 10);
 				}
 			});
+		},
+		fnReload : function(){
+			location.reload();
 		}
     },
     created: function() {

@@ -148,7 +148,6 @@
 	            ORDER BY PRICE DESC
 	        </when>
 	        <otherwise>
-	            <!-- 기본 정렬 조건을 추가할 수 있습니다. -->
 	        </otherwise>
 	    </choose>
 	    <!-- AND CLASS = 'Y' 추후 더미데이터 추가 후 활성화 예정 -->
@@ -157,6 +156,39 @@
 	
 	<!-- 페이징용 갯수 -->
 	<select id="selectMainCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_PRODUCT
+		WHERE ARTIST = #{artist}
+	</select>
+	
+	 <!-- 제품별 상품 페이지 구현 -->
+		<!-- 상품출력 -->
+	<select id="selectProductALL" parameterType="hashmap" resultType="com.example.project.model.Product">
+	    SELECT * FROM T4_PRODUCT P
+	    LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+	    WHERE 1=1
+	        AND CATEGORY = #{ctg}
+	    <if test="artist != null and artist != ''" >
+	        AND ARTIST = #{artist}
+	    </if>
+	    <choose>
+	        <when test="selectedOption == 'nameList'">
+	            ORDER BY P_NAME ASC
+	        </when>
+	        <when test="selectedOption == 'minPrice'">
+	            ORDER BY PRICE ASC
+	        </when>
+	        <when test="selectedOption == 'maxPrice'">
+	            ORDER BY PRICE DESC
+	        </when>
+	        <otherwise>
+	        </otherwise>
+	    </choose>
+	    <!-- AND CLASS = 'Y' 추후 더미데이터 추가 후 활성화 예정 -->
+	    LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 페이징용 갯수 -->
+	<select id="selectProductCnt" resultType="int">
 		SELECT COUNT(*) FROM T4_PRODUCT
 		WHERE ARTIST = #{artist}
 	</select>
