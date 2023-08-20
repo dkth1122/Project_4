@@ -24,5 +24,8 @@ public interface ABoardService {
 	
 	//공지만 출력
 	HashMap<String, Object> selectABoardList3 (HashMap<String, Object> map);
+	
+	//이벤트만 출력
+	List<ABoard> selectABoardList4 (HashMap<String, Object> map);
 
 }

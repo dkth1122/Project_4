@@ -77,6 +77,12 @@ public class ABoardServiceImpl implements ABoardService{
 		return resultMap;				
 	}
 
+	@Override
+	public List<ABoard> selectABoardList4(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return aboardMapper.selectABoardList4(map);
+	}
+
 
 	
 }

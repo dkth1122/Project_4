@@ -51,6 +51,11 @@ public class ABoardController {
 		request.setAttribute("map", map);
 		return "/ABoard/aboard-edit";
 	}
+
+	@RequestMapping("event/eventpage.do") 
+	public String eventpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/page/eventpage";
+	}
 	
 	
 	
@@ -83,6 +88,14 @@ public class ABoardController {
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
 		resultMap = aboardService.selectABoardList3(map);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/event/list4.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String eventList4(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<ABoard> list = aboardService.selectABoardList4(map);
+		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
 	

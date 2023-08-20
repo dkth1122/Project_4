@@ -109,6 +109,9 @@
   	border-bottom: 1px solid #fff;
   	display: flex;
 	}
+	hr{
+		width: 800px;
+	}
   </style>
 </head>
 <body>
@@ -116,6 +119,7 @@
 <div id="container">
     <div id="wc">
     	<div id="notice">Notice</div>
+    	<hr>
     	<table>
     		<tr class="acb" v-for="item in list">
     			<td class="column-width-5">{{item.aNo}}. </td>

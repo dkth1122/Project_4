@@ -26,6 +26,14 @@
 		WHERE A_KIND ='공지'
 		ORDER BY A_NO DESC
 	</select>
+	<!-- 이벤트만 보기 리스트 -->
+	<select id="selectABoardList4" parameterType="hashmap" resultType="com.example.project.model.ABoard">
+		SELECT *
+		FROM T4_ABOARD B
+		LEFT JOIN T4_A_ATTACHED_FILE_ABOARD P ON B.A_NO = P.AAF_NO
+		WHERE A_KIND ='이벤트'
+		ORDER BY A_NO DESC
+	</select>
 	
 	<!-- 페이징용 카운트 -->
 	<select id="selectCnt" resultType="int">

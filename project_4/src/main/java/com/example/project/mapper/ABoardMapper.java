@@ -20,6 +20,9 @@ public interface ABoardMapper {
 	//공지만 출력
 	List<ABoard> selectABoardList3 (HashMap<String, Object> map);
 	
+	//이벤트만 출력
+	List<ABoard> selectABoardList4 (HashMap<String, Object> map);
+	
 	// 페이징용 카운트
 	int selectCnt(HashMap<String, Object> map);
 	

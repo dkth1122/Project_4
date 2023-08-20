@@ -181,12 +181,13 @@ header #container1 {
 					</li>
 						
 						
-					<li><a href="#">EVENT</a>
+					<li>
+					<a href="/event/eventpage.do" onclick="window.open(this.href, 'event', 'width=850,height=1000,top=200,left=500'); return false;">EVENT</a>
 						<ul class="depths">
 						</ul>
 					</li>
 
-					<li><a href="/mypag/noticeList.do" onclick="window.open(this.href, 'ÆË¾÷Ã¢ ÀÌ¸§', 'width=1000,height=1000,top=200,left=500'); return false;">NOTIFY</a>
+					<li><a href="/mypag/noticeList.do" onclick="window.open(this.href, 'notice', 'width=1000,height=1000,top=200,left=500'); return false;">NOTIFY</a>
 
 						<ul class="depths">
 						</ul>
