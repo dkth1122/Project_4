@@ -13,6 +13,9 @@
  <meta charset="UTF-8">
   <title>마이페이지</title>
   <style type="text/css">
+  body{
+  	background-color: #F1E9F0;
+  }
   #app{
   	width: 600px;
   }

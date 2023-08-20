@@ -10,6 +10,9 @@
  <meta charset="UTF-8">
   <title>마이페이지</title>
   <style type="text/css">
+    body{
+  	background-color: #F1E9F0;
+  	}
   	#notice{
   		margin-top : 150px;
 		width: 800px;
