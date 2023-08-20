@@ -21,5 +21,8 @@ public interface ABoardService {
 	int updateABoard(HashMap<String, Object> map);
 	
 	int deleteABoard(HashMap<String, Object> map);
+	
+	//공지만 출력
+	HashMap<String, Object> selectABoardList3 (HashMap<String, Object> map);
 
 }

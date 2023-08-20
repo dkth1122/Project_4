@@ -21,10 +21,7 @@
   	text-align: center;  
   	width: 500px;
   }
-  template{
-  /* width: 1200px; */
 
-  }
   .acb{
   padding : 20px;
    font-size : 20px;
@@ -56,6 +53,8 @@
         
     }
     .pagination li {
+    	   position : relative;
+    	   left : 150px;
            min-width:32px;
            padding:2px 6px;
            text-align:center;
@@ -169,7 +168,7 @@ var app = new Vue({
     		var lastNum = 10;
 			var param = {startNum : startNum, lastNum : lastNum};
             $.ajax({
-                url : "/aboard/list.dox",
+                url : "/aboard/list3.dox",
                 dataType:"json",   
                 type : "POST", 
                 data : param,
@@ -190,7 +189,7 @@ var app = new Vue({
 			var lastNum = 10;
 			var nparmap = {startNum : startNum, lastNum : lastNum};
 			$.ajax({
-				url : "list.dox",
+				url : "/aboard/list3.dox",
 				dataType : "json",
 				type : "POST",
 				data : nparmap,

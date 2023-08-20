@@ -3,6 +3,7 @@ package com.example.project.controller;
 import java.io.File;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,9 +68,21 @@ public class ABoardController {
 	
 	@RequestMapping(value = "/aboard/list2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String userInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String boardList2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap = aboardService.selectABoardList2(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/aboard/list3.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String boardList3(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = aboardService.selectABoardList3(map);
 		return new Gson().toJson(resultMap);
 	}
 	

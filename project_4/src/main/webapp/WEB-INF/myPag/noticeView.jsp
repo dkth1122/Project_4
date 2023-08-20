@@ -12,10 +12,29 @@
   <style type="text/css">
   	#notice{
   		margin-top : 150px;
-		width: 1200px;
+		width: 800px;
 		text-align: center;  		
   	}
-  
+  	.noticeContentPos1{
+  		width: 500px;
+  		margin:auto;
+  	}
+  	.noticeContentPos2{
+  		width: 800px;
+  		margin:auto;
+  	}
+	.noticeNextPos{
+	  	position: absolute;
+	  	right: 0px;
+	  	margin-right: 10px;
+	}
+	.noticePreviousPos{
+		margin-left: 10px;
+	}
+	hr {
+		margin-top : 20px;
+	}
+
   </style>
 </head>
 <body>
@@ -28,34 +47,25 @@
     	<div v-for="(item,index) in list" v-if="item.aNo == aNo" :key="item.aNo">
     		<div>
     			<hr>
-    			<h4>{{item.aTitle}}</h4>
+    			<h2>{{item.aTitle}}</h2>
     			<div><strong>작성일</strong> {{formatWithoutTime(item.aDate)}}
-    				<span><strong>조회수</strong> {{item.hits}}</span></div>
+    				<span><strong>조회수</strong> <sup style="color: #ccc;">{{item.hits}}</sup></span></div>
     			<hr>
     		</div>
-    			<div>
+    	<div>
+	    		<div class="noticeContentPos1">
 					<img :src="item.thumbnail">
-				</div>
-    		<div>
-    			{{item.aContent}}
-    			<div>
-    			<button @click="noticeList">전체 목록</button></div>
-    			<hr>
-    		</div>
-    		<div v-if="index > 0">
-        		<div>
+	    		</div>
+	    			<div class="noticeContentPos2">{{item.aContent}}</div>
         			<hr>
-          			<label @click="previous"> previous <span>{{ list[index - 1].aTitle }}</span></label>
-          			<hr>
-        		</div>
-      		</div>
-      		<div v-if="index < list.length - 1">
-        		<hr>
-        		<div>
-          		<label @click="next">next <span>{{ list[index + 1].aTitle }}</span></label>
-        		</div>
-      		</div>
-    	</div>
+        			
+    		<span v-if="index > 0">
+          			<label @click="previous" class="noticePreviousPos"> <b>←</b> <span>{{ list[index - 1].aTitle }}</span></label>
+      		</span>
+      		<span v-if="index < list.length - 1">
+          		<label @click="next" class="noticeNextPos"><span>{{ list[index + 1].aTitle }}</span><b>→</b> </label>
+      		</span>
+    </div>
     	
            		
                    
