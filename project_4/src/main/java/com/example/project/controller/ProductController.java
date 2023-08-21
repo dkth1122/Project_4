@@ -132,7 +132,7 @@ public class ProductController {
 		resultMap = productService.selectProductList(map);
 		return new Gson().toJson(resultMap);
 	}
-	
+	//제품 상세 페이지출력
 	@RequestMapping(value = "/product/selectProductInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String info(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -202,7 +202,7 @@ public class ProductController {
 			productService.insertProductBuy(map);
 			resultMap.put("message", "success");
 			return new Gson().toJson(resultMap);
-		}
+	}
 	 
 	 @RequestMapping(value = "/product/insertProductPayment2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 		@ResponseBody
@@ -211,6 +211,6 @@ public class ProductController {
 			productService.insertProductBuy2(map);
 			resultMap.put("message", "success");
 			return new Gson().toJson(resultMap);
-		}
+	}
 	
 }

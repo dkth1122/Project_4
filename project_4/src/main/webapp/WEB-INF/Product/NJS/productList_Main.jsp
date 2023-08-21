@@ -172,8 +172,8 @@
 				 	</div>
                 </div>
 
-                <div class="body2 " style=" width: 1000px; height: 2000px;">
-								<div v-for="item in list" class="productList">
+                <div  class="body2 " style=" width: 1000px; height: 2000px;">
+								<div @click="productView(item)" v-for="item in list" class="productList">
 									<span><img :src = "item.path" class="pImg"></span>
 									<div>{{item.pName}}</div>
 									<div>{{item.price}}</div>
@@ -268,7 +268,11 @@ var app = new Vue({
 		},
 		fnReload : function(){
 			location.reload();
-		}
+		},
+        productView : function(item){
+        	var self = this;
+        	$.pageChange("productView.do", {pNo : item.pNo});        	
+        }
     },
     created: function() {
       var self = this;

@@ -503,7 +503,8 @@ var app = new Vue({
                 	console.log(self.info);
                 }
             }); 
-        }, requestPay : function() {
+        },
+        requestPay : function() {
             var self = this;
             IMP.request_pay({
               pg: "nice",
