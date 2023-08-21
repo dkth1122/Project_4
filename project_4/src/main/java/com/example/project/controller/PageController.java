@@ -125,7 +125,7 @@ public class PageController {
 		return "/page/practice";
 	}
 	
-
+	//포인트
 	@RequestMapping(value = "/pointList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String pointList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

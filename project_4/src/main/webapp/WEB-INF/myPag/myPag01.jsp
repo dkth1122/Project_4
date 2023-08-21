@@ -107,12 +107,10 @@
 								</div>
 								<div class="details">
 									<div>Æ÷ÀÎÆ®</div>
-									<div>{{info.uPoint}} P</div>
+									<div v-if="info.uPoint !=0">{{info.uPoint}} P</div>
+									<div v-else>0 P</div>
 								</div>
-								<div class="details">
-									<div>Jelly</div>
-									<div>0</div>
-								</div>
+								
 							</div>
 						</div>
 

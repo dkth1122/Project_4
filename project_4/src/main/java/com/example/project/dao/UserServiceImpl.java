@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
 				resultMap.put("message", "정지사유 : "+user.getbReasons());
 				return resultMap;
 			}
-			else if(user.getCnt() >= 5) {
+			else if(user.getuCnt() >= 5) {
 				resultMap.put("success", false);
 				resultMap.put("message", "5회 이상 실패, 관리자에게 문의하세요.");
 			}
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService{
 			User tempUser = userMapper.userCheckId(map) ;			
 			if(tempUser != null) {
 				userMapper.updateUserCnt(map);
-				int cnt = tempUser.getCnt() + 1;
+				int cnt = tempUser.getuCnt() + 1;
 				String message = cnt + "번 실패! \n패스워드를 확인해주세요.";
 				if(cnt >= 5) {
 					message = "5회 이상 실패, 관리자에게 문의하세요.";
