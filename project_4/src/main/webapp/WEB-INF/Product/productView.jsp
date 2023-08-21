@@ -625,7 +625,6 @@ var app = new Vue({
     	totalPrice : 0, // 총 가격 초기값 0
     	selectedMenu : "상품정보",
     	showWishlistPopup: false,
-    	
     },
     methods: {
     	fnGetList : function(){
@@ -660,7 +659,6 @@ var app = new Vue({
         	if(self.uId == null){
         		alert("회원 로그인 후 이용하실 수 있습니다.");
         		}
-        	}
             var nparmap = {pNo : self.pNo, uId : self.uId};            
             $.ajax({
                 url : "/product/insertWish.dox",
