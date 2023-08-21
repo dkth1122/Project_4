@@ -5,14 +5,10 @@ public class Event {
 	private String evtName;
 	private String evtNo;
 	private String artist;
+	private String uId;
 	private char evtYn;
-	
-	public char getEvtYn() {
-		return evtYn;
-	}
-	public void setEvtYn(char evtYn) {
-		this.evtYn = evtYn;
-	}
+	private String pNo;
+	private int cnt;
 	public String getEvtName() {
 		return evtName;
 	}
@@ -31,7 +27,30 @@ public class Event {
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
-	
+	public String getuId() {
+		return uId;
+	}
+	public void setuId(String uId) {
+		this.uId = uId;
+	}
+	public char getEvtYn() {
+		return evtYn;
+	}
+	public void setEvtYn(char evtYn) {
+		this.evtYn = evtYn;
+	}
+	public String getpNo() {
+		return pNo;
+	}
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	
 	
 	

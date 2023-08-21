@@ -63,6 +63,12 @@ public class ABoardController {
 		return "/page/eventpage-view";
 	}
 	
+	@RequestMapping("event/eventpageApply.do") 
+	public String eventpageapply(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/page/eventpage-apply";
+	}
+	
 	
 	
 	@RequestMapping(value = "/aboard/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

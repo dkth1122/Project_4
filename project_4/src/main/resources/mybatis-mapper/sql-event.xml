@@ -32,4 +32,23 @@
 			
 	</update>
 	
+	<!-- 이벤트 상품 구매했는지 확인 -->
+	<select id="evtApplyProduct" parameterType="hashmap" resultType="com.example.project.model.Event">
+		SELECT U_ID, COUNT(*) AS CNT
+		FROM T4_EVENT E
+		INNER JOIN T4_ORDER O ON O.P_NO = E.P_NO
+		WHERE E.EVT_NO = #{evtNo} AND U_ID = #{uId}
+		GROUP BY U_ID
+	</select>
+	
+	<!-- 이벤트 응모내역이 있는지 확인 -->
+	<select id="evtApplyYn" parameterType="hashmap" resultType="com.example.project.model.Event">
+		SELECT *
+		FROM T4_APPLY
+		WHERE U_ID = #{uId}
+	</select>
+	
+	
+	
+	
 </mapper>

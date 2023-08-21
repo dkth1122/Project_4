@@ -14,4 +14,9 @@ public interface EventService {
 	int insertEvent(HashMap<String, Object> map);
 	
 	int updateEvent(HashMap<String, Object> map);
+	
+	//이벤트 상품 구매했는지 확인
+	Event evtApplyProduct(HashMap<String, Object> map);
+	//이벤트 응모내역이 있는지 확인
+	Event evtApplyYn(HashMap<String, Object> map);
 }

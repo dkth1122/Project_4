@@ -16,6 +16,24 @@ public class ABoard {
 	private String aafPhoto1;
 	private String aafPhoto2;
 	private String aafPhoto3;
+	private String evtNo;
+	private String pNo;
+	
+	
+	
+	
+	public String getpNo() {
+		return pNo;
+	}
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
+	}
+	public String getEvtNo() {
+		return evtNo;
+	}
+	public void setEvtNo(String evtNo) {
+		this.evtNo = evtNo;
+	}
 	public int getaNo() {
 		return aNo;
 	}

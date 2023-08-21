@@ -77,7 +77,7 @@
 	</div>
 	<div>내용 : {{info.aContent}}</div>
 	
-	<div @click=><button>응모하러가기</button></div>
+	<div><button @click="fnEvtApply">응모하러가기</button></div>
 </div>
 </body>
 </body>
@@ -88,6 +88,7 @@ var app = new Vue({
 	data : {
 		info : {},
 		aNo : "${map.aNo}",
+		uId : "${sessionId}",
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -102,7 +103,11 @@ var app = new Vue({
                 	self.info = data.info;
                 }
             }); 
-        }
+        },
+	fnEvtApply : function(){
+        var self = this;
+        $.pageChange("eventpageApply.do", {evtNo : self.info.evtNo, uId : self.uId, pNo : self.info.pNo});
+    }
 	}, // methods
 	created : function() {
 		var self = this;
