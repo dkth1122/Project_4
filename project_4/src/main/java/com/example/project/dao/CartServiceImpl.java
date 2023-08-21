@@ -16,6 +16,20 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	CartMapper cartMapper;
 	
+	//장바구니 전체 목록 출력
+	@Override
+	public List<Cart> searchCartListAll(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return cartMapper.selectCartListAll(map);
+	}
+	
+	//장바구니에서 상품 삭제
+	@Override
+	public int removeCart(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return cartMapper.deleteCart(map);
+	}
+	
 	
 	//장바구니 동일 제품 들어가있는지 확인 후 추가
 	@Override
@@ -39,7 +53,8 @@ public class CartServiceImpl implements CartService{
 
 	    return resultMap;
 	}
-	//장바구니 목록 출력 
+
+
 
 	
 

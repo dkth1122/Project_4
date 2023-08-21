@@ -10,8 +10,14 @@ import com.example.project.model.Cart;
 @Mapper
 public interface CartMapper {
 	
+	//장바구니 전체 상품 리스트 출력
+	List<Cart>  selectCartListAll(HashMap<String, Object> map);
+	
 	// 장바구니에 상품 추가
 	int insertCart(HashMap<String, Object> map);
+	
+	// 장바구니에서 상품 삭제
+	int deleteCart(HashMap<String, Object> map);
 	
 	//상품에 수량 추가
 	int updateCnt(HashMap<String, Object> map);

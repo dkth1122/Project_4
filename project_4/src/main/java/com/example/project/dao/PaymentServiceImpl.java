@@ -16,6 +16,19 @@ public class PaymentServiceImpl implements PaymentService{
 	@Autowired
 	PaymentMapper paymentMapper;
 	
+	//결제 오더 테이블 등록
+	@Override
+	public int insertProductBuy(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return paymentMapper.insertProductBuy(map);
+	}
+
+	//결제 후 배송 테이블 등록 
+	@Override
+	public int insertProductBuy2(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return paymentMapper.insertProductBuy2(map);
+	}
 
 	
 }
