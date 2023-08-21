@@ -693,9 +693,20 @@ var app = new Vue({
         	self.showWishlistPopup = false;
         },
         	//장바구니로 이동
-        fnCart : function(item){
-        	var self = this;
-        	$.pageChange("../cart.do", {pNo : item.pNo});     
+        fnCart : function(){
+      	  var self = this;
+            var nparmap = {pNo : self.pNo, uId : self.uId, quantity : self.quantity};            
+            $.ajax({
+                url : "/cart/addCart.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+              	  if(confirm("장바구니 추가 완료. 장바구니로 이동하시겠습니까?")){
+			        	location.href= "/cart/cartList.do";  
+              	  }
+                }
+            }); 
         },
         formatPrice: function(price) {
         	// 가격 포맷 변환을 위한 함수

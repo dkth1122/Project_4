@@ -3,6 +3,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.project.mapper.PaymentMapper">
-	
+
+<!-- 결제시 오더 테이블 등록 -->
+   <insert id="insertProductBuy" parameterType="hashmap">
+    	INSERT INTO T4_ORDER VALUES
+		(NULL, CAST(ROUND(UNIX_TIMESTAMP(NOW()))), #{buyer_name}, #{pNo}, #{card_name}, NOW(), #{oCount}, NULL)
+   </insert>
+   
+   <!-- 결제 후 오더 테이블 등록 후에 딜리버리 테이블 등록 -->
+   <insert id="insertProductBuy2" parameterType="hashmap">
+		INSERT INTO T4_DELIVERY (BUY_NO, O_NO, U_ID, D_STATE, DU_NO)
+		VALUES (#{buyNo}, #{oNo},  #{uId}, '업체확인중',#{duNo} )
+   </insert>
 	
 </mapper>
