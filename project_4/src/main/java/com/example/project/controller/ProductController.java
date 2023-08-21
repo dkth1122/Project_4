@@ -212,5 +212,14 @@ public class ProductController {
 			resultMap.put("message", "success");
 			return new Gson().toJson(resultMap);
 	}
+	 //위시리스트 담기
+	@RequestMapping(value = "/product/insertWish.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String insertWish(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		productService.insertWish(map);
+		return new Gson().toJson(resultMap);
+}
+	 
 	
 }

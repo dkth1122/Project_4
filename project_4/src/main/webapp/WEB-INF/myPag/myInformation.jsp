@@ -23,7 +23,7 @@ td {
 	text-align: center;
 }
 </style>
-<title>찜목록</title>
+<title>관심상품</title>
 
 </head>
 <body>
@@ -131,7 +131,7 @@ td {
 						<thead>
 							<tr>
 								
-								<th><input type="checkbox" @click="fnAllCheck" ></th>
+								<th><input type="checkbox" @click="fnAllCheck" v-model="selectAll"></th>
 								<th colspan="2">상품정보</th>
 								<th>적립금</th>
 								<th>배송비</th>
@@ -145,13 +145,14 @@ td {
 								<td><input type="checkbox" :value="item.wnum" v-model="selectItem"></td>
 								<td><img class="responsive-image" :src="item.pImg" ></td>
 								<td>{{item.pName}}</td>
-								<td>적립금</td>
-								<td>배송비</td>
-								<td>판매가</td>
+								<td>{{item.price*0.005}} P</td>							
+								<td v-if="item.price < 50000">기본배송<div>₩3,000</div><div>(조건)</div></td>
+								<td v-if="item.price >= 50000">무료배송</td>
+								<td><strong>₩{{formatPriceWithCommas(item.price)}}</strong></td>
 								<td>
-								<button @click="insertCart(item)"> 장바구니 </button>
-								주문하기
-								<button @click="fnRemoveOne(item)">사악제</button>
+								<button @click="OrderProduct(item)"> 주문하기 </button>								
+								<button @click="insertCart(item)"> 장바구니 </button>								
+								<button @click="fnRemoveOne(item)">삭제</button>
 								
 								</td>
 							</tr>
@@ -180,37 +181,31 @@ var app = new Vue({
     data: {
     	info : [],
     	orderCntList : [],
-    	uId : "dcsdsd3"/* "${sessionId}" */,
+    	uId : "${sessionId}",
     	order  : "",
     	exchange : "",
     	refund : "",
     	wishList : [],
     	selectItem : [],
+    	selectAll: false,
  
     },
     methods: {
-    	fnAllCheck : function(){
-    		var self = this;
-    		if(cnt == "Y" ){
-    			self.selectItem = [];
-    			for(var i=0;  i < self.wishList.length; i++){
-                    self.selectItem.push(self.wishList[i].wnum);
-                 } 
-    			cnt = "N";
-    		}else{
-    			self.selectItem = [];
-    			cnt = "Y";
-    		}    		
-    				
-    	},
-    	  selectAllItems: function() {
-    	        // 전체 선택 상태에 따라 selectItem 배열을 업데이트
-    	        if (this.selectAll) {
-    	            this.selectItem = this.wishList.map(item => item.wnum);
-    	        } else {
-    	            this.selectItem = [];
-    	        }
+    	fnAllCheck: function() {
+    	      this.selectAll = !this.selectAll;
+    	      if (this.selectAll) {
+    	        this.selectItem = this.wishList.map(item => item.wnum);
+    	      } else {
+    	        this.selectItem = [];
+    	      }
     	    },
+    		  selectAllItems: function() {
+    			  if (this.selectAll) {
+    			    this.selectItem = this.wishList.map(item => item.wnum);
+    			  } else {
+    			    this.selectItem = [];
+    			  }
+    			},
     	fnGetList : function(){
             var self = this;
             var nparmap = {uId : self.uId};
@@ -337,6 +332,9 @@ var app = new Vue({
 	                }
 	            });
 		},	   
+		OrderProduct : function(item){
+			var self = this;
+		},
 	    /* 메인 */
 	    fnVuwmain : function(){
 	    	var self = this;
@@ -384,7 +382,10 @@ var app = new Vue({
         myInquiry : function(){
    	    	var self = this;
    	    	$.pageChange("myInquiry.do", {uId : self.uId});
-   	}
+   		},
+   		formatPriceWithCommas(price) {
+   		    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+   	  }
 	    
     },
     created: function() {

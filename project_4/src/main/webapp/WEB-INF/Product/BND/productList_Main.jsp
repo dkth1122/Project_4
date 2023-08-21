@@ -171,7 +171,6 @@
 				        </ul>
 				 	</div>
                 </div>
-<div>test</div>
                 <div class="body2 " style=" width: 1000px; height: 2000px;">
 								<div @click="productView(item)" v-for="item in list" class="productList">
 									<span><img :src = "item.path" class="pImg"></span>

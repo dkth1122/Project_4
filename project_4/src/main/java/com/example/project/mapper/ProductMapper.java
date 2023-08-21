@@ -65,6 +65,8 @@ public interface ProductMapper {
 	List<Product> selectProductALL(HashMap<String, Object> map);
 	//페이징용 cnt
 	int selectProductCnt(HashMap<String, Object> map);
-	
-		
+	//위시리스트 담기
+	int insertWish(HashMap<String, Object> map);
+	//위시리스트 중복제거
+	int searchWish(HashMap<String, Object> map);
 }

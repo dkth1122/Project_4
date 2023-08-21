@@ -49,4 +49,9 @@ public interface ProductService {
 	
 	//제품별 상품 페이지 구현
 		HashMap<String, Object> searchProductALL(HashMap<String, Object> map);
+	
+	//위시리스트 담기
+	int insertWish(HashMap<String, Object> map);
+	
+	
 }

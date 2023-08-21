@@ -160,5 +160,16 @@ public class ProductServiceImpl implements ProductService{
 			resultMap.put("cnt", productMapper.selectProductCnt(map));
 			return resultMap;
 		}
+
+//위시리스트 담기
+		@Override
+		public int insertWish(HashMap<String, Object> map) {
+			// 위시리스트 중복방지
+	        int existingCount = productMapper.searchWish(map);
+	        if (existingCount > 0) {
+	            return 0; // 또는 에러 처리 등을 고려하여 적절한 값을 반환
+	        }
+	        return productMapper.insertWish(map);
+	    }
 	
 }

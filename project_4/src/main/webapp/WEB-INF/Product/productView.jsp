@@ -180,6 +180,30 @@
 	    width : 100%;
 	    margin-bottom : 10px;
   }
+  .wishlist-button{
+	  display: inline-block;
+	  padding: 10px 20px;
+	  font-size: 14px;
+	  text-align: center;
+	  color: #black;
+	  background-color: white;
+	  border-radius: 30px;
+	  border : 1px solid #d4d5d9;
+	  cursor: pointer;
+	  transition: background-color 0.3s;
+	  width : 49%;
+	  margin-right : 3px;
+	  margin-bottom : 30px;	  
+	}
+	/* 버튼 호버 효과 */
+	.wishlist-button:hover {
+	  background-color: #d4d5d9;
+	}
+	
+	/* 버튼 클릭 효과 */
+	.wishlist-button:active {
+	  background-color: #1f618d;
+	}
 
   .buyButton:hover {
    	 	 background-color:rgb(71, 72, 141);
@@ -228,6 +252,70 @@
 	.h3 {
     	margin-bottom: 0; 
 	}
+	.xans-myshop-layerwish {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    width: 410px;
+    margin: -175px 0 0 -205px;
+    border-radius: 30px;
+	}
+	.ec-base-layer {    
+	    border: 1px solid #3d435f;    
+	    -webkit-border-radius: 5px;    
+	    background-color: #fff;
+	}
+	.ec-base-layer .header {
+	    padding: 10px 35px 10px 40px;
+	    color: #fff;
+	    background: #3d435f;
+	}
+	.ec-base-layer .header > h1, .ec-base-layer .header > h3 {
+	    font-size: 16px;
+	    color: #fff;
+	    font-weight: 400;   
+	}
+	.xans-myshop-layerwish .content {
+	    padding: 100px 20px 0;
+	    text-align: center;
+	    background: url(https://www.smtownandstore.com/morenvyimg/m_order/popup_wish_icon.png) no-repeat center 40px;
+	}
+	.ec-base-layer .action_login2 .action_cancle {
+	    width: 160px;
+	    height: 50px;
+	    background-color: #fff;
+	    color: #2d2f43;
+	    font-size: 16px;
+	    font-weight: 400;
+	    float: left;
+	    display: block;
+	    text-align: center;
+	    line-height: 50px;
+	    border-radius: 50px;
+	    border: 1px solid #b4b5c1;
+	}
+	.ec-base-layer .action_login2 .action_send {
+	    width: 160px;
+	    height: 50px;
+	    background-color: #3d435f;
+	    color: #fff;
+	    font-size: 16px;
+	    font-weight: 400;
+	    float: right;
+	    display: block;
+	    text-align: center;
+	    line-height: 50px;
+	    border-radius: 50px;
+	    border: 1px solid #3d435f;
+	}
+	.xans-myshop-layerwish .action_login2 {
+	    margin: 50px auto 40px;
+	    padding: 0;
+	}
+	.ec-base-layer .action_login2 {
+    	width: 332px;
+    	height : 50px;
 </style>
 </head>
 <body>
@@ -299,7 +387,7 @@
 				<div style="position : relative;">
 					<button class="buyButton" style="display: block" @click="fnProductOrder">바로 구매하기</button>
 					<div>
-						<button class="button" @click="fnCart" >장바구니 담기</button><button class="button">위시리스트 담기</button>
+						<button class="button" @click="fnCart" >장바구니 담기</button><button class="wishlist-button" @click="wishList">위시리스트 담기</button>
 					</div>
 				</div>				
 			</div>
@@ -458,7 +546,64 @@
 			
 		</div>    
 	</div>
+	
+	<div class="xans-element- xans-myshop xans-myshop-layerwish ec-base-layer" v-show="showWishlistPopup">
+     
+	    <div class="header">
+	        <h3>관심상품 담기</h3>
+	    </div>
+	   
+		    <div class="content">
+		        <p>선택하신 상품을 관심상품에 담았습니다. <br>지금 관심상품을 확인하시겠습니까?</p>
+		    </div>
+		    <div class="cboth action_login2">
+		        <a href="#none" class="action_cancle move" complete="complete" @click="hideWishlistPopup">쇼핑 계속하기</a>
+		        <a class="action_send move"><button class="action_send move" @click="moveWish">관심상품 확인</button></a>
+		    </div>
+	    <a class="close" @click="hideWishlistPopup"></a>
+	  
+	</div>
+	
 </div>
+
+<div class="xans-myshop-layerwish ec-base-layer" style="display: none;">
+        <!-- 팝업 내용 및 버튼들 -->
+    </div>
+<script>
+   $(document).ready(function() {
+    // 페이지 로드 시 팝업을 초기에 숨김
+    togglePopup(false);
+
+    // '위시리스트 담기' 버튼 클릭 시 팝업 표시
+    $('.wishlist-button').click(function() {
+        // 로컬 스토리지에 정보 저장
+        localStorage.setItem('wishlistPopupShown', 'true');
+        // 팝업 표시
+        app.showWishlistPopup = true;
+    });
+
+    // '쇼핑 계속하기' 링크나 '관심상품 확인' 링크 클릭 시 팝업을 숨기게 합니다.
+    $('.action_cancle.move, .action_send.move').click(function() {
+        togglePopup(false);
+    });
+
+    // 팝업 오른쪽 상단의 닫기 아이콘 클릭 시 팝업을 숨김
+    $('.close').click(function() {
+        // 팝업 숨김
+        app.showWishlistPopup = false;
+    });
+});
+
+// togglePopup 함수를 정의합니다.
+function togglePopup(show) {
+    if (show) {
+        $('.xans-myshop-layerwish').show();
+    } else {
+        $('.xans-myshop-layerwish').hide();
+    }
+}
+</script>
+
 </body>
 </html>
 <script>
@@ -480,11 +625,14 @@ var app = new Vue({
     	membership : "",
     	quantity: "1", // 기본 수량 값
     	totalPrice : 0, // 총 가격 초기값 0
-    	selectedMenu : "상품정보"
+    	selectedMenu : "상품정보",
+    	showWishlistPopup: false,
+    	
     },
     methods: {
     	fnGetList : function(){
             var self = this;
+            
             var nparmap = {pNo : self.pNo};            
             $.ajax({
                 url : "/product/selectProductInfo.dox",
@@ -504,26 +652,52 @@ var app = new Vue({
                 }
             }); 
             //주문 페이지로 이동
-        },  fnProductOrder : function(){
+        },  fnProductOrder : function(item){
         	var self = this;
-        	$.pageChange("../payment.do", {pNo : self.pNo});        	
-        
-        	//장바구니 추가 + 이동
-        }, fnCart : function(){
-        	  var self = this;
-              var nparmap = {pNo : self.pNo, uId : self.uId, quantity : self.quantity};            
-              $.ajax({
-                  url : "/cart/addCart.dox",
-                  dataType:"json",	
-                  type : "POST", 
-                  data : nparmap,
-                  success : function(data) { 
-                	  if(confirm("장바구니 추가 완료. 장바구니로 이동하시겠습니까?")){
-			        	location.href= "/cart/cartList.do";  
-                	  }
-                  }
-              }); 
-        } ,formatPrice: function(price) {
+        	$.pageChange("../payment.do", {pNo : item.pNo});        	
+        	     	
+        },//위시리스트 이동  
+        wishList : function(){
+        	var self = this;
+            var nparmap = {pNo : self.pNo, uId : self.uId};            
+            $.ajax({
+                url : "/product/insertWish.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) {         
+                    // 팝업 변경
+                    self.togglePopup(true); // 수정된 부분
+                    // 로컬 스토리지에 정보 저장
+                    self.showWishlistPopup = true;
+                    localStorage.setItem('wishlistPopupShown', 'true');
+                }
+            }); 
+        },
+        togglePopup: function(show) {
+            if (show) {
+                $('.xans-myshop-layerwish').show();
+            } else {
+                $('.xans-myshop-layerwish').hide();
+            }
+        },
+        //pop-up : 위시리스트로 이동
+        moveWish : function(){
+        	var self = this;
+        	$.pageChange("/mypag/myInformation.do",{uId : self.uId}); 
+        	self.showWishlistPopup = true;
+        },
+        //pop-up 팝업을 숨기는 동작
+        hideWishlistPopup() {  
+        	var self = this;
+        	self.showWishlistPopup = false;
+        },
+        	//장바구니로 이동
+        fnCart : function(item){
+        	var self = this;
+        	$.pageChange("../cart.do", {pNo : item.pNo});     
+        },
+        formatPrice: function(price) {
         	// 가격 포맷 변환을 위한 함수
         	return price.toLocaleString();
         },
@@ -570,6 +744,10 @@ var app = new Vue({
     created: function() {
       var self = this;
       self.fnGetList();
+    },
+    mounted: function () {
+        // 팝업을 초기에 숨김
+        this.showWishlistPopup = false;
     }
 });
 </script>

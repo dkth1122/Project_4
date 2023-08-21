@@ -192,4 +192,14 @@
 		SELECT COUNT(*) FROM T4_PRODUCT
 		WHERE ARTIST = #{artist}
 	</select>
+	<!-- 위시리스트출력 -->
+	<insert id="insertWish" parameterType="hashmap">	   	    
+	   INSERT INTO T4_WISH (U_ID, P_NO, CLASS)
+	   VALUES (#{uId}, #{pNo}, "W")	    
+	</insert>
+	<!-- 위시리스트 중복방지 -->
+	<select id="searchWish" resultType="int">
+	    SELECT COUNT(*) FROM T4_WISH WHERE U_ID = #{uId} AND P_NO = #{pNo}
+	</select>
+	
 </mapper>
