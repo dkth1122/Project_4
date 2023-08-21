@@ -155,7 +155,7 @@ header #container1 {
 
 				<ul class="menu">
 				
-					<li><a href="artistpage.do">ARTIST</a>
+					<li>ARTIST
 						<ul class="depths">
 							<li><a href="/product/BTS.do">BTS</a></li>
 							<li><a href="/product/LSF.do">LE SSERAFIM</a></li>
@@ -170,7 +170,7 @@ header #container1 {
 					</li>
 						
 						
-					<li><a href="productpage.do">PRODUCT</a>
+					<li>PRODUCT
 						<ul class="depths">
 							<li><a href="/product/membership.do">MEMBERSHIP</a></li>
 							<li><a href="/product/album.do">ALBUM</a></li>
