@@ -499,7 +499,7 @@ IMP.init(userCode);
   	   	      if (rsp.success) {
   	   	        // 결제 성공 시
   	   	         console.log(rsp);
-			 var nparmap = {uId : self.uId};            
+			 var nparmap = {uId : self.uId};
 	            $.ajax({
 	                url : "removeCart.dox",
 	                dataType:"json",	
