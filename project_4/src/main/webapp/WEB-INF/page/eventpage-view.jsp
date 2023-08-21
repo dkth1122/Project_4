@@ -35,7 +35,7 @@
     }
     img {
       width:100%;
-      height: 200px;
+      height: 70%;
     }
     .eveFont {
     	font-size: 50px;
@@ -52,6 +52,14 @@
 	    background: purple;
 	    color: white;
     }
+    button{
+    	 margin-left: 5px;
+	    height: 30px;
+	    border-radius: 10px;
+	    border: none;
+	    background: purple;
+	    color: white;
+    }
     button:hover{
 	    background: #5c3564;
     }
@@ -59,54 +67,41 @@
 </head>
 <body>
 <div id="app">
-	<div class="eveFont">EVENT</div>
-	<hr>
-		<div class="eventButton1">
-			<button>BTS</button>
-			<button>TXT</button>
-			<button>LE SSERAFIM</button>
-			<button>SEVENTEEN</button>
-			<button>fromis_9</button>
-			<button>ENHYPEN</button>
-			<button>ZICO</button>
-			<button>BOYNEXTDOOR</button>
-			<button>NewJeans</button>
-		</div>
-	<hr>
-	<div id="wrapper">
-	    <div class="card" v-for="(item, index) in list" @click="fneventView(item)">
-	      <figure>
-	        <img :src="item.thumbnail">
-	      </figure>
-	      <p>{{item.aTitle}}</p>
-	    </div>
+
+	<div onclick="history.back();"><a href="javascript:;">← 되돌아가기</a></div>
+	
+	<div>제목 : {{info.aTitle}} <span>{{info.hits}}</span></div>
+	<div>등록일 : {{info.aDate}}</div>
+	<div>
+		<img :src="info.thumbnail">
 	</div>
+	<div>내용 : {{info.aContent}}</div>
+	
+	<div @click=><button>응모하러가기</button></div>
 </div>
+</body>
 </body>
 </html>
 <script>
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		info : {},
+		aNo : "${map.aNo}",
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
-            var nparmap = {};
+            var nparmap = {aNo : self.aNo};
             $.ajax({
-                url : "/event/list4.dox",
-                dataType:"json",	
+            	url : "/aboard/info.dox",
+                dataType:"json",
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	self.list = data.list;
+                	self.info = data.info;
                 }
             }); 
-        },
-        fneventView : function(item){
-            var self = this;
-            $.pageChange("eventpageView.do", {aNo : item.aNo});
         }
 	}, // methods
 	created : function() {

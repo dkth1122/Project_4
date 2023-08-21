@@ -16,6 +16,7 @@
 		SELECT *
 		FROM T4_ABOARD B
 		LEFT JOIN T4_A_ATTACHED_FILE_ABOARD P ON B.A_NO = P.AAF_NO
+		WHERE A_KIND = '공지'
 		ORDER BY A_NO DESC
 	</select>
 	<!-- 공지만 보기 리스트 -->
