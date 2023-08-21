@@ -10,7 +10,66 @@
  <meta charset="EUC-KR">
   <title>마이페이지</title>
   <style type="text/css">
+   .updatetable{
+    	width: 1200px;
+   }
+   .warning{
+   	 padding-left : 900px;
+   	 text-align: right;
+   }
+   .updatetable th {
+   	text-align: left;
+   	width: 250px;
+   	height: 60px;
+   }
+   .updatetable td {
    
+	height: 80px;
+   }
+  input {
+  border-color : #e3e3e3;
+  outline: none;
+  border-width: 0 0 1px;
+  width: 100%;	
+  font-size: 1.2em;
+}
+.ph input{
+	margin : 0px 20px;
+	width: 150px;
+}
+select{
+	border : none;
+	width: 100px;
+	height: 70px;
+	font-size: 1.3em;
+}
+.buttomfn{
+	width : 1200px;
+	margin-top : 150px;
+ 	text-align: center;
+ 	height: 300px;
+}
+.buttomfn button{
+	width: 150px;
+	height: 55px;
+	margin: 0px 10px;
+	border-radius: 50px;
+	font-size: 0.8em;
+	background-color: #fff;
+	font-weight: bold;
+}
+#fndd{
+	color: #fff;
+	background-color:rgb(24, 0, 109);
+}
+#remove{
+	margin-left: 200px;
+}
+#yn input{
+	width: 50px;
+	height: 20px;
+	
+}
   </style>
 </head>
 <body>
@@ -31,9 +90,10 @@
                       </div>                    
                       <div class="topBox">                      
                          <div class="details" >
-                      	   <div>Order</div>
+                      	   			<div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
-			                        <div>{{order}}</div>
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
                           			</a></label>
                          </div>
                          
@@ -101,24 +161,63 @@
                            
                            <div id="right">
                            <div class="View">
-                              <div class="lowerBox"> 회원 정보 수정 </div>
-                                 <div> 
-                                 	<div>· 아이디<span>{{info.uId}}</span></div>
-                                 	<div>· 닉네임<span><input type="text" v-model="info.uName2"></span></div>                                 	
-                                 	<div>· 비밀번호<span><input type="password" v-model="info.uPw" placeholder="영문/숫자/특수문자 중 2가지 이상 조합,10자~16자"></span></div>
-                                 	<div>· 새 비밀번호 확인<span><input type="password" v-model="info.uPw2"></span></div>
-                                 	<div>· 이름<span><input type="text" v-model="info.uName" ></span></div>                    
-                                 	<div>· 연락처<span><input type="text" v-model="info.uPhone"  ></span></div>
-                                 	<div>· 수신여부<span>SMS/메일 수신동의 
-                                 		<label><input type="radio" name="evtyn"  v-model="info.uSmsyn" value="Y">수신함</label>
+                           
+                              <div class="lowerBox"> 회원 정보 수정 <span class="warning"><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 필수사항</span> </div> 
+                              
+                              <table class="updatetable">
+                              
+                              	<tr>
+                              		<th> 아이디</th>
+                              		<td>{{info.uId}}</td>
+                              	</tr>
+                              	<tr>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 닉네임</th>
+                              		<td><input type="text" v-model="info.uName2"></td>
+                              	</tr>
+                             	<tr>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 비밀번호</th>
+                              		<td><input type="password" v-model="info.uPw" placeholder="영문/숫자/특수문자 중 2가지 이상 조합,10자~16자"></td>
+                              	</tr>
+                             	<tr>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 새 비밀번호 확인</th>
+                              		<td><input type="password" v-model="info.uPw2"></td>
+                              	</tr>
+                             	<tr>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 이름</th>
+                              		<td><input type="text" v-model="info.uName" ></td>
+                              	</tr>
+                             	<tr>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 연락처</th>
+                              		<td class="ph">
+                              			<select v-model="phnum">
+                              				<option value="010">010</option>
+                              				<option value="011">011</option>
+                              				<option value="017">017</option>
+                              				<option value="016">016</option>
+                              			</select>
+                              			<input type="text" v-model="prefix"> -
+                              			<input type="text" v-model="suffix"> 
+                              		</td>
+                              	</tr>
+                             	<tr>
+                              		<th> SMS 수신여부</th>
+                              		<td id="yn">
+                              			<label><input type="radio" name="evtyn"  v-model="info.uSmsyn" value="Y">수신함</label>
                                  		<label><input type="radio" name="evtyn" v-model="info.uSmsyn" value="N">수신안함</label>
-                                 	</span></div>
-                                 </div>
-                                 <div>
-                                 	<button @click="back">취소</button>
-                                 	<button @click="fnUpdate">수정</button>
-                                 </div>
-                                 <div><button @click="userRemove">회원 탈퇴</button></div>
+                              		</td>
+                              	</tr>
+                              	
+                              </table>
+                               
+                                 	
+                               
+                                 <div class="buttomfn">
+                                 
+                                 <button @click="fnback">취소</button>
+                                 <button id="fndd" @click="fnUpdate">확인</button>
+                                 <button id="remove" @click="userRemove">회원 탈퇴</button>                                 
+                                 
+                                 </div> 
                         
                            </div>
                    
@@ -144,7 +243,14 @@ var app = new Vue({
     	   uPhone : "",
     	   uSmsyn : ""
        },
-       uId : "${sessionId}"
+       uId : "${sessionId}",
+       order : "",
+       exchange : "",
+       refund : "",
+       prefix: "",
+       suffix: "",
+       phnum : "010",
+       
     },
     methods: {
        fnGetList : function(){
@@ -157,22 +263,24 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                    self.info = data.findPw; //사용자
-                   console.log(self.info);
                    self.user = self.info;
-               	   console.log(self.user);
-               	   self.info.uSmsyn = self.user.uSmsyn === 'Y' ? 'Y' : 'N';
+               	   self.user.uPw = undefined;
+             	   const phoneNumber = self.user.uPhone.substring(3);
+            	   self.prefix = phoneNumber.substring(0, 4);            	   
+            	   self.suffix = phoneNumber.substring(4);
+            	   self.info.uSmsyn = self.user.uSmsyn === 'Y' ? 'Y' : 'N';
+            	   console.log(self.info.uPw);
                 }
             }); 
         },
         fnUpdate : function(){
         	var self = this;
         	self.info.uId = self.uId;
-        	
-        	if(self.info.uName2 == ""){
+        	if(self.info.uName2 == undefined || self.info.uName2 == ""){
 				alert("아이디를 입력해주세요.");
 				return;
 			}
-        	if(self.info.uPw == ""){
+        	if(self.info.uPw == undefined || self.info.uPw == ""){
 				alert("패스워드를 입력해주세요.");
 				return;
 			}
@@ -180,14 +288,19 @@ var app = new Vue({
 				alert("확인패스워드가 일치하지 않습니다.");
 				return;
 			}
-        	if(self.info.uName == ""){
+        	if(self.info.uName == undefined || self.info.uName == ""){
 				alert("이름을 입력해주세요.");
 				return;
 			}
-        	if(self.info.uPhone == ""){
+        	if(self.prefix == undefined || self.prefix == ""){
 				alert("연락처를 입력해주세요.");
 				return;
 			}
+        	if(self.suffix == undefined || self.suffix == ""){
+				alert("연락처를 입력해주세요.");
+				return;
+			}
+        	self.user.uPhone = self.phnum + self.prefix + self.suffix;
         	var nparmap = self.user;
             $.ajax({
                 url : "/editInfo.dox",
@@ -201,29 +314,8 @@ var app = new Vue({
                  }
              }); 
         },
-        infoAddr : function(){
-	    	var self = this;
-	    	$.pageChange("infoAddr.do", {uId : self.uId});
-	    },
-	    infoUpdate : function(){
-	    	var self = this;
-	    	$.pageChange("infoUpdate.do", {uId : self.uId});
-	    },
-	    myInquiry : function(){
-	    	var self = this;
-	    	$.pageChange("myInquiry.do", {uId : self.uId});
-	    },
-	    /* 이용안내 */
-	    useGuide : function(){
-	    	var self = this;
-	    	$.pageChange("useGuide.do", {uId : self.uId});
-	    },
-	    /* 공지사항 */
-	    noticeList : function(){
-	    	var self = this;
-	    	$.pageChange("noticeList.do", {uId : self.uId});
-	    },//뒤로가기
-	    back : function(){
+        //뒤로가기
+	    fnback : function(){
 	    	var self = this;
 	    	$.pageChange("main.do", {uId : self.uId});
 	    },
@@ -247,7 +339,34 @@ var app = new Vue({
 	    faq : function(){
 	    	var self = this;
 	    	$.pageChange("faq.do", {uId : self.uId});
-	    }
+	    },
+	    /* 상단 구매내역 카운트 숫자 */
+		fnCntList : function() {
+			var self = this;
+			var nparmap = {uId : self.uId};
+			console.log(nparmap);
+			$.ajax({
+				url : "/mypag/listExchange.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {
+					console.log(data);
+					var listCnt = data.list;
+					for (var i = 0; i < listCnt.length; i++) {
+						if (listCnt[i].exchange == "N") {
+							self.order = listCnt[i].orderCnt;
+							console.log(self.order);
+						} else if (listCnt[i].exchange == "E") {
+							self.exchange = listCnt[i].orderCnt;
+						} else {
+							self.refund = listCnt[i].orderCnt;
+						}
+					}
+
+				}
+			});
+		}
     },
     created: function() {
       var self = this;

@@ -37,7 +37,7 @@ public class ㄷㅎㅋ {
 
         return "/myPag/Order";
     }
-	//결제 페이지
+	//헤더
 	@RequestMapping("sexyheader.do") 
 	public String sexyheader(Model model) throws Exception{
 

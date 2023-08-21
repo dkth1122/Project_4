@@ -145,7 +145,8 @@ var app = new Vue({
        list : [],
        info :{},
        uId : "${sessionId}",
-       duNo : ""
+       duNo : "",
+       order : "",
        
     },
     methods: {

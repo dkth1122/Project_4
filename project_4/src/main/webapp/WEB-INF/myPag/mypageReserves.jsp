@@ -284,9 +284,9 @@ var app = new Vue({
 	            		z += datalist[i].repoint;
 	            	}
 	            	
-	            	self.maxpoint = x;
-	            	self.numpoint = y;
-	            	self.repoint = z;
+	            	self.maxpoint = x; // 사용가능 포인트 
+	            	self.numpoint = y; // 사용한 포인트
+	            	self.repoint = z; // 환불 포인트
 	            }
 	        }); 
 	    }, 
