@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
         body{
@@ -17,6 +17,7 @@
         #app{
                width: 1000px;
                margin: 0px auto;
+               text-align: center;
 
            }
        .mainBox{
@@ -76,27 +77,42 @@
        }
        hr{
         	width: 800px;
+        	margin-top : -50px;
+        	margin-bottom: 20px;
         }
         .mainPos2{
         	position: relative;
+        	top : -55px;
         	left: 350px;
         	color: white;
+        }
+        .mainInput {
+        	margin-bottom: 10px;
+        	position: relative;
+        	left: 250px;
         }
  </style>
 </head>
 <body>
+<%@ include file="../Staff/staff-header.jsp" %>
+<%@ include file="../Staff/staff-left.jsp" %>
 <div id="app">
-
-	<input type="text" placeholder="ë¬¸ì˜ë²ˆí˜¸ í˜¹ì€ ê³ ê° ì•„ì´ë””" v-model="keyword"@keyup.enter="fnSearchList"><button @click="fnSearchList">ê²€ìƒ‰</button>
-	<table>
+	<div class="mainBox">
+	
+	<div class="mainPos2">¹®ÀÇ °ü¸®</div>
+<hr>	
+<div class="mainInput">
+	<input type="text" placeholder="¹®ÀÇ¹øÈ£ È¤Àº °í°´ ¾ÆÀÌµğ" v-model="keyword"@keyup.enter="fnSearchList"><button @click="fnSearchList">°Ë»ö</button>
+	</div>
+    <table>
 		<tr>
-			<th>ë¬¸ì˜ë²ˆí˜¸</th>
-			<th>ë¬¸ì˜ì œëª©</th>
-			<th>ë¬¸ì˜ë‚ ì§œ</th>
-			<th>ì¹´í…Œê³ ë¦¬</th>
-			<th>ë¬¸ì˜ê³ ê°</th>
-			<th>ìƒíƒœ</th>
-			<th>ë¯¼ì›ì—¬ë¶€</th>
+			<th>¹®ÀÇ¹øÈ£</th>
+			<th>¹®ÀÇÁ¦¸ñ</th>
+			<th>¹®ÀÇ³¯Â¥</th>
+			<th>Ä«Å×°í¸®</th>
+			<th>¹®ÀÇ°í°´</th>
+			<th>»óÅÂ</th>
+			<th>¹Î¿ø¿©ºÎ</th>
 		</tr>
 		<tr v-for="(item, index) in list">
 			<td>{{item.iNo}}</td>
@@ -109,6 +125,7 @@
 			<td>{{item.iComplain}}</td>
 		</tr>
 	</table>
+	
 	<template>
 	  <paginate
 	    :page-count="pageCount"
@@ -120,12 +137,11 @@
 	    :container-class="'pagination'"
 	    :page-class="'page-item'">
 	  </paginate>
+	  
 	</template>
 	
-	<div><button @click="fnBack">ë˜ëŒì•„ê°€ê¸°</button></div>
-
-
 </div>
+
 </body>
 </html>
 <script>

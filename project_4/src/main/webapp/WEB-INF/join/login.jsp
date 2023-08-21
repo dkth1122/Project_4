@@ -74,7 +74,7 @@ var app = new Vue({
                 		 	$.pageChange("/staff/login.do", {uId : self.uId}); 
                 		}else{
 	                		alert(data.message);
-	                	 	$.pageChange("main.do", {uId : self.uId}); 
+	                	 	$.pageChange("../home.do", {uId : self.uId}); 
                 		}
                 	} else {
                 		alert(data.message);

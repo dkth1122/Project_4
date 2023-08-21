@@ -29,10 +29,12 @@
 		SELECT COUNT(*) FROM T4_PRODUCT
 	</select>
 	
-	<!-- 상품 조회-->
+	<!-- 상품 조회 이미테이블 조인 수정 여대현-->
 	<select id="selectProductInfo" parameterType="hashmap" resultType="com.example.project.model.Product">
-		SELECT * FROM T4_PRODUCT
-		WHERE P_NO = #{pNo}
+		SELECT * 
+		FROM T4_PRODUCT P
+		LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+		WHERE P.P_NO = #{pNo}
 	</select>
 	
 	<!-- 아티스트별 상품 조회 > 어드민 페이지 -->
@@ -110,8 +112,17 @@
    <insert id="insertcart" parameterType="hashmap">   
    INSERT INTO T4_CART (U_ID , P_NO) VALUES 
    (#{uId} , #{pNo})
-   </insert>	
-	
-	
+   </insert>
+   
+   <!-- 결제시 오더 테이블 등록 -->
+   <insert id="insertProductBuy" parameterType="hashmap">
+    	INSERT INTO T4_ORDER VALUES
+		(NULL, CAST(ROUND(UNIX_TIMESTAMP(NOW())) AS UNSIGNED), #{buyer_name}, #{pNo}, #{pg_tid}, NOW(), #{oCount}, '', 0, #{oMessage})
+   </insert>
+   <!-- 결제시 딜리버리 테이블 등록 -->
+   <insert id="insertProductBuy2" parameterType="hashmap">
+		INSERT INTO T4_DELIVERY (BUY_NO, O_NO, U_ID, D_STATE)
+		VALUES (#{buyNo}, #{oNo}, #{uId}, '업체확인중')
+   </insert>
 	
 </mapper>
