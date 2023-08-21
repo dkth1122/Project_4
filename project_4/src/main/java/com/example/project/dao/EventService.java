@@ -17,4 +17,7 @@ public interface EventService {
 	
 	//이벤트 응모내역이 있는지 확인
 	HashMap<String, Object> evtApplyYn(HashMap<String, Object> map);
+	
+	//이벤트 응모
+		int evtApply(HashMap<String, Object> map);
 }

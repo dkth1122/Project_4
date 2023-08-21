@@ -8,52 +8,17 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       background-color:#F1E9F0;
       font-size:16px;
       width: 800px;
     }
-    #wrapper{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      grid-gap: 16px;
-    }
-    .card {
-      background-color:#fff;
-      box-shadow:0px 1px 5px #222;
-    }
-    .card > header {
-      font-size:1.5rem;
-      padding:0.5rem;
-    }
-    .card > p {
-      padding:0.5rem;
-      line-height:1.6em;
-    }
-    img {
-      width:100%;
-      height: 70%;
-    }
     .eveFont {
     	font-size: 50px;
     	text-align: right;
     }
-    .eventButton1{
-    	margin-left: 30px;
-    }
-    .eventButton1 > button{
-	    margin-left: 5px;
-	    height: 30px;
-	    border-radius: 10px;
-	    border: none;
-	    background: purple;
-	    color: white;
-    }
     button{
-    	 margin-left: 5px;
+    	margin-left: 5px;
 	    height: 30px;
 	    border-radius: 10px;
 	    border: none;
@@ -67,6 +32,15 @@
     	font-size: 25px;
     	font: bold;
     }
+    .inputPos1{
+    	text-align: center;
+    }
+    div>input {
+	width: 400px;
+	height: 30px;
+	margin-bottom: 10px;
+	text-align: center;
+	}
   </style>
 </head>
 <body>
@@ -80,6 +54,7 @@
 	
 	<div class="eveTitleFont">[이벤트 응모방법]</div>
 	<div>※응모 시 제출하신 정보는 <span style="color: red">제출 완료 후 수정이 불가하오니</span> 제출 시, 정확한 정보작성에 유의해주시기 바랍니다. 정보를 잘못 기재하여 발생한 불이익은 보상하지 않습니다.</div>
+	<br>
 	<div class="eveTitleFont">[응모 시 유의사항]</div>
 	<div>1. 이벤트 응모는 응모 기간 내 앨범 구매 및 응모 완료 시간을 기준으로 처리됩니다.</div>
 	<div>2. 당첨자 발표 및 팬사인회 참여는 응모 시 기재한 필수정보를 기준으로 처리됩니다.</div>
@@ -93,16 +68,15 @@
 	<div>10. 이벤트 진행 시 아티스트 보호를 위해 운영 담당자가 참관하며, 모든 영상은 녹화됩니다. 영상통화 내용이 부적절하다고 판단될 경우, 이벤트가 강제 종료될 수 있습니다.</div>
 	<hr>
 	
+	<div class="inputPos1">
 	<div v-if="info.cnt >= 1">
 		<div v-if="ynApplyYn == 0">
 			<div><input type="text" placeholder="응모자명" v-model="eUname"></div>
-			<div><input type="text" placeholder="연락처" v-model="eUphone"></div>
+			<div><input type="text" placeholder="연락처 (-) 없이 입력" v-model="eUphone"></div>
 			<div>개인정보 수집 동의</div>
-			<div v-model="eYn">
-			<label><input type="radio" name="Yn" value="Y">동의함</label>
-			<label><input type="radio" name="Yn" value="N">동의안함</label>
-			</div>
-			<div><button @clic="fnApply(info)">응모하기</button></div>
+			<label><input type="radio" name="Yn" value="Y" v-model="eYn">동의함</label>
+			<label><input type="radio" name="Yn" value="N" v-model="eYn">동의안함</label>
+			<div><button @click="fnApply(info)">응모하기</button></div>
 		</div>
 		<div v-else>
 			<div>해당 이벤트는 이미 응모되었습니다.</div>
@@ -111,6 +85,7 @@
 	</div>
 	<div v-else>
 		<div>해당 계정으로 구매한 상품이 확인 되지 않습니다</div>
+	</div>
 	</div>
 	
 </div>
@@ -121,15 +96,13 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		info : {
 		evtNo : "${map.evtNo}",
 		uId : "${map.uId}",
+		info : {},
+		ynApplyYn : 0,
 		eUname : "",
 		eUphone : "",
 		eYn : ""
-			
-		},
-		ynApplyYn : 0
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -149,12 +122,25 @@ var app = new Vue({
         },
         fnApply : function(info){
             var self = this;
-            var nparmap = self.info;
+            var nparmap = {pNo : self.info.pNo, evtNo : self.evtNo, uId:self.uId, eUname : self.eUname, eUphone : self.eUphone, eYn : self.eYn };
+            if(self.eUname == "" || self.eUname == undefined){
+		        alert("이름을 입력해주세요");
+		        return;
+		    }
+            if(self.eUphone == "" || self.eUphone == undefined){
+		        alert("연락처를 입력해주세요");
+		        return;
+		    }
+            if(self.eYn == "" || self.eYn == undefined){
+		        alert("개인정보 수집 동의 여부를 체크해주세요, 동의 하지 않을시 이벤트 당첨 불가");
+		        return;
+		    }
+            
             if(!confirm("정말 응모하겠습니까? 응모 후 정보 수정 불가합니다.")){
                 return;
             }
             $.ajax({
-            	url : "/event/demo.dox",
+            	url : "/event/evtApply.dox",
                 dataType:"json",
                 type : "POST", 
                 data : nparmap,

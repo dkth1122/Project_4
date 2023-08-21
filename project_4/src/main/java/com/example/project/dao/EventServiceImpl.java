@@ -45,5 +45,11 @@ public class EventServiceImpl implements EventService{
 		return resultMap;
 	}
 
+	@Override
+	public int evtApply(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return eventMapper.evtApply(map);
+	}
+
 	
 }

@@ -76,5 +76,14 @@ public class EventController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	@RequestMapping(value = "/event/evtApply.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String evtApply(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		eventService.evtApply(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	
 	
 }

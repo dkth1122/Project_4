@@ -34,7 +34,7 @@
 	
 	<!-- 이벤트 상품 구매했는지 확인 -->
 	<select id="evtApplyProduct" parameterType="hashmap" resultType="com.example.project.model.Event">
-		SELECT U_ID, COUNT(*) AS CNT
+		SELECT U_ID, COUNT(*) AS CNT, E.P_NO
 		FROM T4_EVENT E
 		INNER JOIN T4_ORDER O ON O.P_NO = E.P_NO
 		WHERE E.EVT_NO = #{evtNo} AND U_ID = #{uId}
@@ -47,6 +47,12 @@
 	    FROM T4_APPLY
 	    WHERE U_ID = #{uId} AND EVT_NO = #{evtNo}
 	</select>
+	
+	<!-- 이벤트 응모 -->
+	<insert id="evtApply">
+		INSERT INTO T4_APPLY VALUES
+		(#{pNo}, #{evtNo}, #{uId}, #{eUname}, #{eUphone}, #{eYn}, NULL)
+	</insert>
 	
 	
 	

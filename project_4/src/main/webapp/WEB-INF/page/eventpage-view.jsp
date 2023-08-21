@@ -63,6 +63,12 @@
     button:hover{
 	    background: #5c3564;
     }
+    .evtTitle{
+    	font-size: 30px;
+    }
+    div {
+	margin-bottom: 10px;
+	}
   </style>
 </head>
 <body>
@@ -70,12 +76,13 @@
 
 	<div onclick="history.back();"><a href="javascript:;">← 되돌아가기</a></div>
 	
-	<div>제목 : {{info.aTitle}}</div>
-	<div>등록일 : {{info.aDate}}</div>
+	<div class="evtTitle">{{info.aTitle}}</div>
+	<div>{{info.aDate}}</div>
+	<hr>
 	<div>
 		<img :src="info.thumbnail">
 	</div>
-	<div>내용 : {{info.aContent}}</div>
+	<div>{{info.aContent}}</div>
 	
 	<div><button @click="fnEvtApply">응모하러가기</button></div>
 </div>
