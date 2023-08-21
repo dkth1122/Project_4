@@ -7,9 +7,16 @@ public class Delivery {
 	private String dDate;
 	private String dState;
 	private int afNo;
+	private char exchange;
 	
 	public String getoNo() {
 		return oNo;
+	}
+	public char getExchange() {
+		return exchange;
+	}
+	public void setExchange(char exchange) {
+		this.exchange = exchange;
 	}
 	public void setoNo(String oNo) {
 		this.oNo = oNo;

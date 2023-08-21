@@ -41,6 +41,7 @@ public class Order {
 	
 	
 	
+	
 	public String getBuyNo() {
 		return buyNo;
 	}

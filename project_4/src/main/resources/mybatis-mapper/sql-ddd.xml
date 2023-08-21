@@ -5,11 +5,17 @@
 <mapper namespace="com.example.project.mapper.DDDDD">
 	<!-- 주문내역 조회  -->
 	<select id="selectOrderp" parameterType="hashmap" resultType="com.example.project.model.Product">
-		SELECT *
+		<!-- SELECT *
 		FROM
 	    T4_ORDER O INNER JOIN  T4_PRODUCT P
 	    ON O.P_NO = P.P_NO
-	    WHERE U_ID = #{uId}
+	    WHERE U_ID = #{uId} -->
+	    SELECT *
+      	FROM T4_ORDER O
+	      INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO	
+	      INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+	      WHERE O.U_ID = #{uId}
+	      GROUP BY O.O_NO
 	</select>
 	<!-- 사용자 장바구니 출력 -->
 	<select id="selectcartlist" parameterType="hashmap" resultType="com.example.project.model.Product">

@@ -16,6 +16,7 @@ public class Product {
 	private String artist;
 	private String reservation;//예약 상품 여부
 	private String fNo; //특전 조인용
+	private String dState;
 	
 	private int point;
 	private char soldout;
@@ -23,6 +24,7 @@ public class Product {
 	private int afNo;
 	private String pImg;
 	private String path;
+	private char exchange;
 	 
 	// order 구매내역 조인용
 	private String oNo;
@@ -30,6 +32,31 @@ public class Product {
 	private int quantity;
 	
 	
+	
+	public char getExchange() {
+		return exchange;
+	}
+	public void setExchange(char exchange) {
+		this.exchange = exchange;
+	}
+	public String getReservation() {
+		return reservation;
+	}
+	public void setReservation(String reservation) {
+		this.reservation = reservation;
+	}
+	public String getfNo() {
+		return fNo;
+	}
+	public void setfNo(String fNo) {
+		this.fNo = fNo;
+	}
+	public String getdState() {
+		return dState;
+	}
+	public void setdState(String dState) {
+		this.dState = dState;
+	}
 	public int getQuantity() {
 		return quantity;
 	}

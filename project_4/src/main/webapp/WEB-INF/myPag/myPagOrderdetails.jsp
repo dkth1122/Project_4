@@ -170,31 +170,30 @@ td{
 							 	
 							 	 
 									<span class="date"> 결제 일자 </span> <input  type='date' > ~ <input type='date'>
-									    
+									<div>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</div>
+									<div>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</div>
 							 </div>
 							 
-							  <div class="orderchart"> 구매목록 </div>
+							  <div class="orderchart">주문 상품 정보</div>
 							<div>
 								<table class="table">
 										<tr>
 											<th class="column-width1">주문번호</th>
-											<th class="column-width2">구입 날짜</th>
-											<th class="column-width3" >제품 이름 </th>
-											<th class="column-width4">수량</th>
-											<th class="column-width5">금액</th>
+											<th class="column-width2">주문일자</th>
+											<th class="column-width3">상품정보</th>
+											<th class="column-width4">결제금액</th>
+											<th class="column-width5">주문상태</th>
 										</tr>
 										
 										<tr  v-for="item in list">
-											<td class="column-width1">{{item.oNo}}</td>
+											<td class="column-width1"><a href="#">{{item.oNo}}</a></td>
 											<td class="column-width2">{{item.oDate}}</td>
 											<td class="column-width3">{{item.pName}}</td>
-											<td class="column-width5">{{item.quantity}}</td>
-											<td class="column-width4">{{item.price}}</td>
-										
-										<tr>
-										
-								
-								
+											<td class="column-width5">{{item.price}}원</td>
+											<td class="column-width4" v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button>취소</button></td>
+											<td class="column-width4" v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button>교환/반품</button>><button>구매 확정</button></td>											
+											<td class="column-width4" v-else>{{item.dState}}</td>										
+										<tr>								
 								</table>
 
 							
