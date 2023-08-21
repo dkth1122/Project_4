@@ -56,6 +56,12 @@ public class ABoardController {
 	public String eventpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/page/eventpage";
 	}
+
+	@RequestMapping("event/eventpageView.do") 
+	public String eventpageview(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/page/eventpage-view";
+	}
 	
 	
 	
