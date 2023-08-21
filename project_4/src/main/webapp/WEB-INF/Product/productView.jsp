@@ -504,16 +504,26 @@ var app = new Vue({
                 }
             }); 
             //주문 페이지로 이동
-        },  fnProductOrder : function(item){
+        },  fnProductOrder : function(){
         	var self = this;
-        	$.pageChange("../payment.do", {pNo : item.pNo});        	
+        	$.pageChange("../payment.do", {pNo : self.pNo});        	
         
-        	//장바구니로 이동
-        }, fnCart : function(item){
-        	var self = this;
-        	$.pageChange("../cart.do", {pNo : item.pNo});     
-        }
-        ,formatPrice: function(price) {
+        	//장바구니 추가 + 이동
+        }, fnCart : function(){
+        	  var self = this;
+              var nparmap = {pNo : self.pNo, uId : self.uId, quantity : self.quantity};            
+              $.ajax({
+                  url : "/cart/addCart.dox",
+                  dataType:"json",	
+                  type : "POST", 
+                  data : nparmap,
+                  success : function(data) { 
+                	  if(confirm("장바구니 추가 완료. 장바구니로 이동하시겠습니까?")){
+			        	location.href= "/cart/cartList.do";  
+                	  }
+                  }
+              }); 
+        } ,formatPrice: function(price) {
         	// 가격 포맷 변환을 위한 함수
         	return price.toLocaleString();
         },

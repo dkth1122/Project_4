@@ -220,7 +220,7 @@ text-align: center;
 
 		<div id="container">
 		
-			<div id="title">Order</div>
+			<div id="title">Cart</div>
 
 			<div class="body">
 				<table class="table">
@@ -251,201 +251,8 @@ text-align: center;
 				<div class="payment"></div>
 				<div class="baybutton">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</div>
 			</div>
-			<div id="addr">
-				<div>
-				<div id="inputaddr">
-						<div id="inputhd">
-						<h3>주문자 정보</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
-						</div>
-					<table class="adr" border="0">
-						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문하시는 분 </th>
-							<td><input  class="nameinput " type="text" v-model="name"> </td>
-						</tr>
-						
-						<tr>
-							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
-							<td>
-							<input class="addrinput" type="text" >  <button>주소 찾기</button> 
-							<br>
-							<input class="addrinput2" type="text" placeholder="기본주소">
-							<br>
-							<input class="addrinput2" type="text" placeholder="나머지 주소 ">							
-							</td>
-						</tr>
-						
-						<tr>
-							<th>　일번전화</th>
-							<td>
-							<select class="select">
-								<option>02</option>
-								<option>031</option>
-								<option>032</option>
-								<option>033</option>
-								<option>043</option>
-							</select>
-							<input class="numinput" type="text">	- <input class="numinput" type="text">								
-							</td>
-						</tr>
-						
-						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
-							<td>
-								<select class="select">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>017</option>
-								<option>018</option>
-								<option>019</option>
-							</select>
-							<input class="numinput" type="text"> - <input class="numinput" type="text">			
-							</td>						
-						</tr>
-						
-						<tr>
-							<th>　<i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>이메일</th>
-							<td><div style="width: 793px;">
-								<input class="numinput" type="text"> @ <input class="numinput" type="text" :v-model="mail">	
-									<select class="select2"  :v-model="email">
-											<option value="">-이메일 선택-</option>
-											<option value="naver.com">naver.com</option>
-											<option value="daum.net">daum.net</option>
-											<option value="nate.com">nate.com</option>
-											<option value="hotmail.com">hotmail.com</option>
-											<option value="gmail.com">gmail.com</option>
-											<option value="직접입력">직접입력</option>
-									</select>
-								</div></td>
-						</tr>
-						
-					</table>
-				</div>
-				
-				<div id="inputaddr">
-						<div id="inputhd">
-						<h3>배송 정보</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
-						</div>
-					<table class="adr" border="0">
 					
-						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 배송지선택 </th>
-							<td>
-								<div id="to" >
-										<label><input name="addr" type="radio" style="height: 12px; width: 30px;">주문자 정보와 동일</label> 
-										<label><input name="addr" type="radio" style="height: 12px; width: 20px;" > 새로운 배송지</label>
-										<button>주소록 보기</button>
-							 	</div>
-							</td>
-						
-						</tr>
-						
-					
-						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문하시는 분 </th>
-							<td><input  class="nameinput " type="text"> </td>
-						</tr>
-						
-						<tr>
-							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
-							<td>
-							<input class="addrinput" type="text" >  <button>주소 찾기</button> 
-							<br>
-							<input class="addrinput2" type="text" placeholder="기본주소">
-							<br>
-							<input class="addrinput2" type="text" placeholder="나머지 주소 ">							
-							</td>
-						</tr>
-						
-						<tr>
-							<th>　일번전화</th>
-							<td>
-							<select class="select">
-								<option>02</option>
-								<option>031</option>
-								<option>032</option>
-								<option>033</option>
-								<option>043</option>
-							</select>
-							<input class="numinput" type="text">	- <input class="numinput" type="text">								
-							</td>
-						</tr>
-						
-						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
-							<td>
-								<select class="select">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>017</option>
-								<option>018</option>
-								<option>019</option>
-							</select>
-							<input class="numinput" type="text"> - <input class="numinput" type="text">			
-							</td>						
-						</tr>
-						
-						<tr>
-							<th>　배송메시지</th>
-							<td><textarea rows="7" cols="110"></textarea> </td>
-						</tr>
-						
-					</table>
-				</div>
-				</div>
-				<div id="point">
-				<div id="pointhd">
-					할인 쿠폰/적립 혜택
-				</div>	
-					<div id="viewpoint">
-						<table class="pointable">
-							<tr>
-								<th>
-									적립 예정 금액
-								</th>
-								
-								<td>
-									}}포인트{{ P
-								</td>
-							</tr>
-						</table>
-						<div class="pontbottombor"></div>
-					</div>					
-					
-					<div id="note">
-<div style="font-weight: bold;">				
-[주문 및 배송정보]
-</div>
-
-<p>
-[국내 일반 배송]
-</p>
-<p>
-· 배송방식 : SMTOWN &STORE  물류센터 직접배송(CJ대한통운)<br>
-· 배송지역 : 전국(일부지역 제외)<br>
-· 배송비용 : 3,000원 / 주문금액 50,000원 이상 시 무료배송<br>
-· 산간벽지나 도서산간지역은 추가 배송비가 발생할 수 있습니다.  <br>           
-· 배송기간 : 결제 후 7~10일 이내 배송 시작될 예정입니다.<br>
-</p>					
-					
-	
-
-<p>
-<div>- 상품의 재고상황에 따라 배송기간이 다소 지연될 수도 있습니다.</div>
-<div>- 물류센터 사정으로 인해 배송이 지연될 수 있습니다.</div>
-<div style="color: red">- 사전예약/주문제작 등 당일 배송이 어려운 상품을 함께 구매하시는 경우 모든
-   			상품이 배송 가능한 상태가 되는 시점에 주문하신 상품이 함께 배송 됩니다.</div>
-<div>- 기본 배송기간 이상 소요되는 상품 또는 품절된 상품은 개별 연락　　　 드리겠습니다.</div>
-
-<div style="color: red">- 복제 가능한 상품의 경우 개봉 후 단순 변심으로 인한 반품이 불가합니다.</div>
-</p>
-				
-			
-					</div>
-				</div>
-			</div>
-		<div id="baybutton"><button>결제하기</button> </div>
+		<div id="baybutton"><button @click="fnProductOrder(item)">결제하기</button> </div>
 		</div>
 	</div>
 
@@ -465,7 +272,9 @@ text-align: center;
 			mail : "",
 		},
 		methods : {
-		
+			
+			
+	        }
 
 		},
 		created : function() {

@@ -3,32 +3,32 @@ package com.example.project.model;
 public class Cart {
 	
 	private String uId;
-	private int pNo;
-	private int cInt;
-	private int afNo;
-	
+	private int cNo;
+	private String pNo;
+	private int cnt;
 	public String getuId() {
 		return uId;
 	}
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
-	public int getpNo() {
+	public int getcNo() {
+		return cNo;
+	}
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
+	}
+	public String getpNo() {
 		return pNo;
 	}
-	public void setpNo(int pNo) {
+	public void setpNo(String pNo) {
 		this.pNo = pNo;
 	}
-	public int getcInt() {
-		return cInt;
+	public int getCnt() {
+		return cnt;
 	}
-	public void setcInt(int cInt) {
-		this.cInt = cInt;
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
-	public int getAfNo() {
-		return afNo;
-	}
-	public void setAfNo(int afNo) {
-		this.afNo = afNo;
-	}
+	
 }

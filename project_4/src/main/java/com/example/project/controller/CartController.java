@@ -31,27 +31,18 @@ public class CartController {
 	HttpSession session;
 
 	//결제 페이지
-	@RequestMapping("/cart.do") 
+	@RequestMapping("/cart/cartList.do") 
     public String mainGBoard(Model model) throws Exception{
 
         return "/PaymentAndCart/cart";
     }
 	
-	
-	@RequestMapping(value = "/mypag/cart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/cart/addCart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String addCart(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Wish> list = cartService.cart(map);
-		resultMap.put("list", list);
+		resultMap = cartService.searchCartProduct(map);
 		return new Gson().toJson(resultMap);
 	}
 	
-	@RequestMapping(value = "/mypag/deletecart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String deletecart(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		cartService.deletecart(map);
-		return new Gson().toJson(resultMap);
-	}
 }
