@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -16,30 +16,30 @@
 		border:1px solid tomato;
 	}
 	.profile-image {
-	    width: 50px; /* ¿øÇÏ´Â ÀÌ¹ÌÁö Å©±â Á¶Àı */
+	    width: 50px; /* ì›í•˜ëŠ” ì´ë¯¸ì§€ í¬ê¸° ì¡°ì ˆ */
 	    height: 50px;
 	    border : 1px solid tomato;
-	    border-radius: 50%; /* 50%·Î ¼³Á¤ÇÏ¿© µ¿±×¶ó¹Ì ¸ğ¾çÀ¸·Î ÀÚ¸§ */
-	    object-fit: cover; /* ÀÌ¹ÌÁö¸¦ È­¸é¿¡ ¸Â°Ô Á¶ÀıÇÏ¿© Àß¸° ºÎºĞÀÌ Àß º¸ÀÌµµ·Ï ÇÔ */
+	    border-radius: 50%; /* 50%ë¡œ ì„¤ì •í•˜ì—¬ ë™ê·¸ë¼ë¯¸ ëª¨ì–‘ìœ¼ë¡œ ìë¦„ */
+	    object-fit: cover; /* ì´ë¯¸ì§€ë¥¼ í™”ë©´ì— ë§ê²Œ ì¡°ì ˆí•˜ì—¬ ì˜ë¦° ë¶€ë¶„ì´ ì˜ ë³´ì´ë„ë¡ í•¨ */
 }
 </style>
 <title>myPage</title>
 </head>
 <body>
 	<div id="app">
-	 <button @click="fnMove">µÚ·Î°¡±â</button>
-	<h1>¸¶ÀÌÆäÀÌÁöÁö·Õ~</h1>
+	 <button @click="fnMove">ë’¤ë¡œê°€ê¸°</button>
+	<h1>ë§ˆì´í˜ì´ì§€ì§€ë¡±~</h1>
 	<div class="header">
 		<h2>{{uId}}</h2>
 	</div>
 	
-	<div><h1>¸â¹ö½± Á¤º¸ - ±¸µ¶ ³»¿ª</h1>
+	<div><h1>ë©¤ë²„ì‰½ ì •ë³´ - êµ¬ë… ë‚´ì—­</h1>
 		<table>
 			<tr>
-				<th>±¸µ¶ »óÅÂ</th>
-				<th>¾ÆÆ¼½ºÆ®</th>
-				<th>±¸µ¶ ½ÃÀÛÀÏ</th>
-				<th>±¸µ¶ ¸¸·áÀÏ</th>
+				<th>êµ¬ë… ìƒíƒœ</th>
+				<th>ì•„í‹°ìŠ¤íŠ¸</th>
+				<th>êµ¬ë… ì‹œì‘ì¼</th>
+				<th>êµ¬ë… ë§Œë£Œì¼</th>
 			</tr>
 			<tr v-for = "item in mlist" >
 					<td>{{item.mStatus}}</td>
@@ -51,45 +51,45 @@
 	</div>
 
 <div>
-	<h1>±¸µ¶ ¸â¹ö º° ÇÁ·ÎÇÊ »çÁø</h1>
+	<h1>êµ¬ë… ë©¤ë²„ ë³„ í”„ë¡œí•„ ì‚¬ì§„</h1>
 		<table>
 			<tr>
-				<th>¹øÈ£</th>
-				<th>¾ÆÆ¼½ºÆ®</th>
-				<th>´Ğ³×ÀÓ</th>
-				<th>ÀÌ¹ÌÁö</th>
-				<th>ÀÌ¹ÌÁö ¼öÁ¤</th>
-				<th>¿Ï·á</th>
-				<th>ÀÌ¹ÌÁö Á¦°Å...</th>
+				<th>ë²ˆí˜¸</th>
+				<th>ì•„í‹°ìŠ¤íŠ¸</th>
+				<th>ë‹‰ë„¤ì„</th>
+				<th>ì´ë¯¸ì§€</th>
+				<th>ì´ë¯¸ì§€ ìˆ˜ì •</th>
+				<th>ì™„ë£Œ</th>
+				<th>ì´ë¯¸ì§€ ì œê±°...</th>
 			</tr>
 			<tr v-for = "(pitem, index) in plist" >
 					<td>{{pitem.gpNo}}</td>
 					<td>{{pitem.artist}}</td>
 					<td>
-						<input v-model="pitem.nickName" placeholder="º¯°æÇÒ ´Ğ³×ÀÓ ÀÔ·Â">
+						<input v-model="pitem.nickName" placeholder="ë³€ê²½í•  ë‹‰ë„¤ì„ ì…ë ¥">
         			</td>
 					<td><img :src="pitem.gpPath" class="profile-image"></td>
 					
         			<td>
-        				<div>ÀÌ¹ÌÁö</div>
+        				<div>ì´ë¯¸ì§€</div>
 						<input type="file" :id="'index'+index"  :name="'index'+index" accept=".gif, .jpg, .png" @change="handleFileChange" >
         			</td>
         			<td>	
-        				<button @click="fnProfile(pitem, index)">µî·Ï</button>
+        				<button @click="fnProfile(pitem, index)">ë“±ë¡</button>
         			</td>
-        			<td><button @click="fnImgRemove(pitem.gpNo)">ÀÌ¹ÌÁö Á¦°Å ¹öÆ°</button></td>
+        			<td><button @click="fnImgRemove(pitem.gpNo)">ì´ë¯¸ì§€ ì œê±° ë²„íŠ¼</button></td>
         			
 			</tr>
 		</table>
 </div>
 	
-	<div><h1>³»°¡ ¾´ ÇÇµå ==> ´©¸£¸é ¿ìÃø¿¡ Å×ÀÌºí Ãâ·Â</h1>
+	<div><h1>ë‚´ê°€ ì“´ í”¼ë“œ ==> ëˆ„ë¥´ë©´ ìš°ì¸¡ì— í…Œì´ë¸” ì¶œë ¥</h1>
 		<table>
 			<tr>
-				<th>¾ÆÆ¼½ºÆ®</th>
-				<th>ÀÛ¼ºÀÏ</th>
-				<th>ÇÇµå ³»¿ë</th>
-				<th>ÁÁ¾Æ¿ä ¼ö</th>
+				<th>ì•„í‹°ìŠ¤íŠ¸</th>
+				<th>ì‘ì„±ì¼</th>
+				<th>í”¼ë“œ ë‚´ìš©</th>
+				<th>ì¢‹ì•„ìš” ìˆ˜</th>
 			</tr>
 			<tr v-for = "item in list"  @click="fnCheck(item.gNo)">
 					<td>{{item.artist}}</td>
@@ -100,13 +100,13 @@
 		</table>
 	</div>
 	
-	<div><h1>³»°¡ ¾´ ´ñ±Û</h1>
+	<div><h1>ë‚´ê°€ ì“´ ëŒ“ê¸€</h1>
 		<table>
 			<tr>
-				<th>¾ÆÆ¼½ºÆ®</th>
-				<th>ÀÛ¼ºÀÏ</th>
-				<th>´ñ±Û ³»¿ë</th>
-				<th>ÁÁ¾Æ¿ä ¼ö</th>
+				<th>ì•„í‹°ìŠ¤íŠ¸</th>
+				<th>ì‘ì„±ì¼</th>
+				<th>ëŒ“ê¸€ ë‚´ìš©</th>
+				<th>ì¢‹ì•„ìš” ìˆ˜</th>
 			</tr>
 			<tr v-for ="item in list2"  @click="fnCheck(item.gNo)">
 					<td>{{item.artist}}</td>
@@ -117,13 +117,13 @@
 		</table>
 	</div>
 		
-	<div><h1>³»°¡ ¾´ ´ë´ñ±Û</h1>
+	<div><h1>ë‚´ê°€ ì“´ ëŒ€ëŒ“ê¸€</h1>
 		<table >
 			<tr>
-				<th>¾ÆÆ¼½ºÆ®</th>
-				<th>ÀÛ¼ºÀÏ</th>
-				<th>´ñ±Û ³»¿ë</th>
-				<th>ÁÁ¾Æ¿ä ¼ö</th>
+				<th>ì•„í‹°ìŠ¤íŠ¸</th>
+				<th>ì‘ì„±ì¼</th>
+				<th>ëŒ“ê¸€ ë‚´ìš©</th>
+				<th>ì¢‹ì•„ìš” ìˆ˜</th>
 			</tr>
 			<tr v-for = "item in list3"  @click="fnCheck(item.gNo)">
 					<td>{{item.artist}}</td>
@@ -176,7 +176,7 @@
 						console.log("index==>", index);
 						console.log("nickName==>", pitem.nickName);
 						
-	            	    if (!confirm("µî·ÏÇÒ±î¿ä?")) {
+	            	    if (!confirm("ë“±ë¡í• ê¹Œìš”?")) {
 	            	        return;
 	            	    }
 	            	    var nparmap = {nickName : pitem.nickName, artist: pitem.artist, uId : self.uId, gpNo : pitem.gpNo };
@@ -187,7 +187,7 @@
 		                    type: "POST",
 	            	        data: nparmap,
 		                    success: function (data) {
-		                    	 alert("µî·ÏµÇ¾ú¾î¿ä.");
+		                    	 alert("ë“±ë¡ë˜ì—ˆì–´ìš”.");
 		                        self.fnGetList();
 		                        
  		     	           		var form = new FormData();
@@ -200,7 +200,7 @@
 		                    }
 	            	    });
 	            },
-	         // ÆÄÀÏ ¾÷·Îµå
+	         // íŒŒì¼ ì—…ë¡œë“œ
 	    	     upload : function(form){
 	    	    	var self = this;
 	    	         $.ajax({
@@ -226,7 +226,7 @@
 	                var self = this;
 	                var nparmap = {gpNo : gpNo};
 	                
-	                if(!confirm("Á¦°Å ÇÏ½Ã°Ú½À´Ï±î?")){
+	                if(!confirm("ì œê±° í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
 	                	return;
 	                }
 	                $.ajax({
@@ -235,7 +235,7 @@
 	                    type: "POST",
 	                    data: nparmap,
 	                    success: function (data) {
-	                    	alert("ÀÌ¹ÌÁö Á¦°Å ¿Ï·á");
+	                    	alert("ì´ë¯¸ì§€ ì œê±° ì™„ë£Œ");
 	                    }
 	                });
 		       }, handleFileChange: function(event) {
@@ -243,11 +243,11 @@
 		              var file = event.target.files[0];
 		              
 		              if (file) {
-		                  var ext = file.name.split('.').pop().toLowerCase(); // ÆÄÀÏ È®ÀåÀÚ ÃßÃâ
+		                  var ext = file.name.split('.').pop().toLowerCase(); // íŒŒì¼ í™•ì¥ì ì¶”ì¶œ
 
 		                  if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
-		                      alert('ÀÌ¹ÌÁö ÆÄÀÏÀº gif, jpg, png È®ÀåÀÚ¸¸ Çã¿ëµË´Ï´Ù.');
-		                      // ÆÄÀÏ ¼±ÅÃÀ» Ãë¼ÒÇÏµµ·Ï Ã³¸® (¼±ÅÃÇÑ ÆÄÀÏÀ» ÃÊ±âÈ­)
+		                      alert('ì´ë¯¸ì§€ íŒŒì¼ì€ gif, jpg, png í™•ì¥ìë§Œ í—ˆìš©ë©ë‹ˆë‹¤.');
+		                      // íŒŒì¼ ì„ íƒì„ ì·¨ì†Œí•˜ë„ë¡ ì²˜ë¦¬ (ì„ íƒí•œ íŒŒì¼ì„ ì´ˆê¸°í™”)
 		                      event.target.value = '';
 		                  }
 		              }
