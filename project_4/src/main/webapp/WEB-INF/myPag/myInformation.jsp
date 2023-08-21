@@ -15,13 +15,82 @@
 #table {
 	width: 1400px;
 }
-th{
-
+.responsive-image{
+	width : 100px;
+	height : 100px;
 }
-td {
-	height: 60px;
-	text-align: center;
-}
+.button {
+	  display: inline-block;
+	  padding: 5px 10px;
+	  font-size: 13px;
+	  text-align: center;
+	  color: #black;
+	  background-color: white;
+	  border-radius: 30px;
+	  border : 1px solid #d4d5d9;
+	  cursor: pointer;
+	  transition: background-color 0.3s;
+	  width : 49%;
+	  margin-right : 3px;	  
+	}
+	
+	/* 버튼 호버 효과 */
+	.button:hover {
+	  background-color: #d4d5d9;
+	}
+	
+	/* 버튼 클릭 효과 */
+	.button:active {
+	  background-color: #1f618d;
+	}
+	.button2{
+	 display: inline-block;
+	  padding: 15px 20px;
+	  font-size: 13px;
+	  text-align: center;
+	  color: #black;
+	  background-color: white;
+	  border-radius: 30px;
+	  border : 1px solid #d4d5d9;
+	  cursor: pointer;
+	  transition: background-color 0.3s;
+	  width : 14%;
+	  font-size : 15px;
+	  margin-right : 3px;	  
+	}
+	.button2:hover {
+	  background-color: #d4d5d9;
+	}
+	
+	/* 버튼 클릭 효과 */
+	.button2:active {
+	  background-color: #1f618d;
+	}
+	.button3{
+	 display: inline-block;
+	  float : right;
+	  left : 300px;
+	  padding: 15px 20px;
+	  font-size: 13px;
+	  text-align: center;
+	  color: #black;
+	  background-color: white;
+	  border-radius: 30px;
+	  border : 1px solid #d4d5d9;
+	  cursor: pointer;
+	  transition: background-color 0.3s;
+	  width : 22%;
+	  font-size : 15px;
+	  margin-right : 70px;	  
+	}
+	.button3:hover {
+	  background-color: #d4d5d9;
+	}
+	
+	/* 버튼 클릭 효과 */
+	.button3:active {
+	  background-color: #1f618d;
+	}
 </style>
 <title>관심상품</title>
 
@@ -49,8 +118,8 @@ td {
 
 							<div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
-			                        <div v-if="order != 0">{{order}}</div>
-			                        <div v-else>0</div>
+			                        <div class="menuFontSize" v-if="order != 0">{{order}}</div>
+			                        <div class="menuFontSize" v-else>0</div>
                           			</a></label>
 
 								</div>
@@ -58,7 +127,7 @@ td {
 								<div class="details">
 
 									<div>교환/환불</div>
-									<div>
+									<div class="menuFontSize">
 										<span v-if="refund != 0">{{refund}} /</span>
 										<span v-else>0 /</span>
 										
@@ -69,11 +138,11 @@ td {
 								</div>
 								<div class="details">
 									<div>포인트</div>
-									<div>{{info.uPoint}} P</div>
+									<div class="menuFontSize">{{info.uPoint}} P</div>
 								</div>
 						<div class="details">
-							<div>Jelly</div>
-							<div>0</div>
+							<div></div>
+							<div></div>
 						</div>
 					</div>
 				</div>
@@ -124,15 +193,15 @@ td {
 				<div id="right">
 
 					<div class="View">
-						<div class="lowerBox" style="border-bottom-color: black;">
+						<div class="lowerBox">
 							주문 상품 정보</div>
 						<div class="box-border-bottom"></div>
-						<table border-bottum="1">
-						<thead>
+						<table>
+						<thead class="thead">
 							<tr>
-								
 								<th><input type="checkbox" @click="fnAllCheck" v-model="selectAll"></th>
-								<th colspan="2">상품정보</th>
+								<th></th>
+								<th>상품정보</th>
 								<th>적립금</th>
 								<th>배송비</th>
 								<th>판매가</th>
@@ -142,26 +211,27 @@ td {
 						</thead>
 						<tbody>
 							<tr  v-for="item in wishList">
-								<td><input type="checkbox" :value="item.wnum" v-model="selectItem"></td>
-								<td><img class="responsive-image" :src="item.pImg" ></td>
-								<td>{{item.pName}}</td>
+								<td><input type="checkbox" name="ssss" :value="item.wnum" v-model="selectItem"></td>
+								<td><img class="responsive-image" :src="item.path" ></td>
+								<td><div class="artist">{{item.artist}}</div>
+									{{item.pName}}</td>
 								<td>{{item.price*0.005}} P</td>							
 								<td v-if="item.price < 50000">기본배송<div>₩3,000</div><div>(조건)</div></td>
 								<td v-if="item.price >= 50000">무료배송</td>
 								<td><strong>₩{{formatPriceWithCommas(item.price)}}</strong></td>
 								<td>
-								<button @click="OrderProduct(item)"> 주문하기 </button>								
-								<button @click="insertCart(item)"> 장바구니 </button>								
-								<button @click="fnRemoveOne(item)">삭제</button>
-								
-								</td>
+									<button class="button" @click="OrderProduct(item)"> 주문하기 </button>								
+									<button class="button" @click="insertCart(item)"> 장바구니 </button>								
+									<button class="button" @click="fnRemoveOne(item)">삭제</button>								
+								</td>								
 							</tr>
 						</tbody>
 				
 						</table>
-						<button @click="fnRemove">삭제</button>
-						<button @click="fnRemoveAll">찜목록 지우기 </button>
-						
+						<div class="BTbottomArea">
+							<button class="button2" @click="fnRemove">삭제</button>
+							<button class="button3" @click="fnRemoveAll">찜목록 지우기 </button>
+						</div>
 					</div>
 
 
@@ -187,23 +257,25 @@ var app = new Vue({
     	refund : "",
     	wishList : [],
     	selectItem : [],
-    	selectAll: false,
+    	selectAll: false
  
     },
     methods: {
     	fnAllCheck: function() {
-    	      this.selectAll = !this.selectAll;
-    	      if (this.selectAll) {
-    	        this.selectItem = this.wishList.map(item => item.wnum);
-    	      } else {
-    	        this.selectItem = [];
-    	      }
+    		var self = this;
+    		self.selectAll = !self.selectAll;
+	            if (self.selectAll) {
+	            	self.selectItem = self.wishList.map(item => item.wnum);
+	            } else {
+	            	self.selectItem = [];
+	            }
     	    },
     		  selectAllItems: function() {
-    			  if (this.selectAll) {
-    			    this.selectItem = this.wishList.map(item => item.wnum);
+    			  var self = this;
+    			  if (self.selectAll) {
+    				  self.selectItem = self.wishList.map(item => item.wnum);
     			  } else {
-    			    this.selectItem = [];
+    				  self.selectItem = [];
     			  }
     			},
     	fnGetList : function(){
@@ -298,13 +370,14 @@ var app = new Vue({
             });
 		},		
 		fnRemoveOne : function(item){		
-			var self = this;			
-				if(!confirm("정말 삭제할거냐?")){
+			var self = this;
+			console.log(item.wnum)
+				/* if(!confirm("정말 삭제할거냐?")){
 					return;
-				}
+				} */
 				var param ={wnum : item.wnum};
 				console.log(param);
-				$.ajax({
+				/* $.ajax({
 	                url : "/mypag/removeSingleProdeuctWish.dox",
 	                dataType:"json",	
 	                type : "POST",
@@ -314,7 +387,7 @@ var app = new Vue({
 	                	self.fnGetList();
 	                	self.selectItem = [];
 	                }
-	            });
+	            }); */
 			 	
 			},
 		insertCart : function(item){

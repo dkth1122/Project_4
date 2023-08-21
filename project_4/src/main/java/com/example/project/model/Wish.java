@@ -21,6 +21,85 @@ public class Wish {
 	private String fYn;
 	private String pImg;
 	private String pName;
+	private String path;
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	public char getMembership() {
+		return membership;
+	}
+	public void setMembership(char membership) {
+		this.membership = membership;
+	}
+	public char getSoldout() {
+		return soldout;
+	}
+	public void setSoldout(char soldout) {
+		this.soldout = soldout;
+	}
+	public int getpLimit() {
+		return pLimit;
+	}
+	public void setpLimit(int pLimit) {
+		this.pLimit = pLimit;
+	}
+	public String getpDate() {
+		return pDate;
+	}
+	public void setpDate(String pDate) {
+		this.pDate = pDate;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getArtist() {
+		return artist;
+	}
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+	public String getfYn() {
+		return fYn;
+	}
+	public void setfYn(String fYn) {
+		this.fYn = fYn;
+	}
+	public String getpImg() {
+		return pImg;
+	}
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 	
 	public String getuId() {
 		return uId;

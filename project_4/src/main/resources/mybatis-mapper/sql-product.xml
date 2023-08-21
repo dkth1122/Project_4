@@ -95,6 +95,7 @@
       SELECT *
       FROM T4_WISH W
       LEFT JOIN T4_PRODUCT P ON W.P_NO = P.P_NO
+      LEFT JOIN T4_PRODUCT_IMG P2 ON P.P_NO = P2.P_NO
       WHERE U_ID = #{uId}
    </select>
    

@@ -659,6 +659,10 @@ var app = new Vue({
         },//위시리스트 이동  
         wishList : function(){
         	var self = this;
+        	if(self.uId == null){
+        		alert("회원 로그인 후 이용하실 수 있습니다.");
+        		}
+        	}
             var nparmap = {pNo : self.pNo, uId : self.uId};            
             $.ajax({
                 url : "/product/insertWish.dox",
