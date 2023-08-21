@@ -358,7 +358,7 @@ text-align: center;
 						</tr>
 						
 						<tr>
-							<th>　일번전화</th>
+							<th>일반 전화</th>
 							<td>
 							<select class="select">
 								<option>02</option>
@@ -451,7 +451,10 @@ text-align: center;
 
 </body>
 </html>
-<script type="text/javascript">
+<script>
+const userCode = "imp36711884";
+IMP.init(userCode);
+
 	var app = new Vue({
 		el : '#app',
 		data : {
@@ -480,8 +483,36 @@ text-align: center;
 	                }
 	            }); 
 	        }
-		}
-
+		}, requestPay : function() {
+    		var self = this;
+     		  IMP.request_pay({
+     		    pg: "html5_inicis",
+     		    pay_method: "card",
+     		 	merchant_uid : 'merchant_'+new Date().getTime(),
+	  	   	    name : '결제테스트',
+	  	   	    amount : self.price,
+	  	   	    buyer_name : self.name,
+	  	   	    buyer_tel : self.phone,
+	  	   	    buyer_addr : self.addr,
+  	   	  
+     		  }, function (rsp) { // callback
+  	   	      if (rsp.success) {
+  	   	        // 결제 성공 시
+  	   	         console.log(rsp);
+			 var nparmap = {uId : self.uId};            
+	            $.ajax({
+	                url : "removeCart.dox",
+	                dataType:"json",	
+	                type : "POST", 
+	                data : nparmap,
+	                success : function(data) { 
+					}
+			     });
+  	   	      } else {
+  	   	        console.log(rsp);
+  	   	      }
+  	   	  });
+  	   	}
 		},
 		created : function() {
 			var self = this;

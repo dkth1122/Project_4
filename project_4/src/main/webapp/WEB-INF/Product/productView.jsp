@@ -607,8 +607,6 @@ function togglePopup(show) {
 </body>
 </html>
 <script>
-const userCode = "imp36711884";
-IMP.init(userCode);
 var app = new Vue({
     el: '#app',
     data: {    	
