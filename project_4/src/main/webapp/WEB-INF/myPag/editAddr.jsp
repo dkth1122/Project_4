@@ -103,6 +103,17 @@
                            <div id="right">
                            <div class="View">
                               <div class="lowerBox"> 배송 주소록 관리 </div>
+                              <table>
+                              	<tr>
+                              		<th>배송지명</th>
+                              		<td><input v-model="item.uDname"></span></td>
+                              	</tr>
+                              	<tr>
+                              		<th>배송지명</th>
+                              		<td><input v-model="item.uDname"></span></td>
+                              	</tr>
+                              
+                              </table>
                                	<div v-for ="item in list" v-if="item.duNo == duNo">
                               	  <div>· 배송지명 <span><input v-model="item.uDname"></span> </div>
 		                          <div>· 휴대전화 <span><input v-model="item.uDphone"></span> </div>

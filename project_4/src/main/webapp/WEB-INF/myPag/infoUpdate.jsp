@@ -11,7 +11,7 @@
   <title>마이페이지</title>
   <style type="text/css">
    .updatetable{
-    	width: 1200px;
+    	width: 900px;
    }
    .warning{
    	 padding-left : 900px;
@@ -19,11 +19,10 @@
    }
    .updatetable th {
    	text-align: left;
-   	width: 250px;
+   	width: 150px;
    	height: 60px;
    }
    .updatetable td {
-   
 	height: 80px;
    }
   input {

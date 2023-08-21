@@ -44,6 +44,13 @@ public class ㄷㅎㅋ {
 	return "/Product/sexyheader";
 	}
 	
+	//푸터
+	@RequestMapping("footer.do") 
+	public String footer(Model model) throws Exception{
+
+	return "/page/footer";
+	}
+	
 	//구매자 리스트
 	@RequestMapping(value = "/mypag/Orderp.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
