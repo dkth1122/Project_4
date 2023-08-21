@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.EventService;
+import com.example.project.model.ABoard;
 import com.example.project.model.Event;
 import com.google.gson.Gson;
 
@@ -64,6 +65,14 @@ public class EventController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		eventService.updateEvent(map);
 		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/event/evtApplyYn.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String boardinfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = eventService.evtApplyYn(map);
 		return new Gson().toJson(resultMap);
 	}
 	

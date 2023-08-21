@@ -37,15 +37,12 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public Event evtApplyProduct(HashMap<String, Object> map) {
+	public HashMap<String, Object> evtApplyYn(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Event evtApplyYn(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("info", eventMapper.evtApplyProduct(map));
+		resultMap.put("ynApplyYn", eventMapper.evtApplyYn(map));
+		return resultMap;
 	}
 
 	

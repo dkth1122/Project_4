@@ -42,10 +42,10 @@
 	</select>
 	
 	<!-- 이벤트 응모내역이 있는지 확인 -->
-	<select id="evtApplyYn" parameterType="hashmap" resultType="com.example.project.model.Event">
-		SELECT *
-		FROM T4_APPLY
-		WHERE U_ID = #{uId}
+	<select id="evtApplyYn" parameterType="hashmap" resultType="int">
+	    SELECT COUNT(*) AS CNT2
+	    FROM T4_APPLY
+	    WHERE U_ID = #{uId} AND EVT_NO = #{evtNo}
 	</select>
 	
 	

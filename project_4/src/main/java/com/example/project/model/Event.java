@@ -9,6 +9,14 @@ public class Event {
 	private char evtYn;
 	private String pNo;
 	private int cnt;
+	private int cnt2;
+	
+	public int getCnt2() {
+		return cnt2;
+	}
+	public void setCnt2(int cnt2) {
+		this.cnt2 = cnt2;
+	}
 	public String getEvtName() {
 		return evtName;
 	}

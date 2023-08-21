@@ -70,7 +70,7 @@
 
 	<div onclick="history.back();"><a href="javascript:;">← 되돌아가기</a></div>
 	
-	<div>제목 : {{info.aTitle}} <span>{{info.hits}}</span></div>
+	<div>제목 : {{info.aTitle}}</div>
 	<div>등록일 : {{info.aDate}}</div>
 	<div>
 		<img :src="info.thumbnail">
