@@ -282,7 +282,12 @@ td{
 
 					}
 				});
-			}
+			},
+		
+		
+		
+
+
 		},
 		created : function() {
 			var self = this;
