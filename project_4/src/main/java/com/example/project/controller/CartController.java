@@ -12,18 +12,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.CartService;
+import com.example.project.dao.PaymentService;
 import com.example.project.dao.TestService;
 import com.example.project.model.Test;
 import com.example.project.model.Wish;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class CartController {
 	
 	@Autowired
 	CartService cartService;
+	
+	@Autowired
+	HttpSession session;
+
+	//결제 페이지
+	@RequestMapping("/cart.do") 
+    public String mainGBoard(Model model) throws Exception{
+
+        return "/PaymentAndCart/cart";
+    }
 	
 	
 	@RequestMapping(value = "/mypag/cart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

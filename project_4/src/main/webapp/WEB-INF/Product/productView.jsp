@@ -297,9 +297,9 @@
 			
 			<div class="buyArea" style="position: static; bottom: auto; width: auto; margin-left: 0px;">
 				<div style="position : relative;">
-					<button class="buyButton" style="display: block" @click="requestPay">바로 구매하기</button>
+					<button class="buyButton" style="display: block" @click="fnProductOrder">바로 구매하기</button>
 					<div>
-						<button class="button" @click="" >장바구니 담기</button><button class="button">위시리스트 담기</button>
+						<button class="button" @click="fnCart" >장바구니 담기</button><button class="button">위시리스트 담기</button>
 					</div>
 				</div>				
 			</div>
@@ -503,48 +503,17 @@ var app = new Vue({
                 	console.log(self.info);
                 }
             }); 
-        },
-        requestPay : function() {
-            var self = this;
-            IMP.request_pay({
-              pg: "nice",
-              pay_method: "card",
-              merchant_uid : 'merchant_'+new Date().getTime(),
-                 name : '결제테스트',
-                 amount : self.price,
-                 buyer_name : self.uId,
-            }, function (rsp) { // callback
-                if (rsp.success) {
-                  // 결제 성공 시
-              console.log("결제 성공");
-              console.log(rsp); // 결제 결과 정보 출력
-              var self = this;
-              var nparmap = rsp;            
-              $.ajax({
-                  url : "/product/insertProductPayment.dox",
-                  dataType:"json",	
-                  type : "POST", 
-                  data : nparmap,
-                  success : function(data) { 
-                  	self.info = data.info; //사용자
-                  	self.pName = self.info.pName;
-                  	self.price = self.info.price;
-                  	self.formattedPrice = self.formatPrice(self.price); // 가격 포맷 변환
-                  	self.artist = self.info.artist;
-                  	self.path = self.info.path;
-                  	self.category = self.info.category;
-                  	console.log(self.info);
-                  }
-              }); 
-              
-                } else {
-                  // 결제 실패 시
-                    console.log("결제 실패");
-              	console.log(rsp); // 결제 실패 정보 출력
-                }
-            });
-          },
-        formatPrice: function(price) {
+            //주문 페이지로 이동
+        },  fnProductOrder : function(item){
+        	var self = this;
+        	$.pageChange("../payment.do", {pNo : item.pNo});        	
+        
+        	//장바구니로 이동
+        }, fnCart : function(item){
+        	var self = this;
+        	$.pageChange("../cart.do", {pNo : item.pNo});     
+        }
+        ,formatPrice: function(price) {
         	// 가격 포맷 변환을 위한 함수
         	return price.toLocaleString();
         },
