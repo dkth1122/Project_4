@@ -5,11 +5,12 @@
 <head>
 <meta charset="EUC-KR">
  <script src="../js/jquery.js"></script>
+  <link href="../css/membership.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버십 게시판</title>
 <style>
-	body{
+	/* body{
 		font-family: a타이틀고딕2;
 		width : 1250px;
 		margin : 10px auto;
@@ -62,57 +63,69 @@
    
    .container > ul{
    		border: 1px solid tomato;
-   }
+   } */
 </style>
 </head>
 <body>
-<div id="app">
-    <button @click="fnMove">뒤로가기</button>
-    <div class="header">
-        <label>제목, 작성자 :  
-            <input type="text" v-model="keyword">
-            <button @click="fnSearch">검색</button>
-        </label>
-        
-        <button>알림</button>
-        <button>마이페이지</button>
+ <nav id="app">	
+	<div class="logos">
+      <a href="../home2.do"><img alt="" src="../img/logo/veryperiii.png" style="width:80px; height:80px; margin-top:25px;"></a>
+      <a href="../home2.do"><img alt="" src="../img/logo/txt_logo.png" style="width:120px; height:auto;"></a>
     </div>
+    
+	<nav id="buttons">
+		<div class="header">
+			<div class="btn">
+    			<button @click="fnMove">back</button>
+    			<button @click="fnMove('my')">menu</button>
+    			<button>mypage</button>
+      		</div> 
+       
+     	    <label>  
+            	<input type="text" v-model="keyword">
+            	<button @click="fnSearch">search</button>
+			</label>
+        </div>
+    <hr>
     
     <div class="artistNewFeed">
         <!-- 날짜 빠른 순으로 정렬 후 출력 -->
-        	<ul class="feedType" v-if="index  < 3 " v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
+        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
 		        <a href="javascript:;">
 	            <div>
-	            	<li>{{item.gcCnt}}</li>
+	            	<li><span>COMMENT ♥ </span>{{item.gcCnt}}</li>
 	                <li>{{item.artist}}</li>
-	                <li>{{item.uName2}}</li>
+	            	<li>{{item.nickName}}</li>
+	            	<li><img :src = "item.gpPath" class="profile-image"></li>
 	                <li>{{item.gDate}}</li>
 	                <li>{{item.gContent}}</li>
-	                <li>{{item.gLike}}</li>
-	                <img :src="item.path">
+	                <li><span>LIKE ♥ </span>{{item.gLike}}</li>
 	            </div>
 		       </a>
        	 	</ul>
     </div>
-    
+ 
+  <hr>
+   <nav id= "writearea">   
     <div class="write">
         <textarea rows="10" cols="100" v-model="content"></textarea>
-        <button @click="fnAdd">게시글 등록</button>
-        <div>
-			<span>파일</span>
-			<span><input type="file" id="file1" name="file1"></span>
-		</div>
-    </div>
+       <span><input type="file" id="file1" name="file1" accept=".gif, .jpg, .png" @change="handleFileChange" style="background-color:white;"></span>
+         <button @click="fnAdd">등록</button>
+      </div>
+    </nav>
+			
+	
     
     <div class="container">
         <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
-        	<li>{{item.gcCnt}}</li>
+        	<li><span>COMMENT ♥ </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
-            <li>{{item.uName2}}</li>
+            <li>{{item.nickName}}<img :src = "item.gpPath" class="profile-image"></li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
-            <li>{{item.gLike}}</li>
-            <img :src="item.path">
+            <li><span>LIKE ♥ </span>{{item.gLike}}</li>
+            <img :src="item.path" :src="item.path" class="image" >
+            <img v-else class="imageX" />
             <li><button @click="fnLike(item.gNo)">좋아요</button></li>
             <li><button @click="fnComment(item.gNo)">댓글</button></li>
             <li><button @click="reportPost(item.gNo)">신고</button></li>
@@ -181,7 +194,12 @@ var app = new Vue({
         fnAdd: function () {
             var self = this;
 
-            if (!confirm("등록할까요?")) {
+            if (!confirm("등록하시겠습니까?")) {
+                return;
+            }
+            
+            if(self.content == null || self.content == ""){
+            	alert("내용을 입력해주세요.");
                 return;
             }
             var nparmap = {content: self.content, artist: self.artist, uId : self.uId };
@@ -192,7 +210,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("등록되었어요.");
+                    alert("등록 완료");
                     self.comment = "";
                     self.fnGetList();
  	           		var form = new FormData();
