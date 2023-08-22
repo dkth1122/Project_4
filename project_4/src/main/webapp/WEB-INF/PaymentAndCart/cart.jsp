@@ -239,7 +239,7 @@ text-align: center;
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
 						<td class="c">
-							 <input :value="item.cnt">
+							 <input :value="item.cnt" @input="updateItemCnt(item)">
 							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
 							 <a href="#none" @click="increaseCnt(item)"> <i class="fa-solid fa-plus"></i> </a>
 						</td>
@@ -354,7 +354,13 @@ text-align: center;
                 	   self.fnGetList();
                  	  }
                }); 
-           }
+           },updateItemCnt: function (item) {
+           	
+           	if (parseInt(event.target.value) > 1){
+               item.cnt = parseInt(event.target.value);
+               this.calculateTotalPrice();
+           	}
+       	 }
 		},
 		created : function() {
 			var self = this;

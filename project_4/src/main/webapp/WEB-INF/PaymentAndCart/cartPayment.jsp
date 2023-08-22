@@ -9,6 +9,8 @@
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<!-- 결제 연동을 위한 포트원 라이브러리 추가 --> 
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script> 
 <meta charset="EUC-KR">
 <title>결제 페이지</title>
 <style>
@@ -242,7 +244,7 @@ text-align: center;
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
 						<td class="c">
-							 <input :value="item.cnt">
+							 <input :value="item.cnt" @input="updateItemCnt(item)">
 							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
 							 <a href="#none" @click="increaseCnt(item)"> <i class="fa-solid fa-plus"></i> </a>
 						</td>
@@ -297,48 +299,19 @@ text-align: center;
 						</tr>
 						
 						<tr>
-							<th>일반전화</th>
-							<td>
-							<select class="select">
-								<option>02</option>
-								<option>031</option>
-								<option>032</option>
-								<option>033</option>
-								<option>043</option>
-							</select>
-							<input class="numinput" type="text"> - <input class="numinput" type="text">			
-							</td>
-						</tr>
-						
-						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
 							<td>
-								<select class="select">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>017</option>
-								<option>018</option>
-								<option>019</option>
-							</select>
+							<select class="select" v-model="phone1">
+									<option value="">선택</option>
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="016">016</option>
+									<option value="017">017</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
+								</select>
 							<input class="numinput" type="text" v-model="phone2">	- <input class="numinput" type="text" v-model="phone3">								
 							</td>						
-						</tr>
-						
-						<tr>
-							<th>　<i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>이메일</th>
-							<td><div style="width: 793px;">
-								<input class="numinput" type="text"> @ <input class="numinput" type="text" :v-model="email">	
-									<select class="select2"  :v-model="email">
-											<option value="">-이메일 선택-</option>
-											<option value="naver.com">naver.com</option>
-											<option value="daum.net">daum.net</option>
-											<option value="nate.com">nate.com</option>
-											<option value="hotmail.com">hotmail.com</option>
-											<option value="gmail.com">gmail.com</option>
-											<option value="직접입력">직접입력</option>
-									</select>
-								</div></td>
 						</tr>
 						
 					</table>
@@ -377,33 +350,19 @@ text-align: center;
 							</td>
 						</tr>
 						
-						
-						<tr>
-							<th>일번전화</th>
-							<td>
-							<select class="select">
-								<option>02</option>
-								<option>031</option>
-								<option>032</option>
-								<option>033</option>
-								<option>043</option>
-							</select>
-							<input class="numinput" type="text">	- <input class="numinput" type="text">								
-							</td>
-						</tr>
-						
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
 							<td>
-								<select class="select">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>017</option>
-								<option>018</option>
-								<option>019</option>
-							</select>
-							<input class="numinput" type="text" v-model="user.phone2"> - <input class="numinput" type="text" v-model="user.phone3">>			
+								<select class="select" v-model="user.phone1">
+									<option value="">선택</option>
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="016">016</option>
+									<option value="017">017</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
+								</select>
+							<input class="numinput" type="text" v-model="user.phone2"> - <input class="numinput" type="text" v-model="user.phone3">			
 							</td>						
 						</tr>
 						
@@ -464,16 +423,20 @@ text-align: center;
 					</div>
 				</div>
 			</div>
-		<div id="baybutton"><button>결제하기</button></div>
+		<div id="baybutton"><button @click="requestPay">결제하기</button></div>
 		</div>
 
 </div>
 </body>
 </html>
 <script>
+const userCode = "imp36711884"; 
+IMP.init(userCode); 
+
 Vue.filter('numberWithCommas', function (value) {
     if (!value) return '';
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');});
+
 
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 	app.fnResult(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo);
@@ -496,18 +459,22 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			 user : {
 		    	   	uId : "",
 		    	   	uDname : "",
+		    	   	phone1 : "",
 		    	   	phone2 : "",
 		    	   	phone3 : "",
 					addr : "",
 					addrDetail : "",
-					zipNo : ""
+					zipNo : "",
+					phone : ""
 				},
 			info : [],
 			flg : false,
+    	   	phone1 : "",
 			phone2 : "",
 			phone3 : "",
 			check : "",
-			dText : ""
+			dText : "",
+			
 		},
 		methods : {
 			fnGetList : function(){
@@ -524,6 +491,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                }
 	            }); 
 	        },calculateTotal: function (item) {
+	        	item.pric
                 return item.price * item.cnt;
             },
 	        // 상품 전체 금액 합산 메서드
@@ -550,7 +518,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             }, increaseCnt: function (item) {
                 item.cnt++;
                 this.calculateTotalPrice();
-            
+            },updateItemCnt: function (item) {
+            	
+            	if (parseInt(event.target.value) > 1){
+                item.cnt = parseInt(event.target.value);
+                this.calculateTotalPrice();
+            	}
          },fnSearchAddr : function (check){
 			var self = this;
     		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
@@ -594,6 +567,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	    	   self.addr = item.uDaddr;
 	    	   self.addrDetail = item.uDaddrDetail;
 	    	   self.zipNo = item.zipNo;
+	    	   self.phone1 = item.uDphone.substr(0,3);
 	    	   self.phone2 = item.uDphone.substr(3,4);
 	    	   self.phone3 = item.uDphone.substr(7);
     		}else if (check == 'n'){
@@ -601,33 +575,65 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     	    	self.addr = "";
     	    	self.addrDetail = "";
     	    	self.zipNo = "";
+ 	    	  	self.phone1 = "";
     	    	self.phone2 = "";
     	    	self.phone3 = "";
     		}
     	
     	},fnAddAddr2 : function(check){
     		var self = this;
-    		
-    	if(check == 'y'){
-    	   self.user.uDname = self.uDname;
-    	   self.user.addr = self.addr;
-    	   self.user.addrDetail = self.addrDetail;
-    	   self.user.zipNo = self.zipNo;
-    	   self.user.phone2 = self.phone2;
-    	   self.user.phone3 = self.phone3;
-    	   
-    	}else if (check == 'n'){
-    	  	self.user.uDname = "";
-        	self.user.addr = "";
-        	self.user.addrDetail = "";
-        	self.user.zipNo = "";
-        	self.user.phone2 = "";
-        	self.user.phone3 = "";
-    	}
-    	
-    	
-    	}
-    	
+	    	if(check == 'y'){
+	    	   self.user.uDname = self.uDname;
+	    	   self.user.addr = self.addr;
+	    	   self.user.addrDetail = self.addrDetail;
+	    	   self.user.zipNo = self.zipNo;
+	    	   self.user.phone1 = self.phone1;
+	    	   self.user.phone2 = self.phone2;
+	    	   self.user.phone3 = self.phone3;
+	    	}else if (check == 'n'){
+	    	  	self.user.uDname = "";
+	        	self.user.addr = "";
+	        	self.user.addrDetail = "";
+	        	self.user.zipNo = "";
+	        	self.user.phone1 = 
+	        	self.user.phone2 = "";
+	        	self.user.phone3 = "";
+	    	}
+   		}, requestPay : function() {
+    		var self = this;
+    		self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3
+    			IMP.request_pay({
+       		    pg: "nice",
+       		    pay_method: "card",
+       		    merchant_uid: "test_llln5x5v",
+       		    name: "결제 실행",
+       		    amount: self.totalPrice,
+       		    buyer_addr : self.user.addr + self.user.addrDetail,
+       		    buyer_postcord : self.user.zipNo,
+       		    buyer_name: self.user.uDname,
+       		    buyer_tel: self.user.phone,
+  	   	 
+    		}, function (rsp) { // callback
+  	   	      if (rsp.success) {
+  	   	        console.log("rsp ==>", rsp);
+  	   	        // 결제 성공 시 장바구니 삭제 
+                  	var self = this;
+  	            	var nparmap = {uId : self.uId,};            
+	  	            $.ajax({
+	  	                url : "removeCart.dox",
+	  	                dataType:"json",	
+	  	                type : "POST", 
+	  	                data : nparmap,
+	  	                success : function(data) { 
+	  	                	alert("결제 성공");
+	  	                }
+	  	            }); 
+  	   	      } else {
+  	   	        // 결제 실패 시
+  	   	        alert("결제 실패");
+  	   	      }
+  	   	  });
+  	   	}
 	},
 	created : function() {
 			var self = this;
@@ -635,4 +641,5 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			console.log(self.list);
 		}
 	});
+	
 </script>
