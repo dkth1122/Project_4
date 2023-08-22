@@ -40,10 +40,18 @@ public class Order {
 	private String fixAddr;
 	private String uDphone;
 	private String uDmessage;
+	private String uPhone;
 	
 	
 	
 	
+	
+	public String getuPhone() {
+		return uPhone;
+	}
+	public void setuPhone(String uPhone) {
+		this.uPhone = uPhone;
+	}
 	public String getuName() {
 		return uName;
 	}

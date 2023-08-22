@@ -17,50 +17,16 @@
 
 <style type="text/css">
 
-.orderchart{
-padding-left : 30px;
-	margin: 30px 0px;
-}
-.table{
-   border-collapse: collapse;
-	border : 1px solid black;
-	width: 1200px;
-	text-align: center;
-}
-th{
-	background-color: #DACDFB;
-	color: #a1a1a1da;
-}
 
-
-th,td {
- border: 1px solid black;
+.button11{
+	background: none;
+	 border: none;
+	 padding: 0;
+	 font-family: inherit;
+	 font-size: inherit;
+	 color: inherit;
+	 cursor: pointer;
 }
-td{
-	height: 60px;
-}
-.column-width1{
-	width: 15%;
-}
-.column-width2{
-	width: 20%;
-}
-.column-width3{
-	width: 40%;
-}
-.column-width4{
-	width: 5%;
-}
-.column-width5{
-	width: 10%;
-}
-.find{
-	padding: 40px;
-}
-.date{ 
-	margin-right: 40px;
-}
-
 </style>
 
 </head>
@@ -165,10 +131,36 @@ td{
 					<div id="right">
 
 						<div class="View">
-							 <div class="lowerBox"> 구매내역 </div>
+							 <div class="lowerBox"> 주문 내역 조회 </div>
 							 <div class="find">
 							 	
-							 	 
+							 	 <div class="xans-element- xans-myshop xans-myshop-orderhistoryhead cboth "><fieldset class="ec-base-box">
+<legend>검색기간설정</legend>
+				<div class="stateSelect  displaynone">
+					<select id="order_status" name="order_status" class="fSelect">
+<option value="all">전체 주문처리상태</option>
+<option value="shipped_before">입금전</option>
+<option value="shipped_standby">배송준비중</option>
+<option value="shipped_begin">배송중</option>
+<option value="shipped_complate">배송완료</option>
+<option value="order_cancel">취소</option>
+<option value="order_exchange">교환</option>
+<option value="order_return">반품</option>
+</select>				</div>
+				<span class="period">
+					<a href="#none" class="btnNormal" days="00"><img src="/morenvyimg/m_myshop/btn_date1.gif" offimage="/morenvyimg/m_myshop/btn_date1.gif" onimage="/morenvyimg/m_myshop/btn_date1_on.gif" alt="오늘"></a>
+					<a href="#none" class="btnNormal" days="07"><img src="/morenvyimg/m_myshop/btn_date2.gif" offimage="/morenvyimg/m_myshop/btn_date2.gif" onimage="/morenvyimg/m_myshop/btn_date2_on.gif" alt="1주일"></a>
+					<a href="#none" class="btnNormal" days="30"><img src="/morenvyimg/m_myshop/btn_date3.gif" offimage="/morenvyimg/m_myshop/btn_date3.gif" onimage="/morenvyimg/m_myshop/btn_date3_on.gif" alt="1개월"></a>
+					<a href="#none" class="btnNormal" days="90"><img src="/morenvyimg/m_myshop/btn_date4.gif" offimage="/morenvyimg/m_myshop/btn_date4.gif" onimage="/morenvyimg/m_myshop/btn_date4_on.gif" alt="3개월"></a>
+					<a href="#none" class="btnNormal" days="180"><img src="/morenvyimg/m_myshop/btn_date5.gif" offimage="/morenvyimg/m_myshop/btn_date5.gif" onimage="/morenvyimg/m_myshop/btn_date5_on.gif" alt="6개월"></a>
+				</span>
+				<input id="history_start_date" name="history_start_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2023-05-24" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button><span class="start_date_line">-</span><input id="history_end_date" name="history_end_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2023-08-22" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button>				<input alt="조회" id="order_search_btn" type="image" src="/morenvyimg/m_myshop/btn_date_search.gif">			</fieldset>
+<ul>
+<li>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
+				<li>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+				<!--<li class="">취소/교환/반품 신청은 주문완료일 기준 30일까지 가능합니다.</li>-->
+			</ul>
+</div>
 									<span class="date"> 결제 일자 </span> <input  type='date' > ~ <input type='date'>
 									<div>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</div>
 									<div>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</div>
@@ -186,9 +178,9 @@ td{
 										</tr>
 										
 										<tr  v-for="item in list">											
-											<td class="column-width1"><button @click="orderDetail(item)">{{item.oNo}}</button></td>
+											<td class="column-width1"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
 											<td class="column-width2">{{item.oDate}}</td>
-											<td class="column-width3"><button @click="productDetail(item)">{{item.pName}}</button></td>
+											<td class="column-width3"><button class="button11" @click="productDetail(item)">{{item.pName}}</button></td>
 											<td class="column-width5">{{item.price}}원</td>
 											<td class="column-width4" v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button>취소</button></td>
 											<td class="column-width4" v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button>교환/반품</button><button>구매 확정</button></td>											

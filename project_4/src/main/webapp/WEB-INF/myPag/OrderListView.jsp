@@ -17,50 +17,6 @@
 
 <style type="text/css">
 
-/* .orderchart{
-padding-left : 30px;
-	margin: 30px 0px;
-}
-.table{
-   border-collapse: collapse;
-	border : 1px solid black;
-	width: 1200px;
-	text-align: center;
-}
-th{
-	background-color: #DACDFB;
-	color: #a1a1a1da;
-}
-
-
-th,td {
- border: 1px solid black;
-}
-td{
-	height: 60px;
-}
-.column-width1{
-	width: 15%;
-}
-.column-width2{
-	width: 20%;
-}
-.column-width3{
-	width: 40%;
-}
-.column-width4{
-	width: 5%;
-}
-.column-width5{
-	width: 10%;
-}
-.find{
-	padding: 40px;
-}
-.date{ 
-	margin-right: 40px;
-} */
-
 
 .orderArea{
 	font-size : 15px;
@@ -92,7 +48,6 @@ td{
     text-align : left;
 }
 .noticeArea{	
-    padding-top: 20px;
     color : #777777;
 	font-size : 14px;
 	font-weight : bold;
@@ -101,7 +56,7 @@ td{
 .noticeArea li{
 	margin : 5px 0px;
 }
-.noticeArea t:before {
+.noticeArea li:before {
   content: "•"; 
   margin-right: 8px; 
 }
@@ -134,7 +89,9 @@ td{
 .headerListArea th{
 	border-bottom: 1px solid #f1f1f1;
 }
-
+.finishList{
+	height:100px;
+}
 </style>
 
 </head>
@@ -266,8 +223,8 @@ td{
 											 		</a>
 											 	</div>		
 								 			</td>
-								 			<td>{{item.price*0.005}} P</td>							 			
-								 			<td>{{item.price}}원
+								 			<td>{{parseFloat(calcPrice.replace(/,/g, ''))*0.005}} P</td>							 			
+								 			<td>{{calcPrice}}원
 								 				<div class="fontCCC">{{item.oCount}}개</div>
 								 			</td>
 								 			<td>
@@ -306,21 +263,71 @@ td{
 									</tr>
 									<tr>
 										<th scope="row">연락처</th>
-										<td>010-****-7113 / 010-****-7113</td>
+										<td>{{list2.uPhone}} / {{list2.uDphone}}</td>
 									</tr>
 															<tr>
 										<th scope="row">배송지 주소</th>
-										<td>(22222) &nbsp; 인천 미추홀구  *********</td>
+										<td>({{list2.zipNo}}) &nbsp; {{list2.uDaddr}}  {{list2.uDaddrDetail}}</td>
 									</tr>
 									<tr>
 										<th scope="row">배송 메시지</th>
-										<td></td>
+										<td>{{list2.uDmessage}}</td>
 									</tr>
 									</tbody>
 								</table>
+								
+								<ul class="noticeArea">
+							 		<li>발송전 일때만 배송지 주소를 변경하실 수 있습니다.(미입금/입금확인/출고요청 단계까지만가능)</li>							 		
+							 	</ul>			
 							 </div>
-							  	 	
-						
+							 
+							 
+							 <div class="paydaypayday">
+							 	<div class="bottomBorder">
+							 		<h6>최종 결제 정보</h6>
+							 	</div>
+								 	<table class="addrInfouser">
+										<colgroup>
+											<col style="width:190px">
+											<col style="width:*">
+										</colgroup>
+									<tbody>
+									<tr>
+										<th scope="row">상품 합계</th>
+										<td>{{calcPrice}}원</td>
+									</tr>
+									<tr>
+										<th scope="row">배송비</th>
+										<td v-if="calcPrice < 50000">배송비 3,000원</td>
+										<td v-else style="color:#14aaff;">배송비 무료</td>
+									</tr>
+									<tr>
+										<th scope="row">결제 수수료</th>
+										<td>0원</td>
+									</tr>
+									<tr>
+										<th scope="row" style="font-weight:bold;">최종 결제 금액</th>
+										<td v-if="parseFloat(calcPrice.replace(/,/g, ''))>=50000" style="font-weight:600; font-size:20px;">{{calcPrice}}원
+											<div style="font-size:12px;">예상 적립금 {{parseFloat(calcPrice.replace(/,/g, ''))*0.005}}P</div>
+										</td>
+										<td v-else style="font-weight:600; font-size:20px;">{{calcPrice}}원
+											<div style="font-size:12px;">예상 적립금 {{parseFloat(calcPrice.replace(/,/g, ''))*0.005}}P</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">결제 수단</th>
+										<td style="font-size:14px; font-weight:bolder;">카카오페이 + 적립금</td>
+									</tr>
+									</tbody>
+								</table>
+								
+								<ul class="noticeArea">
+							 		<li>카드결제시 현금영수증/세금계산서 발급이 불가능하며 카드전표로 대체하실 수 있습니다.</li>							 		
+							 		<li>PG사 또는 카드사에서 제공하는 즉시 할인은 최종 결제 금액에 반영되지 않습니다. (ex. 카카오페이 즉시할인)</li>							 		
+							 		<li>바로접속 OFF 상태일 때에는 각종 할인 혜택이 제한될 수 있습니다.</li>							 		
+							 	</ul>			
+							 </div>
+						<div class="finishList"></div>						
 				</div>
 			</div>
 		</div>
@@ -346,6 +353,13 @@ td{
 			oDate : ""
 			
 		}, 
+		 computed: {
+			
+			    calcPrice: function () {			     
+			    	 var calculatedPrice = this.list2.price * this.list2.oCount;
+			    	 return calculatedPrice.toLocaleString();
+			    }
+			  },
 		methods : {
 			fnGetList : function() { 
 				var self = this;
