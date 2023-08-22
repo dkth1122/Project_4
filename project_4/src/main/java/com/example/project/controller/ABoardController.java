@@ -111,6 +111,15 @@ public class ABoardController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	@RequestMapping(value = "/aboard/artistInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String selectEventAtistInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<ABoard> list = aboardService.selectEventAtistInfo(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+	
 	@RequestMapping(value = "/aboard/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String add(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

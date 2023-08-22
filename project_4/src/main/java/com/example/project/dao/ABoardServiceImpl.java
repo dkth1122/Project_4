@@ -83,6 +83,12 @@ public class ABoardServiceImpl implements ABoardService{
 		return aboardMapper.selectABoardList4(map);
 	}
 
+	@Override
+	public List<ABoard> selectEventAtistInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return aboardMapper.selectEventAtistInfo(map);
+	}
+
 
 	
 }

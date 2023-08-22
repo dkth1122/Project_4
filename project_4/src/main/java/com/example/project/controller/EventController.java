@@ -38,6 +38,12 @@ public class EventController {
 		return "/Event/event-add";
 	}
 	
+	@RequestMapping("event/eventpageInfo.do") 
+	public String info(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/page/eventpage-info";
+	}
+	
 	@RequestMapping(value = "/event/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String eventlist(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

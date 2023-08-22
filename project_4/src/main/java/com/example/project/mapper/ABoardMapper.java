@@ -46,4 +46,7 @@ public interface ABoardMapper {
 	
 	//공지사항 조회수증가
 	int ABoardCnt(HashMap<String, Object> map);
+	
+	//이벤트 아티스트별 인포 리스트
+	List<ABoard> selectEventAtistInfo(HashMap<String, Object> map);
 }

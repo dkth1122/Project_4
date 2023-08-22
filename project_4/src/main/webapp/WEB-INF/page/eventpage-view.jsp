@@ -67,7 +67,8 @@
     	font-size: 30px;
     }
     div {
-	margin-bottom: 10px;
+		margin-bottom: 10px;
+		color: black;
 	}
   </style>
 </head>

@@ -30,5 +30,4 @@ public interface EventMapper {
 	int evtApply(HashMap<String, Object> map);
 	
 	
-	
 }

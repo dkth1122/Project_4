@@ -44,7 +44,7 @@
 	<!-- 게시글 등록 -->
 	<insert id="insertABoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="idx" keyColumn="AAF_NO">
 		INSERT INTO T4_ABOARD 
-		VALUES(NULL, #{aTitle}, #{aContent}, NOW(), #{aKind}, '0', #{artist}, NULL)
+		VALUES(NULL, #{aTitle}, #{aContent}, NOW(), #{aKind}, '0', #{artist}, NULL, #{evtNo})
 	</insert>
 	
 	<!-- 첨부파일 등록 -->
@@ -92,5 +92,14 @@
 			HITS = HITS + 1
 		WHERE A_NO = #{aNo}
 	</update>
+	
+		<!-- 이벤트 아티스트별 인포 리스트 -->
+	<select id="selectEventAtistInfo" parameterType="hashmap" resultType="com.example.project.model.ABoard">
+		SELECT *
+		FROM T4_ABOARD B
+		LEFT JOIN T4_A_ATTACHED_FILE_ABOARD P ON B.A_NO = P.AAF_NO
+		WHERE A_KIND ='이벤트' AND ARTIST = #{artist}
+		ORDER BY A_NO DESC
+	</select>
 	
 </mapper>

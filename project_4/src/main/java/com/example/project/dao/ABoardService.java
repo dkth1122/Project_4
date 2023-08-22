@@ -27,5 +27,8 @@ public interface ABoardService {
 	
 	//이벤트만 출력
 	List<ABoard> selectABoardList4 (HashMap<String, Object> map);
+	
+	//이벤트 아티스트별 인포 리스트
+	List<ABoard> selectEventAtistInfo(HashMap<String, Object> map);
 
 }

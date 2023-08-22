@@ -123,7 +123,7 @@
     	<table>
     		<tr class="acb" v-for="item in list">
     			<td class="column-width-5">{{item.aNo}}. </td>
-    			<td class="column-width-60"><a href="#" @click="noticeView(item)">{{item.aTitle}}</a></td>
+    			<td class="column-width-60"><a href="#" @click="noticeView(item)"><span style="font-size : 20px">{{item.aTitle}}</span></a></td>
     			<td class="column-width-25">{{formatWithoutTime(item.aDate)}}</td>
     			<td class="column-width-10" style="font-size: 15px; color: #ccc;">{{item.hits}}</td>
     		</tr>

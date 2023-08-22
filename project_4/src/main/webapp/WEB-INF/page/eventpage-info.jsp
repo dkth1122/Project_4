@@ -24,11 +24,11 @@
     .card {
       background-color:#fff;
       box-shadow:0px 1px 5px #222;
+      width: 256px;
     }
     .card > header {
       font-size:1.5rem;
       padding:0.5rem;
-      width: 256px;
     }
     .card > p {
       padding:0.5rem;
@@ -57,7 +57,7 @@
 	    background: #5c3564;
     }
     a {
- 		text-decoration: none;
+ 		 text-decoration: none;
 	}
   </style>
 </head>
@@ -93,14 +93,14 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		artist : ""
+		artist : "${map.artist}",
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
-            var nparmap = {};
+            var nparmap = {artist : self.artist};
             $.ajax({
-                url : "/event/list4.dox",
+                url : "/aboard/artistInfo.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,

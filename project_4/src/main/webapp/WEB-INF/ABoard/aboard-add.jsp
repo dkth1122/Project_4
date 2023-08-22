@@ -22,6 +22,9 @@
 		<option value="공지">공지</option>
 		<option value="이벤트">이벤트</option>
 	</select></div>
+	<div v-if="info.aKind === '이벤트'">
+    <input placeholder="이벤트코드입력" v-model="info.evtNo">
+	</div>
 	<div> 아티스트 : <select v-model="info.artist">
 		<option value="공통" selected>공통</option>
 		<option value="방탄소년단">방탄소년단</option>
@@ -54,7 +57,8 @@ var app = new Vue({
 		aTitle : "",
 		aContent : "",
 		aKind : "",
-		artist : ""
+		artist : "",
+		evtNo : ""
 		}
 	},// data
 	methods : {
