@@ -202,5 +202,8 @@
 	<select id="searchWish" resultType="int">
 	    SELECT COUNT(*) FROM T4_WISH WHERE U_ID = #{uId} AND P_NO = #{pNo}
 	</select>
+	<!-- 상품 상세조회 -->
+	
+	
 	
 </mapper>
