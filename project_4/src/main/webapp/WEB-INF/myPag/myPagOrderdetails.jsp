@@ -298,6 +298,7 @@ Vue.component('paginate', VuejsPaginate)
 					success : function(data) {
 						self.list = data.list;
 						self.cnt = data.cnt;
+						self.fnOrderList();
 						self.pageCount = Math.ceil(self.cnt / 10);
 					}
 				});
