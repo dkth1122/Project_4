@@ -152,14 +152,12 @@ public class MyPagController {
 		
 //		주문내역
 		@RequestMapping("/mypag/myPagOrderdetails.do") 
-	    public String myPagOrderdetails(Model model) throws Exception{
+		public String myPagOrderdetails(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
 	        return "/myPag/myPagOrderdetails";
 	    }	
 		
-		
-		
-		
-		
+	    
 		
 		
 		

@@ -25,14 +25,5 @@
 	    ON C.P_NO = P.P_NO
 	    WHERE U_ID = #{uId}		
 	</select>
-	<!-- 주문내역상세? 출력 -->
-	<select id="selectOrderpuduct" parameterType="hashmap" resultType="com.example.project.model.Product">		
-	    SELECT *
-      	FROM T4_ORDER O
-	      INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO	
-	      INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-	      WHERE O.U_ID = #{uId} AND O.BUY_NO = #{buyNo}
-	      GROUP BY O.O_NO
-	</select>
 	
 </mapper>

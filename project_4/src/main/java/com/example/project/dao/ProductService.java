@@ -54,5 +54,7 @@ public interface ProductService {
 	int insertWish(HashMap<String, Object> map);
 	//상품전체조회
 	List<Product>searchProductNewList(HashMap<String, Object> map);	
+	//주문상세조회
+	List<Product> selectOrderpuduct(HashMap<String, Object> map);
 	
 }

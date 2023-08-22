@@ -185,13 +185,13 @@ td{
 											<th class="column-width5">주문상태</th>
 										</tr>
 										
-										<tr  v-for="item in list">
-											<td class="column-width1"><a href="#">{{item.oNo}}</a></td>
+										<tr  v-for="item in list">											
+											<td class="column-width1"><button @click="orderDetail(item)">{{item.oNo}}</button></td>
 											<td class="column-width2">{{item.oDate}}</td>
-											<td class="column-width3">{{item.pName}}</td>
+											<td class="column-width3"><button @click="productDetail(item)">{{item.pName}}</button></td>
 											<td class="column-width5">{{item.price}}원</td>
 											<td class="column-width4" v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button>취소</button></td>
-											<td class="column-width4" v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button>교환/반품</button>><button>구매 확정</button></td>											
+											<td class="column-width4" v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button>교환/반품</button><button>구매 확정</button></td>											
 											<td class="column-width4" v-else>{{item.dState}}</td>										
 										<tr>								
 								</table>
@@ -252,7 +252,7 @@ td{
 					data : nparmap,
 					success : function(data) {						
 						self.list = data.list;
-						
+						console.log(self.list);
 					}
 				});
 			},
@@ -270,8 +270,8 @@ td{
 						var listCnt = data.list;
 						for (var i = 0; i < listCnt.length; i++) {
 							if (listCnt[i].exchange == "N") {
-								self.order = listCnt[i].orderCnt;
-								console.log(self.order);
+								self.order = listCnt[i].orderCnt
+								;
 							} else if (listCnt[i].exchange == "E") {
 								self.exchange = listCnt[i].orderCnt;
 							} else {
@@ -281,6 +281,14 @@ td{
 
 					}
 				});
+			},
+			productDetail : function(item){
+				var self = this;
+				$.pageChange("/product/productView.do", {pNo : item.pNo});
+			},
+			orderDetail : function(item){
+				var self = this;
+				$.pageChange("/myPag/OrderListView.do", {buyNo : item.buyNo});
 			}
 		},
 		created : function() {

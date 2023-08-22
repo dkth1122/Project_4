@@ -30,9 +30,30 @@ public class Product {
 	private String oNo;
 	private String oDate;
 	private int quantity;
+	private int buyNo;
+	private int oCount;
+	private String uName;
 	
 	
 	
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+	public int getoCount() {
+		return oCount;
+	}
+	public void setoCount(int oCount) {
+		this.oCount = oCount;
+	}
+	public int getBuyNo() {
+		return buyNo;
+	}
+	public void setBuyNo(int buyNo) {
+		this.buyNo = buyNo;
+	}
 	public char getExchange() {
 		return exchange;
 	}

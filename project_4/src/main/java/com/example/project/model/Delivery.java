@@ -8,7 +8,37 @@ public class Delivery {
 	private String dState;
 	private int afNo;
 	private char exchange;
+	private int buyNo;
+	private String path;
+	private int oCount;
+	private String uName;
 	
+	
+	
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+	public int getoCount() {
+		return oCount;
+	}
+	public void setoCount(int oCount) {
+		this.oCount = oCount;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public int getBuyNo() {
+		return buyNo;
+	}
+	public void setBuyNo(int buyNo) {
+		this.buyNo = buyNo;
+	}
 	public String getoNo() {
 		return oNo;
 	}

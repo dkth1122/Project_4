@@ -71,4 +71,6 @@ public interface ProductMapper {
 	int searchWish(HashMap<String, Object> map);
 	//상품전체조회
 	List<Product>searchProductNewList(HashMap<String, Object> map);	
+	//주문상세목록조회
+	List<Product> selectOrderpuduct(HashMap<String, Object> map);
 }

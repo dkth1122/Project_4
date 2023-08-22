@@ -178,4 +178,11 @@ public class ProductServiceImpl implements ProductService{
 			// TODO Auto-generated method stub
 			return productMapper.searchProductNewList(map);
 		}
+		
+//주문내역상세조회
+		@Override
+		public List<Product> selectOrderpuduct(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.selectOrderpuduct(map);
+				}
 }

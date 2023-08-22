@@ -18,6 +18,7 @@ public class Order {
 	private int afNo;
 	private int orderCnt;
 	private int cnt;
+	private String uName;
 	
 	//배송 JOIN
 	private String dDate;
@@ -28,6 +29,7 @@ public class Order {
 	private String price;
 	private String artist;
 	private String pImg;
+	private String path;
 	
 	//배송정보 JOIN
 	private int duNo;
@@ -42,6 +44,24 @@ public class Order {
 	
 	
 	
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 	public String getBuyNo() {
 		return buyNo;
 	}

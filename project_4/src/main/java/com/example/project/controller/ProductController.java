@@ -49,6 +49,12 @@ public class ProductController {
 		request.setAttribute("map", map);
 		return "/Product/product-stockpopup";
 	}
+	//주문상세조회
+		@RequestMapping("/myPag/OrderListView.do") 
+		public String OrderListView(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+			return "/myPag/OrderListView";
+			    }
 	//상품등록
 	@RequestMapping(value = "/product/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -228,6 +234,15 @@ public class ProductController {
 				List<Product> list = productService.searchProductNewList(map);
 				resultMap.put("list", list);
 				return new Gson().toJson(resultMap);
-			}	 
+	}
+	//마이페이지 주문내역 상세리스트
+		@RequestMapping(value = "/mypag/OrderListView.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String OrderListView(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			List<Product> list = productService.selectOrderpuduct(map);
+			resultMap.put("list", list);
+			return new Gson().toJson(resultMap);
+		}
 	
 }
