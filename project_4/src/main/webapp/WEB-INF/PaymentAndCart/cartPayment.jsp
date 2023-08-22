@@ -292,7 +292,7 @@ text-align: center;
 							<br>
 							<input class="addrinput2" type="text" placeholder="나머지 주소 " v-model="addrDetail">
 							<input class="addrinput2" type="text" placeholder="우편번호" v-model="zipNo">								
-							<button @click="fnSearchAddr">주소 찾기</button>  
+							<button @click="fnSearchAddr('a')">주소 찾기</button>  
 							</td>
 						</tr>
 						
@@ -373,7 +373,7 @@ text-align: center;
 							<br>
 							<input class="addrinput2" type="text" placeholder="나머지 주소" v-model="user.addrDetail">					
 							<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo">					
-							<button @click="fnSearchAddr">주소 찾기</button> 
+							<button @click="fnSearchAddr('b')">주소 찾기</button> 
 							</td>
 						</tr>
 						
@@ -409,7 +409,7 @@ text-align: center;
 						
 						<tr>
 							<th>　배송메시지</th>
-							<td><textarea rows="7" cols="110"></textarea> </td>
+							<td><textarea rows="7" cols="110" v-model="dText"></textarea> </td>
 						</tr>
 						
 					</table>
@@ -506,6 +506,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			flg : false,
 			phone2 : "",
 			phone3 : "",
+			check : "",
+			dText : ""
 		},
 		methods : {
 			fnGetList : function(){
@@ -549,20 +551,25 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 item.cnt++;
                 this.calculateTotalPrice();
             
-         },fnSearchAddr : function (){
+         },fnSearchAddr : function (check){
 			var self = this;
     		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
     		window.open("/mypag/addr.do", "test", option);
-		
+			self.check = check;
+			
          },fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
     		var self = this;
-    		self.user.addr = roadAddrPart1;
-    		self.user.addrDetail = addrDetail;
-    		self.user.zipNo = zipNo;
-    		console.log(roadFullAddr);
-    		console.log(roadAddrPart1);
-    		console.log(addrDetail);
-    		console.log(engAddr);
+    		
+    		if(self.check == 'a'){
+	    		self.addr = roadAddrPart1;
+	    		self.addrDetail = addrDetail;
+	    		self.zipNo = zipNo;
+    		} 
+    		else if (self.check == 'b'){
+        		self.user.addr = roadAddrPart1;
+        		self.user.addrDetail = addrDetail;
+        		self.user.zipNo = zipNo;
+    		}
     		
     	}, fnAddrList : function(){
             var self = this;

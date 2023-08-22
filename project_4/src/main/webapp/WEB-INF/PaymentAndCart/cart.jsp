@@ -243,8 +243,10 @@ text-align: center;
 							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
 							 <a href="#none" @click="increaseCnt(item)"> <i class="fa-solid fa-plus"></i> </a>
 						</td>
+						<td><button @click="fnCartChange(item)">수정</button></td>
 						<td><button @click ="fnRemoveCart(item.pNo)">삭제</button></td>
 						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
+						
 					</tr>
 				</table>
 
@@ -339,6 +341,19 @@ text-align: center;
             }, fnPay : function(item){
                 var self = this;
 	               	$.pageChange("/payment/cartPayment.do", {totalPrice : self.totalPrice})	;
+           
+            }, fnCartChange : function(item){
+        	   var self = this;
+               var nparmap = {pNo : item.pNo, uId : self.uId, quantity : item.cnt};            
+               $.ajax({
+                   url : "/cart/addCart.dox",
+                   dataType:"json",	
+                   type : "POST", 
+                   data : nparmap,
+                   success : function(data) { 
+                	   self.fnGetList();
+                 	  }
+               }); 
            }
 		},
 		created : function() {
