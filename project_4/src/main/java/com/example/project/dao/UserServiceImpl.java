@@ -114,5 +114,14 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userMapper.deleteUser(map);
 	}
+
+	@Override
+	public HashMap<String, Object> selectOrderListPage(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", userMapper.selectOrderListPage(map));
+		resultMap.put("cnt", userMapper.selectOrderListPageCnt(map));
+		return resultMap;
+	}
 	
 }

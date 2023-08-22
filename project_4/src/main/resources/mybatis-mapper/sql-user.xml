@@ -84,4 +84,15 @@
 		WHERE U_ID = #{uId}
 	</delete>
 	
+	<!-- 주문내역 페이징 -->
+	<select id="selectOrderListPage" parameterType="hashmap" resultType="com.example.project.model.User">
+		SELECT * FROM T4_USER
+		WHERE U_ID = #{uId}
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+		<select id="selectOrderListPageCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_USER
+	</select>
+	
+	
 </mapper>

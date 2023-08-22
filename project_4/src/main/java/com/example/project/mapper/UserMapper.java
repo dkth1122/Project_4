@@ -1,6 +1,7 @@
 package com.example.project.mapper;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -36,7 +37,10 @@ public interface UserMapper {
 	int infoUpdate(HashMap<String, Object> map);
 	//회원탈퇴
 	int deleteUser(HashMap<String, Object> map);
-	
+	//주문내역 페이징
+	List<User> selectOrderListPage(HashMap<String, Object> map);
+	//전체갯수
+	int selectOrderListPageCnt(HashMap<String, Object> map);
 	
 	
 	
