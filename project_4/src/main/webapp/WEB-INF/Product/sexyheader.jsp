@@ -199,13 +199,13 @@ margin: 0 auto;
 					</li>					
 					
 					
-						<span><img id="logo" src="../../img/logo/veryperiii.png"></span>
+						<span><a href="../home.do"><img id="logo" src="../../img/logo/veryperiii.png"></a></span>
 					
 						
 						<div class="icon">
 						<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
 						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="mypage.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
+						<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
 						</div>
 						
 					</ul>

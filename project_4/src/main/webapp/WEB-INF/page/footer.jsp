@@ -12,6 +12,11 @@
   padding:0;
   box-sizing: border-box;
 }
+
+pre { 
+font-size: 1.2em;  
+}
+ 
 p{
   margin-top:10px;
 }
@@ -19,6 +24,7 @@ p{
   width:100%;
 }
 .modal-btn-box{
+  font-size:2em;
   width:100%;
   text-align:center;
 }
@@ -26,7 +32,7 @@ p{
   display:inline-block;
   width:150px;
   height:50px;
-  border: 0px solid #e1e1e1;
+  border: 0px solid ;
   cursor:pointer;
   padding-top:8px;
   font-weight: bold;
@@ -41,32 +47,20 @@ p{
   bottom:0;
   display:none;
   padding:15px;
-}
+ }
 .popup{
   width:100%;
   max-width:800px;
-  border-radius:10px;
   overflow:hidden;
-  background-color:#BB91E7;
+  background-color:#d0d0d0;
   box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3);
+  
 }
-.popup-head{
-  width:100%;
-  height:50px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.head-title {
-    font-size: 38px;
-    font-style: italic;
-    font-weight: 700;
-    letter-spacing: -3px;
-    text-align: center;
-}
+
 .popup-body{
   width:100%;
   background-color:#ffffff;
+ 
 }
 .body-content{
   width:100%;
@@ -85,9 +79,20 @@ p{
   max-height:700px;
 }
 .popup-foot{
-  width:100%;
-  height:50px;
+  width:30px;
+  height:30px;
+  border-radius:15%;
+  text-align: center;
 }
+.popup-foot:hover{
+  background-color: #F3918F;
+  color: #ffffff;
+}
+
+span.pop-btn.confirm {
+ margin-left: 7px;
+ margin-top:2px;
+ }
 .pop-btn{
   display:inline-flex;
   width:50%;
@@ -98,9 +103,8 @@ p{
   color:#ffffff;
   cursor:pointer;
 }
-.pop-btn.confirm{
-  border-right:1px solid #BB91E7;
-}
+
+
 .footer{
 	text-align: center;
 	background-color: #F2DAED;
@@ -108,13 +112,22 @@ p{
 	height: 400px;
 }
 .modal-open{
+border:0px;
+background-color:#F2DAED
+}
+
+.sns{
+margin-left:50px;
+cursor:pointer;
+border:0px;
 background-color:#F2DAED
 }
 </style>
 </head>
 
-<body>
-<div id="container">
+<body >
+<nav>
+<div id="footer">
   <div class="container">
 
     <div class="footer">
@@ -123,7 +136,12 @@ background-color:#F2DAED
       <button type="button" class="modal-open">이용약관</button>
       <button type="button" class="modal-open">유료서비스 이용 약관</button>
       <button type="button" class="modal-open">쿠키정책</button>
-    </div>
+       </div>
+       <div class="sns-box">
+      <button type="button"  class="sns" id="insta"><i class="fa-brands fa-instagram fa- fa-xl" style="color: #000000;"></i></button>
+      <button type="button" class="sns" id="facebook"><i class="fa-brands fa-facebook fa- fa-xl" style="color: #000000;"></i></button>
+      <button type="button" class="sns" id="kakao"><i class="fa-regular fa-message fa- fa-xl" style="color: #000000; "></i></button>
+  	   </div>
 COMPANYVery peri COMPANY Inc.CEO한나라CALL <br>
 CENTER1544-0790FAX(+82)-2-2144-9399주소<br>
 인천 부평구 경원대로 1366 7층 더조은컴퓨터아카데미 인천캠퍼스<br>
@@ -143,9 +161,8 @@ Copyright by Very peri COMPANY INC. or its affiliates (Very peri JAPAN & Very pe
 
   <div class="popup-wrap" id="popup1">
     <div class="popup">
-      <div class="popup-head">
-        <span class="head-title">
-          개인정보처리방침</span>
+       <div class="popup-foot"> 
+         <span class="pop-btn confirm"><i class="fa-solid fa-xmark fa-lg" style="color: #000000;"></i></span>
       </div>
       <div class="popup-body">
         <div class="body-content">
@@ -154,24 +171,20 @@ Copyright by Very peri COMPANY INC. or its affiliates (Very peri JAPAN & Very pe
             </h1>
           </div>
           <div class="body-contentbox">
-            <pre>
-         
+            <pre class="contents">
+         	저희가 알아서 자알 처리할테니까 걱정하지 마십쇼.
             </pre>
           </div>
         </div>
       </div>
-      <div class="popup-foot">
-        <span class="pop-btn confirm">확인</span>
-        <span class="pop-btn close">창 닫기</span>
-      </div>
+    
     </div>
   </div>
 
   <div class="popup-wrap" id="popup2">
     <div class="popup">
-      <div class="popup-head">
-        <span class="head-title">
-          이용약관</span>
+      <div class="popup-foot">
+        <span class="pop-btn confirm"><i class="fa-solid fa-xmark fa-lg" style="color: #000000;"></i></span>
       </div>
       <div class="popup-body">
         <div class="body-content">
@@ -365,18 +378,14 @@ Copyright by Very peri COMPANY INC. or its affiliates (Very peri JAPAN & Very pe
           </div>
         </div>
       </div>
-      <div class="popup-foot">
-        <span class="pop-btn confirm">확인</span>
-        <span class="pop-btn close">창 닫기</span>
-      </div>
+     
     </div>
   </div>
 
   <div class="popup-wrap" id="popup3">
     <div class="popup">
-      <div class="popup-head">
-        <span class="head-title">
-          유료서비스 이용약관</span>
+      <div class="popup-foot">
+        <span class="pop-btn confirm"><i class="fa-solid fa-xmark fa-lg" style="color: #000000;"></i></span>
       </div>
       <div class="popup-body">
         <div class="body-content">
@@ -487,18 +496,14 @@ Copyright by Very peri COMPANY INC. or its affiliates (Very peri JAPAN & Very pe
           </div>
         </div>
       </div>
-      <div class="popup-foot">
-        <span class="pop-btn confirm">확인</span>
-        <span class="pop-btn close">창 닫기</span>
-      </div>
+      
     </div>
   </div>
 
   <div class="popup-wrap" id="popup4">
     <div class="popup">
-      <div class="popup-head">
-        <span class="head-title">
-          쿠키정책</span>
+      <div class="popup-foot">
+        <span class="pop-btn confirm"><i class="fa-solid fa-xmark fa-lg" style="color: #000000;"></i></span>
       </div>
       <div class="popup-body">
         <div class="body-content">
@@ -549,15 +554,27 @@ Copyright by Very peri COMPANY INC. or its affiliates (Very peri JAPAN & Very pe
           </div>
         </div>
       </div>
-      <div class="popup-foot">
-        <span class="pop-btn confirm">확인</span>
-        <span class="pop-btn close">창 닫기</span>
-      </div>
+      
     </div>
   </div>
 </div>
 
 <script>
+
+//인스타
+document.getElementById("insta").addEventListener("click", function() {
+ window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+//페북
+document.getElementById("facebook").addEventListener("click", function() {
+ window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+//카카오
+document.getElementById("kakao").addEventListener("click", function() {
+ window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+
+
 $(function(){
 	  $(".modal-open").click(function() {
 	    var index = $(this).index();
@@ -566,17 +583,30 @@ $(function(){
 
 	  $(".pop-btn.confirm").click(function() {
 	    modalClose.call(this);
-	    // 컨펌 이벤트 처리
-	  });
-
-	  $(".pop-btn.close").click(function() {
-	    modalClose.call(this);
 	  });
 
 	  function modalClose() {
 	    $(this).closest(".popup-wrap").fadeOut();
 	  }
 	});
+var footer = document.getElementById("footer");
+
+window.onscroll = function() {
+  var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+
+  if (scrollBottom <= footer.offsetHeight) {
+    // 스크롤이 맨 아래 위치할 때부터 footer가 보이도록
+    footer.style.bottom = "0";
+    footer.style.opacity = "1";
+    footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
+  } else {
+    // 스크롤이 맨 아래가 아닐 때
+    footer.style.bottom = "-450px"; // 또는 숨길 높이 값으로 조정
+    footer.style.opacity = "0";
+    footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
+  }
+};
 </script>
+</nav>
 </body>
 </html>

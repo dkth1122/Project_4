@@ -6,6 +6,8 @@
 <script src="../js/jquery.js"></script>
 <link href="../css/mypage.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
+<%@ include file="../Product/sexyheader.jsp" %>
+<%@ include file="../page/footer.jsp" %>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -109,7 +111,7 @@
 								</div>
 								<div class="details">
 									<div>포인트</div>
-									<div v-if="info.uPoint !=0">{{maxpoint}} P</div>
+									<div v-if="info.uPoint !=0">{{info.uPoint}} P</div>
 									<div v-else>0 P</div>
 								</div>
 								
@@ -121,7 +123,7 @@
 				</div>
 
 
-				<div id="body">
+				<div id="mypage">
 
 					<div id="left">
 						<div class="categories">MY PAGE</div>
@@ -261,14 +263,14 @@
 		el : '#app',
 		data : {
 			info : [],
+			orderCntList : [],
 			uId : "${sessionId}",
-			order : "", // 구매 cnt
-			exchange : "", // 환불 cnt
-			refund : "", // 교환 cnt
-			wishlist : [], //찜목록
-			orderlist : [],// 구매목록
-			cartlist : [],  // 장바구니목록
-			maxpoint : undefined, // 사용가능 포인트
+			order : "",
+			exchange : "",
+			refund : "",
+			wishlist : [],
+			orderlist : [],
+			cartlist : [],
 		},
 		methods : {
 			fnGetList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
@@ -293,12 +295,14 @@
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
-					success : function(data) {						
+					success : function(data) {
+						
 						var listCnt = data.list;
 						for (var i = 0; i < listCnt.length; i++) {
-							if (listCnt[i].exchange == "B") {
-								self.order = listCnt[i].orderCnt;							
-							} else if (listCnt[i].exchange == "R") {
+							if (listCnt[i].exchange == "N") {
+								self.order = listCnt[i].orderCnt;
+							
+							} else if (listCnt[i].exchange == "E") {
 								self.exchange = listCnt[i].orderCnt;
 							} else {
 								self.refund = listCnt[i].orderCnt;
@@ -356,40 +360,20 @@
 					success : function(data) {
 						
 						self.cartlist = data.list;
-						
+						console.log(self.cartlist);
 
 					}
 				});
 			},
-			 fnPoint : function(){ // 포인트 내역 확인
-			        var self = this;
-			        var nparmap = {uId : self.uId};
-			        $.ajax({
-			            url : "/pointList.dox",
-			            dataType:"json",	
-			            type : "POST", 
-			            data : nparmap,
-			            success : function(data) { 	
-			            	self.usepointList = data.list;
-			            	var x = 0;
-			            	var datalist = data.list;
-			            	for(var i=0; i<datalist.length; i++){
-			            		x += datalist[i].point;	
-			            	}
-			            	self.maxpoint = x; // 사용가능 포인트 
-			            
-			            }
-			        }); 
-			    },
+
 		
 		},created : function() {
 			var self = this;
 			self.fnGetList();
 			self.fnCntList();
 			self.fnorder();
-			self.fncart(); //장바구니
-			self.fnwish(); //찜목록
-			self.fnPoint(); // 포인트 
+			self.fncart();
+			self.fnwish();
 		}
 	});
 	

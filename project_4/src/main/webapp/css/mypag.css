@@ -62,8 +62,8 @@ td{
 	background-color: #FADBEE;
   }
 
-  #body {
-  margin : 40px auto;
+  #mypage {
+    margin : 40px auto;
     width: 1300px;
     display: flex;
     justify-content: center;
