@@ -21,7 +21,7 @@
   		border-bottom: 1px solid #e3e3e3; 
   	}
   	.tablebutton{
-  		width: 1200px;
+  		width: 930px;
   		display: flex;
   		flex-direction: column;
   		align-items: center;
@@ -57,6 +57,7 @@
   		height: 50px;
   		border-radius: 50%;
   	}
+
   </style>
 </head>
 <body>

@@ -21,7 +21,7 @@
 	border-radius:7px;
 }
 .swiper-slide {
-    line-height: 70px;
+    line-height: 50px;
 	text-align:center;
 	align-items:center; /* 위아래 기준 중앙정렬 */
 	justify-content:center; /* 좌우 기준 중앙정렬 */
@@ -58,8 +58,10 @@
 	
 }
 .justpay, .justBox {
+	width : 276px;
     text-align: right;
-    padding-right: 10px;
+  	margin:  0px;
+  	padding: 0xp;
 }
 </style>
 
@@ -166,13 +168,13 @@
 							<div class="lowerBox">주문상품</div>
 							<div class="swiper-container">
 							<div class="swiper-wrapper">
-							
-								<div class="swiper-slide" v-for="item in orderlist">									
-								       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
-							           <div class="justBox">{{item.pName}}</div>
-							           <div class="justpay">\ {{item.price}}</div>
-							          
-								</div>
+								<template v-for="item in orderlist">
+										<div class="swiper-slide" >																	
+									       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								           <div class="justBox">{{item.pName}}</div>
+								           <div class="justpay">\ {{item.price}}</div>								      
+										</div>
+								</template>
 						
 							</div>
 						
@@ -191,32 +193,56 @@
 							
 						</div>
 
-						<div class="View">
+						<div class="View">						
 							<div class="lowerBox">장바구니</div>
-							<div class="swiper-container">
-							<div class="swiper-wrapper">
-					
-							</div>
-						
-							<!-- 네비게이션 -->
-							<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-							<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-						
-							<!-- 페이징 -->
-							<div class="swiper-pagination"></div>
-						</div>
+							<!-- 	<div v-if="falsecartlist.lenght == 0">
+									<div class="nodata">내역이 없습니다</div>							
+								</div> -->
+									<div class="swiper-container">
+										<div class="swiper-wrapper">
+												<div class="swiper-slide" v-for="item in cartlist">																	
+											       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+										           <div class="justBox">{{item.pName}}</div>
+										           <div class="justpay">\ {{item.price}}</div>							        
+										 		</div>
+											
+										</div>
+									
+										<!-- 네비게이션 -->
+										<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+										<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+									
+										<!-- 페이징 -->
+										<div class="swiper-pagination"></div>
+									</div>
 
 							
-							<div v-if="false">
-							<div class="nodata">내역이 없습니다</div>
-							</div>
+							
 							
 						</div>
 
 						<div class="View">
-			
-
-							<div v-if="true">
+						<div class="lowerBox">찜목록</div>
+								<div class="swiper-container">
+									<div class="swiper-wrapper">
+										<template v-for="item in wishlist">
+												<div class="swiper-slide" >																	
+											       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+										           <div class="justBox">{{item.pName}}</div>
+										           <div class="justpay">\ {{item.price}}</div>								      
+												</div>
+										</template>
+								
+									</div>
+								
+									<!-- 네비게이션 -->
+									<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+									<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+								
+									<!-- 페이징 -->
+									<div class="swiper-pagination"></div>
+								</div>
+							<div v-if="false">
 							<div class="nodata">내역이 없습니다</div>
 							</div>
 						</div>
@@ -262,19 +288,18 @@
 			fnCntList : function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
-				console.log(nparmap);
 				$.ajax({
 					url : "/mypag/listExchange.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
-						console.log(data);
+						
 						var listCnt = data.list;
 						for (var i = 0; i < listCnt.length; i++) {
 							if (listCnt[i].exchange == "N") {
 								self.order = listCnt[i].orderCnt;
-								console.log(self.order);
+							
 							} else if (listCnt[i].exchange == "E") {
 								self.exchange = listCnt[i].orderCnt;
 							} else {
@@ -289,15 +314,16 @@
 			fnwish: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
-				console.log(nparmap);
+		
 				$.ajax({
 					url : "/mypag/wishlist.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
-						console.log(self.wishlist);
+						
 						self.wishlist = data.list;
+						
 						
 
 					}
@@ -307,7 +333,7 @@
 			fnorder: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
-				console.log(nparmap);
+			
 				$.ajax({
 					url : "/mypag/productInformation.dox",
 					dataType : "json",
@@ -315,7 +341,6 @@
 					data : nparmap,
 					success : function(data) {
 						self.orderlist = data.list;
-						
 
 					}
 				});
@@ -324,16 +349,16 @@
 			fncart: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
-				console.log(nparmap);
+			
 				$.ajax({
 					url : "/mypag/selectcartlist.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
-						console.log(data);
-						self.cartlist = data.list;
 						
+						self.cartlist = data.list;
+						console.log(self.cartlist);
 
 					}
 				});
@@ -354,7 +379,7 @@
 	new Swiper('.swiper-container', {
 
 		slidesPerView : 3, // 동시에 보여줄 슬라이드 갯수
-		spaceBetween : 30, // 슬라이드간 간격
+		spaceBetween : 20, // 슬라이드간 간격
 		slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 
 		// 그룹수가 맞지 않을 경우 빈칸으로 메우기
