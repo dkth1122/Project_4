@@ -9,9 +9,19 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>주소수정</title>
   <style type="text/css">
-
+	.l{
+  		margin-bottom: 30px;
+  	}
+  	.warningm{
+  		width: 1200px;
+   		line-height: 80px;
+   		color : rgb(73, 73, 73);
+  	}
+  	#warningImg{
+  		margin-right: 20px;
+  	}
   </style>
 </head>
 <body>
@@ -101,38 +111,59 @@
                                </div>
                            
                            <div id="right">
-                           <div class="View">
+                           <div class="View">                           
                               <div class="lowerBox"> 배송 주소록 관리 </div>
                               <table>
                               	<tr>
                               		<th>배송지명</th>
-                              		<td><input v-model="item.uDname"></span></td>
+                              		<td></td>                      		
                               	</tr>
                               	<tr>
-                              		<th>배송지명</th>
-                              		<td><input v-model="item.uDname"></span></td>
+                              		<th>휴대전화</th>
+                              		<td></td>                      		
                               	</tr>
-                              
+                              	<tr v-if="list[0].addr == ''">
+                              		<th>주소</th>
+                              		<td> <input v-model="list[0].uDaddr" disabled/></td>                      		
+                              	</tr>
+                              	<tr v-if="list[0].addrDetail == ''">
+                              		<th>상세주소</th>
+                              		<td><input v-model="list[0].uDaddrDetail" disabled/></td>                      		
+                              	</tr>
+                              	<tr v-if="list[0].zipNo == ''">
+                              		<th>우편주소</th>
+                              		<td><input v-model="list[0].zipNo" disabled/></td>                      		
+                              	</tr>
+			                              	<tr v-if="list[0].addr != ''" >
+			                              		<th>주소</th>
+			                              		<td><input disabled style="width : 300px;" type="text" v-model="list[0].addr"></td>                      		
+			                              	</tr>
+			                              	<tr v-if="list[0].addrDetail != ''">
+			                              		<th>상세주소</th>
+			                              		<td><input  style="width : 300px;" type="text" v-model="list[0].addrDetail"></td>                      		
+			                              	</tr>
+			                              	<tr v-if="list[0].zipNo != ''">
+			                              		<th>우편주소</th>
+			                              		<td><input  style="width : 300px;" type="text" v-model="list[0].zipNo"></td>                      		
+			                              	</tr>
+                      
+                              	
                               </table>
                                	<div v-for ="item in list" v-if="item.duNo == duNo">
                               	  <div>· 배송지명 <span><input v-model="item.uDname"></span> </div>
 		                          <div>· 휴대전화 <span><input v-model="item.uDphone"></span> </div>
-		                          <div v-if="user.addr == ''">· 주소 : <input v-model="item.uDaddr" disabled/></div> 
-		                          <div v-if="user.addrDetail == ''">· 상세주소 : <input v-model="item.uDaddrDetail" disabled/></div>
-		                          <div v-if="user.zipNo == ''">· 우편주소 : <input v-model="item.zipNo" disabled/></div>		                          		
-								 		<div v-if="user.addr != ''" ><label>· 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
+		                                                    		
+								 		<!-- <div v-if="user.addr != ''" ><label>· 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
 										<div v-if="user.addrDetail != ''"><label>· 상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
 										<div v-if="user.zipNo != ''"><label>· 우편번호 : <input  style="width : 300px;" type="text" v-model="user.zipNo"></label></div>
-							   	  
+							   	   -->
 							   	  <button @click="fnSearchAddr">주소 검색</button>
 							   	  <div><button @click="back">취소</button> 
 							   	  <div><button @click="fnEdit()">수정</button></div>
 							   	</div>							  
-                              <div class="lowerBox"> 배송 주소록 유의사항 </div>
-                              <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
-                        
-                        		</div>
-                   
+                              <div class="lowerBox l"> 배송 주소록 유의사항 </div>
+                              <div class="warningm">  <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
+                        		</div>                   
                  		   </div>
              
            			</div>

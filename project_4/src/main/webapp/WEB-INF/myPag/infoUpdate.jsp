@@ -14,16 +14,16 @@
     	width: 900px;
    }
    .warning{
-   	 padding-left : 900px;
+   	 padding-left : 822px;
    	 text-align: right;
    }
    .updatetable th {
    	text-align: left;
-   	width: 150px;
+   	width: 147px;
    	height: 60px;
    }
    .updatetable td {
-	height: 80px;
+   	height: 80px;
    }
   input {
   border-color : #e3e3e3;
@@ -67,7 +67,7 @@ select{
 #yn input{
 	width: 50px;
 	height: 20px;
-	
+	text-align: left;
 }
   </style>
 </head>
@@ -127,7 +127,7 @@ select{
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
-                                       <li><a href="/mypag/myPageInterest.do  ">장바구니</a></li>
+                                       <li><a href="/mypag/myPageInterest.do">장바구니</a></li>
                                        <li><a href="/mypag/myInformation.do">찜 목록</a></li>
                                        <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
                                     </ul>   
