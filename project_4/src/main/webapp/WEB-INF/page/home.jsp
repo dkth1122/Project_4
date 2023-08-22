@@ -12,7 +12,7 @@
 
 #footer {
   position: fixed;
-  bottom: 0;
+  bottom: -450px;
   left: 0;
   width: 100%;
  
@@ -109,9 +109,8 @@ widows: 1800px;
 	height: 438px;
 	float: left;
 	margin: 50px 39px 0 0;
-	background: #F00;
 	position: relative;
-	overflow: hidden;
+	/* overflow: hidden; */
 	
 }
 
@@ -135,71 +134,17 @@ widows: 1800px;
 /*new item*/
 .sect2 .Sbox1 {
 	margin-left: 272px;
-	background: url(img/homeimg/seson1.jpg);
-}
-
-.sect2 .Sbox2 {
-	background: url(img/homeimg/seson2.jpg);
-}
-
-.sect2 .Sbox3 {
-	background: url(img/homeimg/seson3.jpg);
-}
-
-.sect2 .Sbox4 {
-	background: url(img/homeimg/seson4.jpg);
-}
-.sect2 .Sbox5 {
-	margin-left: 272px;
-	background: url(img/homeimg/seson1.jpg);
-}
-
-.sect2 .Sbox6 {
-	background: url(img/homeimg/seson2.jpg);
-}
-
-.sect2 .Sbox7 {
-	background: url(img/homeimg/seson3.jpg);
-}
-
-.sect2 .Sbox8 {
-	background: url(img/homeimg/seson4.jpg);
+	
 }
 
 .sect2 .Sbox1:hover {
-	background: url(img/homeimg/seson1_hover.jpg);
+	
 }
-
-.sect2 .Sbox2:hover {
-	background: url(img/homeimg/seson2_hover.jpg);
-}
-
-.sect2 .Sbox3:hover {
-	background: url(img/homeimg/seson3_hover.jpg);
-}
-
-.sect2 .Sbox4:hover {
-	background: url(img/homeimg/seson4_hover.jpg);
-	}
-.sect2 .Sbox5:hover {
-	background: url(img/homeimg/seson1_hover.jpg);
-	}
-
-.sect2 .Sbox6:hover {
-	background: url(img/homeimg/seson2_hover.jpg);
-	}
-
-.sect2 .Sbox7:hover {
-	background: url(img/homeimg/seson3_hover.jpg);
-	}	
-
-.sect2 .Sbox8:hover {
-	background: url(img/homeimg/seson4_hover.jpg);
-	}
 
 .sect2 div:hover a {
 	opacity: 1;
 	}
+	
 /*SUP*/
 .sect2 div .sub {
 	position: absolute;
@@ -285,9 +230,35 @@ widows: 1800px;
 				
 			</nav>
 			
-			<nav id="nav2">
-				<section class="sect2">
-				<h2><a href="newitem.do">NEW ITEM</a></h2>
+			
+			
+			
+<nav id="nav2">
+      <section class="sect2">
+        <h2><a href="newitem.do">NEW ARRIVAL</a></h2>
+        <div class="Sbox1" style="width: 1000px; height: 2000px;">
+          <p class="more"><a href="#">More1</a></p>
+          <div v-for="item in list" class="productList">
+            <span><img :src="item.path" class="pImg" style="width: 300px; height: 500px;"></span>
+            <div>{{ item.pName }}</div>
+            <div>
+              <ul class="sub">
+                <li class="sname">{{item.artist}}</li>
+                <li>{{item.category}}</li>
+                <li>{{item.price}}</li>
+                
+                
+                
+								</ul>
+							</div>
+                    </div>
+                </div>
+                
+               	</section>
+			</nav>
+		
+                
+             <!--    
 				<div class="Sbox1">
 					<p class="more">
 					<a href="#">More</a>
@@ -297,56 +268,12 @@ widows: 1800px;
 						<li>1</li>
 						<li>2</li>
 					</ul>
-				</div>
+				</div> -->
 	
-			<div class="Sbox2">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">0</li>
-					<li>1</li>
-					<li>2</li>
-				</ul>
-			</div>
-
-			<div class="Sbox3">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">0</li>
-					<li>1</li>
-					<li>2</li>
-				</ul>
-			</div>
-
-			<div class="Sbox4">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">0</li>
-					<li>1</li>
-					<li>2</li>
-				</ul>
-			</div>
-			</section>
-		</nav>
 		
-		<div class="body2 " style=" width: 1000px; height: 2000px;">
-                        <div @click="productView(item)" v-for="item in list" class="productList">
-                           <span><img :src = "item.path" class="pImg" style="width:300px; height : 500px;"></span>
-                           <div>{{item.pName}}</div>
-                           <div>{{item.price}}</div>
-                           <div><ul class="sub">
-									<li class="sname">0</li>
-									<li>1</li>
-									<li>2</li>
-								</ul>
-							</div>
-                        </div>
-                </div>
+                
+		
+	
 		
 		
 		<nav id="nav3">
@@ -355,7 +282,7 @@ widows: 1800px;
 				<h2><a href="newitem.do">BEST ITEM</a></h2>
 				<div class="Sbox1">
 					<p class="more">
-					<a href="#">More</a>
+						<a href="#">More</a>
 					</p>
 					<ul class="sub">
 						<li class="sname">0</li>
@@ -417,7 +344,8 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		uId : "${sessionId}",
-		list : []
+		list : [],
+		info : {}
 	}, 
 	methods : {
 		fnGetList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
@@ -430,12 +358,18 @@ var app = new Vue({
                data : nparmap,
                success : function(data) {                  
                   self.list = data.list;
-                  console.log(self.list);
+                  console.log(self.list)
+                 
+                  
                }
-            });
-	}
-		
+          });
 	},
+	 // productView 메서드 추가
+    productView: function(item) {
+      console.log("Clicked product:", item);
+      // 클릭한 제품 정보를 활용한 동작 추가
+    }
+  },
 	created : function() {
 		var self = this;
 		self.fnGetList();
