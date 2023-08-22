@@ -1,6 +1,7 @@
 package com.example.project.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.example.project.model.User;
 
@@ -27,4 +28,6 @@ public interface UserService {
 	int editInfo(HashMap<String, Object> map);
 	//회원탈퇴
 	int removeUser(HashMap<String, Object> map);
+	//주문내역페이지 페이징
+	HashMap<String, Object> selectOrderListPage(HashMap<String, Object> map);
 }
