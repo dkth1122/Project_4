@@ -13,18 +13,23 @@
                
            }
         #app{
-               width: 1000px;
+              /*  width: 800px; */
+               width: 80%;
                margin: 0px auto;
                text-align: center;
+               float: left;
+               margin-left: 20px;
+               
 
            }
        .mainBox{
-     		   width : 1000px;
+     		   width : 1200px;
      		   height : 550px;
-               position: relative;
+              /*  position: relative;
                top : -550px;
-               left: 200px;
+               left: 200px; */
                text-align: center;
+        	   margin-left: 50px;
            }
        table{
            border : 1px solid black;
@@ -74,28 +79,29 @@
         margin-left: 20px;
        }
        hr{
-        	width: 800px;
-        	margin-top : -50px;
-        	margin-bottom: 20px;
+        	width: 1000px;
+        	/* margin-top : -50px;
+        	margin-bottom: 20px; */
         }
         .mainPos2{
-        	position: relative;
+        	/* position: relative;
         	top : -55px;
-        	left: 350px;
+        	left: 450px; */
         	color: white;
         }
  </style>
 </head>
 <body>
+<div>
 <%@ include file="staff-header.jsp" %> 
-<%@ include file="staff-left.jsp" %> 
+<%@ include file="staff-left.jsp" %>
 <div id="app">
 	<div class="mainBox">
 	
 	<div class="mainPos2">기본화면</div>
 <hr>
 
-<img class="headerImg" src="../img/staffImg/staffMainHomeImg.jpg">
+<img src="../img/staffImg/staffMainHomeImg.jpg">
     
    
     </div>
@@ -107,7 +113,10 @@ var app = new Vue({
     el : '#app',
     data : {
         list : [],
-        selectItem : ""
+        selectItem : "",
+        sName : "${sName}",
+        sNo : "${sNo}",
+        sStatus : "${sStatus}"
     },// data
     methods : {
         fnGetList : function(){

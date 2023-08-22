@@ -1,117 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
  <script src="../js/jquery.js"></script>
+  <link href="../css/membership.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>¸â¹ö½Ê °Ô½ÃÆÇ</title>
+<title>ë©¤ë²„ì‰½ ê²Œì‹œíŒ </title>
 <style>
-	body{
-		width : 1250px;
-		margin : 10px auto;
-	}
-	ul, li{
-		text-decoration : none;
-		list-style : none;	
-	}
-	.header{
-		width: 1000px;
-		height: 100px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	.artistNewFeed{
-		font-family: aÅ¸ÀÌÆ²°íµñ2;
-	}
-	.feedType{
-		width: 1000px;
-		height: 300px;
-	}
-	 .feedType > div {
-	    position: relative; 
-	    display: inline-block; 
-	    border: 1px solid tomato;
-	    padding: 32px;
-	    margin: 10px; 
-	    vertical-align: top; 
-	    box-sizing: border-box; 
-	    width: calc(33.33% - 20px);
-	  }
-	.container{
-		width: 1000px;
-		height: 1000px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	a{
-        text-decoration: none;
-        color: inherit;
-   }
-   .write{
-   		width: 1000px;
-		height: 300px;
-		border: 1px solid tomato;
-		padding: 32px;
-   }
-   
-   .container > ul{
-   		border: 1px solid tomato;
-   }
+#app{
+background-color : #D0ACDB;}
+		
+		
 </style>
 </head>
 <body>
-<div id="app">
-    <button @click="fnMove">µÚ·Î°¡±â</button>
-    <div class="header">
-        <label>Á¦¸ñ, ÀÛ¼ºÀÚ :  
-            <input type="text" v-model="keyword">
-            <button @click="fnSearch">°Ë»ö</button>
-        </label>
-        
-        <button>¾Ë¸²</button>
-        <button>¸¶ÀÌÆäÀÌÁö</button>
+
+ 
+	<div class="logos">
+      <a href="../home2.do"><img alt="" src="../img/logo/veryperiiix-.png" style="width:130px; height:80px; margin-top:25px;"></a>
+      <a href="../home2.do"><img alt="" src="../img/logo/ehp_logo.png" style="width:120px; height:auto;"></a>
     </div>
     
+	<nav id="buttons">
+		<div class="header">
+			<div class="btn">
+    			<button @click="fnMove">back</button>
+    			<button @click="fnMove('my')">menu</button>
+    			<button>mypage</button>
+      		</div> 
+       
+     	    <label>  
+            	<input type="text" v-model="keyword">
+            	<button @click="fnSearch">search</button>
+			</label>
+        </div>
+        <hr>
+    </nav>
+     <nav id="app">
     <div class="artistNewFeed">
-        <!-- ³¯Â¥ ºü¸¥ ¼øÀ¸·Î Á¤·Ä ÈÄ Ãâ·Â -->
-        <ul class="feedType" v-if="item.gArtist == 'Y' && index <= 3" v-for="(item, index) in list">
-            <div>
-                <li>{{item.artist}}</li>
-                <li>{{item.uName2}}</li>
-                <li>{{item.gDate}}</li>
-                <li>{{item.gContent}}</li>
-                <li>{{item.gLike}}</li>
-                <li><button>½Å°í</button></li>
-            </div>
-        </ul>
+        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
+		        <a href="javascript:;">
+	            <div>
+	            	<li><span>COMMENT â™¥ </span>{{item.gcCnt}}</li>
+	                <li>{{item.artist}}</li>
+	            	<li>{{item.nickName}}</li>
+	            	<li><img :src = "item.gpPath" class="profile-image"></li>
+	                <li>{{item.gDate}}</li>
+	                <li>{{item.gContent}}</li>
+	                <li><span>LIKE â™¥ </span>{{item.gLike}}</li>
+	            </div>
+		       </a>
+       	 	</ul>
     </div>
     
+    <hr>
+    <nav id= "writearea">
     <div class="write">
-        <textarea rows="5" cols="3" v-model="content"></textarea>
-        <button @click="fnAdd">°Ô½Ã±Û µî·Ï</button>
+        <textarea rows="10" cols="100" v-model="content"></textarea>
+			<span><input type="file" id="file1" name="file1" accept=".gif, .jpg, .png" @change="handleFileChange" style="background-color:white;"></span>
+        <button @click="fnAdd">ë“±ë¡</button>
     </div>
-    
+    </nav>
+    <hr>
     <div class="container">
-        <ul v-for="item in list">
+        <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
+        	<li><span>COMMENT â™¥ </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
-            <li>{{item.uName2}}</li>
+	        <li>{{item.nickName}}<img :src = "item.gpPath" class="profile-image"></li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
-            <li>{{item.gLike}}</li>
-            <li><button @click="fnLike(item.gNo)">ÁÁ¾Æ¿ä</button></li>
-            <li><button>´ñ±Û</button></li>
-            <li><button>½Å°í</button></li>
-            <li> 
-                <!-- v-if="cUser == item.cUser && item.delYn == 'N' || status == 'A'" v-model="item.gNo" -->
+            <li><span>LIKE â™¥ </span>{{item.gLike}}</li>
+            <img v-if="item.path" :src="item.path" class="image" />
+			<img v-else class="imageX" />
+            <li><button @click="fnLike(item.gNo)">ì¢‹ì•„ìš”</button></li>
+            <li><button @click="fnComment(item.gNo)">ëŒ“ê¸€</button></li>
+            <li><button @click="reportPost(item.gNo)">ì‹ ê³ </button></li>
+            <li v-if="uId == item.uId">
                 <a href="javascript:;">
-                    <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove"></i></div>
+                    <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item)"></i></div>
                 </a>
             </li>
+            <hr>
         </ul>
     </div>
+    <hr>
+    
 </div>
 </body>
 </html>
@@ -120,13 +96,17 @@ var app = new Vue({
     el: '#app',
     data: {
         list: [],
-        no: "",
+        list2: [],
         keyword: "",
         uId: "${sessionId}",
         selectItem: [],
         content: "",
         artist: "EHP",
-        info: {}
+        info: {},
+        selectedReason: "",
+        otherReason: "",
+        reportDescription: "",
+        search : ""
     },// data
     methods: {
         fnGetList: function () {
@@ -139,7 +119,9 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     self.list = data.list;
+                    self.list2 = data.list2;
                     console.log(self.list);
+                    console.log(self.list2);
                 }
             });
         },
@@ -153,21 +135,27 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     if (self.keyword === "") {
-                        self.fnGetList(); // Å°¿öµå°¡ ºñ¾îÀÖÀ¸¸é ÀüÃ¼ ¸ñ·ÏÀ» º¸¿©ÁÜ
+                        self.fnGetList(); 
+                        self.search = "";
                     } else {
-                        self.list = data.info; // Å°¿öµå°¡ ÀÖÀ¸¸é °Ë»ö °á°ú¸¦ º¸¿©ÁÜ
+                        self.list = data.info; 
+                        self.search = "";
                     }
-                    console.log(self.list);
                 }
             });
         },
         fnAdd: function () {
             var self = this;
 
-            if (!confirm("µî·ÏÇÒ±î¿ä?")) {
+            if (!confirm("ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) {
                 return;
             }
-            var nparmap = { content: self.content, artist: self.artist, uId : self.uId };
+            
+            if(self.content == null || self.content == ""){
+            	alert("ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+                return;
+            }
+            var nparmap = {content: self.content, artist: self.artist, uId : self.uId };
 
             $.ajax({
                 url: "add.dox",
@@ -175,32 +163,53 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("µî·ÏµÇ¾ú¾î¿ä.");
-                    self.content = "";
+                    alert("ë“±ë¡ ì™„ë£Œ");
+                    self.comment = "";
                     self.fnGetList();
+ 	           		var form = new FormData();
+	       	        form.append( "file1",  $("#file1")[0].files[0] );
+	       	     	form.append( "gNo",  data.gNo); // pk
+	           		self.upload(form); 
                 }
             });
         },
-        fnRemove: function () {
+	     upload : function(form){
+	    	var self = this;
+	         $.ajax({
+	             url : "fileUpload.dox"
+	           , type : "POST"
+	           , processData : false
+	           , contentType : false
+	           , data : form
+	           , success:function(response) { 
+	           }
+	           
+	       });
+		}
+        ,fnRemove: function (item) {
             var self = this;
-            if (!confirm("»èÁ¦ÇÏ½Ã°Ú¾î¿ä?")) {
+            if (!confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) {
                 return;
             }
-            var nparmap = { gNo: self.gNo };
+            var nparmap = item;
             $.ajax({
                 url: "remove.dox",
                 dataType: "json",
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("»èÁ¦µÇ¾ú½À´Ï´Ù.");
+                    alert("ì‚­ì œ ì™„ë£Œ");
                     self.fnGetList();
                 }
             });
-        },
-        fnMove: function () {
-            location.href = "main.do";
-        
+            
+        },fnMove: function (where) {
+        	  window.history.back();
+	            
+	            if(where == 'my'){
+	            	location.href = "myPage.do";
+	            }
+	            
         },fnLike: function(gNo) {
             var self = this;
             var nparmap = {artist : self.artist, gNo: gNo, uId : self.uId};
@@ -214,7 +223,41 @@ var app = new Vue({
                 	self.fnGetList();
                 }
             });
-        }
+        }, fnComment : function(gNo){
+            var self = this;
+            var width = 700;
+            var height = 500;
+            var left = (window.innerWidth - width) / 2;
+            var top = (window.innerHeight - height) / 2;
+            var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
+            var url = "view.do?gNo=" + gNo + "&uId=" + self.uId;
+            window.open(url, "gNo", option);
+        	
+        },  reportPost : function(gNo) {
+            var self = this;
+            self.selectedReason = ""; 
+            self.otherReason = "";
+            self.reportDescription = ""; 
+            self.showReportModal = true;
+            
+            var option = "width=700,height=500,top=100,right";
+            var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
+            window.open(url, "gNo", option);
+            
+          }, handleFileChange: function(event) {
+              var self = this;
+              var file = event.target.files[0];
+              
+              if (file) {
+                  var ext = file.name.split('.').pop().toLowerCase();
+
+                  if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
+                      alert('gif, jpg, jpeg, png íƒ€ì…ì˜ íŒŒì¼ë§Œ ì—…ë¡œë“œ ê°€ëŠ¥í•©ë‹ˆë‹¤.');
+                      event.target.value = '';
+                  }
+              }
+          }
+        	
     }, // methods
     created: function () {
         var self = this;

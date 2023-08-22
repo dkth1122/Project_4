@@ -1,245 +1,261 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="../css/mypag.css" rel="stylesheet" type="text/css">
-  <script src="../js/jquery.js"></script>  
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
- <meta charset="UTF-8">
-  <title>ÎßàÏù¥ÌéòÏù¥ÏßÄ¬Ä</title>
+<script src="../js/jquery.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<meta charset="EUC-KR">
+<title>¿ÂπŸ±∏¥œ ±∏∏≈ πˆ∆∞¥©∏£∏È ±∏∏≈∑Œ ¿Ãµø</title>
 <style>
 
-  
+#title {
+	width: 1500px;
+	margin-bottom: 50px;
+	margin: 0px auto;
+	margin-top: 100px;
+	font-size: 4em;
+	text-align: center;
+	font-weight: bold;
+}
+
+table {
+	margin: 0px auto;
+	border-collapse: collapse;
+	width: 1500px;
+	margin-top: 100px;
+	margin-bottom: 30px;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+}
+
+tr th, tr td {
+	padding: 20px;
+	border-bottom: 1px solid black;
+	border-bottom-color: #e3e3e3;
+}
+
+#body {
+	width: 1500px;
+}
+
+#container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.ch_deletebutton{
+	width: 1500px;
+	margin: 0px auto;
+	margin-bottom: 50px;
+}
+.border-bottom{
+	border-bottom: 2px solid black;
+	width: 1500px;
+	margin: 0px auto;
+}
+.payment{
+	margin: 0px auto;
+	width: 1500px;
+	text-align: center;
+	font-size: 2em;
+	border-bottom: 1px solid #e3e3e3;
+	margin-bottom: 30px;
+}
+.red{
+	color: red;
+}
+span {
+	margin: 0px 80px;
+}
+.baybutton{
+	width: 1500px;
+	text-align: center;
+	margin: 0px auto;
+}
 </style>
 </head>
 <body>
-<div id="app">
+	<div id="app">
 
-			  <div id="container">
-			  
-					    <div id="top">
-					    
-					    	<div style="height: 150px;"></div>
-					    	
-					    <div class="a">
-					    	<div class="left topImgBoxwid">
-					    	 	 <a @click="fnVuwmain" href="#"><div id="profileImg"></div></a>
-					    	</div >
-					    	<div class="topBox">
-					    	<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
-					    	</div>
-					    	
-					    	<div class="topBox">
-					    	
-					    		<div class="details" >
-					    		
-					    			<div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
-			                        <div>{{order}}</div>
-                          			</a></label>
-					    			
-					    		</div>
-					    		
-					    		<div class="details" >
-					    		
-					    			<div>ÍµêÌôò/ÌôòÎ∂à</div>
-					    			<div>
-					    				<span>{{refund}} /</span><span> {{exchange}}</span>
-					    			</div>
-					    			
-					    		</div>
-					    		<div class="details" >
-					    			<div>Ìè¨Ïù∏Ìä∏</div>
-					    			<div>{{info.uPoint}} P</div>
-					    		</div>
-					    		<div class="details" >
-					    			<div>Jelly</div>
-					    			<div>0</div>
-					    		</div>
-					    	</div>
-					    </div>
-					    	
-					    	 
-					    </div>					    
-					    <div id="body">
-					    
-							      
-							      
-					<div id="right">
-					
-							      <div class="View" >
-							      <div class="lowerBox"> CART </div>
-							      <div v-for="item in cart" class= "box1">
-							      <input type="radio" name="select" v-model="pNo" :value="item.pNo">
-							      <div><img src= "item.pImg"></div>
-								      <div>ÏïÑÌã∞Ïä§Ìä∏ : {{item.artist}}</div>
-								      <div>ÎÇ®ÏùÄ Ïû¨Í≥†: {{item.stock}}</div>
-								      <div>Í∞ÄÍ≤©: {{item.price}}</div>
-								      <div>ÌíàÎ™Ö : {{item.pName}}</div>
-								      <div>Ïπ¥ÌÖåÍ≥†Î¶¨ : {{item.category}}</div>
-								      
-							     </div> 
-							    <div><button @click="fnOrder">Ï£ºÎ¨∏ÌïòÍ∏∞</button></div>
-							 <div><button @click="fnRemove">ÏÇ≠Ï†ú</button></div>
+		<div id="container">
+		
+			<div id="title">CART</div>
+
+			<div class="body">
+				<table>
+
+					<tr>
+						<th><input type="checkbox"></th>
+						<th colspan="2">ªÛ«∞¡§∫∏</th>
+						<th>ºˆ∑Æ</th>
+						<th>πËº€∫Ò</th>
+						<th>¡÷πÆ±›æ◊</th>
+						<th>º±≈√</th>
+					</tr>
+
+					<tr v-for="(item, index) in 5">
+						<td><input type="checkbox"></td>
+						<td>¿ÃπÃ¡ˆ</td>
+						<td>¿Ã∏ß</td>
+						<td>
 						
-					</div>
-					    
-					    </div>
-			    
-			  </div>
-  
-</div>
-</div>
+						<input  :id="quantiy_id+index" :value="0">
+						
+						</td>
+						<td>πËº€∫Ò</td>
+						<td>∞°∞›</td>
+						<td>
+							<button>ªË¡¶</button>
+							<br>
+							<button>¡÷πÆ«œ±‚</button>
+						</td>
+
+					</tr>
+
+				</table>
+				<div class="ch_deletebutton"><button>º±≈√ªÛ«∞ªË¡¶</button></div>
+				<div class="border-bottom"></div>
+				<div class="payment"><h3><span>\ ±›æ◊</span> + <span>\ πËº€</span> = <span class="red">\ «’</span></h3></div>
+				<div class="baybutton"><button>¿¸√ºªÛ«∞ ¡÷πÆ</button>  <button>º±≈√ ªÛ«∞ ¡÷πÆ</button></div>
+			</div>
+
+		</div>
+	</div>
+
 </body>
 </html>
 <script type="text/javascript">
-var app = new Vue({
-    el: '#app',
-    data: {
-    	info : [],
-    	orderCntList : [],
-    	uId :"dcsdsd3" ,/* "${sessionId}" */
-    	order  : "",
-    	exchange : "",
-    	refund : "",
-    	list : [],
-    	cart : [],
-    	pNo : ""   	
-    },
-    methods: {
-    	 fnRemove : function(){
- 	        var self = this;
- 	        var nparmap = {pNo : self.pNo};
- 	        $.ajax({
- 	            url : "/mypag/deletecart.dox",
- 	            dataType:"json",	
- 	            type : "POST", 
- 	            data : nparmap,
- 	            success : function(data) { 	
- 	            	alert("Ïû•Î∞îÍµ¨ÎãàÏóêÏÑú ÏÇ≠Ï†úÎêòÏóàÏäµÎãàÎã§.");
- 	            	console.log(self.pNo);
- 	            }
- 	        }); 
- 	    },
-    	 fnOrder : function(){
- 	        var self = this;
- 	        var nparmap = {uId : self.uId};
- 	        $.ajax({
- 	            url : "/mypag/listExchange.dox",
- 	            dataType:"json",	
- 	            type : "POST", 
- 	            data : nparmap,
- 	            success : function(data) { 	
- 	            	var listCnt = data.list;
- 	            	for(var i=0; i<listCnt.length; i++){
- 	            		if(listCnt[i].exchange == "N"){	            			
- 	            			self.order = listCnt[i].orderCnt;
- 	            			console.log(self.order);	            			
- 	            		}else if(listCnt[i].exchange == "E"){
- 	            			self.exchange = listCnt[i].orderCnt;
- 	            		}else{
- 	            			self.refund = listCnt[i].orderCnt;
- 	            		}
- 	            	}
- 	            	
- 	            	
- 	            }
- 	        }); 
- 	    },
- 	    
-    	fnGetProduct : function(){
-            var self = this;
-            var nparmap = {};
-            $.ajax({
-                url : "/mypag/cart.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-				self.cart = data.list;
-				console.log(self.cart);
-				
-                }
-            }); 
-        },
-    
-    	fnGetList : function(){
-            var self = this;
-            var nparmap = {uId : self.uId};
-            $.ajax({
-                url : "/user2.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-                	self.info = data.findPw; //ÏÇ¨Ïö©Ïûê
-                	self.fnCntList();
-                }
-            }); 
-        },    
-        fnCntList : function(){
-	        var self = this;
-	        var nparmap = {uId : self.uId};
-	        $.ajax({
-	            url : "/mypag/listExchange.dox",
-	            dataType:"json",	
-	            type : "POST", 
-	            data : nparmap,
-	            success : function(data) { 	
-	            	var listCnt = data.list;
-	            	for(var i=0; i<listCnt.length; i++){
-	            		if(listCnt[i].exchange == "N"){	            			
-	            			self.order = listCnt[i].orderCnt;
-	            			console.log(self.order);	            			
-	            		}else if(listCnt[i].exchange == "E"){
-	            			self.exchange = listCnt[i].orderCnt;
-	            		}else{
-	            			self.refund = listCnt[i].orderCnt;
-	            		}
-	            	}
-	            	
-	            	
-	            }
-	        });
-        	
-	    },
-	    /* Î©îÏù∏ */
-	    fnVuwmain : function(){
-	    	var self = this;
-	    	$.pageChange("main.do", {uId : self.uId});
-	    },
-	    /* Ï£ºÎ¨∏ÎÇ¥Ïó≠ */
-	    fnInformation : function(){
-	    	var self = this;
-	    	$.pageChange("productInformation.do", {uId : self.uId});
-	    },
-	    /* Í¥ÄÏã¨ÏÉÅÌíà */
-	    fnInterest : function(){
-	    	var self = this;
-	    	$.pageChange("myPageInterest.do", {uId : self.uId});
-	    },
-	    /* Ï†ÅÎ¶ΩÍ∏à */
-	    fnReserves : function(){
-	    	var self = this;
-	    	$.pageChange("mypageReserves.do", {uId : self.uId});
-	    },
-	    /* Î∞∞ÏÜ°Ï£ºÏÜåÎ°ù */
-	    infoAddr : function(){
-	    	var self = this;
-	    	$.pageChange("infoAddr.do", {uId : self.uId});
-	    },
-	    /* ÌöåÏõê Ï†ïÎ≥¥ ÏàòÏ†ï */
-	    infoUpdate : function(){
-	    	var self = this;
-	    	$.pageChange("infoUpdate.do", {uId : self.uId});
-	    }
-    },
-    created: function() {
-      var self = this;
-      self.fnGetList();
-      self.fnGetProduct();
-    }
-});
+	var app = new Vue({
+		el : '#app',
+		data : {
+			info : [],
+			orderCntList : [],
+			uId : "dcsdsd3",/* "${sessionId}" */
+			order : "",
+			exchange : "",
+			refund : "",
+			list : [],
+			cart : [],
+			pNo : ""
+		},
+		methods : {
+			
+			fnRemove : function() {
+				var self = this;
+				var nparmap = {
+					pNo : self.pNo
+				};
+				$.ajax({
+					url : "/mypag/deletecart.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						alert("¿ÂπŸ±∏¥œø°º≠ ªË¡¶µ«æ˙Ω¿¥œ¥Ÿ.");
+						console.log(self.pNo);
+					}
+				});
+			},
+			fnOrder : function() {
+				var self = this;
+				var nparmap = {
+					uId : self.uId
+				};
+				$.ajax({
+					url : "/mypag/listExchange.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						var listCnt = data.list;
+						for (var i = 0; i < listCnt.length; i++) {
+							if (listCnt[i].exchange == "N") {
+								self.order = listCnt[i].orderCnt;
+								console.log(self.order);
+							} else if (listCnt[i].exchange == "E") {
+								self.exchange = listCnt[i].orderCnt;
+							} else {
+								self.refund = listCnt[i].orderCnt;
+							}
+						}
+
+					}
+				});
+			},
+
+			fnGetProduct : function() {
+				var self = this;
+				var nparmap = {};
+				$.ajax({
+					url : "/mypag/cart.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						self.cart = data.list;
+						console.log(self.cart);
+
+					}
+				});
+			},
+
+			fnGetList : function() {
+				var self = this;
+				var nparmap = {
+					uId : self.uId
+				};
+				$.ajax({
+					url : "/user2.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						self.info = data.findPw; //ªÁøÎ¿⁄
+						self.fnCntList();
+					}
+				});
+			},
+			fnCntList : function() {
+				var self = this;
+				var nparmap = {
+					uId : self.uId
+				};
+				$.ajax({
+					url : "/mypag/listExchange.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						var listCnt = data.list;
+						for (var i = 0; i < listCnt.length; i++) {
+							if (listCnt[i].exchange == "N") {
+								self.order = listCnt[i].orderCnt;
+								console.log(self.order);
+							} else if (listCnt[i].exchange == "E") {
+								self.exchange = listCnt[i].orderCnt;
+							} else {
+								self.refund = listCnt[i].orderCnt;
+							}
+						}
+
+					}
+				});
+
+			},
+
+		},
+		created : function() {
+			var self = this;
+			self.fnGetList();
+			self.fnGetProduct();
+		}
+	});
 </script>

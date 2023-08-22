@@ -6,267 +6,94 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<%@ include file="header.jsp" %>
+<%@ include file="../Product/sexyheader.jsp" %>
+<%@ include file="footer.jsp" %>
 <style>
-<!-- ΩΩ∂Û¿ÃµÂ øµø™ -->
 
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+ 
+  padding: 20px; /* ÌïÑÏöîÌïú Ïó¨Î∞± Ï°∞Ï†ï */
+}
+.slidetext {
+	font-size:2em;
 
-.slider {
-	width: 640px;
-	height: 480px;
-	margin: auto;
+	}
+.dot {
+    width: 12px;
+    height: 12px;
+    margin: 10px 5px; /* ÏÑ∏Î°ú ÏúÑÏπòÎ•º Ï°∞Ï†ïÌï† Îïå Ïó¨Í∏∞Ïùò Ï≤´ Î≤àÏß∏ Í∞í Ï°∞Ï†à */
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    position: absolute; /* ÎèÑÌä∏Î•º Ï†àÎåÄ ÏúÑÏπòÎ°ú ÏÑ§Ï†ï */
+    bottom: 20px; /* Ïù¥ÎØ∏ÏßÄ Ïä¨ÎùºÏù¥Îìú Î∞ëÏóê Ïó¨Î∞±ÏùÑ Ï°∞Ï†à */
+  /*   left: 50%; /* Í∞ÄÎ°ú ÏúÑÏπò Ï§ëÏïôÏóê Ï†ïÎ†¨ */ */
+  /*   transform: translateX(-50%); /* Í∞ÄÎ°ú ÏúÑÏπòÎ•º Ï§ëÏïôÏúºÎ°ú Ï†ïÎ†¨ */ */
 }
 
-.slider input[type=radio] {
-	display: none;
-}
-.imgs{
-width : 2630px;
-height : 2630px;
-}
-ul.imgs {
-	padding: 0;
-	margin: 0;
-}
-/* ΩΩ∂Û¿Ã¥ı ¿ßƒ° ¡∂¡§ */
-ul.imgs li {
+#app{
+	widows: 100%
+	}
+	
+	#footer{
+	  justify-content:flex-end;
+	  margin-bottom:0;
+	}
+
+#container{
+	margin: 50px;
+  	justify-content:center;
+	width: auto;
+	height: 1200px;
+	
+	}
+	
+img.topimg{
+	margin-top:100px;
+	margin-bottom:100px;
+    vertical-align: middle;
+	width:auto;
+	height: 800px;
 	position: absolute;
-	top: 100%;
-	right: 50%;
-	transform: translate(50%, -50%);
-	width: 640px;
-	height: 480px;
-	opacity: 0;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	transition-delay: 0.9s;
+    left: 50%; /* ÏöîÏÜåÏùò Ï¢åÏ∏° ÏúÑÏπòÎ•º Ï§ëÏïôÏúºÎ°ú Ïù¥Îèô */
+    transform: translateX(-50%); 
+	}
+	
+/*  nav{
+	widows: 1800px;
+	height: 1500px;
+	margin-bottom: 50px;
+ */
+ #nav1, #nav2, #nav3 {
+    position: relative; /* ÏúÑÏπò ÏÜçÏÑ±ÏùÑ ÏÑ§Ï†ïÌï©ÎãàÎã§. */
+    z-index: 1; /* ÏïÑÎûòÎ°ú ÏåìÏù¥ÎèÑÎ°ù ÏÑ§Ï†ïÌï©ÎãàÎã§. */
 }
 
-.bullets {
-	position: absolute;
-	top: 134%;
-	right: 50%;
-	transform: translate(50%, -50%);
-	bottom: 20px;
-	z-index: 2;
+#nav1{
+	margin-top:500px;
+	margin-bottom:500px;
+	padding:70px;
+	widows: 1800px;
+	height:1500px;
+	margin-bottom: 50px;
+	}
+
+#nav2{
+widows: 1800px;
+	height: 1800px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
-.bullets label {
-	display: inline-block;
-	border-radius: 50%;
-	background-color: rgba(0, 0, 0, 0.55);
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
-}
-
-.slider input[type=radio]:nth-child(1):checked ~.bullets>label:nth-child(1)
-	{
-	background-color: #fff;
-}
-
-.slider input[type=radio]:nth-child(2):checked ~.bullets>label:nth-child(2)
-	{
-	background-color: #fff;
-}
-
-.slider input[type=radio]:nth-child(3):checked ~.bullets>label:nth-child(3)
-	{
-	background-color: #fff;
-}
-
-.slider input[type=radio]:nth-child(4):checked ~.bullets>label:nth-child(4)
-	{
-	background-color: #fff;
-}
-
-.slider input[type=radio]:nth-child(5):checked ~.bullets>label:nth-child(5)
-	{
-	background-color: #fff;
-}
-
-.slider input[type=radio]:nth-child(1):checked ~ul.imgs>li:nth-child(1)
-	{
-	opacity: 1;
-	transition: 1s;
-	z-index: 1;
-}
-
-.slider input[type=radio]:nth-child(2):checked ~ul.imgs>li:nth-child(2)
-	{
-	opacity: 1;
-	transition: 1s;
-	z-index: 1;
-}
-
-.slider input[type=radio]:nth-child(3):checked ~ul.imgs>li:nth-child(3)
-	{
-	opacity: 1;
-	transition: 1s;
-	z-index: 1;
-}
-
-.slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nth-child(4)
-	{
-	opacity: 1;
-	transition: 1s;
-	z-index: 1;
-}
-
-.slider input[type=radio]:nth-child(5):checked ~ul.imgs>li:nth-child(5)
-	{
-	opacity: 1;
-	transition: 1s;
-	z-index: 1;
-}
-
-* {
-	margin: 0;
-	padding: 0;
-}
-
-img, area {
-	border: 0;
-	outline: none;
-}
-
-ul, ol, li {
-	list-style: none;
-}
-
-a {
-	color: #000;
-	text-decoration: none;
-} 
-body{ font-family:Graduate, Kelly Slab, Aldrich;/*OCR A Std, arial;*/ font-size:1.5em; color:#000;}
-
-nav {
-	width: 100%;
-	height: 140px;
-	position: relative;
-	z-index: 9999;
-}
-
-
-.ban {
-	position: absolute;
-	top: 140px;
-	right: 0px;
-	z-index: 9998;
-}
-
-
-
-/*SECT1*/
-
-/* ΩΩ∂Û¿ÃµÂ πË∞Êªˆ */
-.sect1 {
-position: absolute;
-top: 100%;
-right: 50%;
-transform: translate(50%, -50%);
-	width: 2000px;
-	height: 706px;
-	background: url(img/homeimg/s2_back.jpg) no-repeat;
-	color: #000;
-}
-
-/* æŸπ¸ ƒøπˆ */
-.ostimg {
-position: absolute;
-top: 550%;
-right: 50%;
-transform: translate(50%, -50%);
-	width: 1665px;
-	margin: 0 auto;
-	margin-top: 240px;
-}
-
-.ostimg>div {
-	width: 208px;
-	height: 208px;
-	float: left;
-	margin-left: 103px;
-	border-radius: 100%;
-	background: #900;
-	border: 5px solid #d4dafa;
-}
-
-.ostimg>div:first-child {
-	margin-left: 0;
-}
-
-.ostimg .img1 {
-	background: url(img/homeimg/homeimg/homeimg/ost1.png);
-}
-
-.ostimg .img2 {
-	background: url(img/homeimg/homeimg/homeimg/lsf_album.jpg);
-	background-size: contain;
-}
-
-.ostimg .imgse {
-	background: url(img/homeimg/bts_album.gif);
-	background-size: contain;
-	width: 370px;
-	height: 370px;
-	margin-top: -100px;
-}
-
-.ostimg .img4 {
-	background: url(img/homeimg/ost4.png);
-}
-
-.ostimg .img5 {
-	background: url(img/homeimg/ost5.png);
-}
-
-/*SECT1- animation*/
-.ostimg .img1 {
-	animation: Sback 32s 4s infinite;
-	transition: all 2s;
-}
-
-.ostimg .img2 {
-	animation: Lback 32s 4s infinite;
-	transition: all 2s;
-}
-
-.ostimg .img3 {
-	animation: Hback 32s 4s infinite, Hrotate 6.6s 4s infinite;
-}
-
-.ostimg .img4 {
-	animation: Dback 32s 4s infinite;
-	transition: all 2s;
-}
-
-.ostimg .img5 {
-	animation: Iback 32s 4s infinite;
-	transition: all 2s;
-}
-
-/*SECT1- animation2*/
-.sect1 .ost {
-	width: 572px;
-	height: 88px;
-	background: no-repeat;
-	margin-left: 300px;
-	position: relative;
-	top: 74px;
-	animation: ostname 32s 4s infinite;
-	transition: all 2s;
-}
-
-/*new item*/
 .sect2 {
-position: absolute;
-	top: 200%;
-	right: 50%;
-	transform: translate(50%, -50%);
-	width: 2000px;
-	height: 681px;
+	margin :  0px auto;
+	width: 1800px;
+	height: 1500px;
 	background: #f0f0f0;
 }
 
@@ -285,7 +112,7 @@ position: absolute;
 	background: #F00;
 	position: relative;
 	overflow: hidden;
-	position: relative;
+	
 }
 
 .sect2 div a {
@@ -353,27 +180,26 @@ position: absolute;
 
 .sect2 .Sbox4:hover {
 	background: url(img/homeimg/seson4_hover.jpg);
-}
+	}
 .sect2 .Sbox5:hover {
 	background: url(img/homeimg/seson1_hover.jpg);
-}
+	}
 
 .sect2 .Sbox6:hover {
 	background: url(img/homeimg/seson2_hover.jpg);
-}
+	}
 
 .sect2 .Sbox7:hover {
 	background: url(img/homeimg/seson3_hover.jpg);
-}
+	}	
 
 .sect2 .Sbox8:hover {
 	background: url(img/homeimg/seson4_hover.jpg);
-}
+	}
 
 .sect2 div:hover a {
 	opacity: 1;
-}
-
+	}
 /*SUP*/
 .sect2 div .sub {
 	position: absolute;
@@ -411,147 +237,76 @@ position: absolute;
 }
 
 
-/*SECT3*/
-.sect3 {
-position: absolute;
-	top: 340%;
-	right: 50%;
-	transform: translate(50%, -50%);
-	width: 2000px;
-	height: 593px;
-	color: #000;
-}
 
-.sect3 h2 {
-	text-align: center;
-	height: 44px;
-	margin: 49px 0 36px 0;
-}
-
-.sect3 .sale {
-	background-size: contain;
-	width: 1227px;
-	height: 276px;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.sect3 .sale li {
-	float: left;
-	margin-right: 40px;
-	font-size: 13.7pt;
-	line-height: 30pt;
-}
-
-.sect3 .sale li:last-child {
-	margin-right: 0;
-}
-
-footer {
-position: absolute;
-top: 600%;
-right: 50%;
-transform: translate(50%, -50%);
-	width: 100%;
-	height: 163px;
-	background: url(img/homeimg/footer.jpg);
-	text-align: center;
-	font-size: 13.8pt;
-	padding-top: 43px;
-	box-sizing: border-box;
-}
-
-footer p {
-	margin-bottom: 15px;
-}
-
-<!--
-ΩΩ∂Û¿ÃµÂ Ω∫≈∏¿œ  -->section {
-	position: relative;
-	width: 1200px;
-	height: 300px;
-	overflow: hidden;
-}
-
-img.imgslide1 {
-	position: absolute;
-	left: 0px;
-	top: 0;
-	width: 1200px;
-	height: 300px;
-	animation: slide1 7s infinite;
-}
-
-img.imgslide2 {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 1200px;
-	height: 300px;
-	animation: slide2 7s infinite;
-}
-
-img.imgslide3 {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 1200px;
-	height: 300px;
-	animation: slide3 7s infinite;
-}
 </style>
 <!-- Start HEAD section -->
-<link rel="stylesheet" type="text/css" href="engine1/style.css" />
-<script type="text/javascript" src="engine1/jquery.js"></script>
+<link href="../css/mainpageslideshow.css" rel="stylesheet" type="text/css">
+
 <!-- End HEAD section -->
 </head>
 
 <body>
 
-	<!-- !!!!!!!!!!!!!!!!!!!!!    ΩΩ∂Û¿Ã¥ı !!!!!!!!!!!!!!!!!! -->
-		<div class="slider">
-		<input type="radio" name="slide" id="slide1" checked=""> <input
-			type="radio" name="slide" id="slide2"> <input type="radio"
-			name="slide" id="slide3"> <input type="radio" name="slide"
-			id="slide4"> <input type="radio" name="slide" id="slide5">
-		<ul id="imgholder" class="imgs">
-			<li><img src="img/homeimg/seventeen_main.jpg" ></li>
-			<li><img src="img/homeimg/lsf_main.jpg"></li>
-			<li><img src="img/homeimg/newjins_main.jpeg" ></li>
-			<li><img src="img/homeimg/promiss_main.jpg" ></li>
-			<li><img src="img/homeimg/boynext.jpg"></li>
-		</ul>
-		<div class="bullets">
-			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
-			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
-			<label for="slide5">&nbsp;</label>
-		</div>
-</div>
+	<div id="app">
+
+		<div id="container">
 		
-
-		<!-- !!!!!!!!!!!!!!!!!!!!  ¥∫ æ∆¿Ã≈€ !!!!!!!!!!!!!!!!!!!!!!! -->
-		<section class="sect2">
-			<h2><a href="newitem.do">NEW ITEM</a></h2>
-			<div class="Sbox1">
-				<p class="more">
+			<nav id="nav1">
+			
+				<div class="slideshow-container">
+				
+					<div class="mySlides fade">
+					
+						<div class="slidetext">BND</div>
+				 			<img class="topimg" src="img/homeimg/boynext.jpg" >
+				  
+					</div>
+				
+						<div class="mySlides fade">
+						  <div class="slidetext">Seventeen</div>
+				 		 <img class="topimg" src="img/homeimg/seventeen_main.jpg" >
+				  
+						</div>
+				
+					<div class="mySlides fade">
+						<div class="slidetext">fromis9</div>
+				 		<img class="topimg" src="img/homeimg/promiss_main.jpg">
+					</div>
+				
+				</div>
+				
+			<br>
+				
+				<div style="text-align:center">
+				  <span class="dot"></span> 
+				  <span class="dot"></span> 
+				  <span class="dot"></span> 
+				</div>
+				
+			</nav>
+			
+			<nav id="nav2">
+				<section class="sect2">
+				<h2><a href="newitem.do">NEW ITEM</a></h2>
+				<div class="Sbox1">
+					<p class="more">
 					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">æ∆∆ºΩ∫∆Æ</li>
-					<li>¡¶«∞ ∏Ì</li>
-					<li>∞°∞›</li>
-				</ul>
-			</div>
-
-
+					</p>
+					<ul class="sub">
+						<li class="sname">0</li>
+						<li>1</li>
+						<li>2</li>
+					</ul>
+				</div>
+	
 			<div class="Sbox2">
 				<p class="more">
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">æ∆∆ºΩ∫∆Æ</li>
-					<li>¡¶«∞ ∏Ì</li>
-					<li>∞°∞›</li>
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
 				</ul>
 			</div>
 
@@ -560,9 +315,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">æ∆∆ºΩ∫∆Æ</li>
-					<li>¡¶«∞ ∏Ì</li>
-					<li>∞°∞›</li>
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
 				</ul>
 			</div>
 
@@ -571,86 +326,148 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">æ∆∆ºΩ∫∆Æ</li>
-					<li>¡¶«∞ ∏Ì</li>
-					<li>∞°∞›</li>
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
+				</ul>
+			</div>
+			</section>
+		</nav>
+		
+		<div class="body2 " style=" width: 1000px; height: 2000px;">
+                        <div @click="productView(item)" v-for="item in list" class="productList">
+                           <span><img :src = "item.path" class="pImg" style="width:300px; height : 500px;"></span>
+                           <div>{{item.pName}}</div>
+                           <div>{{item.price}}</div>
+                           <div><ul class="sub">
+									<li class="sname">0</li>
+									<li>1</li>
+									<li>2</li>
+								</ul>
+							</div>
+                        </div>
+                </div>
+		
+		
+		<nav id="nav3">
+			
+			<section class="sect2">
+				<h2><a href="newitem.do">BEST ITEM</a></h2>
+				<div class="Sbox1">
+					<p class="more">
+					<a href="#">More</a>
+					</p>
+					<ul class="sub">
+						<li class="sname">0</li>
+						<li>1</li>
+						<li>2</li>
+					</ul>
+				</div>
+	
+			<div class="Sbox2">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
 				</ul>
 			</div>
 
-			</ul>
-
-
-		</section>
-		<section class="sect3">
-			<h2>STORE</h2>
-			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Ω∫≈‰æÓ!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
-			<ul class="sale">
-				<li><a href="#"><img src="img/homeimg/sale1.jpg" alt="" />
-						<p>
-							æ∆¿Ã≈€1 - ¿Ã∏ß<br>8,000ø¯</a></li>
-				<li><a href="#"><img src="img/homeimg/sale2.jpg" alt="" />
-						<p>
-							æ∆¿Ã≈€2 - ¿Ã∏ß<br>8,000ø¯
-						</p></a></li>
-				<li><a href="#"><img src="img/homeimg/sale3.jpg" alt="" />
-						<p>
-							æ∆¿Ã≈€3 - ¿Ã∏ß<br>7,000ø¯
-						</p></a></li>
-				<li><a href="#"><img src="img/homeimg/sale4.jpg" alt="" />
-						<p>
-							æ∆¿Ã≈€4 - ¿Ã∏ß<br>5,500ø¯</a></li>
-			</ul>
-
-		</section>
-		<section class="sect1">
-			<div class="ost"></div>
-			<div class="ostimg">
-
-				<div class="img1"></div>
-
-				<div class="img2"></div>
-
-				<div class="img3"></div>
-
-				<div class="img4"></div>
-
-				<div class="img5"></div>
-
+			<div class="Sbox3">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
+				</ul>
 			</div>
 
-		</section>
-		<footer>
-			<p>
-				<br> »∏ªÁ∏Ì (¡÷)VeryPeri Corp. ¥Î«•¿⁄∏Ì ¿±≥™ø¨
-				 <br>¡÷º“ ¿Œ√µ±§ø™Ω√ ∫Œ∆Ú±∏ ∫Œ∆Úµø 534-48 7√˛
-				 ¥Î«•π¯»£ 4444-4444 / 4zomotchamchi@veryperi.com 
-				<br> VeriPeri¿« ∏µÁ ƒ‹≈Ÿ√˜¥¬ ¿˙¿€±«¿« ∫∏»£∏¶ πﬁ∞Ì ¿÷Ω¿¥œ¥Ÿ
-			</p>
-			<img src="img/homeimg/footerlogo.png" alt="" />
-		</footer>
+			<div class="Sbox4">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
+				</ul>
+			</div>
+			</section>
+		
+		</nav>
+		<nav>
+		
+		
+		
+		</nav>
+
+	</div> <!-- ÏΩòÌÖåÏù¥ÎÑà div -->
+		
+</div> <!-- app div -->
+			
+	
 </body>
 </html>
 <script>
+var app = new Vue({
+	el : '#app',
+	data : {
+		uId : "${sessionId}",
+		list : []
+	}, 
+	methods : {
+		fnGetList : function() { // ÏÇ¨Ïö©Ïûê Ï†ïÎ≥¥ Î∂àÎü¨Ïò§Í∏∞ Ïù¥Î¶Ñ , Î≥ÑÎ™Ö (ÎãâÎÑ§ÏûÑ)
+            var self = this;
+            var nparmap = {uId : self.uId};            
+            $.ajax({
+               url : "/home3.dox",
+               dataType : "json",
+               type : "POST",
+               data : nparmap,
+               success : function(data) {                  
+                  self.list = data.list;
+                  console.log(self.list);
+               }
+            });
+	}
+		
+	},
+	created : function() {
+		var self = this;
+		self.fnGetList();
 
-//ΩΩ∂Û¿ÃµÂ∏¶ ºˆµø¿∏∑Œ ∫Ø∞Ê«œ¥¬ «‘ºˆ
-
-
-// ΩΩ∂Û¿ÃµÂ∏¶ ¿⁄µø¿∏∑Œ ∫Ø∞Ê«œ¥¬ «‘ºˆ
-function changeSlide() {
-  var currentSlide = document.querySelector('input[type="radio"]:checked');
-  var nextSlide = currentSlide.nextElementSibling || document.querySelector('input[type="radio"]:first-child');
-  nextSlide.checked = true;
-
-  // ∏∏æ‡ 5π¯¬∞ ΩΩ∂Û¿ÃµÂ¿œ ∞ÊøÏ, 1π¯¬∞ ΩΩ∂Û¿ÃµÂ∑Œ ¿⁄µø¿∏∑Œ ∫Ø∞Ê
-  if (currentSlide.id === 'slide5') {
-    document.querySelector('#slide1').checked = true;
-  }
-}
-
-// ∆‰¿Ã¡ˆ∞° ∑ŒµÂµ«∏È ΩΩ∂Û¿Ã¥ı ≈∏¿Ã∏”∏¶ Ω√¿€
-document.addEventListener('DOMContentLoaded', function() {
-  setInterval(changeSlide, 3000); // 3000 π–∏Æ√  = 3√ 
+	}
 });
-	
+
+var slideIndex = 0;
+
+var colors = [ 'rgb(229, 143, 255)', ' rgb(143, 214, 255)', ' rgb(216, 255, 143)'];
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    var container = document.getElementById("container");
+    
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    
+    var bgColor = colors[slideIndex % colors.length];
+    container.style.backgroundColor = bgColor;
+    
+    setTimeout(showSlides, 5000); // Change image every 2 seconds
+}
 </script>

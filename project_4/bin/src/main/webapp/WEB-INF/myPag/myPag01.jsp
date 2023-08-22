@@ -4,8 +4,11 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/footer.js"></script>
 <link href="../css/mypage.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
+<%@ include file="../Product/sexyheader.jsp" %>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -21,7 +24,7 @@
 	border-radius:7px;
 }
 .swiper-slide {
-    line-height: 70px;
+    line-height: 50px;
 	text-align:center;
 	align-items:center; /* 위아래 기준 중앙정렬 */
 	justify-content:center; /* 좌우 기준 중앙정렬 */
@@ -58,8 +61,14 @@
 	
 }
 .justpay, .justBox {
+	width : 276px;
     text-align: right;
-    padding-right: 10px;
+  	margin:  0px;
+  	padding: 0xp;
+}
+footer{
+	width: 100%;
+	height: 600px;
 }
 </style>
 
@@ -107,12 +116,10 @@
 								</div>
 								<div class="details">
 									<div>포인트</div>
-									<div>{{info.uPoint}} P</div>
+									<div v-if="info.uPoint !=0">{{info.uPoint}} P</div>
+									<div v-else>0 P</div>
 								</div>
-								<div class="details">
-									<div>Jelly</div>
-									<div>0</div>
-								</div>
+								
 							</div>
 						</div>
 
@@ -121,7 +128,7 @@
 				</div>
 
 
-				<div id="body">
+				<div id="mypage">
 
 					<div id="left">
 						<div class="categories">MY PAGE</div>
@@ -142,7 +149,7 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/infoUpdate.do">회원 정보 수정</a></li>
-                                       <li><a href="/mypag/addAddr.do">배송주소록</a></li>                           
+                                       <li><a href="/mypag/infoAddr.do">배송주소록</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
@@ -168,13 +175,13 @@
 							<div class="lowerBox">주문상품</div>
 							<div class="swiper-container">
 							<div class="swiper-wrapper">
-							
-								<div class="swiper-slide" v-for="item in orderlist">									
-								       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
-							           <div class="justBox">{{item.pName}}</div>
-							           <div class="justpay">\ {{item.price}}</div>
-							          
-								</div>
+								<template v-for="item in orderlist">
+										<div class="swiper-slide" >																	
+									       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+								           <div class="justBox">{{item.pName}}</div>
+								           <div class="justpay">\ {{item.price}}</div>								      
+										</div>
+								</template>
 						
 							</div>
 						
@@ -193,32 +200,56 @@
 							
 						</div>
 
-						<div class="View">
+						<div class="View">						
 							<div class="lowerBox">장바구니</div>
-							<div class="swiper-container">
-							<div class="swiper-wrapper">
-					
-							</div>
-						
-							<!-- 네비게이션 -->
-							<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-							<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-						
-							<!-- 페이징 -->
-							<div class="swiper-pagination"></div>
-						</div>
+							<!-- 	<div v-if="falsecartlist.lenght == 0">
+									<div class="nodata">내역이 없습니다</div>							
+								</div> -->
+									<div class="swiper-container">
+										<div class="swiper-wrapper">
+												<div class="swiper-slide" v-for="item in cartlist">																	
+											       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+										           <div class="justBox">{{item.pName}}</div>
+										           <div class="justpay">\ {{item.price}}</div>							        
+										 		</div>
+											
+										</div>
+									
+										<!-- 네비게이션 -->
+										<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+										<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+									
+										<!-- 페이징 -->
+										<div class="swiper-pagination"></div>
+									</div>
 
 							
-							<div v-if="false">
-							<div class="nodata">내역이 없습니다</div>
-							</div>
+							
 							
 						</div>
 
 						<div class="View">
-			
-
-							<div v-if="true">
+						<div class="lowerBox">찜목록</div>
+								<div class="swiper-container">
+									<div class="swiper-wrapper">
+										<template v-for="item in wishlist">
+												<div class="swiper-slide" >																	
+											       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+										           <div class="justBox">{{item.pName}}</div>
+										           <div class="justpay">\ {{item.price}}</div>								      
+												</div>
+										</template>
+								
+									</div>
+								
+									<!-- 네비게이션 -->
+									<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+									<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+								
+									<!-- 페이징 -->
+									<div class="swiper-pagination"></div>
+								</div>
+							<div v-if="false">
 							<div class="nodata">내역이 없습니다</div>
 							</div>
 						</div>
@@ -229,10 +260,62 @@
 
 
 			</div>
+			<div>
+				<%@ include file="../page/footer.jsp" %>			
+			</div>
+
 		</div>
+	
 </body>
 </html>
+
 <script type="text/javascript">
+
+//인스타
+document.getElementById("insta").addEventListener("click", function() {
+window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+//페북
+document.getElementById("facebook").addEventListener("click", function() {
+window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+//카카오
+document.getElementById("kakao").addEventListener("click", function() {
+window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+
+
+$(function(){
+	  $(".modal-open").click(function() {
+	    var index = $(this).index();
+	    $(".popup-wrap").eq(index).css('display', 'flex').hide().fadeIn();
+	  });
+
+	  $(".pop-btn.confirm").click(function() {
+	    modalClose.call(this);
+	  });
+
+	  function modalClose() {
+	    $(this).closest(".popup-wrap").fadeOut();
+	  }
+	});
+var footer = document.getElementById("footer");
+
+window.onscroll = function() {
+var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+
+if (scrollBottom <= footer.offsetHeight) {
+  // 스크롤이 맨 아래 위치할 때부터 footer가 보이도록
+  footer.style.bottom = "0";
+  footer.style.opacity = "1";
+  footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
+} else {
+  // 스크롤이 맨 아래가 아닐 때
+  footer.style.bottom = "-450px"; // 또는 숨길 높이 값으로 조정
+  footer.style.opacity = "0";
+  footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
+}
+};
 	var app = new Vue({
 		el : '#app',
 		data : {
@@ -264,19 +347,18 @@
 			fnCntList : function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
-				console.log(nparmap);
 				$.ajax({
 					url : "/mypag/listExchange.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
-						console.log(data);
+						
 						var listCnt = data.list;
 						for (var i = 0; i < listCnt.length; i++) {
 							if (listCnt[i].exchange == "N") {
 								self.order = listCnt[i].orderCnt;
-								console.log(self.order);
+							
 							} else if (listCnt[i].exchange == "E") {
 								self.exchange = listCnt[i].orderCnt;
 							} else {
@@ -291,15 +373,16 @@
 			fnwish: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
-				console.log(nparmap);
+		
 				$.ajax({
 					url : "/mypag/wishlist.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
-						console.log(self.wishlist);
+						
 						self.wishlist = data.list;
+						
 						
 
 					}
@@ -309,7 +392,7 @@
 			fnorder: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
-				console.log(nparmap);
+			
 				$.ajax({
 					url : "/mypag/productInformation.dox",
 					dataType : "json",
@@ -317,7 +400,6 @@
 					data : nparmap,
 					success : function(data) {
 						self.orderlist = data.list;
-						
 
 					}
 				});
@@ -326,16 +408,16 @@
 			fncart: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
-				console.log(nparmap);
+			
 				$.ajax({
 					url : "/mypag/selectcartlist.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
-						console.log(data);
-						self.cartlist = data.list;
 						
+						self.cartlist = data.list;
+						console.log(self.cartlist);
 
 					}
 				});
@@ -356,7 +438,7 @@
 	new Swiper('.swiper-container', {
 
 		slidesPerView : 3, // 동시에 보여줄 슬라이드 갯수
-		spaceBetween : 30, // 슬라이드간 간격
+		spaceBetween : 20, // 슬라이드간 간격
 		slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 
 		// 그룹수가 맞지 않을 경우 빈칸으로 메우기

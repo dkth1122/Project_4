@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project.mapper.ExchangeMapper">
+
+
+	<!-- 교환/환불 접수 리스트 -->
+	<select id="selectExchangeList" parameterType="hashmap" resultType="com.example.project.model.DeliveryUser">
+		SELECT D.BUY_NO, D.O_NO, D.U_ID, D.D_STATE, P_NO, O.EXCHANGE
+		FROM T4_DELIVERY D
+		INNER JOIN T4_ORDER O ON D.BUY_NO = O.BUY_NO
+		WHERE (O.EXCHANGE IS NOT NULL AND O.EXCHANGE != '') AND D.D_STATE NOT LIKE '%거절%' AND D.D_STATE NOT LIKE '%완료%' 
+	</select>
+	
+	
+</mapper>

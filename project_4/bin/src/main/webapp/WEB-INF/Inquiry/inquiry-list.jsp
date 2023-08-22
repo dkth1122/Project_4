@@ -15,18 +15,17 @@
                
            }
         #app{
-               width: 1000px;
+               width: 80%;
                margin: 0px auto;
                text-align: center;
+               float: left;
 
            }
        .mainBox{
-     		   width : 1000px;
+     		   width : 1200px;
      		   height : 550px;
-               position: relative;
-               top : -550px;
-               left: 200px;
                text-align: center;
+        	   margin-left: 50px;
            }
        table{
            border : 1px solid black;
@@ -57,15 +56,15 @@
            display : inline;
        }
        .pagination li:hover {
-           background: #E4DBD6;
+           background: #e2d6e4;
        }
        .page-item a {
            color:#666;
            text-decoration: none;
        }
        .pagination li.active {
-           background-color : #E7AA8D;
-           color:#fff;
+           background-color : #bb76c4;
+           color:white;
        }
        .pagination li.active a {
            color:#fff;
@@ -76,20 +75,13 @@
         margin-left: 20px;
        }
        hr{
-        	width: 800px;
-        	margin-top : -50px;
-        	margin-bottom: 20px;
+        	width: 1000px;
         }
         .mainPos2{
-        	position: relative;
-        	top : -55px;
-        	left: 350px;
         	color: white;
         }
         .mainInput {
         	margin-bottom: 10px;
-        	position: relative;
-        	left: 250px;
         }
  </style>
 </head>

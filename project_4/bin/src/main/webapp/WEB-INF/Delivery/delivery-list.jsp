@@ -15,18 +15,18 @@
                
            }
         #app{
-               width: 1000px;
+               width: 80%;
                margin: 0px auto;
                text-align: center;
+               float: left;
+               margin-left: 20px;
 
            }
        .mainBox{
-     		   width : 1000px;
+     		   width : 1200px;
      		   height : 550px;
-               position: relative;
-               top : -550px;
-               left: 200px;
                text-align: center;
+        	   margin-left: 50px;
            }
        table{
            border : 1px solid black;
@@ -57,15 +57,15 @@
            display : inline;
        }
        .pagination li:hover {
-           background: #E4DBD6;
+           background: #e2d6e4;
        }
        .page-item a {
            color:#666;
            text-decoration: none;
        }
        .pagination li.active {
-           background-color : #E7AA8D;
-           color:#fff;
+           background-color : #bb76c4;
+           color:white;
        }
        .pagination li.active a {
            color:#fff;
@@ -76,20 +76,10 @@
         margin-left: 20px;
        }
        hr{
-        	width: 800px;
-        	margin-top : -50px;
-        	margin-bottom: 20px;
+        	width: 1000px;
         }
         .mainPos2{
-        	position: relative;
-        	top : -55px;
-        	left: 350px;
         	color: white;
-        }
-        .mainInput {
-        	margin-bottom: 10px;
-        	position: relative;
-        	left: 250px;
         }
  </style>
 </head>
@@ -97,7 +87,11 @@
 <%@ include file="../Staff/staff-header.jsp" %>
 <%@ include file="../Staff/staff-left.jsp" %>
 <div id="app">
-	<table>
+	<div class="mainBox">
+	
+	<div class="mainPos2">배송 관리</div>
+<hr>	
+    <table>
 		<tr>
 			<th>주문번호</th>
 			<th>상품명</th>
@@ -106,11 +100,7 @@
 			<th>주문수량</th>
 			<th>주문자명</th>
 			<th>주문자 연락처</th>
-			<th>주문자 주소1</th>
-			<th>주문자 주소2</th>
 			<th>정제 주소</th>
-			<th>배송 메세지</th>
-			
 		</tr>
 		
 		<tr v-for="(item, index) in list">
@@ -119,26 +109,24 @@
 			<td v-else>{{ item.pName }}</td>
 			<td>{{item.pNo}}</td>
 			<td>
-				<select v-model="item.dState" @change="fnUpdateState(item, $index)">
-	                <option value="상품 준비중">상품 준비중</option>
-	                <option value="배송 준비중">배송 준비중</option>
-	                <option value="배송중">배송중</option>
-	                <option value="배송완료">배송완료</option>
-	                <option value="업체 사유로 거절">업체 사유로 거절</option>
-					<option value="고객 사유로 거절">고객 사유로 거절</option>
-					<option value="배송사 사유로 거절">배송사 사유로 거절</option>
-				</select>
+			<select v-model="item.dState" @change="fnUpdateState(item, index)">
+			    <option value="상품 준비중">상품 준비중</option>
+			    <option value="배송 준비중">배송 준비중</option>
+			    <option value="배송중">배송중</option>
+			    <option value="배송완료">배송완료</option>
+			    <option value="업체 사유로 거절">업체 사유로 거절</option>
+			    <option value="고객 사유로 거절">고객 사유로 거절</option>
+			    <option value="배송사 사유로 거절">배송사 사유로 거절</option>
+			</select>
 			</td>
 			<td>{{item.oCount}}</td>
 			<td>{{item.uDname}}</td>
 			<td>{{item.uDphone}}</td>
-			<td>{{item.uDaddr}}</td>
-			<td>{{item.uDaddrDetail}}</td>
 			<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
-			<td>{{item.uDmessage}}</td>
 		</tr>
 	
 	</table>
+	
 	<template>
 	  <paginate
 	    :page-count="pageCount"
@@ -150,10 +138,11 @@
 	    :container-class="'pagination'"
 	    :page-class="'page-item'">
 	  </paginate>
+	  
 	</template>
 	
-	<div><button @click="fnBack">되돌아가기</button></div>
-	
+</div>
+
 </div>
 </body>
 </html>
@@ -203,34 +192,54 @@ var app = new Vue({
   					self.pageCount = Math.ceil(self.cnt / 10);
   				}
   			});
-  		},
-          fnBack : function(){
-          	location.href = '../staff/main.do';
           },
-         	fnUpdateState : function(item, index) {
-        	    var self = this;
-        	    var exchangeVal = '';
-          	  if (item.dState.includes('거절')) {
+          fnUpdateState : function(item) {
+          	var self = this;
+          	if (item.dState === '배송완료') {
+          	    self.updateState2(item);
+          	} else {
+          	    self.updateState1(item);
+          	}
+          },
+          updateState1 : function(item) {
+          	var self = this;
+          	var exchangeVal = '';
+          	if (item.dState.includes('거절')) {
           	    exchangeVal = 'R';
-          	  }
-        	    $.ajax({
-        	      url: "/order/update.dox",
-        	      dataType: "json",
-        	      type: "POST",
-        	      data: {
-        	    	  exchange: exchangeVal,
-        	    	  oNo: item.oNo,
-        	    	  dState: item.dState
-        	      },
-        	      success: function(data) {
-        	        alert("주문 상태가 업데이트 되었습니다.");
-        	        self.fnGetList();
-        	      }
-        	    }); 
-        	  },
+          	}
+          	$.ajax({
+          	    url: "/order/update.dox",
+          	    dataType: "json",
+          	    type: "POST",
+          	    data: {
+          	      exchange: exchangeVal,
+          	      oNo: item.oNo,
+          	      dState: item.dState
+          	    },
+          	    success: function(data) {
+          	      alert("주문 상태가 업데이트 되었습니다.");
+          	      self.fnGetList();
+          	    }
+          	  }); 
+          },
+          updateState2 : function(item) { // 새로운 함수
+        	var self = this;
+          	$.ajax({
+          	    url: "/delivery/updateOrder2.dox",
+          	    dataType: "json",
+          	    type: "POST",
+          	    data: {
+          	      oNo: item.oNo,
+          	      dState: item.dState
+          	    },
+          	    success: function(data) {
+          	      alert("주문 상태가 업데이트 되었습니다.");
+          	      self.fnGetList();
+          	    }
+          	  }); 
+           },
         fnProductPopup : function(item){
         	 window.open("../delivery/view.do?oNo=" + item.oNo, "productPopup", "width=1250,height=800,left=500,top=100");
-        	
         }
 	}, // methods
 	created : function() {

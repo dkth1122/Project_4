@@ -9,9 +9,62 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>주소수정</title>
   <style type="text/css">
-
+  	#adrbut{
+  		width: 150px;
+  		height: 40px;
+  		border-radius: 10px;
+  		margin: 0px auto;
+  		background-color: #697BC9;
+  		font-size: 0.8em;
+  		color: #fff;
+  		border-color: #ddd;
+  		
+  	}
+  	#adrbutdiv{
+  		text-align: right;
+  		width: 900px;
+  	}
+	.l{
+  		margin-bottom: 30px;
+  	}
+  	.warningm{
+  		width: 930px;
+   		line-height: 80px;
+   		color : rgb(73, 73, 73);
+  	}
+  	#warningImg{
+  		margin-right: 20px;
+  		
+  	}
+  	table input{
+  		width: 300px;
+  		height: 50px;
+  		border-width: 0 0 1px;
+  		outline: none;  		
+  	}
+  	#pp{
+  	width: 900px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  	}
+  	#pp > button {
+		margin: 0px 10px;
+		width: 100px;
+		height: 40px;
+		border-radius: 40px;
+		
+	}
+	#bbut{
+		background-color: #fff;
+	}
+	#edut{
+		background-color:  rgb(47, 47, 145);
+		color: #fff;
+	}
   </style>
 </head>
 <body>
@@ -80,7 +133,7 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/infoUpdate.do">회원 정보 수정</a></li>
-                                       <li><a href="/mypag/addAddr.do">배송주소록</a></li>                           
+                                       <li><a href="/mypag/infoAddr.do">배송주소록</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
@@ -101,27 +154,53 @@
                                </div>
                            
                            <div id="right">
-                           <div class="View">
+                           <div class="View">                           
                               <div class="lowerBox"> 배송 주소록 관리 </div>
-                               	<div v-for ="item in list" v-if="item.duNo == duNo">
-                              	  <div>· 배송지명 <span><input v-model="item.uDname"></span> </div>
-		                          <div>· 휴대전화 <span><input v-model="item.uDphone"></span> </div>
-		                          <div v-if="user.addr == ''">· 주소 : <input v-model="item.uDaddr" disabled/></div> 
-		                          <div v-if="user.addrDetail == ''">· 상세주소 : <input v-model="item.uDaddrDetail" disabled/></div>
-		                          <div v-if="user.zipNo == ''">· 우편주소 : <input v-model="item.zipNo" disabled/></div>		                          		
-								 		<div v-if="user.addr != ''" ><label>· 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
-										<div v-if="user.addrDetail != ''"><label>· 상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
-										<div v-if="user.zipNo != ''"><label>· 우편번호 : <input  style="width : 300px;" type="text" v-model="user.zipNo"></label></div>
-							   	  
-							   	  <button @click="fnSearchAddr">주소 검색</button>
-							   	  <div><button @click="back">취소</button> 
-							   	  <div><button @click="fnEdit()">수정</button></div>
-							   	</div>							  
-                              <div class="lowerBox"> 배송 주소록 유의사항 </div>
-                              <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
-                        
-                        		</div>
+                              <table v-for="item in list">
+                               	<tr>
+                              		<th><label for="a1">· 배송지명</label></th>
+                              		<td><input id="a1" v-model="item.uDname"></td>                      		
+                              	</tr>
+                              	<tr>
+                              		<th><label for="b">· 휴대전화</label></th>
+                              		<td><input id="b" v-model="item.uDphone"></td>                      		
+                              	</tr>
+                              	<tr v-if="list[0].addr == ''">
+                              		<th><label for="c" for="">· 주소</label></th>
+                              		<td> <input id="c" v-model="item.uDaddr" disabled/></td>                      		
+                              	</tr>
+                              	<tr v-if="list[0].addrDetail == ''">
+                              		<th><label for="b" for="">· 상세주소</label></th>
+                              		<td><input id="b" v-model="item.uDaddrDetail" disabled/></td>                      		
+                              	</tr>
+                              	<tr v-if="list[0].zipNo == ''">
+                              		<th><label for="d" for="">· 우편주소</label></th>
+                              		<td><input id="d" v-model="item.zipNo" disabled/></td>                      		
+                              	</tr>
+			                 		   	<tr v-if="user.addr != ''"  >
+			                              		<th><label for="e" for="">· 주소</label></th>
+			                              		<td><input id="e" disabled style="width : 300px;" type="text" v-model="user.addr"></td>                      		
+			                              	</tr>
+			                              	<tr v-if="user.addrDetail != ''">
+			                              		<th><label for="f" for="">· 상세주소</label></th>
+			                              		<td><input id="f"  style="width : 300px;" type="text" v-model="user.addrDetail"></td>                      		
+			                              	</tr>
+			                              	<tr v-if="user.zipNo != ''">
+			                              		<th><label for="g" for="">· 우편주소</label></th>
+			                              		<td><input id="g" style="width : 300px;" type="text" v-model="user.zipNo"></td>                      		
+			                              	</tr>
                    
+                              	
+                              </table>
+                            
+							   	 <div id="adrbutdiv"><button id="adrbut" @click="fnSearchAddr">주소 검색</button></div>
+							   	  <div id="pp"><button id="bbut" @click="infoAddr">취소</button>
+							   	  <button id="edut" @click="fnEdit">수정</button></div>
+							 					  
+                              <div class="lowerBox l"> 배송 주소록 유의사항 </div>
+                              <div class="warningm"> 
+                               <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
+                        		</div>                   
                  		   </div>
              
            			</div>
@@ -150,7 +229,8 @@ var app = new Vue({
        list : [],
        info :{},
        uId : "${sessionId}",
-       duNo : "${map.duNo}"
+       duNo : "${map.duNo}",
+       order : "",
        
     },
     methods: {
@@ -214,27 +294,6 @@ var app = new Vue({
  	    	var self = this;
  	    	$.pageChange("infoAddr.do", {uId : self.uId});
  	    },
- 	   infoUpdate : function(){
-	    	var self = this;
-	    	$.pageChange("infoUpdate.do", {uId : self.uId});
-	    },
- 	   myInquiry : function(){
-	    	var self = this;
-	    	$.pageChange("myInquiry.do", {uId : self.uId});
-	    },
-	    /* 이용안내 */
-	    useGuide : function(){
-	    	var self = this;
-	    	$.pageChange("useGuide.do", {uId : self.uId});
-	    },
-	    noticeList : function(){
-	    	var self = this;
-	    	$.pageChange("noticeList.do", {uId : self.uId});
-	    },
-	    faq : function(){
-	    	var self = this;
-	    	$.pageChange("faq.do", {uId : self.uId});
-	    }
     },
     created: function() {
       var self = this;

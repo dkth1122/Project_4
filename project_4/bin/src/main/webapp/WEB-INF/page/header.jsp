@@ -155,38 +155,40 @@ header #container1 {
 
 				<ul class="menu">
 				
-					<li><a href="artistpage.do">ARTIST</a>
+					<li>ARTIST
 						<ul class="depths">
-							<li><a href="#">BTS</a></li>
-							<li><a href="#">LE SSERAFIM</a></li>
-							<li><a href="#">SEVENTEEN</a></li>
-							<li><a href="#">fromis_9</a></li>
-							<li><a href="#">TXT</a></li>
-							<li><a href="#">NewJeans</a></li>
-							<li><a href="#">ENHYPEN</a></li>
-							<li><a href="#">BOYNEXTDOOR</a></li>
-							<li><a href="#">ZICO</a></li>
+							<li><a href="/product/BTS.do">BTS</a></li>
+							<li><a href="/product/LSF.do">LE SSERAFIM</a></li>
+							<li><a href="/product/SVT.do">SEVENTEEN</a></li>
+							<li><a href="/product/FMN.do">fromis_9</a></li>
+							<li><a href="/product/TXT.do">TXT</a></li>
+							<li><a href="/product/NJS.do">NewJeans</a></li>
+							<li><a href="/product/EHP.do">ENHYPEN</a></li>
+							<li><a href="/product/BND.do">BOYNEXTDOOR</a></li>
+							<li><a href="/product/ZIC.do">ZICO</a></li>
 						</ul>
 					</li>
 						
 						
-					<li><a href="productpage.do">PRODUCT</a>
+					<li>PRODUCT
 						<ul class="depths">
-							<li><a href="#">MEMBERSHIP</a></li>
-							<li><a href="#">ALBUM</a></li>
-							<li><a href="#">MERCHANDISE</a></li>
-							<li><a href="#">DVD</a></li>
-							<li><a href="#">PHOTO BOOK</a></li>
+							<li><a href="/product/membership.do">MEMBERSHIP</a></li>
+							<li><a href="/product/album.do">ALBUM</a></li>
+							<li><a href="/product/merch.do">MERCHANDISE</a></li>
+							<li><a href="/product/dvd.do">DVD</a></li>
+							<li><a href="/product/photoBook.do">PHOTO BOOK</a></li>
 						</ul>
 					</li>
 						
 						
-					<li><a href="#">EVENT</a>
+					<li>
+					<a href="/event/eventpage.do" onclick="window.open(this.href, 'event', 'width=850,height=1000,top=200,left=500'); return false;">EVENT</a>
 						<ul class="depths">
 						</ul>
 					</li>
 
-					<li><a href="/mypag/noticeList.do">NOTIFY</a>
+					<li><a href="/mypag/noticeList.do" onclick="window.open(this.href, 'notice', 'width=1000,height=1000,top=200,left=500'); return false;">NOTIFY</a>
+
 						<ul class="depths">
 						</ul>
 					</li>	

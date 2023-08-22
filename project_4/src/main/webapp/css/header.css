@@ -124,7 +124,7 @@ nav .menu .depths li:hover a {
 }
 #logo{
 margin-left : 50px;
-	width: 300px;
+	width: 213px;
 	height: auto;
 	top: -10px;
 	z-index:1;
@@ -136,4 +136,29 @@ margin-left : 50px;
 #headiner{
 width: 100%; 
 margin: 0 auto;
+}
+ .nonMember{
+  margin: 0px 10px;
+  }
+  .login_loginout{  
+  	color : #8a8a8a;
+  	text-align: right;
+  }
+  #login{
+  margin-top :15px;
+
+  }
+  #header.fixed{
+  position: fixed; 
+  left: 50%;
+  width: 100%;
+  z-index: 1;
+  transform: translateX(-50%);
+  transition: top 1s ease;
+  background-color: rgba(255, 255, 255);
+  }
+
+#header{
+	margin-bottom: 20px;
+	width: 100%;
 }

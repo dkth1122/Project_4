@@ -19,6 +19,7 @@
     	</if> 
     	LIMIT #{startNum}, #{lastNum}
 	</select>
+	
 	<!-- 상품페이지 출력 -->
 	<select id="selectVProductList" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT * FROM T4_PRODUCT
@@ -94,6 +95,7 @@
       SELECT *
       FROM T4_WISH W
       LEFT JOIN T4_PRODUCT P ON W.P_NO = P.P_NO
+      LEFT JOIN T4_PRODUCT_IMG P2 ON P.P_NO = P2.P_NO
       WHERE U_ID = #{uId}
    </select>
    
@@ -124,5 +126,99 @@
 		INSERT INTO T4_DELIVERY (BUY_NO, O_NO, U_ID, D_STATE)
 		VALUES (#{buyNo}, #{oNo}, #{uId}, '업체확인중')
    </insert>
+   
+   
+   <!-- 아티스트별 상품 페이지 구현 -->
+		<!-- 상품출력 -->
+	<select id="selectProductMain" parameterType="hashmap" resultType="com.example.project.model.Product">
+	    SELECT * FROM T4_PRODUCT P
+	    LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+	    WHERE 1=1
+	        AND ARTIST = #{artist}
+	    <if test="ctg != null and ctg != ''" >
+	        AND CATEGORY = #{ctg}
+	    </if>
+	    <choose>
+	        <when test="selectedOption == 'nameList'">
+	            ORDER BY P_NAME ASC
+	        </when>
+	        <when test="selectedOption == 'minPrice'">
+	            ORDER BY PRICE ASC
+	        </when>
+	        <when test="selectedOption == 'maxPrice'">
+	            ORDER BY PRICE DESC
+	        </when>
+	        <otherwise>
+	        </otherwise>
+	    </choose>
+	    <!-- AND CLASS = 'Y' 추후 더미데이터 추가 후 활성화 예정 -->
+	    LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 페이징용 갯수 -->
+	<select id="selectMainCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_PRODUCT
+		WHERE ARTIST = #{artist}
+	</select>
+	
+	 <!-- 제품별 상품 페이지 구현 -->
+		<!-- 상품출력 -->
+	<select id="selectProductALL" parameterType="hashmap" resultType="com.example.project.model.Product">
+	    SELECT * FROM T4_PRODUCT P
+	    LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+	    WHERE 1=1
+	        AND CATEGORY = #{ctg}
+	    <if test="artist != null and artist != ''" >
+	        AND ARTIST = #{artist}
+	    </if>
+	    <choose>
+	        <when test="selectedOption == 'nameList'">
+	            ORDER BY P_NAME ASC
+	        </when>
+	        <when test="selectedOption == 'minPrice'">
+	            ORDER BY PRICE ASC
+	        </when>
+	        <when test="selectedOption == 'maxPrice'">
+	            ORDER BY PRICE DESC
+	        </when>
+	        <otherwise>
+	        </otherwise>
+	    </choose>
+	    <!-- AND CLASS = 'Y' 추후 더미데이터 추가 후 활성화 예정 -->
+	    LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<!-- 페이징용 갯수 -->
+	<select id="selectProductCnt" resultType="int">
+		SELECT COUNT(*) FROM T4_PRODUCT
+		WHERE ARTIST = #{artist}
+	</select>
+	<!-- 위시리스트출력 -->
+	<insert id="insertWish" parameterType="hashmap">	   	    
+	   INSERT INTO T4_WISH (U_ID, P_NO, CLASS)
+	   VALUES (#{uId}, #{pNo}, "W")	    
+	</insert>
+	<!-- 위시리스트 중복방지 -->
+	<select id="searchWish" resultType="int">
+	    SELECT COUNT(*) FROM T4_WISH WHERE U_ID = #{uId} AND P_NO = #{pNo}
+	</select>
+	
+	<!-- 상품전체출력 -->
+	<select parameterType="hashmap" id="searchProductNewList" resultType="com.example.project.model.Product">
+		SELECT * FROM T4_PRODUCTORDER BY P_DATE ASC 
+	</select>
+	
+	<!-- 주문내역상세 출력 -->
+	<select id="selectOrderpuduct" parameterType="hashmap" resultType="com.example.project.model.Product">		
+	    SELECT *
+      	FROM T4_ORDER O
+	      INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO	
+	      INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+	      LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+	      INNER JOIN T4_USER U ON O.U_ID = U.U_ID
+	      LEFT JOIN T4_DELIVERY_USER D2 ON D2.U_ID = U.U_ID 
+	      WHERE O.U_ID = #{uId} AND O.BUY_NO = #{buyNo}
+	      GROUP BY O.O_NO
+	</select>
 	
 </mapper>

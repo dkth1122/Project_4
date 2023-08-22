@@ -13,12 +13,73 @@
  <meta charset="EUC-KR">
 
   <style type="text/css">
+  	  	.warningm{
+  		width: 930px;
+   		line-height: 80px;
+   		color : rgb(73, 73, 73);
+  	}
+  	  	#warningImg{
+  		margin-right: 20px;
+  		
+  	}
+  	.l{
+  		margin-bottom: 20px;
+  	}
+  	table {
+		widows: 900px;
+	}
+	table th,td {
+		text-align :left;
+		padding: 0px;
+		height: 70px;
+		border-bottom: 1px sole #ddd;
+		
+		
+	}
+	table th {
+
+	}
+	table td {
+		
+		width: 500px;
+	}
+	td > button{
+		width: 100px;
+		height: 30px;
+		border-radius: 50px;
+		background-color: #fff;
+		border-color: rgba(0, 0, 0, 0.4);
+		border-style :solid;
+		margin-left: 30px;
+		
+	}
+	input{
+	margin-left : 40px;
+	padding : 10px 0px;
+	width : 100%;
+	border-width: 0px 0px 1px;
+	outline: none;
+	font-size: 1.1em;
+	}
+	.editbutt{
+		display: flex;
+		justify-content: space-around;
+	}
+	.editbutt  > button{
+			width: 100px;
+		height: 50px;
+		border-radius: 50px;
+		background-color: rgb(47, 47, 145);
+		border-color: rgba(0, 0, 0, 0.2);
+		border-style :solid;
+		color: #fff;
+		font-size: 0.6em;
+	}
 
   </style>
 </head>
 <body>
 <div id="app">
-	<h1>배송주소록등록</h1>
            <div id="container">
            
                    <div id="top">
@@ -34,23 +95,28 @@
                       </div>                    
                       <div class="topBox">                      
                          <div class="details" >
-                         <div>Order</div>
-			             <label><a href="/mypag/myPagOrderdetails.do">                            
-			               <div>{{order}}</div>
-                          </a></label>
+                         			<div>Order</div>
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
+                          			</a></label>
                          </div>
                          
                          <div class="details" >
                          
-                            <div>Refund</div>
-                            <div>
-                               <span>0/</span><span>0/</span><span>0</span>
-                            </div>
+                          			<div>교환/환불</div>
+									<div>
+										<span v-if="refund != 0">{{refund}} /</span>
+										<span v-else>0 /</span>
+										
+										<span v-if="exchange != 0"> {{exchange}}</span>
+										<span v-else>0</span>
+									</div>
                             
                          </div>
                          <div class="details" >
                             <div>포인트</div>
-                            <div>{{info.uPoint}} P</div>
+                            <div>{{info.maxpoint}} P</div>
                          </div>
                          <div class="details" >
                             <div>Jelly</div>
@@ -82,7 +148,7 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/infoUpdate.do">회원 정보 수정</a></li>
-                                       <li><a href="/mypag/addAddr.do">배송주소록</a></li>                           
+                                       <li><a href="/mypag/infoAddr.do">배송주소록</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
@@ -104,19 +170,36 @@
                            
                            <div id="right">
                            <div class="View">
-                              <div class="lowerBox"> 배송 주소록 관리 </div>                               
-                              	  <div>· 배송지명 <span><input v-model="user.uDname"></span> </div>
-		                          <div>· 휴대전화 <span><input v-model="user.uDphone"></span> </div>		                        		                          	
-								 		<div><label>· 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label>
-								 			<button @click="fnSearchAddr">주소 검색</button> 
-								 		</div>
-										<div><label>· 상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
-										<div v-if="user.zipNo != ''"><label>· 우편번호 : <input  style="width : 300px;" type="text" v-model="user.zipNo"></label></div>							   	  							   	  
-							   	  <div><button @click="addAddr">등록하기</button></div>
+                              <div class="lowerBox l"> 배송 주소록 관리 </div> 
+                              <table>                              
+                              	<tr>
+                              		<th><label for="a">· 배송지명</label></th>
+                              		<td><input id="a" v-model="user.uDname"></td>
+                              	</tr>
+                              	<tr>
+                              		<th><label for="b">· 휴대전화</label></th>
+                              		<td><input id="b" v-model="user.uDphone"></td>
+                              	</tr>
+                              	<tr>
+                              		<th><label for="c">· 주소 </label></th>
+                              		<td><input id="c" disabled style="width : 300px;" type="text" v-model="user.addr"> <button @click="fnSearchAddr">주소 검색</button></td>
+                              	</tr>
+                              	<tr>
+                              		<th><label for="d">· 상세 주소</label></th>
+                              		<td><input id="d"  style="width : 300px;" type="text" v-model="user.addrDetail"></td>
+                              	</tr>
+                              	<tr>
+                              		<th><label for="e">· 우편번호 </label></th>
+                              		<td><input id="e" style="width : 300px;" type="text" v-model="user.zipNo"></td>
+                              	</tr>
+                              	
+                              </table>
+                                                            
+							   	  <div class="editbutt"><button  @click="addAddr">등록하기</button></div>
 							   	</div>							  
                               <div class="lowerBox"> 배송 주소록 유의사항 </div>
-                              <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
-                        
+                              <div class="warningm"> 
+                               <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
                         		</div>
                    
                  		   </div>
@@ -126,6 +209,7 @@
 			</div>
 		</div>
 </div>
+
 </body>
 </html>
 <script>
@@ -147,7 +231,8 @@ var app = new Vue({
        list : [],
        info :{},
        uId : "${sessionId}",
-       duNo : "${map.duNo}"
+       duNo : "${map.duNo}",
+       maxpoint : undefined, // 사용가능 포인트
        
     },
     methods: {
@@ -197,12 +282,32 @@ var app = new Vue({
     		console.log(addrDetail);
     		console.log(engAddr);
     	},
+    	fnPoint : function(){ // 포인트 내역 확인
+	        var self = this;
+	        var nparmap = {uId : self.uId};
+	        $.ajax({
+	            url : "/pointList.dox",
+	            dataType:"json",	
+	            type : "POST", 
+	            data : nparmap,
+	            success : function(data) { 	
+	            	self.usepointList = data.list;
+	            	var x = 0;
+	            	var datalist = data.list;
+	            	for(var i=0; i<datalist.length; i++){
+	            		x += datalist[i].point;	
+	            	}
+	            	self.maxpoint = x; // 사용가능 포인트 
+	            
+	            }
+	        }); 
+	    },
 
     },
     created: function() {
       var self = this;
       self.fnGetList();
-      // Vue.js ì½ë ìì± ê°ë¥
+ 	  self.fnPoint();
     }
 });
 </script>

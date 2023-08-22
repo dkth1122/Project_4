@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -12,39 +11,20 @@
 	widows: 100%
 }
 #container{
-  text-align: center; 
+  	text-align: center; 
 	width: auto;
 	height: 1200px;
-	
 }
+
 img.topimg{
-margin-top:50px; 
-    vertical-align: middle;
-	width:auto;
+	display: block; 
+	margin: 0px auto;
 	height: 800px;
-
-}
- nav{
-	widows: 1800px;
-	height: 1500px;
-	margin-bottom: 50px;
-
-}
-nav1{
-	widows: 1800px;
-	height: 800px;
-	margin-bottom: 50px;
-
-}
-
-nav2{
-widows: 1800px;
-	height: 1800px;
-	margin-bottom: 50px;
+	 z-index: 9999;
 }
 
 .sect2 {
-margin :  0px auto;
+	margin :  0px auto;
 	width: 1800px;
 	height: 1500px;
 	background: #f0f0f0;
@@ -55,7 +35,7 @@ margin :  0px auto;
 	height: 102px;
 	padding: 56px 0 56px 0;
 	box-sizing: border-box;
-}
+
 
 .sect2 div {
 	width: 307px;
@@ -169,19 +149,18 @@ margin :  0px auto;
 	box-sizing: border-box;
 }
 .sect3 ul.sale {
-    display: flex; /* °¡·Î ¹èÄ¡¸¦ À§ÇØ Flexbox »ç¿ë */
+    display: flex; /* å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì¹˜å ì™ì˜™ å ì™ì˜™å ì™ì˜™ Flexbox å ì™ì˜™å ï¿½ */
     
-    padding: 100px; /* ±âº» ÆĞµù Á¦°Å */
+    padding: 100px; /* å ì©ë³¸ å ì‹»ë“¸ì˜™ å ì™ì˜™å ì™ì˜™ */
 }
 
 .sect3 ul.sale li {
-    flex: 1; /* ¿ä¼ÒµéÀÇ °¡·Î °ø°£À» ±ÕµîÇÏ°Ô ³ª´® */
-    list-style: none; /* ±âº» ¸®½ºÆ® ½ºÅ¸ÀÏ Á¦°Å */
-    margin: 50px; /* ±âº» ¸¶Áø Á¦°Å */
-    padding: 10px; /* ³»ºÎ ¿©¹é ¼³Á¤ */
-    box-sizing: border-box; /* ÆĞµù°ú Å×µÎ¸®¸¦ ¿ä¼Ò Å©±â¿¡ Æ÷ÇÔ */
+    flex: 1; /* å ì™ì˜™æ’šå ì™ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒŒë“¸ì˜™å ì‹¹ê³¤ì˜™ å ì™ì˜™å ì™ì˜™ */
+    list-style: none; /* å ì©ë³¸ å ì™ì˜™å ì™ì˜™íŠ¸ å ì™ì˜™íƒ€å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+    margin: 50px; /* å ì©ë³¸ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+    padding: 10px; /* å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+    box-sizing: border-box; /* å ì‹»ë“¸ì˜™å ì™ì˜™ å ìŒ“ë‘ëªŒì˜™å ì™ì˜™ å ì™ì˜™å ï¿½ í¬å ì©ì— å ì™ì˜™å ì™ì˜™ */
 }
-
 
 </style>
 <!-- Start HEAD section -->
@@ -190,158 +169,48 @@ margin :  0px auto;
 <!-- End HEAD section -->
 </head>
 
+
 <body>
 
 	<div id="app">
-
-		<div id="container">
-		
-
 			<nav id="slid">
+				
 				<div class="slideshow-container">
-				
-				<div class="mySlides fade">
-				  <div class="numbertext">1 / 3</div>
-				  <img class="topimg" src="img/homeimg/boynext.jpg" >
-				  
+					<div class="mySlides fade">
+				  	<div class="numbertext">1 / 3</div>
+				  	<img class="topimg" src="img/homeimg/boynext.jpg" href="www.naver.com" >
 				</div>
 				
 				<div class="mySlides fade">
-				  <div class="numbertext">2 / 3</div>
-				  <img class="topimg" src="img/homeimg/seventeen_main.jpg" >
-				  
-
+					<div class="numbertext">2 / 3</div>
+				 	<img class="topimg" src="img/homeimg/seventeen_main.jpg" >
 				</div>
-				
+							
 				<div class="mySlides fade">
-				  <div class="numbertext">3 / 3</div>
-				  <img class="topimg" src="img/homeimg/promiss_main.jpg">
-			
-				</div>
-				
-				</div>
+					<div class="numbertext">3 / 3</div>
+					<img class="topimg" src="img/homeimg/promiss_main.jpg">
+			 	</div>
+			 	
 				<br>
 				
 				<div style="text-align:center">
-				  <span class="dot"></span> 
-				  <span class="dot"></span> 
-				  <span class="dot"></span> 
+					<span class="dot"></span> 
+					<span class="dot"></span> 
+					<span class="dot"></span> 
 				</div>
 				
 			</nav>
-			<nav id="nav2">
-						<section class="sect2">
-			<h2><a href="newitem.do">NEW ITEM</a></h2>
-			<div class="Sbox1">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">¾ÆÆ¼½ºÆ®</li>
-					<li>Á¦Ç° ¸í</li>
-					<li>°¡°İ</li>
-				</ul>
 			</div>
-
-
-			<div class="Sbox2">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">¾ÆÆ¼½ºÆ®</li>
-					<li>Á¦Ç° ¸í</li>
-					<li>°¡°İ</li>
-				</ul>
-			</div>
-
-			<div class="Sbox3">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">¾ÆÆ¼½ºÆ®</li>
-					<li>Á¦Ç° ¸í</li>
-					<li>°¡°İ</li>
-				</ul>
-			</div>
-
-			<div class="Sbox4">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">¾ÆÆ¼½ºÆ®</li>
-					<li>Á¦Ç° ¸í</li>
-					<li>°¡°İ</li>
-				</ul>
-			</div>
-			
-
-
-		</section>
-</nav>
-		<nav id="nav3">
-			<section class="sect3">
-			<h2>STORE</h2>
-			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ½ºÅä¾î!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
-			<ul class="sale">
-				<li><a href="#"><img src="img/homeimg/sale1.jpg" alt="" />
-						<p>
-							¾ÆÀÌÅÛ1 - ÀÌ¸§<br>8,000¿ø</a></li>
-				<li><a href="#"><img src="img/homeimg/sale2.jpg" alt="" />
-						<p>
-							¾ÆÀÌÅÛ2 - ÀÌ¸§<br>8,000¿ø
-						</p></a></li>
-				<li><a href="#"><img src="img/homeimg/sale3.jpg" alt="" />
-						<p>
-							¾ÆÀÌÅÛ3 - ÀÌ¸§<br>7,000¿ø
-						</p></a></li>
-				<li><a href="#"><img src="img/homeimg/sale4.jpg" alt="" />
-						<p>
-							¾ÆÀÌÅÛ4 - ÀÌ¸§<br>5,500¿ø</a></li>
-			</ul>
-
-		</section>
-		
-<nav>
-</nav>
-
-			<nav>
-		
-	<footer> <p>
-				<br> È¸»ç¸í (ÁÖ)VeryPeri Corp. ´ëÇ¥ÀÚ¸í À±³ª¿¬
-				 <br>ÁÖ¼Ò ÀÎÃµ±¤¿ª½Ã ºÎÆò±¸ ºÎÆòµ¿ 534-48 7Ãş
-				 ´ëÇ¥¹øÈ£ 4444-4444 / 4zomotchamchi@veryperi.com 
-				<br> VeriPeriÀÇ ¸ğµç ÄÜÅÙÃ÷´Â ÀúÀÛ±ÇÀÇ º¸È£¸¦ ¹Ş°í ÀÖ½À´Ï´Ù
-			</p>
-			<img src="img/homeimg/footerlogo.png" alt="" /></footer>
-	
-			
-			</nav>
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-	</div>
+				
+<footer> 
+	<p>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ëª…ï¿½ï¿½ ï¿½ï¿½è«›ï¿½</p>
+</footer>
 	
 	
 </body>
 </html>
+
+
 <script>
 var app = new Vue({
 	el : '#app',
@@ -380,7 +249,7 @@ function showSlides() {
     slides[slideIndex-1].style.display = "block";  
     dots[slideIndex-1].className += " active";
     
-    var bgColor = colors[slideIndex % colors.length]; // ¹è¿­ÀÇ ÀÎµ¦½º·Î ¹è°æ»ö ¼±ÅÃ
+    var bgColor = colors[slideIndex % colors.length]; // å ì¼ì—´å ì™ì˜™ å ì‹¸ë“¸ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
     container.style.backgroundColor = bgColor;
     
     setTimeout(showSlides, 2000); // Change image every 2 seconds

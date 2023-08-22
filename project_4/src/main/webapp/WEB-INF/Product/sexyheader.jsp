@@ -61,12 +61,11 @@ nav {
 nav{ width:100%; height:135px;position:relative; z-index:9999;}
 
 		.navWrap {
-      width: 100%;
-      height: 180px;
-      overflow: hidden;
-      transition: all 0.6s;
-      position: relative;
-	  z-index: 1;
+    width: 100%;
+    height: 157px;
+    overflow: hidden;
+    transition: all 0.6s;
+    position: relative;
     }
 		.navWrap:hover {
       height:650px; /* ȭ���� ��ü ���̷� Ȯ�� */
@@ -139,11 +138,13 @@ nav .menu .depths li:hover a {
  margin: 0xp;
 }
 #logo{
-margin-left : 400px;
-	width: 100px;
-	height: auto;
-	margin-top:45px;
-	z-index:1;
+    margin-left: 50px;
+    width: 205px;
+    height: auto;
+    top: 21px;
+    z-index: 1;
+
+	
 }
 .mene{
 	text-align: center;

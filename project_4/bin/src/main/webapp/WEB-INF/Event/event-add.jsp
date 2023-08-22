@@ -32,6 +32,7 @@
 		<option value="ZIC">지코</option>
 	</select>
 	</div>
+	<div><input type="text" placeholder="이벤트 상품 코드" v-model="info.pNo"></div>
 	
 	<div><button @click="fnEventAdd(info)">이벤트 추가</button></div>
 
@@ -46,7 +47,8 @@ var app = new Vue({
 		info : {
 			evtNo : "",
 			evtName : "",
-			artist : ""
+			artist : "",
+			pNo : ""
 		}
 	},// data
 	methods : {
@@ -64,6 +66,10 @@ var app = new Vue({
 			    }
 			  if(self.info.artist == "" || self.info.artist == undefined){
 					alert("아티스트를 선택해주세요");
+					return;
+				}
+			  if(self.info.pNo == "" || self.info.pNo == undefined){
+					alert("상품 코드를 입력 해주세요");
 					return;
 				}
 			  $.ajax({

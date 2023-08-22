@@ -15,18 +15,18 @@
                
            }
         #app{
-               width: 1000px;
+               width: 80%;
                margin: 0px auto;
                text-align: center;
+               float: left;
+               margin-left: 20px;
 
            }
        .mainBox{
-     		   width : 1000px;
+     		   width : 1200px;
      		   height : 550px;
-               position: relative;
-               top : -550px;
-               left: 200px;
                text-align: center;
+        	   margin-left: 50px;
            }
        table{
            border : 1px solid black;
@@ -57,15 +57,15 @@
            display : inline;
        }
        .pagination li:hover {
-           background: #E4DBD6;
+           background: #e2d6e4;
        }
        .page-item a {
            color:#666;
            text-decoration: none;
        }
        .pagination li.active {
-           background-color : #E7AA8D;
-           color:#fff;
+           background-color : #bb76c4;
+           color:white;
        }
        .pagination li.active a {
            color:#fff;
@@ -76,31 +76,26 @@
         margin-left: 20px;
        }
        hr{
-        	width: 800px;
-        	margin-top : -50px;
-        	margin-bottom: 20px;
+        	width: 1000px;
         }
         .mainPos2{
-        	position: relative;
-        	top : -55px;
-        	left: 350px;
         	color: white;
-        }
-        .mainInput {
-        	margin-bottom: 10px;
-        	position: relative;
-        	left: 250px;
         }
  </style>
 </head>
 <body>
 <%@ include file="../Staff/staff-header.jsp" %>
 <%@ include file="../Staff/staff-left.jsp" %>
+
 <div id="app">
+	<div class="mainBox">
+	
+	<div class="mainPos2">이벤트 관리</div>
+<hr>	
 	<table>
 		<tr>
-			<th>이벤트코드</th>
 			<th>이벤트명</th>
+			<th>이벤트코드</th>
 			<th>아티스트</th>
 			<th>활성상태</th>
 		</tr>
@@ -118,6 +113,7 @@
 		</tr>
 	
 	</table>
+	
 	<template>
 	  <paginate
 	    :page-count="pageCount"
@@ -129,10 +125,10 @@
 	    :container-class="'pagination'"
 	    :page-class="'page-item'">
 	  </paginate>
+	  
 	</template>
 	
-	<div><button @click="fnEventAdd">이벤트 등록</button></div>
-	<div><button @click="fnBack">되돌아가기</button></div>
+		<div><button @click="fnEventAdd">이벤트 등록</button></div>
 	
 </div>
 </body>

@@ -9,7 +9,53 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
   <title>마이페이지</title>
+<style type="text/css">
+	#table th {
+	width : 300px;
+		padding: 30px;
+		border-bottom: 1px solid #e3e3e3; 
+	}
+	#table td {
+		width : 360px;
+		padding: 30px;
+		border-bottom: 1px solid #e3e3e3; 
+	}
+#table{
+	width: 1000px;
+	border-collapse : collapse
+}
+.pointp{
+	text-align: left;
+}
+.num{
+	text-align: right;
+}
+.View{
+	height: 309px;
+}
+.pointable{
+	width: 1000px;
+	text-align: center;
+	border-collapse : collapse;
+}
+.pointable td {	
+	height: 40px;
+	padding: 10px;
+	border-bottom: 1px solid #e3e3e3; 
+}
+.pointable th {
+	border-bottom: 1px solid #e3e3e3; 
+	height: 60px;
+	padding: 10px 0px;
+}
+.potd{
+	text-align: left;
+}
+.ab{
+	margin: 0px;
+}
 
+</style>
 </head>
 <body>
 <div id="app">
@@ -22,7 +68,7 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 <a @click="fnVuwmain" href="#"><div id="profileImg"></div></a>
+					    	 	 <a href="/mypag/main.do"><div id="profileImg"></div></a>
 					    	</div >
 					    	<div class="topBox">
 					    	<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -33,9 +79,10 @@
 					    		<div class="details" >
 					    		
 					    		 		<div>Order</div>
-				                        <label><a href="/mypag/myPagOrderdetails.do">                            
-				                        <div>{{order}}</div>
-	                          			</a></label>
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
+                          			</a></label>
 						    				
 					    		</div>
 					    		
@@ -43,8 +90,12 @@
 					    		
 					    			<div>교환/환불</div>
 					    			<div>
-					    				<span>{{refund}} /</span><span> {{exchange}}</span>
-					    			</div>
+										<span v-if="refund != 0">{{refund}} /</span>
+										<span v-else>0 /</span>
+										
+										<span v-if="exchange != 0"> {{exchange}}</span>
+										<span v-else>0</span>
+									</div>
 					    			
 					    		</div>
 					    		<div class="details" >
@@ -81,7 +132,7 @@
 			                                 <li>
 			                                    <ul>
 			                                       <li><a href="/mypag/infoUpdate.do">회원 정보 수정</a></li>
-			                                       <li><a href="/mypag/addAddr.do">배송주소록</a></li>                           
+			                                       <li><a href="/mypag/infoAddr.do">배송주소록</a></li>                           
 			                                    </ul>   
 			                                 </li>  
 			                              </ul>
@@ -102,10 +153,51 @@
 							      	 </div>
 							      
 					<div id="right">
-					
-							      <div class="View">
-							    
+								<div class="categories ab"> 포인트</div>
+							     <div class="View">
+									<table id="table">
+										<tr>
+											<th rowspan="3">
+												사용가능 적립금
+												<h1>{{maxpoint}} P</h1>
+											
+											</th>
+											<td class="pointp">총 적립금</td>
+											<td class="num">{{numpoint + maxpoint}}P</td>
+											
+										</tr>
+										<tr>											
+											<td class="pointp">사용된 적립금</td>
+											<td class="num">{{numpoint}}P</td>
+										</tr>
+										<tr>											
+											<td class="pointp">환불 예정 적립금</td>
+											<td class="num">{{repoint}}P</td>
+										</tr>
+										
+									</table>
 							     </div> 
+							     	<div class="categories ab">적립금 내역</div>
+							     	 <div class="View">
+							     	 	<table class="pointable">
+							     	 		<tr>
+							     	 			<th>주문날짜</th>
+							     	 			<th>관련주문</th>
+							     	 			<th>적립금</th>
+							     	 										     	 		
+							     	 		</tr>
+							     	 		
+							     	 		<tr v-for="item in usepointList">
+							     	 			<td>{{item.podata}}</td>
+							     	 			<td class="potd">{{item.pName}}</td>
+							     	 			<td>{{item.point}}</td>
+							     	 			
+							     	 		</tr>
+							     	 		
+							     	 	</table>
+							     	 </div>
+							     	
+							     	
 							     
 					</div>
 					    
@@ -126,7 +218,10 @@ var app = new Vue({
     	order  : "",
     	exchange : "",
     	refund : "",
-    	list : []
+    	usepointList : [],
+    	maxpoint : undefined,
+    	numpoint : undefined,
+    	repoint : undefined,
     },
     methods: {
     	fnGetList : function(){
@@ -168,7 +263,7 @@ var app = new Vue({
 	            }
 	        }); 
 	    },
-	    fnPoint : function(){
+	     fnPoint : function(){ // 포인트 내역 확인
 	        var self = this;
 	        var nparmap = {uId : self.uId};
 	        $.ajax({
@@ -177,63 +272,30 @@ var app = new Vue({
 	            type : "POST", 
 	            data : nparmap,
 	            success : function(data) { 	
-	            	console.log(data);
+	            	self.usepointList = data.list;
+	            	console.log(self.usepointList);
+	            	var x = 0;
+	            	var y = 0;
+	            	var z = 0;
+	            	var datalist = data.list;
+	            	for(var i=0; i<datalist.length; i++){
+	            		x += datalist[i].point;	  
+	            		y += datalist[i].usepoint;
+	            		z += datalist[i].repoint;
+	            	}
 	            	
-	            	
+	            	self.maxpoint = x; // 사용가능 포인트 
+	            	self.numpoint = y; // 사용한 포인트
+	            	self.repoint = z; // 환불 포인트
 	            }
 	        }); 
-	    },
-	    /* 메인 */
-	    fnVuwmain : function(){
-	    	var self = this;
-	    	$.pageChange("main.do", {uId : self.uId});
-	    },
-	    /* 주문내역 */
-	    fnInformation : function(){
-	    	var self = this;
-	    	$.pageChange("productInformation.do", {uId : self.uId});
-	    },
-	    /* 관심상품 */
-	    fnInterest : function(){
-	    	var self = this;
-	    	$.pageChange("myPageInterest.do", {uId : self.uId});
-	    },
-	    /* 적립금 */
-	    fnReserves : function(){
-	    	var self = this;
-	    	$.pageChange("mypageReserves.do", {uId : self.uId});
-	    },
-	    /* 배송주소록 */
-	    infoAddr : function(){
-	    	var self = this;
-	    	$.pageChange("infoAddr.do", {uId : self.uId});
-	    },
-	    /* 회원 정보 수정 */
-	    infoUpdate : function(){
-	    	var self = this;
-	    	$.pageChange("infoUpdate.do", {uId : self.uId});
-	    },
-	    /* 이용안내 */
-	    useGuide : function(){
-	    	var self = this;
-	    	$.pageChange("useGuide.do", {uId : self.uId});
-	    },
-	    
-	    /* 공지사항 */
-	    noticeList : function(){
-	    	var self = this;
-	    	$.pageChange("noticeList.do", {uId : self.uId});
-	    },
-	    /* 1:1문의 */
-	    inquiry : function(){
-	    	var self = this;
-	    	$.pageChange("myInquiry.do", {uId : self.uId});
-	    }
+	    }, 
+	
     },
     created: function() {
       var self = this;
       self.fnGetList();
-      self.fnPoint();
+       self.fnPoint(); 
     }
 
 });

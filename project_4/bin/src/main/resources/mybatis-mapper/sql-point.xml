@@ -4,12 +4,17 @@
 
 <mapper namespace="com.example.project.mapper.PageMapper">
 	
-	<!-- 포인트 -->
+	<!-- 포인트내역 조회 -->
 	  <select id="userPoint" parameterType="hashmap" resultType="com.example.project.model.User"> <!--  모델 파일 이름  -->
-      SELECT *
-      FROM  T4_USER_POINT 
-      
-      WHERE U_ID = #{uId}
-       </select>
+	SELECT POINT, USEPOINT, REPOINT ,DATE(PODATA) AS PODATA, P_NAME 
+	FROM
+    T4_USER_POINT UP
+    INNER JOIN 
+    (SELECT O_NO , P_NAME, O.U_ID
+    FROM T4_ORDER O
+    INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO) J 
+    ON UP.O_NO = J.O_NO
+    WHERE U_ID = #{uId}
+    </select>
 	
 </mapper>

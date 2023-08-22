@@ -7,9 +7,9 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-
 <style>
-body {
+
+#headiner {
     font-family: Graduate, Kelly Slab, Aldrich;
     font-size: 1.1em;
     color: #000;
@@ -56,20 +56,21 @@ nav {
 }
 
 <!--
-로고 있는 부분 -->.
+占싸곤옙 占쌍댐옙 占싸븝옙 -->.
 
 nav{ width:100%; height:135px;position:relative; z-index:9999;}
+
 		.navWrap {
       width: 100%;
       height: 180px;
       overflow: hidden;
       transition: all 0.6s;
       position: relative;
-
+	  z-index: 1;
     }
 		.navWrap:hover {
-      height:600px; /* 화면의 전체 높이로 확장 */
-      background: rgba(245, 235, 236); /* 호버 시 배경색 불투명하게 변경 */
+      height:650px; /* 화占쏙옙占쏙옙 占쏙옙체 占쏙옙占싱뤄옙 확占쏙옙 */
+      background: rgba(245, 235, 236); /* 호占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙 */
     }
 			
 nav .menu {
@@ -77,6 +78,7 @@ nav .menu {
 	width: 1700px;
 	margin: 0 auto;
 	height: 100px;
+	 z-index: 1;
 
 }
 
@@ -88,7 +90,7 @@ nav .menu a {
     justify-content: center;
 }
 
-/* 간격 조정 */
+
 nav .menu>li {
 	width: 100px;
 	float: left;
@@ -197,13 +199,13 @@ margin: 0 auto;
 					</li>					
 					
 					
-						<span><img id="logo" src="../../img/logo/veryperiii.png"></span>
+						<span><a href="../home.do"><img id="logo" src="../../img/logo/veryperiii.png"></a></span>
 					
 						
 						<div class="icon">
 						<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
 						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="mypage.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
+						<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
 						</div>
 						
 					</ul>
