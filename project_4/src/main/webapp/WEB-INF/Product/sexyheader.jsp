@@ -7,9 +7,9 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-
 <style>
-body {
+
+#headiner {
     font-family: Graduate, Kelly Slab, Aldrich;
     font-size: 1.1em;
     color: #000;
@@ -90,7 +90,7 @@ nav .menu a {
     justify-content: center;
 }
 
-/* ���� ���� */
+
 nav .menu>li {
 	width: 100px;
 	float: left;

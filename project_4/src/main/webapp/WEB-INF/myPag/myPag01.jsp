@@ -5,7 +5,6 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/footer.js"></script>
-<script src="../js/footer.js"></script>
 <link href="../css/mypage.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link href="../css/footer.css" rel="stylesheet" type="text/css">
@@ -271,6 +270,52 @@ footer{
 </html>
 
 <script type="text/javascript">
+
+//인스타
+document.getElementById("insta").addEventListener("click", function() {
+window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+//페북
+document.getElementById("facebook").addEventListener("click", function() {
+window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+//카카오
+document.getElementById("kakao").addEventListener("click", function() {
+window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
+});
+
+
+$(function(){
+	  $(".modal-open").click(function() {
+	    var index = $(this).index();
+	    $(".popup-wrap").eq(index).css('display', 'flex').hide().fadeIn();
+	  });
+
+	  $(".pop-btn.confirm").click(function() {
+	    modalClose.call(this);
+	  });
+
+	  function modalClose() {
+	    $(this).closest(".popup-wrap").fadeOut();
+	  }
+	});
+var footer = document.getElementById("footer");
+
+window.onscroll = function() {
+var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+
+if (scrollBottom <= footer.offsetHeight) {
+  // 스크롤이 맨 아래 위치할 때부터 footer가 보이도록
+  footer.style.bottom = "0";
+  footer.style.opacity = "1";
+  footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
+} else {
+  // 스크롤이 맨 아래가 아닐 때
+  footer.style.bottom = "-450px"; // 또는 숨길 높이 값으로 조정
+  footer.style.opacity = "0";
+  footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
+}
+};
 	var app = new Vue({
 		el : '#app',
 		data : {
