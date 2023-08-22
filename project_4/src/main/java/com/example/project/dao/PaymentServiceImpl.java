@@ -18,9 +18,29 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	//결제 오더 테이블 등록
 	@Override
-	public int addProductBuy(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return paymentMapper.insertProductBuy(map);
+	public HashMap<String, Object> addProductBuy(HashMap<String, Object> map) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int subscribe = paymentMapper.selectMembershipProduct(map);
+		
+		
+		//키트 Y로 업데이트
+			paymentMapper.updateMembershipKit(map);
+
+		//멤버쉽 구독 상품 구매 체크 후 맞으면 멤버쉽 테이블 업데이트 
+		if( subscribe !=0) {
+			paymentMapper.insertMembership(map);
+		}
+		
+		//재고 업데이트
+		paymentMapper.updateStock(map);
+		
+		//주문내역 테이블 업데이트
+		paymentMapper.insertProductBuy(map);
+		
+		resultMap.put("message", "성공");
+		return resultMap;
+		
+		
 	}
 
 	//결제 후 배송 테이블 등록 

@@ -635,7 +635,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
         }, fnInsertAll : function(){
         	var self = this;
           	for(var i = 0; i < self.list.length; i++){
-                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt };
+                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist };
                  	
                  	console.log("¿©±â=====>", nparmap);
 	                   $.ajax({

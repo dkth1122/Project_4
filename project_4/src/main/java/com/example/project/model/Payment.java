@@ -14,8 +14,8 @@ public class Payment {
 	private int pLimit;
 	private String category;
 	private String artist;
-	private String reservation;//예약 상품 여부
 	private String fNo; //특전 조인용
+	private String kitYn; //키트여부
 	
 	private int point;
 	private char soldout;
@@ -137,6 +137,18 @@ public class Payment {
 	}
 	public void setAfNo(int afNo) {
 		this.afNo = afNo;
+	}
+	public String getfNo() {
+		return fNo;
+	}
+	public void setfNo(String fNo) {
+		this.fNo = fNo;
+	}
+	public String getKitYn() {
+		return kitYn;
+	}
+	public void setKitYn(String kitYn) {
+		this.kitYn = kitYn;
 	}
 	
 	
