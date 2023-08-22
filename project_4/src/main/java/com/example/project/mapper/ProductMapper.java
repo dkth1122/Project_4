@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.project.model.Delivery;
 import com.example.project.model.Product;
 import com.example.project.model.Wish;
 

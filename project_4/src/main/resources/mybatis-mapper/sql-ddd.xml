@@ -10,12 +10,24 @@
 	    T4_ORDER O INNER JOIN  T4_PRODUCT P
 	    ON O.P_NO = P.P_NO
 	    WHERE U_ID = #{uId} -->
-	    SELECT *
-      	FROM T4_ORDER O
-	      INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO	
-	      INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-	      WHERE O.U_ID = #{uId}
-	      GROUP BY O.O_NO
+			SELECT O.O_NO, O.*, P.*, D.*, U.*, A.*
+			FROM T4_ORDER O
+			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
+			INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
+			INNER JOIN (
+			    SELECT O.O_NO, COUNT(*) AS CNT
+			    FROM T4_ORDER O
+			    INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
+			    INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+			        AND O.O_NO = O.O_NO
+			        AND (EXCHANGE IS NULL OR EXCHANGE = '')
+			    GROUP BY O.O_NO
+			) A ON O.O_NO = A.O_NO
+			    AND (EXCHANGE IS NULL OR EXCHANGE = '')
+			    AND D.DU_NO = U.DU_NO
+			WHERE O.U_ID = #{uId}
+			GROUP BY O.O_NO
 	</select>
 	<!-- 사용자 장바구니 출력 -->
 	<select id="selectcartlist" parameterType="hashmap" resultType="com.example.project.model.Product">

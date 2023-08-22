@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.project.dao.ABoardService;
 import com.example.project.dao.ProductService;
 import com.example.project.model.ABoard;
+import com.example.project.model.Delivery;
 import com.example.project.model.Product;
 import com.example.project.model.Wish;
 import com.google.gson.Gson;
@@ -53,7 +54,7 @@ public class ProductController {
 		@RequestMapping("/myPag/OrderListView.do") 
 		public String OrderListView(HttpServletRequest request,Model model,@RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-			return "/myPag/OrderListView";
+		return "/myPag/OrderListView";
 			    }
 	//상품등록
 	@RequestMapping(value = "/product/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

@@ -217,8 +217,8 @@
 	      LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 	      INNER JOIN T4_USER U ON O.U_ID = U.U_ID
 	      LEFT JOIN T4_DELIVERY_USER D2 ON D2.U_ID = U.U_ID 
-	      WHERE O.U_ID = #{uId} AND O.BUY_NO = #{buyNo}
-	      GROUP BY O.O_NO
+	      WHERE O.U_ID = #{uId} AND O.O_NO = #{oNo}
+	      GROUP BY O.BUY_NO
 	</select>
 	
 </mapper>

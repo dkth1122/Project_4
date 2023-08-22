@@ -176,30 +176,21 @@
 											<th class="column-width4">결제금액</th>
 											<th class="column-width5">주문상태</th>
 										</tr>
-										
 										<tr  v-for="item in list">											
 											<td class="column-width1"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
 											<td class="column-width2">{{item.oDate}}</td>
-											<td class="column-width3"><button class="button11" @click="productDetail(item)">{{item.pName}}</button></td>
-											<td class="column-width5">{{item.price}}원</td>
-											<td class="column-width4" v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button>취소</button></td>
-											<td class="column-width4" v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button>교환/반품</button><button>구매 확정</button></td>											
-											<td class="column-width4" v-else>{{item.dState}}</td>										
+											<td v-if="item.cnt >= 2">{{ item.pName }}외 {{ parseInt(item.cnt) - 1 }}건</td>
+											<td v-else>{{ item.pName }}</td>
+											<td class="column-width5">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
+											<!-- <td class="column-width4" v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button @click="fnOrderCancel(item)">취소</button></td>
+											<td class="column-width4" v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button @click="fnOrderchange(item)">교환/반품</button><button @click="fnOrderConfirm(item)">구매 확정</button></td>								 -->
+											<td class="column-width4">{{item.dState}}</td>										
 										<tr>								
 								</table>
-
-							
 							</div>	 	
-						
 						</div>
-
-						
-
 					</div>
-
 				</div>
-
-
 			</div>
 		</div>
 </body>
@@ -280,7 +271,40 @@
 			},
 			orderDetail : function(item){
 				var self = this;
-				$.pageChange("/myPag/OrderListView.do", {buyNo : item.buyNo});
+				$.pageChange("../myPag/OrderListView.do", {oNo : item.oNo});
+			},
+			fnOrderCancel  : function(item) {
+				var self = this;
+				var nparmap = {buyNo : item.buyNo};
+				console.log(nparmap);
+				$.ajax({
+					url : "/mypag/demo.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						alert("취소되었습니다.");
+
+					}
+				});
+			},
+			fnOrderchange  : function(item) {
+				var self = this;
+				$.pageChange("/product/productView.do", {pNo : item.pNo});
+			},
+			fnOrderConfirm  : function(item)  {
+				var self = this;
+				var nparmap = {oNo : item.oNo};
+				console.log(nparmap);
+				$.ajax({
+					url : "/mypag/demo.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						alert("구매 확정 처리되었습니다.");
+					}
+				});
 			}
 		},
 		created : function() {

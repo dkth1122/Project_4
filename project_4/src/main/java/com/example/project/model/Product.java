@@ -18,6 +18,7 @@ public class Product {
 	private String fNo; //특전 조인용
 	private String dState;
 	
+	private int cnt;
 	private int point;
 	private char soldout;
 	private String fYn;
@@ -47,6 +48,12 @@ public class Product {
 	
 	
 	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getDuNo() {
 		return duNo;
 	}

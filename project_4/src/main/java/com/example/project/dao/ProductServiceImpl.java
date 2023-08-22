@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.project.mapper.ABoardMapper;
 import com.example.project.mapper.ProductMapper;
 import com.example.project.model.ABoard;
+import com.example.project.model.Delivery;
 import com.example.project.model.Product;
 import com.example.project.model.Wish;
 

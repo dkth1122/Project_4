@@ -199,7 +199,7 @@
 							 <div class="lowerBox"> 주문 상세 내역 </div>
 							 <div class="orderArea">
 							 	<div>
-							 		<div class="DateNoList">주문번호 <strong>{{buyNo}}</strong> <span>주문일자 <strong>{{oDate}}</strong></span></div>
+							 		<div class="DateNoList">주문번호 <strong>{{oNo}}</strong> <span>주문일자 <strong>{{oDate}}</strong></span></div>
 							 	</div>
 							 	<table>
 							 		<tr class="headerListArea">
@@ -232,8 +232,8 @@
 								 				<div>업체 배송</div>
 								 				<div>평균출고일:1.1일</div>
 								 			</td>
-								 			<td v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button>취소</button></td>
-											<td v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button>교환/반품</button><button>구매 확정</button></td>											
+								 			<td v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button @click="fnOrderCancel(item)">취소</button></td>
+											<td v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button @click="fnOrderchange(item)">교환/반품</button><button @click="fnOrderConfirm(item)">구매 확정</button></td>											
 											<td v-else>{{item.dState}}</td>
 								 		</tr>
 							 		</tbody>
@@ -349,8 +349,8 @@
 			list2 : [],
 			price : [],
 			dat : "",
-			buyNo : "${map.buyNo}",
-			oDate : ""
+			oDate : "",
+			oNo : "${map.oNo}"
 			
 		}, 
 		 computed: {
@@ -363,13 +363,14 @@
 		methods : {
 			fnGetList : function() { 
 				var self = this;
-				var nparmap = {buyNo : self.buyNo, uId : self.uId};				
+				var nparmap = {oNo : self.oNo, uId : self.uId};				
 				$.ajax({
 					url : "/mypag/OrderListView.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
-					success : function(data) {						
+					success : function(data) {	
+						console.log(data);
 						self.list = data.list;
 						self.list2 = data.list[0];
 						self.oDate = self.list[0].oDate;
@@ -381,6 +382,39 @@
 			productDetail : function(item){
 				var self = this;
 				$.pageChange("/product/productView.do", {pNo : item.pNo});
+			},
+			fnOrderCancel  : function(item) {
+				var self = this;
+				var nparmap = {buyNo : item.buyNo};
+				console.log(nparmap);
+				$.ajax({
+					url : "/mypag/orderCancel.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						alert("취소되었습니다.");
+
+					}
+				});
+			},
+			fnOrderchange  : function(item) {
+				var self = this;
+				$.pageChange("/product/productView.do", {pNo : item.pNo});
+			},
+			fnOrderConfirm  : function(item)  {
+				var self = this;
+				var nparmap = {oNo : item.oNo};
+				console.log(nparmap);
+				$.ajax({
+					url : "/mypag/demo.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						alert("구매 확정 처리되었습니다.");
+					}
+				});
 			}
 		},
 		created : function() {
