@@ -310,8 +310,10 @@ text-align: center;
                  });
 	   			if (total < 50000) {
                     self.delivery = 3000;
+                    self.totalPrice = total  + self.delivery;
                 } else {
                     self.delivery = 0;
+                    self.totalPrice = total  + self.delivery;
                 } 
                  return total;
                  
@@ -339,9 +341,8 @@ text-align: center;
 	            }); 
             }, fnPay : function(item){
                 var self = this;
-	   			self.totalPrice = self.calculateTotalPrice()  + self.delivery;
-	   			console.log("ÅäÅ»°¡°Ý=======>",self.totalPrice);
-	               	$.pageChange("/payment/cartPayment.do", {totalPrice : self.totalPrice})	;
+        		console.log("ÅäÅ»°¡°Ý=======>",self.totalPrice);
+	               $.pageChange("/payment/cartPayment.do", {totalPrice : self.totalPrice}); 
            
             }, fnCartChange : function(item){
         	   var self = this;

@@ -449,7 +449,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			zipNo : "",
 			email : "",
 			list : [],
-			totalPrice : 0,
 			delivery : 0,
 			numberWithCommas : "",
 			 user : {
@@ -496,7 +495,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  self.list.forEach(function (item) {
                      total += self.calculateTotal(item);
                  });
-	   			self.totalPrice = total;
 	   			if (total < 50000) {
                     self.delivery = 3000;
                 } else {
