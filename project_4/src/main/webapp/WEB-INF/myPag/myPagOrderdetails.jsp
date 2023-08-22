@@ -401,7 +401,7 @@ Vue.component('paginate', VuejsPaginate)
 						self.list = data.list;
 						
 					}
-				}); */
+				}); 
 			},
 			fnCntList : function() {
 				var self = this;

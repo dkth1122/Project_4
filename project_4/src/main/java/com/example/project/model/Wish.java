@@ -8,7 +8,7 @@ public class Wish {
 	private String uId;
 	private String pNo;
 	private int afNo;
-	
+	private int wnum;
 	private int price;
 	private int point;
 	private int stock;
@@ -22,6 +22,15 @@ public class Wish {
 	private String pImg;
 	private String pName;
 	private String path;
+	
+	
+	
+	public int getWnum() {
+		return wnum;
+	}
+	public void setWnum(int wnum) {
+		this.wnum = wnum;
+	}
 	public int getPrice() {
 		return price;
 	}

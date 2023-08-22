@@ -223,7 +223,7 @@ ul {
                                  <li class="ulh1">고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
+                                       <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
                                        <li><a href="/mypag/noticeList.do">공지사항</a></li>
                                        <li><a href="/mypag/useGuide.do">이용안내</a></li>
                                        <li><a href="/mypag/faq.do">FAQ</a></li>                                 

@@ -91,6 +91,17 @@
 	.button3:active {
 	  background-color: #1f618d;
 	}
+	.button11{
+	background: none;
+	 border: none;
+	 padding: 0;
+	 font-family: inherit;
+	 font-size: inherit;
+	 color: inherit;
+	 cursor: pointer;
+}
+.thead th{
+}
 </style>
 <title>관심상품</title>
 
@@ -178,7 +189,7 @@
                                  <li class="ulh1">고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
+                                       <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
                                        <li><a href="/mypag/noticeList.do">공지사항</a></li>
                                        <li><a href="/mypag/useGuide.do">이용안내</a></li>
                                        <li><a href="/mypag/faq.do">FAQ</a></li>                                 
@@ -212,9 +223,9 @@
 						<tbody>
 							<tr  v-for="item in wishList">
 								<td><input type="checkbox" name="ssss" :value="item.wnum" v-model="selectItem"></td>
-								<td><img class="responsive-image" :src="item.path" ></td>
-								<td><div class="artist">{{item.artist}}</div>
-									{{item.pName}}</td>
+								<td><button class="button11" @click="productDetail(item)"><img class="responsive-image" :src="item.path" ></button></td>
+								<td><button class="button11" @click="productDetail(item)"><div class="artist">{{item.artist}}</div>
+									{{item.pName}}</button></td>
 								<td>{{item.price*0.005}} P</td>							
 								<td v-if="item.price < 50000">기본배송<div>₩3,000</div><div>(조건)</div></td>
 								<td v-if="item.price >= 50000">무료배송</td>
@@ -270,14 +281,7 @@ var app = new Vue({
 	            	self.selectItem = [];
 	            }
     	    },
-    		  selectAllItems: function() {
-    			  var self = this;
-    			  if (self.selectAll) {
-    				  self.selectItem = self.wishList.map(item => item.wnum);
-    			  } else {
-    				  self.selectItem = [];
-    			  }
-    			},
+    		  
     	fnGetList : function(){
             var self = this;
             var nparmap = {uId : self.uId};
@@ -372,12 +376,12 @@ var app = new Vue({
 		fnRemoveOne : function(item){		
 			var self = this;
 			console.log(item.wnum)
-				/* if(!confirm("정말 삭제할거냐?")){
+				 if(!confirm("정말 삭제할거냐?")){
 					return;
-				} */
+				} 
 				var param ={wnum : item.wnum};
 				console.log(param);
-				/* $.ajax({
+				 $.ajax({
 	                url : "/mypag/removeSingleProdeuctWish.dox",
 	                dataType:"json",	
 	                type : "POST",
@@ -387,13 +391,12 @@ var app = new Vue({
 	                	self.fnGetList();
 	                	self.selectItem = [];
 	                }
-	            }); */
+	            }); 
 			 	
 			},
 		insertCart : function(item){
 				var self = this;			
 				var param ={uId : self.uId, pNo : item.pNo};
-				console.log(param);
 				$.ajax({
 	                url : "/mypag/editCart.dox",
 	                dataType:"json",	
@@ -407,6 +410,7 @@ var app = new Vue({
 		},	   
 		OrderProduct : function(item){
 			var self = this;
+			console.log(item.wnum);
 		},
 	    /* 메인 */
 	    fnVuwmain : function(){
@@ -458,7 +462,11 @@ var app = new Vue({
    		},
    		formatPriceWithCommas(price) {
    		    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-   	  }
+   	  },
+   		productDetail : function(item){
+			var self = this;
+			$.pageChange("/product/productView.do", {pNo : item.pNo});
+	},
 	    
     },
     created: function() {
