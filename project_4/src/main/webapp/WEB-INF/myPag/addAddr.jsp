@@ -95,23 +95,28 @@
                       </div>                    
                       <div class="topBox">                      
                          <div class="details" >
-                         <div>Order</div>
-			             <label><a href="/mypag/myPagOrderdetails.do">                            
-			               <div>{{order}}</div>
-                          </a></label>
+                         			<div>Order</div>
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
+                          			</a></label>
                          </div>
                          
                          <div class="details" >
                          
-                            <div>Refund</div>
-                            <div>
-                               <span>0/</span><span>0/</span><span>0</span>
-                            </div>
+                          			<div>교환/환불</div>
+									<div>
+										<span v-if="refund != 0">{{refund}} /</span>
+										<span v-else>0 /</span>
+										
+										<span v-if="exchange != 0"> {{exchange}}</span>
+										<span v-else>0</span>
+									</div>
                             
                          </div>
                          <div class="details" >
                             <div>포인트</div>
-                            <div>{{info.uPoint}} P</div>
+                            <div>{{info.maxpoint}} P</div>
                          </div>
                          <div class="details" >
                             <div>Jelly</div>
@@ -226,7 +231,8 @@ var app = new Vue({
        list : [],
        info :{},
        uId : "${sessionId}",
-       duNo : "${map.duNo}"
+       duNo : "${map.duNo}",
+       maxpoint : undefined, // 사용가능 포인트
        
     },
     methods: {
@@ -276,12 +282,32 @@ var app = new Vue({
     		console.log(addrDetail);
     		console.log(engAddr);
     	},
+    	fnPoint : function(){ // 포인트 내역 확인
+	        var self = this;
+	        var nparmap = {uId : self.uId};
+	        $.ajax({
+	            url : "/pointList.dox",
+	            dataType:"json",	
+	            type : "POST", 
+	            data : nparmap,
+	            success : function(data) { 	
+	            	self.usepointList = data.list;
+	            	var x = 0;
+	            	var datalist = data.list;
+	            	for(var i=0; i<datalist.length; i++){
+	            		x += datalist[i].point;	
+	            	}
+	            	self.maxpoint = x; // 사용가능 포인트 
+	            
+	            }
+	        }); 
+	    },
 
     },
     created: function() {
       var self = this;
       self.fnGetList();
- 
+ 	  self.fnPoint();
     }
 });
 </script>
