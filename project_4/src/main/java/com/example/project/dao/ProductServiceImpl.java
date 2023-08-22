@@ -172,4 +172,10 @@ public class ProductServiceImpl implements ProductService{
 	        return productMapper.insertWish(map);
 	    }
 	
+//상품전체조회
+		@Override
+		public List<Product> searchProductNewList(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.searchProductNewList(map);
+		}
 }

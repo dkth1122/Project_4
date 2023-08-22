@@ -8,42 +8,77 @@
 <meta charset="EUC-KR">
 <%@ include file="../Product/sexyheader.jsp" %>
 <style>
+
+.slidetext {
+	font-size:2em;
+
+	}
+.dot {
+    width: 12px;
+    height: 12px;
+    margin: 10px 5px; /* 세로 위치를 조정할 때 여기의 첫 번째 값 조절 */
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    position: absolute; /* 도트를 절대 위치로 설정 */
+    bottom: 20px; /* 이미지 슬라이드 밑에 여백을 조절 */
+  /*   left: 50%; /* 가로 위치 중앙에 정렬 */ */
+  /*   transform: translateX(-50%); /* 가로 위치를 중앙으로 정렬 */ */
+}
+
 #app{
 	widows: 100%
-}
+	}
+	
+
 #container{
-  text-align: center; 
+	margin: 50px;
+  	justify-content:center;
 	width: auto;
 	height: 1200px;
 	
-}
+	}
+	
 img.topimg{
-margin-top:50px; 
+	margin-top:100px;
+	margin-bottom:100px;
     vertical-align: middle;
 	width:auto;
 	height: 800px;
-
-}
-<!-- nav{
+	position: absolute;
+    left: 50%; /* 요소의 좌측 위치를 중앙으로 이동 */
+    transform: translateX(-50%); 
+	}
+	
+/*  nav{
 	widows: 1800px;
 	height: 1500px;
 	margin-bottom: 50px;
-}-->
-nav1{
-	widows: 1800px;
-	height: 800px;
-	margin-bottom: 50px;
-
+ */
+ #nav1, #nav2, #nav3 {
+    position: relative; /* 위치 속성을 설정합니다. */
+    z-index: 1; /* 아래로 쌓이도록 설정합니다. */
 }
 
-nav2{
+#nav1{
+	margin-top:500px;
+	margin-bottom:500px;
+	padding:70px;
+	widows: 1800px;
+	height:1500px;
+	margin-bottom: 50px;
+	}
+
+#nav2{
 widows: 1800px;
 	height: 1800px;
+	margin-top: 50px;
 	margin-bottom: 50px;
 }
 
 .sect2 {
-margin :  0px auto;
+	margin :  0px auto;
 	width: 1800px;
 	height: 1500px;
 	background: #f0f0f0;
@@ -132,60 +167,68 @@ margin :  0px auto;
 
 .sect2 .Sbox4:hover {
 	background: url(img/homeimg/seson4_hover.jpg);
-}
+	}
 .sect2 .Sbox5:hover {
 	background: url(img/homeimg/seson1_hover.jpg);
-}
+	}
 
 .sect2 .Sbox6:hover {
 	background: url(img/homeimg/seson2_hover.jpg);
-}
+	}
 
 .sect2 .Sbox7:hover {
 	background: url(img/homeimg/seson3_hover.jpg);
-}
+	}	
 
 .sect2 .Sbox8:hover {
 	background: url(img/homeimg/seson4_hover.jpg);
-}
+	}
 
 .sect2 div:hover a {
 	opacity: 1;
-}
-
-
-.sect3 {
-margin :  0px auto;
-	width: 1800px;
-	height: 681px;
-	background: #d0d0d0;
-
-}
-.sect3 h2 {
-	text-align: center;
-	height: 102px;
-	padding: 56px 0 56px 0;
+	}
+/*SUP*/
+.sect2 div .sub {
+	position: absolute;
+	bottom: -300px;
+	width: 307px;
+	height: 206px;
+	background: rgba(255, 255, 255, 0.7);
+	color: #000;
+	line-height: 25pt;
+	font-family: arial;
+	font-size: 15pt;
+	text-align: left;
+	padding-left: 11px;
 	box-sizing: border-box;
-}
-.sect3 ul.sale {
-    display: flex; /* ���� ��ġ�� ���� Flexbox ��� */
-    
-    padding: 100px; /* �⺻ �е� ���� */
+	opacity: 0;
+	transition: all 1s;
 }
 
-.sect3 ul.sale li {
-    flex: 1; /* ��ҵ��� ���� ������ �յ��ϰ� ���� */
-    list-style: none; /* �⺻ ����Ʈ ��Ÿ�� ���� */
-    margin: 50px; /* �⺻ ���� ���� */
-    padding: 10px; /* ���� ���� ���� */
-    box-sizing: border-box; /* �е��� �׵θ��� ��� ũ�⿡ ���� */
+.sect2 div:hover .sub {
+	position: absolute;
+	bottom: 0;
+	opacity: 1;
 }
+
+.sect2 div .sub .sname {
+	font-size: 23pt;
+	font-weight: bold;
+	padding: 50px 0 20px 0;
+	box-sizing: border-box;
+	text-align: left;
+}
+
+.sect2 div:nth-child(4) {
+	margin-left: 0;
+}
+
 
 
 </style>
 <!-- Start HEAD section -->
 <link href="../css/mainpageslideshow.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="engine1/jquery.js"></script>
+
 <!-- End HEAD section -->
 </head>
 
@@ -195,31 +238,31 @@ margin :  0px auto;
 
 		<div id="container">
 		
-
-			<nav id="slid">
+			<nav id="nav1">
+			
 				<div class="slideshow-container">
 				
-				<div class="mySlides fade">
-				  <div class="numbertext">1 / 3</div>
-				  <img class="topimg" src="img/homeimg/boynext.jpg" >
+					<div class="mySlides fade">
+					
+						<div class="slidetext">BND 상품 페이지로 이동</div>
+				 			<img class="topimg" src="img/homeimg/boynext.jpg" >
 				  
-				</div>
+					</div>
 				
-				<div class="mySlides fade">
-				  <div class="numbertext">2 / 3</div>
-				  <img class="topimg" src="img/homeimg/seventeen_main.jpg" >
+						<div class="mySlides fade">
+						  <div class="slidetext">Seventeen 상품시발</div>
+				 		 <img class="topimg" src="img/homeimg/seventeen_main.jpg" >
 				  
-
-				</div>
+						</div>
 				
-				<div class="mySlides fade">
-				  <div class="numbertext">3 / 3</div>
-				  <img class="topimg" src="img/homeimg/promiss_main.jpg">
-			
-				</div>
+					<div class="mySlides fade">
+						<div class="slidetext">fromis9 상품 페이지로 이동</div>
+				 		<img class="topimg" src="img/homeimg/promiss_main.jpg">
+					</div>
 				
 				</div>
-				<br>
+				
+			<br>
 				
 				<div style="text-align:center">
 				  <span class="dot"></span> 
@@ -228,29 +271,29 @@ margin :  0px auto;
 				</div>
 				
 			</nav>
+			
 			<nav id="nav2">
-						<section class="sect2">
-			<h2><a href="newitem.do">NEW ITEM</a></h2>
-			<div class="Sbox1">
-				<p class="more">
+				<section class="sect2">
+				<h2><a href="newitem.do">NEW ITEM</a></h2>
+				<div class="Sbox1">
+					<p class="more">
 					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">��Ƽ��Ʈ</li>
-					<li>��ǰ ��</li>
-					<li>����</li>
-				</ul>
-			</div>
-
-
+					</p>
+					<ul class="sub">
+						<li class="sname">0</li>
+						<li>1</li>
+						<li>2</li>
+					</ul>
+				</div>
+	
 			<div class="Sbox2">
 				<p class="more">
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">��Ƽ��Ʈ</li>
-					<li>��ǰ ��</li>
-					<li>����</li>
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
 				</ul>
 			</div>
 
@@ -259,9 +302,9 @@ margin :  0px auto;
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">��Ƽ��Ʈ</li>
-					<li>��ǰ ��</li>
-					<li>����</li>
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
 				</ul>
 			</div>
 
@@ -270,73 +313,88 @@ margin :  0px auto;
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">��Ƽ��Ʈ</li>
-					<li>��ǰ ��</li>
-					<li>����</li>
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
 				</ul>
 			</div>
-			
-
-
-		</section>
-</nav>
+			</section>
+		</nav>
+		
+		<div class="body2 " style=" width: 1000px; height: 2000px;">
+                        <div @click="productView(item)" v-for="item in list" class="productList">
+                           <span><img :src = "item.path" class="pImg" style="width:300px; height : 500px;"></span>
+                           <div>{{item.pName}}</div>
+                           <div>{{item.price}}</div>
+                           <div><ul class="sub">
+									<li class="sname">0</li>
+									<li>1</li>
+									<li>2</li>
+								</ul>
+							</div>
+                        </div>
+                </div>
+		
+		
 		<nav id="nav3">
-			<section class="sect3">
-			<h2>STORE</h2>
-			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! �����!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
-			<ul class="sale">
-				<li><a href="#"><img src="img/homeimg/sale1.jpg" alt="" />
-						<p>
-							������1 - �̸�<br>8,000��</a></li>
-				<li><a href="#"><img src="img/homeimg/sale2.jpg" alt="" />
-						<p>
-							������2 - �̸�<br>8,000��
-						</p></a></li>
-				<li><a href="#"><img src="img/homeimg/sale3.jpg" alt="" />
-						<p>
-							������3 - �̸�<br>7,000��
-						</p></a></li>
-				<li><a href="#"><img src="img/homeimg/sale4.jpg" alt="" />
-						<p>
-							������4 - �̸�<br>5,500��</a></li>
-			</ul>
-
-		</section>
-		
-<nav>
-</nav>
-
-			<nav>
-		
-	<footer> <p>
-				<br> ȸ��� (��)VeryPeri Corp. ��ǥ�ڸ� ������
-				 <br>�ּ� ��õ������ ���� ���� 534-48 7��
-				 ��ǥ��ȣ 4444-4444 / 4zomotchamchi@veryperi.com 
-				<br> VeriPeri�� ��� �������� ���۱��� ��ȣ�� �ް� �ֽ��ϴ�
-			</p>
-			<img src="img/homeimg/footerlogo.png" alt="" /></footer>
-	
 			
-			</nav>
-		</div>
+			<section class="sect2">
+				<h2><a href="newitem.do">BEST ITEM</a></h2>
+				<div class="Sbox1">
+					<p class="more">
+					<a href="#">More</a>
+					</p>
+					<ul class="sub">
+						<li class="sname">0</li>
+						<li>1</li>
+						<li>2</li>
+					</ul>
+				</div>
+	
+			<div class="Sbox2">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
+				</ul>
+			</div>
 
+			<div class="Sbox3">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
+				</ul>
+			</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+			<div class="Sbox4">
+				<p class="more">
+					<a href="#">More</a>
+				</p>
+				<ul class="sub">
+					<li class="sname">0</li>
+					<li>1</li>
+					<li>2</li>
+				</ul>
+			</div>
+			</section>
 		
-	</div>
+		</nav>
+		<nav>
+		
+		
+		
+		</nav>
+		<footer><img src="img/homeimg/footerlogo.png" alt="" /></footer>
+	</div> <!-- 콘테이너 div -->
+		
+</div> <!-- app div -->
 	
 	
 </body>
@@ -346,13 +404,28 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		uId : "${sessionId}",
-
+		list : []
 	}, 
 	methods : {
+		fnGetList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+            var self = this;
+            var nparmap = {uId : self.uId};            
+            $.ajax({
+               url : "/home3.dox",
+               dataType : "json",
+               type : "POST",
+               data : nparmap,
+               success : function(data) {                  
+                  self.list = data.list;
+                  console.log(self.list);
+               }
+            });
+	}
 		
 	},
 	created : function() {
 		var self = this;
+		self.fnGetList();
 
 	}
 });
@@ -379,9 +452,9 @@ function showSlides() {
     slides[slideIndex-1].style.display = "block";  
     dots[slideIndex-1].className += " active";
     
-    var bgColor = colors[slideIndex % colors.length]; // �迭�� �ε����� ���� ����
+    var bgColor = colors[slideIndex % colors.length];
     container.style.backgroundColor = bgColor;
     
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
+    setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
 </script>

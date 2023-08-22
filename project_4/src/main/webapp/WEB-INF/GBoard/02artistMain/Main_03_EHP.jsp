@@ -1,76 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
  <script src="../js/jquery.js"></script>
- <link href="../css/membership.css" rel="stylesheet" type="text/css">
+  <link href="../css/membership.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>∏‚πˆΩ  ∞‘Ω√∆«</title>
+<title>Î©§Î≤ÑÏâΩ Í≤åÏãúÌåê </title>
 <style>
-	/* body{
-		font-family: a≈∏¿Ã∆≤∞ÌµÒ2;
-		width : 1250px;
-		margin : 10px auto;
-	}
-	ul, li{
-		text-decoration : none;
-		list-style : none;	
-	}
-	.header{
-		width: 1000px;
-		height: 100px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	.artistNewFeed{
-		width: 1000px;
-		height: 300px;
-	}
-	.feedType{
-		width: 300px;
-		height: 200px;
-	    display: inline-block; 
-	}	
-	 .feedType > a > div {
-	 	width: 300px;
-		height: 200px;
-	    position: relative; 
-	   	display: inline-block; 
-	    border: 1px solid tomato;
-	    padding: 32px;
-	    margin: 10px; 
-	    vertical-align: top; 
-	    box-sizing: border-box; 
-	  }
-	.container{
-		width: 1000px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	a{
-        text-decoration: none;
-        color: inherit;
-   }
-   .write{
-   		width: 1000px;
-		height: 300px;
-		border: 1px solid tomato;
-		padding: 32px;
-   }
-   
-   .container > ul{
-   		border: 1px solid tomato;
-   } */
+#app{
+background-color : #D0ACDB;}
+		
+		
 </style>
 </head>
 <body>
+
  
 	<div class="logos">
-      <a href="../home2.do"><img alt="" src="../img/logo/veryperiiix.png" style="width:125px; height:80px; margin-top:25px;"></a>
-      <a href="../home2.do"><img alt="" src="../img/logo/ehp_logo.png" style="width:80px; height:auto;  margin-top:27px; margin-left:10px;"></a>
+      <a href="../home2.do"><img alt="" src="../img/logo/veryperiiix-.png" style="width:130px; height:80px; margin-top:25px;"></a>
+      <a href="../home2.do"><img alt="" src="../img/logo/ehp_logo.png" style="width:120px; height:auto;"></a>
     </div>
     
 	<nav id="buttons">
@@ -88,56 +39,55 @@
         </div>
         <hr>
     </nav>
-    
+     <nav id="app">
     <div class="artistNewFeed">
-        <!-- ≥Ø¬• ∫¸∏• º¯¿∏∑Œ ¡§∑ƒ »ƒ √‚∑¬ -->
-        	<ul class="feedType" v-if="index  < 3 " v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
+        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
 		        <a href="javascript:;">
-	         <div>
-	            	<li><span>COMMENT ¢æ </span>{{item.gcCnt}}</li>
+	            <div>
+	            	<li><span>COMMENT ‚ô• </span>{{item.gcCnt}}</li>
 	                <li>{{item.artist}}</li>
 	            	<li>{{item.nickName}}</li>
 	            	<li><img :src = "item.gpPath" class="profile-image"></li>
 	                <li>{{item.gDate}}</li>
 	                <li>{{item.gContent}}</li>
-	                <li><span>LIKE ¢æ </span>{{item.gLike}}</li>
+	                <li><span>LIKE ‚ô• </span>{{item.gLike}}</li>
 	            </div>
 		       </a>
        	 	</ul>
     </div>
     
-     <nav id= "writearea">
+    <hr>
+    <nav id= "writearea">
     <div class="write">
         <textarea rows="10" cols="100" v-model="content"></textarea>
 			<span><input type="file" id="file1" name="file1" accept=".gif, .jpg, .png" @change="handleFileChange" style="background-color:white;"></span>
-        <button @click="fnAdd">µÓ∑œ</button>
+        <button @click="fnAdd">Îì±Î°ù</button>
     </div>
     </nav>
     <hr>
-    
     <div class="container">
         <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
-      		<li><span>COMMENT ¢æ </span>{{item.gcCnt}}</li>
+        	<li><span>COMMENT ‚ô• </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
 	        <li>{{item.nickName}}<img :src = "item.gpPath" class="profile-image"></li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
-            <li><span>LIKE ¢æ </span>{{item.gLike}}</li>
+            <li><span>LIKE ‚ô• </span>{{item.gLike}}</li>
             <img v-if="item.path" :src="item.path" class="image" />
 			<img v-else class="imageX" />
-            <li><button @click="fnLike(item.gNo)">¡¡æ∆ø‰</button></li>
-            <li><button @click="fnComment(item.gNo)">¥Ò±€</button></li>
-            <li><button @click="reportPost(item.gNo)">Ω≈∞Ì</button></li>
+            <li><button @click="fnLike(item.gNo)">Ï¢ãÏïÑÏöî</button></li>
+            <li><button @click="fnComment(item.gNo)">ÎåìÍ∏Ä</button></li>
+            <li><button @click="reportPost(item.gNo)">Ïã†Í≥†</button></li>
             <li v-if="uId == item.uId">
                 <a href="javascript:;">
                     <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item)"></i></div>
                 </a>
             </li>
-             <hr>
+            <hr>
         </ul>
     </div>
-     <hr>
-     
+    <hr>
+    
 </div>
 </body>
 </html>
@@ -168,7 +118,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                	self.list = data.list;
+                    self.list = data.list;
                     self.list2 = data.list2;
                     console.log(self.list);
                     console.log(self.list2);
@@ -185,10 +135,10 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     if (self.keyword === "") {
-                        self.fnGetList(); // ≈∞øˆµÂ∞° ∫ÒæÓ¿÷¿∏∏È ¿¸√º ∏Ò∑œ¿ª ∫∏ø©¡‹
+                        self.fnGetList(); 
                         self.search = "";
                     } else {
-                        self.list = data.info; // ≈∞øˆµÂ∞° ¿÷¿∏∏È ∞Àªˆ ∞·∞˙∏¶ ∫∏ø©¡‹
+                        self.list = data.info; 
                         self.search = "";
                     }
                 }
@@ -197,13 +147,12 @@ var app = new Vue({
         fnAdd: function () {
             var self = this;
 
-
-            if (!confirm("µÓ∑œ«œΩ√∞⁄Ω¿¥œ±Ó?")) {
+            if (!confirm("Îì±Î°ùÌïòÏãúÍ≤†ÏäµÎãàÍπå?")) {
                 return;
             }
             
             if(self.content == null || self.content == ""){
-            	alert("≥ªøÎ¿ª ¿‘∑¬«ÿ¡÷ººø‰.");
+            	alert("ÎÇ¥Ïö©ÏùÑ ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî.");
                 return;
             }
             var nparmap = {content: self.content, artist: self.artist, uId : self.uId };
@@ -214,7 +163,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("µÓ∑œµ«æ˙æÓø‰.");
+                    alert("Îì±Î°ù ÏôÑÎ£å");
                     self.comment = "";
                     self.fnGetList();
  	           		var form = new FormData();
@@ -224,7 +173,6 @@ var app = new Vue({
                 }
             });
         },
-     // ∆ƒ¿œ æ˜∑ŒµÂ
 	     upload : function(form){
 	    	var self = this;
 	         $.ajax({
@@ -240,7 +188,7 @@ var app = new Vue({
 		}
         ,fnRemove: function (item) {
             var self = this;
-            if (!confirm("ªË¡¶«œΩ√∞⁄æÓø‰?")) {
+            if (!confirm("ÏÇ≠Ï†úÌïòÏãúÍ≤†ÏäµÎãàÍπå?")) {
                 return;
             }
             var nparmap = item;
@@ -250,18 +198,18 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("ªË¡¶µ«æ˙Ω¿¥œ¥Ÿ.");
+                    alert("ÏÇ≠Ï†ú ÏôÑÎ£å");
                     self.fnGetList();
                 }
             });
             
-        },fnMove: function  (where) {
-      	  	window.history.back();
-          
-         	 if(where == 'my'){
-          		location.href = "myPage.do";
-          	}
-         	 
+        },fnMove: function (where) {
+        	  window.history.back();
+	            
+	            if(where == 'my'){
+	            	location.href = "myPage.do";
+	            }
+	            
         },fnLike: function(gNo) {
             var self = this;
             var nparmap = {artist : self.artist, gNo: gNo, uId : self.uId};
@@ -276,38 +224,40 @@ var app = new Vue({
                 }
             });
         }, fnComment : function(gNo){
-        	 var self = this;
-             var width = 700;
-             var height = 500;
-             var left = (window.innerWidth - width) / 2;
-             var top = (window.innerHeight - height) / 2;
-             var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
-             var url = "view.do?gNo=" + gNo + "&uId=" + self.uId;
-             window.open(url, "gNo", option);
+            var self = this;
+            var width = 700;
+            var height = 500;
+            var left = (window.innerWidth - width) / 2;
+            var top = (window.innerHeight - height) / 2;
+            var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
+            var url = "view.do?gNo=" + gNo + "&uId=" + self.uId;
+            window.open(url, "gNo", option);
         	
         },  reportPost : function(gNo) {
             var self = this;
-            self.selectedReason = ""; // √ ±‚»≠
-            self.otherReason = ""; // √ ±‚»≠
-            self.reportDescription = ""; // √ ±‚»≠
+            self.selectedReason = ""; 
+            self.otherReason = "";
+            self.reportDescription = ""; 
             self.showReportModal = true;
             
-            var option = "width=500,height=500,top=100,right";
+            var option = "width=700,height=500,top=100,right";
             var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
             window.open(url, "gNo", option);
-                 
-  	  }, handleFileChange: function(event) {
-        var self = this;
-        var file = event.target.files[0];
-        
-        if (file) {
-            var ext = file.name.split('.').pop().toLowerCase();
+            
+          }, handleFileChange: function(event) {
+              var self = this;
+              var file = event.target.files[0];
+              
+              if (file) {
+                  var ext = file.name.split('.').pop().toLowerCase();
 
-            if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
-                alert('gif, jpg, jpeg, png ≈∏¿‘¿« ∆ƒ¿œ∏∏ æ˜∑ŒµÂ ∞°¥…«’¥œ¥Ÿ.');
-                event.target.value = '';
-            }
-        }
+                  if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
+                      alert('gif, jpg, jpeg, png ÌÉÄÏûÖÏùò ÌååÏùºÎßå ÏóÖÎ°úÎìú Í∞ÄÎä•Ìï©ÎãàÎã§.');
+                      event.target.value = '';
+                  }
+              }
+          }
+        	
     }, // methods
     created: function () {
         var self = this;

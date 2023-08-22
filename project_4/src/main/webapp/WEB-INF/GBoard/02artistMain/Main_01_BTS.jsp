@@ -10,16 +10,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버쉽 게시판 </title>
 <style>
-
+#app{
+background-color : #D0ACDB;}
 		
 		
 </style>
 </head>
 <body>
- <nav id="app">
+
  
 	<div class="logos">
-      <a href="../home2.do"><img alt="" src="../img/logo/veryperiiix.png" style="width:130px; height:80px; margin-top:25px;"></a>
+      <a href="../home2.do"><img alt="" src="../img/logo/veryperiiix-.png" style="width:130px; height:80px; margin-top:25px;"></a>
       <a href="../home2.do"><img alt="" src="../img/logo/bts_logo.png" style="width:120px; height:auto;"></a>
     </div>
     
@@ -38,7 +39,7 @@
         </div>
         <hr>
     </nav>
-    
+     <nav id="app">
     <div class="artistNewFeed">
         	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
 		        <a href="javascript:;">

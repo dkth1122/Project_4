@@ -149,17 +149,17 @@ margin :  0px auto;
 	box-sizing: border-box;
 }
 .sect3 ul.sale {
-    display: flex; /* ���� ��ġ�� ���� Flexbox ��� */
+    display: flex; /* 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙 Flexbox 占쏙옙占� */
     
-    padding: 100px; /* �⺻ �е� ���� */
+    padding: 100px; /* 占썩본 占싻듸옙 占쏙옙占쏙옙 */
 }
 
 .sect3 ul.sale li {
-    flex: 1; /* ��ҵ��� ���� ������ �յ��ϰ� ���� */
-    list-style: none; /* �⺻ ����Ʈ ��Ÿ�� ���� */
-    margin: 50px; /* �⺻ ���� ���� */
-    padding: 10px; /* ���� ���� ���� */
-    box-sizing: border-box; /* �е��� �׵θ��� ��� ũ�⿡ ���� */
+    flex: 1; /* 占쏙옙撚占쏙옙占� 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌌듸옙占싹곤옙 占쏙옙占쏙옙 */
+    list-style: none; /* 占썩본 占쏙옙占쏙옙트 占쏙옙타占쏙옙 占쏙옙占쏙옙 */
+    margin: 50px; /* 占썩본 占쏙옙占쏙옙 占쏙옙占쏙옙 */
+    padding: 10px; /* 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 */
+    box-sizing: border-box; /* 占싻듸옙占쏙옙 占쌓두몌옙占쏙옙 占쏙옙占� 크占썩에 占쏙옙占쏙옙 */
 }
 
 </style>
@@ -178,7 +178,7 @@ margin :  0px auto;
 				<div class="slideshow-container">
 					<div class="mySlides fade">
 				  	<div class="numbertext">1 / 3</div>
-				  	<img class="topimg" src="img/homeimg/boynext.jpg" >
+				  	<img class="topimg" src="img/homeimg/boynext.jpg" href="www.naver.com" >
 				</div>
 				
 				<div class="mySlides fade">
@@ -203,7 +203,7 @@ margin :  0px auto;
 			</div>
 				
 <footer> 
-	<p>한나라 푸터 시발</p>
+	<p>������ �명�� ��諛�</p>
 </footer>
 	
 	
@@ -249,7 +249,7 @@ function showSlides() {
     slides[slideIndex-1].style.display = "block";  
     dots[slideIndex-1].className += " active";
     
-    var bgColor = colors[slideIndex % colors.length]; // �迭�� �ε����� ���� ����
+    var bgColor = colors[slideIndex % colors.length]; // 占썼열占쏙옙 占싸듸옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
     container.style.backgroundColor = bgColor;
     
     setTimeout(showSlides, 2000); // Change image every 2 seconds

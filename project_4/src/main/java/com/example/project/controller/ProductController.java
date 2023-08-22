@@ -214,12 +214,20 @@ public class ProductController {
 	}
 	 //위시리스트 담기
 	@RequestMapping(value = "/product/insertWish.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String insertWish(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		productService.insertWish(map);
-		return new Gson().toJson(resultMap);
-}
-	 
+		@ResponseBody
+		public String insertWish(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			productService.insertWish(map);
+			return new Gson().toJson(resultMap);
+	}
+	//상품전체출력
+		 @RequestMapping(value = "/home3.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+			@ResponseBody
+			public String home3(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+				HashMap<String, Object> resultMap = new HashMap<String, Object>();
+				List<Product> list = productService.searchProductNewList(map);
+				resultMap.put("list", list);
+				return new Gson().toJson(resultMap);
+			}	 
 	
 }
