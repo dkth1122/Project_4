@@ -4,10 +4,12 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/footer.js"></script>
+<script src="../js/footer.js"></script>
 <link href="../css/mypage.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <%@ include file="../Product/sexyheader.jsp" %>
-<%@ include file="../page/footer.jsp" %>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -64,6 +66,10 @@
     text-align: right;
   	margin:  0px;
   	padding: 0xp;
+}
+footer{
+	width: 100%;
+	height: 600px;
 }
 </style>
 
@@ -255,9 +261,15 @@
 
 
 			</div>
+			<div>
+				<%@ include file="../page/footer.jsp" %>			
+			</div>
+
 		</div>
+	
 </body>
 </html>
+
 <script type="text/javascript">
 	var app = new Vue({
 		el : '#app',

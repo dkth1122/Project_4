@@ -14,8 +14,9 @@
   <title>마이페이지</title>
   <style type="text/css">
   	#useGuide{
-  		margin-top : 150px;
+  		font-size: 4em;  		
 		width: 1200px;
+		margin :150px auto;
 		text-align: center;  		
   	}
   	<!-- 페이징 추가 2-->
@@ -50,6 +51,38 @@
 	.pagination li.active a {
 	    color:#fff;
 	}
+	#radioMenu{
+		    display: flex;
+   			flex-direction: row;
+  			justify-content: space-evenly;
+	}
+	
+	#radioMenu > div{
+		width: 200px;
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+	}
+	.woerdch{
+		text-align: right;
+		margin: 30px;		
+	}
+	.woerdch input{
+		width: 150px;
+		height: 20px;
+		margin-right: 0px;
+		border-radius: 25px;
+		border-style: solid;
+		padding: 10px;
+	}
+	.woerdch button{
+		margin-right : 50px;
+		width: 0px;
+		height: 20px;
+		border-style: solid;
+		background-color: #fff;
+		border: none;
+	}
   </style>
 </head>
 <body>
@@ -58,22 +91,22 @@
     	<h1 id="useGuide">FAQ</h1>
     	
     	<div id="radioMenu">
-    		<input id="2" type="radio" name="Menu" value="회원/로그인" v-model="selectedMenu">
-    		<label for="2">회원/로그인</label>
-    		<input id="3" type="radio" name="Menu" value="상품" v-model="selectedMenu">
-    		<label for="3">상품</label>
-    		<input id="4" type="radio" name="Menu" value="주문/결제" v-model="selectedMenu">
-    		<label for="4">주문/결제</label>
-    		<input id="5" type="radio" name="Menu" value="배송" v-model="selectedMenu">
-    		<label for="5">배송</label>
-    		<input id="6" type="radio" name="Menu" value="교환/반품" v-model="selectedMenu">
-    		<label for="6">교환/반품</label>
-    		<input id="7" type="radio" name="Menu" value="기타" v-model="selectedMenu">
-    		<label for="7">기타</label>
+    			<input id="2" type="radio" name="Menu" value="회원/로그인" v-model="selectedMenu" hidden>
+    		<div><label for="2">회원/로그인</label></div>
+    			<input id="3" type="radio" name="Menu" value="상품" v-model="selectedMenu" hidden>
+    		<div><label for="3">상품</label></div>
+    			<input id="4" type="radio" name="Menu" value="주문/결제" v-model="selectedMenu" hidden>
+    		<div><label for="4">주문/결제</label></div>
+    			<input id="5" type="radio" name="Menu" value="배송" v-model="selectedMenu" hidden>
+    		<div><label for="5">배송</label></div>
+    			<input id="6" type="radio" name="Menu" value="교환/반품" v-model="selectedMenu" hidden>
+    		<div><label for="6">교환/반품</label></div>
+    			<input id="7" type="radio" name="Menu" value="기타" v-model="selectedMenu" hidden>
+    		<div><label for="7">기타</label></div>
     	</div>
     	
-    	<div><label><input v-model="keyword" @keyup="search"><span>
-    		<button @click="search"><i class="fa-solid fa-magnifying-glass"></i></button></span></label></div>
+    	<div class="woerdch"><label><input v-model="keyword" @keyup="search"><span>
+    		<button @click="search"><i class="fa-solid fa-magnifying-glass  fa-2xl"></i></button></span></label></div>
    
 	    <template>
 		  <div>
