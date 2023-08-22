@@ -103,8 +103,6 @@
 			<th>주문자 주소1</th>
 			<th>주문자 주소2</th>
 			<th>정제 주소</th>
-			<th>배송 메세지</th>
-			
 		</tr>
 		
 		<tr v-for="(item, index) in list">
@@ -113,7 +111,7 @@
 			<td v-else>{{ item.pName }}</td>
 			<td>{{item.pNo}}</td>
 			<td>
-				<select v-model="item.dState" @change="fnUpdateState(item, $index)">
+				<select v-model="item.dState" @change="fnUpdateState(item, index)">
 	                <option value="상품 준비중">상품 준비중</option>
 	                <option value="배송 준비중">배송 준비중</option>
 	                <option value="배송중">배송중</option>
@@ -129,7 +127,6 @@
 			<td>{{item.uDaddr}}</td>
 			<td>{{item.uDaddrDetail}}</td>
 			<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
-			<td>{{item.uDmessage}}</td>
 		</tr>
 	
 	</table>
@@ -203,27 +200,41 @@ var app = new Vue({
           fnBack : function(){
           	location.href = '../staff/main.do';
           },
-         	fnUpdateState : function(item, index) {
-        	    var self = this;
-        	    var exchangeVal = '';
-          	  if (item.dState.includes('거절')) {
-          	    exchangeVal = 'R';
-          	  }
-        	    $.ajax({
-        	      url: "/order/update.dox",
-        	      dataType: "json",
-        	      type: "POST",
-        	      data: {
-        	    	  exchange: exchangeVal,
-        	    	  oNo: item.oNo,
-        	    	  dState: item.dState
-        	      },
-        	      success: function(data) {
-        	        alert("주문 상태가 업데이트 되었습니다.");
-        	        self.fnGetList();
+          fnUpdateState : function(item, index) {
+        	  var self = this;
+        	  var exchangeVal = '';
+        	  if (item.dState.includes('거절')) {
+        	    exchangeVal = 'R';
+        	  }
+        	  $.ajax({
+        	    url: "/order/update.dox",
+        	    dataType: "json",
+        	    type: "POST",
+        	    data: {
+        	      exchange: exchangeVal,
+        	      oNo: item.oNo,
+        	      dState: item.dState
+        	    },
+        	    success: function(data) {
+        	      alert("주문 상태가 업데이트 되었습니다.");
+	        	      /* if (item.dState === "배송완료") {
+	        	        $.ajax({
+	        	          url: "/delivery/updateState.dox",
+	        	          dataType: "json",
+	        	          type: "POST",
+	        	          data: { oNo: item.oNo , dState : item.dState},
+	        	          success: function(res) {
+	        	            console.log(res); */
+	        	      		self.fnGetList();
+        	          },
+        	          error: function(xhr, status, error) {
+        	            console.log(xhr.responseText);
+        	          }
+        	        });
         	      }
-        	    }); 
-        	  },
+        	    }
+        	  }); 
+        	},
         fnProductPopup : function(item){
         	 window.open("../delivery/view.do?oNo=" + item.oNo, "productPopup", "width=1250,height=800,left=500,top=100");
         	

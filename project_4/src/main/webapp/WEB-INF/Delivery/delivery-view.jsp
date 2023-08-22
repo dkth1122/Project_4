@@ -80,7 +80,6 @@
       <th>林巩磊 林家1</th>
       <th>林巩磊 林家2</th>
       <th>沥力 林家</th>
-      <th>硅价 皋矫瘤</th>
     </tr>
       <tr v-for="(item, index) in list">
         <td>{{ item.pName }}</td>
@@ -102,7 +101,6 @@
         <td>{{ item.uDaddr }}</td>
         <td>{{ item.uDaddrDetail }}</td>
         <td>{{ item.uDaddr }} {{ item.uDaddrDetail }}</td>
-        <td>{{ item.uDmessage }}</td>
       </tr>
 </table>
 

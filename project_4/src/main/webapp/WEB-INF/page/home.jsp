@@ -8,7 +8,7 @@
 <meta charset="EUC-KR">
 <%@ include file="header.jsp" %>
 <style>
-<!-- ½½¶óÀÌµå ¿µ¿ª -->
+<!-- ìŠ¬ë¼ì´ë“œ ì˜ì—­ -->
 
 
 .slider {
@@ -28,7 +28,7 @@ ul.imgs {
 	padding: 0;
 	margin: 0;
 }
-/* ½½¶óÀÌ´õ À§Ä¡ Á¶Á¤ */
+/* ìŠ¬ë¼ì´ë” ìœ„ì¹˜ ì¡°ì • */
 ul.imgs li {
 	position: absolute;
 	top: 100%;
@@ -160,7 +160,7 @@ nav {
 
 /*SECT1*/
 
-/* ½½¶óÀÌµå ¹è°æ»ö */
+/* ìŠ¬ë¼ì´ë“œ ë°°ê²½ìƒ‰ */
 .sect1 {
 position: absolute;
 top: 100%;
@@ -172,7 +172,7 @@ transform: translate(50%, -50%);
 	color: #000;
 }
 
-/* ¾Ù¹ü Ä¿¹ö */
+/* ì•¨ë²” ì»¤ë²„ */
 .ostimg {
 position: absolute;
 top: 550%;
@@ -466,7 +466,7 @@ footer p {
 }
 
 <!--
-½½¶óÀÌµå ½ºÅ¸ÀÏ  -->section {
+ìŠ¬ë¼ì´ë“œ ìŠ¤íƒ€ì¼  -->section {
 	position: relative;
 	width: 1200px;
 	height: 300px;
@@ -508,7 +508,7 @@ img.imgslide3 {
 
 <body>
 
-	<!-- !!!!!!!!!!!!!!!!!!!!!    ½½¶óÀÌ´õ !!!!!!!!!!!!!!!!!! -->
+	<!-- !!!!!!!!!!!!!!!!!!!!!    ìŠ¬ë¼ì´ë” !!!!!!!!!!!!!!!!!! -->
 		<div class="slider">
 		<input type="radio" name="slide" id="slide1" checked=""> <input
 			type="radio" name="slide" id="slide2"> <input type="radio"
@@ -529,7 +529,7 @@ img.imgslide3 {
 </div>
 		
 
-		<!-- !!!!!!!!!!!!!!!!!!!!  ´º ¾ÆÀÌÅÛ !!!!!!!!!!!!!!!!!!!!!!! -->
+		<!-- !!!!!!!!!!!!!!!!!!!!  ë‰´ ì•„ì´í…œ !!!!!!!!!!!!!!!!!!!!!!! -->
 		<section class="sect2">
 			<h2><a href="newitem.do">NEW ITEM</a></h2>
 			<div class="Sbox1">
@@ -537,9 +537,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">¾ÆÆ¼½ºÆ®</li>
-					<li>Á¦Ç° ¸í</li>
-					<li>°¡°İ</li>
+					<li class="sname">ì•„í‹°ìŠ¤íŠ¸</li>
+					<li>ì œí’ˆ ëª…</li>
+					<li>ê°€ê²©</li>
 				</ul>
 			</div>
 
@@ -549,9 +549,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">¾ÆÆ¼½ºÆ®</li>
-					<li>Á¦Ç° ¸í</li>
-					<li>°¡°İ</li>
+					<li class="sname">ì•„í‹°ìŠ¤íŠ¸</li>
+					<li>ì œí’ˆ ëª…</li>
+					<li>ê°€ê²©</li>
 				</ul>
 			</div>
 
@@ -560,9 +560,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">¾ÆÆ¼½ºÆ®</li>
-					<li>Á¦Ç° ¸í</li>
-					<li>°¡°İ</li>
+					<li class="sname">ì•„í‹°ìŠ¤íŠ¸</li>
+					<li>ì œí’ˆ ëª…</li>
+					<li>ê°€ê²©</li>
 				</ul>
 			</div>
 
@@ -571,9 +571,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">¾ÆÆ¼½ºÆ®</li>
-					<li>Á¦Ç° ¸í</li>
-					<li>°¡°İ</li>
+					<li class="sname">ì•„í‹°ìŠ¤íŠ¸</li>
+					<li>ì œí’ˆ ëª…</li>
+					<li>ê°€ê²©</li>
 				</ul>
 			</div>
 
@@ -583,23 +583,23 @@ img.imgslide3 {
 		</section>
 		<section class="sect3">
 			<h2>STORE</h2>
-			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ½ºÅä¾î!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ìŠ¤í† ì–´!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
 			<ul class="sale">
 				<li><a href="#"><img src="img/homeimg/sale1.jpg" alt="" />
 						<p>
-							¾ÆÀÌÅÛ1 - ÀÌ¸§<br>8,000¿ø</a></li>
+							ì•„ì´í…œ1 - ì´ë¦„<br>8,000ì›</a></li>
 				<li><a href="#"><img src="img/homeimg/sale2.jpg" alt="" />
 						<p>
-							¾ÆÀÌÅÛ2 - ÀÌ¸§<br>8,000¿ø
+							ì•„ì´í…œ2 - ì´ë¦„<br>8,000ì›
 						</p></a></li>
 				<li><a href="#"><img src="img/homeimg/sale3.jpg" alt="" />
 						<p>
-							¾ÆÀÌÅÛ3 - ÀÌ¸§<br>7,000¿ø
+							ì•„ì´í…œ3 - ì´ë¦„<br>7,000ì›
 						</p></a></li>
 				<li><a href="#"><img src="img/homeimg/sale4.jpg" alt="" />
 						<p>
-							¾ÆÀÌÅÛ4 - ÀÌ¸§<br>5,500¿ø</a></li>
+							ì•„ì´í…œ4 - ì´ë¦„<br>5,500ì›</a></li>
 			</ul>
 
 		</section>
@@ -622,10 +622,10 @@ img.imgslide3 {
 		</section>
 		<footer>
 			<p>
-				<br> È¸»ç¸í (ÁÖ)VeryPeri Corp. ´ëÇ¥ÀÚ¸í À±³ª¿¬
-				 <br>ÁÖ¼Ò ÀÎÃµ±¤¿ª½Ã ºÎÆò±¸ ºÎÆòµ¿ 534-48 7Ãş
-				 ´ëÇ¥¹øÈ£ 4444-4444 / 4zomotchamchi@veryperi.com 
-				<br> VeriPeriÀÇ ¸ğµç ÄÜÅÙÃ÷´Â ÀúÀÛ±ÇÀÇ º¸È£¸¦ ¹Ş°í ÀÖ½À´Ï´Ù
+				<br> íšŒì‚¬ëª… (ì£¼)VeryPeri Corp. ëŒ€í‘œìëª… ìœ¤ë‚˜ì—°
+				 <br>ì£¼ì†Œ ì¸ì²œê´‘ì—­ì‹œ ë¶€í‰êµ¬ ë¶€í‰ë™ 534-48 7ì¸µ
+				 ëŒ€í‘œë²ˆí˜¸ 4444-4444 / 4zomotchamchi@veryperi.com 
+				<br> VeriPeriì˜ ëª¨ë“  ì½˜í…ì¸ ëŠ” ì €ì‘ê¶Œì˜ ë³´í˜¸ë¥¼ ë°›ê³  ìˆìŠµë‹ˆë‹¤
 			</p>
 			<img src="img/homeimg/footerlogo.png" alt="" />
 		</footer>
@@ -633,24 +633,24 @@ img.imgslide3 {
 </html>
 <script>
 
-//½½¶óÀÌµå¸¦ ¼öµ¿À¸·Î º¯°æÇÏ´Â ÇÔ¼ö
+//ìŠ¬ë¼ì´ë“œë¥¼ ìˆ˜ë™ìœ¼ë¡œ ë³€ê²½í•˜ëŠ” í•¨ìˆ˜
 
 
-// ½½¶óÀÌµå¸¦ ÀÚµ¿À¸·Î º¯°æÇÏ´Â ÇÔ¼ö
+// ìŠ¬ë¼ì´ë“œë¥¼ ìë™ìœ¼ë¡œ ë³€ê²½í•˜ëŠ” í•¨ìˆ˜
 function changeSlide() {
   var currentSlide = document.querySelector('input[type="radio"]:checked');
   var nextSlide = currentSlide.nextElementSibling || document.querySelector('input[type="radio"]:first-child');
   nextSlide.checked = true;
 
-  // ¸¸¾à 5¹øÂ° ½½¶óÀÌµåÀÏ °æ¿ì, 1¹øÂ° ½½¶óÀÌµå·Î ÀÚµ¿À¸·Î º¯°æ
+  // ë§Œì•½ 5ë²ˆì§¸ ìŠ¬ë¼ì´ë“œì¼ ê²½ìš°, 1ë²ˆì§¸ ìŠ¬ë¼ì´ë“œë¡œ ìë™ìœ¼ë¡œ ë³€ê²½
   if (currentSlide.id === 'slide5') {
     document.querySelector('#slide1').checked = true;
   }
 }
 
-// ÆäÀÌÁö°¡ ·ÎµåµÇ¸é ½½¶óÀÌ´õ Å¸ÀÌ¸Ó¸¦ ½ÃÀÛ
+// í˜ì´ì§€ê°€ ë¡œë“œë˜ë©´ ìŠ¬ë¼ì´ë” íƒ€ì´ë¨¸ë¥¼ ì‹œì‘
 document.addEventListener('DOMContentLoaded', function() {
-  setInterval(changeSlide, 3000); // 3000 ¹Ğ¸®ÃÊ = 3ÃÊ
+  setInterval(changeSlide, 3000); // 3000 ë°€ë¦¬ì´ˆ = 3ì´ˆ
 });
 	
 </script>

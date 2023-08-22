@@ -55,6 +55,12 @@ public class DeliveryServiceImpl implements DeliveryService{
 		return deliveryMapper.deliveryInfoSelect(map);
 	}
 
+	@Override
+	public int updateStateDelivery(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return deliveryMapper.updateStateDelivery(map);
+	}
+
 	
 	
 }

@@ -50,7 +50,10 @@ public class PageController {
 	public String home2(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/page/home2";
 	}
-	
+	@RequestMapping("/home3.do") 
+	public String home3(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/page/home3";
+	}
 	@RequestMapping("/faq.do") 
 	public String faq(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/page/faq";

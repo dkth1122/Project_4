@@ -52,6 +52,7 @@ public interface ProductService {
 	
 	//위시리스트 담기
 	int insertWish(HashMap<String, Object> map);
-	
+	//상품전체조회
+	List<Product>searchProductNewList(HashMap<String, Object> map);	
 	
 }

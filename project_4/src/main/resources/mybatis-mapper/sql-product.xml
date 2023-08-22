@@ -202,5 +202,10 @@
 	<select id="searchWish" resultType="int">
 	    SELECT COUNT(*) FROM T4_WISH WHERE U_ID = #{uId} AND P_NO = #{pNo}
 	</select>
+	<!-- 상품 상세조회 -->
+	
+	<!-- 상품전체출력 -->
+	<select parameterType="hashmap" id="searchProductNewList" resultType="com.example.project.model.Product">
+		SELECT * FROM T4_PRODUCTORDER BY P_DATE ASC </select>
 	
 </mapper>

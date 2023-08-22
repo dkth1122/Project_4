@@ -8,8 +8,55 @@
    <link href="../css/mypag.css" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>배송 주소록</title>
   <style type="text/css">
+  	table{
+  		width: 910px;
+  		border-collapse : collapse;
+  		text-align: center;
+  	}
+  	table td{
+  	height : 40px;
+  	padding : 25px 0px;
+  		border-bottom: 1px solid #e3e3e3; 
+  	}
+  	.tablebutton{
+  		width: 1200px;
+  		display: flex;
+  		flex-direction: column;
+  		align-items: center;
+  	}	
+  	.button > button{
+  		margin: 40px 10px;
+  		width: 150px;
+  		height: 60px;
+  		border-radius: 50px;
+  		background-color: #fff;
+  		font-size: 0.5em;
+  		font-weight: bold;
+  	}
+  	#remo{
+  		border: none;
+  		background-color: rgb(24, 0, 109);
+  		color: #fff;]
+  		
+  	}
+  	.l{
+  		margin-bottom: 30px;
+  	}
+  	.warningm{
+  		width: 900px;
+   		line-height: 80px;
+   		color : rgb(73, 73, 73);
+  	}
+  	#warningImg{
+  		margin-right: 20px;
+  	}
+  	#editbut{
+  		width: 50px;
+  		height: 50px;
+  		border-radius: 50%;
+  	}
   </style>
 </head>
 <body>
@@ -104,7 +151,7 @@
                                  <div> 
                                  	<table>
                                  		<tr>
-                                 			<th>선택</th>
+                                 			<th>　</th>
                                  			<th>No.</th>
                                  			<th>배송지</th>
                                  			<th>주소</th>
@@ -117,17 +164,19 @@
                                  			<td>{{item.uDname}}</td>
                                  			<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
                                  			<td>{{item.uDphone}}</td>
-                                 			<td><button @click="editAddr(item)">수정</button></td>
+                                 			<td><button @click="editAddr(item)" id="editbut">수정</button></td>
                                  		</tr>
                                  	</table>
-                                 	<div>
-                                 		<button @click="removeAddr(duNo)">선택 주소록 삭제</button>
-                                 		<button @click="addAddr">배송지 등록</button>
+                                 	<div class="tablebutton">
+                                 		<div class="button">
+	                                 		<button id="eid" @click="removeAddr(duNo)">선택 주소록 삭제</button>
+	                                 		<button id="remo" @click="addAddr">배송지 등록</button>
+                                 		</div>
                                  	</div>
                                  </div>
-                                <div class="lowerBox"> 배송 주소록 유의사항 </div>
-                                 <i class="fa-solid fa-exclamation" style="color: #b8b8b8;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
-                        
+                                <div class="lowerBox l"> 배송 주소록 유의사항 </div>
+                               <div class="warningm">  <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
+                      		  </div>
                            </div>
                    
                    </div>
