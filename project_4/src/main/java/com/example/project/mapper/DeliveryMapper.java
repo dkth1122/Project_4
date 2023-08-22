@@ -26,4 +26,7 @@ public interface DeliveryMapper {
 	
 	//주문번호별 배송 현황
 	List<Order> deliveryInfoSelect(HashMap<String, Object> map);
+	
+	//배송완료 시간 넣기
+	int updateStateDelivery(HashMap<String, Object> map);
 }

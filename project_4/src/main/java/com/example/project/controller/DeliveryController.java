@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.DeliveryService;
-import com.example.project.model.DeliveryUser;
 import com.example.project.model.Order;
 import com.google.gson.Gson;
 
@@ -59,6 +58,15 @@ public class DeliveryController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<Order> list = deliveryService.deliveryInfoSelect(map);
 		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/delivery/updateState.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String orderUpdate(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		deliveryService.deliveryListSelect(map);
+		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 }
