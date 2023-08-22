@@ -89,7 +89,7 @@
 <div id="app">
 	<div class="mainBox">
 	
-	<div class="mainPos2">林巩 包府</div>
+	<div class="mainPos2">背券/馆前 包府</div>
 <hr>	
     <table>
     <thead>
@@ -168,7 +168,7 @@ var app = new Vue({
       var lastNum = 10;
       var nparmap = {startNum : startNum, lastNum : lastNum};
       $.ajax({
-        url : "/order/list.dox",
+        url : "/exchange/list.dox",
         dataType:"json",
         type : "POST", 
         data : nparmap,
@@ -187,7 +187,7 @@ var app = new Vue({
       var lastNum = 10;
       var nparmap = {startNum : startNum, lastNum : lastNum};
       $.ajax({
-        url : "/order/list.dox",
+        url : "/exchange/list.dox",
         dataType : "json",
         type : "POST",
         data : nparmap,

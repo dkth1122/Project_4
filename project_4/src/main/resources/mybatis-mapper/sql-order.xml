@@ -55,9 +55,9 @@
 	    UPDATE T4_DELIVERY D
 	    INNER JOIN T4_ORDER O ON O.BUY_NO = D.BUY_NO
 	    SET
-	    	D_STATE =#{dState},
+	    	D_STATE = #{dState},
 	    	EXCHANGE = #{exchange}
-	    WHERE (EXCHANGE != 'R' AND EXCHANGE != 'E') AND O.O_NO = #{oNo}
+	    WHERE (EXCHANGE IS NULL OR EXCHANGE = '') AND O.O_NO = #{oNo}
 	</update>
 	
 	<!-- 오더 상태 변경 개별 -->
@@ -67,7 +67,7 @@
 	    SET
 	    	D_STATE =#{dState},
 	    	EXCHANGE = #{exchange}
-	    WHERE O.BUY_NO = #{buyNo}
+	    WHERE O.BUY_NO = #{buyNo} 
 	</update>
 	
 </mapper>

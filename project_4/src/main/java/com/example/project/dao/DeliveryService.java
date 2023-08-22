@@ -20,6 +20,8 @@ public interface DeliveryService {
 	//주문번호별 배송 현황
 	List<Order> deliveryInfoSelect(HashMap<String, Object> map);
 	
-	//배송완료 시간 넣기
-	int updateStateDelivery(HashMap<String, Object> map);
+	//배송완료 상태 변경
+	int updateOrder2 (HashMap<String, Object> map);
+	//배송완료 상태 변경 개별
+	int updateOrderInfo2 (HashMap<String, Object> map);
 }

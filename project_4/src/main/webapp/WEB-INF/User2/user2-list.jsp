@@ -132,7 +132,6 @@
 	</template>
     </div>
     
-    <div><button @click="fnBack">되돌아가기</button></div>
 </div>
 
 </body>

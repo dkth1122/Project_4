@@ -69,4 +69,20 @@ public class DeliveryController {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping(value = "/delivery/updateOrder2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateOrder2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		deliveryService.updateOrder2(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/delivery/updateOrderInfo2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateOrderInfo2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		deliveryService.updateOrderInfo2(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
 }

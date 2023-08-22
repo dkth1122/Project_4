@@ -56,9 +56,15 @@ public class DeliveryServiceImpl implements DeliveryService{
 	}
 
 	@Override
-	public int updateStateDelivery(HashMap<String, Object> map) {
+	public int updateOrder2(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return deliveryMapper.updateStateDelivery(map);
+		return deliveryMapper.updateOrder2(map);
+	}
+
+	@Override
+	public int updateOrderInfo2(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return deliveryMapper.updateOrderInfo2(map);
 	}
 
 	

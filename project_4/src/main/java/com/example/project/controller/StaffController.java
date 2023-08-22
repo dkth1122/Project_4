@@ -64,6 +64,11 @@ public class StaffController {
 		request.setAttribute("map", map);
 		return "/Staff/staff-edit";
 	}
+	@RequestMapping("/staff/sales.do") 
+	public String sales(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/Staff/staff-sales";
+	}
 	
 	@RequestMapping(value = "/staff/staffLogin.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

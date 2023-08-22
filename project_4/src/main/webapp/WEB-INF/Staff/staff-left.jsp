@@ -114,7 +114,7 @@ var app2 = new Vue({
 				location.href="../exchange/list.do";
 		},
 		fnSales : function() {
-				location.href="../sales/chart.do";
+				location.href="../staff/sales.do";
 		}
 		
 	}, // methods

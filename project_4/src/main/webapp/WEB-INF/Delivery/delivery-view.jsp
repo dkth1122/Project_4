@@ -128,14 +128,22 @@ var app = new Vue({
                 	self.list = data.list;
                 }
             }); 
+        },   
+        fnUpdateState : function(item) {
+        	var self = this;
+        	if (item.dState === '배송완료') {
+        	    self.updateState2(item);
+        	} else {
+        	    self.updateState1(item);
+        	}
         },
-        fnUpdateState: function(item, index) {
-        	  var self = this;
-        	  var exchangeVal = '';
-        	  if (item.dState.includes('거절')) {
+        updateState1 : function(item) {
+          	var self = this;
+        	var exchangeVal = '';
+        	if (item.dState.includes('거절')) {
         	    exchangeVal = 'R';
-        	  }
-        	  $.ajax({
+        	}
+        	$.ajax({
         	    url: "/order/updateOrderInfo.dox",
         	    dataType: "json",
         	    type: "POST",
@@ -149,7 +157,23 @@ var app = new Vue({
         	      self.fnGetList();
         	    }
         	  }); 
-        	}
+        },
+        updateState2 : function(item) { // 새로운 함수
+          	var self = this;
+        	$.ajax({
+        	    url: "/delivery/updateOrderInfo2.dox",
+        	    dataType: "json",
+        	    type: "POST",
+        	    data: {
+        	      buyNo: item.buyNo,
+        	      dState: item.dState
+        	    },
+        	    success: function(data) {
+        	      alert("주문 상태가 업데이트 되었습니다.");
+        	      self.fnGetList();
+        	    }
+        	  }); 
+         }
 	}, // methods
 	created : function() {
 	  this.oNo = "${map.oNo}"; // 데이터 할당
