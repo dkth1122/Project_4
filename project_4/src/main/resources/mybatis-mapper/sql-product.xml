@@ -218,8 +218,19 @@
 	      LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 	      INNER JOIN T4_USER U ON O.U_ID = U.U_ID
 	      LEFT JOIN T4_DELIVERY_USER D2 ON D2.U_ID = U.U_ID 
-	      WHERE O.U_ID = #{uId} AND O.O_NO = #{oNo}
+	      WHERE O.U_ID = #{uId} AND O.O_NO = #{oNo} 
 	      GROUP BY O.BUY_NO
 	</select>
-	
+	<!-- 주문내역상세 출력 날짜조회-->
+	<select id="selectOrderpuductSearch" parameterType="hashmap" resultType="com.example.project.model.Product">		
+	    SELECT *
+      	FROM T4_ORDER O
+	      INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO	
+	      INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+	      LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+	      INNER JOIN T4_USER U ON O.U_ID = U.U_ID
+	      LEFT JOIN T4_DELIVERY_USER D2 ON D2.U_ID = U.U_ID 
+	      WHERE O.U_ID = #{uId} AND O_DATE BETWEEN '%#{endDate}%' AND '%#{startDate}%'
+	      GROUP BY O.BUY_NO
+	</select>	
 </mapper>

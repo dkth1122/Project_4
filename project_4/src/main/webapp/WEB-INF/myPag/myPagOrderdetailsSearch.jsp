@@ -441,7 +441,8 @@ Vue.component('paginate', VuejsPaginate)
 		},
 		created : function() {
 			var self = this;
-			self.fnGetList();			
+			self.fnGetList();	
+			self.searchCalender();
 			self.fnCntList();
 		}
 	});
