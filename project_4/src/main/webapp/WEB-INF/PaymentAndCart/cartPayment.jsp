@@ -237,18 +237,13 @@ text-align: center;
 						<th>이미지</th>
 						<th colspan="2">상품정보</th>
 						<th>수량</th>
-						<th>제거</th>
 						<th>주문금액</th>						
 					</tr>
 					<tr v-for="item in list">
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
-						<td class="c">
-							 <input :value="item.cnt" @input="updateItemCnt(item)">
-							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
-							 <a href="#none" @click="increaseCnt(item)"> <i class="fa-solid fa-plus"></i> </a>
-						</td>
-						<td><button @click ="fnRemoveCart(item.pNo)">삭제</button></td>
+						<td class="c"></td>
+						<td class="d">{{item.cnt}}</td>
 						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
 					</tr>
 				</table>
@@ -261,6 +256,7 @@ text-align: center;
 				</div>
 			
 				<div class="payment"></div>
+					<div class="baybutton">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</div>
 			</div>
 			<div id="addr">
 				<div>
@@ -271,14 +267,13 @@ text-align: center;
 						<button @click="fnAddrList" >주소록 보기</button>
 						<table>
 								 <tr v-for = "item in info" v-if="flg">
-                                 	<td><input type="radio" v-model="duNo" :value="item.duNo" name="duNo"></td>
                                  	<td>{{item.duNo}}</td>
                                  	<td>{{item.uDname}}</td>
                                  	<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
                                  	<td>{{item.uDphone}}</td>
                                  	<td><button @click="fnAddAddr(item, 'y')">선택</button></td>
+                                 <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
                                  </tr>
-                                 <tr><button @click="fnAddAddr(item, 'n')">취소</button></tr>
                         </table>
 					<table class="adr" border="0">
 						<tr>
@@ -456,6 +451,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			list : [],
 			totalPrice : 0,
 			delivery : 0,
+			numberWithCommas : "",
 			 user : {
 		    	   	uId : "",
 		    	   	uDname : "",
@@ -491,7 +487,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                }
 	            }); 
 	        },calculateTotal: function (item) {
-	        	item.pric
                 return item.price * item.cnt;
             },
 	        // 상품 전체 금액 합산 메서드
@@ -501,12 +496,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  self.list.forEach(function (item) {
                      total += self.calculateTotal(item);
                  });
+	   			self.totalPrice = total;
 	   			if (total < 50000) {
                     self.delivery = 3000;
                 } else {
                     self.delivery = 0;
                 } 
-	   			self.totalPrice = total;
                  return total;
                  
         	}, decreaseCnt: function (item) {
@@ -555,7 +550,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 success : function(data) { 
                    self.info = data.list; //사용자
                    self.flg = !self.flg;
-                   console.log(self.info);
                    
                 }
             }); 
@@ -601,11 +595,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	    	}
    		}, requestPay : function() {
     		var self = this;
-    		self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3
+    		self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
+            var timestamp = new Date().getTime();
     			IMP.request_pay({
        		    pg: "nice",
        		    pay_method: "card",
-       		    merchant_uid: "test_llln5x5v",
+       		    merchant_uid:  "order_" + timestamp,
        		    name: "결제 실행",
        		    amount: self.totalPrice,
        		    buyer_addr : self.user.addr + self.user.addrDetail,
@@ -615,27 +610,48 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	 
     		}, function (rsp) { // callback
   	   	      if (rsp.success) {
-  	   	        console.log("rsp ==>", rsp);
-  	   	        // 결제 성공 시 장바구니 삭제 
-                  	var self = this;
-  	            	var nparmap = {uId : self.uId,};            
-	  	            $.ajax({
-	  	                url : "removeCart.dox",
-	  	                dataType:"json",	
-	  	                type : "POST", 
-	  	                data : nparmap,
-	  	                success : function(data) { 
-	  	                	alert("결제 성공");
-	  	                }
-	  	            }); 
+  	   	    	console.log("rsp ==>", rsp);
+  	   	    	self.fnInsertAll();
+  	   	    	self.fnRemoveCart();
+  	   	    	alert("결제 성공");
+  	   	        
   	   	      } else {
   	   	        // 결제 실패 시
-  	   	        alert("결제 실패");
+  	   	        alert("실패");
   	   	      }
+    		
   	   	  });
-  	   	}
-	},
-	created : function() {
+    			
+  	   	},  fnRemoveCart : function(){
+            var self = this;
+            var nparmap = {uId : self.uId};            
+            $.ajax({
+                url : "/cart/removeCart.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                }
+            });
+            
+        }, fnInsertAll : function(){
+        	var self = this;
+          	for(var i = 0; i < self.list.length; i++){
+                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt };
+                 	
+                 	console.log("여기=====>", nparmap);
+	                   $.ajax({
+	                       url : "insertALL.dox",
+	                       dataType:"json",   	
+	                       type : "POST", 
+	                       data : nparmap,
+	                       success : function(data) { 
+	                          
+	                       }
+	                   });  
+          	}//for
+        }//function
+	},created : function() {
 			var self = this;
 			self.fnGetList();
 			console.log(self.list);

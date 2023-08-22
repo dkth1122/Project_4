@@ -313,7 +313,6 @@ text-align: center;
                 } else {
                     self.delivery = 0;
                 } 
-	   			self.totalPrice = total;
                  return total;
                  
         	},decreaseCnt: function (item) {
@@ -340,6 +339,8 @@ text-align: center;
 	            }); 
             }, fnPay : function(item){
                 var self = this;
+	   			self.totalPrice = self.calculateTotalPrice()  + self.delivery;
+	   			console.log("ÅäÅ»°¡°Ý=======>",self.totalPrice);
 	               	$.pageChange("/payment/cartPayment.do", {totalPrice : self.totalPrice})	;
            
             }, fnCartChange : function(item){

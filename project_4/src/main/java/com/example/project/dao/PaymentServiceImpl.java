@@ -18,7 +18,7 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	//결제 오더 테이블 등록
 	@Override
-	public int insertProductBuy(HashMap<String, Object> map) {
+	public int addProductBuy(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return paymentMapper.insertProductBuy(map);
 	}

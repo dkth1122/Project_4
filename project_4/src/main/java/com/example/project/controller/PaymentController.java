@@ -1,6 +1,7 @@
 package com.example.project.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.PaymentService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,14 +42,6 @@ public class PaymentController {
         return "/PaymentAndCart/cartPayment";
     }
 	
-	 @RequestMapping(value = "/payment/insertProductPayment.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-		@ResponseBody
-		public String insertProductPayment(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-			HashMap<String, Object> resultMap = new HashMap<String, Object>();
-			paymentService.insertProductBuy(map);
-			resultMap.put("message", "success");
-			return new Gson().toJson(resultMap);
-	}
 	 
 	 @RequestMapping(value = "/payment/insertProductPayment2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 		@ResponseBody
@@ -57,6 +52,15 @@ public class PaymentController {
 			return new Gson().toJson(resultMap);
 	}
 	
+	 //여러 값 체크박스로 보내기
+		@RequestMapping(value = "/payment/insertALL.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String removeBoard(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			 paymentService.addProductBuy(map);
+			 
+			return new Gson().toJson(resultMap);
+		}
 		
 		
 }
