@@ -624,7 +624,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	      if (rsp.success) {
   	   	    	self.fnInsertAll();
   	   	    	alert("결제 성공");
-  	   	   		location.do = "../home.do";
+  	   	   		location.href = "../home.do";
   	   	        
   	   	      } else {
   	   	        // 결제 실패 시
