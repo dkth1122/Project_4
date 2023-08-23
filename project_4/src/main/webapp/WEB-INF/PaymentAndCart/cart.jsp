@@ -323,8 +323,15 @@ text-align: center;
                     this.calculateTotalPrice();
                 }
             }, increaseCnt: function (item) {
-                item.cnt++;
-                this.calculateTotalPrice();
+            	var self = this;
+            	if(item.cnt < item.pLimit){
+            		 item.cnt++;
+            		 this.calculateTotalPrice();
+            	}else{
+            		alert("해당상품의 최대구매수량은 "+item.pLimit+"개 입니다.");
+            	}
+                
+                
                 
             }, fnRemoveCart : function(pNo){
                 var self = this;
@@ -342,7 +349,36 @@ text-align: center;
             }, fnPay : function(item){
                 var self = this;
         		console.log("토탈가격=======>",self.totalPrice);
-	               $.pageChange("/payment/cartPayment.do", {totalPrice : self.totalPrice}); 
+        		var currentDate = new Date();
+
+            	var year = currentDate.getFullYear();
+            	var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
+            	var day = currentDate.getDate();
+            	var hours = currentDate.getHours();
+            	var minutes = currentDate.getMinutes();
+            	var seconds = currentDate.getSeconds();
+
+            	var currentDateString = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+            	
+            	for(var i=0; i<self.list.length; i++){
+            		if(self.list[i].membership == "Y"){
+            			if(currentDateString <= self.list[i].mExpDate || currentDateString >= self.list[i].mRegDate){
+                    		alert(self.list[i].pName+"\n해당 상품은 멤버쉽 구독이 필요한 상품입니다. \n해당 아티스트의 멤버쉽을 구독해주세요.");                    	
+                				if(self.list[i].kitYn == "Y"){
+                                	alert(self.list[i].pName+"\n키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
+                                	return;
+                			}
+            			}            			                    	
+            		}
+            		else if(self.list[i].stock == 0){
+            			alert(self.list[i].pName + "\n해당상품은 구매할 수 없습니다.\n*사유 : SOLD OUT");            			
+            		}
+            		else{
+            			$.pageChange("/payment/cartPayment.do", {totalPrice : self.totalPrice});
+            			return;            			
+            		}
+            	}
+	           //    $.pageChange("/payment/cartPayment.do", {totalPrice : self.totalPrice}); 
            
             }, fnCartChange : function(item){
         	   var self = this;
