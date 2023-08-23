@@ -82,7 +82,7 @@ select{
                       
                    <div class="a">
                       <div class="left topImgBoxwid">
-                           <div id="profileImg"></div>
+                         	<a href="/mypag/main.do"><div id="profileImg"></div></a>
                       </div >
                       <div class="topBox">
                       <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -98,20 +98,21 @@ select{
                          
                          <div class="details" >
                          
-                            <div>Refund</div>
-                            <div>
-                               <span>0/</span><span>0/</span><span>0</span>
-                            </div>
+                            <div>교환/환불</div>
+									<div>
+										<span v-if="refund != 0">{{refund}} /</span>
+										<span v-else>0 /</span>
+										
+										<span v-if="exchange != 0"> {{exchange}}</span>
+										<span v-else>0</span>
+									</div>
                             
                          </div>
                          <div class="details" >
-                            <div>포인트</div>
-                            <div>{{info.uPoint}} P</div>
-                         </div>
-                         <div class="details" >
-                            <div>Jelly</div>
-                            <div>0</div>
-                         </div>
+                           	<div>포인트</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
+                         </div>                         
                       </div>
                    </div>
                       
@@ -147,9 +148,9 @@ select{
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                  
                                     </ul>   
                                  </li>  
                               </ul>
@@ -232,8 +233,7 @@ select{
 var app = new Vue({
     el: '#app',
     data: {
-       info : [
-       ],
+       info : [],
        user : {
     	   uName2 : "",
     	   uPw : "",
@@ -249,6 +249,7 @@ var app = new Vue({
        prefix: "",
        suffix: "",
        phnum : "010",
+       maxpoint : undefined,
        
     },
     methods: {
@@ -335,42 +336,73 @@ var app = new Vue({
                 }
             }); 
 	    },
-	    faq : function(){
-	    	var self = this;
-	    	$.pageChange("faq.do", {uId : self.uId});
-	    },
+	    fnNotice : function (){ // 공지 
+			var self = this;
+    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+		},
+		fnUseGuide : function (){ //이용안내
+			var self = this;
+    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+		},
+		fnFaq : function (){ //faq
+			var self = this;
+    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+		},
 	    /* 상단 구매내역 카운트 숫자 */
 		fnCntList : function() {
 			var self = this;
 			var nparmap = {uId : self.uId};
-			console.log(nparmap);
 			$.ajax({
 				url : "/mypag/listExchange.dox",
 				dataType : "json",
 				type : "POST",
 				data : nparmap,
 				success : function(data) {
-					console.log(data);
+					
 					var listCnt = data.list;
 					for (var i = 0; i < listCnt.length; i++) {
-						if (listCnt[i].exchange == "N") {
+						if (listCnt[i].exchange == "C") {								
+							self.refund = listCnt[i].orderCnt;							
+						} else if (listCnt[i].exchange == "R") {
+							self.exchange = listCnt[i].orderCnt;
+						} else{
 							self.order = listCnt[i].orderCnt;
 							console.log(self.order);
-						} else if (listCnt[i].exchange == "E") {
-							self.exchange = listCnt[i].orderCnt;
-						} else {
-							self.refund = listCnt[i].orderCnt;
 						}
 					}
 
 				}
 			});
-		}
+		},
+		 fnPoint : function(){ // 포인트 내역 확인
+		        var self = this;
+		        var nparmap = {uId : self.uId};
+		        $.ajax({
+		            url : "/pointList.dox",
+		            dataType:"json",	
+		            type : "POST", 
+		            data : nparmap,
+		            success : function(data) { 	
+		            	self.usepointList = data.list;
+		            	var x = 0;
+		            	var datalist = data.list;
+		            	for(var i=0; i<datalist.length; i++){
+		            		x += datalist[i].point;	
+		            	}
+		            	self.maxpoint = x; // 사용가능 포인트 
+		            
+		            }
+		        }); 
+		    },
     },
     created: function() {
       var self = this;
       self.fnGetList();
-      // Vue.js ì½ë ìì± ê°ë¥
+	  self.fnPoint();
+	  self.fnCntList();
     }
 });
 </script>
