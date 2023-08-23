@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.project.mapper.OrderMapper;
 import com.example.project.mapper.PaymentMapper;
 import com.example.project.model.Order;
+import com.example.project.model.Product;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{
@@ -64,6 +65,12 @@ public class PaymentServiceImpl implements PaymentService{
 		// TODO Auto-generated method stub
 			
 		return paymentMapper.insertDelivery(map);
+	}
+
+	@Override
+	public List<Product> searchProductAll(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return paymentMapper.selectProductAll(map);
 	}
 
 	

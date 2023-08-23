@@ -33,6 +33,9 @@ public class Payment {
 	private int quantity;
 	
 	
+	//배송 주소록 테이블 
+	private String uDmessage;
+	
 	public int getQuantity() {
 		return quantity;
 	}
@@ -152,6 +155,18 @@ public class Payment {
 	}
 	public void setKitYn(String kitYn) {
 		this.kitYn = kitYn;
+	}
+	public String getuDmessage() {
+		return uDmessage;
+	}
+	public void setuDmessage(String uDmessage) {
+		this.uDmessage = uDmessage;
+	}
+	public int getBuyNo() {
+		return buyNo;
+	}
+	public void setBuyNo(int buyNo) {
+		this.buyNo = buyNo;
 	}
 	
 	

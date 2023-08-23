@@ -43,6 +43,8 @@ public class User2 {
 	private String eUname;
 	private String eUphone;
 	private char eYn;
+	//배송 주소록 테이블 
+	private String uDMessage;
 	public String getuId() {
 		return uId;
 	}

@@ -679,10 +679,12 @@ var app = new Vue({
             		alert("키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
             	}
         		else{
-            		$.pageChange("/payment/payment.do", {pNo : item.pNo}); 
+        			var params =  {pNo : self.pNo, cnt : self.quantity};
+            		$.pageChange("/payment/payment.do", params); 
             	}	
         	}else{
-        		$.pageChange("/payment/payment.do", {pNo : item.pNo});  
+    			var params =  {pNo : self.pNo, cnt : self.quantity};
+        		$.pageChange("/payment/payment.do", params); 
         	} 	
         	//$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
         	     	

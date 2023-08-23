@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.project.model.Order;
+import com.example.project.model.Product;
 
 @Mapper
 public interface PaymentMapper {
+	
+	//바로 구매용 제품 출력 쿼리 
+	List<Product> selectProductAll(HashMap<String, Object> map);
 	
 	//결제시 오더 테이블 등록
 	int insertProductBuy(HashMap<String, Object> map);

@@ -274,6 +274,8 @@ text-align: center;
                                  	<td>{{item.uDname}}</td>
                                  	<td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
                                  	<td>{{item.uDphone}}</td>
+									<th>배송메시지</th>
+									<td><textarea rows="7" cols="110" v-model="item.uDMessage"></textarea> </td>
                                  	<td><button @click="fnAddAddr(item, 'y')">선택</button></td>
                                  <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
                                  </tr>
@@ -310,6 +312,7 @@ text-align: center;
 								</select>
 							<input class="numinput" type="text" v-model="phone2">	- <input class="numinput" type="text" v-model="phone3">								
 							</td>	
+							<td><textarea rows="7" cols="110" v-model="dText"></textarea> </td>
 							<td><button @click="fnAddAddrList">주소록 등록</button></td>					
 						</tr>
 						
@@ -364,10 +367,6 @@ text-align: center;
 							</td>						
 						</tr>
 						
-						<tr>
-							<th>　배송메시지</th>
-							<td><textarea rows="7" cols="110" v-model="dText"></textarea> </td>
-						</tr>
 						
 					</table>
 				</div>
@@ -491,7 +490,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                data : nparmap,
 	                success : function(data) { 
 	                	self.list = data.list;
-	                	console.log(self.list);
 	                }
 	            }); 
 	        },calculateTotal: function (item) {
@@ -511,15 +509,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 } 
                  return total;
                  
-        	}, decreaseCnt: function (item) {
-                if (item.cnt > 1) {
-                    item.cnt--;
-                    this.calculateTotalPrice();
-                }
-                
-            }, increaseCnt: function (item) {
-                item.cnt++;
-                this.calculateTotalPrice();
             },updateItemCnt: function (item) {
             	
             	if (parseInt(event.target.value) > 1){
@@ -561,7 +550,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 					alert("내용을 모두 입력해주세요.");	
 	       		 return;	       		 
 	       	 }
-	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo};
+	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo, };
 	         $.ajax({
 	             url : "/mypag/addAddr.dox",
 	             dataType:"json",	
@@ -633,9 +622,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	 
     		}, function (rsp) { // callback
   	   	      if (rsp.success) {
-  	   	    	console.log("rsp ==>", rsp);
   	   	    	self.fnInsertAll();
   	   	    	alert("결제 성공");
+  	   	   		location.do = "../home.do";
   	   	        
   	   	      } else {
   	   	        // 결제 실패 시
@@ -653,7 +642,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 type : "POST", 
                 data : nparmap,
                 success : function(data) {
-                	location.do = "../main.do";
                 }
             });
             
@@ -663,7 +651,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
         	self.oNo = timestamp;
           	for(var i = 0; i < self.list.length; i++){
                  	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo };
-                 	console.log("여기 인서트 전부 하는거 =====>", nparmap);
 	                   $.ajax({
 	                       url : "insertALL.dox",
 	                       dataType:"json",   	
@@ -671,7 +658,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                       data : nparmap,
 	                       success : function(data) { 
 	                    	   self.buyNo = data.buyNo;
-	                    	   console.log("인서트하고 buyNo값 확인=======>",self.buyNo);
 	                    	   self.fninsertDelivery();
 	                    	   self.fnRemoveCart();
 	                       }
@@ -683,14 +669,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
         	self.user.oNo = self.oNo;
         	self.user.buyNo = self.buyNo;
          	var nparmap = self.user;
-         	console.log("여기 딜리버리 테이블용 =====>", nparmap);
                $.ajax({
                    url : "insertDelivery.dox",
                    dataType:"json",   	
                    type : "POST", 
                    data : nparmap,
                    success : function(data) { 
-                      
                    }
                });  
         	
@@ -701,7 +685,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	},created : function() {
 			var self = this;
 			self.fnGetList();
-			console.log(self.list);
 		}
 	});
 	

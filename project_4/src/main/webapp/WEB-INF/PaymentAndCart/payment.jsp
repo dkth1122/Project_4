@@ -242,7 +242,7 @@ text-align: center;
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
 						<td class="c"></td>
-						<td class="d">{{item.cnt}}</td>
+						<td class="d">{{cnt}}</td>
 						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
 					</tr>
 				</table>
@@ -273,8 +273,9 @@ text-align: center;
                                  	<td>{{item.uDname}}</td>
                                  	<td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
                                  	<td>{{item.uDphone}}</td>
+									<td><input v-model="item.uDmessage"  hidden/> </td>
                                  	<td><button @click="fnAddAddr(item, 'y')">선택</button></td>
-                                 <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
+                                	<td><button @click="fnAddAddr(item, 'n')">취소</button></td>
                                  </tr>
                         </table>
 					<table class="adr" border="0">
@@ -309,7 +310,11 @@ text-align: center;
 								</select>
 							<input class="numinput" type="text" v-model="phone2">	- <input class="numinput" type="text" v-model="phone3">								
 							</td>	
-							<td><button @click="fnAddAddrList">주소록 등록</button></td>					
+							<br>
+							<th>배송메시지<th>
+							<td><textarea rows="7" cols="110" v-model="dText"></textarea> </td>
+							<td><button @click="fnAddAddrList">주소록 등록</button></td>	
+							<br>
 						</tr>
 						
 					</table>
@@ -362,12 +367,6 @@ text-align: center;
 							<input class="numinput" type="text" v-model="user.phone2"> - <input class="numinput" type="text" v-model="user.phone3">			
 							</td>						
 						</tr>
-						
-						<tr>
-							<th>　배송메시지</th>
-							<td><textarea rows="7" cols="110" v-model="dText"></textarea> </td>
-						</tr>
-						
 					</table>
 				</div>
 				</div>
@@ -443,7 +442,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		el : '#app',
 		data : {
 			uId : "${sessionId}",
-			totalPrice : "${map.totalPrice}",
+			pNo : "${map.pNo}",
+			cnt : "${map.cnt}",
     	   	uDname : "",
     	   	uDphone : "",
 			addr : "",
@@ -453,6 +453,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			list : [],
 			delivery : 0,
 			numberWithCommas : "",
+			totalPrice: 0,
 			 user : {
 		    	   	uId : "",
 		    	   	uDname : "",
@@ -484,17 +485,17 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	            var self = this;
 	            var nparmap = {uId : self.uId, pNo : self.pNo};        
 	            $.ajax({
-	                url : "/cart/searchCart.dox",
+	                url : "searchProductAll.dox",
 	                dataType:"json",	
 	                type : "POST", 
 	                data : nparmap,
 	                success : function(data) { 
 	                	self.list = data.list;
-	                	console.log(self.list);
 	                }
 	            }); 
 	        },calculateTotal: function (item) {
-                return item.price * item.cnt;
+	        	var self = this;
+                return item.price * self.cnt;
             },
 	        // 상품 전체 금액 합산 메서드
        		 calculateTotalPrice: function () {
@@ -509,16 +510,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                     self.delivery = 0;
                 } 
                  return total;
-                 
-        	}, decreaseCnt: function (item) {
-                if (item.cnt > 1) {
-                    item.cnt--;
-                    this.calculateTotalPrice();
-                }
-                
-            }, increaseCnt: function (item) {
-                item.cnt++;
-                this.calculateTotalPrice();
+
             },updateItemCnt: function (item) {
             	
             	if (parseInt(event.target.value) > 1){
@@ -583,6 +575,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	    	   self.phone2 = item.uDphone.substr(3,4);
 	    	   self.phone3 = item.uDphone.substr(7);
 	    	   self.duNo = item.duNo;
+	    	   self.dText = item.uDmessage;
     		}else if (check == 'n'){
     	   		self.uDname = "";
     	    	self.addr = "";
@@ -591,7 +584,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
  	    	  	self.phone1 = "";
     	    	self.phone2 = "";
     	    	self.phone3 = "";
- 	    	   self.duNo = "";
+ 	    	   	self.duNo = "";
+ 	    	  	self.dText = "";
     		}
     	
     	},fnAddAddr2 : function(check){
@@ -617,6 +611,13 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	    	}
    		}, requestPay : function() {
     		var self = this;
+    		
+    		 if(self.uId == null || self.uId == "" || self.user.uDname == null || self.user.uDname == "" || self.user.phone1 == null || self.user.phone1 == "" || self.user.phone2 == null || self.user.phone2 == ""|| self.user.phone3 == null || self.user.phone3 == ""|| self.user.addr == null || self.user.addr == "" || self.user.addrDetail == null || self.user.addrDetail == "" ||  self.user.zipNo == null || self.user.zipNo == ""){
+					alert("내용을 모두 입력해주세요.");	
+	       		 return;	       		 
+	       	 }
+     		self.totalPrice = self.calculateTotalPrice() + self.delivery;
+    		 
     		self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
             var timestamp = new Date().getTime();
     			IMP.request_pay({
@@ -632,9 +633,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	 
     		}, function (rsp) { // callback
   	   	      if (rsp.success) {
-  	   	    	console.log("rsp ==>", rsp);
   	   	    	self.fnInsertAll();
   	   	    	alert("결제 성공");
+  	   	  		location.do = "../home.do";
   	   	        
   	   	      } else {
   	   	        // 결제 실패 시
@@ -642,27 +643,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	      }
     		
   	   	  });
-    			
-  	   	},  fnRemoveCart : function(){
-            var self = this;
-            var nparmap = {uId : self.uId};            
-            $.ajax({
-                url : "/cart/removeCart.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : nparmap,
-                success : function(data) {
-                	location.do = "../main.do";
-                }
-            });
-            
         }, fnInsertAll : function(){
         	var self = this;
         	var timestamp =  new Date().getTime(); 
         	self.oNo = timestamp;
           	for(var i = 0; i < self.list.length; i++){
                  	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo };
-                 	console.log("여기 인서트 전부 하는거 =====>", nparmap);
 	                   $.ajax({
 	                       url : "insertALL.dox",
 	                       dataType:"json",   	
@@ -670,9 +656,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                       data : nparmap,
 	                       success : function(data) { 
 	                    	   self.buyNo = data.buyNo;
-	                    	   console.log("인서트하고 buyNo값 확인=======>",self.buyNo);
 	                    	   self.fninsertDelivery();
-	                    	   self.fnRemoveCart();
 	                       }
 	                   });  
           	}//for
@@ -682,25 +666,20 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
         	self.user.oNo = self.oNo;
         	self.user.buyNo = self.buyNo;
          	var nparmap = self.user;
-         	console.log("여기 딜리버리 테이블용 =====>", nparmap);
                $.ajax({
                    url : "insertDelivery.dox",
                    dataType:"json",   	
                    type : "POST", 
                    data : nparmap,
                    success : function(data) { 
-                      
                    }
                });  
-        	
-        	
         }//function
         
         
 	},created : function() {
 			var self = this;
 			self.fnGetList();
-			console.log(self.list);
 		}
 	});
 	
