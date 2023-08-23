@@ -34,6 +34,13 @@ public class PaymentController {
         return "/PaymentAndCart/payment";
     }
 	
+	//테스트
+	@RequestMapping("/staff/testGraph.do") 
+    public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+        return "/Staff/staff-testGraph";
+    }
+	
 	//장바구니 - 결제 페이지
 	@RequestMapping("/payment/cartPayment.do") 
     public String cartPayment(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{

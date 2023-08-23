@@ -652,8 +652,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
         	var self = this;
         	var timestamp =  new Date().getTime(); 
         	self.oNo = timestamp;
-          	for(var i = 0; i < self.list.length; i++){
-                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo };
+                 	var nparmap = {uId : self.uId, pNo : self.list[0].pNo, price : self.list[0].price, cnt : self.cnt, artist : self.list[0].artist, oNo : self.oNo };
 	                   $.ajax({
 	                       url : "insertALL.dox",
 	                       dataType:"json",   	
@@ -664,7 +663,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                    	   self.fninsertDelivery();
 	                       }
 	                   });  
-          	}//for
         }, fninsertDelivery : function(){
         	var self = this;
         	self.user.uId = self.uId;
