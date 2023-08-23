@@ -54,7 +54,7 @@ public class MyPagController {
 	
 	//마이페이지 보이기
 	@RequestMapping("/mypag/main.do") 
-    public String mainGBoard(Model model) throws Exception{
+    public String mainMypage(Model model) throws Exception{
 		  String sId = (String)session.getAttribute("sessionId");
 		  
 		  if(sId == null || sId == "") {
@@ -136,12 +136,6 @@ public class MyPagController {
 		public String faq(Model model) throws Exception{
 			return "/myPag/faq";
 	}
-		
-//		장바구니
-		@RequestMapping("/mypag/myPageInterest.do") 
-	    public String myPageInterest(Model model) throws Exception{
-	        return "/PaymentAndCart/cart";
-	    }
 		
 //		적립금 페이지
 		@RequestMapping("/mypag/mypageReserves.do") 
