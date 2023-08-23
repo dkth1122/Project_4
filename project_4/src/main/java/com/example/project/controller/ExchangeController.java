@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.ExchangeService;
+import com.example.project.model.Exchange;
 import com.example.project.model.Order;
 import com.google.gson.Gson;
 
@@ -37,8 +38,16 @@ public class ExchangeController {
 	@ResponseBody
 	public String exchangeList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Order> list = exchangeService.selectExchangeList(map);
+		List<Exchange> list = exchangeService.selectExchangeList(map);
 		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/mypag/updateExchangeState.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateExchangeState(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		exchangeService.updateExchangeState(map);
 		return new Gson().toJson(resultMap);
 	}
 
