@@ -9,7 +9,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>\
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <meta charset="UTF-8">
 <!-- 페이징 추가 1 -->
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
@@ -109,7 +109,7 @@
 								<a href="/mypag/main.do"><div id="profileImg"></div></a>
 							</div>
 							<div class="topBox">
-								<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
+								<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
 							</div>
 
 							<div class="topBox">
@@ -138,12 +138,10 @@
 								</div>
 								<div class="details">
 									<div>포인트</div>
-									<div>{{info.uPoint}} P</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
 								</div>
-								<div class="details">
-									<div>Jelly</div>
-									<div>0</div>
-								</div>
+							
 							</div>
 						</div>
 
@@ -182,9 +180,9 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                
                                     </ul>   
                                  </li>  
                               </ul>
@@ -350,7 +348,9 @@
 			price : [],
 			dat : "",
 			oDate : "",
-			oNo : "${map.oNo}"
+			oNo : "${map.oNo}",
+			maxpoint : undefined,
+			infouser : [],
 			
 		}, 
 		 computed: {
@@ -361,6 +361,20 @@
 			    }
 			  },
 		methods : {
+			fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+				var self = this;
+				var nparmap = {uId : self.uId};				
+				$.ajax({
+					url : "/user2.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {						
+						self.infouser = data.findPw;	
+						console.log(self.infouser);
+					}
+				});
+			},
 			fnGetList : function() { 
 				var self = this;
 				var nparmap = {oNo : self.oNo, uId : self.uId};				
@@ -374,7 +388,7 @@
 						self.list = data.list;
 						self.list2 = data.list[0];
 						self.oDate = self.list[0].oDate;
-						console.log(self.list2);
+						console.log(self.list2,);
 						
 					}
 				});
@@ -423,11 +437,75 @@
 						self.fnGetList();
 					}
 				});
-			}
+			},
+			fnPoint : function(){ // 포인트 내역 확인
+		        var self = this;
+		        var nparmap = {uId : self.uId};
+		        $.ajax({
+		            url : "/pointList.dox",
+		            dataType:"json",	
+		            type : "POST", 
+		            data : nparmap,
+		            success : function(data) { 	
+		            	self.usepointList = data.list;
+		            	var x = 0;
+		            	var datalist = data.list;
+		            	for(var i=0; i<datalist.length; i++){
+		            		x += datalist[i].point;	
+		            	}
+		            	self.maxpoint = x; // 사용가능 포인트 
+		            
+		            }
+		        }); 
+		    },
+		    fnNotice : function (){ // 공지 
+				var self = this;
+	    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+			},
+			fnUseGuide : function (){ //이용안내
+				var self = this;
+	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+			},
+			fnFaq : function (){ //faq
+				var self = this;
+	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+			},
+			/* 상단 구매내역 카운트 숫자 */
+			fnCntList : function() {
+				var self = this;
+				var nparmap = {uId : self.uId};
+				$.ajax({
+					url : "/mypag/listExchange.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						
+						var listCnt = data.list;
+						for (var i = 0; i < listCnt.length; i++) {
+							if (listCnt[i].exchange == "C") {								
+								self.refund = listCnt[i].orderCnt;							
+							} else if (listCnt[i].exchange == "R") {
+								self.exchange = listCnt[i].orderCnt;
+							} else{
+								self.order = listCnt[i].orderCnt;
+								console.log(self.order);
+							}
+						}
+
+					}
+				});
+			},
 		},
 		created : function() {
 			var self = this;
 			self.fnGetList();
+			self.fnGetInfo();
+			self.fnPoint();
+			self.fnCntList();
 		}
 	});
 </script>
