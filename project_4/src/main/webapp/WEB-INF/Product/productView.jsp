@@ -674,8 +674,11 @@ var app = new Vue({
         	
         	if(self.info.membership == 'Y'){
         		if(currentDateString <= self.info.mExpDate || currentDateString >= self.info.mRegDate){
-            		alert("해당 상품은 멤버쉽 구독이 필요한 상품입니다. \n해당 아티스트의 멤버쉽을 구독해주세요.\n내정보에서 멤버쉽을 확인해주세요.");
-            	}else{
+            		alert("해당 상품은 멤버쉽 구독이 필요한 상품입니다. \n해당 아티스트의 멤버쉽을 구독해주세요.");
+            	}else if(self.info.kitYn == 'Y'){
+            		alert("키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
+            	}
+        		else{
             		$.pageChange("../payment.do", {pNo : item.pNo}); 
             	}	
         	}else{
