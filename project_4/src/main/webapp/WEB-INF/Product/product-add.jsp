@@ -64,6 +64,8 @@
 	<div>
 	상세 페이지 : 
 	<input type="file" id="file2" name="file2" accept="image/*" >
+	<input type="file" id="file3" name="file3" accept="image/*" >
+	<input type="file" id="file4" name="file4" accept="image/*" >
 
 	</div>
 	
