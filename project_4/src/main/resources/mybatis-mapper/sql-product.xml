@@ -35,7 +35,8 @@
 		SELECT * 
 		FROM T4_PRODUCT P
 		LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
-		WHERE P.P_NO = #{pNo}
+		INNER JOIN T4_MEMBERSHIP M ON M.ARTIST = P.ARTIST
+		WHERE P.P_NO = #{pNo} AND P.ARTIST = M.ARTIST
 	</select>
 	
 	<!-- 아티스트별 상품 조회 > 어드민 페이지 -->
