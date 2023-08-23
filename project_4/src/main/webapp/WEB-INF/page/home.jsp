@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
  
-  padding: 20px; /* í•„ìš”í•œ ì—¬ë°± ì¡°ì • */
+  padding: 20px; /* ÇÊ¿äÇÑ ¿©¹é Á¶Á¤ */
 }
 .slidetext {
 	font-size:2em;
@@ -25,15 +25,15 @@
 .dot {
     width: 12px;
     height: 12px;
-    margin: 10px 5px; /* ì„¸ë¡œ ìœ„ì¹˜ë¥¼ ì¡°ì •í•  ë•Œ ì—¬ê¸°ì˜ ì²« ë²ˆì§¸ ê°’ ì¡°ì ˆ */
+    margin: 10px 5px; /* ¼¼·Î À§Ä¡¸¦ Á¶Á¤ÇÒ ¶§ ¿©±âÀÇ Ã¹ ¹øÂ° °ª Á¶Àı */
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-    position: absolute; /* ë„íŠ¸ë¥¼ ì ˆëŒ€ ìœ„ì¹˜ë¡œ ì„¤ì • */
-    bottom: 20px; /* ì´ë¯¸ì§€ ìŠ¬ë¼ì´ë“œ ë°‘ì— ì—¬ë°±ì„ ì¡°ì ˆ */
-  /*   left: 50%; /* ê°€ë¡œ ìœ„ì¹˜ ì¤‘ì•™ì— ì •ë ¬ */ */
-  /*   transform: translateX(-50%); /* ê°€ë¡œ ìœ„ì¹˜ë¥¼ ì¤‘ì•™ìœ¼ë¡œ ì •ë ¬ */ */
+    position: absolute; /* µµÆ®¸¦ Àı´ë À§Ä¡·Î ¼³Á¤ */
+    bottom: 20px; /* ÀÌ¹ÌÁö ½½¶óÀÌµå ¹Ø¿¡ ¿©¹éÀ» Á¶Àı */
+  /*   left: 50%; /* °¡·Î À§Ä¡ Áß¾Ó¿¡ Á¤·Ä */ */
+  /*   transform: translateX(-50%); /* °¡·Î À§Ä¡¸¦ Áß¾ÓÀ¸·Î Á¤·Ä */ */
 }
 
 #app{
@@ -60,9 +60,9 @@ img.topimg{
 	width:auto;
 	height: 650px;
 	position: absolute;
-    left: 50%; /* ìš”ì†Œì˜ ì¢Œì¸¡ ìœ„ì¹˜ë¥¼ ì¤‘ì•™ìœ¼ë¡œ ì´ë™ */
+    left: 50%; /* ¿ä¼ÒÀÇ ÁÂÃø À§Ä¡¸¦ Áß¾ÓÀ¸·Î ÀÌµ¿ */
     transform: translateX(-50%); 
-	align-items: center; /* ìˆ˜ì§ ê°€ìš´ë° ì •ë ¬ */
+	align-items: center; /* ¼öÁ÷ °¡¿îµ¥ Á¤·Ä */
 	}
 	
 /*  nav{
@@ -179,8 +179,8 @@ border:1px dotted green;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  margin: 0 -10px; /* ê° ë°•ìŠ¤ ì‚¬ì´ì˜ ê°„ê²©ì„ ì„¤ì • */
-   left: 50%; /* ìš”ì†Œì˜ ì¢Œì¸¡ ìœ„ì¹˜ë¥¼ ì¤‘ì•™ìœ¼ë¡œ ì´ë™ */
+  margin: 0 -10px; /* °¢ ¹Ú½º »çÀÌÀÇ °£°İÀ» ¼³Á¤ */
+   left: 50%; /* ¿ä¼ÒÀÇ ÁÂÃø À§Ä¡¸¦ Áß¾ÓÀ¸·Î ÀÌµ¿ */
     transform: translateX(-50%); 
 }
 .sect2 div{
@@ -192,7 +192,7 @@ margin:20px;
   border:1px solid blue;
  
   width: 300px;
-  margin: 0 10px; /* ê° ë°•ìŠ¤ ì‚¬ì´ì˜ ê°„ê²©ì„ ì„¤ì • */
+  margin: 0 10px; /* °¢ ¹Ú½º »çÀÌÀÇ °£°İÀ» ¼³Á¤ */
   
   text-align: center;
 }
@@ -205,9 +205,9 @@ margin:20px;
 	width:1500px;
 	height: 650px;
 	position: absolute;
-    left: 50%; /* ìš”ì†Œì˜ ì¢Œì¸¡ ìœ„ì¹˜ë¥¼ ì¤‘ì•™ìœ¼ë¡œ ì´ë™ */
+    left: 50%; /* ¿ä¼ÒÀÇ ÁÂÃø À§Ä¡¸¦ Áß¾ÓÀ¸·Î ÀÌµ¿ */
     transform: translateX(-50%); 
-	align-items: center; /* ìˆ˜ì§ ê°€ìš´ë° ì •ë ¬ */
+	align-items: center; /* ¼öÁ÷ °¡¿îµ¥ Á¤·Ä */
 	flex-wrap: wrap;
 	padding:50px;
 } 
@@ -242,7 +242,7 @@ margin:20px;
 	border:7px solid green;
 	position: flex;
 	bottom: -300px;
-	width: auto;
+	width: 300px;
 	height: auto;
 	background: rgba(255, 255, 255, 0.7);
 	color: #000;
@@ -367,9 +367,9 @@ margin:20px;
 		
 		<nav id="nav3">
 		  <section class="sect3">
-		    <h2><a href="newitem.do">ì‹ ìƒí’ˆ</a></h2>
+		    <h2><a href="newitem.do">½Å»óÇ°</a></h2>
 		    <div class="Sbox1">
-		      <p class="more"><a href="#">ë”ë³´ê¸°</a></p>
+		      <p class="more"><a href="#">´õº¸±â</a></p>
 		     
 		        <div v-for="item in list" class="productList">
 		          <span><img :src="item.path" class="pImg"></span>
@@ -394,7 +394,7 @@ margin:20px;
 		
 		</nav>
 
-	</div> <!-- ì½˜í…Œì´ë„ˆ div -->
+	</div> <!-- ÄÜÅ×ÀÌ³Ê div -->
 		
 </div> <!-- app div -->
 			
@@ -411,7 +411,7 @@ var app = new Vue({
 		best : []
 	}, 
 	methods : {
-		fnGetList : function() { // ì‚¬ìš©ì ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸° ì´ë¦„ , ë³„ëª… (ë‹‰ë„¤ì„)
+		fnGetList : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ğ³×ÀÓ)
             var self = this;
             var nparmap = {uId : self.uId};            
             $.ajax({
@@ -428,7 +428,7 @@ var app = new Vue({
           });
 	},
 
-	fnBestItem : function() { // ì‚¬ìš©ì ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸° ì´ë¦„ , ë³„ëª… (ë‹‰ë„¤ì„)
+	fnBestItem : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ğ³×ÀÓ)
         var self = this;
         var nparmap = {uId : self.uId};            
         $.ajax({
@@ -444,10 +444,10 @@ var app = new Vue({
            }
       });
 },
-	 // productView ë©”ì„œë“œ ì¶”ê°€
+	 // productView ¸Ş¼­µå Ãß°¡
     productView: function(item) {
       console.log("Clicked product:", item);
-      // í´ë¦­í•œ ì œí’ˆ ì •ë³´ë¥¼ í™œìš©í•œ ë™ì‘ ì¶”ê°€
+      // Å¬¸¯ÇÑ Á¦Ç° Á¤º¸¸¦ È°¿ëÇÑ µ¿ÀÛ Ãß°¡
     }
   },
 	created : function() {
