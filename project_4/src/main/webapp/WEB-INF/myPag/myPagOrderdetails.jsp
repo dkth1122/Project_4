@@ -335,7 +335,7 @@ Vue.component('paginate', VuejsPaginate)
          startDate: '', 
          endDate: '',
          maxpoint : undefined,
-  	   infouser : [],
+  	     infouser : [], 
    
       }, 
       methods : {
