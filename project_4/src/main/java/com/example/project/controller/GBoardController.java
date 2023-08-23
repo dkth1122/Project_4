@@ -161,7 +161,6 @@ public class GBoardController {
 	@RequestMapping("/gboard/fileUpload.dox")
 	public String result(@RequestParam("file1") MultipartFile multi, @RequestParam("gNo") int gNo,
 			HttpServletRequest request, HttpServletResponse response, Model model) {
-		System.out.println("test");
 		String url = null;
 		String path = "c:\\img";
 		try {

@@ -13,7 +13,7 @@ public interface PaymentMapper {
 	//결제시 오더 테이블 등록
 	int insertProductBuy(HashMap<String, Object> map);
 	//결제시 딜리버리 테이블 등록
-	int insertProductBuy2(HashMap<String, Object> map);
+	int insertDelivery(HashMap<String, Object> map);
 	
 	//조건
 
@@ -36,6 +36,9 @@ public interface PaymentMapper {
 	 * "키트 구매 이력 확인" -->
 	 */
 	int selectMemberKit(HashMap<String, Object> map);
+	
+	//키트인지 아닌지 체크 
+	int selecKitProduct(HashMap<String, Object> map);
 
 	/* <!-- 위에 키트 조건 만족 시 : 키트 구매 업데이트 --> */
 	int updateMembershipKit(HashMap<String, Object> map);

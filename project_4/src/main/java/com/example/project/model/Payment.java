@@ -17,6 +17,9 @@ public class Payment {
 	private String fNo; //특전 조인용
 	private String kitYn; //키트여부
 	
+	//오더테이블
+	private int buyNo;
+	
 	private int point;
 	private char soldout;
 	private String fYn;

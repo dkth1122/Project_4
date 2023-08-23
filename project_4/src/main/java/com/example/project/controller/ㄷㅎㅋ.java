@@ -19,6 +19,7 @@ import com.example.project.model.Product;
 import com.example.project.model.Wish;
 import com.google.gson.Gson;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -30,11 +31,18 @@ public class ㄷㅎㅋ {
 	
 	@Autowired
 	dd dd;
+	
 
+	//결제 페이지
+	@RequestMapping("/mypag/orderExchange.do") 
+	public String orderExchange(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/myPag/orderExchange";
+	}
 	//결제 페이지
 	@RequestMapping("/mypag/Order.do") 
     public String mainGBoard(Model model) throws Exception{
-
+		
         return "/myPag/Order";
     }
 	//헤더
