@@ -385,15 +385,19 @@
 			},
 			fnOrderCancel  : function(item) {
 				var self = this;
+				if(!confirm("정말 취소하시겠습니까?")){
+	                return;
+	            }
 				var nparmap = {buyNo : item.buyNo};
 				console.log(nparmap);
 				$.ajax({
-					url : "/mypag/orderCancel.dox",
+					url : "/mypag/mypageOrderCancel.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
 						alert("취소되었습니다.");
+						self.fnGetList();
 
 					}
 				});
@@ -404,15 +408,19 @@
 			},
 			fnOrderConfirm  : function(item)  {
 				var self = this;
-				var nparmap = {oNo : item.oNo};
+				if(!confirm("정말 구매확정하시겠습니까?")){
+	                return;
+	            }
+				var nparmap = {buyNo : item.buyNo};
 				console.log(nparmap);
 				$.ajax({
-					url : "/mypag/demo.dox",
+					url : "/mypag/mypageOrderConfirm.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
 						alert("구매 확정 처리되었습니다.");
+						self.fnGetList();
 					}
 				});
 			}
