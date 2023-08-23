@@ -45,23 +45,24 @@
 	  margin-bottom:0;
 	}
 
-#container{
-	margin: 50px;
+#container-color{
+	margin-top: 60px;
   	justify-content:center;
 	width: auto;
-	height: 1200px;
+	height:900px;
 	
 	}
 	
 img.topimg{
-	margin-top:100px;
-	margin-bottom:100px;
+	/* margin-top:100px;
+	margin-bottom:100px; */
     vertical-align: middle;
 	width:auto;
-	height: 800px;
+	height: 650px;
 	position: absolute;
     left: 50%; /* 요소의 좌측 위치를 중앙으로 이동 */
     transform: translateX(-50%); 
+	align-items: center; /* 수직 가운데 정렬 */
 	}
 	
 /*  nav{
@@ -70,52 +71,84 @@ img.topimg{
 	margin-bottom: 50px;
  */
  #nav1, #nav2, #nav3 {
-    position: relative; /* 위치 속성을 설정합니다. */
-    z-index: 1; /* 아래로 쌓이도록 설정합니다. */
+    position: relative; 
+    z-index: z; 
 }
 
 #nav1{
-	margin-top:500px;
+	border:5px dotted red;
+	margin-top:-200px;
 	margin-bottom:500px;
 	padding:70px;
-	widows: 1800px;
-	height:1500px;
+	width: 100%;
+	height:1000px;
 	margin-bottom: 50px;
 	}
 
 #nav2{
+	border:5px dotted red;
 	widows: 1800px;
 	height: 1800px;
 	margin-top: 50px;
 	margin-bottom: 50px;
 	float:left;
 }
+#nav3{
+	border:5px dotted red;
+	widows: 1800px;
+	height: 1800px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	float:left;
+	}
+
+#nav4{
+	border:5px dotted red;
+	widows: 1800px;
+	height: 1800px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	float:left;
+	}
+
 
 .sect2 {
-	margin :  0px auto;
-	width: 1800px;
+border:5px dotted green;
+	padding: 50px;
+	widows: 1800px;
 	height: 1500px;
 	background: #f0f0f0;
+	display: flex;
+  flex-wrap: wrap;
+  
+  width: 100%; 
+  length: 1000px;
+	
 }
 
-.sect2 h2 {
-	text-align: center;
-	height: 102px;
-	padding: 56px 0 56px 0;
-	box-sizing: border-box;
+.sect2name {
+ height: 50px;
+  box-sizing: border-box;
+  display: flex; 
+  width:800px;
+ 
+  justify-content: center;
+  align-items: center; 
 }
-
 .sect2 div {
-	width: 307px;
+	/* width: 307px; */
 	height: 438px;
 	float: left;
-	margin: 50px 39px 0 0;
+	margin-right:10px;
+	
 	position: relative;
 	/* overflow: hidden; */
 	
 }
 
-.sect2 div a {
+/* .sect2 div a {
+	border:9px solid yellow;
+	
 	width: 307px;
 	height: 438px;
 	opacity: 0;
@@ -129,50 +162,89 @@ img.topimg{
 	padding-top: 85px;
 	padding-left: 105px;
 	box-sizing: border-box;
+} */
+
+.sect3 {
+border:1px dotted green;
+	margin :  0px auto;
+	widows: 1800px;
+	height: 1500px;
+	background: #f0f0f0;
 }
-.Sbox1 {
+
+
+.productList-container {
+  border:1px solid red;
+  content-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 -10px; /* 각 박스 사이의 간격을 설정 */
+   left: 50%; /* 요소의 좌측 위치를 중앙으로 이동 */
+    transform: translateX(-50%); 
+}
+.sect2 div{
+height:250px;
+
+}
+
+.productList {
+  border:1px solid blue;
+ 
+  width: calc(25% - 20px); /* 각 박스의 너비 */
+  margin: 0 10px; /* 각 박스 사이의 간격을 설정 */
+  
+  text-align: center;
+}
+/*new item*/
+
+/* .Sbox1 {
+  border:1px solid orange;
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1200px; /* 컨테이너의 최대 너비를 조절합니다 */
+  max-width: 1200px; 
+  length: 1000px;
   padding: 0 20px;
-}
+} */
 
-.productList-container {
+
+/* .sect2 .Sbox1 {
+	border:4px solid black;
+	 content-align: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 100%; /* productList 컨테이너가 전체 너비를 차지하도록 설정합니다 */
-}
-
-.productList {
-  width: calc(25% - 20px); /* 각 행에 네 개의 아이템을 놓도록 하는 너비 설정 */
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-/*new item*/
-.sect2 .Sbox1 {
-	margin-left: 272px;
+  width: 100%;
+  
+  margin: 20px; 
+   left: 50%; 
+    transform: translateX(-50%); 
 	
-}
-
-.sect2 .Sbox1:hover {
 	
-}
+} */
 
-.sect2 div:hover a {
+/* .sect2 .Sbox1:hover {
+	border:1px solid yellow;
+}
+ */
+/* .sect2 div:hover a {
+	border:1px solid green;
 	opacity: 1;
-	}
+	} */
 	
 /*SUP*/
 .sect2 div .sub {
-	position: absolute;
+	border:7px solid green;
+
+	position: flex;
 	bottom: -300px;
-	width: 307px;
-	height: 206px;
+	width: auto;
+	height: auto;
 	background: rgba(255, 255, 255, 0.7);
 	color: #000;
 	line-height: 25pt;
@@ -186,15 +258,16 @@ img.topimg{
 }
 
 .sect2 div:hover .sub {
-	position: absolute;
+	position: relative;
+	width:300px;
 	bottom: 0;
 	opacity: 1;
-}
+} 
 
 .sect2 div .sub .sname {
 	font-size: 23pt;
 	font-weight: bold;
-	padding: 50px 0 20px 0;
+	
 	box-sizing: border-box;
 	text-align: left;
 }
@@ -216,7 +289,7 @@ img.topimg{
 
 	<div id="app">
 
-		<div id="container">
+		<div id="container-color">
 		
 			<nav id="nav1">
 			
@@ -257,10 +330,11 @@ img.topimg{
 			
 <nav id="nav2">
   <section class="sect2">
-    <h2><a href="newitem.do">신상품</a></h2>
-    <div class="Sbox1">
-      <p class="more"><a href="#">더보기</a></p>
-      <div class="productList-container">
+    <div class="sect2name"><a href="newitem.do">NEW ARRIVAL</a></div>
+    
+    
+    <!--   <p class="more"><a href="#">MORE</a></p> -->
+     
        <div v-for="(item, index) in list" class="productList" :key="index">
           <span><img :src="item.path" class="pImg"></span>
           <div>{{ item.pName }}</div>
@@ -270,10 +344,11 @@ img.topimg{
               <li>{{item.category}}</li>
               <li>{{item.price}}</li>
             </ul>
+            
           </div>
         </div>
-      </div>
-    </div>
+      
+   
   </section>
 </nav>
 		
@@ -295,12 +370,12 @@ img.topimg{
 		
 	
 		
-		<nav id="nav2">
-		  <section class="sect2">
+		<nav id="nav3">
+		  <section class="sect3">
 		    <h2><a href="newitem.do">신상품</a></h2>
 		    <div class="Sbox1">
 		      <p class="more"><a href="#">더보기</a></p>
-		      <div class="productList-container">
+		     
 		        <div v-for="item in list" class="productList">
 		          <span><img :src="item.path" class="pImg"></span>
 		          <div>{{ item.pName }}</div>
@@ -312,13 +387,13 @@ img.topimg{
 		            </ul>
 		          </div>
 		        </div>
-		      </div>
+		 
 		    </div>
 		  </section>
 		</nav>
 		            
 		
-		<nav>
+		<nav id="nav4">
 		
 		
 		
@@ -389,15 +464,14 @@ var app = new Vue({
 });
 
 var slideIndex = 0;
-
+var slides = document.getElementsByClassName("mySlides"); 
 var colors = [ 'rgb(229, 143, 255)', ' rgb(143, 214, 255)', ' rgb(216, 255, 143)'];
 showSlides();
 
 function showSlides() {
     var i;
-    var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("dot");
-    var container = document.getElementById("container");
+    var container = document.getElementById("container-color");
     
     for (i = 0; i < slides.length; i++) {
        slides[i].style.display = "none";  
@@ -415,4 +489,5 @@ function showSlides() {
     
     setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
+showSlides(); 
 </script>
