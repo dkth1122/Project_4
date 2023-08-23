@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypage.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
@@ -75,6 +76,7 @@
 </style>
 </head>
 <body>
+
 	<div id="app">
 
 			<div id="container">
@@ -91,9 +93,7 @@
 							</div>
 
 							<div class="topBox">
-
 								<div class="details">
-
 									<div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
@@ -261,6 +261,8 @@
 
 			</div>
 		</div>
+<div><%@ include file="../page/footer.jsp" %></div>
+		
 </body>
 </html>
 <script type="text/javascript">

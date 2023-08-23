@@ -3,13 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+  <%@ include file="mypageheader.jsp" %>
   <script src="../js/jquery.js"></script>  
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="EUC-KR">
 <title>마이페이지</title>
+<style type="text/css">
+#container {
+    height: 1055px;
+    width: 100%;
+    margin-bottom: 163px;
+}
+</style>
 </head>
 <body>
 
@@ -122,7 +129,7 @@
 							    	  		
 							    	  	</div>
 							    	  	<div v-if="info.length == 0" class="nodata"> 검색결과가 없습니다</div>
-							    	  	<div><button @click="addBoard">글쓰기</button></div>
+							    	  	<div><button @click="addBoard"><a href="http://localhost:8082/mypag/myAddInquiry.do">글쓰기</a></button></div>
 							     </div> 
 							     
 							     
@@ -133,6 +140,7 @@
 			  </div>
   
 </div>
+<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">

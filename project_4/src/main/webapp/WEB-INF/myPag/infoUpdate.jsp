@@ -1,15 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
   <script src="../js/jquery.js"></script>  
      <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="EUC-KR">
-  <title>ë§ˆì´í˜ì´ì§€Â€</title>
   <style type="text/css">
+  #container {
+    height: 1535px;
+    width: 100%;
+    margin-bottom: 163px;
+}
    .updatetable{
     	width: 900px;
    }
@@ -98,7 +103,7 @@ select{
                          
                          <div class="details" >
                          
-                            <div>êµí™˜/í™˜ë¶ˆ</div>
+                            <div>±³È¯/È¯ºÒ</div>
 									<div>
 										<span v-if="refund != 0">{{refund}} /</span>
 										<span v-else>0 /</span>
@@ -109,7 +114,7 @@ select{
                             
                          </div>
                          <div class="details" >
-                           	<div>í¬ì¸íŠ¸</div>
+                           	<div>Æ÷ÀÎÆ®</div>
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
                          </div>                         
@@ -124,32 +129,32 @@ select{
                               <div class="categories"> MY PAGE</div>
                               <div style="text-align: left;">
                               <ul style="padding: 0px;">
-                                 <li class="ulh1">ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
+                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myPagOrderdetails.do">ì£¼ë¬¸ë‚´ì—­</a></li>
-                                       <li><a href="/mypag/myPageInterest.do">ì¥ë°”êµ¬ë‹ˆ</a></li>
-                                       <li><a href="/mypag/myInformation.do">ì°œ ëª©ë¡</a></li>
-                                       <li><a href="/mypag/mypageReserves.do">í¬ì¸íŠ¸</a></li>                                 
+                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
+                                       <li><a href="/mypag/myPageInterest.do">Àå¹Ù±¸´Ï</a></li>
+                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
                               <ul style="padding: 0px;">
-                                 <li class="ulh1">íšŒì› ì •ë³´</li>
+                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/infoUpdate.do">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
-                                       <li><a href="/mypag/infoAddr.do">ë°°ì†¡ì£¼ì†Œë¡</a></li>                           
+                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
+                                       <li><a href="/mypag/infoAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
                                <ul style="padding: 0px;">
-                                 <li class="ulh1">ê³ ê°ì„¼í„°</li>
+                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myInquiry.do">1:1 ë¬¸ì˜</a></li>
-                                       <li><a @click="fnNotice" href="#javascript:;">ê³µì§€ì‚¬í•­</a></li>
-                                       <li><a @click="fnUseGuide" href="#javascript:;">ì´ìš©ì•ˆë‚´</a></li>
+                                       <li><a href="/mypag/myInquiry.do">1:1 ¹®ÀÇ</a></li>
+                                       <li><a @click="fnNotice" href="#javascript:;">°øÁö»çÇ×</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">ÀÌ¿ë¾È³»</a></li>
                                        <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                  
                                     </ul>   
                                  </li>  
@@ -162,32 +167,32 @@ select{
                            <div id="right">
                            <div class="View">
                            
-                              <div class="lowerBox"> íšŒì› ì •ë³´ ìˆ˜ì • <span class="warning"><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> í•„ìˆ˜ì‚¬í•­</span> </div> 
+                              <div class="lowerBox"> È¸¿ø Á¤º¸ ¼öÁ¤ <span class="warning"><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ÇÊ¼ö»çÇ×</span> </div> 
                               
                               <table class="updatetable">
                               
                               	<tr>
-                              		<th> ì•„ì´ë””</th>
+                              		<th> ¾ÆÀÌµğ</th>
                               		<td>{{info.uId}}</td>
                               	</tr>
                               	<tr>
-                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ë‹‰ë„¤ì„</th>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ´Ğ³×ÀÓ</th>
                               		<td><input type="text" v-model="info.uName2"></td>
                               	</tr>
                              	<tr>
-                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ë¹„ë°€ë²ˆí˜¸</th>
-                              		<td><input type="password" v-model="info.uPw" placeholder="ì˜ë¬¸/ìˆ«ì/íŠ¹ìˆ˜ë¬¸ì ì¤‘ 2ê°€ì§€ ì´ìƒ ì¡°í•©,10ì~16ì"></td>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ºñ¹Ğ¹øÈ£</th>
+                              		<td><input type="password" v-model="info.uPw" placeholder="¿µ¹®/¼ıÀÚ/Æ¯¼ö¹®ÀÚ Áß 2°¡Áö ÀÌ»ó Á¶ÇÕ,10ÀÚ~16ÀÚ"></td>
                               	</tr>
                              	<tr>
-                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ìƒˆ ë¹„ë°€ë²ˆí˜¸ í™•ì¸</th>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> »õ ºñ¹Ğ¹øÈ£ È®ÀÎ</th>
                               		<td><input type="password" v-model="info.uPw2"></td>
                               	</tr>
                              	<tr>
-                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ì´ë¦„</th>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ÀÌ¸§</th>
                               		<td><input type="text" v-model="info.uName" ></td>
                               	</tr>
                              	<tr>
-                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ì—°ë½ì²˜</th>
+                              		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ¿¬¶ôÃ³</th>
                               		<td class="ph">
                               			<select v-model="phnum">
                               				<option value="010">010</option>
@@ -200,10 +205,10 @@ select{
                               		</td>
                               	</tr>
                              	<tr>
-                              		<th> SMS ìˆ˜ì‹ ì—¬ë¶€</th>
+                              		<th> SMS ¼ö½Å¿©ºÎ</th>
                               		<td id="yn">
-                              			<label><input type="radio" name="evtyn"  v-model="info.uSmsyn" value="Y">ìˆ˜ì‹ í•¨</label>
-                                 		<label><input type="radio" name="evtyn" v-model="info.uSmsyn" value="N">ìˆ˜ì‹ ì•ˆí•¨</label>
+                              			<label><input type="radio" name="evtyn"  v-model="info.uSmsyn" value="Y">¼ö½ÅÇÔ</label>
+                                 		<label><input type="radio" name="evtyn" v-model="info.uSmsyn" value="N">¼ö½Å¾ÈÇÔ</label>
                               		</td>
                               	</tr>
                               	
@@ -213,9 +218,9 @@ select{
                                
                                  <div class="buttomfn">
                                  
-                                 <button @click="fnback">ì·¨ì†Œ</button>
-                                 <button id="fndd" @click="fnUpdate">í™•ì¸</button>
-                                 <button id="remove" @click="userRemove">íšŒì› íƒˆí‡´</button>                                 
+                                 <button @click="fnback">Ãë¼Ò</button>
+                                 <button id="fndd" @click="fnUpdate">È®ÀÎ</button>
+                                 <button id="remove" @click="userRemove">È¸¿ø Å»Åğ</button>                                 
                                  
                                  </div> 
                         
@@ -227,6 +232,7 @@ select{
   
 	</div>
 </div>
+<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
@@ -262,7 +268,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.findPw; //ì‚¬ìš©ì
+                   self.info = data.findPw; //»ç¿ëÀÚ
                    self.user = self.info;
                	   self.user.uPw = undefined;
              	   const phoneNumber = self.user.uPhone.substring(3);
@@ -277,27 +283,27 @@ var app = new Vue({
         	var self = this;
         	self.info.uId = self.uId;
         	if(self.info.uName2 == undefined || self.info.uName2 == ""){
-				alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				return;
 			}
         	if(self.info.uPw == undefined || self.info.uPw == ""){
-				alert("íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				return;
 			}
         	if(self.info.uPw != self.user.uPw2){
-				alert("í™•ì¸íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+				alert("È®ÀÎÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
 				return;
 			}
         	if(self.info.uName == undefined || self.info.uName == ""){
-				alert("ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				return;
 			}
         	if(self.prefix == undefined || self.prefix == ""){
-				alert("ì—°ë½ì²˜ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("¿¬¶ôÃ³¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				return;
 			}
         	if(self.suffix == undefined || self.suffix == ""){
-				alert("ì—°ë½ì²˜ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("¿¬¶ôÃ³¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				return;
 			}
         	self.user.uPhone = self.phnum + self.prefix + self.suffix;
@@ -308,20 +314,20 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.findPw; //ì‚¬ìš©ì
-                   alert("ì •ìƒ ìˆ˜ì • ë˜ì—ˆìŠµë‹ˆë‹¤.");
+                   self.info = data.findPw; //»ç¿ëÀÚ
+                   alert("Á¤»ó ¼öÁ¤ µÇ¾ú½À´Ï´Ù.");
                    self.fnGetList();
                  }
              }); 
         },
-        //ë’¤ë¡œê°€ê¸°
+        //µÚ·Î°¡±â
 	    fnback : function(){
 	    	var self = this;
 	    	$.pageChange("main.do", {uId : self.uId});
 	    },
 	    userRemove : function(){
 	    	var self = this;
-	    	if(!confirm("ì •ë§ íƒˆí‡´í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
+	    	if(!confirm("Á¤¸» Å»ÅğÇÏ½Ã°Ú½À´Ï±î?")){
 				return;
 			}
 	    	var nparmap = {uId : self.uId};
@@ -331,17 +337,17 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   alert("ì´ìš©í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤.");
+                   alert("ÀÌ¿ëÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù.");
                    location.href="main.do";
                 }
             }); 
 	    },
-	    fnNotice : function (){ // ê³µì§€ 
+	    fnNotice : function (){ // °øÁö 
 			var self = this;
     		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
     		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
 		},
-		fnUseGuide : function (){ //ì´ìš©ì•ˆë‚´
+		fnUseGuide : function (){ //ÀÌ¿ë¾È³»
 			var self = this;
     		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
     		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
@@ -351,7 +357,7 @@ var app = new Vue({
     		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
     		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
 		},
-	    /* ìƒë‹¨ êµ¬ë§¤ë‚´ì—­ ì¹´ìš´íŠ¸ ìˆ«ì */
+	    /* »ó´Ü ±¸¸Å³»¿ª Ä«¿îÆ® ¼ıÀÚ */
 		fnCntList : function() {
 			var self = this;
 			var nparmap = {uId : self.uId};
@@ -377,7 +383,7 @@ var app = new Vue({
 				}
 			});
 		},
-		 fnPoint : function(){ // í¬ì¸íŠ¸ ë‚´ì—­ í™•ì¸
+		 fnPoint : function(){ // Æ÷ÀÎÆ® ³»¿ª È®ÀÎ
 		        var self = this;
 		        var nparmap = {uId : self.uId};
 		        $.ajax({
@@ -392,7 +398,7 @@ var app = new Vue({
 		            	for(var i=0; i<datalist.length; i++){
 		            		x += datalist[i].point;	
 		            	}
-		            	self.maxpoint = x; // ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸ 
+		            	self.maxpoint = x; // »ç¿ë°¡´É Æ÷ÀÎÆ® 
 		            
 		            }
 		        }); 

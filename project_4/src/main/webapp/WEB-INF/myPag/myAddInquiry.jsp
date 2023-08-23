@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>  
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <!-- 1. vue2editor 에디터 cdn -->
@@ -14,6 +15,11 @@
  <meta charset="EUC-KR">
 
 <style>
+#container {
+    height: 1325px;
+    width: 100%;
+    margin-bottom: 163px;
+}
 	#iQtext{
 		 min-height : 600px;
 	}
@@ -30,7 +36,7 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 <div id="profileImg"></div>
+					    	 	 <a href="/mypag/main.do"><div id="profileImg"></div></a>
 					    	</div >
 					    	<div class="topBox">
 					    	<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
@@ -171,6 +177,7 @@
 			  </div>
   
 </div>
+<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">

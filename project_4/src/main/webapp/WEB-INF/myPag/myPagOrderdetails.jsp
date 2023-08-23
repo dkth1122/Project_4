@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -15,6 +16,11 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="EUC-KR">
 <style type="text/css">
+#container {
+    height: 1500px;
+    width: 100%;
+    margin-bottom: 163px;
+}
 <!-- 페이징 추가 2-->
 .pagination {
      margin:24px;
@@ -311,6 +317,7 @@ input[type="date"]:focus {
             </div>
          </div>         
       </div>
+      <div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
