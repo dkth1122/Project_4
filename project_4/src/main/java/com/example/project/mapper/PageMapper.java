@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.project.model.Product;
 import com.example.project.model.User;
 
 @Mapper
@@ -16,4 +17,7 @@ public interface PageMapper {
 
 			List<User> userPoint(HashMap<String, Object> map);
 
+			
+			//베스트아이템불러오기
+			List<Product>bestItemLoad(HashMap<String, Object> map);	
 }
