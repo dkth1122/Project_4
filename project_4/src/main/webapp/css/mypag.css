@@ -1,4 +1,8 @@
 @charset "EUC-KR";
+  *{
+  	margin: 0px;
+  	padding: 0px;
+  }
       .nickname{
   line-height:  127px;
   margin-left: 10px;

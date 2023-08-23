@@ -15,6 +15,25 @@
 		width: 1200px;
 		text-align: center;  		
   	}
+  	#radioMenu{
+		    display: flex;
+   			flex-direction: row;
+  			justify-content: space-evenly;
+	}
+	
+	#radioMenu > div{
+		width: 200px;
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+	#useGuide{
+  		font-size: 4em;  		
+		margin :150px auto;
+		text-align: center;  		
+  	}
   </style>
 </head>
 <body>
@@ -23,20 +42,20 @@
     	<h1 id="useGuide">이용 안내</h1>
     	
     	<div id="radioMenu">
-    		<input id="1" type="radio" name="Menu" value="회원가입" v-model="selectedMenu">
-    		<label for="1">회원가입</label>
-    		<input id="2" type="radio" name="Menu" value="주문" v-model="selectedMenu">
-    		<label for="2">주문</label>
-    		<input id="3" type="radio" name="Menu" value="결제" v-model="selectedMenu">
-    		<label for="3">결제</label>
-    		<input id="4" type="radio" name="Menu" value="배송" v-model="selectedMenu">
-    		<label for="4">배송</label>
-    		<input id="5" type="radio" name="Menu" value="교환/반품" v-model="selectedMenu">
-    		<label for="5">교환/반품</label>
-    		<input id="6" type="radio" name="Menu" value="환불" v-model="selectedMenu">
-    		<label for="6">환불</label>
-    		<input id="7" type="radio" name="Menu" value="기타" v-model="selectedMenu">
-    		<label for="7">기타</label>
+    		<input id="1" type="radio" name="Menu" value="회원가입" v-model="selectedMenu" hidden>
+    		<div><label for="1"><a href="#javascript:;">회원가입</a></label></div>
+    		<input id="2" type="radio" name="Menu" value="주문" v-model="selectedMenu" hidden>
+    		<div><label for="2"><a href="#javascript:;">주문</a></label></div>
+    		<input id="3" type="radio" name="Menu" value="결제" v-model="selectedMenu" hidden>
+    		<div><label for="3"><a href="#javascript:;">결제</a></label></div>
+    		<input id="4" type="radio" name="Menu" value="배송" v-model="selectedMenu" hidden>
+    		<div><label for="4"><a href="#javascript:;">배송</a></label></div>
+    		<input id="5" type="radio" name="Menu" value="교환/반품" v-model="selectedMenu" hidden>
+    		<div><label for="5"><a href="#javascript:;">교환/반품</a></label></div>
+    		<input id="6" type="radio" name="Menu" value="환불" v-model="selectedMenu" hidden>
+    		<div><label for="6"><a href="#javascript:;">환불</a></label></div>
+    		<input id="7" type="radio" name="Menu" value="기타" v-model="selectedMenu" hidden>
+    		<div><label for="7"><a href="#javascript:;">기타</a></label></div>
     	</div>
     	
     	<div id="selectedMenu">

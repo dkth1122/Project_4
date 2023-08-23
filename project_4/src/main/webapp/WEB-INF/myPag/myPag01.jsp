@@ -116,7 +116,7 @@
 								</div>
 								<div class="details">
 									<div>포인트</div>
-									<div v-if="info.uPoint !=0">{{info.uPoint}} P</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
 								</div>
 								
@@ -157,10 +157,10 @@
                                  <li class="ulh1">고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a  href="/mypag/myInquiry.do">1:1 문의</a></li>
+                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
@@ -277,6 +277,7 @@ Vue.use(VueAwesomeSwiper);
 			wishlist : [],
 			orderlist : [],
 			cartlist : [],
+			maxpoint : undefined,
 			swiperOptions: {
 		      loop: true,
 		      slidesPerView: 3, 
@@ -318,13 +319,13 @@ Vue.use(VueAwesomeSwiper);
 						
 						var listCnt = data.list;
 						for (var i = 0; i < listCnt.length; i++) {
-							if (listCnt[i].exchange == "E") {								
+							if (listCnt[i].exchange == "C") {								
 								self.refund = listCnt[i].orderCnt;							
 							} else if (listCnt[i].exchange == "R") {
 								self.exchange = listCnt[i].orderCnt;
-							} else if(listCnt[i].exchange == null){
-								console.log(listCnt[i].orderCnt);
+							} else{
 								self.order = listCnt[i].orderCnt;
+								console.log(self.order);
 							}
 						}
 
@@ -375,12 +376,30 @@ Vue.use(VueAwesomeSwiper);
 					success : function(data) {
 						
 						self.cartlist = data.list;
-						console.log("ㅇㅇ");
-						console.log(self.cartlist);
+		
 
 					}
 				});
-			},
+			},fnPoint : function(){ // 포인트 내역 확인
+		        var self = this;
+		        var nparmap = {uId : self.uId};
+		        $.ajax({
+		            url : "/pointList.dox",
+		            dataType:"json",	
+		            type : "POST", 
+		            data : nparmap,
+		            success : function(data) { 	
+		            	self.usepointList = data.list;
+		            	var x = 0;
+		            	var datalist = data.list;
+		            	for(var i=0; i<datalist.length; i++){
+		            		x += datalist[i].point;	
+		            	}
+		            	self.maxpoint = x; // 사용가능 포인트 
+		            
+		            }
+		        }); 
+		    },
 			onSetTranslate() {
 			      console.log('onSetTranslate')
 		    },
@@ -389,7 +408,23 @@ Vue.use(VueAwesomeSwiper);
 		    },
 		    onSwiperClickSlide(index, reallyIndex) {
 		      console.log('Swiper click slide!', reallyIndex)
-		    }
+		    },
+		    
+		    fnNotice : function (){ // 공지 
+				var self = this;
+	    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+			},
+			fnUseGuide : function (){ //이용안내
+				var self = this;
+	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+			},
+			fnFaq : function (){ //faq
+				var self = this;
+	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+			},
 
 		
 		},
@@ -403,6 +438,7 @@ Vue.use(VueAwesomeSwiper);
 			self.fnorder();
 			self.fncart();
 			self.fnwish();
+			self.fnPoint();
 		}
 	});
 
