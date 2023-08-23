@@ -120,7 +120,7 @@
 						<a href="/mypag/main.do"><div id="profileImg"></div></a>
 					</div>
 					<div class="topBox">
-						<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
+						<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
 					</div>
 
 					<div class="topBox">
@@ -149,12 +149,10 @@
 								</div>
 								<div class="details">
 									<div>포인트</div>
-									<div class="menuFontSize">{{info.uPoint}} P</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
 								</div>
-						<div class="details">
-							<div></div>
-							<div></div>
-						</div>
+				
 					</div>
 				</div>
 
@@ -190,9 +188,9 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                                              
                                     </ul>   
                                  </li>  
                               </ul>
@@ -268,10 +266,26 @@ var app = new Vue({
     	refund : "",
     	wishList : [],
     	selectItem : [],
-    	selectAll: false
+    	selectAll: false,
+    	maxpoint : undefined,
+ 	 	infouser : "",
+    	
  
     },
     methods: {
+    	fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+			var self = this;
+			var nparmap = {uId : self.uId};				
+			$.ajax({
+				url : "/user2.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {						
+					self.infouser = data.findPw;
+				}
+			});
+		},
     	fnAllCheck: function() {
     		var self = this;
     		self.selectAll = !self.selectAll;
@@ -292,36 +306,11 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	console.log(data);
-                	self.info = data.findPw; //사용자
-                	self.fnCntList();
+                	self.info = data.findPw; //사용자                	
                 	self.fnProduct();
                 }
             }); 
-        },    
-        fnCntList : function(){
-	        var self = this;
-	        var nparmap = {uId : self.uId};
-	        $.ajax({
-	            url : "/mypag/listExchange.dox",
-	            dataType:"json",	
-	            type : "POST", 
-	            data : nparmap,
-	            success : function(data) { 	
-	            	var listCnt = data.list;
-	            	for(var i=0; i<listCnt.length; i++){
-	            		if(listCnt[i].exchange == "N"){	            			
-	            			self.order = listCnt[i].orderCnt;          			
-	            		}else if(listCnt[i].exchange == "E"){
-	            			self.exchange = listCnt[i].orderCnt;
-	            		}else{
-	            			self.refund = listCnt[i].orderCnt;
-	            		}
-	            	}
-	            	
-	            	
-	            }
-	        }); 
-	    },
+        },           
 	    fnProduct : function(){
 	        var self = this;
 	        var nparmap = {uId : self.uId};
@@ -411,51 +400,7 @@ var app = new Vue({
 		OrderProduct : function(item){
 			var self = this;
 			console.log(item.wnum);
-		},
-	    /* 메인 */
-	    fnVuwmain : function(){
-	    	var self = this;
-	    	$.pageChange("main.do", {uId : self.uId});
-	    },
-	    /* 주문내역 */
-	    fnInformation : function(){
-	    	var self = this;
-	    	$.pageChange("productInformation.do", {uId : self.uId});
-	    },
-	    /* 관심상품 */
-	    fnInterest : function(){
-	    	var self = this;
-	    	$.pageChange("myPageInterest.do", {uId : self.uId});
-	    },
-	    /* 적립금 */
-	    fnReserves : function(){
-	    	var self = this;
-	    	$.pageChange("mypageReserves.do", {uId : self.uId});
-	    },
-	    /* 배송주소록 */
-	    infoAddr : function(){
-	    	var self = this;
-	    	$.pageChange("infoAddr.do", {uId : self.uId});
-	    },
-	    /* 회원 정보 수정 */
-	    infoUpdate : function(){
-	    	var self = this;
-	    	$.pageChange("infoUpdate.do", {uId : self.uId});
-	    },
-	    /* 이용안내 */
-	    useGuide : function(){
-	    	var self = this;
-	    	$.pageChange("useGuide.do", {uId : self.uId});
-	    },
-	    /* 공지사항 */
-	    noticeList : function(){
-	    	var self = this;
-	    	$.pageChange("noticeList.do", {uId : self.uId});
-	    },
-	    faq : function(){
-	    	var self = this;
-	    	$.pageChange("faq.do", {uId : self.uId});
-	    },
+		},	   
         myInquiry : function(){
    	    	var self = this;
    	    	$.pageChange("myInquiry.do", {uId : self.uId});
@@ -466,12 +411,75 @@ var app = new Vue({
    		productDetail : function(item){
 			var self = this;
 			$.pageChange("/product/productView.do", {pNo : item.pNo});
-	},
-	    
+	}, fnPoint : function(){ // 포인트 내역 확인
+        var self = this;
+        var nparmap = {uId : self.uId};
+        $.ajax({
+            url : "/pointList.dox",
+            dataType:"json",	
+            type : "POST", 
+            data : nparmap,
+            success : function(data) { 	
+            	self.usepointList = data.list;
+            	var x = 0;
+            	var datalist = data.list;
+            	for(var i=0; i<datalist.length; i++){
+            		x += datalist[i].point;	
+            	}
+            	self.maxpoint = x; // 사용가능 포인트 
+            
+            }
+        }); 
     },
-    created: function() {
+    fnNotice : function (){ // 공지 
+		var self = this;
+		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+	},
+	fnUseGuide : function (){ //이용안내
+		var self = this;
+		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+	},
+	fnFaq : function (){ //faq
+		var self = this;
+		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+	},
+	/* 상단 구매내역 카운트 숫자 */
+	fnCntList : function() {
+		var self = this;
+		var nparmap = {uId : self.uId};
+		$.ajax({
+			url : "/mypag/listExchange.dox",
+			dataType : "json",
+			type : "POST",
+			data : nparmap,
+			success : function(data) {
+				
+				var listCnt = data.list;
+				for (var i = 0; i < listCnt.length; i++) {
+					if (listCnt[i].exchange == "C") {								
+						self.refund = listCnt[i].orderCnt;							
+					} else if (listCnt[i].exchange == "R") {
+						self.exchange = listCnt[i].orderCnt;
+					} else{
+						self.order = listCnt[i].orderCnt;
+						console.log(self.order);
+					}
+				}
+
+			}
+		});
+	},
+	
+	    
+},created: function() {
       var self = this;
       self.fnGetList();
+      self.fnGetInfo();
+		self.fnPoint();
+		self.fnCntList();
     }
 });
 </script>

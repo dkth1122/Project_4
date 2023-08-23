@@ -71,7 +71,7 @@
                       
                    <div class="a">
                       <div class="left topImgBoxwid">
-                           <div id="profileImg"></div>
+                         	<a href="/mypag/main.do"><div id="profileImg"></div></a>
                       </div >
                       <div class="topBox">
                       <span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
@@ -202,7 +202,7 @@ var app = new Vue({
        exchange : "",
 	   refund : "",
 	   maxpoint : undefined,
-	   infouser : "",
+	   infouser : [],
        
     },
     methods: {
