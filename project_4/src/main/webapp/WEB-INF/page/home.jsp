@@ -84,10 +84,11 @@ img.topimg{
 	}
 
 #nav2{
-widows: 1800px;
+	widows: 1800px;
 	height: 1800px;
 	margin-top: 50px;
 	margin-bottom: 50px;
+	float:left;
 }
 
 .sect2 {
@@ -129,7 +130,28 @@ widows: 1800px;
 	padding-left: 105px;
 	box-sizing: border-box;
 }
+.Sbox1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px; /* 컨테이너의 최대 너비를 조절합니다 */
+  padding: 0 20px;
+}
 
+.productList-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%; /* productList 컨테이너가 전체 너비를 차지하도록 설정합니다 */
+}
+
+.productList {
+  width: calc(25% - 20px); /* 각 행에 네 개의 아이템을 놓도록 하는 너비 설정 */
+  margin-bottom: 30px;
+  text-align: center;
+}
 
 /*new item*/
 .sect2 .Sbox1 {
@@ -234,28 +256,26 @@ widows: 1800px;
 			
 			
 <nav id="nav2">
-      <section class="sect2">
-        <h2><a href="newitem.do">NEW ARRIVAL</a></h2>
-        <div class="Sbox1" style="width: 1000px; height: 2000px;">
-          <p class="more"><a href="#">More1</a></p>
-          <div v-for="item in list" class="productList">
-            <span><img :src="item.path" class="pImg" style="width: 300px; height: 500px;"></span>
-            <div>{{ item.pName }}</div>
-            <div>
-              <ul class="sub">
-                <li class="sname">{{item.artist}}</li>
-                <li>{{item.category}}</li>
-                <li>{{item.price}}</li>
-                
-                
-                
-								</ul>
-							</div>
-                    </div>
-                </div>
-                
-               	</section>
-			</nav>
+  <section class="sect2">
+    <h2><a href="newitem.do">신상품</a></h2>
+    <div class="Sbox1">
+      <p class="more"><a href="#">더보기</a></p>
+      <div class="productList-container">
+       <div v-for="(item, index) in list" class="productList" :key="index">
+          <span><img :src="item.path" class="pImg"></span>
+          <div>{{ item.pName }}</div>
+          <div>
+            <ul class="sub">
+              <li class="sname">{{item.artist}}</li>
+              <li>{{item.category}}</li>
+              <li>{{item.price}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</nav>
 		
                 
              <!--    
@@ -275,57 +295,29 @@ widows: 1800px;
 		
 	
 		
-		
-		<nav id="nav3">
-			
-			<section class="sect2">
-				<h2><a href="newitem.do">BEST ITEM</a></h2>
-				<div class="Sbox1">
-					<p class="more">
-						<a href="#">More</a>
-					</p>
-					<ul class="sub">
-						<li class="sname">0</li>
-						<li>1</li>
-						<li>2</li>
-					</ul>
-				</div>
-	
-			<div class="Sbox2">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">0</li>
-					<li>1</li>
-					<li>2</li>
-				</ul>
-			</div>
-
-			<div class="Sbox3">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">0</li>
-					<li>1</li>
-					<li>2</li>
-				</ul>
-			</div>
-
-			<div class="Sbox4">
-				<p class="more">
-					<a href="#">More</a>
-				</p>
-				<ul class="sub">
-					<li class="sname">0</li>
-					<li>1</li>
-					<li>2</li>
-				</ul>
-			</div>
-			</section>
-		
+		<nav id="nav2">
+		  <section class="sect2">
+		    <h2><a href="newitem.do">신상품</a></h2>
+		    <div class="Sbox1">
+		      <p class="more"><a href="#">더보기</a></p>
+		      <div class="productList-container">
+		        <div v-for="item in list" class="productList">
+		          <span><img :src="item.path" class="pImg"></span>
+		          <div>{{ item.pName }}</div>
+		          <div>
+		            <ul class="sub">
+		              <li class="sname">{{item.artist}}</li>
+		              <li>{{item.category}}</li>
+		              <li>{{item.price}}</li>
+		            </ul>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  </section>
 		</nav>
+		            
+		
 		<nav>
 		
 		
@@ -345,7 +337,8 @@ var app = new Vue({
 	data : {
 		uId : "${sessionId}",
 		list : [],
-		info : {}
+		info : {},
+		best : []
 	}, 
 	methods : {
 		fnGetList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
@@ -364,6 +357,23 @@ var app = new Vue({
                }
           });
 	},
+
+	fnBestItem : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+        var self = this;
+        var nparmap = {uId : self.uId};            
+        $.ajax({
+           url : "/home3.dox",
+           dataType : "json",
+           type : "POST",
+           data : nparmap,
+           success : function(data) {                  
+              self.best = data.list;
+              console.log(self.best)
+             
+              
+           }
+      });
+},
 	 // productView 메서드 추가
     productView: function(item) {
       console.log("Clicked product:", item);
@@ -373,6 +383,7 @@ var app = new Vue({
 	created : function() {
 		var self = this;
 		self.fnGetList();
+		self.fnBestItem();
 
 	}
 });
