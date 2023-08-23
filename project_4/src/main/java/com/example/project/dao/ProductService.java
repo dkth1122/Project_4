@@ -57,5 +57,7 @@ public interface ProductService {
 	List<Product>searchProductNewList(HashMap<String, Object> map);	
 	//주문상세조회
 	List<Product> selectOrderpuduct(HashMap<String, Object> map);
+	//날짜별 주문내역조회
+	List<Product> selectOrderpuductSearch(HashMap<String, Object> map);
 	
 }

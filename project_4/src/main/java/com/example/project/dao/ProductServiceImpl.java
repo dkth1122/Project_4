@@ -186,4 +186,13 @@ public class ProductServiceImpl implements ProductService{
 			// TODO Auto-generated method stub
 			return productMapper.selectOrderpuduct(map);
 				}
+//날짜별 주문내역조회
+
+
+@Override
+public List<Product> selectOrderpuductSearch(HashMap<String, Object> map) {
+	// TODO Auto-generated method stub
+	return productMapper.selectOrderpuductSearch(map);
+}
+		
 }

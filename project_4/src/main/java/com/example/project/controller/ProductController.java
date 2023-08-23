@@ -245,5 +245,15 @@ public class ProductController {
 			resultMap.put("list", list);
 			return new Gson().toJson(resultMap);
 		}
+	//날짜별 주문내역조회	
+		@RequestMapping(value = "/mypag/searchOrderCalender.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String searchOrderCalender(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			List<Product> list = productService.selectOrderpuductSearch(map);
+			resultMap.put("list", list);
+			return new Gson().toJson(resultMap);
+}
+	
 	
 }

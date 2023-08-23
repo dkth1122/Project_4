@@ -135,7 +135,19 @@ ul {
 	.button:hover {
 	  background-color: #d4d5d9;
 	}
+	
+input[type="date"] {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
 
+input[type="date"]:focus {
+    border-color: #3498db;
+}
 </style>
 
 </head>
@@ -258,7 +270,13 @@ ul {
 							 
 							  <div class="lowerBox">주문 상품 정보</div>
 							<div>
-								<table class="table">
+								<div class="calenderArea" v-if="list == 0">
+									<ul>
+										<li><i class="fa-regular fa-face-smile"></i> 주문내역이 존재하지 않습니다.</li>
+										<li><i class="fa-regular fa-face-smile"></i> 주문 후 확인이 가능합니다.</li>
+									</ul>												
+								</div>
+								<table v-else class="table">
 										<tr class="headerListArea">
 											<th class="column-width1">주문번호</th>
 											<th class="column-width2">주문일자</th>
@@ -267,14 +285,14 @@ ul {
 											<th class="column-width5">주문상태</th>
 										</tr>
 										
-										<tr class="footerListArea" v-for="item in list">											
+										<tr class="footerListArea" v-for="item in list">																					
 											<td class="column2"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
 											<td class="column">{{item.oDate}}</td>
 											<td class="column"><button class="button11" @click="productDetail(item)">{{item.pName}}</button></td>
 											<td class="column">{{item.price}}원</td>
 											<td class="column2" v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button>취소</button></td>
 											<td class="column2" v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button>교환/반품</button><div><button>구매 확정</button></div></td>											
-											<td class="column2" v-else>{{item.dState}}</td>										
+											<td class="column2" v-else>{{item.dState}}</td>																		
 										<tr>
 										<!-- 페이징 추가 3 -->
 			<template class="pagepage">
@@ -393,12 +411,15 @@ Vue.component('paginate', VuejsPaginate)
 				}
 				var nparmap = {uId : self.uId, startDate : self.startDate, endDate : self.endDate};				
 				 $.ajax({
-					url : "/mypag/Orderp.dox",
+					url : "/mypag/searchOrderCalender.dox",
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
 					success : function(data) {						
 						self.list = data.list;
+						if(self.list == 0){
+							alert("해당 날짜에 주문내역이 없습니다.");
+						}
 						
 					}
 				}); 
