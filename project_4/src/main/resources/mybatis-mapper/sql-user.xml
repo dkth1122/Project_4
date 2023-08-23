@@ -90,8 +90,12 @@
 		WHERE U_ID = #{uId}
 		LIMIT #{startNum}, #{lastNum}
 	</select>
-		<select id="selectOrderListPageCnt" resultType="int">
+	<select id="selectOrderListPageCnt" resultType="int">
 		SELECT COUNT(*) FROM T4_USER
+	</select>
+		<select id="selectOrderListPageCnt2" resultType="int">
+		SELECT COUNT(*) FROM T4_USER
+		WHERE U_ID = #{uId}
 	</select>
 	
 	

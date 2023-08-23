@@ -41,6 +41,8 @@ public interface UserMapper {
 	List<User> selectOrderListPage(HashMap<String, Object> map);
 	//전체갯수
 	int selectOrderListPageCnt(HashMap<String, Object> map);
+	//고객별 주문내역페이지
+	int selectOrderListPageCnt2(HashMap<String, Object> map);
 	
 	
 	

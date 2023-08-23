@@ -180,11 +180,9 @@
 										<tr  v-for="item in list">											
 											<td class="column-width1"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
 											<td class="column-width2">{{item.oDate}}</td>
-											<td class="column-width3"><button class="button11" @click="productDetail(item)">{{item.pName}}</button></td>
+											<td class="column-width3"><button class="button11" @click="productDetail(item)">{{item.pName}}외 {{item.cnt}}건</button></td>
 											<td class="column-width5">{{item.price}}원</td>
-											<td class="column-width4" v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button>취소</button></td>
-											<td class="column-width4" v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button>교환/반품</button><button>구매 확정</button></td>											
-											<td class="column-width4" v-else>{{item.dState}}</td>										
+											<td class="column-width4">{{item.dState}}</td>										
 										<tr>								
 								</table>
 

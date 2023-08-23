@@ -16,6 +16,18 @@ public interface DDDDD {
 	// 사용자 장바구니 출력
 	List<Product> selectcartlist(HashMap<String, Object> map);
 	
+	//구매확정으로 업데이트
+	int mypageOrderConfirm(HashMap<String, Object> map);
+	
+	//구매 전 취소
+	int mypageOrderCancel(HashMap<String, Object> map);
+	
+	//배송 완료 후 교환/반품
+	// 1. 기존 오더/딜리버리 상태변경
+	int mypageOrderchangeUpdate(HashMap<String, Object> map);
+	// 2. 교환/반품사유 인서트
+	int mypageOrderchangeInsert(HashMap<String, Object> map);
+	
 	
 	
 	

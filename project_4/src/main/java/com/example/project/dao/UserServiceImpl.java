@@ -120,7 +120,7 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("list", userMapper.selectOrderListPage(map));
-		resultMap.put("cnt", userMapper.selectOrderListPageCnt(map));
+		resultMap.put("cnt", userMapper.selectOrderListPageCnt2(map));
 		return resultMap;
 	}
 	

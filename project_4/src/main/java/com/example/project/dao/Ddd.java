@@ -32,7 +32,28 @@ public class Ddd implements dd{
 	// TODO Auto-generated method stub
 	return ddd.selectcartlist(map);
 	}
+
+
+	//구매확정으로 업데이트
+	@Override
+	public int mypageOrderConfirm(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return ddd.mypageOrderConfirm(map);
+	}
 	
-	
+	//구매 전 취소
+	@Override
+	public int mypageOrderCancel(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return ddd.mypageOrderCancel(map);
+	}
+
+	//배송 완료 후 교환/반품
+	@Override
+	public int mypageOrderchange(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+			ddd.mypageOrderchangeUpdate(map);
+		return ddd.mypageOrderchangeInsert(map);
+	}
 	
 }
