@@ -404,7 +404,7 @@
 			},
 			fnOrderchange  : function(item) {
 				var self = this;
-				$.pageChange("/product/productView.do", {pNo : item.pNo});
+				window.open("/mypag/orderExchange.do?buyNo=" + item.buyNo, "마이페이지 주문 교환/반품 팝업", "width=400, height=400 top=300, left=700");
 			},
 			fnOrderConfirm  : function(item)  {
 				var self = this;
