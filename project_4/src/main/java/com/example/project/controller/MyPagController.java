@@ -140,7 +140,7 @@ public class MyPagController {
 //		장바구니
 		@RequestMapping("/mypag/myPageInterest.do") 
 	    public String myPageInterest(Model model) throws Exception{
-	        return "/myPag/myPageInterest";
+	        return "/PaymentAndCart/cart";
 	    }
 		
 //		적립금 페이지
