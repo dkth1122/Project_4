@@ -163,18 +163,18 @@ input[type="date"]:focus {
                         <a href="/mypag/main.do"><div id="profileImg"></div></a>
                      </div>
                      <div class="topBox">
-                        <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
+                        <span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
                      </div>
 
                      <div class="topBox">
 
                         <div class="details">
 
-                           <div>Order</div>
-                                 <label><a href="/mypag/myPagOrderdetails.do">                            
-                                 <div v-if="order != 0">{{order}}</div>
-                                 <div v-else>0</div>
-                                   </a></label>
+                        		  <div>Order</div>
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
+                          			</a></label>
 
                         </div>
 
@@ -191,12 +191,9 @@ input[type="date"]:focus {
 
                         </div>
                         <div class="details">
-                           <div>포인트</div>
-                           <div>{{info.uPoint}} P</div>
-                        </div>
-                        <div class="details">
-                           <div>Jelly</div>
-                           <div>0</div>
+                         			<div>포인트</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
                         </div>
                      </div>
                   </div>
@@ -236,9 +233,9 @@ input[type="date"]:focus {
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                              
                                     </ul>   
                                  </li>  
                               </ul>
@@ -264,6 +261,7 @@ input[type="date"]:focus {
                               <ul>
                                  <li><i class="fa-regular fa-bell"></i>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
                                  <li><i class="fa-regular fa-bell"></i>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+                                 <li style="color: red;"><i class="fa-regular fa-bell"></i>날짜 검색 시 하루 정도 오차가 있을 수 있으니 하루 다음날로 검색해 주세요</li>
                               </ul>                           
                         </div>
                       </div>
@@ -335,10 +333,25 @@ Vue.component('paginate', VuejsPaginate)
          pageCount: 1,
          cnt : 0,
          startDate: '', 
-          endDate: ''
+         endDate: '',
+         maxpoint : undefined,
+  	   infouser : [],
    
       }, 
       methods : {
+    	  fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+  			var self = this;
+  			var nparmap = {uId : self.uId};				
+  			$.ajax({
+  				url : "/user2.dox",
+  				dataType : "json",
+  				type : "POST",
+  				data : nparmap,
+  				success : function(data) {						
+  					self.infouser = data.findPw;
+  				}
+  			});
+  		},
          fnGetList : function() {
             var self = this;
             <!-- 페이징 추가 6 -->
@@ -423,33 +436,67 @@ Vue.component('paginate', VuejsPaginate)
                }
             }); 
          },
-         fnCntList : function() {
-            var self = this;
-            var nparmap = {uId : self.uId};
-            console.log(nparmap);
-            $.ajax({
-               url : "/mypag/listExchange.dox",
-               dataType : "json",
-               type : "POST",
-               data : nparmap,
-               success : function(data) {
-                  console.log(data);
-                  var listCnt = data.list;
-                  for (var i = 0; i < listCnt.length; i++) {
-                     if (listCnt[i].exchange == "N") {
-                        self.order = listCnt[i].orderCnt
-                        ;
-                     } else if (listCnt[i].exchange == "E") {
-                        self.exchange = listCnt[i].orderCnt;
-                     } else {
-                        self.refund = listCnt[i].orderCnt;
-                     }
-                  }
+         fnPoint : function(){ // 포인트 내역 확인
+ 	        var self = this;
+ 	        var nparmap = {uId : self.uId};
+ 	        $.ajax({
+ 	            url : "/pointList.dox",
+ 	            dataType:"json",	
+ 	            type : "POST", 
+ 	            data : nparmap,
+ 	            success : function(data) { 	
+ 	            	self.usepointList = data.list;
+ 	            	var x = 0;
+ 	            	var datalist = data.list;
+ 	            	for(var i=0; i<datalist.length; i++){
+ 	            		x += datalist[i].point;	
+ 	            	}
+ 	            	self.maxpoint = x; // 사용가능 포인트 
+ 	            
+ 	            }
+ 	        }); 
+ 	    },
+ 	    fnNotice : function (){ // 공지 
+ 			var self = this;
+     		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+     		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+ 		},
+ 		fnUseGuide : function (){ //이용안내
+ 			var self = this;
+     		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+     		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+ 		},
+ 		fnFaq : function (){ //faq
+ 			var self = this;
+     		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+     		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+ 		},
+ 		/* 상단 구매내역 카운트 숫자 */
+ 		fnCntList : function() {
+ 			var self = this;
+ 			var nparmap = {uId : self.uId};
+ 			$.ajax({
+ 				url : "/mypag/listExchange.dox",
+ 				dataType : "json",
+ 				type : "POST",
+ 				data : nparmap,
+ 				success : function(data) {
+ 					
+ 					var listCnt = data.list;
+ 					for (var i = 0; i < listCnt.length; i++) {
+ 						if (listCnt[i].exchange == "C") {								
+ 							self.refund = listCnt[i].orderCnt;							
+ 						} else if (listCnt[i].exchange == "R") {
+ 							self.exchange = listCnt[i].orderCnt;
+ 						} else{
+ 							self.order = listCnt[i].orderCnt;
+ 							console.log(self.order);
+ 						}
+ 					}
 
-               }
-            });
-         },
-         
+ 				}
+ 			});
+ 		},    
          productDetail : function(item){
             var self = this;
             $.pageChange("/product/productView.do", {pNo : item.pNo});
@@ -462,7 +509,9 @@ Vue.component('paginate', VuejsPaginate)
       created : function() {
          var self = this;
          self.fnGetList();         
-         self.fnCntList();
+         self.fnGetInfo();
+ 		self.fnPoint();
+ 		self.fnCntList();
       }
    });
 </script>
