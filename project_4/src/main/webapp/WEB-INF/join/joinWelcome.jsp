@@ -4,30 +4,64 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
- <link href="../css/join.css" rel="stylesheet" type="text/css">
+ <link href="../css/login.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+.login-box{
+	height : 480px;
+}
+.login button{
+	font-weight:500;
+	font-size:15px;
+}
+h3{
+	text-align : center;
+}
+.idpw{
+	width : 300px;
+	margin : 0px auto;
+	padding-left : 100px;	
+	padding-bottom : 50px;
+}
+.idpw div{
+	border-bottom : 1px solid #d8d9df;
+}
+.idpw label{
+	color : #d8d9df;
+	margin : 5px;
+}
+.idpw span{
+	color : #3d435f; 
+}
+#smile{
+	font-size: 70px;
+	margin-left : 220px;
+}
 
 </style>
 </head>
-<body id="Jbody">
+<body>
 <div id="app">
-<div id="wc">
-	<h2>Welcome</h2>
-		<h3>회원가입이 완료되었습니다!</h3>
-			<div>
-				<div>아이디 : <span>{{user.uId}}</span></div>
-				<hr>
-				<div>이름 : <span>{{user.uName}}</span></div>
-				<hr>
-				<div>이메일 : <span>{{user.uEmail}}</span></div>
-				<hr>
+	<div class="container">		
+		<h2 class="h2">Welcome</h2>
+		<div class="login-box">
+			<div class="login-box2">
+			<i class="fa-regular fa-face-smile" id="smile"></i>
+			<h3>회원가입이 완료되었습니다!</h3>
+				<div class="idpw">	
+					<div><label>아이디 <span>{{user.uId}}</span></label></div>
+					<div><label>이름   <span>{{user.uName}}</span></label></div>
+					<div><label>이메일   <span>{{user.uEmail}}</span></label></div>
+				</div>
+				<div class="login">
+					<div><button @click="goToMain">GO TO MAIN</button></div>
+				</div>
 			</div>
-		<div><button @click="goToMain" >GO TO MAIN</button></div>
+		</div>
 	</div>
 </div>
 </body>
@@ -68,7 +102,7 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                		self.user = data.findPw;
-               		$.pageChange("../home.do", {uId : ""});
+               		$.pageChange("/home.do", {uId : ""});
                		console.log(self.user);
                 }
             });
