@@ -6,7 +6,7 @@
 	<!-- 상품등록 -->
 	<insert id="insertProduct" parameterType="hashmap" >
 		INSERT INTO T4_PRODUCT VALUES
-		(#{pNo}, #{pName}, #{price}, #{stock}, #{membership}, NOW(), #{pLimit}, #{category}, #{artist}, 'N', 0, #{fYn})
+		(#{pNo}, #{pName}, #{price}, #{stock}, #{membership}, NOW(), #{pLimit}, #{category}, #{artist}, 'N', #{fYn})
 	</insert>
 	
 	<!-- 상품출력 -->
@@ -81,6 +81,12 @@
 		(#{pNo}, #{path}, 'Y')
 	</insert>
 	
+	<!-- 상세이미지등록 -->
+	<insert id="insertProductDetailedImg" parameterType="hashmap" >
+		INSERT INTO T4_PRODUCT_IMG(P_NO, path, class)
+		VALUES
+		(#{pNo}, #{path}, 'N')
+	</insert>
 	
 	<!--  체크박스로  찜목록 제거  -->
    <delete id="deleteWishProduct" parameterType="hashmap">

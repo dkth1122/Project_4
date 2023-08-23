@@ -22,8 +22,10 @@ public interface ProductService {
 	int deleteProduct(HashMap<String, Object> map);
 	
 	int productStockPLUS(HashMap<String, Object> map);
-	
+	//상품이미지 등록 
 	int insertProductImg(HashMap<String, Object> map);
+	// 상세 이미지 등록
+	int insertProductDetailedImg(HashMap<String, Object> map);
 	
 	HashMap<String, Object> searchProductList(HashMap<String, Object> map);
 	HashMap<String, Object> searchProductList2(HashMap<String, Object> map);

@@ -30,13 +30,18 @@ public class ProductServiceImpl implements ProductService{
 		return resultMap;
 	}
 
-	
+	//이미지 등록 
 	@Override
 	public int insertProductImg(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return productMapper.insertProductImg(map);
 	}
-	
+	//상세 이미지 등록
+	@Override
+	public int insertProductDetailedImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return productMapper.insertProductDetailedImg(map);
+	}
 	
 	@Override
 	public HashMap<String, Object> selectProductList(HashMap<String, Object> map) {
@@ -194,5 +199,7 @@ public List<Product> selectOrderpuductSearch(HashMap<String, Object> map) {
 	// TODO Auto-generated method stub
 	return productMapper.selectOrderpuductSearch(map);
 }
+
+
 		
 }

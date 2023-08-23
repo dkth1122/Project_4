@@ -64,9 +64,9 @@ public class ProductController {
 		resultMap = productService.insertProduct(map);		
 		return new Gson().toJson(resultMap);
 	}
-	//상품 이미지 
-	@RequestMapping("/product/fileUploadimg.dox")
-    public String result(@RequestParam("file1") MultipartFile multi, @RequestParam("pNo") String pNo, HttpServletRequest request,HttpServletResponse response, Model model)
+	//상품  상세 이미지 
+	@RequestMapping("/product/insertProductDetailedImg.dox")
+    public String insertProductDetailedImg(@RequestParam("file2") MultipartFile multi, @RequestParam("pNo") String pNo, HttpServletRequest request,HttpServletResponse response, Model model)
     {
         String url = null;
         String path="c:\\img";
@@ -109,6 +109,51 @@ public class ProductController {
         }
         return "redirect:list.do";
     }
+	//상품 이미지 
+	@RequestMapping("/product/fileUploadimg.dox")
+	public String result(@RequestParam("file1") MultipartFile multi, @RequestParam("pNo") String pNo, HttpServletRequest request,HttpServletResponse response, Model model)
+	{
+		String url = null;
+		String path="c:\\img";
+		try {
+			
+			//String uploadpath = request.getServletContext().getRealPath(path);
+			String uploadpath = path;
+			String originFilename = multi.getOriginalFilename();
+			String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
+			long size = multi.getSize();
+			String saveFileName = genSaveFileName(extName);
+			
+			System.out.println("uploadpath : " + uploadpath);
+			System.out.println("originFilename : " + originFilename);
+			System.out.println("extensionName : " + extName);
+			System.out.println("size : " + size);
+			System.out.println("saveFileName : " + saveFileName);
+			String path2 = System.getProperty("user.dir"); //현재 작업 디렉토리(Working Directory)의 경로
+			System.out.println("Working Directory = " + path2 + "\\src\\webapp\\img");
+			if(!multi.isEmpty())
+			{
+				File file = new File(path2 + "\\src\\main\\webapp\\img", saveFileName);
+				multi.transferTo(file);
+				
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("filename", saveFileName);
+				map.put("path", "../img/" + saveFileName);
+				map.put("pNo", pNo);
+				
+				// insert 쿼리 실행
+				productService.insertProductImg(map);
+				
+				model.addAttribute("filename", multi.getOriginalFilename());
+				model.addAttribute("uploadPath", file.getAbsolutePath());
+				
+				return "redirect:list.do";
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return "redirect:list.do";
+	}
 	
 	  // 현재 시간을 기준으로 파일 이름 생성
     private String genSaveFileName(String extName) {

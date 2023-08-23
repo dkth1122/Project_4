@@ -45,7 +45,7 @@
 			<option value="MEM">멤버십</option>
 		</select>
 	</div>
-	<div><input type="file" id="file1" name="file1" accept="image/*" @change="setThumbnail"></div>
+	<div> 상품 이미지 :<input type="file" id="file1" name="file1" accept="image/*" @change="setThumbnail"></div>
 	<div> 최대구매 갯수 : 
 		<select v-model="info.pLimit">
 			<option value="10">10개</option>
@@ -62,9 +62,9 @@
 	</div>
 	
 	<div>
-	<div><input type="file" id="file2" name="file2" accept="image/*" ></div>
-	<div><input type="file" id="file3" name="file3" accept="image/*" ></div>
-	<div><input type="file" id="file4" name="file4" accept="image/*" ></div>
+	상세 페이지 : 
+	<input type="file" id="file2" name="file2" accept="image/*" >
+
 	</div>
 	
 	<div>
@@ -99,11 +99,11 @@ var app = new Vue({
 			price : "",
 			point : "",
 			stock : "",
-			membership : "",
-			category : "",
-			artist : "",
+			membership : "N",
+			category : "ALB",
+			artist : "BTS",
 			fYn : "",
-			pLimit : ""
+			pLimit : "1"
 		}
 	},// data
 	methods : {
@@ -153,13 +153,20 @@ var app = new Vue({
 			    success : function(data) {
 			    	 alert("상품이 등록되었습니다.");
 			      var form = new FormData();			     
+			      var form1 = new FormData();			     
 			      
                   form.append("file1", $("#file1")[0].files[0]);
                   
-                  form.append("pNo", data.pNo); // pk
                   
-                  console.log(form);
+                  form1.append("file2", $("#file2")[0].files[0]);
+                
+                  
+                  form.append("pNo", data.pNo);
+                  form1.append("pNo", data.pNo); 
+                  
+                 
                   self.upload(form);
+                  self.upload1(form1);
               	/*   window.close(); // 팝업창 닫기
 	        	  window.opener.location.reload(); // 부모창 새로고침 */
            
@@ -170,6 +177,19 @@ var app = new Vue({
 	            var self = this;
 	            $.ajax({
 	                url: "/product/fileUploadimg.dox",
+	                type: "POST",
+	                processData: false,
+	                contentType: false,
+	                data: form,
+	                success: function(response) {
+	                }
+
+	            });
+	        },
+	        upload1: function(form1) {
+	            var self = this;
+	            $.ajax({
+	                url: "/product/insertProductDetailedImg.dox",
 	                type: "POST",
 	                processData: false,
 	                contentType: false,

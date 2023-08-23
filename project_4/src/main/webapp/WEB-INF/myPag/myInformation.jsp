@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="mypageheader.jsp" %>
+
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"

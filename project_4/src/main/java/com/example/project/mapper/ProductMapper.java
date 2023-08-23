@@ -37,8 +37,10 @@ public interface ProductMapper {
 	
 	//상품 재고 조정
 	int productStockPLUS(HashMap<String, Object> map);
-	//이미지등록
+	//상품 이미지등록
 	int insertProductImg(HashMap<String, Object> map);
+	// 상세 이미지 등록
+	int insertProductDetailedImg(HashMap<String, Object> map);
 	
 	//------- 찜목록 삭제 체크박스 선택 
 		int deleteWishProduct(HashMap<String, Object> map);
