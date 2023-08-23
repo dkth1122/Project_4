@@ -28,7 +28,7 @@ public interface DDDDD {
 	// 2. 교환/반품사유 인서트
 	int mypageOrderchangeInsert(HashMap<String, Object> map);
 	
-	
-	
+	// 유저 포인트 추가 
+	int userPointAdd(HashMap<String, Object> map);
 	
 }

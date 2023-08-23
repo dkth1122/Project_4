@@ -16,7 +16,7 @@
 			    INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
 			    INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
 			        AND O.O_NO = O.O_NO
-			    GROUP BY O.O_NO
+			    GROUP BY GROUP BY D.BUY_NO
 			) A ON O.O_NO = A.O_NO
 			    AND D.DU_NO = U.DU_NO
 			WHERE O.U_ID = #{uId}
@@ -65,9 +65,13 @@
 		(NULL, #{buyNo}, #{exchange}, #{bReasons});
 	</insert>
 	
-	
-	
-	
+	<!-- 유저 포인트 추가 -->
+	<update id="userPointAdd">
+		UPDATE T4_USER
+		SET
+			U_POINT = U_POINT + #{userPointAdd}
+		WHERE U_ID = #{uId}
+	</update>
 	
 	
 </mapper>

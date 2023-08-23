@@ -220,7 +220,7 @@
 	      INNER JOIN T4_USER U ON O.U_ID = U.U_ID
 	      LEFT JOIN T4_DELIVERY_USER D2 ON D2.U_ID = U.U_ID 
 	      WHERE O.U_ID = #{uId} AND O.O_NO = #{oNo} 
-	      GROUP BY O.BUY_NO
+	      GROUP BY D.BUY_NO
 	</select>
 	<!-- 주문내역상세 출력 날짜조회-->
 	<select id="selectOrderpuductSearch" parameterType="hashmap" resultType="com.example.project.model.Product">		

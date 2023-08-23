@@ -38,6 +38,7 @@ public class Ddd implements dd{
 	@Override
 	public int mypageOrderConfirm(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
+			ddd.userPointAdd(map);
 		return ddd.mypageOrderConfirm(map);
 	}
 	
