@@ -9,6 +9,8 @@
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<!-- 결제 연동을 위한 포트원 라이브러리 추가 --> 
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script> 
 <meta charset="EUC-KR">
 <title>결제 페이지</title>
 <style>
@@ -213,6 +215,11 @@ text-align: center;
 	width: 114px;
 }
 
+.pImg{
+	width: 200px;
+	height: 100px;
+}
+
 </style>
 </head>
 <body>
@@ -223,172 +230,142 @@ text-align: center;
 			<div id="title">Order</div>
 
 			<div class="body">
+			
 				<table class="table">
 					<tr>
-						
+						<th>이미지</th>
 						<th colspan="2">상품정보</th>
 						<th>수량</th>
-						<th>배송비</th>
 						<th>주문금액</th>						
 					</tr>
-
-					<tr v-for="(item, index) in 3">
-						
-						<td class="a">이미지</td>
-						<td class="b">이름</td>
-						<td class="c">
-								넘어온 숫자					
-						</td>
-						<td class="d">배송비</td>
-						<td class="e">가격</td>
-						
-
+					<tr v-for="item in list">
+						<td class="a"><img :src="item.path" class="pImg"></td>
+						<td class="b">{{item.pName}}</td>
+						<td class="c"></td>
+						<td class="d">{{item.cnt}}</td>
+						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
 					</tr>
-
 				</table>
-				<div class="ch_deletebutton"><span>\ 금액</span> + <span>\ 배송</span> ｜ <span class="red">\ 합</span></div>
+				
+				<div class="ch_deletebutton">
+					<span>\ 금액 {{ calculateTotalPrice() | numberWithCommas }}원</span>
+					<span v-if="delivery == 0">\ 배송 {{ delivery}}원</span>
+					<span v-else>\ 배송 {{ delivery | numberWithCommas }}원</span>
+					<span class="red">\ 합 {{ calculateTotalPrice()  + delivery | numberWithCommas }} </span>
+				</div>
 			
 				<div class="payment"></div>
-				<div class="baybutton">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</div>
+					<div class="baybutton">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</div>
 			</div>
 			<div id="addr">
 				<div>
 				<div id="inputaddr">
 						<div id="inputhd">
 						<h3>주문자 정보</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
+						<div>** 등록된 배송주소록이 없을 시 배송주소록을 등록해주세요.</div>
 						</div>
+						<button @click="fnAddrList" >주소록 보기</button>
+						<table>
+								 <tr v-for = "item in info" v-if="flg">
+                                 	<td style="display : none">
+									  <input type="text" v-model="item.duNo">
+									</td>
+                                 	<td>{{item.uDname}}</td>
+                                 	<td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
+                                 	<td>{{item.uDphone}}</td>
+                                 	<td><button @click="fnAddAddr(item, 'y')">선택</button></td>
+                                 <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
+                                 </tr>
+                        </table>
 					<table class="adr" border="0">
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문하시는 분 </th>
-							<td><input  class="nameinput " type="text" v-model="name"> </td>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문자 명 </th>
+							<td><input  class="nameinput " type="text" v-model="uDname"> </td>
 						</tr>
-						
+						<tr style="display:none"><td><input v-model="duNo"/></td></tr>
 						<tr>
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
 							<td>
-							<input class="addrinput" type="text" >  <button>주소 찾기</button> 
 							<br>
-							<input class="addrinput2" type="text" placeholder="기본주소">
+							<input class="addrinput2" type="text" placeholder="기본주소"v-model="addr" >
 							<br>
-							<input class="addrinput2" type="text" placeholder="나머지 주소 ">							
-							</td>
-						</tr>
-						
-						<tr>
-							<th>　일번전화</th>
-							<td>
-							<select class="select">
-								<option>02</option>
-								<option>031</option>
-								<option>032</option>
-								<option>033</option>
-								<option>043</option>
-							</select>
-							<input class="numinput" type="text">	- <input class="numinput" type="text">								
+							<input class="addrinput2" type="text" placeholder="나머지 주소 " v-model="addrDetail">
+							<input class="addrinput2" type="text" placeholder="우편번호" v-model="zipNo">								
+							<button @click="fnSearchAddr">주소 찾기</button>  
 							</td>
 						</tr>
 						
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
 							<td>
-								<select class="select">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>017</option>
-								<option>018</option>
-								<option>019</option>
-							</select>
-							<input class="numinput" type="text"> - <input class="numinput" type="text">			
-							</td>						
-						</tr>
-						
-						<tr>
-							<th>　<i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>이메일</th>
-							<td><div style="width: 793px;">
-								<input class="numinput" type="text"> @ <input class="numinput" type="text" :v-model="mail">	
-									<select class="select2"  :v-model="email">
-											<option value="">-이메일 선택-</option>
-											<option value="naver.com">naver.com</option>
-											<option value="daum.net">daum.net</option>
-											<option value="nate.com">nate.com</option>
-											<option value="hotmail.com">hotmail.com</option>
-											<option value="gmail.com">gmail.com</option>
-											<option value="직접입력">직접입력</option>
-									</select>
-								</div></td>
+							<select class="select" v-model="phone1">
+									<option value="">선택</option>
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="016">016</option>
+									<option value="017">017</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
+								</select>
+							<input class="numinput" type="text" v-model="phone2">	- <input class="numinput" type="text" v-model="phone3">								
+							</td>	
+							<td><button @click="fnAddAddrList">주소록 등록</button></td>					
 						</tr>
 						
 					</table>
 				</div>
-				
 				<div id="inputaddr">
 						<div id="inputhd">
 						<h3>배송 정보</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
 						</div>
-					<table class="adr" border="0">
-					
+						<table class="adr" border="0">
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 배송지선택 </th>
 							<td>
 								<div id="to" >
-										<label><input name="addr" type="radio" style="height: 12px; width: 30px;">주문자 정보와 동일</label> 
-										<label><input name="addr" type="radio" style="height: 12px; width: 20px;" > 새로운 배송지</label>
-										<button>주소록 보기</button>
+										<label><input name="addr" type="radio" style="height: 12px; width: 30px;" @click="fnAddAddr2('y')">주문자 정보와 동일</label> 
+										<label><input name="addr" type="radio" style="height: 12px; width: 20px;" @click="fnAddAddr2('n')">초기화</label>
+										
 							 	</div>
 							</td>
-						
+							</tr>
+							<tr>
 						</tr>
-						
-					
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문하시는 분 </th>
-							<td><input  class="nameinput " type="text"> </td>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문자 명 </th>
+							<td><input  class="nameinput " type="text" v-model="user.uDname"> </td>
 						</tr>
-						
+						<tr style="display:none"><td><input v-model="user.duNo"/></td></tr>
 						<tr>
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
 							<td>
-							<input class="addrinput" type="text" >  <button>주소 찾기</button> 
 							<br>
-							<input class="addrinput2" type="text" placeholder="기본주소">
+							<input class="addrinput2" type="text" placeholder="기본주소" v-model="user.addr" >
 							<br>
-							<input class="addrinput2" type="text" placeholder="나머지 주소 ">							
-							</td>
-						</tr>
-						
-						<tr>
-							<th>　일번전화</th>
-							<td>
-							<select class="select">
-								<option>02</option>
-								<option>031</option>
-								<option>032</option>
-								<option>033</option>
-								<option>043</option>
-							</select>
-							<input class="numinput" type="text">	- <input class="numinput" type="text">								
+							<input class="addrinput2" type="text" placeholder="나머지 주소" v-model="user.addrDetail">					
+							<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo">		
 							</td>
 						</tr>
 						
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
 							<td>
-								<select class="select">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>017</option>
-								<option>018</option>
-								<option>019</option>
-							</select>
-							<input class="numinput" type="text"> - <input class="numinput" type="text">			
+								<select class="select" v-model="user.phone1">
+									<option value="">선택</option>
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="016">016</option>
+									<option value="017">017</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
+								</select>
+							<input class="numinput" type="text" v-model="user.phone2"> - <input class="numinput" type="text" v-model="user.phone3">			
 							</td>						
 						</tr>
 						
 						<tr>
 							<th>　배송메시지</th>
-							<td><textarea rows="7" cols="110"></textarea> </td>
+							<td><textarea rows="7" cols="110" v-model="dText"></textarea> </td>
 						</tr>
 						
 					</table>
@@ -406,14 +383,14 @@ text-align: center;
 								</th>
 								
 								<td>
-									}}포인트{{ P
+									{{ (calculateTotalPrice()  + delivery | numberWithCommas) * 0.02 }} 
 								</td>
 							</tr>
 						</table>
 						<div class="pontbottombor"></div>
 					</div>					
 					
-					<div id="note">
+<div id="note">
 <div style="font-weight: bold;">				
 [주문 및 배송정보]
 </div>
@@ -436,55 +413,295 @@ text-align: center;
 <div>- 물류센터 사정으로 인해 배송이 지연될 수 있습니다.</div>
 <div style="color: red">- 사전예약/주문제작 등 당일 배송이 어려운 상품을 함께 구매하시는 경우 모든
    			상품이 배송 가능한 상태가 되는 시점에 주문하신 상품이 함께 배송 됩니다.</div>
-<div>- 기본 배송기간 이상 소요되는 상품 또는 품절된 상품은 개별 연락　　　 드리겠습니다.</div>
+<div>- 기본 배송기간 이상 소요되는 상품 또는 품절된 상품은 개별 연락 드리겠습니다.</div>
 
 <div style="color: red">- 복제 가능한 상품의 경우 개봉 후 단순 변심으로 인한 반품이 불가합니다.</div>
 </p>
-				
-			
 					</div>
 				</div>
 			</div>
-		<div id="baybutton"><button>결제하기</button> </div>
+		<div id="baybutton"><button @click="requestPay">결제하기</button></div>
 		</div>
-	</div>
 
+</div>
 </body>
 </html>
 <script>
+const userCode = "imp36711884"; 
+IMP.init(userCode); 
+
+Vue.filter('numberWithCommas', function (value) {
+    if (!value) return '';
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');});
+
+
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+	app.fnResult(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo);
+}
+
 	var app = new Vue({
 		el : '#app',
 		data : {
 			uId : "${sessionId}",
 			totalPrice : "${map.totalPrice}",
-			name : "",
+    	   	uDname : "",
+    	   	uDphone : "",
 			addr : "",
-			ph : "",
-			ph2 : "",
-			ph3 : "",
+			addrDetail : "",
+			zipNo : "",
 			email : "",
-			mail : "",
+			list : [],
+			delivery : 0,
+			numberWithCommas : "",
+			 user : {
+		    	   	uId : "",
+		    	   	uDname : "",
+		    	   	phone1 : "",
+		    	   	phone2 : "",
+		    	   	phone3 : "",
+					addr : "",
+					addrDetail : "",
+					zipNo : "",
+					phone : "",
+					duNo : "",
+					oNo: "",
+					buyNo: "",
+					uId : ""
+				},
+			info : [],
+			flg : false,
+    	   	phone1 : "",
+			phone2 : "",
+			phone3 : "",
+			dText : "",
+			duNo : "",
+			oNo : "",
+			buyNo: ""
+			
 		},
 		methods : {
 			fnGetList : function(){
 	            var self = this;
-	            var nparmap = {uId : self.uId};            
+	            var nparmap = {uId : self.uId, pNo : self.pNo};        
 	            $.ajax({
-	                url : "cart/searchCart.dox",
+	                url : "/cart/searchCart.dox",
 	                dataType:"json",	
 	                type : "POST", 
 	                data : nparmap,
 	                success : function(data) { 
-	                	self.list = data.list; //사용자
+	                	self.list = data.list;
 	                	console.log(self.list);
 	                }
 	            }); 
-	        }
-		}
-
-		},
-		created : function() {
+	        },calculateTotal: function (item) {
+                return item.price * item.cnt;
+            },
+	        // 상품 전체 금액 합산 메서드
+       		 calculateTotalPrice: function () {
+                 var self = this;
+                 var total = 0;
+                 self.list.forEach(function (item) {
+                     total += self.calculateTotal(item);
+                 });
+	   			if (total < 50000) {
+                    self.delivery = 3000;
+                } else {
+                    self.delivery = 0;
+                } 
+                 return total;
+                 
+        	}, decreaseCnt: function (item) {
+                if (item.cnt > 1) {
+                    item.cnt--;
+                    this.calculateTotalPrice();
+                }
+                
+            }, increaseCnt: function (item) {
+                item.cnt++;
+                this.calculateTotalPrice();
+            },updateItemCnt: function (item) {
+            	
+            	if (parseInt(event.target.value) > 1){
+                item.cnt = parseInt(event.target.value);
+                this.calculateTotalPrice();
+            	}
+         },fnSearchAddr : function (check){
 			var self = this;
+    		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    		window.open("/mypag/addr.do", "test", option);
+			self.check = check;
+			
+         },fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+    		var self = this;
+    		
+	    		self.addr = roadAddrPart1;
+	    		self.addrDetail = addrDetail;
+	    		self.zipNo = zipNo;
+    		
+    	}, fnAddrList : function(){
+            var self = this;
+            var nparmap = {uId : self.uId};
+            $.ajax({
+                url : "/delivery/list.dox",
+                dataType:"json",   
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                   self.info = data.list; //사용자
+                   self.flg = !self.flg;
+                   
+                }
+            }); 
+    	},fnAddAddrList : function(){
+	       	 var self = this;
+	       	 self.uDphone = self.phone1 + self.phone2 + self.phone3
+	       	 
+	       	 if(self.uId == null || self.uId == "" || self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == ""){
+					alert("내용을 모두 입력해주세요.");	
+	       		 return;	       		 
+	       	 }
+	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo};
+	         $.ajax({
+	             url : "/mypag/addAddr.dox",
+	             dataType:"json",	
+	             type : "POST", 
+	             data : nparmap,
+	             success : function(data) { 
+	             	alert("배송주소록에 추가 되었습니다!");
+	             	location.reload();
+	             }
+       		  }); 
+    	},fnAddAddr : function(item, check){
+    		var self = this;
+    		
+    		if(check == 'y'){
+	    	   self.uDname = item.uDname;
+	    	   self.addr = item.uDaddr;
+	    	   self.addrDetail = item.uDaddrDetail;
+	    	   self.zipNo = item.zipNo;
+	    	   self.phone1 = item.uDphone.substr(0,3);
+	    	   self.phone2 = item.uDphone.substr(3,4);
+	    	   self.phone3 = item.uDphone.substr(7);
+	    	   self.duNo = item.duNo;
+    		}else if (check == 'n'){
+    	   		self.uDname = "";
+    	    	self.addr = "";
+    	    	self.addrDetail = "";
+    	    	self.zipNo = "";
+ 	    	  	self.phone1 = "";
+    	    	self.phone2 = "";
+    	    	self.phone3 = "";
+ 	    	   self.duNo = "";
+    		}
+    	
+    	},fnAddAddr2 : function(check){
+    		var self = this;
+	    	if(check == 'y'){
+	    	   self.user.uDname = self.uDname;
+	    	   self.user.addr = self.addr;
+	    	   self.user.addrDetail = self.addrDetail;
+	    	   self.user.zipNo = self.zipNo;
+	    	   self.user.phone1 = self.phone1;
+	    	   self.user.phone2 = self.phone2;
+	    	   self.user.phone3 = self.phone3;
+	    	   self.user.duNo = self.duNo;
+	    	}else if (check == 'n'){
+	    	  	self.user.uDname = "";
+	        	self.user.addr = "";
+	        	self.user.addrDetail = "";
+	        	self.user.zipNo = "";
+	        	self.user.phone1 = 
+	        	self.user.phone2 = "";
+	        	self.user.phone3 = "";
+		    	self.user.duNo = "";
+	    	}
+   		}, requestPay : function() {
+    		var self = this;
+    		self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
+            var timestamp = new Date().getTime();
+    			IMP.request_pay({
+       		    pg: "nice",
+       		    pay_method: "card",
+       		    merchant_uid:  "order_" + timestamp,
+       		    name: "결제 실행",
+       		    amount: self.totalPrice,
+       		    buyer_addr : self.user.addr + self.user.addrDetail,
+       		    buyer_postcord : self.user.zipNo,
+       		    buyer_name: self.user.uDname,
+       		    buyer_tel: self.user.phone,
+  	   	 
+    		}, function (rsp) { // callback
+  	   	      if (rsp.success) {
+  	   	    	console.log("rsp ==>", rsp);
+  	   	    	self.fnInsertAll();
+  	   	    	alert("결제 성공");
+  	   	        
+  	   	      } else {
+  	   	        // 결제 실패 시
+  	   	        alert("실패");
+  	   	      }
+    		
+  	   	  });
+    			
+  	   	},  fnRemoveCart : function(){
+            var self = this;
+            var nparmap = {uId : self.uId};            
+            $.ajax({
+                url : "/cart/removeCart.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) {
+                	location.do = "../main.do";
+                }
+            });
+            
+        }, fnInsertAll : function(){
+        	var self = this;
+        	var timestamp =  new Date().getTime(); 
+        	self.oNo = timestamp;
+          	for(var i = 0; i < self.list.length; i++){
+                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo };
+                 	console.log("여기 인서트 전부 하는거 =====>", nparmap);
+	                   $.ajax({
+	                       url : "insertALL.dox",
+	                       dataType:"json",   	
+	                       type : "POST", 
+	                       data : nparmap,
+	                       success : function(data) { 
+	                    	   self.buyNo = data.buyNo;
+	                    	   console.log("인서트하고 buyNo값 확인=======>",self.buyNo);
+	                    	   self.fninsertDelivery();
+	                    	   self.fnRemoveCart();
+	                       }
+	                   });  
+          	}//for
+        }, fninsertDelivery : function(){
+        	var self = this;
+        	self.user.uId = self.uId;
+        	self.user.oNo = self.oNo;
+        	self.user.buyNo = self.buyNo;
+         	var nparmap = self.user;
+         	console.log("여기 딜리버리 테이블용 =====>", nparmap);
+               $.ajax({
+                   url : "insertDelivery.dox",
+                   dataType:"json",   	
+                   type : "POST", 
+                   data : nparmap,
+                   success : function(data) { 
+                      
+                   }
+               });  
+        	
+        	
+        }//function
+        
+        
+	},created : function() {
+			var self = this;
+			self.fnGetList();
+			console.log(self.list);
 		}
 	});
+	
 </script>

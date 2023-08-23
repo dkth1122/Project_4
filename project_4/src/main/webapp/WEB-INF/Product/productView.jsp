@@ -679,12 +679,12 @@ var app = new Vue({
             		alert("키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
             	}
         		else{
-            		$.pageChange("../payment.do", {pNo : item.pNo}); 
+            		$.pageChange("/payment/payment.do", {pNo : item.pNo}); 
             	}	
         	}else{
-        		$.pageChange("../payment.do", {pNo : item.pNo});  
+        		$.pageChange("/payment/payment.do", {pNo : item.pNo});  
         	} 	
-        	//$.pageChange("../payment.do", {pNo : item.pNo});        	
+        	//$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
         	     	
         },//위시리스트 이동  
         wishList : function(){
