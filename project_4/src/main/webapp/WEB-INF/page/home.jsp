@@ -105,7 +105,7 @@ img.topimg{
 #nav4{
 	border:5px dotted red;
 	widows: 1800px;
-	height: 1800px;
+	height: 800px;
 	margin-top: 50px;
 	margin-bottom: 50px;
 	float:left;
@@ -141,7 +141,6 @@ border:5px dotted green;
 	float: left;
 	margin-right:10px;
 	
-	position: relative;
 	/* overflow: hidden; */
 	
 }
@@ -185,32 +184,33 @@ border:1px dotted green;
     transform: translateX(-50%); 
 }
 .sect2 div{
-height:250px;
-
+height:350px;
+margin:20px;
 }
 
 .productList {
   border:1px solid blue;
  
-  width: calc(25% - 20px); /* 각 박스의 너비 */
+  width: 300px;
   margin: 0 10px; /* 각 박스 사이의 간격을 설정 */
   
   text-align: center;
 }
 /*new item*/
 
-/* .Sbox1 {
-  border:1px solid orange;
-  
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px; 
-  length: 1000px;
-  padding: 0 20px;
-} */
+ .Sbox1 {
+ text-align:center;
+  border:6px solid orange;
+    vertical-align: middle;
+	width:1500px;
+	height: 650px;
+	position: absolute;
+    left: 50%; /* 요소의 좌측 위치를 중앙으로 이동 */
+    transform: translateX(-50%); 
+	align-items: center; /* 수직 가운데 정렬 */
+	flex-wrap: wrap;
+	padding:50px;
+} 
 
 
 /* .sect2 .Sbox1 {
@@ -240,7 +240,6 @@ height:250px;
 /*SUP*/
 .sect2 div .sub {
 	border:7px solid green;
-
 	position: flex;
 	bottom: -300px;
 	width: auto;
@@ -251,7 +250,7 @@ height:250px;
 	font-family: arial;
 	font-size: 15pt;
 	text-align: left;
-	padding-left: 11px;
+	
 	box-sizing: border-box;
 	opacity: 0;
 	transition: all 1s;
@@ -267,15 +266,10 @@ height:250px;
 .sect2 div .sub .sname {
 	font-size: 23pt;
 	font-weight: bold;
-	
+	width:300px;
 	box-sizing: border-box;
 	text-align: left;
 }
-
-.sect2 div:nth-child(4) {
-	margin-left: 0;
-}
-
 
 
 </style>
@@ -329,9 +323,10 @@ height:250px;
 			
 			
 <nav id="nav2">
+
   <section class="sect2">
     <div class="sect2name"><a href="newitem.do">NEW ARRIVAL</a></div>
-    
+     <div class="Sbox1">
     
     <!--   <p class="more"><a href="#">MORE</a></p> -->
      
@@ -344,7 +339,7 @@ height:250px;
               <li>{{item.category}}</li>
               <li>{{item.price}}</li>
             </ul>
-            
+            </div>
           </div>
         </div>
       
