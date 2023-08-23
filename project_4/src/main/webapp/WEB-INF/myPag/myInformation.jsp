@@ -129,8 +129,8 @@
 
 							<div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
-			                        <div class="menuFontSize" v-if="order != 0">{{order}}</div>
-			                        <div class="menuFontSize" v-else>0</div>
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
                           			</a></label>
 
 								</div>
@@ -138,7 +138,7 @@
 								<div class="details">
 
 									<div>교환/환불</div>
-									<div class="menuFontSize">
+									<div>
 										<span v-if="refund != 0">{{refund}} /</span>
 										<span v-else>0 /</span>
 										
