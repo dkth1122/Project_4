@@ -43,24 +43,27 @@ public class PaymentController {
     }
 	
 	 
-	 @RequestMapping(value = "/payment/insertProductPayment2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	//인서트 여러개 하기
+	@RequestMapping(value = "/payment/insertALL.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String insertALL(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = paymentService.addProductBuy(map);
+		
+		System.out.println(resultMap.get("buyNo"));
+		
+		return new Gson().toJson(resultMap);
+	}
+	
+	//딜리버리 테이블에 등록
+	 @RequestMapping(value = "/payment/insertDelivery.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 		@ResponseBody
-		public String insertProductPayment2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		public String addDelivery(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
-			paymentService.insertProductBuy2(map);
+			paymentService.addDelivery(map);
 			resultMap.put("message", "success");
 			return new Gson().toJson(resultMap);
 	}
 	
-	 //여러 값 체크박스로 보내기
-		@RequestMapping(value = "/payment/insertALL.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-		@ResponseBody
-		public String removeBoard(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-			HashMap<String, Object> resultMap = new HashMap<String, Object>();
-			 paymentService.addProductBuy(map);
-			 
-			return new Gson().toJson(resultMap);
-		}
-		
 		
 }
