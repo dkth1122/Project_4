@@ -11,15 +11,12 @@
 			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
 			INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
 			INNER JOIN (
-			    SELECT O.O_NO, COUNT(*) AS CNT
-			    FROM T4_ORDER O
-			    INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-			    INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-			        AND O.O_NO = O.O_NO
-			    GROUP BY GROUP BY D.BUY_NO
+			   SELECT O_NO, COUNT(*) AS CNT 
+				FROM T4_DELIVERY
+				WHERE U_ID = #{uId}
+				GROUP BY O_NO
 			) A ON O.O_NO = A.O_NO
-			    AND D.DU_NO = U.DU_NO
-			WHERE O.U_ID = #{uId}
+			   WHERE D.DU_NO = U.DU_NO AND U.U_ID = #{uId}
 			GROUP BY O.O_NO
 	</select>
 	<!-- 사용자 장바구니 출력 -->
