@@ -310,12 +310,12 @@ text-align: center;
 								</select>
 							<input class="numinput" type="text" v-model="phone2">	- <input class="numinput" type="text" v-model="phone3">								
 							</td>	
-							<br>
-							<th>배송메시지<th>
-							<td><textarea rows="7" cols="110" v-model="dText"></textarea> </td>
+							<tr>
+							<th>배송메시지</th>
+								<td><textarea rows="7" cols="110" v-model="dText"></textarea></td>
+							</tr>
 							<td><button @click="fnAddAddrList">주소록 등록</button></td>	
-							<br>
-						</tr>
+							</tr>
 						
 					</table>
 				</div>
@@ -548,11 +548,16 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	       	 var self = this;
 	       	 self.uDphone = self.phone1 + self.phone2 + self.phone3
 	       	 
-	       	 if(self.uId == null || self.uId == "" || self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == ""){
+	       	 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == ""){
 					alert("내용을 모두 입력해주세요.");	
 	       		 return;	       		 
 	       	 }
-	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo};
+	       	 
+	       	 if(self.uId == null || self.uId == ""){
+	       		 alert("로그인 해주세요.");
+	       		 return;
+	       	 }
+	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo, uDmessage : self.dText};
 	         $.ajax({
 	             url : "/mypag/addAddr.dox",
 	             dataType:"json",	
@@ -639,7 +644,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	        
   	   	      } else {
   	   	        // 결제 실패 시
-  	   	        alert("실패");
+  	   	        alert("결제 실패");
   	   	      }
     		
   	   	  });
