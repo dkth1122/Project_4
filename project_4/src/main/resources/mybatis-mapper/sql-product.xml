@@ -224,7 +224,7 @@
 	</select>
 	<!-- 주문내역상세 출력 날짜조회-->
 	<select id="selectOrderpuductSearch" parameterType="hashmap" resultType="com.example.project.model.Product">		
-					SELECT O.O_NO, O.*, P.*, D.*, U.*, A.*
+			SELECT O.O_NO, O.*, P.*, D.*, U.*, A.*
 			FROM T4_ORDER O
 			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
 			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
@@ -235,10 +235,8 @@
 			    INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
 			    INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
 			        AND O.O_NO = O.O_NO
-			        AND (EXCHANGE IS NULL OR EXCHANGE = '')
 			    GROUP BY O.O_NO
 			) A ON O.O_NO = A.O_NO
-			    AND (EXCHANGE IS NULL OR EXCHANGE = '')
 			    AND D.DU_NO = U.DU_NO
 			WHERE O.U_ID = #{uId} AND O_DATE BETWEEN #{startDate} AND #{endDate}
 			GROUP BY O.O_NO
