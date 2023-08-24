@@ -202,7 +202,7 @@
 									<span><img :src = "item.path" class="pImg"></span>
 									<div class="artistDIv">{{item.artist}}</div>
 									<div>{{item.pName}}</div>
-									<h5>{{item.price}}</h5>
+									<h5>\{{ formatPrice(item.price) }}</h5>
 								</span>
 					</div>
                 <!-- ÆäÀÌÂ¡ Ãß°¡ 3 -->
@@ -295,12 +295,16 @@ var app = new Vue({
 				}
 			});
 		},
+		
 		fnReload : function(){
 			location.reload();
 		},
         productView : function(item){
         	var self = this;
         	$.pageChange("productView.do", {pNo : item.pNo});        	
+        },
+		formatPrice: function(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
     },
     created: function() {
