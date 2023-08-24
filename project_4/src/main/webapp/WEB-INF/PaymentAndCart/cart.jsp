@@ -311,7 +311,6 @@ i{
 	                data : nparmap,
 	                success : function(data) { 
 	                	self.list = data.list; //사용자
-	                	console.log(self.list);
 	                }
 	            }); 
 	        }, calculateTotal: function (item) {
@@ -376,7 +375,6 @@ i{
 	            }); 
             }, fnPay : function(item){
                 var self = this;
-        		console.log("토탈가격=======>",self.totalPrice);
         		var currentDate = new Date();
 
             	var year = currentDate.getFullYear();
@@ -416,8 +414,9 @@ i{
                    dataType:"json",	
                    type : "POST", 
                    data : nparmap,
-                   success : function(data) { 
-                	   self.fnGetList();
+                   success : function(data) {
+	                	alert("해당 제품의 수량이 변경되었습니다.");
+	                	self.fnGetList();
                  	  }
                }); 
            },updateItemCnt: function (item) {
@@ -430,7 +429,6 @@ i{
 		created : function() {
 			var self = this;
 			self.fnGetList();
-			console.log(self.list);
 		}
 	});
 </script>

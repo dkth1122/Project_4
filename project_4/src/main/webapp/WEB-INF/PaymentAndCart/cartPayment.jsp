@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +9,10 @@
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<!-- °áÁ¦ ¿¬µ¿À» À§ÇÑ Æ÷Æ®¿ø ¶óÀÌºê·¯¸® Ãß°¡ --> 
+<!-- ê²°ì œ ì—°ë™ì„ ìœ„í•œ í¬íŠ¸ì› ë¼ì´ë¸ŒëŸ¬ë¦¬ ì¶”ê°€ --> 
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script> 
-<meta charset="EUC-KR">
-<title>°áÁ¦ ÆäÀÌÁö</title>
+<meta charset="UTF-8">
+<title>ê²°ì œ í˜ì´ì§€</title>
 <style>
 
 #title {
@@ -233,74 +233,66 @@ text-align: center;
 			
 				<table class="table">
 					<tr>
-						<th>ÀÌ¹ÌÁö</th>
-						<th colspan="2">»óÇ°Á¤º¸</th>
-						<th>¼ö·®</th>
-						<th>ÁÖ¹®±İ¾×</th>						
+						<th>ì´ë¯¸ì§€</th>
+						<th colspan="2">ìƒí’ˆì •ë³´</th>
+						<th>ìˆ˜ëŸ‰</th>
+						<th>ì£¼ë¬¸ê¸ˆì•¡</th>						
 					</tr>
 					<tr v-for="item in list">
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
 						<td class="c"></td>
 						<td class="d">{{item.cnt}}</td>
-						<td class="e">{{calculateTotal(item) | numberWithCommas}}¿ø</td>
+						<td class="e">{{calculateTotal(item) | numberWithCommas}}ì›</td>
 					</tr>
 				</table>
 				
 				<div class="ch_deletebutton">
-					<span>\ ±İ¾× {{ calculateTotalPrice() | numberWithCommas }}¿ø</span>
-					<span v-if="delivery == 0">\ ¹è¼Û {{ delivery}}¿ø</span>
-					<span v-else>\ ¹è¼Û {{ delivery | numberWithCommas }}¿ø</span>
-					<span class="red">\ ÇÕ {{ calculateTotalPrice()  + delivery | numberWithCommas }} </span>
+					<span>\ ê¸ˆì•¡ {{ calculateTotalPrice() | numberWithCommas }}ì›</span>
+					<span v-if="delivery == 0">\ ë°°ì†¡ {{ delivery}}ì›</span>
+					<span v-else>\ ë°°ì†¡ {{ delivery | numberWithCommas }}ì›</span>
+					<span class="red">\ í•© {{ calculateTotalPrice()  + delivery | numberWithCommas }} </span>
 				</div>
 			
 				<div class="payment"></div>
-					<div class="baybutton">»óÇ°ÀÇ ¿É¼Ç ¹× ¼ö·® º¯°æÀº »óÇ°»ó¼¼ ¶Ç´Â Àå¹Ù±¸´Ï¿¡¼­ °¡´ÉÇÕ´Ï´Ù.</div>
+					<div class="baybutton">ìƒí’ˆì˜ ì˜µì…˜ ë° ìˆ˜ëŸ‰ ë³€ê²½ì€ ìƒí’ˆìƒì„¸ ë˜ëŠ” ì¥ë°”êµ¬ë‹ˆì—ì„œ ê°€ëŠ¥í•©ë‹ˆë‹¤.</div>
 			</div>
 			<div id="addr">
 				<div>
 				<div id="inputaddr">
 						<div id="inputhd">
-						<h3>ÁÖ¹®ÀÚ Á¤º¸</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>ÇÊ¼ö ÀÔ·Â»çÇ×</span>
-						<div>** µî·ÏµÈ ¹è¼ÛÁÖ¼Ò·ÏÀÌ ¾øÀ» ½Ã ¹è¼ÛÁÖ¼Ò·ÏÀ» µî·ÏÇØÁÖ¼¼¿ä.</div>
+						<h3>ë°°ì†¡ì£¼ì†Œë¡ ì¶”ê°€</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>í•„ìˆ˜ ì…ë ¥ì‚¬í•­</span>
+						<div>** ë“±ë¡ëœ ë°°ì†¡ì£¼ì†Œë¡ì´ ì—†ì„ ì‹œ ë°°ì†¡ì£¼ì†Œë¡ì„ ë“±ë¡í•´ì£¼ì„¸ìš”.</div>
 						</div>
-						<button @click="fnAddrList" >ÁÖ¼Ò·Ï º¸±â</button>
-						<table>
-								 <tr v-for = "item in info" v-if="flg">
-                                 	<td style="display : none">
-									  <input type="text" v-model="item.duNo">
-									</td>
-                                 	<td>{{item.uDname}}</td>
-                                 	<td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
-                                 	<td>{{item.uDphone}}</td>
-									<td><input rows="7" cols="110" v-model="item.uDmessage" hidden/> </td>
-                                 	<td><button @click="fnAddAddr(item, 'y')">¼±ÅÃ</button></td>
-                                 <td><button @click="fnAddAddr(item, 'n')">Ãë¼Ò</button></td>
-                                 </tr>
-                        </table>
 					<table class="adr" border="0">
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ÁÖ¹®ÀÚ ¸í </th>
-							<td><input  class="nameinput " type="text" v-model="uDname"> </td>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ì£¼ë¬¸ì ëª… </th>
+							<td>
+								<input  class="nameinput " type="text" v-model="uDname" @input="validateName">
+								<div class="error-message" v-if="nameErrorMessage">{{ nameErrorMessage }}</div>
+							</td>
 						</tr>
 						<tr style="display:none"><td><input v-model="duNo"/></td></tr>
 						<tr>
-							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ÁÖ¼Ò</th>
+							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ì£¼ì†Œ</th>
 							<td>
-							<br>
-							<input class="addrinput2" type="text" placeholder="±âº»ÁÖ¼Ò"v-model="addr" >
-							<br>
-							<input class="addrinput2" type="text" placeholder="³ª¸ÓÁö ÁÖ¼Ò " v-model="addrDetail">
-							<input class="addrinput2" type="text" placeholder="¿ìÆí¹øÈ£" v-model="zipNo">								
-							<button @click="fnSearchAddr">ÁÖ¼Ò Ã£±â</button>  
+								<br>
+								<input class="addrinput2" type="text" placeholder="ê¸°ë³¸ì£¼ì†Œ"v-model="addr"  @input="validateAddress">
+								<div class="error-message" v-if="addrErrorMessage">{{ addrErrorMessage  }}</div>
+								<br>
+								<input class="addrinput2" type="text" placeholder="ë‚˜ë¨¸ì§€ ì£¼ì†Œ " v-model="addrDetail"  @input="validateAddrDetail">
+								<div class="error-message" v-if="addrDetailErrorMessage">{{ addrDetailErrorMessage }}</div>
+								<input class="addrinput2" type="text" placeholder="ìš°í¸ë²ˆí˜¸" v-model="zipNo"  @input="validateZipNo">	
+								<div class="error-message" v-if="zipNoErrorMessage">{{ zipNoErrorMessage  }}</div>							
+								<button @click="fnSearchAddr">ì£¼ì†Œ ì°¾ê¸°</button>
 							</td>
 						</tr>
 						
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>ÈŞ´ëÀüÈ­</th>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>íœ´ëŒ€ì „í™”</th>
 							<td>
 							<select class="select" v-model="phone1">
-									<option value="">¼±ÅÃ</option>
+									<option value="">ì„ íƒ</option>
 									<option value="010">010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>
@@ -308,55 +300,71 @@ text-align: center;
 									<option value="018">018</option>
 									<option value="019">019</option>
 								</select>
-							<input class="numinput" type="text" v-model="phone2">	- <input class="numinput" type="text" v-model="phone3">								
+							<input class="numinput" type="text" v-model="phone2" @input="validatePhone"> - <input class="numinput" type="text" v-model="phone3"  @input="validatePhone2">	
+							<div class="error-message" v-if="phoneErrorMessage">{{ phoneErrorMessage }}</div>							
 							</td>	
 						<tr>
-							<th>¹è¼Û¸Ş½ÃÁö</th>
-							<td><textarea rows="7" cols="110" v-model="dText"></textarea></td>
+							<th>ë°°ì†¡ë©”ì‹œì§€</th>
+							<td>
+								<textarea rows="7" cols="110" v-model="dText" placeholder="ë°°ì†¡ë©”ì‹œì§€ëŠ” 30ì ì´ë‚´ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”."></textarea>
+							</td>
 						</tr>
-							<td><button @click="fnAddAddrList">ÁÖ¼Ò·Ï µî·Ï</button></td>	
+							<td><button @click="fnAddAddrList">ì£¼ì†Œë¡ ë“±ë¡</button></td>	
 						</tr>
 						
 					</table>
 				</div>
+				
+				
 				<div id="inputaddr">
 						<div id="inputhd">
-						<h3>¹è¼Û Á¤º¸</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>ÇÊ¼ö ÀÔ·Â»çÇ×</span>
+						<h3>ë°°ì†¡ ì •ë³´</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>í•„ìˆ˜ ì…ë ¥ì‚¬í•­</span>
 						</div>
 						<table class="adr" border="0">
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ¹è¼ÛÁö¼±ÅÃ </th>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ë°°ì†¡ì£¼ì†Œë¡ ì„ íƒ </th>
 							<td>
 								<div id="to" >
-										<label><input name="addr" type="radio" style="height: 12px; width: 30px;" @click="fnAddAddr2('y')">ÁÖ¹®ÀÚ Á¤º¸¿Í µ¿ÀÏ</label> 
-										<label><input name="addr" type="radio" style="height: 12px; width: 20px;" @click="fnAddAddr2('n')">ÃÊ±âÈ­</label>
-										
+									<button @click="fnAddrList">ì£¼ì†Œë¡ ë³´ê¸°</button>
+									<table>
+											 <tr v-for = "item in info" v-if="flg">
+			                                 	<td style="display : none">
+												  <input type="text" v-model="item.duNo">
+												</td>
+			                                 	<td>{{item.uDname}}</td>
+			                                 	<td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
+			                                 	<td>{{item.uDphone}}</td>
+												<td><input rows="7" cols="110" v-model="item.uDmessage" hidden/> </td>
+			                                 	<td><button @click="fnAddAddr(item, 'y')">ì„ íƒ</button></td>
+			                                 <td><button @click="fnAddAddr(item, 'n')">ì·¨ì†Œ</button></td>
+			                                 </tr>
+			                        </table>
 							 	</div>
 							</td>
 							</tr>
 							<tr>
 						</tr>
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ÁÖ¹®ÀÚ ¸í </th>
-							<td><input  class="nameinput " type="text" v-model="user.uDname"> </td>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;" ></i> ì£¼ë¬¸ì ëª… </th>
+							<td><input  class="nameinput " type="text" v-model="user.uDname" readonly> </td>
 						</tr>
-						<tr style="display:none"><td><input v-model="user.duNo"/></td></tr>
+						<tr style="display:none"><td><input v-model="user.duNo" readonly/></td></tr>
 						<tr>
-							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ÁÖ¼Ò</th>
+							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> ì£¼ì†Œ</th>
 							<td>
 							<br>
-							<input class="addrinput2" type="text" placeholder="±âº»ÁÖ¼Ò" v-model="user.addr" >
+							<input class="addrinput2" type="text" placeholder="ê¸°ë³¸ì£¼ì†Œ" v-model="user.addr" readonly/>
 							<br>
-							<input class="addrinput2" type="text" placeholder="³ª¸ÓÁö ÁÖ¼Ò" v-model="user.addrDetail">					
-							<input class="addrinput2" type="text" placeholder="¿ìÆí¹øÈ£" v-model="user.zipNo">		
+							<input class="addrinput2" type="text" placeholder="ë‚˜ë¨¸ì§€ ì£¼ì†Œ" v-model="user.addrDetail" readonly/>					
+							<input class="addrinput2" type="text" placeholder="ìš°í¸ë²ˆí˜¸" v-model="user.zipNo" readonly/>		
 							</td>
 						</tr>
 						
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>ÈŞ´ëÀüÈ­</th>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>íœ´ëŒ€ì „í™”</th>
 							<td>
 								<select class="select" v-model="user.phone1">
-									<option value="">¼±ÅÃ</option>
+									<option value="">ì„ íƒ</option>
 									<option value="010">010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>
@@ -364,7 +372,7 @@ text-align: center;
 									<option value="018">018</option>
 									<option value="019">019</option>
 								</select>
-							<input class="numinput" type="text" v-model="user.phone2"> - <input class="numinput" type="text" v-model="user.phone3">			
+							<input class="numinput" type="text" v-model="user.phone2" > - <input class="numinput" type="text" v-model="user.phone3">			
 							</td>						
 						</tr>
 						
@@ -374,13 +382,13 @@ text-align: center;
 				</div>
 				<div id="point">
 				<div id="pointhd">
-					ÇÒÀÎ ÄíÆù/Àû¸³ ÇıÅÃ
+					í• ì¸ ì¿ í°/ì ë¦½ í˜œíƒ
 				</div>	
 					<div id="viewpoint">
 						<table class="pointable">
 							<tr>
 								<th>
-									Àû¸³ ¿¹Á¤ ±İ¾×
+									ì ë¦½ ì˜ˆì • ê¸ˆì•¡
 								</th>
 								
 								<td>
@@ -393,35 +401,35 @@ text-align: center;
 					
 <div id="note">
 <div style="font-weight: bold;">				
-[ÁÖ¹® ¹× ¹è¼ÛÁ¤º¸]
+[ì£¼ë¬¸ ë° ë°°ì†¡ì •ë³´]
 </div>
 
 <p>
-[±¹³» ÀÏ¹İ ¹è¼Û]
+[êµ­ë‚´ ì¼ë°˜ ë°°ì†¡]
 </p>
 <p>
-¡¤ ¹è¼Û¹æ½Ä : SMTOWN &STORE  ¹°·ù¼¾ÅÍ Á÷Á¢¹è¼Û(CJ´ëÇÑÅë¿î)<br>
-¡¤ ¹è¼ÛÁö¿ª : Àü±¹(ÀÏºÎÁö¿ª Á¦¿Ü)<br>
-¡¤ ¹è¼Ûºñ¿ë : 3,000¿ø / ÁÖ¹®±İ¾× 50,000¿ø ÀÌ»ó ½Ã ¹«·á¹è¼Û<br>
-¡¤ »ê°£º®Áö³ª µµ¼­»ê°£Áö¿ªÀº Ãß°¡ ¹è¼Ûºñ°¡ ¹ß»ıÇÒ ¼ö ÀÖ½À´Ï´Ù.  <br>           
-¡¤ ¹è¼Û±â°£ : °áÁ¦ ÈÄ 7~10ÀÏ ÀÌ³» ¹è¼Û ½ÃÀÛµÉ ¿¹Á¤ÀÔ´Ï´Ù.<br>
+Â· ë°°ì†¡ë°©ì‹ : SMTOWN &STORE  ë¬¼ë¥˜ì„¼í„° ì§ì ‘ë°°ì†¡(CJëŒ€í•œí†µìš´)<br>
+Â· ë°°ì†¡ì§€ì—­ : ì „êµ­(ì¼ë¶€ì§€ì—­ ì œì™¸)<br>
+Â· ë°°ì†¡ë¹„ìš© : 3,000ì› / ì£¼ë¬¸ê¸ˆì•¡ 50,000ì› ì´ìƒ ì‹œ ë¬´ë£Œë°°ì†¡<br>
+Â· ì‚°ê°„ë²½ì§€ë‚˜ ë„ì„œì‚°ê°„ì§€ì—­ì€ ì¶”ê°€ ë°°ì†¡ë¹„ê°€ ë°œìƒí•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.  <br>           
+Â· ë°°ì†¡ê¸°ê°„ : ê²°ì œ í›„ 7~10ì¼ ì´ë‚´ ë°°ì†¡ ì‹œì‘ë  ì˜ˆì •ì…ë‹ˆë‹¤.<br>
 </p>					
 					
 	
 
 <p>
-<div>- »óÇ°ÀÇ Àç°í»óÈ²¿¡ µû¶ó ¹è¼Û±â°£ÀÌ ´Ù¼Ò Áö¿¬µÉ ¼öµµ ÀÖ½À´Ï´Ù.</div>
-<div>- ¹°·ù¼¾ÅÍ »çÁ¤À¸·Î ÀÎÇØ ¹è¼ÛÀÌ Áö¿¬µÉ ¼ö ÀÖ½À´Ï´Ù.</div>
-<div style="color: red">- »çÀü¿¹¾à/ÁÖ¹®Á¦ÀÛ µî ´çÀÏ ¹è¼ÛÀÌ ¾î·Á¿î »óÇ°À» ÇÔ²² ±¸¸ÅÇÏ½Ã´Â °æ¿ì ¸ğµç
-   			»óÇ°ÀÌ ¹è¼Û °¡´ÉÇÑ »óÅÂ°¡ µÇ´Â ½ÃÁ¡¿¡ ÁÖ¹®ÇÏ½Å »óÇ°ÀÌ ÇÔ²² ¹è¼Û µË´Ï´Ù.</div>
-<div>- ±âº» ¹è¼Û±â°£ ÀÌ»ó ¼Ò¿äµÇ´Â »óÇ° ¶Ç´Â Ç°ÀıµÈ »óÇ°Àº °³º° ¿¬¶ô µå¸®°Ú½À´Ï´Ù.</div>
+<div>- ìƒí’ˆì˜ ì¬ê³ ìƒí™©ì— ë”°ë¼ ë°°ì†¡ê¸°ê°„ì´ ë‹¤ì†Œ ì§€ì—°ë  ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤.</div>
+<div>- ë¬¼ë¥˜ì„¼í„° ì‚¬ì •ìœ¼ë¡œ ì¸í•´ ë°°ì†¡ì´ ì§€ì—°ë  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</div>
+<div style="color: red">- ì‚¬ì „ì˜ˆì•½/ì£¼ë¬¸ì œì‘ ë“± ë‹¹ì¼ ë°°ì†¡ì´ ì–´ë ¤ìš´ ìƒí’ˆì„ í•¨ê»˜ êµ¬ë§¤í•˜ì‹œëŠ” ê²½ìš° ëª¨ë“ 
+   			ìƒí’ˆì´ ë°°ì†¡ ê°€ëŠ¥í•œ ìƒíƒœê°€ ë˜ëŠ” ì‹œì ì— ì£¼ë¬¸í•˜ì‹  ìƒí’ˆì´ í•¨ê»˜ ë°°ì†¡ ë©ë‹ˆë‹¤.</div>
+<div>- ê¸°ë³¸ ë°°ì†¡ê¸°ê°„ ì´ìƒ ì†Œìš”ë˜ëŠ” ìƒí’ˆ ë˜ëŠ” í’ˆì ˆëœ ìƒí’ˆì€ ê°œë³„ ì—°ë½ ë“œë¦¬ê² ìŠµë‹ˆë‹¤.</div>
 
-<div style="color: red">- º¹Á¦ °¡´ÉÇÑ »óÇ°ÀÇ °æ¿ì °³ºÀ ÈÄ ´Ü¼ø º¯½ÉÀ¸·Î ÀÎÇÑ ¹İÇ°ÀÌ ºÒ°¡ÇÕ´Ï´Ù.</div>
+<div style="color: red">- ë³µì œ ê°€ëŠ¥í•œ ìƒí’ˆì˜ ê²½ìš° ê°œë´‰ í›„ ë‹¨ìˆœ ë³€ì‹¬ìœ¼ë¡œ ì¸í•œ ë°˜í’ˆì´ ë¶ˆê°€í•©ë‹ˆë‹¤.</div>
 </p>
 					</div>
 				</div>
 			</div>
-		<div id="baybutton"><button @click="requestPay">°áÁ¦ÇÏ±â</button></div>
+		<div id="baybutton"><button @click="requestPay">ê²°ì œí•˜ê¸°</button></div>
 		</div>
 
 </div>
@@ -477,7 +485,14 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			dText : "",
 			duNo : "",
 			oNo : "",
-			buyNo: ""
+			buyNo: "",
+			nameErrorMessage : "",
+			addrErrorMessage : "",
+			addrDetailErrorMessage : "",
+			addrDetailErrorMessage : "",
+			zipNoErrorMessage : "",
+			dTextErrorMessage : "",
+			phoneErrorMessage : "",
 			
 		},
 		methods : {
@@ -497,12 +512,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	        },calculateTotal: function (item) {
                 return item.price * item.cnt;
             },
-	        // »óÇ° ÀüÃ¼ ±İ¾× ÇÕ»ê ¸Ş¼­µå
+	        // ìƒí’ˆ ì „ì²´ ê¸ˆì•¡ í•©ì‚° ë©”ì„œë“œ
        		 calculateTotalPrice: function () {
        		    var self = this;
        		    var total = 0;
-       		    var membershipDelivery = 0; // ÇØ´ç Á¶°ÇÀ» ¸¸Á·ÇÏ´Â »óÇ°ÀÇ ¹è¼Ûºñ
-       		    var regularDelivery = 0; // ÀÏ¹İ »óÇ°µéÀÇ ¹è¼Ûºñ
+       		    var membershipDelivery = 0; // í•´ë‹¹ ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ìƒí’ˆì˜ ë°°ì†¡ë¹„
+       		    var regularDelivery = 0; // ì¼ë°˜ ìƒí’ˆë“¤ì˜ ë°°ì†¡ë¹„
 
        		    self.list.forEach(function (item) {
        		        total += self.calculateTotal(item);
@@ -513,16 +528,14 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
        		        else if(total < 50000){
        		        	regularDelivery = 3000;
        		        }
-       		        
        		        else{
        		        	regularDelivery = 0;
        		        }
        		        
        		    });
-
        		    self.delivery = membershipDelivery + regularDelivery;
        		    self.totalPrice = total + self.delivery;
-
+       		    
        		    return total;
                  
             },updateItemCnt: function (item) {
@@ -546,6 +559,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     		
     	}, fnAddrList : function(){
             var self = this;
+            if (self.uId == null || self.uId == "") {
+                alert('ì„¸ì…˜ì´ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ë¡œê·¸ì¸í•´ì£¼ì„¸ìš”.');
+                location.href ="/user/login.do"
+            }
             var nparmap = {uId : self.uId};
             $.ajax({
                 url : "/delivery/list.dox",
@@ -553,22 +570,56 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.list; //»ç¿ëÀÚ
+                   self.info = data.list; //ì‚¬ìš©ì
                    self.flg = !self.flg;
-                   
                 }
             }); 
     	},fnAddAddrList : function(){
 	       	 var self = this;
-	       	 self.uDphone = self.phone1 + self.phone2 + self.phone3
 	       	 
 	       	 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == ""){
-					alert("³»¿ëÀ» ¸ğµÎ ÀÔ·ÂÇØÁÖ¼¼¿ä.");	
+					alert("ë‚´ìš©ì„ ëª¨ë‘ ì…ë ¥í•´ì£¼ì„¸ìš”.");	
 	       		 return;	       		 
 	       	 }
 	       	 
+	         // ì •ê·œì‹ íŒ¨í„´ ì„¤ì •
+	         var namePattern = /^[ê°€-í£]{1,20}$/;
+	         var phonePattern = /^\d{4}$/;
+	         var zipNoPattern = /^\d{1,10}$/;
+	         var messagePattern = /^.{0,30}$/;
+
+	         if (!namePattern.test(self.uDname)) {
+	             alert("ì´ë¦„ì€ 20ì ì´í•˜ì˜ í•œê¸€ë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+	             return;
+	         }
+
+	         if (!phonePattern.test(self.phone2) || !phonePattern.test(self.phone3)) {
+	             alert("í•¸ë“œí° ë²ˆí˜¸ëŠ” 4ìë¦¬ ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+	             return;
+	         }
+
+	         if (self.addr.length > 50) {
+	             alert("ì£¼ì†ŒëŠ” 50ì ì´í•˜ë¡œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+	             return;
+	         }
+
+	         if (self.addrDetail.length > 50) {
+	             alert("ìƒì„¸ ì£¼ì†ŒëŠ” 50ì ì´í•˜ë¡œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+	             return;
+	         }
+
+	         if (!zipNoPattern.test(self.zipNo) || self.zipNo.length > 10) {
+	             alert("ìš°í¸ë²ˆí˜¸ëŠ” 10ì ì´í•˜ì˜ ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+	             return;
+	         }
+
+	         if (!messagePattern.test(self.dText)) {
+	             alert("ë°°ì†¡ ë©”ì‹œì§€ëŠ” 30ì ì´í•˜ë¡œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+	             return;
+	         }
+	       	 
 	       	 if(self.uId == null || self.uId == ""){
-	       		 alert("·Î±×ÀÎ ÇØÁÖ¼¼¿ä.");
+	       		 alert("ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”.");
 	       		 return;
 	       	 }
 	       	 
@@ -579,66 +630,51 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	             type : "POST", 
 	             data : nparmap,
 	             success : function(data) { 
-	             	alert("¹è¼ÛÁÖ¼Ò·Ï¿¡ Ãß°¡ µÇ¾ú½À´Ï´Ù!");
+	             	alert("ë°°ì†¡ì£¼ì†Œë¡ì— ì¶”ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤!");
 	             	self.fnAddrList();
 	             }
        		  }); 
     	},fnAddAddr : function(item, check){
     		var self = this;
-    		
     		if(check == 'y'){
-	    	   self.uDname = item.uDname;
-	    	   self.addr = item.uDaddr;
-	    	   self.addrDetail = item.uDaddrDetail;
-	    	   self.zipNo = item.zipNo;
-	    	   self.phone1 = item.uDphone.substr(0,3);
-	    	   self.phone2 = item.uDphone.substr(3,4);
-	    	   self.phone3 = item.uDphone.substr(7);
-	    	   self.duNo = item.duNo;
-	    	   self.dText = item.uDmessage;
+	    	   self.user.uDname = item.uDname;
+	    	   self.user.addr = item.uDaddr;
+	    	   self.user.addrDetail = item.uDaddrDetail;
+	    	   self.user.zipNo = item.zipNo;
+	    	   self.user.phone1 = item.uDphone.substr(0,3);
+	    	   self.user.phone2 = item.uDphone.substr(3,4);
+	    	   self.user.phone3 = item.uDphone.substr(7);
+	    	   self.user.duNo = item.duNo;
+	    	   self.user.dText = item.uDmessage;
     		}else if (check == 'n'){
-    	   		self.uDname = "";
-    	    	self.addr = "";
-    	    	self.addrDetail = "";
-    	    	self.zipNo = "";
- 	    	  	self.phone1 = "";
-    	    	self.phone2 = "";
-    	    	self.phone3 = "";
- 	    	   self.duNo = "";
- 	    	  self.dText = "";
+    	   		self.user.uDname = "";
+    	    	self.user.addr = "";
+    	    	self.user.addrDetail = "";
+    	    	self.user.zipNo = "";
+ 	    	  	self.user.phone1 = "";
+    	    	self.user.phone2 = "";
+    	    	self.user.phone3 = "";
+ 	    	   	self.user.duNo = "";
+ 	    	  	self.user.dText = "";
     		}
-    	
-    	},fnAddAddr2 : function(check){
-    		var self = this;
-	    	if(check == 'y'){
-	    	   self.user.uDname = self.uDname;
-	    	   self.user.addr = self.addr;
-	    	   self.user.addrDetail = self.addrDetail;
-	    	   self.user.zipNo = self.zipNo;
-	    	   self.user.phone1 = self.phone1;
-	    	   self.user.phone2 = self.phone2;
-	    	   self.user.phone3 = self.phone3;
-	    	   self.user.duNo = self.duNo;
-	    	   
-	    	}else if (check == 'n'){
-	    	  	self.user.uDname = "";
-	        	self.user.addr = "";
-	        	self.user.addrDetail = "";
-	        	self.user.zipNo = "";
-	        	self.user.phone1 = 
-	        	self.user.phone2 = "";
-	        	self.user.phone3 = "";
-		    	self.user.duNo = "";
-	    	}
-   		}, requestPay : function() {
+    	}, requestPay : function() {
     		var self = this;
     		self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
+	       	 if(self.user.uDname == null || self.user.uDname == "" || self.user.phone1 == null || self.user.phone1 == "" || self.user.phone2 == null || self.user.phone2 == ""|| self.user.phone3 == null || self.user.phone3 == ""|| self.user.addr == null || self.user.addr == "" || self.user.addrDetail == null || self.user.addrDetail == "" ||  self.user.zipNo == null || self.user.zipNo == ""){
+					alert("ë°°ì†¡ì£¼ì†Œë¡ì„ ì„ íƒí•´ì£¼ì„¸ìš”.");	
+	       		 return;	       		 
+	       	 }
+	       	 
+	       	 if(self.uId == null || self.uId == ""){
+	       		 alert("ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”.");
+	       		 return;
+	       	 }
             var timestamp = new Date().getTime();
     			IMP.request_pay({
        		    pg: "nice",
        		    pay_method: "card",
        		    merchant_uid:  "order_" + timestamp,
-       		    name: "°áÁ¦ ½ÇÇà",
+       		    name: "ê²°ì œ ì‹¤í–‰",
        		    amount: self.totalPrice,
        		    buyer_addr : self.user.addr + self.user.addrDetail,
        		    buyer_postcord : self.user.zipNo,
@@ -648,12 +684,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     		}, function (rsp) { // callback
   	   	      if (rsp.success) {
   	   	    	self.fnInsertAll();
-  	   	    	alert("°áÁ¦ ¼º°ø");
+  	   	    	alert("ê²°ì œ ì„±ê³µ");
   	   	   		location.href = "../home.do";
   	   	        
   	   	      } else {
-  	   	        // °áÁ¦ ½ÇÆĞ ½Ã
-  	   	        alert("½ÇÆĞ");
+  	   	        // ê²°ì œ ì‹¤íŒ¨ ì‹œ
+  	   	        alert("ì‹¤íŒ¨");
   	   	      }
     		
   	   	  });
@@ -703,9 +739,69 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    }
                });  
         	
-        	
-        }//function
-        
+        }//ì •ê·œì‹ ì‹œì‘
+        , validateName: function() {
+            var self = this;
+            if (!self.uDname) {
+                self.nameErrorMessage = '';
+            } else if (!/^[ê°€-í£]{1,20}$/.test(self.uDname)) {
+                self.nameErrorMessage = 'ì´ë¦„ì€ 20ì ì´í•˜ì˜ í•œê¸€ë¡œ ì…ë ¥í•˜ì„¸ìš”.';
+            } else {
+                self.nameErrorMessage = '';
+            }
+        }, validateAddress: function() {
+            var self = this;
+            if (!self.addr) {
+                self.addrErrorMessage = '';
+            } else if (self.addr.length > 50) {
+                self.addrErrorMessage = 'ì£¼ì†ŒëŠ” 50ì ì´í•˜ë¡œ ì…ë ¥í•˜ì„¸ìš”.';
+            } else {
+                self.addrErrorMessage = '';
+            }
+        }, validateAddrDetail: function() {
+            var self = this;
+            if (!self.addrDetail) {
+                self.addrDetailErrorMessage = '';
+            } else if (self.addrDetail.length > 50) {
+                self.addrDetailErrorMessage = 'ìƒì„¸ ì£¼ì†ŒëŠ” 50ì ì´í•˜ë¡œ ì…ë ¥í•˜ì„¸ìš”.';
+            } else {
+                self.addrDetailErrorMessage = '';
+            }
+        }, validateZipNo: function () {
+            var self = this;
+            var zipNoPattern = /^\d{1,10}$/;
+            if (!self.zipNo) {
+                self.zipNoErrorMessage = '';
+            } else if (!zipNoPattern.test(self.zipNo) || self.zipNo.length > 10) {
+                self.zipNoErrorMessage = 'ìš°í¸ë²ˆí˜¸ëŠ” 10ì ì´í•˜ì˜ ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.';
+            } else {
+                self.zipNoErrorMessage = '';
+            }
+        },validatePhone: function () {
+            var self = this;
+            var phonePattern = /^\d{4}$/;
+            var phone2Value = parseInt(self.phone2, 10);
+
+            if (!self.phone2) {
+                self.phoneErrorMessage = '';
+            } else if (!phonePattern.test(phone2Value)) {
+                self.phoneErrorMessage = 'í•¸ë“œí° ë²ˆí˜¸ëŠ” 4ìë¦¬ ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.';
+            } else {
+                self.phoneErrorMessage = '';
+            }
+        }, validatePhone2: function () {
+            var self = this;
+            var phonePattern = /^\d{4}$/;
+            var phone3Value = parseInt(self.phone3, 10);
+
+            if (!self.phone3) {
+                self.phoneErrorMessage = '';
+            } else if (!phonePattern.test(phone3Value)) {
+                self.phoneErrorMessage = 'í•¸ë“œí° ë²ˆí˜¸ëŠ” 4ìë¦¬ ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.';
+            } else {
+                self.phoneErrorMessage = '';
+            }
+        }
         
 	},created : function() {
 			var self = this;
