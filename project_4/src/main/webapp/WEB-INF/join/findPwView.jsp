@@ -30,7 +30,6 @@ h3{
 	border-bottom : 1px solid #d8d9df;
 }
 .idpw label{
-	color : #d8d9df;
 	margin : 5px;
 }
 .idpw span{

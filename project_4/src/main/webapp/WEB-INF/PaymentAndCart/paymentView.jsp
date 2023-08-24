@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 <style>
 .login-box{
-	height : 480px;
+	height : 600px;
 }
 .login button{
 	font-weight:500;
@@ -40,21 +40,25 @@ h3{
 	font-size: 70px;
 	margin-left : 220px;
 }
-
+.login{
+	margin-top : 60px;
+}
 </style>
 </head>
 <body>
 <div id="app">
 	<div class="container">		
-		<h2 class="h2">Welcome</h2>
+		<h2 class="h2">Order Success</h2>
 		<div class="login-box">
 			<div class="login-box2">
 			<i class="fa-regular fa-face-smile" id="smile"></i>
-			<h3>회원가입이 완료되었습니다!</h3>
+			<h3>주문이 완료되었습니다!</h3>
 				<div class="idpw">	
-					<div><label>아이디 <span>{{user.uId}}</span></label></div>
-					<div><label>이름   <span>{{user.uName}}</span></label></div>
-					<div><label>이메일   <span>{{user.uEmail}}</span></label></div>
+					<div><label>주문자명 <span>{{user.uId}}</span></label></div>
+					<div><label>주문번호   <span>{{user.uName}}</span></label></div>
+					<div><label>상품명   <span>{{user.uEmail}} {{user.oCount}}</span></label></div>
+					<div><label>결제금액   <span>{{user.uEmail}}</span></label></div>
+					<div><label>주문일자   <span>{{user.uEmail}}</span></label></div>
 				</div>
 				<div class="login">
 					<div><button @click="goToMain">GO TO MAIN</button></div>
@@ -81,7 +85,7 @@ var app = new Vue({
 		fnGetList : function(){
 	   		var self = this;
 			var nparmap = {uId : self.uId};
-            $.ajax({
+            /* $.ajax({
                 url : "/user2.dox",
                 dataType:"json",	
                 type : "POST", 
@@ -89,7 +93,7 @@ var app = new Vue({
                 success : function(data) { 
                		self.user = data.findPw;
                 }
-            });
+            }); */
 	   	},
 	   	goToMain : function(){
 	   		var self = this;
@@ -101,8 +105,7 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                		self.user = data.findPw;
-               		$.pageChange("/home.do", {uId : ""});
-               		console.log(self.user);
+               		$.pageChange("/home.do", {uId : self.uId});
                 }
             });
 	   	}
