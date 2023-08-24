@@ -163,38 +163,64 @@
                     <option value="maxPrice">높은가격</option>
                 </select>
                 
+                
                 <div class="body2">
 
                     <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnGetList('A')">ALBUM</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('B')">BTS</a>
                             <ul class="sub">
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnGetList('M')">MERCH</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('T')">TXT</a>
                         <ul class="sub2">
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('D')">DVD</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('E')">ENHYPEN</a>
 	                    <ul class="sub3">
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnGetList('P')">PHOTOBOOK</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('S')">SEVENTEEN</a>
 			            <ul class="sub4">
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Mem')">MEMBERSHIP</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('F')">fromis_9</a>
 				        <ul class="sub5">
 				        </ul>
 				 	</div>
+				 	
+				 	<div class="menu6">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('L')">LE SSERAFIM</a>
+				        <ul class="sub6">
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu7">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('N')">NewJeans</a>
+				        <ul class="sub7">
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu8">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BN')">BOYNEXTDOOR</a>
+				        <ul class="sub8">
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu9">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Z')">ZICO</a>
+				        <ul class="sub9">
+				        </ul>
+				 	</div>
+				 	
                 </div>
 					<div class="productPosList">
 								<span @click="productView(item)" v-for="item in list" class="productList">
@@ -244,23 +270,33 @@ var app = new Vue({
 		  ctg : "PTB"
     },
     methods: {
-    	fnGetList: function (ctg) {
+    	fnGetList: function (artist) {
             var self = this;
 			<!-- 페이징 추가 6 -->
 			var startNum = ((self.selectPage-1) * 12);
     		var lastNum = 12;
     		
-    		if(ctg == 'A'){
-    			self.ctg = "ALB";
-    		}else if(ctg == 'M'){
-    			self.ctg = "MER";
-    		}else if(ctg == 'D'){
-    			self.ctg = "DVD";
-    		}else if(ctg == 'P'){
-    			self.ctg = "PTB";
-    		}else if(ctg == 'Mem'){
-    			self.ctg = "MEM";
+    		if(artist == 'B'){
+    			self.artist = "BTS";
+    		}else if(artist == 'T'){
+    			self.artist = "TXT";
+    		}else if(artist == 'E'){
+    			self.artist = "EHP";
+    		}else if(artist == 'S'){
+    			self.artist = "SVT";
+    		}else if(artist == 'F'){
+    			self.artist = "FMN";
+    		}else if(artist == 'L'){
+    			self.artist = "LSF";
+    		}else if(artist == 'N'){
+    			self.artist = "NJS";
+    		}else if(artist == 'BN'){
+    			self.artist = "BND";
+    		}else if(artist == 'Z'){
+    			self.artist = "ZIC";
     		}
+    		
+    		 console.log("ctg ==>", self.ctg);
             var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum, selectedOption : self.selectedOption, ctg : self.ctg};
             $.ajax({
                 url: "producListMain.dox",
