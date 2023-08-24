@@ -48,7 +48,7 @@ public class UserController {
     public String findId(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/join/findId";
     }
-	@RequestMapping("/findIdView.do") 
+	@RequestMapping("user/findIdView.do") 
     public String findIdView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
         return "/join/findIdView";

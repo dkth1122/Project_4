@@ -4,31 +4,64 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
+<link href="../css/login.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-<style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-</style>
+.login-box{
+	height : 560px;
+}
+.login button{
+	font-weight:500;
+	font-size:15px;
+}
+h3{
+	text-align : center;
+}
+.idpw{
+	width : 300px;
+	margin : 0px auto;
+	padding-left : 100px;	
+	padding-bottom : 50px;
+}
+.idpw div{
+	border-bottom : 1px solid #d8d9df;
+}
+.idpw label{
+	color : #d8d9df;
+	margin : 5px;
+}
+.idpw span{
+	color : #3d435f; 
+}
+#smile{
+	font-size: 70px;
+	margin-left : 220px;
+}
 </style>
 </head>
 <body>
 <div id="app">
-	<h2>비밀번호 찾기</h2>
-		<div>
-		[{{list.uName}}]회원님의 비밀번호는 [{{list.uPw}}] 입니다.
-		</div>		
-		<div><button @click="fnSearch">비밀번호 찾기</button></div>
-		<div><button @click="fnBack">로그인하러가기</button></div>
+	<div class="container">		
+		<h2 class="h2">Find PW</h2>
+		<div class="login-box">
+			<div class="login-box2">
+			<i class="fa-regular fa-face-smile" id="smile"></i>
+			<h3>비밀번호 찾기가 완료 되었습니다.</h3>
+				<div class="idpw">	
+					<div><label>아이디 <span>{{list.uId}}</span></label></div>
+					<div><label>아이디 <span>{{list.uPw}}</span></label></div>
+					<div><label>이름   <span>{{list.uName}}</span></label></div>
+					<div><label>이메일   <span>{{list.uEmail}}</span></label></div>
+				</div>
+				<div class="login">
+					<div><button @click="fnBack">LOGIN</button></div>					
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 </html>
@@ -47,7 +80,7 @@ var app = new Vue({
 			var self = this;
 			var param = {uId : self.uId};
 			$.ajax({
-                url : "user2.dox",
+                url : "../user2.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
@@ -64,7 +97,7 @@ var app = new Vue({
 			var self = this;
 			var param = {uId : self.uId};
 			$.ajax({
-                url : "user2.dox",
+                url : "../user2.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
