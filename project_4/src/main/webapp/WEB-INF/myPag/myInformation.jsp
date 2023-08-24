@@ -15,7 +15,7 @@
 
 <style type="text/css">
 #container {
-    height: 923px;
+    height: 100%;
     width: 100%;
     margin-bottom: 163px;
 }
