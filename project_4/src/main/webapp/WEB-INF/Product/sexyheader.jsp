@@ -15,6 +15,9 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <style>
+#header{
+	margin : 0px;
+}
 
 #headiner {
     font-family: Graduate, Kelly Slab, Aldrich;
@@ -30,10 +33,8 @@
 float : right;
 padding-right : 30px;
 margin-right : 10px;
+margin-top : 20px;
 color:black;
-height: 80px;
-padding-top: 35px;
-
 
 }
 
@@ -64,11 +65,12 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;
 
 .navWrap {
     width: 100%;
-    height: 157px;
+    height: 130px;
     overflow: hidden;
     transition: all 0.9s;
     position: relative;
     background: rgba(245, 235, 236); 
+    margin : 0px;
     }
     
 .navWrap:hover {
@@ -78,7 +80,7 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;
 			
 nav .menu {
 	font-weight : bold;
-	width: 1700px;
+	width: 1500px;
 	margin: 0 auto;
 	height: 100px;
 	 z-index: 1;
@@ -97,10 +99,7 @@ nav .menu a {
 nav .menu>li {
 	width: 100px;
 	float: left;
-	margin-right: 0px;
-	height: 140px;
 	position: relative;
-	margin-top: 30px;
 }
 
 nav .menu>li:hover>a {
@@ -143,15 +142,15 @@ nav .menu .depths li:hover a {
 }
 
 #logo{
-    width: 100px;
-    height: auto;
+margin : 0px auto;
+    width: 100px; 
     top: 21px;
     z-index: 1;
 	display: flex;
 	justify-content: center;
 	position: absolute;
-	top: 60%;
-	right: 50%;
+	top: 50%;
+	 right: 50%; 
 	transform: translate(50%, -50%);
  }
  
@@ -163,6 +162,44 @@ nav .menu .depths li:hover a {
 #headiner{
 width: 100%; 
 margin: 0 auto;
+}
+.icon{
+	color : rgb(45, 47, 70);
+}
+.logjo{
+	color: #8a8a8a;
+	font-size : 14px;
+	font-weight : 300;
+}
+.logjo2{
+	color: #8a8a8a;
+	font-size : 14px;
+	font-weight : 300;
+}
+.logjo3{
+	color: #8a8a8a;
+	font-size : 14px;
+	font-weight : 300;
+}
+.icon .logjo{
+	position: absolute;
+	display : block;
+	right : 17%;
+	top : 5px;
+	float : right;
+}
+.icon .logjo2{
+	position: absolute;
+	display : block;
+	right : 20%;
+	top : 5px;
+	float : right;
+}
+.icon .logjo3{
+	position: absolute;
+	display : block;
+	right : 18%;
+	top : 22px;
 }
 
 </style>
@@ -212,18 +249,18 @@ margin: 0 auto;
 							<span class="icon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a>
 							<a v-else href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a></span>
 							
-							<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
+							<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a></span>
 							<span class="icon">
-								<a href="/basket.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a>								
+								<a href="/basket.do"><i class="fa-solid fa-magnifying-glass fa-1xl" ></i></a>								
 							</span>
 							<span class="icon">
-								<a v-if="uId == null || uId == ''" href="/user/join.do">JOIN</a>								
-								<a v-if="uId != null" href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a>								
+								<a v-if="uId == null || uId == ''" href="/user/join.do" class="logjo">JOIN</a>								
+								<a v-if="uId != null" href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl"></i></a>								
 							</span>
 							
 							<span class="icon">
-								<a v-if="uId == null || uId == ''" href="/user/login.do">LOGIN</a>							
-								<button v-else-if="uId != null " @click="fnLogout">LOGOUT</button>
+								<a v-if="uId == null || uId == ''" href="/user/login.do" class="logjo2">LOGIN</a>							
+								<button v-else-if="uId != null " @click="fnLogout" style="background: none; border: none; cursor: pointer;" class="logjo3">LOGOUT</button>
 								
 							</span>							
 						</div>
