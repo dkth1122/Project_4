@@ -20,7 +20,7 @@
 		padding : 5px 10px;
 	}
 	.login-box{
-		height : 400px;
+		height : 460px;
 	}
 </style>
 </style>
@@ -79,7 +79,7 @@ var app = new Vue({
 			var self = this;
 			var param = {uName : self.uName, uPhone : self.uPhone};
 			$.ajax({
-                url : "findId.dox",
+                url : "/findId.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,

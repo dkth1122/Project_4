@@ -565,7 +565,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	             data : nparmap,
 	             success : function(data) { 
 	             	alert("배송주소록에 추가 되었습니다!");
-	             	location.reload();
+	             	self.fnAddrList();
 	             }
        		  }); 
     	},fnAddAddr : function(item, check){

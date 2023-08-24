@@ -66,7 +66,8 @@ public class Product {
 			this.paymentSum = paymentSum;
 		}
 	
-	
+	//user 테이블 조인
+		private String uMembership;
 		
 	public int getmNo() {
 			return mNo;
@@ -319,6 +320,12 @@ public class Product {
 	}
 	public void setAfNo(int afNo) {
 		this.afNo = afNo;
+	}
+	public String getuMembership() {
+		return uMembership;
+	}
+	public void setuMembership(String uMembership) {
+		this.uMembership = uMembership;
 	}
 	
 	

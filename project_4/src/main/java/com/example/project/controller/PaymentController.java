@@ -48,6 +48,12 @@ public class PaymentController {
         return "/PaymentAndCart/cartPayment";
     }
 	
+	//결제완료 페이지
+	@RequestMapping("/payment/payView.do") 
+    public String paymentView(Model model) throws Exception{
+        return "/PaymentAndCart/paymentView";
+    }
+	
 	//바로 구매용 dox : fnGetList
 	@RequestMapping(value = "/payment/searchProductAll.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

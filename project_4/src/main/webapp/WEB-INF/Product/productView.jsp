@@ -671,9 +671,11 @@ var app = new Vue({
         	var seconds = currentDate.getSeconds();
 
         	var currentDateString = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+        	var a = currentDateString >= self.info.mRegDate;
+        	var b = currentDateString <= self.info.mExpDate;
         	
         	if(self.info.membership == 'Y'){
-        		if(currentDateString <= self.info.mExpDate || currentDateString >= self.info.mRegDate){
+        		if(!currentDateString >= self.info.mRegDate && !currentDateString <= self.info.mExpDate ){
             		alert("해당 상품은 멤버쉽 구독이 필요한 상품입니다. \n해당 아티스트의 멤버쉽을 구독해주세요.");
             	}else if(self.info.kitYn == 'Y'){
             		alert("키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
@@ -682,10 +684,14 @@ var app = new Vue({
         			var params =  {pNo : self.pNo, cnt : self.quantity};
             		$.pageChange("/payment/payment.do", params); 
             	}	
-        	}else{
+        	}else if(self.info.uMembership == 'Y' && self.info.category == 'MEM'){
+        		alert("한 번만 구매 가능.");
+        	}
+        	else{
     			var params =  {pNo : self.pNo, cnt : self.quantity};
         		$.pageChange("/payment/payment.do", params); 
-        	} 	
+        	} 
+        	
         	//$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
         	     	
         },//위시리스트 이동  

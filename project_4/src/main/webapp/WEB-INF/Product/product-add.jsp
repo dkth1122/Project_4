@@ -64,8 +64,9 @@
 	<div>
 	상세 페이지 : 
 	<input type="file" id="file2" name="file2" accept="image/*" multiple>
-<!-- 	<input type="file" id="file3" name="file3" accept="image/*" >
-	<input type="file" id="file4" name="file4" accept="image/*" > -->
+<!-- 	<input type="file" id="file2" name="file2" accept="image/*" multiple>
+	<input type="file" id="file2" name="file2" accept="image/*" multiple> -->
+
 
 	</div>
 	
@@ -155,16 +156,16 @@ var app = new Vue({
 			    success : function(data) {
 			    	 alert("상품이 등록되었습니다.");
 			      var form = new FormData();			     
-			      var form1 = new FormData();			     
+			      var form2 = new FormData();			     
 			      
                   form.append("file1", $("#file1")[0].files[0]);
                   form.append("pNo", data.pNo);
                   self.upload(form);
                   
-                  form1.append("pNo", data.pNo);
+                  form2.append("pNo", data.pNo);
                   for(var i=0; i < $("#file2")[0].files.length; i++){
-                	  form1.append("file2", $("#file2")[0].files[i]);
-                      self.upload1(form1);
+                	  form2.append("file2", $("#file2")[0].files[i]);
+                      self.upload1(form2);
                   }
                   
               	/*   window.close(); // 팝업창 닫기
@@ -186,14 +187,14 @@ var app = new Vue({
 
 	            });
 	        },
-	        upload1: function(form1) {
+	        upload1: function(form2) {
 	            var self = this;
 	            $.ajax({
 	                url: "/product/insertProductDetailedImg.dox",
 	                type: "POST",
 	                processData: false,
 	                contentType: false,
-	                data: form1,
+	                data: form2,
 	                success: function(response) {
 	                }
 

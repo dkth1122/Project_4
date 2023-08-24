@@ -27,14 +27,14 @@ public class PaymentServiceImpl implements PaymentService{
 		int kitYn = paymentMapper.selecKitProduct(map);
 
 		//키트인지 아닌지 체크, 키트면 
-		if( kitYn != 0) {
+		if( kitYn > 0) {
 			//키트 구매이력 Y로 변경
 			paymentMapper.updateMembershipKit(map);
 			System.out.println("키트 맞아용 체크 함");
 			}
 
 		//멤버쉽 구독 상품 구매 체크 후 맞으면 멤버쉽 테이블 업데이트 
-		if( subscribe !=0) {
+		if( subscribe > 0) {
 			paymentMapper.insertMembership(map);
 			System.out.println("멤버쉽 구독 맞아용 체크 함");
 			}

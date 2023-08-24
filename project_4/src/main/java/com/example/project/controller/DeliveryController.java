@@ -29,7 +29,6 @@ public class DeliveryController {
 	
 	@RequestMapping("/delivery/list.do") 
     public String deliveryList(Model model) throws Exception{
-
         return "/Delivery/delivery-list";
     }
 	

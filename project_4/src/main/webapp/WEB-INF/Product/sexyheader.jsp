@@ -68,8 +68,8 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;
     }
     
 .navWrap:hover {
-    height:650px; /* ȭ���� ��ü ���̷� Ȯ�� */
-    background: rgba(245, 235, 236); /* ȣ�� �� ���� �������ϰ� ���� */
+    height:650px; 
+    background: rgba(245, 235, 236); 
     }
 			
 nav .menu {

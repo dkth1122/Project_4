@@ -231,7 +231,6 @@ text-align: center;
 
 			<div class="body">
 			
-			
 				<table class="table">
 					<tr>
 						<th>이미지</th>
@@ -492,6 +491,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                data : nparmap,
 	                success : function(data) { 
 	                	self.list = data.list;
+	                	
 	                }
 	            }); 
 	        },calculateTotal: function (item) {
@@ -566,7 +566,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	             data : nparmap,
 	             success : function(data) { 
 	             	alert("배송주소록에 추가 되었습니다!");
-	             	location.reload();
+	             	self.fnAddrList();
 	             }
        		  }); 
     	},fnAddAddr : function(item, check){

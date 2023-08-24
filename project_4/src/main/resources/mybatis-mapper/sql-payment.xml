@@ -68,7 +68,7 @@
 		FROM T4_PRODUCT P
 		WHERE P_NO = #{pNo}		
 		AND CATEGORY = 'MEM'
-		AND MEMBERSHIP ='N'
+		AND MEMBERSHIP ='Y'
 	</select>
 	
 	
@@ -81,8 +81,8 @@
    
 	<!-- 위에 조건 만족 시 : 멤버쉽 구독 상품 구매 시 멤버쉽 테이블 업데이트 -->
 	<insert id="insertMembership" parameterType="hashmap">
-		INSERT INTO T4_MEMBERSHIP
-		VALUES ('ACTIVE', NOW(), NOW() + INTERVAL '1 year', #{uId}, #{artist}, 'N' )
+		INSERT INTO T4_MEMBERSHIP (M_STATUS, M_REG_DATE, M_EXP_DATE, U_ID, ARTIST, KIT_YN)
+		VALUES ('ACTIVE', NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR), #{uId}, #{artist}, 'N' )
    	</insert>  
    	
    	<!--  위에 조건 전부 만족 시 : 구매 완료 되면서 STOCK 재고 줄이기 -->
