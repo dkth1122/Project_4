@@ -15,9 +15,8 @@
   bottom: -450px;
   left: 0;
   width: 100%;
- 
   padding: 20px; /* 占십울옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 */
-}
+	}
 .slidetext {
 	font-size:2em;
 
@@ -30,10 +29,10 @@
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-    position: absolute; /* 占쏙옙트占쏙옙 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙 */
-    bottom: 20px; /* 占싱뱄옙占쏙옙 占쏙옙占쏙옙占싱듸옙 占쌔울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 */
-  /*   left: 50%; /* 占쏙옙占쏙옙 占쏙옙치 占쌩앙울옙 占쏙옙占쏙옙 */ */
-  /*   transform: translateX(-50%); /* 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占쏙옙占쏙옙 */ */
+    position: absolute; 
+    bottom: 20px;
+  /*   left: 50%; 
+  /*   transform: translateX(-50%);  */
 }
 
 #app{
@@ -60,16 +59,12 @@ img.topimg{
 	width:auto;
 	height: 650px;
 	position: absolute;
-    left: 50%; /* 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占싱듸옙 */
+    left: 50%; 
     transform: translateX(-50%); 
-	align-items: center; /* 占쏙옙占쏙옙 占쏙옙占쏘데 占쏙옙占쏙옙 */
+	align-items: center;
 	}
 	
-/*  nav{
-	widows: 1800px;
-	height: 1500px;
-	margin-bottom: 50px;
- */
+
  #nav1, #nav2, #nav3 {
     position: relative; 
     z-index: z; 
@@ -101,7 +96,7 @@ img.topimg{
 	margin-bottom: 50px;
 	float:left;
 	}
-
+/* 
 #nav4{
 	border:5px dotted red;
 	widows: 1800px;
@@ -109,21 +104,19 @@ img.topimg{
 	margin-top: 50px;
 	margin-bottom: 50px;
 	float:left;
-	}
+	} */
 
 
 .sect2 {
-border:5px dotted green;
+	border:5px dotted green;
 	padding: 50px;
 	widows: 1800px;
 	height: 1500px;
 	background: #f0f0f0;
 	display: flex;
-  flex-wrap: wrap;
-  
-  width: 100%; 
-  length: 1000px;
-	
+ 	flex-wrap: wrap;
+  	width: 100%; 
+  	length: 1000px;
 }
 
 .sect2name {
@@ -131,46 +124,39 @@ border:5px dotted green;
   box-sizing: border-box;
   display: flex; 
   width:800px;
- 
   justify-content: center;
   align-items: center; 
 }
 .sect2 div {
-	/* width: 307px; */
+	
 	height: 438px;
 	float: left;
 	margin-right:10px;
-	
-	/* overflow: hidden; */
+	margin:20px;
 	
 }
 
-/* .sect2 div a {
-	border:9px solid yellow;
-	
-	width: 307px;
-	height: 438px;
-	opacity: 0;
-	color: #fff;
-	font-size: 30pt;
-	font-family: arial;
-	font-weight: 550;
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding-top: 85px;
-	padding-left: 105px;
-	box-sizing: border-box;
-} */
-
 .sect3 {
-border:1px dotted green;
+	border:1px dotted green;
 	margin :  0px auto;
+	padding: 50px;
 	widows: 1800px;
 	height: 1500px;
 	background: #f0f0f0;
+	display: flex;
+  	flex-wrap: wrap;
+    width: 100%; 
+	
 }
-
+.sect3 div {
+	
+	height: 438px;
+	float: left;
+	margin-right:10px;
+	margin:20px;
+	
+}
+	
 
 .productList-container {
   border:1px solid red;
@@ -182,10 +168,6 @@ border:1px dotted green;
   margin: 0 -10px; /* 占쏙옙 占쌘쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 */
    left: 50%; /* 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占싱듸옙 */
     transform: translateX(-50%); 
-}
-.sect2 div{
-height:350px;
-margin:20px;
 }
 
 .productList {
@@ -281,6 +263,91 @@ margin:20px;
 	text-align: left;
 }
 
+.ostimg {
+position: absolute;
+top: 550%;
+right: 50%;
+transform: translate(50%, -50%);
+	width: 1665px;
+	margin: 0 auto;
+	margin-top: 240px;
+}
+
+.ostimg>div {
+	width: 208px;
+	height: 208px;
+	float: left;
+	margin-left: 103px;
+	border-radius: 100%;
+	background: #900;
+	border: 5px solid #d4dafa;
+}
+
+.ostimg>div:first-child {
+	margin-left: 0;
+}
+
+.ostimg .img1 {
+	background: url(img/homeimg/ost1.png);
+}
+
+.ostimg .img2 {
+	background: url(img/homeimg/lsf_album.jpg);
+	background-size: contain;
+}
+
+.ostimg .imgse {
+	background: url(img/homeimg/bts_album.gif);
+	background-size: contain;
+	width: 370px;
+	height: 370px;
+	margin-top: -100px;
+}
+
+.ostimg .img4 {
+	background: url(img/homeimg/ost4.png);
+}
+
+.ostimg .img5 {
+	background: url(img/homeimg/ost5.png);
+}
+
+/*SECT1- animation*/
+.ostimg .img1 {
+	animation: Sback 32s 4s infinite;
+	transition: all 2s;
+}
+
+.ostimg .img2 {
+	animation: Lback 32s 4s infinite;
+	transition: all 2s;
+}
+
+.ostimg .img3 {
+	animation: Hback 32s 4s infinite, Hrotate 6.6s 4s infinite;
+}
+
+.ostimg .img4 {
+	animation: Dback 32s 4s infinite;
+	transition: all 2s;
+}
+
+.ostimg .img5 {
+	animation: Iback 32s 4s infinite;
+	transition: all 2s;
+}
+
+/*SECT1- animation2*/
+.sect1 .ost {
+	width: 572px;
+	height: 88px;
+	background: no-repeat;
+	margin-left: 300px;
+	position: relative;
+	top: 74px;
+	animation: ostname 32s 4s infinite;
+	transition: all 2s;
+}
 
 </style>
 <!-- Start HEAD section -->
@@ -352,59 +419,54 @@ margin:20px;
             </div>
           </div>
         </div>
-      
-   
-  </section>
-</nav>
+      </section>
+	</nav>
 		
-                
-             <!--    
-				<div class="Sbox1">
-					<p class="more">
-					<a href="#">More</a>
-					</p>
-					<ul class="sub">
-						<li class="sname">0</li>
-						<li>1</li>
-						<li>2</li>
-					</ul>
-				</div> -->
-	
-		
-                
-		
-	
 		
 		<nav id="nav3">
+		
 		  <section class="sect3">
-		    <h2><a href="newitem.do">占신삼옙품</a></h2>
-		    <div class="Sbox1">
-		      <p class="more"><a href="#">占쏙옙占쏙옙占쏙옙</a></p>
-		     
-		        <div v-for="item in list" class="productList">
-		          <span><img :src="item.path" class="pImg"></span>
-		          <div>{{ item.pName }}</div>
-		          <div>
-		            <ul class="sub">
-		              <li class="sname">{{item.artist}}</li>
-		              <li>{{item.category}}</li>
-		              <li>{{item.price}}</li>
-		            </ul>
-		          </div>
-		        </div>
-		 
-		    </div>
-		  </section>
-		</nav>
-		            
+		  <div class="sect2name"><a href="newitem.do">BEST ITEM</a></div>
+     <div class="Sbox1">
+         <div v-for="(item, index) in list" class="productList" :key="index">
+          <span><img :src="item.path" class="pImg"></span>
+          <div>{{ item.pName }}</div>
+          <div>
+            <ul class="sub">
+              <li class="sname">{{item.artist}}</li>
+              <li>{{item.category}}</li>
+              <li>{{item.price}}</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+	</nav>
+		
 		
 		<nav id="nav4">
 		
-		
+		<section class="sect1">
+			<div class="ost"></div>
+			<div class="ostimg">
+
+				<div class="img1"></div>
+
+				<div class="img2"></div>
+
+				<div class="img3"></div>
+
+				<div class="img4"></div>
+
+				<div class="img5"></div>
+
+			</div>
+
+		</section>
 		
 		</nav>
 
-	</div> <!-- 占쏙옙占쏙옙占싱놂옙 div -->
+	</div> 
 		
 </div> <!-- app div -->
 			
@@ -412,6 +474,7 @@ margin:20px;
 </body>
 </html>
 <script>
+
 var app = new Vue({
 	el : '#app',
 	data : {
@@ -421,7 +484,7 @@ var app = new Vue({
 		best : []
 	}, 
 	methods : {
-		fnGetList : function() { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙 占싱몌옙 , 占쏙옙占쏙옙 (占싻놂옙占쏙옙)
+		fnGetList : function() { 
             var self = this;
             var nparmap = {uId : self.uId};            
             $.ajax({
@@ -438,7 +501,7 @@ var app = new Vue({
           });
 	},
 
-	fnBestItem : function() { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙 占싱몌옙 , 占쏙옙占쏙옙 (占싻놂옙占쏙옙)
+	fnBestItem : function() { 
         var self = this;
         var nparmap = {uId : self.uId};            
         $.ajax({
@@ -454,10 +517,10 @@ var app = new Vue({
            }
       });
 },
-	 // productView 占쌨쇽옙占쏙옙 占쌩곤옙
+	 
     productView: function(item) {
       console.log("Clicked product:", item);
-      // 클占쏙옙占쏙옙 占쏙옙품 占쏙옙占쏙옙占쏙옙 활占쏙옙占쏙옙 占쏙옙占쏙옙 占쌩곤옙
+     
     }
   },
 	created : function() {

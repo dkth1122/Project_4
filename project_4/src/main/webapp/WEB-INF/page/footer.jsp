@@ -21,6 +21,7 @@ p{
   margin-top:10px;
 }
 .container{
+  z-index:9999;
   width:100%;
 }
 .modal-btn-box{
@@ -49,6 +50,7 @@ p{
   padding:15px;
  }
 .popup{
+ z-index:9999;
   width:100%;
   max-width:800px;
   overflow:hidden;

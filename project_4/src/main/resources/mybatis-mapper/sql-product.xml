@@ -214,7 +214,7 @@
 	<!-- 상품전체출력 -->
 	<select parameterType="hashmap" id="searchProductNewList" resultType="com.example.project.model.Product">
 	SELECT * FROM T4_PRODUCT 
-	ORDER BY P_DATE ASC LIMIT 9
+	ORDER BY P_DATE ASC LIMIT 12
 	</select>
 	
 	<!-- 주문내역상세 출력 -->
