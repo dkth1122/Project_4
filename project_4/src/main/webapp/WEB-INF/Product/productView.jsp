@@ -769,7 +769,7 @@ var app = new Vue({
             	self.quantity++;	
             }
             else{
-            	alert("해당상품의 최대구매수량은 "+self.info.pLimit+"개 입니다.");
+            	alert("해당상품의 최대구매수량은 "+self.info[0].pLimit+"개 입니다.");
             }
         },
         decreaseQuantity: function() {

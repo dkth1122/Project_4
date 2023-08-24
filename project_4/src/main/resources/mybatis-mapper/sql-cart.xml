@@ -11,7 +11,7 @@
 		INNER JOIN T4_PRODUCT P ON C.P_NO = P.P_NO
 		LEFT JOIN T4_PRODUCT_IMG I ON C.P_NO = I.P_NO
 		LEFT JOIN T4_MEMBERSHIP M ON M.ARTIST = P.ARTIST
-		WHERE C.U_ID = #{uId}
+		WHERE C.U_ID = #{uId} AND IMG_TYPE = 'Y'
 	</select>
 		
 	<!-- 장바구니에 상품 추가 -->
