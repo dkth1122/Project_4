@@ -168,9 +168,9 @@ var app = new Vue({
                       self.upload1(form2);
                   }
                   
-              	/*   window.close(); // ÆË¾÷Ã¢ ´Ý±â
-	        	  window.opener.location.reload(); // ºÎ¸ðÃ¢ »õ·Î°íÄ§ */
-           
+              	/*   window.close(); // ÆË¾÷Ã¢ ´Ý±â*/
+	        	 /*  window.opener.location.reload(); */ // ºÎ¸ðÃ¢ »õ·Î°íÄ§ 
+	        	  window.location.reload();
 			    }
 			  });
 			},
