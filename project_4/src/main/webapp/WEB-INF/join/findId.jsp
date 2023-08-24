@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="../css/join.css" rel="stylesheet" type="text/css">
+<link href="../css/login.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
@@ -19,21 +19,35 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
+	.login-box{
+		height : 400px;
+	}
 </style>
 </style>
 </head>
 <body>
 <div id="app">
-	<div id="wc">
-	<h2>아이디 찾기</h2>
-		<div>
-		<input type="text" name="uName" v-model = "uName" placeholder="사용자이름">
+	<div class="container">		
+		<h2 class="h2">Find ID</h2>
+		<div class="login-box">
+			<div class="login-box2">
+			<h3 class="stadyInfo">아이디찾기</h3>
+				<div class="idpw">						
+				    <div><label>이름  <span><input type="text" name="uName" v-model = "uName" placeholder="사용자이름">
+					    </span></label>
+				    </div>
+				    <div><label>핸드폰번호  <span><input type="text" name="uPhone"  v-model = "uPhone" placeholder="핸드폰번호">
+					    </span></label>
+				    </div>	
+				</div>
+				
+				
+				<div class="login"><button @click="fnSearch" >확인</button></div>
+				<div class="join">
+					<button @click="fnBack">취소</button>
+				</div>
+			</div>
 		</div>
-		<div>
-		<input type="text" name="uPhone"  v-model = "uPhone" placeholder="핸드폰번호">
-		</div>
-		<div><button @click="fnSearch">검색</button></div>
-		<div><button @click="fnBack">취소</button></div>
 	</div>
 </div>
 </body>
