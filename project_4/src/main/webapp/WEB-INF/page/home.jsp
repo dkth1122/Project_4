@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
  
-  padding: 20px; /* ÇÊ¿äÇÑ ¿©¹é Á¶Á¤ */
+  padding: 20px; /* ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 }
 .slidetext {
 	font-size:2em;
@@ -25,15 +25,15 @@
 .dot {
     width: 12px;
     height: 12px;
-    margin: 10px 5px; /* ¼¼·Î À§Ä¡¸¦ Á¶Á¤ÇÒ ¶§ ¿©±âÀÇ Ã¹ ¹øÂ° °ª Á¶Àý */
+    margin: 10px 5px; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ ï¿½ï¿½Â° ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-    position: absolute; /* µµÆ®¸¦ Àý´ë À§Ä¡·Î ¼³Á¤ */
-    bottom: 20px; /* ÀÌ¹ÌÁö ½½¶óÀÌµå ¹Ø¿¡ ¿©¹éÀ» Á¶Àý */
-  /*   left: 50%; /* °¡·Î À§Ä¡ Áß¾Ó¿¡ Á¤·Ä */ */
-  /*   transform: translateX(-50%); /* °¡·Î À§Ä¡¸¦ Áß¾ÓÀ¸·Î Á¤·Ä */ */
+    position: absolute; /* ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    bottom: 20px; /* ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+  /*   left: 50%; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ß¾Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ */ */
+  /*   transform: translateX(-50%); /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */ */
 }
 
 #app{
@@ -60,9 +60,9 @@ img.topimg{
 	width:auto;
 	height: 650px;
 	position: absolute;
-    left: 50%; /* ¿ä¼ÒÀÇ ÁÂÃø À§Ä¡¸¦ Áß¾ÓÀ¸·Î ÀÌµ¿ */
+    left: 50%; /* ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ */
     transform: translateX(-50%); 
-	align-items: center; /* ¼öÁ÷ °¡¿îµ¥ Á¤·Ä */
+	align-items: center; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½ */
 	}
 	
 /*  nav{
@@ -179,8 +179,8 @@ border:1px dotted green;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  margin: 0 -10px; /* °¢ ¹Ú½º »çÀÌÀÇ °£°ÝÀ» ¼³Á¤ */
-   left: 50%; /* ¿ä¼ÒÀÇ ÁÂÃø À§Ä¡¸¦ Áß¾ÓÀ¸·Î ÀÌµ¿ */
+  margin: 0 -10px; /* ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+   left: 50%; /* ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ */
     transform: translateX(-50%); 
 }
 .sect2 div{
@@ -192,7 +192,7 @@ margin:20px;
   border:1px solid blue;
  
   width: 300px;
-  margin: 0 10px; /* °¢ ¹Ú½º »çÀÌÀÇ °£°ÝÀ» ¼³Á¤ */
+  margin: 0 10px; /* ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
   
   text-align: center;
 }
@@ -205,9 +205,9 @@ margin:20px;
 	width:1500px;
 	height: 650px;
 	position: absolute;
-    left: 50%; /* ¿ä¼ÒÀÇ ÁÂÃø À§Ä¡¸¦ Áß¾ÓÀ¸·Î ÀÌµ¿ */
+    left: 50%; /* ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ */
     transform: translateX(-50%); 
-	align-items: center; /* ¼öÁ÷ °¡¿îµ¥ Á¤·Ä */
+	align-items: center; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½ */
 	flex-wrap: wrap;
 	padding:50px;
 } 
@@ -237,11 +237,11 @@ margin:20px;
 	opacity: 1;
 	} */
 	
-/*SUP*/
+/*SUP*//* 
 .sect2 div .sub {
 	border:7px solid green;
-	position: flex;
-	bottom: -300px;
+	position: ablsolute;
+	
 	width: 300px;
 	height: auto;
 	background: rgba(255, 255, 255, 0.7);
@@ -255,19 +255,29 @@ margin:20px;
 	opacity: 0;
 	transition: all 1s;
 }
-
+ */
 .sect2 div:hover .sub {
 	position: relative;
-	width:300px;
-	bottom: 0;
 	opacity: 1;
-} 
+	border:7px solid green;
+	position: ablsolute;
+	
+	
+	width: 300px;
+	height: auto;
+	background: rgba(255, 255, 255, 0.7);
+	line-height: 25pt;
+	font-family: arial;
+	font-size: 15pt;
+	text-align: left;
+	
+	box-sizing: border-box;
+	opacity: 0;
 
 .sect2 div .sub .sname {
 	font-size: 23pt;
 	font-weight: bold;
 	width:300px;
-	box-sizing: border-box;
 	text-align: left;
 }
 
@@ -367,9 +377,9 @@ margin:20px;
 		
 		<nav id="nav3">
 		  <section class="sect3">
-		    <h2><a href="newitem.do">½Å»óÇ°</a></h2>
+		    <h2><a href="newitem.do">ï¿½Å»ï¿½Ç°</a></h2>
 		    <div class="Sbox1">
-		      <p class="more"><a href="#">´õº¸±â</a></p>
+		      <p class="more"><a href="#">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a></p>
 		     
 		        <div v-for="item in list" class="productList">
 		          <span><img :src="item.path" class="pImg"></span>
@@ -394,7 +404,7 @@ margin:20px;
 		
 		</nav>
 
-	</div> <!-- ÄÜÅ×ÀÌ³Ê div -->
+	</div> <!-- ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ div -->
 		
 </div> <!-- app div -->
 			
@@ -411,7 +421,7 @@ var app = new Vue({
 		best : []
 	}, 
 	methods : {
-		fnGetList : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ð³×ÀÓ)
+		fnGetList : function() { // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ , ï¿½ï¿½ï¿½ï¿½ (ï¿½Ð³ï¿½ï¿½ï¿½)
             var self = this;
             var nparmap = {uId : self.uId};            
             $.ajax({
@@ -428,7 +438,7 @@ var app = new Vue({
           });
 	},
 
-	fnBestItem : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ð³×ÀÓ)
+	fnBestItem : function() { // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ , ï¿½ï¿½ï¿½ï¿½ (ï¿½Ð³ï¿½ï¿½ï¿½)
         var self = this;
         var nparmap = {uId : self.uId};            
         $.ajax({
@@ -444,10 +454,10 @@ var app = new Vue({
            }
       });
 },
-	 // productView ¸Þ¼­µå Ãß°¡
+	 // productView ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     productView: function(item) {
       console.log("Clicked product:", item);
-      // Å¬¸¯ÇÑ Á¦Ç° Á¤º¸¸¦ È°¿ëÇÑ µ¿ÀÛ Ãß°¡
+      // Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     }
   },
 	created : function() {

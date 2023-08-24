@@ -136,7 +136,7 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
-                                       <li><a href="/mypag/myPageInterest.do  ">장바구니</a></li>
+                                       <li><a href="/cart/cartList.do">장바구니</a></li>
                                        <li><a href="/mypag/myInformation.do">찜 목록</a></li>
                                        <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
                                     </ul>   

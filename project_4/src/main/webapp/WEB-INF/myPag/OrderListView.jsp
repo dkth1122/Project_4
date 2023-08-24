@@ -92,6 +92,30 @@
 .finishList{
    height:100px;
 }
+.button {
+	  display: inline-block;
+	  padding: 5px 10px;
+	  font-size: 13px;
+	  text-align: center;
+	  color: #black;
+	  background-color: white;
+	  border-radius: 30px;
+	  border : 1px solid #d4d5d9;
+	  cursor: pointer;
+	  transition: background-color 0.3s;
+	  width : 49%;
+	  margin-right : 3px;	  
+	}
+	
+	/* 버튼 호버 효과 */
+	.button:hover {
+	  background-color: #d4d5d9;
+	}
+	
+
+	.button:active {
+	  background-color: #1f618d;
+	}
 </style>
 
 </head>
@@ -162,7 +186,7 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
-                                       <li><a href="/mypag/myPageInterest.do">장바구니</a></li>
+                                       <li><a href="/cart/cartList.do">장바구니</a></li>
                                        <li><a href="/mypag/myInformation.do">찜 목록</a></li>
                                        <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
                                     </ul>   
@@ -232,8 +256,8 @@
                                      <div>업체 배송</div>
                                      <div>평균출고일:1.1일</div>
                                   </td>
-                                  <td v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button @click="fnOrderCancel(item)">취소</button></td>
-                                 <td v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button @click="fnOrderchange(item)">교환/반품</button><button @click="fnOrderConfirm(item)">구매 확정</button></td>                                 
+                                  <td v-if='item.dState == "업체확인중" ||item.dState == "상품준비중" '><div>{{item.dState}}</div><button class="button" @click="fnOrderCancel(item)">취소</button></td>
+                                 <td v-else-if='item.dState == "배송완료"'><div>{{item.dState}}</div><button class="button" @click="fnOrderchange(item)">교환/반품</button><button class="button" @click="fnOrderConfirm(item)">구매 확정</button></td>                                 
                                  <td v-else>{{item.dState}}</td>
                                </tr>
                             </tbody>
