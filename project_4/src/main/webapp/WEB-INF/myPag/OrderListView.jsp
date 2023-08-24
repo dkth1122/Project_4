@@ -247,8 +247,8 @@
                                         </a>
                                      </div>      
                                   </td>
-                                  <td>{{parseFloat(calcPrice.replace(/,/g, ''))*0.02}} P</td>                               
-                                  <td>{{calcPrice}}원
+                                  <td>{{item.price*0.02}} P</td>                               
+                                  <td>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}
                                      <div class="fontCCC">{{item.oCount}}개</div>
                                   </td>
                                   <td>
@@ -335,7 +335,7 @@
                                  <div style="font-size:12px;">예상 적립금 {{parseFloat(calcPrice.replace(/,/g, ''))*0.02}}P</div>
                               </td>
                               <td v-else style="font-weight:600; font-size:20px;">{{calcPrice}}원
-                                 <div style="font-size:12px;">예상 적립금 {{parseFloat(calcPrice.replace(/,/g, ''))*0.02}}P</div>
+                                 <div style="font-size:12px;">예상 적립금 {{calcPrice*0.02}}P</div>
                               </td>
                            </tr>
                            <tr>
@@ -379,10 +379,14 @@
       }, 
        computed: {
          
-             calcPrice: function () {              
-                 var calculatedPrice = this.list2.price * this.list2.oCount;
-                 return calculatedPrice.toLocaleString();
-             }
+    	   calcPrice: function () {
+    		   var total = 0;
+    		   for (var i = 0; i < this.list.length; i++) {
+    		     var item = this.list[i];
+    		     total += item.price * item.oCount;
+    		   }
+    		   return total.toLocaleString();
+    		 }
            },
       methods : {
          fnGetList : function() { 
