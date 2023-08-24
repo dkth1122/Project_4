@@ -48,63 +48,64 @@ public class ProductPagController {
 	}
 	
 //---------------------------------------------------------------------나연 작업-------------		
-	//BTS 상품 메인 페이지 (전체 상품 최신순 정렬)
+		
+	//BTS 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/BTS.do") 
 	public String productPrintBTS(Model model) throws Exception{
 			
 		return "/Product/BTS/productList_Main";
 	}
 	
-	//TXT 상품 메인 페이지 (전체 상품 최신순 정렬)
+	//TXT 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/TXT.do") 
 	public String productPrintTXT(Model model) throws Exception{
 			
 		return "/Product/TXT/productList_Main";
 	}
 
-	//EHP 상품 메인 페이지 (전체 상품 최신순 정렬)
+	//EHP 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/EHP.do") 
 	public String productPrintEHP(Model model) throws Exception{
 			
 		return "/Product/EHP/productList_Main";
 	}
 
-	//SVT 상품 메인 페이지 (전체 상품 최신순 정렬)
+	//SVT 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/SVT.do") 
 	public String productPrintSVT(Model model) throws Exception{
 			
 		return "/Product/SVT/productList_Main";
 	}
 
-	//FMN 상품 메인 페이지 (전체 상품 최신순 정렬)
+	//FMN 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/FMN.do") 
 	public String productPrintFMN(Model model) throws Exception{
 			
 		return "/Product/FMN/productList_Main";
 	}
 
-	//LSF 상품 메인 페이지 (전체 상품 최신순 정렬)
+	//LSF 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/LSF.do") 
 	public String productPrintLSF(Model model) throws Exception{
 			
 		return "/Product/LSF/productList_Main";
 	}
 
-	//NJS 상품 메인 페이지 (전체 상품 최신순 정렬)
+	//NJS 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/NJS.do") 
 	public String productPrintNJS(Model model) throws Exception{
 			
 		return "/Product/NJS/productList_Main";
 	}
 
-	//BND 상품 메인 페이지 (전체 상품 최신순 정렬)
+	//BND 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/BND.do") 
 	public String productPrintBND(Model model) throws Exception{
 			
 		return "/Product/BND/productList_Main";
 	}
 
-	//ZIC 상품 메인 페이지 (전체 상품 최신순 정렬)
+	//ZIC 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/ZIC.do") 
 	public String productPrintZIC(Model model) throws Exception{
 			
