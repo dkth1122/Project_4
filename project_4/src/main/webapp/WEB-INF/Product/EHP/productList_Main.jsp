@@ -247,8 +247,8 @@ var app = new Vue({
     	fnGetList: function (ctg) {
             var self = this;
 			<!-- ÆäÀÌÂ¡ Ãß°¡ 6 -->
-			var startNum = ((self.selectPage-1) * 10);
-    		var lastNum = 10;
+			var startNum = ((self.selectPage-1) * 12);
+    		var lastNum = 12;
     		
     		if(ctg == 'A'){
     			self.ctg = "ALB";
