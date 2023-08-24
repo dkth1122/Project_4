@@ -38,6 +38,7 @@
 		LEFT JOIN T4_MEMBERSHIP M ON M.ARTIST = P.ARTIST
 		LEFT JOIN T4_USER U ON M.U_ID = U.U_ID
 		WHERE P.P_NO = #{pNo} 
+		ORDER BY NUM ASC
 	</select>
 	
 	<!-- 아티스트별 상품 조회 > 어드민 페이지 -->

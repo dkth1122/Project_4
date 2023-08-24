@@ -189,7 +189,7 @@ public class ProductController {
 	@ResponseBody
 	public String info(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		Product info = productService.selectProductInfo(map);
+		List<Product> info = productService.selectProductInfo(map);
 		resultMap.put("info", info);
 		return new Gson().toJson(resultMap);
 	}

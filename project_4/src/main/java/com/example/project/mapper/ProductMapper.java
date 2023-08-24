@@ -23,8 +23,8 @@ public interface ProductMapper {
 	//상품페이징용 갯수
 	int selectCnt(HashMap<String, Object> map);
 	
-	//상품 하나 조회
-	Product selectProductInfo(HashMap<String, Object> map);
+	//제품 상세 페이지 조회
+	List<Product> selectProductInfo(HashMap<String, Object> map);
 	
 	//아티스트별 상품 조회 > 어드민 페이지
 	List<Product> searchProductList(HashMap<String, Object> map);
