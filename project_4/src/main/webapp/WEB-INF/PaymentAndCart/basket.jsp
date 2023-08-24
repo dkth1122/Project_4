@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 .login-box{
@@ -50,9 +50,9 @@ h3{
 		<div class="login-box">
 			<div class="login-box2">
 			<i id="sad" class="fa-regular fa-face-sad-tear"></i>
-			<h3>¾Ñ! Àå¹Ù±¸´Ï°¡ ºñ¾î ÀÖ¾î¿ä!</h3>			
+			<h3>ì•—! ìž¥ë°”êµ¬ë‹ˆê°€ ë¹„ì–´ ìžˆì–´ìš”!</h3>			
 				<div class="login">
-					<div><button @click="goToMain">¼îÇÎ °è¼ÓÇÏ±â</button></div>
+					<div><button @click="goToMain">ì‡¼í•‘ ê³„ì†í•˜ê¸°</button></div>
 				</div>
 			</div>
 		</div>

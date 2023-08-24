@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
     body {
@@ -46,45 +46,45 @@
 <body>
 <div id="app">
 
-	<div onclick="history.back();"><a href="javascript:;">¡ç µÇµ¹¾Æ°¡±â</a></div>
+	<div onclick="history.back();"><a href="javascript:;">â† ë˜ëŒì•„ê°€ê¸°</a></div>
 	
 	
-	<div class="eveFont">ÀÀ¸ð</div>
+	<div class="eveFont">ì‘ëª¨</div>
 	<hr>
 	
-	<div class="eveTitleFont">[ÀÌº¥Æ® ÀÀ¸ð¹æ¹ý]</div>
-	<div>¡ØÀÀ¸ð ½Ã Á¦ÃâÇÏ½Å Á¤º¸´Â <span style="color: red">Á¦Ãâ ¿Ï·á ÈÄ ¼öÁ¤ÀÌ ºÒ°¡ÇÏ¿À´Ï</span> Á¦Ãâ ½Ã, Á¤È®ÇÑ Á¤º¸ÀÛ¼º¿¡ À¯ÀÇÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù. Á¤º¸¸¦ Àß¸ø ±âÀçÇÏ¿© ¹ß»ýÇÑ ºÒÀÌÀÍÀº º¸»óÇÏÁö ¾Ê½À´Ï´Ù.</div>
+	<div class="eveTitleFont">[ì´ë²¤íŠ¸ ì‘ëª¨ë°©ë²•]</div>
+	<div>â€»ì‘ëª¨ ì‹œ ì œì¶œí•˜ì‹  ì •ë³´ëŠ” <span style="color: red">ì œì¶œ ì™„ë£Œ í›„ ìˆ˜ì •ì´ ë¶ˆê°€í•˜ì˜¤ë‹ˆ</span> ì œì¶œ ì‹œ, ì •í™•í•œ ì •ë³´ìž‘ì„±ì— ìœ ì˜í•´ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤. ì •ë³´ë¥¼ ìž˜ëª» ê¸°ìž¬í•˜ì—¬ ë°œìƒí•œ ë¶ˆì´ìµì€ ë³´ìƒí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</div>
 	<br>
-	<div class="eveTitleFont">[ÀÀ¸ð ½Ã À¯ÀÇ»çÇ×]</div>
-	<div>1. ÀÌº¥Æ® ÀÀ¸ð´Â ÀÀ¸ð ±â°£ ³» ¾Ù¹ü ±¸¸Å ¹× ÀÀ¸ð ¿Ï·á ½Ã°£À» ±âÁØÀ¸·Î Ã³¸®µË´Ï´Ù.</div>
-	<div>2. ´çÃ·ÀÚ ¹ßÇ¥ ¹× ÆÒ»çÀÎÈ¸ Âü¿©´Â ÀÀ¸ð ½Ã ±âÀçÇÑ ÇÊ¼öÁ¤º¸¸¦ ±âÁØÀ¸·Î Ã³¸®µË´Ï´Ù.</div>
-	<div>3. ¿Ü±¹ÀÎÀÇ °æ¿ì ÀÌº¥Æ®¿¡ ÀÀ¸ðÇÏ½Å ¿µ¹® ÀÌ¸§ÀÌ ½ÅºÐÁõ »ó ¿µ¹® ÀÌ¸§°ú µ¿ÀÏÇØ¾ß ÇÏ¸ç, ÇØ´ç ÀÌ¸§ ±âÁØÀ¸·Î¸¸ ÀÀ¸ð °¡´ÉÇÕ´Ï´Ù. (ÇÑ±Û ÀÌ¸§À¸·Î ÀÀ¸ð ºÒ°¡)</div>
-	<div>4. ÀÀ¸ð ±â°£ ³» ¾Ù¹üÀ» ±¸¸ÅÇÏ¿© ÀÌº¥Æ®¿¡ ÀÀ¸ðÇÑ ÀÌÈÄ ÁÖ¹®À» Ãë¼ÒÇÒ °æ¿ì, ´çÃ· ´ë»ó¿¡¼­ Á¦¿ÜµË´Ï´Ù.</div>
-	<div>5. ÀÌº¥Æ® ÀÀ¸ð ÈÄ ´çÃ·µÇÁö ¾ÊÀº °æ¿ì, ±¸¸ÅÇÏ½Å ¾Ù¹üÀº ¹ÝÇ°ÇÏ½Ç ¼ö ¾ø½À´Ï´Ù.</div>
-	<div>6. º» ÀÌº¥Æ®´Â ´çÃ·ÀÚ º»ÀÎ¸¸ Âü¼® °¡´ÉÇÕ´Ï´Ù.</div>
-	<div>7. º» ÀÌº¥Æ® ´çÃ·±ÇÀº ´ë¸®¼ö·É ¹× Å¸ÀÎ¿¡°Ô ¾çµµ, ¸Å¸Å°¡ ºÒ°¡ÇÕ´Ï´Ù. (Àû¹ß ½Ã Âü¿© ºÒ°¡)</div>
-	<div>8. º» ÀÌº¥Æ® Âü¿© ½Ã º»ÀÎ È®ÀÎÀ» À§ÇÑ ½ÅºÐÁõÀ» ¹Ýµå½Ã ÁöÂüÇÏ¼Å¾ß ÇÕ´Ï´Ù. ¹ÌÁöÂü ½Ã Âü¿©°¡ Àý´ë ºÒ°¡ÇÕ´Ï´Ù.</div>
-	<div>9. 2¹ø ÀÌ»ó ÅëÈ­ ¿¬°áÀÌ µÇÁö ¾ÊÀ» °æ¿ì, ´ÙÀ½ ´çÃ·ÀÚ°¡ ¸ÕÀú ÁøÇàµÇ¸ç, ´ÙÀ½ ´çÃ·ÀÚÀÇ ÀÌº¥Æ® ÁøÇà ÀÌÈÄ ÇÑ ¹ø ´õ ¿¬¶ôÀ» µå¸± ¿¹Á¤ÀÔ´Ï´Ù. ´Ù½Ã ¿¬¶ôÀÌ µÇÁö ¾ÊÀ» °æ¿ì¿¡´Â Âü¿© ÀÇ»ç°¡ ¾ø´Â °ÍÀ¸·Î ÆÇ´ÜÇÏ¿© Àç¿¬¶ôÀ» µå¸®Áö ¾Ê½À´Ï´Ù.</div>
-	<div>10. ÀÌº¥Æ® ÁøÇà ½Ã ¾ÆÆ¼½ºÆ® º¸È£¸¦ À§ÇØ ¿î¿µ ´ã´çÀÚ°¡ Âü°üÇÏ¸ç, ¸ðµç ¿µ»óÀº ³ìÈ­µË´Ï´Ù. ¿µ»óÅëÈ­ ³»¿ëÀÌ ºÎÀûÀýÇÏ´Ù°í ÆÇ´ÜµÉ °æ¿ì, ÀÌº¥Æ®°¡ °­Á¦ Á¾·áµÉ ¼ö ÀÖ½À´Ï´Ù.</div>
+	<div class="eveTitleFont">[ì‘ëª¨ ì‹œ ìœ ì˜ì‚¬í•­]</div>
+	<div>1. ì´ë²¤íŠ¸ ì‘ëª¨ëŠ” ì‘ëª¨ ê¸°ê°„ ë‚´ ì•¨ë²” êµ¬ë§¤ ë° ì‘ëª¨ ì™„ë£Œ ì‹œê°„ì„ ê¸°ì¤€ìœ¼ë¡œ ì²˜ë¦¬ë©ë‹ˆë‹¤.</div>
+	<div>2. ë‹¹ì²¨ìž ë°œí‘œ ë° íŒ¬ì‚¬ì¸íšŒ ì°¸ì—¬ëŠ” ì‘ëª¨ ì‹œ ê¸°ìž¬í•œ í•„ìˆ˜ì •ë³´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì²˜ë¦¬ë©ë‹ˆë‹¤.</div>
+	<div>3. ì™¸êµ­ì¸ì˜ ê²½ìš° ì´ë²¤íŠ¸ì— ì‘ëª¨í•˜ì‹  ì˜ë¬¸ ì´ë¦„ì´ ì‹ ë¶„ì¦ ìƒ ì˜ë¬¸ ì´ë¦„ê³¼ ë™ì¼í•´ì•¼ í•˜ë©°, í•´ë‹¹ ì´ë¦„ ê¸°ì¤€ìœ¼ë¡œë§Œ ì‘ëª¨ ê°€ëŠ¥í•©ë‹ˆë‹¤. (í•œê¸€ ì´ë¦„ìœ¼ë¡œ ì‘ëª¨ ë¶ˆê°€)</div>
+	<div>4. ì‘ëª¨ ê¸°ê°„ ë‚´ ì•¨ë²”ì„ êµ¬ë§¤í•˜ì—¬ ì´ë²¤íŠ¸ì— ì‘ëª¨í•œ ì´í›„ ì£¼ë¬¸ì„ ì·¨ì†Œí•  ê²½ìš°, ë‹¹ì²¨ ëŒ€ìƒì—ì„œ ì œì™¸ë©ë‹ˆë‹¤.</div>
+	<div>5. ì´ë²¤íŠ¸ ì‘ëª¨ í›„ ë‹¹ì²¨ë˜ì§€ ì•Šì€ ê²½ìš°, êµ¬ë§¤í•˜ì‹  ì•¨ë²”ì€ ë°˜í’ˆí•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.</div>
+	<div>6. ë³¸ ì´ë²¤íŠ¸ëŠ” ë‹¹ì²¨ìž ë³¸ì¸ë§Œ ì°¸ì„ ê°€ëŠ¥í•©ë‹ˆë‹¤.</div>
+	<div>7. ë³¸ ì´ë²¤íŠ¸ ë‹¹ì²¨ê¶Œì€ ëŒ€ë¦¬ìˆ˜ë ¹ ë° íƒ€ì¸ì—ê²Œ ì–‘ë„, ë§¤ë§¤ê°€ ë¶ˆê°€í•©ë‹ˆë‹¤. (ì ë°œ ì‹œ ì°¸ì—¬ ë¶ˆê°€)</div>
+	<div>8. ë³¸ ì´ë²¤íŠ¸ ì°¸ì—¬ ì‹œ ë³¸ì¸ í™•ì¸ì„ ìœ„í•œ ì‹ ë¶„ì¦ì„ ë°˜ë“œì‹œ ì§€ì°¸í•˜ì…”ì•¼ í•©ë‹ˆë‹¤. ë¯¸ì§€ì°¸ ì‹œ ì°¸ì—¬ê°€ ì ˆëŒ€ ë¶ˆê°€í•©ë‹ˆë‹¤.</div>
+	<div>9. 2ë²ˆ ì´ìƒ í†µí™” ì—°ê²°ì´ ë˜ì§€ ì•Šì„ ê²½ìš°, ë‹¤ìŒ ë‹¹ì²¨ìžê°€ ë¨¼ì € ì§„í–‰ë˜ë©°, ë‹¤ìŒ ë‹¹ì²¨ìžì˜ ì´ë²¤íŠ¸ ì§„í–‰ ì´í›„ í•œ ë²ˆ ë” ì—°ë½ì„ ë“œë¦´ ì˜ˆì •ìž…ë‹ˆë‹¤. ë‹¤ì‹œ ì—°ë½ì´ ë˜ì§€ ì•Šì„ ê²½ìš°ì—ëŠ” ì°¸ì—¬ ì˜ì‚¬ê°€ ì—†ëŠ” ê²ƒìœ¼ë¡œ íŒë‹¨í•˜ì—¬ ìž¬ì—°ë½ì„ ë“œë¦¬ì§€ ì•ŠìŠµë‹ˆë‹¤.</div>
+	<div>10. ì´ë²¤íŠ¸ ì§„í–‰ ì‹œ ì•„í‹°ìŠ¤íŠ¸ ë³´í˜¸ë¥¼ ìœ„í•´ ìš´ì˜ ë‹´ë‹¹ìžê°€ ì°¸ê´€í•˜ë©°, ëª¨ë“  ì˜ìƒì€ ë…¹í™”ë©ë‹ˆë‹¤. ì˜ìƒí†µí™” ë‚´ìš©ì´ ë¶€ì ì ˆí•˜ë‹¤ê³  íŒë‹¨ë  ê²½ìš°, ì´ë²¤íŠ¸ê°€ ê°•ì œ ì¢…ë£Œë  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</div>
 	<hr>
 	
 	<div class="inputPos1">
 	<div v-if="info.cnt >= 1">
 		<div v-if="ynApplyYn == 0">
-			<div><input type="text" placeholder="ÀÀ¸ðÀÚ¸í" v-model="eUname"></div>
-			<div><input type="text" placeholder="¿¬¶ôÃ³ (-) ¾øÀÌ ÀÔ·Â" v-model="eUphone"></div>
-			<div>°³ÀÎÁ¤º¸ ¼öÁý µ¿ÀÇ</div>
-			<label><input type="radio" name="Yn" value="Y" v-model="eYn">µ¿ÀÇÇÔ</label>
-			<label><input type="radio" name="Yn" value="N" v-model="eYn">µ¿ÀÇ¾ÈÇÔ</label>
-			<div><button @click="fnApply(info)">ÀÀ¸ðÇÏ±â</button></div>
+			<div><input type="text" placeholder="ì‘ëª¨ìžëª…" v-model="eUname"></div>
+			<div><input type="text" placeholder="ì—°ë½ì²˜ (-) ì—†ì´ ìž…ë ¥" v-model="eUphone"></div>
+			<div>ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë™ì˜</div>
+			<label><input type="radio" name="Yn" value="Y" v-model="eYn">ë™ì˜í•¨</label>
+			<label><input type="radio" name="Yn" value="N" v-model="eYn">ë™ì˜ì•ˆí•¨</label>
+			<div><button @click="fnApply(info)">ì‘ëª¨í•˜ê¸°</button></div>
 		</div>
 		<div v-else>
-			<div>ÇØ´ç ÀÌº¥Æ®´Â ÀÌ¹Ì ÀÀ¸ðµÇ¾ú½À´Ï´Ù.</div>
-			<div>1È¸ ÀÀ¸ð ÈÄ ¾Ù¹ü ±¸ÀÔ½Ã ÀÚµ¿ÀÀ¸ðµÇ¿À´Ï, Âü°íÇÏ½Ã±æ ¹Ù¶ø´Ï´Ù.</div>
+			<div>í•´ë‹¹ ì´ë²¤íŠ¸ëŠ” ì´ë¯¸ ì‘ëª¨ë˜ì—ˆìŠµë‹ˆë‹¤.</div>
+			<div>1íšŒ ì‘ëª¨ í›„ ì•¨ë²” êµ¬ìž…ì‹œ ìžë™ì‘ëª¨ë˜ì˜¤ë‹ˆ, ì°¸ê³ í•˜ì‹œê¸¸ ë°”ëžë‹ˆë‹¤.</div>
 		</div>
 	</div>
 	<div v-else>
-		<div>ÇØ´ç °èÁ¤À¸·Î ±¸¸ÅÇÑ »óÇ°ÀÌ È®ÀÎ µÇÁö ¾Ê½À´Ï´Ù</div>
+		<div>í•´ë‹¹ ê³„ì •ìœ¼ë¡œ êµ¬ë§¤í•œ ìƒí’ˆì´ í™•ì¸ ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤</div>
 	</div>
 	</div>
 	
@@ -124,19 +124,19 @@ var app = new Vue({
             var self = this;
             var nparmap = {pNo : self.info.pNo, evtNo : self.evtNo, uId:self.uId, eUname : self.eUname, eUphone : self.eUphone, eYn : self.eYn };
             if(self.eUname == "" || self.eUname == undefined){
-		        alert("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		        alert("ì´ë¦„ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”");
 		        return;
 		    }
             if(self.eUphone == "" || self.eUphone == undefined){
-		        alert("¿¬¶ôÃ³¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		        alert("ì—°ë½ì²˜ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”");
 		        return;
 		    }
             if(self.eYn == "" || self.eYn == undefined){
-		        alert("°³ÀÎÁ¤º¸ ¼öÁý µ¿ÀÇ ¿©ºÎ¸¦ Ã¼Å©ÇØÁÖ¼¼¿ä, µ¿ÀÇ ÇÏÁö ¾ÊÀ»½Ã ÀÌº¥Æ® ´çÃ· ºÒ°¡");
+		        alert("ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë™ì˜ ì—¬ë¶€ë¥¼ ì²´í¬í•´ì£¼ì„¸ìš”, ë™ì˜ í•˜ì§€ ì•Šì„ì‹œ ì´ë²¤íŠ¸ ë‹¹ì²¨ ë¶ˆê°€");
 		        return;
 		    }
             
-            if(!confirm("Á¤¸» ÀÀ¸ðÇÏ°Ú½À´Ï±î? ÀÀ¸ð ÈÄ Á¤º¸ ¼öÁ¤ ºÒ°¡ÇÕ´Ï´Ù.")){
+            if(!confirm("ì •ë§ ì‘ëª¨í•˜ê² ìŠµë‹ˆê¹Œ? ì‘ëª¨ í›„ ì •ë³´ ìˆ˜ì • ë¶ˆê°€í•©ë‹ˆë‹¤.")){
                 return;
             }
             $.ajax({
@@ -145,7 +145,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("Á¤»óÀÀ¸ð µÇ¾ú½À´Ï´Ù.");
+                	alert("ì •ìƒì‘ëª¨ ë˜ì—ˆìŠµë‹ˆë‹¤.");
                 	self.fnGetList();
                 }
             }); 

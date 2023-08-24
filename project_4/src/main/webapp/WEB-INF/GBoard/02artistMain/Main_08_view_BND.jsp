@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
  <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>¸â¹ö½Ê ´ñ±Û</title>
+<title>ë©¤ë²„ì‹­ ëŒ“ê¸€</title>
 <style>
 	body{
 		width : 500px;
@@ -64,14 +64,14 @@
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
             <li>{{item.gLike}}</li>
-            <li><button @click="fnLike(item.gNo)">ÁÁ¾Æ¿ä</button></li>
-            <li><button @click="reportPost1(item.gNo)">½Å°í</button></li>
+            <li><button @click="fnLike(item.gNo)">ì¢‹ì•„ìš”</button></li>
+            <li><button @click="reportPost1(item.gNo)">ì‹ ê³ </button></li>
             <li> 
                 <!-- v-if="cUser == item.cUser && item.delYn == 'N' || status == 'A'" v-model="item.gNo" -->
             </li>
         </ul>
         <hr>
-        <button @click = "fnReload">»õ·Î °íÄ§</button>
+        <button @click = "fnReload">ìƒˆë¡œ ê³ ì¹¨</button>
         
         <ul v-for="item in commentList" v-if="item.gcDelYN !== 'Y'">
             <li>{{item.uId}}</li>
@@ -79,8 +79,8 @@
             <li>{{item.gcDate}}</li>
             <li>{{item.gcContent}}</li>
             <li>{{item.gcLike}}</li>
-            <li><button @click="fnCommnetLike(item.gcNo)">ÁÁ¾Æ¿ä</button></li>
-            <li><button @click="reportPost2(item.gcNo)">½Å°í</button></li>
+            <li><button @click="fnCommnetLike(item.gcNo)">ì¢‹ì•„ìš”</button></li>
+            <li><button @click="reportPost2(item.gcNo)">ì‹ ê³ </button></li>
         	<li v-if="item.uId == uId">
         		<a href="javascript:;">
                 	<div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item.gcNo)"></i></div>
@@ -88,15 +88,15 @@
             </li>
             
             <li>
-            	<div><button @click="fnCoCommentView(item.gcNo)">´ñ±Û</button> </div>
+            	<div><button @click="fnCoCommentView(item.gcNo)">ëŒ“ê¸€</button> </div>
             	
             	<ul v-for ="citem in cocommentList" v-if="citem.gcDelYN !== 'Y' && citem.gcGroup == item.gcNo">
             		<li>{{citem.uId}}</li>
 		            <li>{{citem.gcDate}}</li>
 		            <li>{{citem.gcContent}}</li>	
 		            <li>{{citem.gcLike}}</li>
-		            <li><button @click="fnCommnetLike(citem.gcNo, item.gcNo)">ÁÁ¾Æ¿ä</button></li>
-		            <li><button @click="reportPost2(citem.gcNo)">½Å°í</button></li>
+		            <li><button @click="fnCommnetLike(citem.gcNo, item.gcNo)">ì¢‹ì•„ìš”</button></li>
+		            <li><button @click="reportPost2(citem.gcNo)">ì‹ ê³ </button></li>
 		            <li v-if="citem.uId == uId">
         				<a href="javascript:;">
                 			<div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnCocoRemove(citem.gcNo)"></i></div>
@@ -104,9 +104,9 @@
 	           		</li>
 	           		
             	</ul>
-            	<div><button @click="fnReload" v-if="reload">´İ±â</button></div>
+            	<div><button @click="fnReload" v-if="reload">ë‹«ê¸°</button></div>
     			<textarea rows="5" cols="30" v-model="cocomment" ></textarea>
-            	<button @click="fnCoComment(item)" >µî·Ï</button>
+            	<button @click="fnCoComment(item)" >ë“±ë¡</button>
             	
    		   </li>
    		   	
@@ -114,10 +114,10 @@
         <hr>
     <div class="write">
         <textarea rows="5" cols="30" v-model="comment"></textarea>
-        <button @click="fnCommentAdd">´ñ±Û µî·Ï</button>
+        <button @click="fnCommentAdd">ëŒ“ê¸€ ë“±ë¡</button>
     </div>
-    </div><!-- /ÄÁÅ×ÀÌ³Ê div -->
-    <button @click="fnMove">´İ±â</button>
+    </div><!-- /ì»¨í…Œì´ë„ˆ div -->
+    <button @click="fnMove">ë‹«ê¸°</button>
 </div>
 </body>
 </html>
@@ -189,7 +189,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("µî·ÏµÇ¾ú¾î¿ä.");
+                    alert("ë“±ë¡ë˜ì—ˆì–´ìš”.");
                     self.comment = "";
                     self.fnGetComments();
                 }
@@ -197,7 +197,7 @@ var app = new Vue({
         },
         fnRemove: function (gcNo) {
             var self = this;
-            if (!confirm("»èÁ¦ÇÏ½Ã°Ú¾î¿ä?")) {
+            if (!confirm("ì‚­ì œí•˜ì‹œê² ì–´ìš”?")) {
                 return;
             }
             var nparmap = { gcNo: gcNo };
@@ -207,7 +207,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("»èÁ¦µÇ¾ú½À´Ï´Ù.");
+                    alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
                     self.fnGetComments();
                 }
             });
@@ -274,7 +274,7 @@ var app = new Vue({
             var self = this;
             var nparmap = { gcNo: gcNo, uId: self.uId};
             
-            if(!confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+            if(!confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
             	return;
             }
             
@@ -284,7 +284,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                	alert("»èÁ¦¿Ï·á");
+                	alert("ì‚­ì œì™„ë£Œ");
                 	self.fnCoCommentView();
                 }
             });
@@ -293,9 +293,9 @@ var app = new Vue({
         	
         }, reportPost1 : function(gNo) {
             var self = this;
-            self.selectedReason = ""; // ÃÊ±âÈ­
-            self.otherReason = ""; // ÃÊ±âÈ­
-            self.reportDescription = ""; // ÃÊ±âÈ­
+            self.selectedReason = ""; // ì´ˆê¸°í™”
+            self.otherReason = ""; // ì´ˆê¸°í™”
+            self.reportDescription = ""; // ì´ˆê¸°í™”
             self.showReportModal = true;
             
             var option = "width=500,height=500,top=100,right";
@@ -304,9 +304,9 @@ var app = new Vue({
           
         },  reportPost2 : function(gcNo) {
             var self = this;
-            self.selectedReason = ""; // ÃÊ±âÈ­
-            self.otherReason = ""; // ÃÊ±âÈ­
-            self.reportDescription = ""; // ÃÊ±âÈ­
+            self.selectedReason = ""; // ì´ˆê¸°í™”
+            self.otherReason = ""; // ì´ˆê¸°í™”
+            self.reportDescription = ""; // ì´ˆê¸°í™”
             self.showReportModal = true;
             
             var option = "width=500,height=500,top=100,right";

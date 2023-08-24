@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -90,14 +90,14 @@
 <div id="app">
 	<div class="mainBox">
 	
-	<div class="mainPos2">�̺�Ʈ ����</div>
+	<div class="mainPos2">이벤트 관리</div>
 <hr>	
 	<table>
 		<tr>
-			<th>�̺�Ʈ��</th>
-			<th>�̺�Ʈ�ڵ�</th>
-			<th>��Ƽ��Ʈ</th>
-			<th>Ȱ������</th>
+			<th>이벤트명</th>
+			<th>이벤트코드</th>
+			<th>아티스트</th>
+			<th>활성상태</th>
 		</tr>
 		
 		<tr v-for="(item, index) in list">
@@ -128,7 +128,7 @@
 	  
 	</template>
 	
-		<div><button @click="fnEventAdd">�̺�Ʈ ���</button></div>
+		<div><button @click="fnEventAdd">이벤트 등록</button></div>
 	
 </div>
 </body>
@@ -176,7 +176,7 @@ var app = new Vue({
     	        evtYn: item.evtYn
     	      },
     	      success: function(data) {
-    	        alert("�̺�Ʈ�� ������Ʈ �Ǿ����ϴ�.");
+    	        alert("이벤트가 업데이트 되었습니다.");
     	      }
     	    }); 
     	  },

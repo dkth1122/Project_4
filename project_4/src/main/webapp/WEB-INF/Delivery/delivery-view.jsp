@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -68,40 +68,40 @@
 </head>
 <body>
 <div id="app">
-	<div>ÁÖ¹®¹øÈ£ : {{oNo}}</div>
+	<div>ì£¼ë¬¸ë²ˆí˜¸ : {{oNo}}</div>
 	<table>
     <tr>
-      <th>»óÇ°¸í</th>
-      <th>»óÇ°ÄÚµå</th>
-      <th>ÇöÀç»óÅÂ</th>
-      <th>ÁÖ¹®¼ö·®</th>
-      <th>ÁÖ¹®ÀÚ¸í</th>
-      <th>ÁÖ¹®ÀÚ ¿¬¶ôÃ³</th>
-      <th>ÁÖ¹®ÀÚ ÁÖ¼Ò1</th>
-      <th>ÁÖ¹®ÀÚ ÁÖ¼Ò2</th>
-      <th>Á¤Á¦ ÁÖ¼Ò</th>
+      <th>ìƒí’ˆëª…</th>
+      <th>ìƒí’ˆì½”ë“œ</th>
+      <th>í˜„ì¬ìƒíƒœ</th>
+      <th>ì£¼ë¬¸ìˆ˜ëŸ‰</th>
+      <th>ì£¼ë¬¸ìëª…</th>
+      <th>ì£¼ë¬¸ì ì—°ë½ì²˜</th>
+      <th>ì£¼ë¬¸ì ì£¼ì†Œ1</th>
+      <th>ì£¼ë¬¸ì ì£¼ì†Œ2</th>
+      <th>ì •ì œ ì£¼ì†Œ</th>
     </tr>
       <tr v-for="(item, index) in list">
         <td>{{ item.pName }}</td>
         <td>{{ item.pNo }}</td>
         <td>
           <select v-model="item.dState" @change="fnUpdateState(item)">
-            <option value="»óÇ° ÁØºñÁß">»óÇ° ÁØºñÁß</option>
-            <option value="¹è¼Û ÁØºñÁß">¹è¼Û ÁØºñÁß</option>
-            <option value="¹è¼ÛÁß">¹è¼ÛÁß</option>
-            <option value="¹è¼Û¿Ï·á">¹è¼Û¿Ï·á</option>
-            <option value="¾÷Ã¼ »çÀ¯·Î °ÅÀı">¾÷Ã¼ »çÀ¯·Î °ÅÀı</option>
-            <option value="°í°´ »çÀ¯·Î °ÅÀı">°í°´ »çÀ¯·Î °ÅÀı</option>
-            <option value="¹è¼Û»ç »çÀ¯·Î °ÅÀı">¹è¼Û»ç »çÀ¯·Î °ÅÀı</option>
- 			<option value="±³È¯Á¢¼ö" hidden>±³È¯Á¢¼ö</option>
-			 <option value="±³È¯¼ö°ÅÁß" hidden>±³È¯¼ö°ÅÁß</option>
-			 <option value="±³È¯¼ö°Å¿Ï·á" hidden>±³È¯¼ö°Å¿Ï·á</option>
-			 <option value="±³È¯»óÇ°¹è¼ÛÁß" hidden>±³È¯»óÇ°¹è¼ÛÁß</option>
-			 <option value="±³È¯¿Ï·á" hidden>±³È¯¿Ï·á</option>
-			 <option value="¹İÇ°Á¢¼ö" hidden>¹İÇ°Á¢¼ö</option>
-			 <option value="¹İÇ°¼ö°ÅÁß" hidden>¹İÇ°¼ö°ÅÁß</option>
-			 <option value="°áÁ¦»çÃë¼ÒÁß" hidden>°áÁ¦»çÃë¼ÒÁß</option>
-			 <option value="¹İÇ°¿Ï·á" hidden>¹İÇ°¿Ï·á</option>           
+            <option value="ìƒí’ˆ ì¤€ë¹„ì¤‘">ìƒí’ˆ ì¤€ë¹„ì¤‘</option>
+            <option value="ë°°ì†¡ ì¤€ë¹„ì¤‘">ë°°ì†¡ ì¤€ë¹„ì¤‘</option>
+            <option value="ë°°ì†¡ì¤‘">ë°°ì†¡ì¤‘</option>
+            <option value="ë°°ì†¡ì™„ë£Œ">ë°°ì†¡ì™„ë£Œ</option>
+            <option value="ì—…ì²´ ì‚¬ìœ ë¡œ ê±°ì ˆ">ì—…ì²´ ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+            <option value="ê³ ê° ì‚¬ìœ ë¡œ ê±°ì ˆ">ê³ ê° ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+            <option value="ë°°ì†¡ì‚¬ ì‚¬ìœ ë¡œ ê±°ì ˆ">ë°°ì†¡ì‚¬ ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+ 			<option value="êµí™˜ì ‘ìˆ˜" hidden>êµí™˜ì ‘ìˆ˜</option>
+			 <option value="êµí™˜ìˆ˜ê±°ì¤‘" hidden>êµí™˜ìˆ˜ê±°ì¤‘</option>
+			 <option value="êµí™˜ìˆ˜ê±°ì™„ë£Œ" hidden>êµí™˜ìˆ˜ê±°ì™„ë£Œ</option>
+			 <option value="êµí™˜ìƒí’ˆë°°ì†¡ì¤‘" hidden>êµí™˜ìƒí’ˆë°°ì†¡ì¤‘</option>
+			 <option value="êµí™˜ì™„ë£Œ" hidden>êµí™˜ì™„ë£Œ</option>
+			 <option value="ë°˜í’ˆì ‘ìˆ˜" hidden>ë°˜í’ˆì ‘ìˆ˜</option>
+			 <option value="ë°˜í’ˆìˆ˜ê±°ì¤‘" hidden>ë°˜í’ˆìˆ˜ê±°ì¤‘</option>
+			 <option value="ê²°ì œì‚¬ì·¨ì†Œì¤‘" hidden>ê²°ì œì‚¬ì·¨ì†Œì¤‘</option>
+			 <option value="ë°˜í’ˆì™„ë£Œ" hidden>ë°˜í’ˆì™„ë£Œ</option>           
 
           </select>
         </td>
@@ -121,7 +121,7 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-        oNo: '' // µ¥ÀÌÅÍ Á¤ÀÇ
+        oNo: '' // ë°ì´í„° ì •ì˜
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -141,7 +141,7 @@ var app = new Vue({
         },   
         fnUpdateState : function(item) {
         	var self = this;
-        	if (item.dState === '¹è¼Û¿Ï·á') {
+        	if (item.dState === 'ë°°ì†¡ì™„ë£Œ') {
         	    self.updateState2(item);
         	} else {
         	    self.updateState1(item);
@@ -150,7 +150,7 @@ var app = new Vue({
         updateState1 : function(item) {
           	var self = this;
         	var exchangeVal = '';
-        	if (item.dState.includes('°ÅÀı')) {
+        	if (item.dState.includes('ê±°ì ˆ')) {
         	    exchangeVal = 'R';
         	}
         	$.ajax({
@@ -163,12 +163,12 @@ var app = new Vue({
         	      dState: item.dState
         	    },
         	    success: function(data) {
-        	      alert("ÁÖ¹® »óÅÂ°¡ ¾÷µ¥ÀÌÆ® µÇ¾ú½À´Ï´Ù.");
+        	      alert("ì£¼ë¬¸ ìƒíƒœê°€ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤.");
         	      self.fnGetList();
         	    }
         	  }); 
         },
-        updateState2 : function(item) { // »õ·Î¿î ÇÔ¼ö
+        updateState2 : function(item) { // ìƒˆë¡œìš´ í•¨ìˆ˜
           	var self = this;
         	$.ajax({
         	    url: "/delivery/updateOrderInfo2.dox",
@@ -179,14 +179,14 @@ var app = new Vue({
         	      dState: item.dState
         	    },
         	    success: function(data) {
-        	      alert("ÁÖ¹® »óÅÂ°¡ ¾÷µ¥ÀÌÆ® µÇ¾ú½À´Ï´Ù.");
+        	      alert("ì£¼ë¬¸ ìƒíƒœê°€ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤.");
         	      self.fnGetList();
         	    }
         	  }); 
          }
 	}, // methods
 	created : function() {
-	  this.oNo = "${map.oNo}"; // µ¥ÀÌÅÍ ÇÒ´ç
+	  this.oNo = "${map.oNo}"; // ë°ì´í„° í• ë‹¹
 		var self = this;
 		self.fnGetList();
 	}// created

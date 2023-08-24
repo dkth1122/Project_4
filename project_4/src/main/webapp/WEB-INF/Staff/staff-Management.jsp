@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -87,15 +87,15 @@
 <div id="app">
 	<div class="mainBox">
 	
-	<div class="mainPos2">Á÷¿ø °ü¸®</div>
+	<div class="mainPos2">ì§ì› ê´€ë¦¬</div>
 <hr>	
     <table>
         <tr>
             <th></th>
-            <th>ÀÌ¸§</th>
-            <th>»ç¹ø</th>
-            <th>¿¬¶ôÃ³</th>
-            <th>ºÎ¼­</th>
+            <th>ì´ë¦„</th>
+            <th>ì‚¬ë²ˆ</th>
+            <th>ì—°ë½ì²˜</th>
+            <th>ë¶€ì„œ</th>
         </tr>
 
         <tr v-for="(item, index) in list">
@@ -108,9 +108,9 @@
 
     </table>
     <div class="mainPos1">
-    <button @click="fnStaffUpdate">¼öÁ¤</button>
-    <button @click="fnStaffDelete">»èÁ¦</button>
-    <button @click="fnStaffAdd">Á÷¿øÃß°¡</button>
+    <button @click="fnStaffUpdate">ìˆ˜ì •</button>
+    <button @click="fnStaffDelete">ì‚­ì œ</button>
+    <button @click="fnStaffAdd">ì§ì›ì¶”ê°€</button>
 	</div>
     </div>
 </div>
@@ -144,7 +144,7 @@ var app = new Vue({
         fnStaffUpdate : function(item){
             var self = this;
             if (self.selectItem == "") {
-                alert("¼öÁ¤ÇÒ »ç¿øÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.");
+                alert("ìˆ˜ì •í•  ì‚¬ì›ì„ ì„ íƒí•´ì£¼ì„¸ìš”.");
                 return;
             }
             window.open("../staff/edit.do?sNo=" + self.selectItem, "popup2", "width=700,height=500,left=500,top=100");
@@ -152,10 +152,10 @@ var app = new Vue({
         fnStaffDelete : function () {
             var self = this;
             if (self.selectItem == "") {
-                alert("»èÁ¦ÇÒ »ç¿øÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.");
+                alert("ì‚­ì œí•  ì‚¬ì›ì„ ì„ íƒí•´ì£¼ì„¸ìš”.");
                 return;
             }
-            if(!confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+            if(!confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
                 return;
             }
             var nparmap = {sNo : self.selectItem};
@@ -165,7 +165,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("»èÁ¦µÇ¾ú½À´Ï´Ù.");
+                    alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
                     self.fnGetList();
                 }
             });

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -92,18 +92,18 @@
 <div id="app">
 	<div class="mainBox">
 	
-	<div class="mainPos2">°í°´ °ü¸®</div>
+	<div class="mainPos2">ê³ ê° ê´€ë¦¬</div>
 	<hr>	
 	<div class="mainInput">
-	<input type="text" placeholder="¾ÆÀÌµğ °Ë»ö" v-model="keyword" @keyup.enter="fnUsertSearch"> <button @click="fnUsertSearch">°Ë»ö</button>
+	<input type="text" placeholder="ì•„ì´ë”” ê²€ìƒ‰" v-model="keyword" @keyup.enter="fnUsertSearch"> <button @click="fnUsertSearch">ê²€ìƒ‰</button>
 	</div>
     <table>
 		<tr>
-			<th>¾ÆÀÌµğ</th>
-			<th>ÀÌ¸§</th>
-			<th>´Ğ³×ÀÓ</th>
-			<th>¿¬¶ôÃ³</th>
-			<th>ºñ¹Ğ¹øÈ£¿À·ùÈ½¼ö</th>
+			<th>ì•„ì´ë””</th>
+			<th>ì´ë¦„</th>
+			<th>ë‹‰ë„¤ì„</th>
+			<th>ì—°ë½ì²˜</th>
+			<th>ë¹„ë°€ë²ˆí˜¸ì˜¤ë¥˜íšŸìˆ˜</th>
 
 		</tr>
 		<tr v-for="(item, index) in list">
@@ -111,7 +111,7 @@
 			<td>{{item.uName}}</td>
 			<td>{{item.uName2}}</td>
 			<td>{{item.uPhone}}</td>
-			<td v-if="item.uCnt >= 5"><button @click="fnCntReset(item)">¿À·ùÃÊ±âÈ­</button></td>
+			<td v-if="item.uCnt >= 5"><button @click="fnCntReset(item)">ì˜¤ë¥˜ì´ˆê¸°í™”</button></td>
 			<td v-else></td>
 
 		</tr>
@@ -179,7 +179,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.");
+                	alert("ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.");
                 	self.fnGetList();
                 }
             }); 

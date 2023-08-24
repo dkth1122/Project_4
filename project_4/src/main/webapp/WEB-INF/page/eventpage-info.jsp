@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
     * {
@@ -66,15 +66,15 @@
 	<div class="eveFont"><a href="../event/eventpage.do">EVENT</a></div>
 	<hr>
 		<div class="eventButton1">
-			<button @click="fnSelectEvent({artist: '¹æÅº¼Ò³â´Ü'})">BTS</button>
-			<button @click="fnSelectEvent({artist: 'Åõ¸ð·Î¿ì¹ÙÀÌÅõ°Ô´õ'})">TXT</button>
-			<button @click="fnSelectEvent({artist: '¸£¼¼¶óÇË'})">LE SSERAFIM</button>
-			<button @click="fnSelectEvent({artist: '¼¼ºìÆ¾'})">SEVENTEEN</button>
-			<button @click="fnSelectEvent({artist: 'ÇÁ·Î¹Ì½º³ªÀÎ'})">fromis_9</button>
-			<button @click="fnSelectEvent({artist: '¿£ÇÏÀÌÇÂ'})">ENHYPEN</button>
-			<button @click="fnSelectEvent({artist: 'ÁöÄÚ'})">ZICO</button>
-			<button @click="fnSelectEvent({artist: 'º¸ÀÌ³Ø½ºÆ®µµ¾î'})">BOYNEXTDOOR</button>
-			<button @click="fnSelectEvent({artist: '´ºÁø½º'})">NewJeans</button>
+			<button @click="fnSelectEvent({artist: 'ë°©íƒ„ì†Œë…„ë‹¨'})">BTS</button>
+			<button @click="fnSelectEvent({artist: 'íˆ¬ëª¨ë¡œìš°ë°”ì´íˆ¬ê²Œë”'})">TXT</button>
+			<button @click="fnSelectEvent({artist: 'ë¥´ì„¸ë¼í•Œ'})">LE SSERAFIM</button>
+			<button @click="fnSelectEvent({artist: 'ì„¸ë¸í‹´'})">SEVENTEEN</button>
+			<button @click="fnSelectEvent({artist: 'í”„ë¡œë¯¸ìŠ¤ë‚˜ì¸'})">fromis_9</button>
+			<button @click="fnSelectEvent({artist: 'ì—”í•˜ì´í”ˆ'})">ENHYPEN</button>
+			<button @click="fnSelectEvent({artist: 'ì§€ì½”'})">ZICO</button>
+			<button @click="fnSelectEvent({artist: 'ë³´ì´ë„¥ìŠ¤íŠ¸ë„ì–´'})">BOYNEXTDOOR</button>
+			<button @click="fnSelectEvent({artist: 'ë‰´ì§„ìŠ¤'})">NewJeans</button>
 		</div>
 	<hr>
 	<div id="wrapper">

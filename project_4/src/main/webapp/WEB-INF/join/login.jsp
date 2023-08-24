@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link href="../css/login.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 </style>
@@ -29,11 +29,11 @@
 				</div>
 				<div class="bottomArea">
 					<div class="findArea">
-						<a href="findId.do">¾ÆÀÌµğ Ã£±â</a>
-						<a href="nonOrder.do">ºñÈ¸¿ø ÁÖ¹®Á¶È¸</a>
-						<a href="findPw.do">ºñ¹Ğ¹øÈ£ Ã£±â</a>
+						<a href="findId.do">ì•„ì´ë”” ì°¾ê¸°</a>
+						<a href="nonOrder.do">ë¹„íšŒì› ì£¼ë¬¸ì¡°íšŒ</a>
+						<a href="findPw.do">ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a>
 					</div>
-					<div><span>¼Ò¼Ó»ç ÆäÀÌÁö</span></div>					
+					<div><span>ì†Œì†ì‚¬ í˜ì´ì§€</span></div>					
 				</div>
 				<div class="imgboxArea">
 					<a href="https://www.smtown.com/"><img src="../img/SM.png"></a>
@@ -70,7 +70,7 @@ var app = new Vue({
                 	console.log(data);
                 	if(data.success){
                 		if(self.uId === "admin"){
-                			alert(self.uId+"´Ô È¯¿µÇÕ´Ï´Ù!");
+                			alert(self.uId+"ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤!");
                 		 	$.pageChange("/staff/login.do", {uId : self.uId}); 
                 		}else{
 	                		alert(data.message);

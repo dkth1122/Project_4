@@ -1,27 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="app">
-	<h1>¾ÆÆ¼½ºÆ® °Ô½ÃÆÇ ¸ÞÀÎ ÆäÀÌÁöÁö·Õ~</h1>
-	   <button @click="fnMove('my')">¸¶ÀÌÆäÀÌÁö</button>
-	<div>¸â¹ö½Ê Å×ÀÌºí Á¶ÀÎÇØ¼­ ±× ¾ÆÆ¼½ºÆ®¸¸ ¹öÆ° º¸ÀÌµµ·Ï~!</div>
-		<button @click="fnMove('b')">¹æÅº¼Ò³â´Ü</button>
-		<button @click="fnMove('t')">Åõ¸ð·Î¿ì¹ÙÀÌÅõ°Ô´õ</button>
-		<button @click="fnMove('e')">¿£ÇÏÀÌÇÂ</button>
-		<button @click="fnMove('s')">¼¼ºìÆ¾</button>
-		<button @click="fnMove('f')">ÇÁ·Î¹Ì½º³ªÀÎ</button>
-		<button @click="fnMove('l')">¸£¼¼¶óÇË</button>
-		<button @click="fnMove('n')">´ºÁø½º</button>
-		<button @click="fnMove('d')">º¸ÀÌ³Ø½ºÆ®µµ¾î</button>
-		<button @click="fnMove('z')">ÁöÄÚ</button>
+	<h1>ì•„í‹°ìŠ¤íŠ¸ ê²Œì‹œíŒ ë©”ì¸ íŽ˜ì´ì§€ì§€ë¡±~</h1>
+	   <button @click="fnMove('my')">ë§ˆì´íŽ˜ì´ì§€</button>
+	<div>ë©¤ë²„ì‹­ í…Œì´ë¸” ì¡°ì¸í•´ì„œ ê·¸ ì•„í‹°ìŠ¤íŠ¸ë§Œ ë²„íŠ¼ ë³´ì´ë„ë¡~!</div>
+		<button @click="fnMove('b')">ë°©íƒ„ì†Œë…„ë‹¨</button>
+		<button @click="fnMove('t')">íˆ¬ëª¨ë¡œìš°ë°”ì´íˆ¬ê²Œë”</button>
+		<button @click="fnMove('e')">ì—”í•˜ì´í”ˆ</button>
+		<button @click="fnMove('s')">ì„¸ë¸í‹´</button>
+		<button @click="fnMove('f')">í”„ë¡œë¯¸ìŠ¤ë‚˜ì¸</button>
+		<button @click="fnMove('l')">ë¥´ì„¸ë¼í•Œ</button>
+		<button @click="fnMove('n')">ë‰´ì§„ìŠ¤</button>
+		<button @click="fnMove('d')">ë³´ì´ë„¥ìŠ¤íŠ¸ë„ì–´</button>
+		<button @click="fnMove('z')">ì§€ì½”</button>
 	</div>
 </body>
 </html>

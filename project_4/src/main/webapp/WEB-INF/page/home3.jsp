@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <%@ include file="header.jsp" %>
 <style>
-<!-- 슬라이드 영역 -->
+<!-- �щ�쇱�대�� ���� -->
 
 
 .slider {
@@ -28,7 +28,7 @@ ul.imgs {
 	padding: 0;
 	margin: 0;
 }
-/* 슬라이더 위치 조정 */
+/* �щ�쇱�대�� ��移� 議곗�� */
 ul.imgs li {
 	position: absolute;
 	top: 100%;
@@ -160,7 +160,7 @@ nav {
 
 /*SECT1*/
 
-/* 슬라이드 배경색 */
+/* �щ�쇱�대�� 諛곌꼍�� */
 .sect1 {
 position: absolute;
 top: 100%;
@@ -172,7 +172,7 @@ transform: translate(50%, -50%);
 	color: #000;
 }
 
-/* 앨범 커버 */
+/* �⑤� 而ㅻ� */
 .ostimg {
 position: absolute;
 top: 550%;
@@ -466,7 +466,7 @@ footer p {
 }
 
 <!--
-슬라이드 스타일  -->section {
+�щ�쇱�대�� �ㅽ����  -->section {
 	position: relative;
 	width: 1200px;
 	height: 300px;
@@ -508,7 +508,7 @@ img.imgslide3 {
 
 <body>
 
-	<!-- !!!!!!!!!!!!!!!!!!!!!    슬라이더 !!!!!!!!!!!!!!!!!! -->
+	<!-- !!!!!!!!!!!!!!!!!!!!!    �щ�쇱�대�� !!!!!!!!!!!!!!!!!! -->
 		<div class="slider">
 		<input type="radio" name="slide" id="slide1" checked=""> <input
 			type="radio" name="slide" id="slide2"> <input type="radio"
@@ -529,7 +529,7 @@ img.imgslide3 {
 </div>
 		
 
-		<!-- !!!!!!!!!!!!!!!!!!!!  뉴 아이템 !!!!!!!!!!!!!!!!!!!!!!! -->
+		<!-- !!!!!!!!!!!!!!!!!!!!  �� ���댄�� !!!!!!!!!!!!!!!!!!!!!!! -->
 		<section class="sect2">
 			<h2><a href="newitem.do">NEW ITEM</a></h2>
 			<div class="Sbox1">
@@ -537,9 +537,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">아티스트</li>
-					<li>제품 명</li>
-					<li>가격</li>
+					<li class="sname">���곗�ㅽ��</li>
+					<li>���� 紐�</li>
+					<li>媛�寃�</li>
 				</ul>
 			</div>
 
@@ -549,9 +549,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">아티스트</li>
-					<li>제품 명</li>
-					<li>가격</li>
+					<li class="sname">���곗�ㅽ��</li>
+					<li>���� 紐�</li>
+					<li>媛�寃�</li>
 				</ul>
 			</div>
 
@@ -560,9 +560,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">아티스트</li>
-					<li>제품 명</li>
-					<li>가격</li>
+					<li class="sname">���곗�ㅽ��</li>
+					<li>���� 紐�</li>
+					<li>媛�寃�</li>
 				</ul>
 			</div>
 
@@ -571,9 +571,9 @@ img.imgslide3 {
 					<a href="#">More</a>
 				</p>
 				<ul class="sub">
-					<li class="sname">아티스트</li>
-					<li>제품 명</li>
-					<li>가격</li>
+					<li class="sname">���곗�ㅽ��</li>
+					<li>���� 紐�</li>
+					<li>媛�寃�</li>
 				</ul>
 			</div>
 
@@ -583,23 +583,23 @@ img.imgslide3 {
 		</section>
 		<section class="sect3">
 			<h2>STORE</h2>
-			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 스토어!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! �ㅽ����!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
 			<ul class="sale">
 				<li><a href="#"><img src="img/homeimg/sale1.jpg" alt="" />
 						<p>
-							아이템1 - 이름<br>8,000원</a></li>
+							���댄��1 - �대�<br>8,000��</a></li>
 				<li><a href="#"><img src="img/homeimg/sale2.jpg" alt="" />
 						<p>
-							아이템2 - 이름<br>8,000원
+							���댄��2 - �대�<br>8,000��
 						</p></a></li>
 				<li><a href="#"><img src="img/homeimg/sale3.jpg" alt="" />
 						<p>
-							아이템3 - 이름<br>7,000원
+							���댄��3 - �대�<br>7,000��
 						</p></a></li>
 				<li><a href="#"><img src="img/homeimg/sale4.jpg" alt="" />
 						<p>
-							아이템4 - 이름<br>5,500원</a></li>
+							���댄��4 - �대�<br>5,500��</a></li>
 			</ul>
 
 		</section>
@@ -622,10 +622,10 @@ img.imgslide3 {
 		</section>
 		<footer>
 			<p>
-				<br> 회사명 (주)VeryPeri Corp. 대표자명 윤나연
-				 <br>주소 인천광역시 부평구 부평동 534-48 7층
-				 대표번호 4444-4444 / 4zomotchamchi@veryperi.com 
-				<br> VeriPeri의 모든 콘텐츠는 저작권의 보호를 받고 있습니다
+				<br> ���щ� (二�)VeryPeri Corp. ������紐� �ㅻ����
+				 <br>二쇱�� �몄�愿����� 遺���援� 遺����� 534-48 7痢�
+				 ����踰��� 4444-4444 / 4zomotchamchi@veryperi.com 
+				<br> VeriPeri�� 紐⑤�� 肄���痢��� ����沅��� 蹂댄�몃�� 諛�怨� ���듬����
 			</p>
 			<img src="img/homeimg/footerlogo.png" alt="" />
 		</footer>
@@ -633,24 +633,24 @@ img.imgslide3 {
 </html>
 <script>
 
-//슬라이드를 수동으로 변경하는 함수
+//�щ�쇱�대��瑜� �����쇰� 蹂�寃쏀���� �⑥��
 
 
-// 슬라이드를 자동으로 변경하는 함수
+// �щ�쇱�대��瑜� �����쇰� 蹂�寃쏀���� �⑥��
 function changeSlide() {
   var currentSlide = document.querySelector('input[type="radio"]:checked');
   var nextSlide = currentSlide.nextElementSibling || document.querySelector('input[type="radio"]:first-child');
   nextSlide.checked = true;
 
-  // 만약 5번째 슬라이드일 경우, 1번째 슬라이드로 자동으로 변경
+  // 留��� 5踰�吏� �щ�쇱�대���� 寃쎌��, 1踰�吏� �щ�쇱�대��濡� �����쇰� 蹂�寃�
   if (currentSlide.id === 'slide5') {
     document.querySelector('#slide1').checked = true;
   }
 }
 
-// 페이지가 로드되면 슬라이더 타이머를 시작
+// ���댁�媛� 濡�����硫� �щ�쇱�대�� ���대㉧瑜� ����
 document.addEventListener('DOMContentLoaded', function() {
-  setInterval(changeSlide, 3000); // 3000 밀리초 = 3초
+  setInterval(changeSlide, 3000); // 3000 諛�由ъ� = 3珥�
 });
 	
 </script>

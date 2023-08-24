@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <%@ include file="../Product/sexyheader.jsp" %>
 <%@ include file="footer.jsp" %>
 <style>
@@ -52,7 +52,7 @@ a {
 .ex2 a:hover {
     text-shadow: 0 0 5px #ff0;
 }
-/*  �׿»���ȿ�� �� */
+/*  占쌓온삼옙占쏙옙효占쏙옙 占쏙옙 */
 
 
 
@@ -71,7 +71,7 @@ a {
 .dot {
     width: 12px;
     height: 12px;
-    margin: 10px 5px; /* ���� ��ġ�� ������ �� ������ ù ��° �� ���� */
+    margin: 10px 5px; /* 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 첫 占쏙옙째 占쏙옙 占쏙옙占쏙옙 */
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 
@@ -22,31 +22,31 @@
 <body>
 <div id="app">
 
-	<div>Á¦¸ñ : <input v-model="info.aTitle"></div>
-	<div>¾ÆÀÌµğ : <input v-model="info.aContent"></div>
+	<div>ì œëª© : <input v-model="info.aTitle"></div>
+	<div>ì•„ì´ë”” : <input v-model="info.aContent"></div>
 	
-	<div> Á¾·ù : <select v-model="info.aKind">
-		<option value="°øÁö">°øÁö</option>
-		<option value="ÀÌº¥Æ®">ÀÌº¥Æ®</option>
+	<div> ì¢…ë¥˜ : <select v-model="info.aKind">
+		<option value="ê³µì§€">ê³µì§€</option>
+		<option value="ì´ë²¤íŠ¸">ì´ë²¤íŠ¸</option>
 	</select></div>
-	<div> ¾ÆÆ¼½ºÆ® : <select v-model="info.artist">
-		<option value="°øÅë">°øÅë</option>
-		<option value="¹æÅº¼Ò³â´Ü">¹æÅº¼Ò³â´Ü</option>
-		<option value="Åõ¸ğ·Î¿ì¹ÙÀÌÅõ°Ô´õ">Åõ¸ğ·Î¿ì¹ÙÀÌÅõ°Ô´õ</option>
-		<option value="¿£ÇÏÀÌÇÂ">¿£ÇÏÀÌÇÂ</option>
-		<option value="¼¼ºìÆ¾">¼¼ºìÆ¾</option>
-		<option value="ÇÁ·Î¹Ì½º³ªÀÎ">ÇÁ·Î¹Ì½º³ªÀÎ</option>
-		<option value="¸£¼¼¶óÇË">¸£¼¼¶óÇË</option>
-		<option value="´ºÁø½º">´ºÁø½º</option>
-		<option value="º¸ÀÌ³Ø½ºÆ®µµ¾î">º¸ÀÌ³Ø½ºÆ®µµ¾î</option>
-		<option value="ÁöÄÚ">ÁöÄÚ</option>
+	<div> ì•„í‹°ìŠ¤íŠ¸ : <select v-model="info.artist">
+		<option value="ê³µí†µ">ê³µí†µ</option>
+		<option value="ë°©íƒ„ì†Œë…„ë‹¨">ë°©íƒ„ì†Œë…„ë‹¨</option>
+		<option value="íˆ¬ëª¨ë¡œìš°ë°”ì´íˆ¬ê²Œë”">íˆ¬ëª¨ë¡œìš°ë°”ì´íˆ¬ê²Œë”</option>
+		<option value="ì—”í•˜ì´í”ˆ">ì—”í•˜ì´í”ˆ</option>
+		<option value="ì„¸ë¸í‹´">ì„¸ë¸í‹´</option>
+		<option value="í”„ë¡œë¯¸ìŠ¤ë‚˜ì¸">í”„ë¡œë¯¸ìŠ¤ë‚˜ì¸</option>
+		<option value="ë¥´ì„¸ë¼í•Œ">ë¥´ì„¸ë¼í•Œ</option>
+		<option value="ë‰´ì§„ìŠ¤">ë‰´ì§„ìŠ¤</option>
+		<option value="ë³´ì´ë„¥ìŠ¤íŠ¸ë„ì–´">ë³´ì´ë„¥ìŠ¤íŠ¸ë„ì–´</option>
+		<option value="ì§€ì½”">ì§€ì½”</option>
 	</select></div>
 	
 	
 
 
 
-	<button @click="fnABoardEdit">¼öÁ¤</button>
+	<button @click="fnABoardEdit">ìˆ˜ì •</button>
 
 	
 </div>
@@ -82,25 +82,25 @@ var app = new Vue({
         	var self = this;
             var nparmap = self.info;
             if(self.info.aTitle == "" || self.info.aTitle == undefined){
-		        alert("Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		        alert("ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
 		        return;
 		    } else if(self.info.aTitle.length > 50){
-		        alert("Á¦¸ñÀº ÃÖ´ë 50ÀÚ±îÁö ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.");
+		        alert("ì œëª©ì€ ìµœëŒ€ 50ìê¹Œì§€ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 		        return;
 		    }
 		    if(self.info.aContent == "" || self.info.aContent == undefined){
-		        alert("³»¿ëÀº ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		        alert("ë‚´ìš©ì€ ì…ë ¥í•´ì£¼ì„¸ìš”");
 		        return;
 		    } else if(self.info.aContent.length > 3000){
-		        alert("³»¿ëÀº ÃÖ´ë 3000ÀÚ±îÁö ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.");
+		        alert("ë‚´ìš©ì€ ìµœëŒ€ 3000ìê¹Œì§€ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 		        return;
 		    }
 		    if(self.info.aKind == "" || self.info.aKind == undefined){
-		        alert("Á¾·ù¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä");
+		        alert("ì¢…ë¥˜ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”");
 		        return;
 		    }
 		    if(self.info.artist == "" || self.info.artist == undefined){
-		        alert("¾ÆÆ¼½ºÆ®¸¦ ¼±ÅÃ ÇØÁÖ¼¼¿ä");
+		        alert("ì•„í‹°ìŠ¤íŠ¸ë¥¼ ì„ íƒ í•´ì£¼ì„¸ìš”");
 		        return;
 		    }
             $.ajax({
@@ -109,9 +109,9 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("¼öÁ¤µÇ¾ú½À´Ï´Ù.");
-                	window.close(); // ÆË¾÷Ã¢ ´İ±â
- 	        	    window.opener.location.reload(); // ºÎ¸ğÃ¢ »õ·Î°íÄ§
+                	alert("ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+                	window.close(); // íŒì—…ì°½ ë‹«ê¸°
+ 	        	    window.opener.location.reload(); // ë¶€ëª¨ì°½ ìƒˆë¡œê³ ì¹¨
                 }
             }); 
         }

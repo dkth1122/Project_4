@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <% 
 	//request.setCharacterEncoding("UTF-8");  //한글깨지면 주석제거
-	//request.setCharacterEncoding("EUC-KR");  //해당시스템의 인코딩타입이 EUC-KR일경우에
+	//request.setCharacterEncoding("UTF-8");  //해당시스템의 인코딩타입이 UTF-8일경우에
 	String inputYn = request.getParameter("inputYn"); 
 	String roadFullAddr = request.getParameter("roadFullAddr"); 
 	String roadAddrPart1 = request.getParameter("roadAddrPart1"); 
@@ -72,11 +72,11 @@ function init(){
 		<input type="hidden" id="confmKey" name="confmKey" value=""/>
 		<input type="hidden" id="returnUrl" name="returnUrl" value=""/>
 		<input type="hidden" id="resultType" name="resultType" value=""/>
-		<!-- 해당시스템의 인코딩타입이 EUC-KR일경우에만 추가 START-->
+		<!-- 해당시스템의 인코딩타입이 UTF-8일경우에만 추가 START-->
 		<!-- 
-		<input type="hidden" id="encodingType" name="encodingType" value="EUC-KR"/>
+		<input type="hidden" id="encodingType" name="encodingType" value="UTF-8"/>
 		 -->
-		<!-- 해당시스템의 인코딩타입이 EUC-KR일경우에만 추가 END-->
+		<!-- 해당시스템의 인코딩타입이 UTF-8일경우에만 추가 END-->
 	</form>
 </body>
 </html>

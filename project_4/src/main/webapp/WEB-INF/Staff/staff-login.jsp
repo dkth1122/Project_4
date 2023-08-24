@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 	body {
@@ -53,13 +53,13 @@
 <body>
 <div id="app">
 
-	<h1>°ü¸®ÀÚ ÆäÀÌÁöÀÔ´Ï´Ù.</h1>
-	<h2>¼ºÇÔ°ú »ç¹øÀ» ÀÔ·Â ÈÄ Á¢¼Ó ºÎÅ¹µå¸³´Ï´Ù.</h2>
+	<h1>ê´€ë¦¬ì í˜ì´ì§€ì…ë‹ˆë‹¤.</h1>
+	<h2>ì„±í•¨ê³¼ ì‚¬ë²ˆì„ ì…ë ¥ í›„ ì ‘ì† ë¶€íƒë“œë¦½ë‹ˆë‹¤.</h2>
 	<div class="box1">
 		<form @submit.prevent="fnStaffLogin">
-		    <div><input type="text" placeholder="ÀÌ¸§" v-model="staffName"></div>
-		    <div><input type="text" placeholder="»ç¹ø" v-model="staffNo"></div>
-		    <div><button type="submit">·Î±×ÀÎ</button></div>
+		    <div><input type="text" placeholder="ì´ë¦„" v-model="staffName"></div>
+		    <div><input type="text" placeholder="ì‚¬ë²ˆ" v-model="staffNo"></div>
+		    <div><button type="submit">ë¡œê·¸ì¸</button></div>
 	    </form>
     </div>
 </div>
@@ -100,7 +100,7 @@ var app = new Vue({
                 		alert(data.message);
                 		location.href="../staff/home.do";
                 	} else {
-                		alert("¼ºÇÔ È¤Àº »ç¹øÀ» È®ÀÎÇØÁÖ¼¼¿ä");
+                		alert("ì„±í•¨ í˜¹ì€ ì‚¬ë²ˆì„ í™•ì¸í•´ì£¼ì„¸ìš”");
                 	}
                 }
             }); 

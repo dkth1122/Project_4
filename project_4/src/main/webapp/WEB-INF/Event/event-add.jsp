@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 	body {
@@ -16,25 +16,25 @@
 <body>
 <div id="app">
 
-	<div><input type="text" placeholder="ÀÌº¥Æ® ÄÚµå" v-model="info.evtNo"></div>
-	<div><input type="text" placeholder="ÀÌº¥Æ® ÀÌ¸§" v-model="info.evtName"></div>
+	<div><input type="text" placeholder="ì´ë²¤íŠ¸ ì½”ë“œ" v-model="info.evtNo"></div>
+	<div><input type="text" placeholder="ì´ë²¤íŠ¸ ì´ë¦„" v-model="info.evtName"></div>
 	<div>
-		¾ÆÆ¼½ºÆ® : 
+		ì•„í‹°ìŠ¤íŠ¸ : 
 	<select v-model="info.artist">
-		<option value="BTS">¹æÅº¼Ò³â´Ü</option>
-		<option value="TXT">Åõ¸ğ·Î¿ì¹ÙÀÌÅõ°Ô´õ</option>
-		<option value="EHP">¿£ÇÏÀÌÇÂ</option>
-		<option value="SVT">¼¼ºìÆ¾</option>
-		<option value="FMN">ÇÁ·Î¹Ì½º³ªÀÎ</option>
-		<option value="LSF">¸£¼¼¶óÇË</option>
-		<option value="NJS">´ºÁø½º</option>
-		<option value="BND">º¸ÀÌ³Ø½ºÆ®µµ¾î</option>
-		<option value="ZIC">ÁöÄÚ</option>
+		<option value="BTS">ë°©íƒ„ì†Œë…„ë‹¨</option>
+		<option value="TXT">íˆ¬ëª¨ë¡œìš°ë°”ì´íˆ¬ê²Œë”</option>
+		<option value="EHP">ì—”í•˜ì´í”ˆ</option>
+		<option value="SVT">ì„¸ë¸í‹´</option>
+		<option value="FMN">í”„ë¡œë¯¸ìŠ¤ë‚˜ì¸</option>
+		<option value="LSF">ë¥´ì„¸ë¼í•Œ</option>
+		<option value="NJS">ë‰´ì§„ìŠ¤</option>
+		<option value="BND">ë³´ì´ë„¥ìŠ¤íŠ¸ë„ì–´</option>
+		<option value="ZIC">ì§€ì½”</option>
 	</select>
 	</div>
-	<div><input type="text" placeholder="ÀÌº¥Æ® »óÇ° ÄÚµå" v-model="info.pNo"></div>
+	<div><input type="text" placeholder="ì´ë²¤íŠ¸ ìƒí’ˆ ì½”ë“œ" v-model="info.pNo"></div>
 	
-	<div><button @click="fnEventAdd(info)">ÀÌº¥Æ® Ãß°¡</button></div>
+	<div><button @click="fnEventAdd(info)">ì´ë²¤íŠ¸ ì¶”ê°€</button></div>
 
 	
 </div>
@@ -57,19 +57,19 @@ var app = new Vue({
 			  var nparmap = self.info;
 			  nparmap.evtNo = (nparmap.artist + nparmap.evtNo);
 			  if(self.info.evtNo.length != 7){
-			        alert("ÀÌº¥Æ®ÄÚµå¸¦ È®ÀÎÇÏ½Ã¿À");
+			        alert("ì´ë²¤íŠ¸ì½”ë“œë¥¼ í™•ì¸í•˜ì‹œì˜¤");
 			        return;
 			    }
 			  if(self.info.evtName == "" || self.info.evtName == undefined){
-			        alert("ÀÌº¥Æ® ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			        alert("ì´ë²¤íŠ¸ ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			        return;
 			    }
 			  if(self.info.artist == "" || self.info.artist == undefined){
-					alert("¾ÆÆ¼½ºÆ®¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä");
+					alert("ì•„í‹°ìŠ¤íŠ¸ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”");
 					return;
 				}
 			  if(self.info.pNo == "" || self.info.pNo == undefined){
-					alert("»óÇ° ÄÚµå¸¦ ÀÔ·Â ÇØÁÖ¼¼¿ä");
+					alert("ìƒí’ˆ ì½”ë“œë¥¼ ì…ë ¥ í•´ì£¼ì„¸ìš”");
 					return;
 				}
 			  $.ajax({
@@ -78,9 +78,9 @@ var app = new Vue({
 			    type : "POST",
 			    data : nparmap,
 			    success : function(data) {
-			      alert("ÀÌº¥Æ®°¡ µî·ÏµÇ¾ú½À´Ï´Ù.");
-	        	  window.close(); // ÆË¾÷Ã¢ ´İ±â
-	        	  window.opener.location.reload(); // ºÎ¸ğÃ¢ »õ·Î°íÄ§
+			      alert("ì´ë²¤íŠ¸ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
+	        	  window.close(); // íŒì—…ì°½ ë‹«ê¸°
+	        	  window.opener.location.reload(); // ë¶€ëª¨ì°½ ìƒˆë¡œê³ ì¹¨
 			    }
 			  });
 			}    	

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <%@ include file="header.jsp" %>
 <style>
 	th, td {
@@ -45,16 +45,16 @@ var app = new Vue({
         }
     	, fnSelect : function(index){
     		var self = this;
-    		self.list[index].p_name[] = "알수없음";
+    		self.list[index].p_name[] = "��������";
     	}
-    }   /* methods 끝 */
+    }   /* methods �� */
     , created: function () {
     	var self = this;
     	self.fnGetList();
 	}
 });
 </script>
-​
+��
 
 
 

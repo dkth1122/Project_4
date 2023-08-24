@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <link href="../css/mypag.css" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
- <meta charset="EUC-KR">
+ <meta charset="UTF-8">
   <style type="text/css">
   	table{
   		width: 910px;
@@ -87,7 +87,7 @@
                          
                          <div class="details" >
                          
-                            <div>±³È¯/È¯ºÒ</div>
+                            <div>êµí™˜/í™˜ë¶ˆ</div>
 									<div>
 										<span v-if="refund != 0">{{refund}} /</span>
 										<span v-else>0 /</span>
@@ -98,7 +98,7 @@
                             
                          </div>
                          <div class="details" >
-                           			<div>Æ÷ÀÎÆ®</div>
+                           			<div>í¬ì¸íŠ¸</div>
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
                          </div>
@@ -113,32 +113,32 @@
                               <div class="categories"> MY PAGE</div>
                               <div style="text-align: left;">
                               <ul style="padding: 0px;">
-                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
+                                 <li class="ulh1">ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
-                                       <li><a href="/cart/cartList.do">Àå¹Ù±¸´Ï</a></li>
-                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
-                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
+                                       <li><a href="/mypag/myPagOrderdetails.do">ì£¼ë¬¸ë‚´ì—­</a></li>
+                                       <li><a href="/cart/cartList.do">ì¥ë°”êµ¬ë‹ˆ</a></li>
+                                       <li><a href="/mypag/myInformation.do">ì°œ ëª©ë¡</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">í¬ì¸íŠ¸</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
                               <ul style="padding: 0px;">
-                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
+                                 <li class="ulh1">íšŒì› ì •ë³´</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
-                                       <li><a href="/mypag/infoAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
+                                       <li><a href="/mypag/infoUpdate.do">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
+                                       <li><a href="/mypag/infoAddr.do">ë°°ì†¡ì£¼ì†Œë¡</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
                                <ul style="padding: 0px;">
-                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
+                                 <li class="ulh1">ê³ ê°ì„¼í„°</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myInquiry.do">1:1 ¹®ÀÇ</a></li>
-                                       <li><a @click="fnNotice" href="#javascript:;">°øÁö»çÇ×</a></li>
-                                       <li><a @click="fnUseGuide" href="#javascript:;">ÀÌ¿ë¾È³»</a></li>
+                                       <li><a href="/mypag/myInquiry.do">1:1 ë¬¸ì˜</a></li>
+                                       <li><a @click="fnNotice" href="#javascript:;">ê³µì§€ì‚¬í•­</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">ì´ìš©ì•ˆë‚´</a></li>
                                        <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                                              
                                     </ul>   
                                  </li>  
@@ -150,16 +150,16 @@
                            
                            <div id="right">
                            <div class="View">
-                              <div class="lowerBox"> ¹è¼Û ÁÖ¼Ò·Ï °ü¸® </div>
+                              <div class="lowerBox"> ë°°ì†¡ ì£¼ì†Œë¡ ê´€ë¦¬ </div>
                                  <div> 
                                  	<table>
                                  		<tr>
-                                 			<th>¡¡</th>
+                                 			<th>ã€€</th>
                                  			<th>No.</th>
-                                 			<th>¹è¼ÛÁö</th>
-                                 			<th>ÁÖ¼Ò</th>
-                                 			<th>¿¬¶ôÃ³</th>
-                                 			<th>¹è¼ÛÁö °ü¸®</th>
+                                 			<th>ë°°ì†¡ì§€</th>
+                                 			<th>ì£¼ì†Œ</th>
+                                 			<th>ì—°ë½ì²˜</th>
+                                 			<th>ë°°ì†¡ì§€ ê´€ë¦¬</th>
                                  		</tr>
                                  		<tr v-for = "item in info">
                                  			<td><input type="radio" v-model="duNo" :value="item.duNo"></td>
@@ -167,18 +167,18 @@
                                  			<td>{{item.uDname}}</td>
                                  			<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
                                  			<td>{{item.uDphone}}</td>
-                                 			<td><button @click="editAddr(item)" id="editbut"><a href="http://localhost:8082/mypag/editAddr.do"> ¼öÁ¤</a></button></td>
+                                 			<td><button @click="editAddr(item)" id="editbut"><a href="http://localhost:8082/mypag/editAddr.do"> ìˆ˜ì •</a></button></td>
                                  		</tr>
                                  	</table>
                                  	<div class="tablebutton">
                                  		<div class="button">
-	                                 		<button id="eid" @click="removeAddr(duNo)">¼±ÅÃ ÁÖ¼Ò·Ï »èÁ¦</button>
-	                                 		<button id="remo" @click="addAddr">¹è¼ÛÁö µî·Ï</button>
+	                                 		<button id="eid" @click="removeAddr(duNo)">ì„ íƒ ì£¼ì†Œë¡ ì‚­ì œ</button>
+	                                 		<button id="remo" @click="addAddr">ë°°ì†¡ì§€ ë“±ë¡</button>
                                  		</div>
                                  	</div>
                                  </div>
-                                <div class="lowerBox l"> ¹è¼Û ÁÖ¼Ò·Ï À¯ÀÇ»çÇ× </div>
-                               <div class="warningm">  <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>¹è¼Û ÁÖ¼Ò·ÏÀº ÃÖ´ë 10°³±îÁö µî·ÏÇÒ ¼ö ÀÖÀ¸¸ç, º°µµ·Î µî·ÏÇÏÁö ¾ÊÀ» °æ¿ì ÃÖ±Ù ¹è¼Û ÁÖ¼Ò·Ï ±âÁØÀ¸·Î ÀÚµ¿ ¾÷µ¥ÀÌÆ® µË´Ï´Ù.</span>
+                                <div class="lowerBox l"> ë°°ì†¡ ì£¼ì†Œë¡ ìœ ì˜ì‚¬í•­ </div>
+                               <div class="warningm">  <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>ë°°ì†¡ ì£¼ì†Œë¡ì€ ìµœëŒ€ 10ê°œê¹Œì§€ ë“±ë¡í•  ìˆ˜ ìˆìœ¼ë©°, ë³„ë„ë¡œ ë“±ë¡í•˜ì§€ ì•Šì„ ê²½ìš° ìµœê·¼ ë°°ì†¡ ì£¼ì†Œë¡ ê¸°ì¤€ìœ¼ë¡œ ìë™ ì—…ë°ì´íŠ¸ ë©ë‹ˆë‹¤.</span>
                       		  </div>
                            </div>
                    
@@ -207,7 +207,7 @@ var app = new Vue({
        
     },
     methods: {
-    	fnGetInfo : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ğ³×ÀÓ)
+    	fnGetInfo : function() { // ì‚¬ìš©ì ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸° ì´ë¦„ , ë³„ëª… (ë‹‰ë„¤ì„)
 			var self = this;
 			var nparmap = {uId : self.uId};				
 			$.ajax({
@@ -231,7 +231,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.list; //»ç¿ëÀÚ   
+                   self.info = data.list; //ì‚¬ìš©ì   
                 }
             }); 
         },
@@ -257,7 +257,7 @@ var app = new Vue({
 	    },
         removeAddr : function(duNo){
         	var self = this;
-        	if(!confirm("¼±ÅÃÁÖ¼Ò¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+        	if(!confirm("ì„ íƒì£¼ì†Œë¥¼ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
         		return;
         	}
             var nparmap = {duNo : self.duNo};
@@ -268,12 +268,12 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("ÇØ´çÁÖ¼Ò°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+                	alert("í•´ë‹¹ì£¼ì†Œê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
                 	self.fnGetList();
                 }
             });
         },
-        fnPoint : function(){ // Æ÷ÀÎÆ® ³»¿ª È®ÀÎ
+        fnPoint : function(){ // í¬ì¸íŠ¸ ë‚´ì—­ í™•ì¸
 	        var self = this;
 	        var nparmap = {uId : self.uId};
 	        $.ajax({
@@ -288,17 +288,17 @@ var app = new Vue({
 	            	for(var i=0; i<datalist.length; i++){
 	            		x += datalist[i].point;	
 	            	}
-	            	self.maxpoint = x; // »ç¿ë°¡´É Æ÷ÀÎÆ® 
+	            	self.maxpoint = x; // ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸ 
 	            
 	            }
 	        }); 
 	    },
-	    fnNotice : function (){ // °øÁö 
+	    fnNotice : function (){ // ê³µì§€ 
 			var self = this;
     		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
     		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
 		},
-		fnUseGuide : function (){ //ÀÌ¿ë¾È³»
+		fnUseGuide : function (){ //ì´ìš©ì•ˆë‚´
 			var self = this;
     		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
     		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
@@ -308,7 +308,7 @@ var app = new Vue({
     		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
     		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
 		},
-		/* »ó´Ü ±¸¸Å³»¿ª Ä«¿îÆ® ¼ıÀÚ */
+		/* ìƒë‹¨ êµ¬ë§¤ë‚´ì—­ ì¹´ìš´íŠ¸ ìˆ«ì */
 		fnCntList : function() {
 			var self = this;
 			var nparmap = {uId : self.uId};

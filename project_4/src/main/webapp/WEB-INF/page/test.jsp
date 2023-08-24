@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 /*SECT1*/
 
-/* ½½¶óÀÌµå ¹è°æ»ö */
+/* ìŠ¬ë¼ì´ë“œ ë°°ê²½ìƒ‰ */
 .sect1 {
 position: absolute;
 top: 100%;
@@ -20,7 +20,7 @@ transform: translate(50%, -50%);
 	color: #000;
 }
 
-/* ¾Ù¹ü Ä¿¹ö */
+/* ì•¨ë²” ì»¤ë²„ */
 .ostimg {
 position: absolute;
 top: 550%;

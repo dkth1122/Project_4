@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
@@ -14,7 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <style>
 #header{
 	margin: 0px;
@@ -70,13 +70,13 @@ nav{
     overflow: hidden;
     transition: all 0.9s;
     position: relative;
-    background: rgba(245, 235, 236, 0); /* ¿ÏÀüÈ÷ Åõ¸íÇÑ ¹è°æ »ö»ó ¼³Á¤ */
+    background: rgba(245, 235, 236, 0); /* ì™„ì „íˆ íˆ¬ëª…í•œ ë°°ê²½ ìƒ‰ìƒ ì„¤ì • */
     margin: 0px;
     }
     
 .navWrap:hover {
-    height:650px; /* È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Ì·ï¿½ È®ï¿½ï¿½ */
-    background: rgba(245, 235, 236); /* È£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    height:650px; /* í™”å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì²´ å ì™ì˜™å ì‹±ë¤„ì˜™ í™•å ì™ì˜™ */
+    background: rgba(245, 235, 236); /* í˜¸å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì‹¹ê³¤ì˜™ å ì™ì˜™å ì™ì˜™ */
     }
 			
 nav .menu {
@@ -284,7 +284,7 @@ var app = new Vue({
             var nparmap = {};                   
 		},
 		handleScroll: function() {
-            // ½ºÅ©·Ñ À§Ä¡¿¡ µû¶ó ¹İÅõ¸í Å¬·¡½º¸¦ Ãß°¡ÇÏ°Å³ª Á¦°ÅÇÕ´Ï´Ù
+            // ìŠ¤í¬ë¡¤ ìœ„ì¹˜ì— ë”°ë¼ ë°˜íˆ¬ëª… í´ë˜ìŠ¤ë¥¼ ì¶”ê°€í•˜ê±°ë‚˜ ì œê±°í•©ë‹ˆë‹¤
             this.isTranslucent = window.scrollY > 0;
             var icons = document.querySelectorAll('.icon i');
             var texts = document.querySelectorAll('.logjo, .logjo2, .logjo3');
@@ -301,12 +301,12 @@ var app = new Vue({
 },
 	created : function() {
 		  var self = this;
-		    // ¼¼¼Ç °ª uId°¡ Á¸ÀçÇÏ¸é ·Î±×ÀÎ »óÅÂ·Î º¯°æ
-		  var uId = sessionStorage.getItem('uId'); // ¼¼¼Ç½ºÅä¸®Áö¿¡¼­ uId °¡Á®¿À±â
+		    // ì„¸ì…˜ ê°’ uIdê°€ ì¡´ì¬í•˜ë©´ ë¡œê·¸ì¸ ìƒíƒœë¡œ ë³€ê²½
+		  var uId = sessionStorage.getItem('uId'); // ì„¸ì…˜ìŠ¤í† ë¦¬ì§€ì—ì„œ uId ê°€ì ¸ì˜¤ê¸°
 		  window.addEventListener('scroll', this.handleScroll);
 	},
 	destroyed: function() {
-        // ÄÄÆ÷³ÍÆ®°¡ Á¦°ÅµÉ ¶§ ½ºÅ©·Ñ ÀÌº¥Æ® ¸®½º³Ê¸¦ Á¦°ÅÇÕ´Ï´Ù
+        // ì»´í¬ë„ŒíŠ¸ê°€ ì œê±°ë  ë•Œ ìŠ¤í¬ë¡¤ ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆë¥¼ ì œê±°í•©ë‹ˆë‹¤
 		window.removeEventListener('scroll', this.handleScroll);
     }
 });

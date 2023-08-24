@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 
@@ -59,10 +59,10 @@
 <div id="app1">
     <div class="headerCenter">
     <a href="javascript:;" @click="fnHome"><img class="headerImg" src="../img/logo/veryperiii.png"></a>
-	<div class="headerPos1"> {{sName}}��, ȯ���մϴ�. <a href="javascript:;" @click="fnLogout"><i class="fa-solid fa-right-from-bracket" style="color: #7a0561;"></i></a></div>
+	<div class="headerPos1"> {{sName}}님, 환영합니다. <a href="javascript:;" @click="fnLogout"><i class="fa-solid fa-right-from-bracket" style="color: #7a0561;"></i></a></div>
 	<div class="headerBut1">
-	<button @click="fnMain">�����丮��</button>
-	<button @click="fnGBoard">����ʰԽ���</button>
+	<button @click="fnMain">베리페리샵</button>
+	<button @click="fnGBoard">멤버십게시판</button>
     </div>
     </div>
 </div>

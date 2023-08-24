@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
  <link href="../css/mypag.css" rel="stylesheet" type="text/css">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 
  <style type="text/css">
 	/* .nickname{
@@ -167,7 +167,7 @@ height: 300px;
                             
                          </div>
                          <div class="details" >
-                            <div>∆˜¿Œ∆Æ</div>
+                            <div>Ìè¨Ïù∏Ìä∏</div>
                             <div>{{info.uPoint}} P</div>
                          </div>
                          <div class="details" >
@@ -185,36 +185,36 @@ height: 300px;
                               <div class="categories"> MY PAGE</div>
                               <div style="text-align: left;">
                               <ul style="padding: 0px;">
-                                 <li>≥™¿« ºÓ«Œ ¡§∫∏ </li>
+                                 <li>ÎÇòÏùò ÏáºÌïë Ï†ïÎ≥¥ </li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">¡÷πÆ≥ªø™</a></li>
+                                       <li><a href="#">Ï£ºÎ¨∏ÎÇ¥Ïó≠</a></li>
                                       
-                                       <li><a href="#">∞¸Ω…ªÛ«∞</a></li>
+                                       <li><a href="#">Í¥ÄÏã¨ÏÉÅÌíà</a></li>
                                     
-                                       <li><a href="#">√÷±Ÿ ∫ª ªÛ«∞</a></li>
+                                       <li><a href="#">ÏµúÍ∑º Î≥∏ ÏÉÅÌíà</a></li>
                                        <hr>
-                                       <li><a href="#">¿˚∏≥±›</a></li>      
+                                       <li><a href="#">Ï†ÅÎ¶ΩÍ∏à</a></li>      
                                        <hr>                           
                                     </ul>   
                                  </li>  
                               </ul>
                               <ul style="padding: 0px;">
-                                 <li>»∏ø¯ ¡§∫∏</li>
+                                 <li>ÌöåÏõê Ï†ïÎ≥¥</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">»∏ø¯ ¡§∫∏ ºˆ¡§</a></li>
-                                       <li><a href="#">πËº€¡÷º“∑œ</a></li>                           
+                                       <li><a href="#">ÌöåÏõê Ï†ïÎ≥¥ ÏàòÏ†ï</a></li>
+                                       <li><a href="#">Î∞∞ÏÜ°Ï£ºÏÜåÎ°ù</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
                                     <ul style="padding: 0px;">
-                                 <li>∞Ì∞¥ºæ≈Õ</li>
+                                 <li>Í≥†Í∞ùÏÑºÌÑ∞</li>
                                  <li>
                                     <ul>
-                                       <li><a href="#">1:1 πÆ¿«</a></li>
-                                       <li><a href="#">∞¯¡ˆªÁ«◊</a></li>
-                                       <li><a href="#">¿ÃøÎæ»≥ª</a></li>
+                                       <li><a href="#">1:1 Î¨∏Ïùò</a></li>
+                                       <li><a href="#">Í≥µÏßÄÏÇ¨Ìï≠</a></li>
+                                       <li><a href="#">Ïù¥Ïö©ÏïàÎÇ¥</a></li>
                                        <li><a href="faq.do">FAQ</a></li>                                 
                                     </ul>   
                                  </li>  

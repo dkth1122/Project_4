@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <style>
 
 #headiner {
@@ -56,7 +56,7 @@ nav {
 }
 
 <!--
-�ΰ� �ִ� �κ� -->.
+占싸곤옙 占쌍댐옙 占싸븝옙 -->.
 
 nav{ width:100%; height:135px;position:relative; z-index:9999;}
 
@@ -68,8 +68,8 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;}
     position: relative;
     }
 		.navWrap:hover {
-      height:650px; /* ȭ���� ��ü ���̷� Ȯ�� */
-      background: rgba(245, 235, 236); /* ȣ�� �� ���� �������ϰ� ���� */
+      height:650px; /* 화占쏙옙占쏙옙 占쏙옙체 占쏙옙占싱뤄옙 확占쏙옙 */
+      background: rgba(245, 235, 236); /* 호占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙 */
     }
 			
 nav .menu {

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 .login-box{
@@ -52,13 +52,13 @@ h3{
 		<div class="login-box">
 			<div class="login-box2">
 			<i class="fa-regular fa-face-smile" id="smile"></i>
-			<h3>ÁÖ¹®ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù!</h3>
+			<h3>ì£¼ë¬¸ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤!</h3>
 				<div class="idpw">	
-					<div><label>ÁÖ¹®ÀÚ¸í <span>{{user.uId}}</span></label></div>
-					<div><label>ÁÖ¹®¹øÈ£   <span>{{user.uName}}</span></label></div>
-					<div><label>»óÇ°¸í   <span>{{user.uEmail}} {{user.oCount}}</span></label></div>
-					<div><label>°áÁ¦±İ¾×   <span>{{user.uEmail}}</span></label></div>
-					<div><label>ÁÖ¹®ÀÏÀÚ   <span>{{user.uEmail}}</span></label></div>
+					<div><label>ì£¼ë¬¸ìëª… <span>{{user.uId}}</span></label></div>
+					<div><label>ì£¼ë¬¸ë²ˆí˜¸   <span>{{user.uName}}</span></label></div>
+					<div><label>ìƒí’ˆëª…   <span>{{user.uEmail}} {{user.oCount}}</span></label></div>
+					<div><label>ê²°ì œê¸ˆì•¡   <span>{{user.uEmail}}</span></label></div>
+					<div><label>ì£¼ë¬¸ì¼ì   <span>{{user.uEmail}}</span></label></div>
 				</div>
 				<div class="login">
 					<div><button @click="goToMain">GO TO MAIN</button></div>

@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link href="../css/login.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 .login-box{
@@ -21,20 +21,20 @@
 		<h2 class="h2"> Order Check </h2>
 		<div class="login-box">
 			<div class="login-box2">
-			<h3 class="stadyInfo">ºñÈ¸¿ø ÁÖ¹®Á¶È¸</h3>
+			<h3 class="stadyInfo">ë¹„íšŒì› ì£¼ë¬¸ì¡°íšŒ</h3>
 				<div class="idpw">						
-				    <div><label>ÁÖ¹®¹øÈ£  <span><input type="text" name="nmNo" v-model = "nmNo" placeholder="ÁÖ¹®¹øÈ£">
+				    <div><label>ì£¼ë¬¸ë²ˆí˜¸  <span><input type="text" name="nmNo" v-model = "nmNo" placeholder="ì£¼ë¬¸ë²ˆí˜¸">
 					    </span></label>
 				    </div>
-				    <div><label>¼ö·ÉÀÚ¸í  <span><input type="text" name="nmName"  v-model = "nmName" placeholder="¼ö·ÉÀÚ¸í">
+				    <div><label>ìˆ˜ë ¹ìëª…  <span><input type="text" name="nmName"  v-model = "nmName" placeholder="ìˆ˜ë ¹ìëª…">
 					    </span></label>
 				    </div>				    
 				</div>
 				
 				
-				<div class="login"><button @click="fnSearch" >È®ÀÎ</button></div>
+				<div class="login"><button @click="fnSearch" >í™•ì¸</button></div>
 				<div class="join">
-					<button @click="fnBack">Ãë¼Ò</button>
+					<button @click="fnBack">ì·¨ì†Œ</button>
 				</div>
 			</div>
 		</div>
@@ -80,7 +80,7 @@ var app = new Vue({
                 		$.pageChange("nonOrder.do", {nmNo : self.nmNo});
                   		
                 	} else {
-                		alert("Á¸ÀçÇÏ´Â Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+                		alert("ì¡´ì¬í•˜ëŠ” ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
                 	}
                 }
             }); 

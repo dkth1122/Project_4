@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +11,17 @@
    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
    crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<!-- ÆäÀÌÂ¡ Ãß°¡ 1 -->
+<!-- í˜ì´ì§• ì¶”ê°€ 1 -->
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <style type="text/css">
 #container {
     height: 1500px;
     width: 100%;
     margin-bottom: 163px;
 }
-<!-- ÆäÀÌÂ¡ Ãß°¡ 2-->
+<!-- í˜ì´ì§• ì¶”ê°€ 2-->
 .pagination {
      margin:24px;
      display: inline-flex;
@@ -137,7 +137,7 @@ ul {
      
    }
    
-   /* ¹öÆ° È£¹ö È¿°ú */
+   /* ë²„íŠ¼ í˜¸ë²„ íš¨ê³¼ */
    .button:hover {
      background-color: #d4d5d9;
    }
@@ -186,7 +186,7 @@ input[type="date"]:focus {
 
                         <div class="details">
 
-                           <div>±³È¯/È¯ºÒ</div>
+                           <div>êµí™˜/í™˜ë¶ˆ</div>
                            <div>
                               <span v-if="refund != 0">{{refund}} /</span>
                               <span v-else>0 /</span>
@@ -197,7 +197,7 @@ input[type="date"]:focus {
 
                         </div>
                         <div class="details">
-                         			<div>Æ÷ÀÎÆ®</div>
+                         			<div>í¬ì¸íŠ¸</div>
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
                         </div>
@@ -215,32 +215,32 @@ input[type="date"]:focus {
                   <div class="categories">MY PAGE</div>
                   <div style="text-align: left;">
                      <ul style="padding: 0px;">
-                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
+                                 <li class="ulh1">ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
-                                       <li><a href="/cart/cartList.do">Àå¹Ù±¸´Ï</a></li>
-                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
-                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
+                                       <li><a href="/mypag/myPagOrderdetails.do">ì£¼ë¬¸ë‚´ì—­</a></li>
+                                       <li><a href="/cart/cartList.do">ì¥ë°”êµ¬ë‹ˆ</a></li>
+                                       <li><a href="/mypag/myInformation.do">ì°œ ëª©ë¡</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">í¬ì¸íŠ¸</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
                               <ul style="padding: 0px;">
-                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
+                                 <li class="ulh1">íšŒì› ì •ë³´</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
-                                       <li><a href="/mypag/infoAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
+                                       <li><a href="/mypag/infoUpdate.do">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
+                                       <li><a href="/mypag/infoAddr.do">ë°°ì†¡ì£¼ì†Œë¡</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
                                <ul style="padding: 0px;">
-                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
+                                 <li class="ulh1">ê³ ê°ì„¼í„°</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myAddInquiry.do">1:1 ¹®ÀÇ</a></li>
-                                       <li><a @click="fnNotice" href="#javascript:;">°øÁö»çÇ×</a></li>
-                                       <li><a @click="fnUseGuide" href="#javascript:;">ÀÌ¿ë¾È³»</a></li>
+                                       <li><a href="/mypag/myAddInquiry.do">1:1 ë¬¸ì˜</a></li>
+                                       <li><a @click="fnNotice" href="#javascript:;">ê³µì§€ì‚¬í•­</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">ì´ìš©ì•ˆë‚´</a></li>
                                        <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                              
                                     </ul>   
                                  </li>  
@@ -253,11 +253,11 @@ input[type="date"]:focus {
                <div id="right">
 
                   <div class="View">
-                      <div class="lowerBox"> ÁÖ¹® ³»¿ª Á¶È¸ </div>
+                      <div class="lowerBox"> ì£¼ë¬¸ ë‚´ì—­ ì¡°íšŒ </div>
                       <div class="find">
                          <div class="calenderArea">            
                             <div class="calenderArea2">           
-                              <span class="dateSearch"> °áÁ¦ ÀÏÀÚ Á¶È¸ </span> 
+                              <span class="dateSearch"> ê²°ì œ ì¼ì ì¡°íšŒ </span> 
                               <span class="date22">
                                  <input id="startDate" type='date' v-model="startDate">
                                   ~ 
@@ -265,40 +265,40 @@ input[type="date"]:focus {
                               <span><button class="button" @click="searchCalender"><i class="fa-solid fa-magnifying-glass"></i></button></span>
                            </div>
                               <ul>
-                                 <li><i class="fa-regular fa-bell"></i>±âº»ÀûÀ¸·Î ÃÖ±Ù 3°³¿ù°£ÀÇ ÀÚ·á°¡ Á¶È¸µÇ¸ç, ±â°£ °Ë»ö½Ã Áö³­ ÁÖ¹®³»¿ªÀ» Á¶È¸ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</li>
-                                 <li><i class="fa-regular fa-bell"></i>ÁÖ¹®¹øÈ£¸¦ Å¬¸¯ÇÏ½Ã¸é ÇØ´ç ÁÖ¹®¿¡ ´ëÇÑ »ó¼¼³»¿ªÀ» È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</li>
-                                 <li style="color: red;"><i class="fa-regular fa-bell"></i>³¯Â¥ °Ë»ö ½Ã ÇÏ·ç Á¤µµ ¿ÀÂ÷°¡ ÀÖÀ» ¼ö ÀÖÀ¸´Ï ÇÏ·ç ´ÙÀ½³¯·Î °Ë»öÇØ ÁÖ¼¼¿ä</li>
+                                 <li><i class="fa-regular fa-bell"></i>ê¸°ë³¸ì ìœ¼ë¡œ ìµœê·¼ 3ê°œì›”ê°„ì˜ ìë£Œê°€ ì¡°íšŒë˜ë©°, ê¸°ê°„ ê²€ìƒ‰ì‹œ ì§€ë‚œ ì£¼ë¬¸ë‚´ì—­ì„ ì¡°íšŒí•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</li>
+                                 <li><i class="fa-regular fa-bell"></i>ì£¼ë¬¸ë²ˆí˜¸ë¥¼ í´ë¦­í•˜ì‹œë©´ í•´ë‹¹ ì£¼ë¬¸ì— ëŒ€í•œ ìƒì„¸ë‚´ì—­ì„ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</li>
+                                 <li style="color: red;"><i class="fa-regular fa-bell"></i>ë‚ ì§œ ê²€ìƒ‰ ì‹œ í•˜ë£¨ ì •ë„ ì˜¤ì°¨ê°€ ìˆì„ ìˆ˜ ìˆìœ¼ë‹ˆ í•˜ë£¨ ë‹¤ìŒë‚ ë¡œ ê²€ìƒ‰í•´ ì£¼ì„¸ìš”</li>
                               </ul>                           
                         </div>
                       </div>
                       
-                       <div class="lowerBox">ÁÖ¹® »óÇ° Á¤º¸</div>
+                       <div class="lowerBox">ì£¼ë¬¸ ìƒí’ˆ ì •ë³´</div>
                      <div>
                         <div class="calenderArea" v-if="list == 0">
                            <ul>
-                              <li><i class="fa-regular fa-face-smile"></i> ÁÖ¹®³»¿ªÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.</li>
-                              <li><i class="fa-regular fa-face-smile"></i> ÁÖ¹® ÈÄ È®ÀÎÀÌ °¡´ÉÇÕ´Ï´Ù.</li>
+                              <li><i class="fa-regular fa-face-smile"></i> ì£¼ë¬¸ë‚´ì—­ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</li>
+                              <li><i class="fa-regular fa-face-smile"></i> ì£¼ë¬¸ í›„ í™•ì¸ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.</li>
                            </ul>                                    
                         </div>
                         <table v-else class="table">
                               <tr class="headerListArea">
-                                 <th class="column-width1">ÁÖ¹®¹øÈ£</th>
-                                 <th class="column-width2">ÁÖ¹®ÀÏÀÚ</th>
-                                 <th class="column-width3">»óÇ°Á¤º¸</th>
-                                 <th class="column-width4">°áÁ¦±İ¾×</th>
-                                 <th class="column-width5">ÁÖ¹®»óÅÂ</th>
+                                 <th class="column-width1">ì£¼ë¬¸ë²ˆí˜¸</th>
+                                 <th class="column-width2">ì£¼ë¬¸ì¼ì</th>
+                                 <th class="column-width3">ìƒí’ˆì •ë³´</th>
+                                 <th class="column-width4">ê²°ì œê¸ˆì•¡</th>
+                                 <th class="column-width5">ì£¼ë¬¸ìƒíƒœ</th>
                               </tr>
                               
                               <tr class="footerListArea" v-for="item in list">                                                               
                                  <td class="column2"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
                                  <td class="column">{{item.oDate}}</td>
-                                 <td v-if="item.cnt >= 2">{{ item.pName }}¿Ü {{ parseInt(item.cnt) - 1 }}°Ç</td>
+                                 <td v-if="item.cnt >= 2">{{ item.pName }}ì™¸ {{ parseInt(item.cnt) - 1 }}ê±´</td>
                                  <td v-else>{{ item.pName }}</td>
                                  <td class="column-width5">{{ Number(item.paymentSum).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
                                  <td class="column2">{{item.dState}}</td>                                                      
                               <tr>
                               
-                              <!-- ÆäÀÌÂ¡ Ãß°¡ 3 -->
+                              <!-- í˜ì´ì§• ì¶”ê°€ 3 -->
          <template class="pagepage">
            <paginate
              :page-count="pageCount"
@@ -322,7 +322,7 @@ input[type="date"]:focus {
 </body>
 </html>
 <script type="text/javascript">
-<!-- ÆäÀÌÂ¡ Ãß°¡ 4 -->
+<!-- í˜ì´ì§• ì¶”ê°€ 4 -->
 Vue.component('paginate', VuejsPaginate)
    var app = new Vue({
       el : '#app',
@@ -336,7 +336,7 @@ Vue.component('paginate', VuejsPaginate)
          list : [],
          price : [],
          dat : "",
-         <!-- ÆäÀÌÂ¡ Ãß°¡ 5 -->
+         <!-- í˜ì´ì§• ì¶”ê°€ 5 -->
          selectPage: 1,
          pageCount: 1,
          cnt : 0,
@@ -347,7 +347,7 @@ Vue.component('paginate', VuejsPaginate)
    
       }, 
       methods : {
-    	  fnGetInfo : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ğ³×ÀÓ)
+    	  fnGetInfo : function() { // ì‚¬ìš©ì ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸° ì´ë¦„ , ë³„ëª… (ë‹‰ë„¤ì„)
   			var self = this;
   			var nparmap = {uId : self.uId};				
   			$.ajax({
@@ -362,7 +362,7 @@ Vue.component('paginate', VuejsPaginate)
   		},
          fnGetList : function() {
             var self = this;
-            <!-- ÆäÀÌÂ¡ Ãß°¡ 6 -->
+            <!-- í˜ì´ì§• ì¶”ê°€ 6 -->
             var startNum = ((self.selectPage-1) * 10);
              var lastNum = 10;
             var param = {uId:self.uId, startNum : startNum, lastNum : lastNum};
@@ -399,7 +399,7 @@ Vue.component('paginate', VuejsPaginate)
                }
             });
          },
-         fnOrderList : function() { // »ç¿ëÀÚ ±¸¸Å ³»¿ª 
+         fnOrderList : function() { // ì‚¬ìš©ì êµ¬ë§¤ ë‚´ì—­ 
             var self = this;
             var nparmap = {uId : self.uId};            
             $.ajax({
@@ -418,15 +418,15 @@ Vue.component('paginate', VuejsPaginate)
             console.log(self.startDate);
             console.log(self.endDate);
             if(self.startDate > self.endDate){
-               alert("Á¶È¸³¯Â¥¸¦ ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.");
+               alert("ì¡°íšŒë‚ ì§œë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.");
                return;
             }
             if(self.startDate == ""){
-               alert("Á¶È¸³¯Â¥¸¦ Ã¼Å©ÇØÁÖ¼¼¿ä.");
+               alert("ì¡°íšŒë‚ ì§œë¥¼ ì²´í¬í•´ì£¼ì„¸ìš”.");
                return;
             }
             if(self.endDate == ""){
-               alert("Á¶È¸³¯Â¥¸¦ Ã¼Å©ÇØÁÖ¼¼¿ä.");
+               alert("ì¡°íšŒë‚ ì§œë¥¼ ì²´í¬í•´ì£¼ì„¸ìš”.");
                return;
             }
             var nparmap = {uId : self.uId, startDate : self.startDate, endDate : self.endDate};            
@@ -438,13 +438,13 @@ Vue.component('paginate', VuejsPaginate)
                success : function(data) {                  
                   self.list = data.list;
                   if(self.list == 0){
-                     alert("ÇØ´ç ³¯Â¥¿¡ ÁÖ¹®³»¿ªÀÌ ¾ø½À´Ï´Ù.");
+                     alert("í•´ë‹¹ ë‚ ì§œì— ì£¼ë¬¸ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.");
                   }
                   
                }
             }); 
          },
-         fnPoint : function(){ // Æ÷ÀÎÆ® ³»¿ª È®ÀÎ
+         fnPoint : function(){ // í¬ì¸íŠ¸ ë‚´ì—­ í™•ì¸
  	        var self = this;
  	        var nparmap = {uId : self.uId};
  	        $.ajax({
@@ -459,17 +459,17 @@ Vue.component('paginate', VuejsPaginate)
  	            	for(var i=0; i<datalist.length; i++){
  	            		x += datalist[i].point;	
  	            	}
- 	            	self.maxpoint = x; // »ç¿ë°¡´É Æ÷ÀÎÆ® 
+ 	            	self.maxpoint = x; // ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸ 
  	            
  	            }
  	        }); 
  	    },
- 	    fnNotice : function (){ // °øÁö 
+ 	    fnNotice : function (){ // ê³µì§€ 
  			var self = this;
      		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
      		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
  		},
- 		fnUseGuide : function (){ //ÀÌ¿ë¾È³»
+ 		fnUseGuide : function (){ //ì´ìš©ì•ˆë‚´
  			var self = this;
      		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
      		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
@@ -479,7 +479,7 @@ Vue.component('paginate', VuejsPaginate)
      		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
      		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
  		},
- 		/* »ó´Ü ±¸¸Å³»¿ª Ä«¿îÆ® ¼ıÀÚ */
+ 		/* ìƒë‹¨ êµ¬ë§¤ë‚´ì—­ ì¹´ìš´íŠ¸ ìˆ«ì */
  		fnCntList : function() {
  			var self = this;
  			var nparmap = {uId : self.uId};

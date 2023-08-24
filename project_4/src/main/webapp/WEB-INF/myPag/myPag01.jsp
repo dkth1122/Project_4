@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,7 @@
 <!-- vue-awesome-swiper -->
 <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper@4.1.1/dist/vue-awesome-swiper.js"></script>
 
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <style type="text/css">
 .swiper-container {
 	height:420px;
@@ -30,13 +30,13 @@
 .swiper-slide {
     line-height: 50px;
 	text-align:center;
-	align-items:center; /* À§¾Æ·¡ ±âÁØ Áß¾ÓÁ¤·Ä */
-	justify-content:center; /* ÁÂ¿ì ±âÁØ Áß¾ÓÁ¤·Ä */
+	align-items:center; /* ìœ„ì•„ëž˜ ê¸°ì¤€ ì¤‘ì•™ì •ë ¬ */
+	justify-content:center; /* ì¢Œìš° ê¸°ì¤€ ì¤‘ì•™ì •ë ¬ */
 }
 .swiper-slide img {
 
-	max-width:100%; /* ÀÌ¹ÌÁö ÃÖ´ë³Êºñ¸¦ Á¦ÇÑ, ½½¶óÀÌµå¿¡ ÀÌ¹ÌÁö°¡ ¿©·¯°³°¡ º¸¿©Áú¶§ ÇÊ¿ä */
-	/* ÀÌ ¿¹Á¦¿¡¼­ ÇÊ¿äÇØ¼­ ¼³Á¤Çß½À´Ï´Ù. »óÈ²¿¡µû¶ó ´Ù¸¦ ¼ö ÀÖ½À´Ï´Ù. */
+	max-width:100%; /* ì´ë¯¸ì§€ ìµœëŒ€ë„ˆë¹„ë¥¼ ì œí•œ, ìŠ¬ë¼ì´ë“œì— ì´ë¯¸ì§€ê°€ ì—¬ëŸ¬ê°œê°€ ë³´ì—¬ì§ˆë•Œ í•„ìš” */
+	/* ì´ ì˜ˆì œì—ì„œ í•„ìš”í•´ì„œ ì„¤ì •í–ˆìŠµë‹ˆë‹¤. ìƒí™©ì—ë”°ë¼ ë‹¤ë¥¼ ìˆ˜ ìžˆìŠµë‹ˆë‹¤. */
 }
 .b{ 
 
@@ -104,7 +104,7 @@
 
 								<div class="details">
 
-									<div>±³È¯/È¯ºÒ</div>
+									<div>êµí™˜/í™˜ë¶ˆ</div>
 									<div>
 										<span v-if="refund != 0">{{refund}} /</span>
 										<span v-else>0 /</span>
@@ -115,7 +115,7 @@
 
 								</div>
 								<div class="details">
-									<div>Æ÷ÀÎÆ®</div>
+									<div>í¬ì¸íŠ¸</div>
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
 								</div>
@@ -134,32 +134,32 @@
 						<div class="categories">MY PAGE</div>
 						<div style="text-align: left;">
 							<ul style="padding: 0px;">
-                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
+                                 <li class="ulh1">ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
-                                       <li><a href="/cart/cartList.do">Àå¹Ù±¸´Ï</a></li>
-                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
-                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
+                                       <li><a href="/mypag/myPagOrderdetails.do">ì£¼ë¬¸ë‚´ì—­</a></li>
+                                       <li><a href="/cart/cartList.do">ìž¥ë°”êµ¬ë‹ˆ</a></li>
+                                       <li><a href="/mypag/myInformation.do">ì°œ ëª©ë¡</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">í¬ì¸íŠ¸</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
                               <ul style="padding: 0px;">
-                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
+                                 <li class="ulh1">íšŒì› ì •ë³´</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
-                                       <li><a href="/mypag/infoAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
+                                       <li><a href="/mypag/infoUpdate.do">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
+                                       <li><a href="/mypag/infoAddr.do">ë°°ì†¡ì£¼ì†Œë¡</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
                                <ul style="padding: 0px;">
-                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
+                                 <li class="ulh1">ê³ ê°ì„¼í„°</li>
                                  <li>
                                     <ul>
-                                       <li><a  href="/mypag/myInquiry.do">1:1 ¹®ÀÇ</a></li>
-                                       <li><a @click="fnNotice" href="#javascript:;">°øÁö»çÇ×</a></li>
-                                       <li><a @click="fnUseGuide" href="#javascript:;">ÀÌ¿ë¾È³»</a></li>
+                                       <li><a  href="/mypag/myInquiry.do">1:1 ë¬¸ì˜</a></li>
+                                       <li><a @click="fnNotice" href="#javascript:;">ê³µì§€ì‚¬í•­</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">ì´ìš©ì•ˆë‚´</a></li>
                                        <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                 
                                     </ul>   
                                  </li>  
@@ -172,9 +172,9 @@
 					<div id="right">
 
 						<div class="View" style="margin-bottom : 30px;">
-							<div class="lowerBox j">ÁÖ¹®»óÇ°</div>
+							<div class="lowerBox j">ì£¼ë¬¸ìƒí’ˆ</div>
 							<div v-if="orderlist.length == 0">
-									<div class="nodata">³»¿ªÀÌ ¾ø½À´Ï´Ù</div>							
+									<div class="nodata">ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤</div>							
 								</div> 
 							<div v-else class="swiper-container">
 							<swiper
@@ -199,9 +199,9 @@
 						</div>
 
 						<div class="View">						
-							<div class="lowerBox j">Àå¹Ù±¸´Ï</div>
+							<div class="lowerBox j">ìž¥ë°”êµ¬ë‹ˆ</div>
 								<div v-if="cartlist.length == 0">
-									<div class="nodata">³»¿ªÀÌ ¾ø½À´Ï´Ù</div>							
+									<div class="nodata">ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤</div>							
 								</div> 
 									<div v-else class="swiper-container">
 										<swiper
@@ -229,9 +229,9 @@
 						</div>
 
 						<div class="View">
-						<div class="lowerBox j">Âò¸ñ·Ï</div>
+						<div class="lowerBox j">ì°œëª©ë¡</div>
 						<div v-if="wishlist.length == 0">
-									<div class="nodata">³»¿ªÀÌ ¾ø½À´Ï´Ù</div>							
+									<div class="nodata">ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤</div>							
 								</div> 
 								<div v-else class="swiper-container">
 										<swiper
@@ -295,7 +295,7 @@ Vue.use(VueAwesomeSwiper);
 		    }
 		},
 		methods : {
-			fnGetList : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ð³×ÀÓ)
+			fnGetList : function() { // ì‚¬ìš©ìž ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸° ì´ë¦„ , ë³„ëª… (ë‹‰ë„¤ìž„)
 				var self = this;
 				var nparmap = {uId : self.uId};				
 				$.ajax({
@@ -308,7 +308,7 @@ Vue.use(VueAwesomeSwiper);
 					}
 				});
 			},
-			/* »ó´Ü ±¸¸Å³»¿ª Ä«¿îÆ® ¼ýÀÚ */
+			/* ìƒë‹¨ êµ¬ë§¤ë‚´ì—­ ì¹´ìš´íŠ¸ ìˆ«ìž */
 			fnCntList : function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
@@ -334,7 +334,7 @@ Vue.use(VueAwesomeSwiper);
 					}
 				});
 			},
-			 /* Âò¸ñ·Ï */
+			 /* ì°œëª©ë¡ */
 			fnwish: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
@@ -349,7 +349,7 @@ Vue.use(VueAwesomeSwiper);
 					}
 				});
 			},
-			 /* ±¸¸Å³»¿ª */
+			 /* êµ¬ë§¤ë‚´ì—­ */
 			fnorder: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
@@ -365,7 +365,7 @@ Vue.use(VueAwesomeSwiper);
 					}
 				});
 			},
-			 /* Àå¹Ù±¸´Ï */
+			 /* ìž¥ë°”êµ¬ë‹ˆ */
 			fncart: function() {
 				var self = this;
 				var nparmap = {uId : self.uId};
@@ -382,7 +382,7 @@ Vue.use(VueAwesomeSwiper);
 
 					}
 				});
-			},fnPoint : function(){ // Æ÷ÀÎÆ® ³»¿ª È®ÀÎ
+			},fnPoint : function(){ // í¬ì¸íŠ¸ ë‚´ì—­ í™•ì¸
 		        var self = this;
 		        var nparmap = {uId : self.uId};
 		        $.ajax({
@@ -397,7 +397,7 @@ Vue.use(VueAwesomeSwiper);
 		            	for(var i=0; i<datalist.length; i++){
 		            		x += datalist[i].point;	
 		            	}
-		            	self.maxpoint = x; // »ç¿ë°¡´É Æ÷ÀÎÆ® 
+		            	self.maxpoint = x; // ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸ 
 		            
 		            }
 		        }); 
@@ -412,12 +412,12 @@ Vue.use(VueAwesomeSwiper);
 		      console.log('Swiper click slide!', reallyIndex)
 		    },
 		    
-		    fnNotice : function (){ // °øÁö 
+		    fnNotice : function (){ // ê³µì§€ 
 				var self = this;
 	    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
 	    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
 			},
-			fnUseGuide : function (){ //ÀÌ¿ë¾È³»
+			fnUseGuide : function (){ //ì´ìš©ì•ˆë‚´
 				var self = this;
 	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
 	    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
