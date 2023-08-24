@@ -15,7 +15,7 @@ public interface ProductService {
 	
 	HashMap<String, Object> selectProductList(HashMap<String, Object> map);
 	
-	Product selectProductInfo(HashMap<String, Object> map);
+	List<Product> selectProductInfo(HashMap<String, Object> map);
 //	 상품 페이지 출력
 	List<Product>selectVProductList(HashMap<String, Object> map);
 	

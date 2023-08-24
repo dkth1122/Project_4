@@ -206,7 +206,7 @@ transform: translate(50%, -50%);
 	background-size: contain;
 }
 
-.ostimg .imgse {
+.ostimg .img3 {
 	background: url(img/homeimg/bts_album.gif);
 	background-size: contain;
 	width: 370px;

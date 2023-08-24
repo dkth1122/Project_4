@@ -329,7 +329,7 @@
 	<div id="container">
 		<div id="imgBox">
 			 <div id="mainImg">
-			 <img :src="path" v-for = "class = 'Y'">
+			 <img :src="path">
 			 </div>
 		</div>	
 		<div id="infoArea" style="display : block;, height: 623px; top:auto; ">
@@ -432,7 +432,7 @@
 		</div>	
 		
 		<div class="explanation">
-			<img alt="상품상세설명" src="../img/detail01.jpg">
+			<img alt="상품상세설명" :src="path2">
 			
 			<div id="radioMenu">
 	    		<input id="1" type="radio" name="Menu" value="상품정보" v-model="selectedMenu">
@@ -620,13 +620,14 @@ var app = new Vue({
     data: {    	
     	uId : "${sessionId}",    	
     	list : [],
-    	info : {},
+    	info : [],
     	pNo : "${map.pNo}",
     	pName : "",
     	price: "",
     	formattedPrice: "",
     	artist : "",
     	path : "",
+    	path2 : "",
     	category : "",
     	membership : "",
     	quantity: "1", // 기본 수량 값
@@ -645,13 +646,16 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.info = data.info; //사용자
-                	self.pName = self.info.pName;
-                	self.price = self.info.price;
+                	self.pName = self.info[0].pName;
+                	self.price = self.info[0].price;
+                	
                 	self.formattedPrice = self.formatPrice(self.price); // 가격 포맷 변환
-                	self.artist = self.info.artist;
-                	self.path = self.info.path;
-                	self.category = self.info.category;
-                	self.membership = self.info.membership;
+                	
+                	self.artist = self.info[0].artist;
+                	self.path = self.info[0].path;
+                	self.path2 = self.info[1].path;
+                	self.category = self.info[0].category;
+                	self.membership = self.info[0].membership;
                 	console.log(self.info);
                 	
                 	
