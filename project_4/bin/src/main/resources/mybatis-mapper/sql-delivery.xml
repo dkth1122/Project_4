@@ -23,8 +23,8 @@
 	
 	<!-- 배송주소지 등록 -->
 	<insert id="insertAddr" parameterType="hashmap" >
-		INSERT INTO T4_DELIVERY_USER (U_ID, U_DNAME, U_DPHONE, U_DADDR, U_DADDRDETAIL, ZIPNO) VALUES
-		(#{uId}, #{uDname}, #{uDphone}, #{addr}, #{addrDetail}, #{zipNo})
+		INSERT INTO T4_DELIVERY_USER (U_ID, U_DNAME, U_DPHONE, U_DADDR, U_DADDRDETAIL, ZIPNO, U_DMESSAGE) VALUES
+		(#{uId}, #{uDname}, #{uDphone}, #{addr}, #{addrDetail}, #{zipNo}, #{uDmessage}) 
 	</insert>
 	
 	<!-- 선택 배송주소록 삭제 -->

@@ -63,9 +63,9 @@
 	
 	<div>
 	상세 페이지 : 
-	<input type="file" id="file2" name="file2" accept="image/*" >
-	<input type="file" id="file3" name="file3" accept="image/*" >
-	<input type="file" id="file4" name="file4" accept="image/*" >
+	<input type="file" id="file2" name="file2" accept="image/*" multiple>
+<!-- 	<input type="file" id="file3" name="file3" accept="image/*" >
+	<input type="file" id="file4" name="file4" accept="image/*" > -->
 
 	</div>
 	
@@ -146,7 +146,7 @@ var app = new Vue({
 			  if(self.info.pLimit == "" || self.info.pLimit == undefined){
 					alert("최대구매 갯수 선택해주세요");
 					return;
-				}
+				} 
 			  $.ajax({
 			    url : "/product/add.dox",
 			    dataType : "json",
@@ -158,17 +158,15 @@ var app = new Vue({
 			      var form1 = new FormData();			     
 			      
                   form.append("file1", $("#file1")[0].files[0]);
-                  
-                  
-                  form1.append("file2", $("#file2")[0].files[0]);
-                
-                  
                   form.append("pNo", data.pNo);
-                  form1.append("pNo", data.pNo); 
-                  
-                 
                   self.upload(form);
-                  self.upload1(form1);
+                  
+                  form1.append("pNo", data.pNo);
+                  for(var i=0; i < $("#file2")[0].files.length; i++){
+                	  form1.append("file2", $("#file2")[0].files[i]);
+                      self.upload1(form1);
+                  }
+                  
               	/*   window.close(); // 팝업창 닫기
 	        	  window.opener.location.reload(); // 부모창 새로고침 */
            
@@ -195,7 +193,7 @@ var app = new Vue({
 	                type: "POST",
 	                processData: false,
 	                contentType: false,
-	                data: form,
+	                data: form1,
 	                success: function(response) {
 	                }
 

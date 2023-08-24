@@ -316,6 +316,11 @@
 	.ec-base-layer .action_login2 {
     	width: 332px;
     	height : 50px;
+    }
+    .qsoldout{
+    	font-weight : bold;
+    	color:#3d435f;
+    }
 </style>
 </head>
 <body>
@@ -368,9 +373,10 @@
 							{{pName}}
 						</div>
 						
-						<span class="quantity">
+						<span class="qsoldout" v-if="info.stock == 0">SOLD OUT</span>
+						<span v-else class="quantity">
 							<a href="#none" @click="decreaseQuantity"><i class="fa-solid fa-minus"></i></a>
-							<input id="quantity" name="quantity_opt[]" v-model="quantity" @input="formatQuantity" type="text">
+							<input id="quantity" name="quantity_opt[]" v-model="quantity" @input="formatQuantity" type="text" max="info.pLimit">
 							<a href="#none" @click="increaseQuantity"><i class="fa-solid fa-plus"></i></a>
 							<span style="font-weight:bold; font-size:15px; float:right;">₩{{ totalPrice }}</span>							
 						</span>
@@ -378,14 +384,16 @@
 				</div>
 			</div>
 			
-			<div id="totalPrice">
+			
+			<div v-if="info.stock != 0" id="totalPrice">
 				<span>TOTAL</span>
 				<span class="total"><strong style="font-size:25px;">₩{{ totalPrice }}</strong> ({{ quantity }}개)</span>
 			</div>
 			
 			<div class="buyArea" style="position: static; bottom: auto; width: auto; margin-left: 0px;">
 				<div style="position : relative;">
-					<button class="buyButton" style="display: block" @click="fnProductOrder">바로 구매하기</button>
+					<button v-if="info.stock != 0" class="buyButton" style="display: block" @click="fnProductOrder">바로 구매하기</button>
+					<button v-else class="buyButton" style="display: block; background-color: lightgray; pointer-events: none; " @click="fnProductOrder">SOLD OUT</button>
 					<div>
 						<button class="button" @click="fnCart" >장바구니 담기</button><button class="wishlist-button" @click="wishList">위시리스트 담기</button>
 					</div>
@@ -628,8 +636,7 @@ var app = new Vue({
     },
     methods: {
     	fnGetList : function(){
-            var self = this;
-            
+            var self = this;            
             var nparmap = {pNo : self.pNo};            
             $.ajax({
                 url : "/product/selectProductInfo.dox",
@@ -646,12 +653,40 @@ var app = new Vue({
                 	self.category = self.info.category;
                 	self.membership = self.info.membership;
                 	console.log(self.info);
+                	
+                	
                 }
             }); 
             //주문 페이지로 이동
         },  fnProductOrder : function(item){
         	var self = this;
-        	$.pageChange("../payment.do", {pNo : item.pNo});        	
+        	
+        	var currentDate = new Date();
+
+        	var year = currentDate.getFullYear();
+        	var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
+        	var day = currentDate.getDate();
+        	var hours = currentDate.getHours();
+        	var minutes = currentDate.getMinutes();
+        	var seconds = currentDate.getSeconds();
+
+        	var currentDateString = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+        	
+        	if(self.info.membership == 'Y'){
+        		if(currentDateString <= self.info.mExpDate || currentDateString >= self.info.mRegDate){
+            		alert("해당 상품은 멤버쉽 구독이 필요한 상품입니다. \n해당 아티스트의 멤버쉽을 구독해주세요.");
+            	}else if(self.info.kitYn == 'Y'){
+            		alert("키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
+            	}
+        		else{
+        			var params =  {pNo : self.pNo, cnt : self.quantity};
+            		$.pageChange("/payment/payment.do", params); 
+            	}	
+        	}else{
+    			var params =  {pNo : self.pNo, cnt : self.quantity};
+        		$.pageChange("/payment/payment.do", params); 
+        	} 	
+        	//$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
         	     	
         },//위시리스트 이동  
         wishList : function(){
@@ -722,7 +757,12 @@ var app = new Vue({
     	increaseQuantity: function() {
     		var self = this;
             // 수량 증가를 위한 함수
-            self.quantity++;
+            if(self.quantity < self.info.pLimit){
+            	self.quantity++;	
+            }
+            else{
+            	alert("해당상품의 최대구매수량은 "+self.info.pLimit+"개 입니다.");
+            }
         },
 
         decreaseQuantity: function() {

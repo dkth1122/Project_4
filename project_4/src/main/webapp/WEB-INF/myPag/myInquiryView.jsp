@@ -152,7 +152,7 @@ var app = new Vue({
     	info : {},
     	orderCntList : [],
     	uId : "${sessionId}",
-    	order  : "",
+    	order  : 0,
     	exchange : "",
     	refund : "",
     	maxpoint : undefined,
@@ -258,8 +258,8 @@ var app = new Vue({
 						} else if (listCnt[i].exchange == "R") {
 							self.exchange = listCnt[i].orderCnt;
 						} else{
-							self.order = listCnt[i].orderCnt;
-							console.log(self.order);
+							self.order += listCnt[i].orderCnt;
+							
 						}
 					}
 

@@ -13,7 +13,6 @@
     font-family: Graduate, Kelly Slab, Aldrich;
     font-size: 1.1em;
     color: #000;
-  
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -26,7 +25,6 @@ padding-right : 30px;
 margin-right : 10px;
 color:black;
 height: 80px;
-
 padding-top: 35px;
 
 
@@ -58,19 +56,20 @@ nav {
 <!--
 �ΰ� �ִ� �κ� -->.
 
-nav{ width:100%; height:135px;position:relative; z-index:9999;}
+nav{ width:100%; height:135px;position:relative; z-index:9999;
+}
 
-		.navWrap {
-      width: 100%;
-      height: 180px;
-      overflow: hidden;
-      transition: all 0.6s;
-      position: relative;
-	  z-index: 1;
+.navWrap {
+    width: 100%;
+    height: 157px;
+    overflow: hidden;
+    transition: all 0.6s;
+    position: relative;
     }
-		.navWrap:hover {
-      height:650px; /* ȭ���� ��ü ���̷� Ȯ�� */
-      background: rgba(245, 235, 236); /* ȣ�� �� ���� �������ϰ� ���� */
+    
+.navWrap:hover {
+    height:650px; /* ȭ���� ��ü ���̷� Ȯ�� */
+    background: rgba(245, 235, 236); /* ȣ�� �� ���� �������ϰ� ���� */
     }
 			
 nav .menu {
@@ -138,13 +137,19 @@ nav .menu .depths li:hover a {
 .titleLi{
  margin: 0xp;
 }
+
 #logo{
-margin-left : 400px;
-	width: 100px;
-	height: auto;
-	margin-top:45px;
-	z-index:1;
-}
+    width: 100px;
+    height: auto;
+    top: 21px;
+    z-index: 1;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	top: 60%;
+	right: 50%;
+	transform: translate(50%, -50%);
+ }
 .mene{
 	text-align: center;
 	padding-left: 5px;
@@ -161,6 +166,7 @@ margin: 0 auto;
 
 
 		<nav>
+			<span><a href="../home.do"><img id="logo" src="../../img/logo/veryperiii.png"></a></span>
 		<div id="headiner">
 			<div class="navWrap">
 			<ul class="menu">
@@ -199,7 +205,7 @@ margin: 0 auto;
 					</li>					
 					
 					
-						<span><a href="../home.do"><img id="logo" src="../../img/logo/veryperiii.png"></a></span>
+					
 					
 						
 						<div class="icon">

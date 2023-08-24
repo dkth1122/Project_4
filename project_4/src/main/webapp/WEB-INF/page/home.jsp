@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
  
-  padding: 20px; /* �ʿ��� ���� ���� */
+  padding: 20px; /* 占십울옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 */
 }
 .slidetext {
 	font-size:2em;
@@ -25,15 +25,15 @@
 .dot {
     width: 12px;
     height: 12px;
-    margin: 10px 5px; /* ���� ��ġ�� ������ �� ������ ù ��° �� ���� */
+    margin: 10px 5px; /* 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 첫 占쏙옙째 占쏙옙 占쏙옙占쏙옙 */
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-    position: absolute; /* ��Ʈ�� ���� ��ġ�� ���� */
-    bottom: 20px; /* �̹��� �����̵� �ؿ� ������ ���� */
-  /*   left: 50%; /* ���� ��ġ �߾ӿ� ���� */ */
-  /*   transform: translateX(-50%); /* ���� ��ġ�� �߾����� ���� */ */
+    position: absolute; /* 占쏙옙트占쏙옙 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙 */
+    bottom: 20px; /* 占싱뱄옙占쏙옙 占쏙옙占쏙옙占싱듸옙 占쌔울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 */
+  /*   left: 50%; /* 占쏙옙占쏙옙 占쏙옙치 占쌩앙울옙 占쏙옙占쏙옙 */ */
+  /*   transform: translateX(-50%); /* 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占쏙옙占쏙옙 */ */
 }
 
 #app{
@@ -60,9 +60,9 @@ img.topimg{
 	width:auto;
 	height: 650px;
 	position: absolute;
-    left: 50%; /* ����� ���� ��ġ�� �߾����� �̵� */
+    left: 50%; /* 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占싱듸옙 */
     transform: translateX(-50%); 
-	align-items: center; /* ���� ��� ���� */
+	align-items: center; /* 占쏙옙占쏙옙 占쏙옙占쏘데 占쏙옙占쏙옙 */
 	}
 	
 /*  nav{
@@ -179,8 +179,8 @@ border:1px dotted green;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  margin: 0 -10px; /* �� �ڽ� ������ ������ ���� */
-   left: 50%; /* ����� ���� ��ġ�� �߾����� �̵� */
+  margin: 0 -10px; /* 占쏙옙 占쌘쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 */
+   left: 50%; /* 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占싱듸옙 */
     transform: translateX(-50%); 
 }
 .sect2 div{
@@ -192,7 +192,7 @@ margin:20px;
   border:1px solid blue;
  
   width: 300px;
-  margin: 0 10px; /* �� �ڽ� ������ ������ ���� */
+  margin: 0 10px; /* 占쏙옙 占쌘쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 */
   
   text-align: center;
 }
@@ -205,9 +205,9 @@ margin:20px;
 	width:1500px;
 	height: 650px;
 	position: absolute;
-    left: 50%; /* ����� ���� ��ġ�� �߾����� �̵� */
+    left: 50%; /* 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占싱듸옙 */
     transform: translateX(-50%); 
-	align-items: center; /* ���� ��� ���� */
+	align-items: center; /* 占쏙옙占쏙옙 占쏙옙占쏘데 占쏙옙占쏙옙 */
 	flex-wrap: wrap;
 	padding:50px;
 } 
@@ -377,9 +377,9 @@ margin:20px;
 		
 		<nav id="nav3">
 		  <section class="sect3">
-		    <h2><a href="newitem.do">�Ż�ǰ</a></h2>
+		    <h2><a href="newitem.do">占신삼옙품</a></h2>
 		    <div class="Sbox1">
-		      <p class="more"><a href="#">������</a></p>
+		      <p class="more"><a href="#">占쏙옙占쏙옙占쏙옙</a></p>
 		     
 		        <div v-for="item in list" class="productList">
 		          <span><img :src="item.path" class="pImg"></span>
@@ -404,7 +404,7 @@ margin:20px;
 		
 		</nav>
 
-	</div> <!-- �����̳� div -->
+	</div> <!-- 占쏙옙占쏙옙占싱놂옙 div -->
 		
 </div> <!-- app div -->
 			
@@ -421,7 +421,7 @@ var app = new Vue({
 		best : []
 	}, 
 	methods : {
-		fnGetList : function() { // ����� ���� �ҷ����� �̸� , ���� (�г���)
+		fnGetList : function() { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙 占싱몌옙 , 占쏙옙占쏙옙 (占싻놂옙占쏙옙)
             var self = this;
             var nparmap = {uId : self.uId};            
             $.ajax({
@@ -438,7 +438,7 @@ var app = new Vue({
           });
 	},
 
-	fnBestItem : function() { // ����� ���� �ҷ����� �̸� , ���� (�г���)
+	fnBestItem : function() { // 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙 占싱몌옙 , 占쏙옙占쏙옙 (占싻놂옙占쏙옙)
         var self = this;
         var nparmap = {uId : self.uId};            
         $.ajax({
@@ -454,10 +454,10 @@ var app = new Vue({
            }
       });
 },
-	 // productView �޼��� �߰�
+	 // productView 占쌨쇽옙占쏙옙 占쌩곤옙
     productView: function(item) {
       console.log("Clicked product:", item);
-      // Ŭ���� ��ǰ ������ Ȱ���� ���� �߰�
+      // 클占쏙옙占쏙옙 占쏙옙품 占쏙옙占쏙옙占쏙옙 활占쏙옙占쏙옙 占쏙옙占쏙옙 占쌩곤옙
     }
   },
 	created : function() {
