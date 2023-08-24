@@ -3,23 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
-<script type="text/javascript" src="../js/footer.js"></script>
 <link href="../css/mypage.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
-<link href="../css/footer.css" rel="stylesheet" type="text/css">
-<%@ include file="../Product/sexyheader.jsp" %>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="../css/swiper.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<!-- Swiper library -->
+<link href="https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/swiper@5.3.6/js/swiper.min.js"></script>
+<!-- vue-awesome-swiper -->
+<script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper@4.1.1/dist/vue-awesome-swiper.js"></script>
+
 <meta charset="EUC-KR">
 <style type="text/css">
 .swiper-container {
-	margin-top : 50px;
 	height:420px;
 	border-radius:7px;
 }
@@ -39,6 +43,9 @@
 	height: 350px;
 	display: flex;
 	width: 1200px;	
+}
+.j{
+	margin-bottom: 55px;
 }
 .c{
 
@@ -66,12 +73,7 @@
   	margin:  0px;
   	padding: 0xp;
 }
-footer{
-	width: 100%;
-	height: 600px;
-}
 </style>
-
 </head>
 <body>
 
@@ -91,9 +93,7 @@ footer{
 							</div>
 
 							<div class="topBox">
-
 								<div class="details">
-
 									<div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
@@ -116,7 +116,7 @@ footer{
 								</div>
 								<div class="details">
 									<div>포인트</div>
-									<div v-if="info.uPoint !=0">{{info.uPoint}} P</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
 								</div>
 								
@@ -128,7 +128,7 @@ footer{
 				</div>
 
 
-				<div id="mypage">
+				<div id="body">
 
 					<div id="left">
 						<div class="categories">MY PAGE</div>
@@ -138,7 +138,7 @@ footer{
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
-                                       <li><a href="/mypag/myPageInterest.do  ">장바구니</a></li>
+                                       <li><a href="/cart/cartList.do">장바구니</a></li>
                                        <li><a href="/mypag/myInformation.do">찜 목록</a></li>
                                        <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
                                     </ul>   
@@ -157,10 +157,10 @@ footer{
                                  <li class="ulh1">고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a  href="/mypag/myInquiry.do">1:1 문의</a></li>
+                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
@@ -171,56 +171,56 @@ footer{
 
 					<div id="right">
 
-						<div class="View">
-							<div class="lowerBox">주문상품</div>
-							<div class="swiper-container">
-							<div class="swiper-wrapper">
+						<div class="View" style="margin-bottom : 30px;">
+							<div class="lowerBox j">주문상품</div>
+							<div v-if="orderlist.length == 0">
+									<div class="nodata">내역이 없습니다</div>							
+								</div> 
+							<div v-else class="swiper-container">
+							<swiper
+							    ref="swiperComponent"
+							    :options="swiperOptions"
+							    @click-slide="onSwiperClickSlide"
+							    @set-translate="onSetTranslate"
+							>
 								<template v-for="item in orderlist">
-										<div class="swiper-slide" >																	
-									       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
-								           <div class="justBox">{{item.pName}}</div>
-								           <div class="justpay">\ {{item.price}}</div>								      
-										</div>
-								</template>
-						
-							</div>
-						
-							<!-- 네비게이션 -->
-							<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-							<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-						
-							<!-- 페이징 -->
-							<div class="swiper-pagination"></div>
+							    	<swiper-slide>
+						    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+							            <div class="justBox">{{item.pName}}</div>
+							            <div class="justpay">\ {{item.price}}</div>		
+							    	</swiper-slide>
+							    </template>
+						          <div class="swiper-pagination"  slot="pagination"></div>
+							      <div class="swiper-button-prev" slot="button-prev"></div>
+							      <div class="swiper-button-next" slot="button-next"></div>
+							</swiper>
 						</div>
 				
-							
-							<div v-if="false">
-							<div class="nodata">내역이 없습니다</div>							 
-							</div>
-							
 						</div>
 
 						<div class="View">						
-							<div class="lowerBox">장바구니</div>
-							<!-- 	<div v-if="falsecartlist.lenght == 0">
+							<div class="lowerBox j">장바구니</div>
+								<div v-if="cartlist.length == 0">
 									<div class="nodata">내역이 없습니다</div>							
-								</div> -->
-									<div class="swiper-container">
-										<div class="swiper-wrapper">
-												<div class="swiper-slide" v-for="item in cartlist">																	
-											       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
-										           <div class="justBox">{{item.pName}}</div>
-										           <div class="justpay">\ {{item.price}}</div>							        
-										 		</div>
-											
-										</div>
-									
-										<!-- 네비게이션 -->
-										<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-										<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-									
-										<!-- 페이징 -->
-										<div class="swiper-pagination"></div>
+								</div> 
+									<div v-else class="swiper-container">
+										<swiper
+										    ref="swiperComponent"
+										    :options="swiperOptions"
+										    @click-slide="onSwiperClickSlide"
+										    @set-translate="onSetTranslate"
+										>
+											<template v-for="item in cartlist">
+										    	<swiper-slide>
+									    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+										            <div class="justBox">{{item.pName}}</div>
+										            <div class="justpay">\ {{item.price}}</div>		
+										    	</swiper-slide>
+										    </template>
+									          <div class="swiper-pagination"  slot="pagination"></div>
+										      <div class="swiper-button-prev" slot="button-prev"></div>
+										      <div class="swiper-button-next" slot="button-next"></div>
+										</swiper>
 									</div>
 
 							
@@ -229,29 +229,29 @@ footer{
 						</div>
 
 						<div class="View">
-						<div class="lowerBox">찜목록</div>
-								<div class="swiper-container">
-									<div class="swiper-wrapper">
-										<template v-for="item in wishlist">
-												<div class="swiper-slide" >																	
-											       <div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
-										           <div class="justBox">{{item.pName}}</div>
-										           <div class="justpay">\ {{item.price}}</div>								      
-												</div>
-										</template>
-								
+						<div class="lowerBox j">찜목록</div>
+						<div v-if="wishlist.length == 0">
+									<div class="nodata">내역이 없습니다</div>							
+								</div> 
+								<div v-else class="swiper-container">
+										<swiper
+										    ref="swiperComponent"
+										    :options="swiperOptions"
+										    @click-slide="onSwiperClickSlide"
+										    @set-translate="onSetTranslate"
+										>
+											<template v-for="item in wishlist">
+										    	<swiper-slide>
+									    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+										            <div class="justBox">{{item.pName}}</div>
+										            <div class="justpay">\ {{item.price}}</div>		
+										    	</swiper-slide>
+										    </template>
+									          <div class="swiper-pagination"  slot="pagination"></div>
+										      <div class="swiper-button-prev" slot="button-prev"></div>
+										      <div class="swiper-button-next" slot="button-next"></div>
+										</swiper>
 									</div>
-								
-									<!-- 네비게이션 -->
-									<div class="swiper-button-next" ></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-									<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-								
-									<!-- 페이징 -->
-									<div class="swiper-pagination"></div>
-								</div>
-							<div v-if="false">
-							<div class="nodata">내역이 없습니다</div>
-							</div>
 						</div>
 
 					</div>
@@ -260,62 +260,13 @@ footer{
 
 
 			</div>
-			<div>
-				<%@ include file="../page/footer.jsp" %>			
-			</div>
-
 		</div>
-	
+<div><%@ include file="../page/footer.jsp" %></div>
+		
 </body>
 </html>
-
 <script type="text/javascript">
-
-//인스타
-document.getElementById("insta").addEventListener("click", function() {
-window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
-});
-//페북
-document.getElementById("facebook").addEventListener("click", function() {
-window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
-});
-//카카오
-document.getElementById("kakao").addEventListener("click", function() {
-window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
-});
-
-
-$(function(){
-	  $(".modal-open").click(function() {
-	    var index = $(this).index();
-	    $(".popup-wrap").eq(index).css('display', 'flex').hide().fadeIn();
-	  });
-
-	  $(".pop-btn.confirm").click(function() {
-	    modalClose.call(this);
-	  });
-
-	  function modalClose() {
-	    $(this).closest(".popup-wrap").fadeOut();
-	  }
-	});
-var footer = document.getElementById("footer");
-
-window.onscroll = function() {
-var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
-
-if (scrollBottom <= footer.offsetHeight) {
-  // 스크롤이 맨 아래 위치할 때부터 footer가 보이도록
-  footer.style.bottom = "0";
-  footer.style.opacity = "1";
-  footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
-} else {
-  // 스크롤이 맨 아래가 아닐 때
-  footer.style.bottom = "-450px"; // 또는 숨길 높이 값으로 조정
-  footer.style.opacity = "0";
-  footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
-}
-};
+Vue.use(VueAwesomeSwiper);
 	var app = new Vue({
 		el : '#app',
 		data : {
@@ -328,6 +279,20 @@ if (scrollBottom <= footer.offsetHeight) {
 			wishlist : [],
 			orderlist : [],
 			cartlist : [],
+			maxpoint : undefined,
+			swiperOptions: {
+		      loop: true,
+		      slidesPerView: 3, 
+		      pagination: {
+		        el: '.swiper-pagination',
+		        clickable : true, 
+	            type: 'bullets'
+		      },
+		      navigation: {
+		        nextEl: '.swiper-button-next',
+		        prevEl: '.swiper-button-prev'
+		      }
+		    }
 		},
 		methods : {
 			fnGetList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
@@ -356,13 +321,13 @@ if (scrollBottom <= footer.offsetHeight) {
 						
 						var listCnt = data.list;
 						for (var i = 0; i < listCnt.length; i++) {
-							if (listCnt[i].exchange == "N") {
-								self.order = listCnt[i].orderCnt;
-							
-							} else if (listCnt[i].exchange == "E") {
+							if (listCnt[i].exchange == "C") {								
+								self.refund = listCnt[i].orderCnt;							
+							} else if (listCnt[i].exchange == "R") {
 								self.exchange = listCnt[i].orderCnt;
-							} else {
-								self.refund = listCnt[i].orderCnt;
+							} else{
+								self.order = listCnt[i].orderCnt;
+								console.log(self.order);
 							}
 						}
 
@@ -380,11 +345,7 @@ if (scrollBottom <= footer.offsetHeight) {
 					type : "POST",
 					data : nparmap,
 					success : function(data) {
-						
 						self.wishlist = data.list;
-						
-						
-
 					}
 				});
 			},
@@ -417,44 +378,70 @@ if (scrollBottom <= footer.offsetHeight) {
 					success : function(data) {
 						
 						self.cartlist = data.list;
-						console.log(self.cartlist);
+		
 
 					}
 				});
+			},fnPoint : function(){ // 포인트 내역 확인
+		        var self = this;
+		        var nparmap = {uId : self.uId};
+		        $.ajax({
+		            url : "/pointList.dox",
+		            dataType:"json",	
+		            type : "POST", 
+		            data : nparmap,
+		            success : function(data) { 	
+		            	self.usepointList = data.list;
+		            	var x = 0;
+		            	var datalist = data.list;
+		            	for(var i=0; i<datalist.length; i++){
+		            		x += datalist[i].point;	
+		            	}
+		            	self.maxpoint = x; // 사용가능 포인트 
+		            
+		            }
+		        }); 
+		    },
+			onSetTranslate() {
+			      console.log('onSetTranslate')
+		    },
+		    onSwiperSlideChangeTransitionStart() {
+		      console.log('onSwiperSlideChangeTransitionStart')
+		    },
+		    onSwiperClickSlide(index, reallyIndex) {
+		      console.log('Swiper click slide!', reallyIndex)
+		    },
+		    
+		    fnNotice : function (){ // 공지 
+				var self = this;
+	    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+			},
+			fnUseGuide : function (){ //이용안내
+				var self = this;
+	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+			},
+			fnFaq : function (){ //faq
+				var self = this;
+	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
 			},
 
 		
-		},created : function() {
+		},
+		mounted() {
+			console.log('Swiper instances:', this.$refs.swiperComponent.$swiper, this.swiper);
+		},
+		created : function() {
 			var self = this;
 			self.fnGetList();
 			self.fnCntList();
 			self.fnorder();
 			self.fncart();
 			self.fnwish();
+			self.fnPoint();
 		}
-	});
-	
-
-	new Swiper('.swiper-container', {
-
-		slidesPerView : 3, // 동시에 보여줄 슬라이드 갯수
-		spaceBetween : 20, // 슬라이드간 간격
-		slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
-
-		// 그룹수가 맞지 않을 경우 빈칸으로 메우기
-		// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
-		loopFillGroupWithBlank : true,
-
-		loop : true, // 무한 반복
-
-		pagination : { // 페이징
-			el : '.swiper-pagination',
-			clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
-		},
-		navigation : { // 네비게이션
-			nextEl : '.swiper-button-next', // 다음 버튼 클래스명
-			prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
-		},
 	});
 
 </script>

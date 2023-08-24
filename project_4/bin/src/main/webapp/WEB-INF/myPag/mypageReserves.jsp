@@ -1,15 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
   <script src="../js/jquery.js"></script>  
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
- <meta charset="UTF-8">
-  <title>ë§ˆì´í˜ì´ì§€Â€</title>
+ <meta charset="EUC-KR">
+
 <style type="text/css">
+#container {
+    height: 1166px;
+    width: 100%;
+    margin-bottom: 163px;
+}
 	#table th {
 	width : 300px;
 		padding: 30px;
@@ -58,6 +64,7 @@
 </style>
 </head>
 <body>
+
 <div id="app">
 
 			  <div id="container">
@@ -71,14 +78,14 @@
 					    	 	 <a href="/mypag/main.do"><div id="profileImg"></div></a>
 					    	</div >
 					    	<div class="topBox">
-					    	<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
+					    	<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
 					    	</div>
 					    	
 					    	<div class="topBox">
 					    	
 					    		<div class="details" >
 					    		
-					    		 		<div>Order</div>
+					    		 	<div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
@@ -88,7 +95,7 @@
 					    		
 					    		<div class="details" >
 					    		
-					    			<div>êµí™˜/í™˜ë¶ˆ</div>
+					    			<div>±³È¯/È¯ºÒ</div>
 					    			<div>
 										<span v-if="refund != 0">{{refund}} /</span>
 										<span v-else>0 /</span>
@@ -99,13 +106,11 @@
 					    			
 					    		</div>
 					    		<div class="details" >
-					    			<div>í¬ì¸íŠ¸</div>
-					    			<div>{{info.uPoint}} P</div>
+					    				<div>Æ÷ÀÎÆ®</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
 					    		</div>
-					    		<div class="details" >
-					    			<div>Jelly</div>
-					    			<div>0</div>
-					    		</div>
+					    		
 					    	</div>
 					    </div>
 					    	
@@ -117,33 +122,33 @@
 							      	<div class="categories"> MY PAGE</div>
 							      	<div style="text-align: left;">
 							      	<ul style="padding: 0px;">
-			                                 <li class="ulh1">ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
+			                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
 			                                 <li>
 			                                    <ul>
-			                                       <li><a href="/mypag/myPagOrderdetails.do">ì£¼ë¬¸ë‚´ì—­</a></li>
-			                                       <li><a href="/mypag/myPageInterest.do  ">ì¥ë°”êµ¬ë‹ˆ</a></li>
-			                                       <li><a href="/mypag/myInformation.do">ì°œ ëª©ë¡</a></li>
-			                                       <li><a href="/mypag/mypageReserves.do">í¬ì¸íŠ¸</a></li>                                 
+			                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
+			                                       <li><a href="/cart/cartList.do">Àå¹Ù±¸´Ï</a></li>
+			                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
+			                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
 			                                    </ul>   
 			                                 </li>  
 			                              </ul>
 			                              <ul style="padding: 0px;">
-			                                 <li class="ulh1">íšŒì› ì •ë³´</li>
+			                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
 			                                 <li>
 			                                    <ul>
-			                                       <li><a href="/mypag/infoUpdate.do">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
-			                                       <li><a href="/mypag/infoAddr.do">ë°°ì†¡ì£¼ì†Œë¡</a></li>                           
+			                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
+			                                       <li><a href="/mypag/infoAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
 			                                    </ul>   
 			                                 </li>  
 			                              </ul>
 			                               <ul style="padding: 0px;">
-			                                 <li class="ulh1">ê³ ê°ì„¼í„°</li>
+			                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
 			                                 <li>
 			                                    <ul>
-			                                       <li><a href="/mypag/myAddInquiry.do">1:1 ë¬¸ì˜</a></li>
-			                                       <li><a href="/mypag/noticeList.do">ê³µì§€ì‚¬í•­</a></li>
-			                                       <li><a href="/mypag/useGuide.do">ì´ìš©ì•ˆë‚´</a></li>
-			                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+			                                       <li><a href="/mypag/myInquiry.do">1:1 ¹®ÀÇ</a></li>
+			                                       <li><a @click="fnNotice" href="#javascript:;">°øÁö»çÇ×</a></li>
+			                                       <li><a @click="fnUseGuide" href="#javascript:;">ÀÌ¿ë¾È³»</a></li>
+			                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                 
 			                                    </ul>   
 			                                 </li>  
 			                              </ul>
@@ -153,37 +158,37 @@
 							      	 </div>
 							      
 					<div id="right">
-								<div class="categories ab"> í¬ì¸íŠ¸</div>
+								<div class="categories ab"> Æ÷ÀÎÆ®</div>
 							     <div class="View">
 									<table id="table">
 										<tr>
 											<th rowspan="3">
-												ì‚¬ìš©ê°€ëŠ¥ ì ë¦½ê¸ˆ
+												»ç¿ë°¡´É Àû¸³±İ
 												<h1>{{maxpoint}} P</h1>
 											
 											</th>
-											<td class="pointp">ì´ ì ë¦½ê¸ˆ</td>
+											<td class="pointp">ÃÑ Àû¸³±İ</td>
 											<td class="num">{{numpoint + maxpoint}}P</td>
 											
 										</tr>
 										<tr>											
-											<td class="pointp">ì‚¬ìš©ëœ ì ë¦½ê¸ˆ</td>
+											<td class="pointp">»ç¿ëµÈ Àû¸³±İ</td>
 											<td class="num">{{numpoint}}P</td>
 										</tr>
 										<tr>											
-											<td class="pointp">í™˜ë¶ˆ ì˜ˆì • ì ë¦½ê¸ˆ</td>
+											<td class="pointp">È¯ºÒ ¿¹Á¤ Àû¸³±İ</td>
 											<td class="num">{{repoint}}P</td>
 										</tr>
 										
 									</table>
 							     </div> 
-							     	<div class="categories ab">ì ë¦½ê¸ˆ ë‚´ì—­</div>
+							     	<div class="categories ab">Àû¸³±İ ³»¿ª</div>
 							     	 <div class="View">
 							     	 	<table class="pointable">
 							     	 		<tr>
-							     	 			<th>ì£¼ë¬¸ë‚ ì§œ</th>
-							     	 			<th>ê´€ë ¨ì£¼ë¬¸</th>
-							     	 			<th>ì ë¦½ê¸ˆ</th>
+							     	 			<th>ÁÖ¹®³¯Â¥</th>
+							     	 			<th>°ü·ÃÁÖ¹®</th>
+							     	 			<th>Àû¸³±İ</th>
 							     	 										     	 		
 							     	 		</tr>
 							     	 		
@@ -206,6 +211,8 @@
 			  </div>
   
 </div>
+<div><%@ include file="../page/footer.jsp" %></div>
+
 </body>
 </html>
 <script type="text/javascript">
@@ -222,8 +229,23 @@ var app = new Vue({
     	maxpoint : undefined,
     	numpoint : undefined,
     	repoint : undefined,
+    	maxpoint : undefined,
+ 	    infouser : [],
     },
     methods: {
+    	fnGetInfo : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ğ³×ÀÓ)
+			var self = this;
+			var nparmap = {uId : self.uId};				
+			$.ajax({
+				url : "/user2.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {						
+					self.infouser = data.findPw;
+				}
+			});
+		},
     	fnGetList : function(){
             var self = this;
             var nparmap = {uId : self.uId};
@@ -233,37 +255,53 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	self.info = data.findPw; //ì‚¬ìš©ì
+                	self.info = data.findPw; //»ç¿ëÀÚ
                 	self.fnCntList();
                 }
             }); 
         },    
-        fnCntList : function(){
-	        var self = this;
-	        var nparmap = {uId : self.uId};
-	        $.ajax({
-	            url : "/mypag/listExchange.dox",
-	            dataType:"json",	
-	            type : "POST", 
-	            data : nparmap,
-	            success : function(data) { 	
-	            	var listCnt = data.list;
-	            	for(var i=0; i<listCnt.length; i++){
-	            		if(listCnt[i].exchange == "N"){	            			
-	            			self.order = listCnt[i].orderCnt;
-	            			console.log(self.order);	            			
-	            		}else if(listCnt[i].exchange == "E"){
-	            			self.exchange = listCnt[i].orderCnt;
-	            		}else{
-	            			self.refund = listCnt[i].orderCnt;
-	            		}
-	            	}
-	            	
-	            	
-	            }
-	        }); 
-	    },
-	     fnPoint : function(){ // í¬ì¸íŠ¸ ë‚´ì—­ í™•ì¸
+        fnNotice : function (){ // °øÁö 
+			var self = this;
+    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+		},
+		fnUseGuide : function (){ //ÀÌ¿ë¾È³»
+			var self = this;
+    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+		},
+		fnFaq : function (){ //faq
+			var self = this;
+    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+		},
+		/* »ó´Ü ±¸¸Å³»¿ª Ä«¿îÆ® ¼ıÀÚ */
+		fnCntList : function() {
+			var self = this;
+			var nparmap = {uId : self.uId};
+			$.ajax({
+				url : "/mypag/listExchange.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {
+					
+					var listCnt = data.list;
+					for (var i = 0; i < listCnt.length; i++) {
+						if (listCnt[i].exchange == "C") {								
+							self.refund = listCnt[i].orderCnt;							
+						} else if (listCnt[i].exchange == "R") {
+							self.exchange = listCnt[i].orderCnt;
+						} else{
+							self.order = listCnt[i].orderCnt;
+							console.log(self.order);
+						}
+					}
+
+				}
+			});
+		},
+	     fnPoint : function(){ // Æ÷ÀÎÆ® ³»¿ª È®ÀÎ
 	        var self = this;
 	        var nparmap = {uId : self.uId};
 	        $.ajax({
@@ -284,9 +322,9 @@ var app = new Vue({
 	            		z += datalist[i].repoint;
 	            	}
 	            	
-	            	self.maxpoint = x; // ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸ 
-	            	self.numpoint = y; // ì‚¬ìš©í•œ í¬ì¸íŠ¸
-	            	self.repoint = z; // í™˜ë¶ˆ í¬ì¸íŠ¸
+	            	self.maxpoint = x; // »ç¿ë°¡´É Æ÷ÀÎÆ® 
+	            	self.numpoint = y; // »ç¿ëÇÑ Æ÷ÀÎÆ®
+	            	self.repoint = z; // È¯ºÒ Æ÷ÀÎÆ®
 	            }
 	        }); 
 	    }, 
@@ -295,7 +333,9 @@ var app = new Vue({
     created: function() {
       var self = this;
       self.fnGetList();
-       self.fnPoint(); 
+      self.fnGetInfo();
+		self.fnPoint();
+		self.fnCntList();
     }
 
 });

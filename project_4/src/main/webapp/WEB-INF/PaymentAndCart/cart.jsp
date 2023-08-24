@@ -95,10 +95,10 @@ span {
 	width: 15%
 }
 .b{
-	width: 60%
+	width: 45%
 }
 .c{
-	width: 5%;
+	width: 10%;
 }
 .d{
 	width: 10%
@@ -218,7 +218,23 @@ text-align: center;
 	width: 200px;
 	height: 100px;
 }
-
+td input{
+	text-align: center;
+	border : none;
+	width: 20px;
+	height: 20px;
+}
+i{
+	border: 1px solid black;
+	border-radius: 50%;
+	padding: 5px;
+}
+.table button{
+	background-color: #fff;
+	border-radius: 25px;
+	width: 63px;
+	height: 25px;
+}
 </style>
 </head>
 <body>
@@ -239,12 +255,12 @@ text-align: center;
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
 						<td class="c">
-							 <input :value="item.cnt" @input="updateItemCnt(item)">
 							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
+							  <input :value="item.cnt" @input="updateItemCnt(item)" readonly>							
 							 <a href="#none" @click="increaseCnt(item)"> <i class="fa-solid fa-plus"></i> </a>
 						</td>
-						<td><button @click="fnCartChange(item)">수정</button></td>
-						<td><button @click ="fnRemoveCart(item.pNo)">삭제</button></td>
+						<td class="c"><button @click="fnCartChange(item)">수정</button></td>
+						<td class="c"><button @click ="fnRemoveCart(item.pNo)">삭제</button></td>
 						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
 						
 					</tr>

@@ -240,7 +240,7 @@ var app = new Vue({
        duNo : "${map.duNo}",
        order : "",
        maxpoint : undefined,
-       order : "",
+       order : 0,
        exchange : "",
        refund : "",
 
@@ -314,7 +314,7 @@ var app = new Vue({
 						} else if (listCnt[i].exchange == "R") {
 							self.exchange = listCnt[i].orderCnt;
 						} else{
-							self.order = listCnt[i].orderCnt;
+							self.order += listCnt[i].orderCnt;
 							console.log(self.order);
 						}
 					}

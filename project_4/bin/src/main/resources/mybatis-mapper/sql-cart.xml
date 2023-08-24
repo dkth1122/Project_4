@@ -10,7 +10,8 @@
 		FROM T4_CART C
 		INNER JOIN T4_PRODUCT P ON C.P_NO = P.P_NO
 		LEFT JOIN T4_PRODUCT_IMG I ON C.P_NO = I.P_NO
-		WHERE U_ID = #{uId}
+		LEFT JOIN T4_MEMBERSHIP M ON M.ARTIST = P.ARTIST
+		WHERE C.U_ID = #{uId}
 	</select>
 		
 	<!-- 장바구니에 상품 추가 -->

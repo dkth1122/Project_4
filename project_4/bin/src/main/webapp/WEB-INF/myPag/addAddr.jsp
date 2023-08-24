@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
   <script src="../js/jquery.js"></script>  
    <link href="../css/mypag.css" rel="stylesheet" type="text/css">  
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,6 +14,7 @@
  <meta charset="EUC-KR">
 
   <style type="text/css">
+
   	  	.warningm{
   		width: 930px;
    		line-height: 80px;
@@ -88,7 +90,7 @@
                       
                    <div class="a">
                       <div class="left topImgBoxwid">
-                           <a href="/mypag/main.do"><div id="profileImg"></div></a>
+                          <a href="/mypag/main.do"><div id="profileImg"></div></a>
                       </div >
                       <div class="topBox">
                       <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -115,12 +117,9 @@
                             
                          </div>
                          <div class="details" >
-                            <div>포인트</div>
-                            <div>{{info.maxpoint}} P</div>
-                         </div>
-                         <div class="details" >
-                            <div>Jelly</div>
-                            <div>0</div>
+                            		<div>포인트</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
                          </div>
                       </div>
                    </div>
@@ -137,7 +136,7 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
-                                       <li><a href="/mypag/myPageInterest.do  ">장바구니</a></li>
+                                       <li><a href="/cart/cartList.do">장바구니</a></li>
                                        <li><a href="/mypag/myInformation.do">찜 목록</a></li>
                                        <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
                                     </ul>   
@@ -156,10 +155,10 @@
                                  <li class="ulh1">고객센터</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
+                             		   <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                              
                                     </ul>   
                                  </li>  
                               </ul>
@@ -208,7 +207,7 @@
   
 			</div>
 		</div>
-</div>
+<div><%@ include file="../page/footer.jsp" %></div>
 
 </body>
 </html>
@@ -233,9 +232,27 @@ var app = new Vue({
        uId : "${sessionId}",
        duNo : "${map.duNo}",
        maxpoint : undefined, // 사용가능 포인트
+       order : "",
+       exchange : "",
+       refund : "",
+
+       
        
     },
     methods: {
+    	fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+			var self = this;
+			var nparmap = {uId : self.uId};				
+			$.ajax({
+				url : "/user2.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {						
+					self.info = data.findPw;
+				}
+			});
+		},
        fnGetList : function(){
             var self = this;
             self.user.uId = self.uId;
@@ -282,6 +299,31 @@ var app = new Vue({
     		console.log(addrDetail);
     		console.log(engAddr);
     	},
+    	/* 상단 구매내역 카운트 숫자 */
+		fnCntList : function() {
+			var self = this;
+			var nparmap = {uId : self.uId};
+			$.ajax({
+				url : "/mypag/listExchange.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {					
+					var listCnt = data.list;
+					for (var i = 0; i < listCnt.length; i++) {
+						if (listCnt[i].exchange == "C") {								
+							self.refund = listCnt[i].orderCnt;							
+						} else if (listCnt[i].exchange == "R") {
+							self.exchange = listCnt[i].orderCnt;
+						} else{
+							self.order = listCnt[i].orderCnt;
+							console.log(self.order);
+						}
+					}
+
+				}
+			});
+		},
     	fnPoint : function(){ // 포인트 내역 확인
 	        var self = this;
 	        var nparmap = {uId : self.uId};
@@ -302,12 +344,52 @@ var app = new Vue({
 	            }
 	        }); 
 	    },
+	    fnPoint : function(){ // 포인트 내역 확인
+	        var self = this;
+	        var nparmap = {uId : self.uId};
+	        $.ajax({
+	            url : "/pointList.dox",
+	            dataType:"json",	
+	            type : "POST", 
+	            data : nparmap,
+	            success : function(data) { 	
+	            	self.usepointList = data.list;
+	            	var x = 0;
+	            	var datalist = data.list;
+	            	for(var i=0; i<datalist.length; i++){
+	            		x += datalist[i].point;	
+	            	}
+	            	self.maxpoint = x; // 사용가능 포인트 
+	            
+	            }
+	        }); 
+	    },
+	    fnNotice : function (){ // 공지 
+			var self = this;
+    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+		},
+		fnUseGuide : function (){ //이용안내
+			var self = this;
+    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+		},
+		fnFaq : function (){ //faq
+			var self = this;
+    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+		},
+
+
 
     },
     created: function() {
       var self = this;
       self.fnGetList();
  	  self.fnPoint();
+ 	 self.fnPoint();
+ 	 self.fnGetInfo();
+ 	 self.fnCntList();
     }
 });
 </script>

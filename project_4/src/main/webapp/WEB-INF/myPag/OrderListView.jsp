@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+   pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -10,8 +11,8 @@
    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
    crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<meta charset="UTF-8">
-<!-- íŽ˜ì´ì§• ì¶”ê°€ 1 -->
+<meta charset="EUC-KR">
+<!-- ÆäÀÌÂ¡ Ãß°¡ 1 -->
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 
@@ -57,7 +58,7 @@
    margin : 5px 0px;
 }
 .noticeArea li:before {
-  content: "â€¢"; 
+  content: ""; 
   margin-right: 8px; 
 }
 .ordertbody:hover {
@@ -107,7 +108,7 @@
 	  margin-right : 3px;	  
 	}
 	
-	/* ë²„íŠ¼ í˜¸ë²„ íš¨ê³¼ */
+	/* ¹öÆ° È£¹ö È¿°ú */
 	.button:hover {
 	  background-color: #d4d5d9;
 	}
@@ -133,7 +134,7 @@
                         <a href="/mypag/main.do"><div id="profileImg"></div></a>
                      </div>
                      <div class="topBox">
-                        <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
+                         <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
                      </div>
 
                      <div class="topBox">
@@ -141,16 +142,15 @@
                         <div class="details">
 
                            <div>Order</div>
-                                 <label><a href="/mypag/myPagOrderdetails.do">                            
-                                 <div v-if="order != 0">{{order}}</div>
-                                 <div v-else>0</div>
-                                   </a></label>
-
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
+                          			</a></label>
                         </div>
 
                         <div class="details">
 
-                           <div>êµí™˜/í™˜ë¶ˆ</div>
+                           <div>±³È¯/È¯ºÒ</div>
                            <div>
                               <span v-if="refund != 0">{{refund}} /</span>
                               <span v-else>0 /</span>
@@ -161,13 +161,9 @@
 
                         </div>
                         <div class="details">
-                           <div>í¬ì¸íŠ¸</div>
-                           <div>{{info.uPoint}} P</div>
-                        </div>
-                        <div class="details">
-                           <div>Jelly</div>
-                           <div>0</div>
-                        </div>
+                          <div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
+                        </div>                        
                      </div>
                   </div>
 
@@ -182,33 +178,33 @@
                   <div class="categories">MY PAGE</div>
                   <div style="text-align: left;">
                      <ul style="padding: 0px;">
-                                 <li class="ulh1">ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
+                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myPagOrderdetails.do">ì£¼ë¬¸ë‚´ì—­</a></li>
-                                       <li><a href="/cart/cartList.do">ìž¥ë°”êµ¬ë‹ˆ</a></li>
-                                       <li><a href="/mypag/myInformation.do">ì°œ ëª©ë¡</a></li>
-                                       <li><a href="/mypag/mypageReserves.do">í¬ì¸íŠ¸</a></li>                                 
+                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
+                                       <li><a href="/cart/cartList.do">Àå¹Ù±¸´Ï</a></li>
+                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
                               <ul style="padding: 0px;">
-                                 <li class="ulh1">íšŒì› ì •ë³´</li>
+                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/infoUpdate.do">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
-                                       <li><a href="/mypag/infoAddr.do">ë°°ì†¡ì£¼ì†Œë¡</a></li>                           
+                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
+                                       <li><a href="/mypag/infoAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
                                <ul style="padding: 0px;">
-                                 <li class="ulh1">ê³ ê°ì„¼í„°</li>
+                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myInquiry.do">1:1 ë¬¸ì˜</a></li>
-                                       <li><a href="/mypag/noticeList.do">ê³µì§€ì‚¬í•­</a></li>
-                                       <li><a href="/mypag/useGuide.do">ì´ìš©ì•ˆë‚´</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a href="/mypag/myInquiry.do">1:1 ¹®ÀÇ</a></li>
+                                       <li><a @click="fnNotice" href="#javascript:;">°øÁö»çÇ×</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">ÀÌ¿ë¾È³»</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                             
                                     </ul>   
                                  </li>  
                               </ul>
@@ -220,18 +216,18 @@
                <div id="right">
 
                   <div class="View">
-                      <div class="lowerBox"> ì£¼ë¬¸ ìƒì„¸ ë‚´ì—­ </div>
+                      <div class="lowerBox"> ÁÖ¹® »ó¼¼ ³»¿ª </div>
                       <div class="orderArea">
                          <div>
-                            <div class="DateNoList">ì£¼ë¬¸ë²ˆí˜¸ <strong>{{oNo}}</strong> <span>ì£¼ë¬¸ì¼ìž <strong>{{oDate}}</strong></span></div>
+                            <div class="DateNoList">ÁÖ¹®¹øÈ£ <strong>{{oNo}}</strong> <span>ÁÖ¹®ÀÏÀÚ <strong>{{oDate}}</strong></span></div>
                          </div>
                          <table>
                             <tr class="headerListArea">
-                               <th>ìƒí’ˆì •ë³´</th>
-                               <th>ì ë¦½ê¸ˆ</th>                               
-                               <th>ì£¼ë¬¸ê¸ˆì•¡</th>
-                               <th>ë°°ì†¡ ì •ë³´</th>
-                               <th>ì£¼ë¬¸ ìƒíƒœ</th>
+                               <th>»óÇ°Á¤º¸</th>
+                               <th>Àû¸³±Ý</th>                               
+                               <th>ÁÖ¹®±Ý¾×</th>
+                               <th>¹è¼Û Á¤º¸</th>
+                               <th>ÁÖ¹® »óÅÂ</th>
                             </tr>
                             <div class="thArea"></div>
                             <tbody class="ordertbody">
@@ -242,38 +238,38 @@
                                         <ul class="orderInfo">
                                            <li>{{item.artist}} <span class="fontCCC">{{item.pNo}}</span></li>
                                            <li><strong>{{item.pName}}</strong></li>
-                                           <li class="fontCCC">ìˆ˜ëŸ‰ : {{item.oCount}}</li>
+                                           <li class="fontCCC">¼ö·® : {{item.oCount}}</li>
                                         </ul>                                     
                                         </a>
                                      </div>      
                                   </td>
                                   <td>{{item.price*0.02}} P</td>                               
                                   <td>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}
-                                     <div class="fontCCC">{{item.oCount}}ê°œ</div>
+                                     <div class="fontCCC">{{item.oCount}}°³</div>
                                   </td>
                                   <td>
                                      <div>{{item.artist}}</div>
-                                     <div>ì—…ì²´ ë°°ì†¡</div>
-                                     <div>í‰ê· ì¶œê³ ì¼:1.1ì¼</div>
+                                     <div>¾÷Ã¼ ¹è¼Û</div>
+                                     <div>Æò±ÕÃâ°íÀÏ:1.1ÀÏ</div>
                                   </td>
-                                  <td v-if='item.dState == "ì—…ì²´í™•ì¸ì¤‘" ||item.dState == "ìƒí’ˆì¤€ë¹„ì¤‘" '><div>{{item.dState}}</div><button class="button" @click="fnOrderCancel(item)">ì·¨ì†Œ</button></td>
-                                 <td v-else-if='item.dState == "ë°°ì†¡ì™„ë£Œ"'><div>{{item.dState}}</div><button class="button" @click="fnOrderchange(item)">êµí™˜/ë°˜í’ˆ</button><button class="button" @click="fnOrderConfirm(item)">êµ¬ë§¤ í™•ì •</button></td>                                 
+                                  <td v-if='item.dState == "¾÷Ã¼È®ÀÎÁß" ||item.dState == "»óÇ°ÁØºñÁß" '><div>{{item.dState}}</div><button class="button" @click="fnOrderCancel(item)">Ãë¼Ò</button></td>
+                                 <td v-else-if='item.dState == "¹è¼Û¿Ï·á"'><div>{{item.dState}}</div><button class="button" @click="fnOrderchange(item)">±³È¯/¹ÝÇ°</button><button class="button" @click="fnOrderConfirm(item)">±¸¸Å È®Á¤</button></td>                                 
                                  <td v-else>{{item.dState}}</td>
                                </tr>
                             </tbody>
                          </table>   
                          
                          <ul class="noticeArea">
-                            <li>ë™ì¼í•œ ì£¼ë¬¸ë²ˆí˜¸ë¼ë„ 2ê°œ ì´ìƒì˜ ë¸Œëžœë“œì—ì„œ ì£¼ë¬¸í•˜ì‹  ê²½ìš° ì¶œê³ ì§€ ì£¼ì†Œê°€ ë‹¬ë¼ ê°ê° ì¶œê³ ë©ë‹ˆë‹¤. (íƒë°° ë°•ìŠ¤ë¥¼ 2ê°œ ì´ìƒ ìˆ˜ë ¹ ê°€ëŠ¥)</li>
-                            <li>ì¶œê³  ì™„ë£Œ ì§í›„ êµí™˜ / í™˜ë¶ˆ ìš”ì²­ì„ í•˜ë”ë¼ë„ ìƒí’ˆì„ ìˆ˜ë ¹í•˜ì‹  í›„ íƒë°° ì—…ì²´ë¥¼ í†µí•´ ë³´ë‚´ì£¼ì…”ì•¼ ì²˜ë¦¬ ê°€ëŠ¥í•©ë‹ˆë‹¤.</li>
-                            <li>ë³„ë„ì˜ êµ¬ë§¤ ê²°ì •ì´ ì—†ë”ë¼ë„ ìƒí’ˆ ë°°ì†¡ ì™„ë£Œ í›„ 7ì¼ì´ ì§€ë‚œ ê²½ìš°ì—ëŠ” ìžë™ êµ¬ë§¤í™•ì •, ì ë¦½ê¸ˆì´ ìžë™ ì§€ê¸‰ë©ë‹ˆë‹¤.</li>
-                            <li>ìžì„¸í•œ ë‚´ìš©ì€ <a href="/mypag/faq.do" style="color:#0078ff; font-weight:bold;">FAQ</a>ë¥¼ í™•ì¸í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.</li>
+                            <li>µ¿ÀÏÇÑ ÁÖ¹®¹øÈ£¶óµµ 2°³ ÀÌ»óÀÇ ºê·£µå¿¡¼­ ÁÖ¹®ÇÏ½Å °æ¿ì Ãâ°íÁö ÁÖ¼Ò°¡ ´Þ¶ó °¢°¢ Ãâ°íµË´Ï´Ù. (ÅÃ¹è ¹Ú½º¸¦ 2°³ ÀÌ»ó ¼ö·É °¡´É)</li>
+                            <li>Ãâ°í ¿Ï·á Á÷ÈÄ ±³È¯ / È¯ºÒ ¿äÃ»À» ÇÏ´õ¶óµµ »óÇ°À» ¼ö·ÉÇÏ½Å ÈÄ ÅÃ¹è ¾÷Ã¼¸¦ ÅëÇØ º¸³»ÁÖ¼Å¾ß Ã³¸® °¡´ÉÇÕ´Ï´Ù.</li>
+                            <li>º°µµÀÇ ±¸¸Å °áÁ¤ÀÌ ¾ø´õ¶óµµ »óÇ° ¹è¼Û ¿Ï·á ÈÄ 7ÀÏÀÌ Áö³­ °æ¿ì¿¡´Â ÀÚµ¿ ±¸¸ÅÈ®Á¤, Àû¸³±ÝÀÌ ÀÚµ¿ Áö±ÞµË´Ï´Ù.</li>
+                            <li>ÀÚ¼¼ÇÑ ³»¿ëÀº <a href="/mypag/faq.do" style="color:#0078ff; font-weight:bold;">FAQ</a>¸¦ È®ÀÎÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.</li>
                          </ul>                                      
                       </div>
                       
                       <div class="addrArea">
                          <div class="bottomBorder">
-                            <h6>ë°°ì†¡ì§€ ì •ë³´</h6>
+                            <h6>¹è¼ÛÁö Á¤º¸</h6>
                          </div>
                             <table class="addrInfouser">
                               <colgroup>
@@ -282,33 +278,33 @@
                               </colgroup>
                            <tbody>
                            <tr>
-                              <th scope="row">ì´ë¦„</th>
+                              <th scope="row">ÀÌ¸§</th>
                               <td>{{list2.uName}}</td>
                            </tr>
                            <tr>
-                              <th scope="row">ì—°ë½ì²˜</th>
+                              <th scope="row">¿¬¶ôÃ³</th>
                               <td>{{list2.uPhone}} / {{list2.uDphone}}</td>
                            </tr>
                                              <tr>
-                              <th scope="row">ë°°ì†¡ì§€ ì£¼ì†Œ</th>
+                              <th scope="row">¹è¼ÛÁö ÁÖ¼Ò</th>
                               <td>({{list2.zipNo}}) &nbsp; {{list2.uDaddr}}  {{list2.uDaddrDetail}}</td>
                            </tr>
                            <tr>
-                              <th scope="row">ë°°ì†¡ ë©”ì‹œì§€</th>
+                              <th scope="row">¹è¼Û ¸Þ½ÃÁö</th>
                               <td>{{list2.uDmessage}}</td>
                            </tr>
                            </tbody>
                         </table>
                         
                         <ul class="noticeArea">
-                            <li>ë°œì†¡ì „ ì¼ë•Œë§Œ ë°°ì†¡ì§€ ì£¼ì†Œë¥¼ ë³€ê²½í•˜ì‹¤ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.(ë¯¸ìž…ê¸ˆ/ìž…ê¸ˆí™•ì¸/ì¶œê³ ìš”ì²­ ë‹¨ê³„ê¹Œì§€ë§Œê°€ëŠ¥)</li>                            
+                            <li>¹ß¼ÛÀü ÀÏ¶§¸¸ ¹è¼ÛÁö ÁÖ¼Ò¸¦ º¯°æÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.(¹ÌÀÔ±Ý/ÀÔ±ÝÈ®ÀÎ/Ãâ°í¿äÃ» ´Ü°è±îÁö¸¸°¡´É)</li>                            
                          </ul>         
                       </div>
                       
                       
                       <div class="paydaypayday">
                          <div class="bottomBorder">
-                            <h6>ìµœì¢… ê²°ì œ ì •ë³´</h6>
+                            <h6>ÃÖÁ¾ °áÁ¦ Á¤º¸</h6>
                          </div>
                             <table class="addrInfouser">
                               <colgroup>
@@ -317,38 +313,38 @@
                               </colgroup>
                            <tbody>
                            <tr>
-                              <th scope="row">ìƒí’ˆ í•©ê³„</th>
-                              <td>{{calcPrice}}ì›</td>
+                              <th scope="row">»óÇ° ÇÕ°è</th>
+                              <td>{{calcPrice}}¿ø</td>
                            </tr>
                            <tr>
-                              <th scope="row">ë°°ì†¡ë¹„</th>
-                              <td v-if="calcPrice < 50000">ë°°ì†¡ë¹„ 3,000ì›</td>
-                              <td v-else style="color:#14aaff;">ë°°ì†¡ë¹„ ë¬´ë£Œ</td>
+                              <th scope="row">¹è¼Ûºñ</th>
+                              <td v-if="calcPrice < 50000">¹è¼Ûºñ 3,000¿ø</td>
+                              <td v-else style="color:#14aaff;">¹è¼Ûºñ ¹«·á</td>
                            </tr>
                            <tr>
-                              <th scope="row">ê²°ì œ ìˆ˜ìˆ˜ë£Œ</th>
-                              <td>0ì›</td>
+                              <th scope="row">°áÁ¦ ¼ö¼ö·á</th>
+                              <td>0¿ø</td>
                            </tr>
                            <tr>
-                              <th scope="row" style="font-weight:bold;">ìµœì¢… ê²°ì œ ê¸ˆì•¡</th>
-                              <td v-if="parseFloat(calcPrice.replace(/,/g, ''))>=50000" style="font-weight:600; font-size:20px;">{{calcPrice}}ì›
-                                 <div style="font-size:12px;">ì˜ˆìƒ ì ë¦½ê¸ˆ {{parseFloat(calcPrice.replace(/,/g, ''))*0.02}}P</div>
+                              <th scope="row" style="font-weight:bold;">ÃÖÁ¾ °áÁ¦ ±Ý¾×</th>
+                              <td v-if="parseFloat(calcPrice.replace(/,/g, ''))>=50000" style="font-weight:600; font-size:20px;">{{calcPrice}}¿ø
+                                 <div style="font-size:12px;">¿¹»ó Àû¸³±Ý {{parseFloat(calcPrice.replace(/,/g, ''))*0.02}}P</div>
                               </td>
-                              <td v-else style="font-weight:600; font-size:20px;">{{calcPrice}}ì›
-                                 <div style="font-size:12px;">ì˜ˆìƒ ì ë¦½ê¸ˆ {{calcPrice*0.02}}P</div>
+                              <td v-else style="font-weight:600; font-size:20px;">{{calcPrice}}¿ø
+                                 <div style="font-size:12px;">¿¹»ó Àû¸³±Ý {{calcPrice*0.02}}P</div>
                               </td>
                            </tr>
                            <tr>
-                              <th scope="row">ê²°ì œ ìˆ˜ë‹¨</th>
-                              <td style="font-size:14px; font-weight:bolder;">ì¹´ì¹´ì˜¤íŽ˜ì´ + ì ë¦½ê¸ˆ</td>
+                              <th scope="row">°áÁ¦ ¼ö´Ü</th>
+                              <td style="font-size:14px; font-weight:bolder;">Ä«Ä«¿ÀÆäÀÌ + Àû¸³±Ý</td>
                            </tr>
                            </tbody>
                         </table>
                         
                         <ul class="noticeArea">
-                            <li>ì¹´ë“œê²°ì œì‹œ í˜„ê¸ˆì˜ìˆ˜ì¦/ì„¸ê¸ˆê³„ì‚°ì„œ ë°œê¸‰ì´ ë¶ˆê°€ëŠ¥í•˜ë©° ì¹´ë“œì „í‘œë¡œ ëŒ€ì²´í•˜ì‹¤ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</li>                            
-                            <li>PGì‚¬ ë˜ëŠ” ì¹´ë“œì‚¬ì—ì„œ ì œê³µí•˜ëŠ” ì¦‰ì‹œ í• ì¸ì€ ìµœì¢… ê²°ì œ ê¸ˆì•¡ì— ë°˜ì˜ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤. (ex. ì¹´ì¹´ì˜¤íŽ˜ì´ ì¦‰ì‹œí• ì¸)</li>                            
-                            <li>ë°”ë¡œì ‘ì† OFF ìƒíƒœì¼ ë•Œì—ëŠ” ê°ì¢… í• ì¸ í˜œíƒì´ ì œí•œë  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</li>                            
+                            <li>Ä«µå°áÁ¦½Ã Çö±Ý¿µ¼öÁõ/¼¼±Ý°è»ê¼­ ¹ß±ÞÀÌ ºÒ°¡´ÉÇÏ¸ç Ä«µåÀüÇ¥·Î ´ëÃ¼ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</li>                            
+                            <li>PG»ç ¶Ç´Â Ä«µå»ç¿¡¼­ Á¦°øÇÏ´Â Áï½Ã ÇÒÀÎÀº ÃÖÁ¾ °áÁ¦ ±Ý¾×¿¡ ¹Ý¿µµÇÁö ¾Ê½À´Ï´Ù. (ex. Ä«Ä«¿ÀÆäÀÌ Áï½ÃÇÒÀÎ)</li>                            
+                            <li>¹Ù·ÎÁ¢¼Ó OFF »óÅÂÀÏ ¶§¿¡´Â °¢Á¾ ÇÒÀÎ ÇýÅÃÀÌ Á¦ÇÑµÉ ¼ö ÀÖ½À´Ï´Ù.</li>                            
                          </ul>         
                       </div>
                   <div class="finishList"></div>                  
@@ -357,6 +353,7 @@
       </div>
    </div>
 </div>
+<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
@@ -366,9 +363,10 @@
          info : [],
          orderCntList : [],
          uId : "${sessionId}",
-         order : "",
+         order : 0,
          exchange : "",
          refund : "",
+         maxpoint : undefined,
          list : [],
          list2 : [],
          price : [],
@@ -389,6 +387,80 @@
     		 }
            },
       methods : {
+    	  fnGetInfoList : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ð³×ÀÓ)
+				var self = this;
+				var nparmap = {uId : self.uId};				
+				$.ajax({
+					url : "/user2.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {						
+						self.info = data.findPw;
+					}
+				});
+			},
+			/* »ó´Ü ±¸¸Å³»¿ª Ä«¿îÆ® ¼ýÀÚ */
+			fnCntList : function() {
+				var self = this;
+				var nparmap = {uId : self.uId};
+				$.ajax({
+					url : "/mypag/listExchange.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						
+						var listCnt = data.list;
+						for (var i = 0; i < listCnt.length; i++) {
+							if (listCnt[i].exchange == "C") {								
+								self.refund = listCnt[i].orderCnt;							
+							} else if (listCnt[i].exchange == "R") {
+								self.exchange = listCnt[i].orderCnt;
+							} else{
+								self.order += listCnt[i].orderCnt;
+								console.log(self.order);
+							}
+						}
+
+					}
+				});
+			},
+			fnPoint : function(){ // Æ÷ÀÎÆ® ³»¿ª È®ÀÎ
+		        var self = this;
+		        var nparmap = {uId : self.uId};
+		        $.ajax({
+		            url : "/pointList.dox",
+		            dataType:"json",	
+		            type : "POST", 
+		            data : nparmap,
+		            success : function(data) { 	
+		            	self.usepointList = data.list;
+		            	var x = 0;
+		            	var datalist = data.list;
+		            	for(var i=0; i<datalist.length; i++){
+		            		x += datalist[i].point;	
+		            	}
+		            	self.maxpoint = x; // »ç¿ë°¡´É Æ÷ÀÎÆ® 
+		            
+		            }
+		        }); 
+		    },
+		    fnNotice : function (){ // °øÁö 
+				var self = this;
+	    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+			},
+			fnUseGuide : function (){ //ÀÌ¿ë¾È³»
+				var self = this;
+	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+			},
+			fnFaq : function (){ //faq
+				var self = this;
+	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+			},
          fnGetList : function() { 
             var self = this;
             var nparmap = {oNo : self.oNo, uId : self.uId};            
@@ -413,7 +485,7 @@
          },
          fnOrderCancel  : function(item) {
             var self = this;
-            if(!confirm("ì •ë§ ì·¨ì†Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
+            if(!confirm("Á¤¸» Ãë¼ÒÇÏ½Ã°Ú½À´Ï±î?")){
                    return;
                }
             var nparmap = {buyNo : item.buyNo};
@@ -424,7 +496,7 @@
                type : "POST",
                data : nparmap,
                success : function(data) {
-                  alert("ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+                  alert("Ãë¼ÒµÇ¾ú½À´Ï´Ù.");
                   self.fnGetList();
 
                }
@@ -432,11 +504,11 @@
          },
          fnOrderchange  : function(item) {
             var self = this;
-            window.open("/mypag/orderExchange.do?buyNo=" + item.buyNo, "ë§ˆì´íŽ˜ì´ì§€ ì£¼ë¬¸ êµí™˜/ë°˜í’ˆ íŒì—…", "width=400, height=400 top=300, left=700");
+            window.open("/mypag/orderExchange.do?buyNo=" + item.buyNo, "¸¶ÀÌÆäÀÌÁö ÁÖ¹® ±³È¯/¹ÝÇ° ÆË¾÷", "width=400, height=400 top=300, left=700");
          },
          fnOrderConfirm  : function(item)  {
             var self = this;
-            if(!confirm("ì •ë§ êµ¬ë§¤í™•ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
+            if(!confirm("Á¤¸» ±¸¸ÅÈ®Á¤ÇÏ½Ã°Ú½À´Ï±î?")){
                    return;
                }
             var userPointAdd = parseInt((self.list2.price * self.list2.oCount) * 0.02);
@@ -448,7 +520,7 @@
                type : "POST",
                data : nparmap,
                success : function(data) {
-                  alert("êµ¬ë§¤ í™•ì • ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
+                  alert("±¸¸Å È®Á¤ Ã³¸®µÇ¾ú½À´Ï´Ù.");
                   self.fnGetList();
                }
             });
@@ -457,6 +529,9 @@
       created : function() {
          var self = this;
          self.fnGetList();
+         self.fnPoint();
+         self.fnCntList();
+         self.fnGetInfoList();
       }
    });
 </script>

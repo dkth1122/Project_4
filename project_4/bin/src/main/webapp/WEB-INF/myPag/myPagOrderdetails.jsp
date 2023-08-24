@@ -1,103 +1,225 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+   pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>\
-<meta charset="EUC-KR">
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+   integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+   crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <!-- 페이징 추가 1 -->
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-
+<meta charset="EUC-KR">
 <style type="text/css">
-
-
+#container {
+    height: 1500px;
+    width: 100%;
+    margin-bottom: 163px;
+}
+<!-- 페이징 추가 2-->
+.pagination {
+     margin:24px;
+     display: inline-flex;
+     
+    }
+ul {
+    }
+   .pagination li {
+       min-width:32px;
+       padding:2px 6px;
+       text-align:center;
+       margin:0 3px;
+       border-radius: 6px;
+       border:1px solid #eee;
+       color:#666;
+       display : inline;
+   }
+   .pagination li:hover {
+       background: #E4DBD6;
+   }
+   .page-item a {
+       color:#666;
+       text-decoration: none;
+   }
+   .pagination li.active {
+       background-color : #E7AA8D;
+       color:#fff;
+   }
+   .pagination li.active a {
+       color:#fff;
+   }
 .button11{
-	background: none;
-	 border: none;
-	 padding: 0;
-	 font-family: inherit;
-	 font-size: inherit;
-	 color: inherit;
-	 cursor: pointer;
+   background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+.headerListArea th{
+   border-bottom: 1px solid #f1f1f1;
+   padding-bottom : 20px;
+   font-size: 14px;
+   color: #98989f;
+   
+}
+.footerListArea th{
+   border-bottom: 1px solid #f1f1f1;
+   height : 35px;
+   padding : 4px 10px;
+}
+.footerListArea td{
+   border-bottom: 1px solid #f1f1f1;
+   height : 35px;
+   padding : 20px 10px;
+}
+.column2{
+   text-align : center;
+}
+.column{
+   text-align : left;
+}
+.pagepage{
+
+}
+.calenderArea{
+   margin-top: 40px;
+    background-color: #fcfcfc;
+    border: 1px solid #d8d9df;
+    
+}
+.calenderArea2{
+    border: 0;
+    border-bottom: 1px dashed #d8d9df;
+    padding: 33px 24px;
+}
+.calenderArea2 ul{
+   padding : 0px;
+}
+.calenderArea ul li {
+    color: #96979e;
+    padding: 0 0 0 25px;
+    height: 33px;
+    line-height: 33px;
+    font-weight: 400;
+    font-size: 14px;
+}
+.calenderArea i {
+   padding-right: 10px;
+}
+.dateSearch{
+   color: #96979e;
+   font-size : 20px;
+   font-weight : bolder;
+}
+.date22{
+   margin-left : 40px;
+}
+.button {
+     display: inline-block;
+     padding: 10px 20px;
+     font-size: 14px;
+     text-align: center;
+     color: #black;
+     background-color: white;
+     border-radius: 60px;
+     border : 1px solid #d4d5d9;
+     cursor: pointer;
+     transition: background-color 0.3s;
+     width : 60px;
+     margin-right : 3px;
+     
+   }
+   
+   /* 버튼 호버 효과 */
+   .button:hover {
+     background-color: #d4d5d9;
+   }
+   
+input[type="date"] {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="date"]:focus {
+    border-color: #3498db;
 }
 </style>
 
 </head>
 <body>
+   <div id="app">
+         <div id="container">
+            <div id="top">
+               <div id="topbody">
+                  <div style="height: 150px;"></div>
 
-	<div id="app">
+                  <div class="a">
+                     <div class="left topImgBoxwid">
+                        <a href="/mypag/main.do"><div id="profileImg"></div></a>
+                     </div>
+                     <div class="topBox">
+                        <span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
+                     </div>
 
-			<div id="container">
-				<div id="top">
-					<div id="topbody">
-						<div style="height: 150px;"></div>
+                     <div class="topBox">
 
-						<div class="a">
-							<div class="left topImgBoxwid">
-								<a href="/mypag/main.do"><div id="profileImg"></div></a>
-							</div>
-							<div class="topBox">
-								<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
-							</div>
+                        <div class="details">
 
-							<div class="topBox">
-
-								<div class="details">
-
-									<div>Order</div>
+                        		  <div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
 
-								</div>
+                        </div>
 
-								<div class="details">
+                        <div class="details">
 
-									<div>교환/환불</div>
-									<div>
-										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>
-										
-										<span v-if="exchange != 0"> {{exchange}}</span>
-										<span v-else>0</span>
-									</div>
+                           <div>교환/환불</div>
+                           <div>
+                              <span v-if="refund != 0">{{refund}} /</span>
+                              <span v-else>0 /</span>
+                              
+                              <span v-if="exchange != 0"> {{exchange}}</span>
+                              <span v-else>0</span>
+                           </div>
 
-								</div>
-								<div class="details">
-									<div>포인트</div>
-									<div>{{info.uPoint}} P</div>
-								</div>
-								<div class="details">
-									<div>Jelly</div>
-									<div>0</div>
-								</div>
-							</div>
-						</div>
+                        </div>
+                        <div class="details">
+                         			<div>포인트</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
+                        </div>
+                     </div>
+                  </div>
 
 
-					</div>
-				</div>
+               </div>
+            </div>
 
 
-				<div id="body">
+            <div id="body">
 
-					<div id="left">
-						<div class="categories">MY PAGE</div>
-						<div style="text-align: left;">
-							<ul style="padding: 0px;">
+               <div id="left">
+                  <div class="categories">MY PAGE</div>
+                  <div style="text-align: left;">
+                     <ul style="padding: 0px;">
                                  <li class="ulh1">나의 쇼핑 정보 </li>
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
-                                       <li><a href="/mypag/myPageInterest.do">장바구니</a></li>
+                                       <li><a href="/cart/cartList.do">장바구니</a></li>
                                        <li><a href="/mypag/myInformation.do">찜 목록</a></li>
                                        <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
                                     </ul>   
@@ -117,174 +239,286 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                              
                                     </ul>   
                                  </li>  
                               </ul>
 
 
-						</div>
-					</div>
+                  </div>
+               </div>
 
-					<div id="right">
+               <div id="right">
 
-						<div class="View">
-							 <div class="lowerBox"> 주문 내역 조회 </div>
-							 <div class="find">
-							 	
-							 	 <div class="xans-element- xans-myshop xans-myshop-orderhistoryhead cboth "><fieldset class="ec-base-box">
-<legend>검색기간설정</legend>
-				<div class="stateSelect  displaynone">
-					<select id="order_status" name="order_status" class="fSelect">
-<option value="all">전체 주문처리상태</option>
-<option value="shipped_before">입금전</option>
-<option value="shipped_standby">배송준비중</option>
-<option value="shipped_begin">배송중</option>
-<option value="shipped_complate">배송완료</option>
-<option value="order_cancel">취소</option>
-<option value="order_exchange">교환</option>
-<option value="order_return">반품</option>
-</select>				</div>
-				<span class="period">
-					<a href="#none" class="btnNormal" days="00"><img src="/morenvyimg/m_myshop/btn_date1.gif" offimage="/morenvyimg/m_myshop/btn_date1.gif" onimage="/morenvyimg/m_myshop/btn_date1_on.gif" alt="오늘"></a>
-					<a href="#none" class="btnNormal" days="07"><img src="/morenvyimg/m_myshop/btn_date2.gif" offimage="/morenvyimg/m_myshop/btn_date2.gif" onimage="/morenvyimg/m_myshop/btn_date2_on.gif" alt="1주일"></a>
-					<a href="#none" class="btnNormal" days="30"><img src="/morenvyimg/m_myshop/btn_date3.gif" offimage="/morenvyimg/m_myshop/btn_date3.gif" onimage="/morenvyimg/m_myshop/btn_date3_on.gif" alt="1개월"></a>
-					<a href="#none" class="btnNormal" days="90"><img src="/morenvyimg/m_myshop/btn_date4.gif" offimage="/morenvyimg/m_myshop/btn_date4.gif" onimage="/morenvyimg/m_myshop/btn_date4_on.gif" alt="3개월"></a>
-					<a href="#none" class="btnNormal" days="180"><img src="/morenvyimg/m_myshop/btn_date5.gif" offimage="/morenvyimg/m_myshop/btn_date5.gif" onimage="/morenvyimg/m_myshop/btn_date5_on.gif" alt="6개월"></a>
-				</span>
-				<input id="history_start_date" name="history_start_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2023-05-24" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button><span class="start_date_line">-</span><input id="history_end_date" name="history_end_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2023-08-22" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button>				<input alt="조회" id="order_search_btn" type="image" src="/morenvyimg/m_myshop/btn_date_search.gif">			</fieldset>
-<ul>
-<li>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
-				<li>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
-				<!--<li class="">취소/교환/반품 신청은 주문완료일 기준 30일까지 가능합니다.</li>-->
-			</ul>
-</div>
-									<span class="date"> 결제 일자 </span> <input  type='date' > ~ <input type='date'>
-									<div>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</div>
-									<div>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</div>
-							 </div>
-							 
-							  <div class="orderchart">주문 상품 정보</div>
-							<div>
-								<table class="table">
-										<tr>
-											<th class="column-width1">주문번호</th>
-											<th class="column-width2">주문일자</th>
-											<th class="column-width3">상품정보</th>
-											<th class="column-width4">결제금액</th>
-											<th class="column-width5">주문상태</th>
-										</tr>
-										
-										<tr  v-for="item in list">											
-											<td class="column-width1"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
-											<td class="column-width2">{{item.oDate}}</td>
-											<td class="column-width3"><button class="button11" @click="productDetail(item)">{{item.pName}}외 {{item.cnt}}건</button></td>
-											<td class="column-width5">{{item.price}}원</td>
-											<td class="column-width4">{{item.dState}}</td>										
-										<tr>								
-								</table>
-
-							
-							</div>	 	
-						
-						</div>
-
-						
-
-					</div>
-
-				</div>
-
-
-			</div>
-		</div>
+                  <div class="View">
+                      <div class="lowerBox"> 주문 내역 조회 </div>
+                      <div class="find">
+                         <div class="calenderArea">            
+                            <div class="calenderArea2">           
+                              <span class="dateSearch"> 결제 일자 조회 </span> 
+                              <span class="date22">
+                                 <input id="startDate" type='date' v-model="startDate">
+                                  ~ 
+                                 <input id="endDate" type='date' v-model="endDate"></span>
+                              <span><button class="button" @click="searchCalender"><i class="fa-solid fa-magnifying-glass"></i></button></span>
+                           </div>
+                              <ul>
+                                 <li><i class="fa-regular fa-bell"></i>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
+                                 <li><i class="fa-regular fa-bell"></i>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+                                 <li style="color: red;"><i class="fa-regular fa-bell"></i>날짜 검색 시 하루 정도 오차가 있을 수 있으니 하루 다음날로 검색해 주세요</li>
+                              </ul>                           
+                        </div>
+                      </div>
+                      
+                       <div class="lowerBox">주문 상품 정보</div>
+                     <div>
+                        <div class="calenderArea" v-if="list == 0">
+                           <ul>
+                              <li><i class="fa-regular fa-face-smile"></i> 주문내역이 존재하지 않습니다.</li>
+                              <li><i class="fa-regular fa-face-smile"></i> 주문 후 확인이 가능합니다.</li>
+                           </ul>                                    
+                        </div>
+                        <table v-else class="table">
+                              <tr class="headerListArea">
+                                 <th class="column-width1">주문번호</th>
+                                 <th class="column-width2">주문일자</th>
+                                 <th class="column-width3">상품정보</th>
+                                 <th class="column-width4">결제금액</th>
+                                 <th class="column-width5">주문상태</th>
+                              </tr>
+                              
+                              <tr class="footerListArea" v-for="item in list">                                                               
+                                 <td class="column2"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
+                                 <td class="column">{{item.oDate}}</td>
+                                 <td v-if="item.cnt >= 2">{{ item.pName }}외 {{ parseInt(item.cnt) - 1 }}건</td>
+                                 <td v-else>{{ item.pName }}</td>
+                                 <td class="column-width5">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
+                                 <td class="column2">{{item.dState}}</td>                                                      
+                              <tr>
+                              <!-- 페이징 추가 3 -->
+         <template class="pagepage">
+           <paginate
+             :page-count="pageCount"
+             :page-range="3"
+             :margin-pages="2"
+             :click-handler="fnSearch"
+             :prev-text="'<'"
+             :next-text="'>'"
+             :container-class="'pagination'"
+             :page-class="'page-item'">
+           </paginate>
+         </template>                        
+                        </table>                        
+                     </div>       
+                  </div>
+               </div>
+            </div>
+         </div>         
+      </div>
+      <div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
-	var app = new Vue({
-		el : '#app',
-		data : {
-			info : [],
-			orderCntList : [],
-			uId : "${sessionId}",
-			order : "",
-			exchange : "",
-			refund : "",
-			list : [],
-			price : [],
-			dat : "",
-	
-		}, 
-		methods : {
-			fnGetList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
-				var self = this;
-				var nparmap = {uId : self.uId};				
-				$.ajax({
-					url : "/user2.dox",
-					dataType : "json",
-					type : "POST",
-					data : nparmap,
-					success : function(data) {						
-						self.info = data.findPw;
-						self.fnOrderList();
-					}
-				});
-			},
-			fnOrderList : function() { // 사용자 구매 내역 
-				var self = this;
-				var nparmap = {uId : self.uId};				
-				$.ajax({
-					url : "/mypag/Orderp.dox",
-					dataType : "json",
-					type : "POST",
-					data : nparmap,
-					success : function(data) {						
-						self.list = data.list;
-						console.log(self.list);
-					}
-				});
-			},
-			fnCntList : function() {
-				var self = this;
-				var nparmap = {uId : self.uId};
-				console.log(nparmap);
-				$.ajax({
-					url : "/mypag/listExchange.dox",
-					dataType : "json",
-					type : "POST",
-					data : nparmap,
-					success : function(data) {
-						console.log(data);
-						var listCnt = data.list;
-						for (var i = 0; i < listCnt.length; i++) {
-							if (listCnt[i].exchange == "N") {
-								self.order = listCnt[i].orderCnt
-								;
-							} else if (listCnt[i].exchange == "E") {
-								self.exchange = listCnt[i].orderCnt;
-							} else {
-								self.refund = listCnt[i].orderCnt;
-							}
-						}
+<!-- 페이징 추가 4 -->
+Vue.component('paginate', VuejsPaginate)
+   var app = new Vue({
+      el : '#app',
+      data : {
+         info : [],
+         orderCntList : [],
+         uId : "${sessionId}",
+         order : "",
+         exchange : "",
+         refund : "",
+         list : [],
+         price : [],
+         dat : "",
+         <!-- 페이징 추가 5 -->
+         selectPage: 1,
+         pageCount: 1,
+         cnt : 0,
+         startDate: '', 
+         endDate: '',
+         maxpoint : undefined,
+  	     infouser : [], 
+   
+      }, 
+      methods : {
+    	  fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+  			var self = this;
+  			var nparmap = {uId : self.uId};				
+  			$.ajax({
+  				url : "/user2.dox",
+  				dataType : "json",
+  				type : "POST",
+  				data : nparmap,
+  				success : function(data) {						
+  					self.infouser = data.findPw;
+  				}
+  			});
+  		},
+         fnGetList : function() {
+            var self = this;
+            <!-- 페이징 추가 6 -->
+            var startNum = ((self.selectPage-1) * 10);
+             var lastNum = 10;
+            var param = {uId:self.uId, startNum : startNum, lastNum : lastNum};
+            $.ajax({
+                   url : "/meme/list.dox",
+                   dataType:"json",   
+                   type : "POST",
+                   data : param,
+                   success : function(data) { 
+                      self.list = data.list;
+                      self.cnt = data.cnt;
+                      self.fnOrderList();
+                      self.pageCount = Math.ceil(self.cnt / 10);
+                   }
+               }); 
+         },         
+         fnSearch : function(pageNum){
+            var self = this;
+            self.selectPage = pageNum;
+            var startNum = ((pageNum-1) * 10);
+            var lastNum = 10;
+            var nparmap = {uId:self.uId,startNum : startNum, lastNum : lastNum};
+            $.ajax({
+               url : "/meme/list.dox",
+               dataType : "json",
+               type : "POST",
+               data : nparmap,
+               success : function(data) {
+                  self.list = data.list;
+                  self.cnt = data.cnt;
 
-					}
-				});
-			},
-			productDetail : function(item){
-				var self = this;
-				$.pageChange("/product/productView.do", {pNo : item.pNo});
-			},
-			orderDetail : function(item){
-				var self = this;
-				$.pageChange("/myPag/OrderListView.do", {buyNo : item.buyNo});
-			}
-		},
-		created : function() {
-			var self = this;
-			self.fnGetList();
-			self.fnCntList();
-		}
-	});
+                  self.fnOrderList();
+                  self.pageCount = Math.ceil(self.cnt / 10);
+               }
+            });
+         },
+         fnOrderList : function() { // 사용자 구매 내역 
+            var self = this;
+            var nparmap = {uId : self.uId};            
+            $.ajax({
+               url : "/mypag/Orderp.dox",
+               dataType : "json",
+               type : "POST",
+               data : nparmap,
+               success : function(data) {                  
+                  self.list = data.list;
+                  console.log(self.list);
+               }
+            });
+         },
+         searchCalender : function(){
+            var self = this;
+            console.log(self.startDate);
+            console.log(self.endDate);
+            if(self.startDate > self.endDate){
+               alert("조회날짜를 다시 확인해주세요.");
+               return;
+            }
+            if(self.startDate == ""){
+               alert("조회날짜를 체크해주세요.");
+               return;
+            }
+            if(self.endDate == ""){
+               alert("조회날짜를 체크해주세요.");
+               return;
+            }
+            var nparmap = {uId : self.uId, startDate : self.startDate, endDate : self.endDate};            
+             $.ajax({
+               url : "/mypag/searchOrderCalender.dox",
+               dataType : "json",
+               type : "POST",
+               data : nparmap,
+               success : function(data) {                  
+                  self.list = data.list;
+                  if(self.list == 0){
+                     alert("해당 날짜에 주문내역이 없습니다.");
+                  }
+                  
+               }
+            }); 
+         },
+         fnPoint : function(){ // 포인트 내역 확인
+ 	        var self = this;
+ 	        var nparmap = {uId : self.uId};
+ 	        $.ajax({
+ 	            url : "/pointList.dox",
+ 	            dataType:"json",	
+ 	            type : "POST", 
+ 	            data : nparmap,
+ 	            success : function(data) { 	
+ 	            	self.usepointList = data.list;
+ 	            	var x = 0;
+ 	            	var datalist = data.list;
+ 	            	for(var i=0; i<datalist.length; i++){
+ 	            		x += datalist[i].point;	
+ 	            	}
+ 	            	self.maxpoint = x; // 사용가능 포인트 
+ 	            
+ 	            }
+ 	        }); 
+ 	    },
+ 	    fnNotice : function (){ // 공지 
+ 			var self = this;
+     		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+     		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+ 		},
+ 		fnUseGuide : function (){ //이용안내
+ 			var self = this;
+     		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+     		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+ 		},
+ 		fnFaq : function (){ //faq
+ 			var self = this;
+     		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+     		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+ 		},
+ 		/* 상단 구매내역 카운트 숫자 */
+ 		fnCntList : function() {
+ 			var self = this;
+ 			var nparmap = {uId : self.uId};
+ 			$.ajax({
+ 				url : "/mypag/listExchange.dox",
+ 				dataType : "json",
+ 				type : "POST",
+ 				data : nparmap,
+ 				success : function(data) {
+ 					
+ 					var listCnt = data.list;
+ 					for (var i = 0; i < listCnt.length; i++) {
+ 						if (listCnt[i].exchange == "C") {								
+ 							self.refund = listCnt[i].orderCnt;							
+ 						} else if (listCnt[i].exchange == "R") {
+ 							self.exchange = listCnt[i].orderCnt;
+ 						} else{
+ 							self.order = listCnt[i].orderCnt;
+ 							console.log(self.order);
+ 						}
+ 					}
+
+ 				}
+ 			});
+ 		},    
+         productDetail : function(item){
+            var self = this;
+            $.pageChange("/product/productView.do", {pNo : item.pNo});
+         },
+         orderDetail : function(item){
+            var self = this;
+            $.pageChange("/myPag/OrderListView.do", {oNo : item.oNo});
+         }
+      },
+      created : function() {
+         var self = this;
+         self.fnGetList();         
+         self.fnGetInfo();
+ 		self.fnPoint();
+ 		self.fnCntList();
+      }
+   });
 </script>

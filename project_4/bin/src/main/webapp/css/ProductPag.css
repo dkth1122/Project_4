@@ -226,6 +226,7 @@ a{
   border-radius: 5px;
 }
 .slide_wrapper_main{
+	margin-top: 50px;
   width: 1200px;
    height: 350px;
 }

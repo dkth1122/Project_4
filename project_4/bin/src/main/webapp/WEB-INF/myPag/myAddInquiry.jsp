@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>  
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <!-- 1. vue2editor 에디터 cdn -->
@@ -14,6 +15,11 @@
  <meta charset="EUC-KR">
 
 <style>
+#container {
+    height: 1325px;
+    width: 100%;
+    margin-bottom: 163px;
+}
 	#iQtext{
 		 min-height : 600px;
 	}
@@ -30,10 +36,10 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 <div id="profileImg"></div>
+					    	 	 <a href="/mypag/main.do"><div id="profileImg"></div></a>
 					    	</div >
 					    	<div class="topBox">
-					    	<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
+					    	<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
 					    	</div>
 					    	
 					    	<div class="topBox">
@@ -42,7 +48,8 @@
 					    		
 							    	<div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
-			                        <div>{{order}}</div>
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
                           			</a></label>
 					    			
 					    		</div>
@@ -51,18 +58,19 @@
 					    		
 					    			<div>교환/환불</div>
 					    			<div>
-					    				<span>{{refund}} /</span><span> {{exchange}}</span>
-					    			</div>
+										<span v-if="refund != 0">{{refund}} /</span>
+										<span v-else>0 /</span>
+										
+										<span v-if="exchange != 0"> {{exchange}}</span>
+										<span v-else>0</span>
+									</div>
 					    			
 					    		</div>
 					    		<div class="details" >
 					    			<div>포인트</div>
-					    			<div>{{info.uPoint}} P</div>
-					    		</div>
-					    		<div class="details" >
-					    			<div>Jelly</div>
-					    			<div>0</div>
-					    		</div>
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
+					    		</div>					    		
 					    	</div>
 					    </div>
 					    	
@@ -78,7 +86,7 @@
 		                                 <li>
 		                                    <ul>
 		                                       <li><a href="/mypag/myPagOrderdetails.do">주문내역</a></li>
-		                                       <li><a href="/mypag/myPageInterest.do  ">장바구니</a></li>
+		                                       <li><a href="/cart/cartList.do">장바구니</a></li>
 		                                       <li><a href="/mypag/myInformation.do">찜 목록</a></li>
 		                                       <li><a href="/mypag/mypageReserves.do">포인트</a></li>                                 
 		                                    </ul>   
@@ -97,10 +105,10 @@
 		                                 <li class="ulh1">고객센터</li>
 		                                 <li>
 		                                    <ul>
-		                                       <li><a href="/mypag/myAddInquiry.do">1:1 문의</a></li>
-		                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-		                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-		                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+		                                       <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
+		                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+		                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+		                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                               
 		                                    </ul>   
 		                                 </li>  
 		                              </ul>
@@ -169,6 +177,7 @@
 			  </div>
   
 </div>
+<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
@@ -192,10 +201,25 @@ var app = new Vue({
     	order  : "",
     	exchange : "",
     	refund : "",
-    	list : []
+    	list : [],
+    	maxpoint : undefined,
+    	infouser : []
     },
     components: {VueEditor},
     methods: {
+    	fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+			var self = this;
+			var nparmap = {uId : self.uId};				
+			$.ajax({
+				url : "/user2.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {						
+					self.infouser = data.findPw;
+				}
+			});
+		},
     	fnGetList : function(){
             var self = this;
             var nparmap = {uId : self.uId};
@@ -261,24 +285,76 @@ var app = new Vue({
        	    	var self = this;
        	    	$.pageChange("myInquiry.do", {uId : self.uId});
        	},
-	    /* 이용안내 */
-	    useGuide : function(){
-	    	var self = this;
-	    	$.pageChange("useGuide.do", {uId : self.uId});
+       	fnPoint : function(){ // 포인트 내역 확인
+	        var self = this;
+	        var nparmap = {uId : self.uId};
+	        $.ajax({
+	            url : "/pointList.dox",
+	            dataType:"json",	
+	            type : "POST", 
+	            data : nparmap,
+	            success : function(data) { 	
+	            	self.usepointList = data.list;
+	            	var x = 0;
+	            	var datalist = data.list;
+	            	for(var i=0; i<datalist.length; i++){
+	            		x += datalist[i].point;	
+	            	}
+	            	self.maxpoint = x; // 사용가능 포인트 
+	            
+	            }
+	        }); 
 	    },
-	    /* 공지사항 */
-	    noticeList : function(){
-	    	var self = this;
-	    	$.pageChange("noticeList.do", {uId : self.uId});
-	    },
-	    faq : function(){
-	    	var self = this;
-	    	$.pageChange("faq.do", {uId : self.uId});
-	    }
+	    fnNotice : function (){ // 공지 
+			var self = this;
+    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+		},
+		fnUseGuide : function (){ //이용안내
+			var self = this;
+    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+		},
+		fnFaq : function (){ //faq
+			var self = this;
+    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+		},
+		/* 상단 구매내역 카운트 숫자 */
+		fnCntList : function() {
+			var self = this;
+			var nparmap = {uId : self.uId};
+			$.ajax({
+				url : "/mypag/listExchange.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {
+					
+					var listCnt = data.list;
+					for (var i = 0; i < listCnt.length; i++) {
+						if (listCnt[i].exchange == "C") {								
+							self.refund = listCnt[i].orderCnt;							
+						} else if (listCnt[i].exchange == "R") {
+							self.exchange = listCnt[i].orderCnt;
+						} else{
+							self.order = listCnt[i].orderCnt;
+							console.log(self.order);
+						}
+					}
+
+				}
+			});
+		},
+   
+	    
     },
     created: function() {
       var self = this;
       self.fnGetList();
+      self.fnGetInfo();
+		self.fnPoint();
+		self.fnCntList();
     }
 });
 </script>
