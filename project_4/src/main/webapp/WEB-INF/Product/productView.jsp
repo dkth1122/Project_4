@@ -329,7 +329,7 @@
 	<div id="container">
 		<div id="imgBox">
 			 <div id="mainImg">
-			 <img :src="path" v-for = "class = 'Y'">
+			 <img :src="path">
 			 </div>
 		</div>	
 		<div id="infoArea" style="display : block;, height: 623px; top:auto; ">
