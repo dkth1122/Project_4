@@ -72,6 +72,7 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;
     overflow: hidden;
     transition: all 0.9s;
     position: relative;
+    background: rgba(245, 235, 236); 
     }
     
 .navWrap:hover {
@@ -172,7 +173,7 @@ margin: 0 auto;
 </head>
 
 <body>
-	<div id="app">
+	<div id="header">
 
 		<nav>
 			<span><a href="../home.do"><img id="logo" src="../../img/logo/veryperiii.png"></a></span>
@@ -236,7 +237,7 @@ margin: 0 auto;
 </html>
 <script>
 var app = new Vue({
-	el : '#app',
+	el : '#header',
 	data : {
 		uId : "${sessionId}"
 	},

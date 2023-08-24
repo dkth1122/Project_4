@@ -128,7 +128,6 @@ background-color:#F2DAED
 </head>
 
 <body >
-<nav>
 <div id="footer">
   <div class="container">
 
@@ -601,6 +600,7 @@ window.onscroll = function() {
     footer.style.bottom = "0";
     footer.style.opacity = "1";
     footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
+    footer.style.zIndex = "999999";
   } else {
     // 스크롤이 맨 아래가 아닐 때
     footer.style.bottom = "-450px"; // 또는 숨길 높이 값으로 조정
@@ -609,6 +609,5 @@ window.onscroll = function() {
   }
 };
 </script>
-</nav>
 </body>
 </html>
