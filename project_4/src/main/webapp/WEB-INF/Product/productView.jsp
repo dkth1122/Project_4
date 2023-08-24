@@ -433,7 +433,6 @@
 		
 		<div class="explanation">
 			<img alt="상품상세설명" :src="path2">
-			
 			<div id="radioMenu">
 	    		<input id="1" type="radio" name="Menu" value="상품정보" v-model="selectedMenu">
 	    		<label for="1">상품정보</label>
