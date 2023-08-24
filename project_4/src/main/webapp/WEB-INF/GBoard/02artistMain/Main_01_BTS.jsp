@@ -225,7 +225,7 @@ var app = new Vue({
             });
         }, fnComment : function(gNo){
             var self = this;
-            var width = 700;
+            var width = 500;
             var height = 500;
             var left = (window.innerWidth - width) / 2;
             var top = (window.innerHeight - height) / 2;

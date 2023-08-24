@@ -10,14 +10,14 @@
 <%@ include file="footer.jsp" %>
 <style>
 
-/* ³×¿Â»çÀÎÈ¿°ú */
+/* ï¿½×¿Â»ï¿½ï¿½ï¿½È¿ï¿½ï¿½ */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-/* a°øÅë */
+/* aï¿½ï¿½ï¿½ï¿½ */
 div {
     margin: 20px;
 }
@@ -57,7 +57,7 @@ a {
 .ex2 a:hover {
     text-shadow: 0 0 5px #ff0;
 }
-/*  ³×¿Â»çÀÎÈ¿°ú ³¡ */
+/*  ï¿½×¿Â»ï¿½ï¿½ï¿½È¿ï¿½ï¿½ ï¿½ï¿½ */
 
 
 
@@ -181,7 +181,7 @@ img.topimg{
 }
 .sect2 div {
 	
-	height: 438px;
+
 	float: left;
 	margin-right:10px;
 	margin:20px;
@@ -224,20 +224,21 @@ img.topimg{
 
 .productList {
   border:1px solid blue;
- 
+ height:400px;
   width: 300px;
   margin: 0 10px; 
+  position : relative;
   
   text-align: center;
 }
 /*new item*/
 
  .Sbox1 {
- text-align:center;
-  border:6px solid orange;
+ 	
+ 	border:6px solid orange;
     vertical-align: middle;
 	width:1500px;
-	height: 650px;
+	height: 1500px;
 	position: absolute;
     left: 50%; 
     transform: translateX(-50%); 
@@ -262,58 +263,46 @@ img.topimg{
 	
 } */
 
-/* .sect2 .Sbox1:hover {
-	border:1px solid yellow;
-}
- */
-/* .sect2 div:hover a {
-	border:1px solid green;
+
+ 
+.sect2 div:hover a {
 	opacity: 1;
-	} */
-	
-/*SUP*//* 
+}
+
+/*SUP*/
 .sect2 div .sub {
-	border:7px solid green;
-	position: ablsolute;
-	
+	position: absolute;
+	bottom: -100px;
 	width: 300px;
-	height: auto;
+	height: 250px;
 	background: rgba(255, 255, 255, 0.7);
 	color: #000;
 	line-height: 25pt;
 	font-family: arial;
 	font-size: 15pt;
 	text-align: left;
-	
+	padding-left: 11px;
 	box-sizing: border-box;
 	opacity: 0;
 	transition: all 1s;
 }
- */
-.sect2 div:hover .sub {
-	position: relative;
+
+	.productList:hover .sub {
+	position: absolute;
+	bottom: 0px;
 	opacity: 1;
-	border:7px solid green;
-	position: ablsolute;
-	
-	
-	width: 300px;
-	height: auto;
-	background: rgba(255, 255, 255, 0.7);
-	line-height: 25pt;
-	font-family: arial;
-	font-size: 15pt;
-	text-align: left;
-	
-	box-sizing: border-box;
-	opacity: 0;
+} 
 
 .sect2 div .sub .sname {
 	font-size: 23pt;
 	font-weight: bold;
-	width:300px;
+	padding: 50px 0 20px 0;
+	box-sizing: border-box;
 	text-align: left;
 }
+
+
+
 
 .ostimg {
 position: absolute;
@@ -462,13 +451,13 @@ transform: translate(50%, -50%);
        <div v-for="(item, index) in list" class="productList" :key="index">
           <span><img :src="item.path" class="pImg"></span>
           <div>{{ item.pName }}</div>
-          <div>
+          
             <ul class="sub">
               <li class="sname">{{item.artist}}</li>
               <li>{{item.category}}</li>
               <li>{{item.price}}</li>
             </ul>
-            </div>
+           
           </div>
         </div>
       </section>
@@ -510,7 +499,7 @@ transform: translate(50%, -50%);
 
 				<div class="img4"></div>
 
-				<div class="img5"></div>
+				<div class="img5"></div>n
 
 			</div>
 
