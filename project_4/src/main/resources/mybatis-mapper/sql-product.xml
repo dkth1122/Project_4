@@ -142,7 +142,7 @@
 	    SELECT * FROM T4_PRODUCT P
 	    LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 	    WHERE 1=1
-	    	AND CLASS = 'N'
+	    	AND CLASS = 'Y'
 	        AND ARTIST = #{artist}
 	    <if test="ctg != null and ctg != ''"  >
 	        AND CATEGORY = #{ctg}
@@ -176,7 +176,7 @@
 	    SELECT * FROM T4_PRODUCT P
 	    LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 	    WHERE 1=1
-	   		AND CLASS = 'N'
+	   		AND CLASS = 'Y'
 	        AND CATEGORY = #{ctg}
 	    <if test="artist != null and artist != ''" >
 	        AND ARTIST = #{artist}
