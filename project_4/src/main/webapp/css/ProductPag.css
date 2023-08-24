@@ -33,6 +33,16 @@
     margin: 0;
     padding: 0;
 }
+.artistDIv{
+	font-size: 14px;
+	color: #a7a9b5;
+}
+.productPosList:hover{
+	cursor: pointer;
+}
+.productPosList h5{
+	margin-top : 10px;
+}
 
 li {
     list-style: none;

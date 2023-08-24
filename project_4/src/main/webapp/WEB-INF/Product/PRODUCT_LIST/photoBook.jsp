@@ -199,8 +199,9 @@
 					<div class="productPosList">
 								<span @click="productView(item)" v-for="item in list" class="productList">
 									<span><img :src = "item.path" class="pImg"></span>
+									<div class="artistDIv">{{item.artist}}</div>
 									<div>{{item.pName}}</div>
-									<div>{{item.price}}</div>
+									<h5>{{item.price}}</h5>
 								</span>
 					</div>
                 <!-- ÆäÀÌÂ¡ Ãß°¡ 3 -->
