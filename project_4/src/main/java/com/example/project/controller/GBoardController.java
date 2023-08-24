@@ -36,7 +36,7 @@ public class GBoardController {
 	// 멤버쉽 구독한 아티스트의 버튼만 보이도록 수정 예정
 	@RequestMapping("/gboard/main.do")
 	public String mainGBoard(Model model) throws Exception {
-
+		
 		return "/GBoard/01main/gboard_Main_01";
 	}
 	
@@ -426,4 +426,15 @@ public class GBoardController {
 		gboardService.removeProfileImg(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+	// 유저 멤버쉽 정보 출력
+		@RequestMapping(value = "/gboard/membershipCheck.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String membershipCheck(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			List<GBoard> list = gboardService.searchsMembership(map);
+			resultMap.put("list", list);
+			return new Gson().toJson(resultMap);
+		}
+
 }

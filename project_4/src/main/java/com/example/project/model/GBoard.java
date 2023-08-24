@@ -57,6 +57,7 @@ public class GBoard {
     private String kitYN;
     
     
+    
     //프로필 테이블
     private int gpNo;
     private String nickName;
