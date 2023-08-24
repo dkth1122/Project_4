@@ -80,7 +80,7 @@
 			INNER JOIN (
 			   SELECT O_NO, COUNT(*) AS CNT 
 				FROM T4_DELIVERY
-				WHERE U_ID = 'test1'
+				WHERE U_ID = #{uId}
 				GROUP BY O_NO
 			) A ON O.O_NO = A.O_NO
 				INNER JOIN (
@@ -88,7 +88,7 @@
 				FROM T4_ORDER
 				GROUP BY O_NO
 			) B ON O.O_NO = B.O_NO
-			   WHERE D.DU_NO = U.DU_NO AND U.U_ID = 'test1'
+			   WHERE D.DU_NO = U.DU_NO AND U.U_ID = #{uId}
 			GROUP BY O.O_NO
 	</select>
 	<!-- 사용자 장바구니 출력 -->
