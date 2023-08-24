@@ -685,7 +685,7 @@ var app = new Vue({
             		$.pageChange("/payment/payment.do", params); 
             	}	
         	}else if(self.info.uMembership == 'Y' && self.info.category == 'MEM'){
-        		alert("한 번만 구매 가능.");
+        		alert("멤버쉽 구독 상품은 한 번만 구매 가능합니다.");
         	}
         	else{
     			var params =  {pNo : self.pNo, cnt : self.quantity};

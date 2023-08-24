@@ -36,7 +36,9 @@ public class PaymentServiceImpl implements PaymentService{
 		//멤버쉽 구독 상품 구매 체크 후 맞으면 멤버쉽 테이블 업데이트 
 		if( subscribe > 0) {
 			paymentMapper.insertMembership(map);
-			System.out.println("멤버쉽 구독 맞아용 체크 함");
+			System.out.println("멤버쉽 구독 맞아용 멤버쉽 테이블 추가함~");
+			paymentMapper.updateUserMembershipY(map);
+			System.out.println("멤버쉽 구독 맞아용 유저 테이블 업데이트함~");
 			}
 		
 			/*
