@@ -576,7 +576,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 }
             }); 
     	},fnAddAddrList : function(){
- var self = this;
+ 			 var self = this;
 	       	 
 	       	 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == ""){
 					alert("내용을 모두 입력해주세요.");	
