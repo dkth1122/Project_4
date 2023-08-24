@@ -50,6 +50,33 @@ public class MyPagController {
 	ProductService productService;
 	
 
+	//결제 페이지
+	@RequestMapping("/mypag/orderExchange.do") 
+	public String orderExchange(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/myPag/orderExchange";
+	}
+	//결제 페이지
+	@RequestMapping("/mypag/Order.do") 
+    public String mainGBoard(Model model) throws Exception{
+		
+        return "/myPag/Order";
+    }
+	//헤더
+	@RequestMapping("sexyheader.do") 
+	public String sexyheader(Model model) throws Exception{
+
+	return "/Product/sexyheader";
+	}
+	
+	//푸터
+	@RequestMapping("footer.do") 
+	public String footer(Model model) throws Exception{
+
+	return "/page/footer";
+	}
+	
+
 	
 	
 	//마이페이지 보이기

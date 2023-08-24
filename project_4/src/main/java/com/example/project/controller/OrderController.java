@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.project.dao.DeliveryService;
 import com.example.project.dao.OrderService;
 import com.example.project.model.DeliveryUser;
+import com.example.project.model.Product;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -56,6 +57,53 @@ public class OrderController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		orderService.updateOrderInfo(map);
 		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	
+	//구매자 리스트
+	@RequestMapping(value = "/mypag/Orderp.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Product> list = orderService.searchOrderp(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+		
+	
+	@RequestMapping(value = "/mypag/selectcartlist.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String selectcartlist(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Product> list = orderService.selectcartlist(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+		
+	//구매확정으로 업데이트
+	@RequestMapping(value = "/mypag/mypageOrderConfirm.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String mypageOrderConfirm(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		orderService.mypageOrderConfirm(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	//구매 전 취소
+	@RequestMapping(value = "/mypag/mypageOrderCancel.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String mypageOrderCancel(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		orderService.mypageOrderCancel(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	//배송 완료 후 교환/반품
+	@RequestMapping(value = "/mypag/mypageOrderchange.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String mypageOrderchange(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		orderService.mypageOrderchange(map);
 		return new Gson().toJson(resultMap);
 	}
 	
