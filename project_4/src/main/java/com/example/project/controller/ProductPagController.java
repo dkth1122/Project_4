@@ -117,10 +117,6 @@ public class ProductPagController {
 	@ResponseBody
 	public String select(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
-		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
-		map.put("startNum", startNum);
-		map.put("lastNum", lastNum);
 		resultMap = productService.searchProductMain(map);
 		return new Gson().toJson(resultMap);
 	}
@@ -169,10 +165,6 @@ public class ProductPagController {
 	@ResponseBody
 	public String producListMain2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
-		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
-		map.put("startNum", startNum);
-		map.put("lastNum", lastNum);
 		resultMap = productService.searchProductALL(map);
 		return new Gson().toJson(resultMap);
 	}

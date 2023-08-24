@@ -1,30 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
-<head> 
-
+<head>
   <link href="../css/ProductPag.css" rel="stylesheet" type="text/css">
   <link href="../css/header.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.js"></script>  
-  
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-  <!-- 페이징 추가 1 -->
-  <script src="https://unpkg.com/vuejs-paginate@latest"></script>
-  <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
   <meta charset="EUC-KR">
   <title>상품 페이지</title>
-
-  <style type="text/css">
- 	  #app{ /*  여기 추가  */
-  		width: 100%;
-	    display: flex;
-	    flex-direction: column;
-	    align-items: center;
-  	   }
+<style type="text/css">
 	  .nonMember{
 	  margin: 0px 10px;
+	  }
+	  #app{
+	  	width: 1500px;
+	  }
+	  #container{
+	  	width: 1500px;
+	  
 	  }
 	  .login_loginout{  
 	  	color : #8a8a8a;
@@ -48,47 +43,47 @@
 		margin-bottom: 20px;
 		width: 100%;
 	}
-	<!-- 페이징 추가 2 -->
-	.pagination {
-        margin:24px;
-        display: inline-flex;
-    }
-    ul {
-    }
-	.pagination li {
-	    min-width:32px;
-	    padding:2px 6px;
-	    text-align:center;
-	    margin:0 3px;
-	    border-radius: 6px;
-	    border:1px solid #eee;
-	    color:#666;
-	    display : inline;
-	}
-	.pagination li:hover {
-	    background: #E4DBD6;
-	}
-	.page-item a {
-	    color:#666;
-	    text-decoration: none;
-	}
-	.pagination li.active {
-	    background-color : #E7AA8D;
-	    color:#fff;
-	}
-	.pagination li.active a {
-	    color:#fff;
-	}
 	.pImg{
 		width:300px;
 		height:400px;
 	}
-	.productList{
-		width:1000px;
-		margin-top:30px;
-		margin-left: 100px;
+	.slide_wrapper_main{
+		float: left;
+		margin-left: 200px;
 	}
-
+	.body2{
+		margin-top : 150px;
+		clear: left;
+		float: clear;
+		width: 180px;
+	}
+	.productPosList{
+		width: 1200px;
+		float: left;
+		position: relative;
+		top : -385px;
+		left: 350px;
+		
+	}
+	.productList{
+		width:300px;
+		height : 500px;
+		margin-bottom:50px;
+		margin-left : 20px;
+		float: left;
+	}
+	.pageingPos{
+		clear: left;
+		float: clear;
+		position: relative;
+		left: 640px;
+		top : -350px;
+	}
+	.select{
+		position : relative;
+		top: 130px;
+		left: 140px;
+	}
   </style>
 </head>
 <body>
@@ -102,7 +97,7 @@
         <div class="login_loginout" v-if="false"> 로그아웃</div>
         </div>
             <div id="header" >
-            <%@ include file="../sexyheader.jsp" %>
+            
             </div>
 
             <div class="slide_wrapper_main">
@@ -135,84 +130,54 @@
                 </select>
                 
                 
-                <div class="body2" style=" width: 198px; height: 600px;">
+                <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"><a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
-                  
+                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
                       <div class="menu">
                             <a class="aTitle" href="Javascript:;" @click="fnGetList('A')">ALBUM</a>
                             <ul class="sub">
-                                <li><a href="Javascript:;">TEST</a></li>
-                                <li><a href="Javascript:;">TEST</a></li>
-                                <li><a href="Javascript:;">TEST</a></li>
                             </ul>
                      </div>
 
                      <div class="menu2">
                         <a class="aTitle" href="Javascript:;" @click="fnGetList('M')">MERCH</a>
                         <ul class="sub2">
-                            <li><a href="Javascript:;">TEST</a></li>
-                            <li><a href="Javascript:;">TEST</a></li>
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
 	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('D')">DVD</a>
 	                    <ul class="sub3">
-	                        <li><a href="Javascript:;">TEST</a></li>
-	                        <li><a href="Javascript:;">TEST</a></li>
                     	</ul>
              		</div>
 
 			         <div class="menu4">
 			            <a class="aTitle" href="Javascript:;" @click="fnGetList('P')">PHOTOBOOK</a>
 			            <ul class="sub4">
-			                <li><a href="Javascript:;">TEST</a></li>
-			                <li><a href="Javascript:;">TEST</a></li>
-			                <li><a href="Javascript:;">TEST</a></li>
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
 				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Mem')">MEMBERSHIP</a>
 				        <ul class="sub5">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
 				        </ul>
 				 	</div>
                 </div>
-                <div class="body2 " style=" width: 1000px; height: 2000px;">
-								<div @click="productView(item)" v-for="item in list" class="productList">
+					<div class="productPosList">
+								<span @click="productView(item)" v-for="item in list" class="productList">
 									<span><img :src = "item.path" class="pImg"></span>
 									<div class="artistDIv">{{item.artist}}</div>
 									<div>{{item.pName}}</div>
 									<h5>\{{ formatPrice(item.price) }}</h5>
-								</div>
-                </div>
-                <!-- 페이징 추가 3 -->
+								</span>
+					</div>
             </div>        
         </div>
     </div>
-				<template>
-				  <paginate
-				    :page-count="pageCount"
-				    :page-range="3"
-				    :margin-pages="2"
-				    :click-handler="fnSearch"
-				    :prev-text="'<'"
-				    :next-text="'>'"
-				    :container-class="'pagination'"
-				    :page-class="'page-item'">
-				  </paginate>
-				</template>
-
 </div>
-
 </body>
 </html>
 <script>
-<!-- 페이징 추가 4 -->
-Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
     el: '#app',
     data: {
@@ -220,19 +185,12 @@ var app = new Vue({
           keyword: "",
           uId: "${sessionId}",
           artist: "BND",
-  		<!-- 페이징 추가 5 -->
-		  selectPage: 1,
-		  pageCount: 1,
-		  cnt : 0,
 		  selectedOption : "전체",
 		  ctg : ""
     },
     methods: {
     	fnGetList: function (ctg) {
             var self = this;
-			<!-- 페이징 추가 6 -->
-			var startNum = ((self.selectPage-1) * 12);
-    		var lastNum = 12;
     		
     		if(ctg == 'A'){
     			self.ctg = "ALB";
@@ -245,7 +203,7 @@ var app = new Vue({
     		}else if(ctg == 'Mem'){
     			self.ctg = "MEM";
     		}
-            var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum, selectedOption : self.selectedOption, ctg : self.ctg};
+            var nparmap = {artist: self.artist, selectedOption : self.selectedOption, ctg : self.ctg};
             $.ajax({
                 url: "producListMain.dox",
                 dataType: "json",
@@ -253,40 +211,18 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     self.list = data.list;
-                	self.cnt = data.cnt;
-	                self.pageCount = Math.ceil(self.cnt / 12);
-                    console.log("data ==>", data);
-                    console.log("list ==>", self.list);
                 }
             });
-        },	<!-- 페이징 추가 7-->
-		fnSearch : function(pageNum){
-			var self = this;
-			self.selectPage = pageNum;
-			var startNum = ((pageNum-1) * 12);
-			var lastNum = 12;
-			var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum};
-			$.ajax({
-				url : "producListMain.dox",
-				dataType : "json",
-				type : "POST",
-				data : nparmap,
-				success : function(data) {
-					self.list = data.list;
-					self.cnt = data.cnt;
-					self.pageCount = Math.ceil(self.cnt / 12);
-				}
-			});
 		},
-		formatPrice: function(price) {
-            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        },
 		fnReload : function(){
 			location.reload();
 		},
         productView : function(item){
         	var self = this;
         	$.pageChange("productView.do", {pNo : item.pNo});        	
+        },
+		formatPrice: function(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
     },
     created: function() {
@@ -318,85 +254,6 @@ $(window).scroll(function() {
       $("#header").removeClass("fixed");
     }
 })
-
-
-let subToggle=true;
-
-$(".menu").click(()=>{
-if(subToggle){
-  $(".sub").slideDown(500);
-}else{
-  $(".sub").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu2").click(()=>{
-if(subToggle){
-  $(".sub2").slideDown(500);
-}else{
-  $(".sub2").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-$(".menu3").click(()=>{
-if(subToggle){
-  $(".sub3").slideDown(500);
-}else{
-  $(".sub3").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu4").click(()=>{
-if(subToggle){
-  $(".sub4").slideDown(500);
-}else{
-  $(".sub4").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-
-$(".menu5").click(()=>{
-if(subToggle){
-  $(".sub5").slideDown(500);
-}else{
-  $(".sub5").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu6").click(()=>{
-if(subToggle){
-  $(".sub6").slideDown(500);
-}else{
-  $(".sub6").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-$(".menu7").click(()=>{
-if(subToggle){
-  $(".sub7").slideDown(500);
-}else{
-  $(".sub7").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu8").click(()=>{
-if(subToggle){
-  $(".sub8").slideDown(500);
-}else{
-  $(".sub8").slideUp(1000);
-}
-subToggle=!subToggle;
-});
 
 var slides = document.querySelector('.slides'), 
     slide = document.querySelectorAll('.slides li'),  //모든 슬라이드 선택 

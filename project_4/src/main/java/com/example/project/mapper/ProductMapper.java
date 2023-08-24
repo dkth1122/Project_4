@@ -61,17 +61,15 @@ public interface ProductMapper {
 //----------------------------------------------------------------------나연 작업 중
 	//아티스트별 상품 메인 페이지 구현 
 	List<Product> selectProductMain(HashMap<String, Object> map);
-	//페이징용 cnt
-	int selectMainCnt(HashMap<String, Object> map);
 	
 	//상품별 전체 출력 페이지 구현 
 	List<Product> selectProductALL(HashMap<String, Object> map);
-	//페이징용 cnt
-	int selectProductCnt(HashMap<String, Object> map);
+	
 	//위시리스트 담기
 	int insertWish(HashMap<String, Object> map);
 	//위시리스트 중복제거
 	int searchWish(HashMap<String, Object> map);
+	
 	//상품전체조회
 	List<Product>searchProductNewList(HashMap<String, Object> map);	
 	//주문상세목록조회

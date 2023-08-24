@@ -6,11 +6,8 @@
   <link href="../css/header.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.js"></script>  
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-  <!-- 페이징 추가 1 -->
-  <script src="https://unpkg.com/vuejs-paginate@latest"></script>
-  <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
   <meta charset="EUC-KR">
   <title>상품 페이지</title>
 <style type="text/css">
@@ -111,7 +108,7 @@
 		float: clear;
 		position: relative;
 		left: 640px;
-		top : -350px;
+		top :-700px;
 	}
 	.select{
 		position : relative;
@@ -123,7 +120,6 @@
 <body>
 
 <div id="app">
-
    <div id="wrap">
         <div id="container">
         <div id="login">
@@ -234,27 +230,10 @@
             </div>        
         </div>
     </div>
-    
-    		<div class="pageingPos">
-				<template>
-				  <paginate
-				    :page-count="pageCount"
-				    :page-range="3"
-				    :margin-pages="2"
-				    :click-handler="fnSearch"
-				    :prev-text="'<'"
-				    :next-text="'>'"
-				    :container-class="'pagination'"
-				    :page-class="'page-item'">
-				  </paginate>
-				</template>
-			</div>
 </div>
 </body>
 </html>
 <script>
-<!-- 페이징 추가 4 -->
-Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
     el: '#app',
     data: {
@@ -262,19 +241,12 @@ var app = new Vue({
           keyword: "",
           uId: "${sessionId}",
           artist: "",
-  		<!-- 페이징 추가 5 -->
-		  selectPage: 1,
-		  pageCount: 1,
-		  cnt : 0,
 		  selectedOption : "전체",
 		  ctg : "MER"
     },
     methods: {
     	fnGetList: function (artist) {
             var self = this;
-			<!-- 페이징 추가 6 -->
-			var startNum = ((self.selectPage-1) * 12);
-    		var lastNum = 12;
     		
     		if(artist == 'B'){
     			self.artist = "BTS";
@@ -297,7 +269,7 @@ var app = new Vue({
     		}
     		
     		 console.log("ctg ==>", self.ctg);
-            var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum, selectedOption : self.selectedOption, ctg : self.ctg};
+            var nparmap = {artist: self.artist, selectedOption : self.selectedOption, ctg : self.ctg};
             $.ajax({
                 url: "producListMain.dox",
                 dataType: "json",
@@ -305,31 +277,9 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     self.list = data.list;
-                	self.cnt = data.cnt;
-	                self.pageCount = Math.ceil(self.cnt / 12);
-                    console.log("data ==>", data);
-                    console.log("list ==>", self.list);
                 }
             });
-        },	<!-- 페이징 추가 7-->
-		fnSearch : function(pageNum){
-			var self = this;
-			self.selectPage = pageNum;
-			var startNum = ((pageNum-1) * 12);
-			var lastNum = 12;
-			var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum};
-			$.ajax({
-				url : "producListMain.dox",
-				dataType : "json",
-				type : "POST",
-				data : nparmap,
-				success : function(data) {
-					self.list = data.list;
-					self.cnt = data.cnt;
-					self.pageCount = Math.ceil(self.cnt / 12);
-				}
-			});
-		},
+        },
 		fnReload : function(){
 			location.reload();
 		},

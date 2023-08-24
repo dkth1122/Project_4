@@ -153,7 +153,6 @@ public class ProductServiceImpl implements ProductService{
 			// TODO Auto-generated method stub
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
 			resultMap.put("list", productMapper.selectProductMain(map));
-			resultMap.put("cnt", productMapper.selectMainCnt(map));
 			return resultMap;
 		}
 
@@ -163,7 +162,6 @@ public class ProductServiceImpl implements ProductService{
 		public HashMap<String, Object> searchProductALL(HashMap<String, Object> map) {
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
 			resultMap.put("list", productMapper.selectProductALL(map));
-			resultMap.put("cnt", productMapper.selectProductCnt(map));
 			return resultMap;
 		}
 
