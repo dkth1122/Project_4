@@ -29,7 +29,7 @@ public class StaffController {
 	
 	@RequestMapping("/staff/login.do") 
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		session.invalidate();
+		
         return "/Staff/staff-login";
     }
 	@RequestMapping("/staff/left.do") 

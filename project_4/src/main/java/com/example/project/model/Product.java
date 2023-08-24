@@ -53,6 +53,18 @@ public class Product {
 		private String uId;
 		private String mArtist;
 		private char kitYn;
+		
+		//총결제금
+		private int paymentSum;
+		
+		
+		
+		public int getPaymentSum() {
+			return paymentSum;
+		}
+		public void setPaymentSum(int paymentSum) {
+			this.paymentSum = paymentSum;
+		}
 	
 	//user 테이블 조인
 		private String uMembership;

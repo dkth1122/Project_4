@@ -11,15 +11,57 @@
 	body {
 		background-color: #eae2eb;
 	}
+	#app {
+		width: 800px;
+		margin: 0px auto;
+	}
+	input {
+		width: 500px;
+		height: 80px;
+		margin-bottom: 20px;
+		font-size: 20px;
+	}
+	
+	button {
+	  background-color: #eddcfd;
+	  width: 200px;
+	  height: 50px;
+	  display: inline;
+	  border-radius: 20px;
+	  border: none;
+	  margin-bottom: 1px;
+	}
+	
+	button:hover {
+	  background-color: #d7acff;
+	}
+	.box1{
+		border: 3px dashed white;
+		width: 700px;
+		text-align: center;
+		padding: 50px;
+	}
+	h2{
+		margin-bottom: 50px;
+		color: #7C81BB;
+	}
+	h1{
+		color: #7C81BB;
+	}
 </style>
 </head>
 <body>
 <div id="app">
-	<form @submit.prevent="fnStaffLogin">
-	    <div><input type="text" placeholder="이름" v-model="staffName"></div>
-	    <div><input type="text" placeholder="사번" v-model="staffNo"></div>
-	    <div><button type="submit">로그인</button></div>
-    </form>
+
+	<h1>관리자 페이지입니다.</h1>
+	<h2>성함과 사번을 입력 후 접속 부탁드립니다.</h2>
+	<div class="box1">
+		<form @submit.prevent="fnStaffLogin">
+		    <div><input type="text" placeholder="이름" v-model="staffName"></div>
+		    <div><input type="text" placeholder="사번" v-model="staffNo"></div>
+		    <div><button type="submit">로그인</button></div>
+	    </form>
+    </div>
 </div>
 </body>
 </html>

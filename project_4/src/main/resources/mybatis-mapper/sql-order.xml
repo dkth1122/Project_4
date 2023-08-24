@@ -72,7 +72,7 @@
 	
 		<!-- 주문내역 조회 -->
 	<select id="selectOrderp" parameterType="hashmap" resultType="com.example.project.model.Product">
-			SELECT O.O_NO, O.*, P.*, D.*, U.*, A.*
+			SELECT O.O_NO, O.*, P.*, D.*, U.*, A.*, B.*
 			FROM T4_ORDER O
 			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
 			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
@@ -83,6 +83,11 @@
 				WHERE U_ID = #{uId}
 				GROUP BY O_NO
 			) A ON O.O_NO = A.O_NO
+				INNER JOIN (
+				SELECT O_NO, SUM(PAYMENT) AS PAYMENT_SUM
+				FROM T4_ORDER
+				GROUP BY O_NO
+			) B ON O.O_NO = B.O_NO
 			   WHERE D.DU_NO = U.DU_NO AND U.U_ID = #{uId}
 			GROUP BY O.O_NO
 	</select>
