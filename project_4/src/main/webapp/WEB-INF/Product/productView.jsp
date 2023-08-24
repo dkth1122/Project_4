@@ -321,6 +321,13 @@
     	font-weight : bold;
     	color:#3d435f;
     }
+    #mainImg{
+    	padding-bottom : 50px;
+    	border-bottom : 2px solid #d4d5d9;
+    }
+    .explanation img{
+    	margin-top : 100px;
+    }
 </style>
 </head>
 <body>
