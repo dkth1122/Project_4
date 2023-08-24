@@ -59,10 +59,6 @@ nav {
 	position: relative;
 	z-index: 9999;
 }
-
-<!--
-�ΰ� �ִ� �κ� -->.
-
 nav{ width:100%; height:135px;position:relative; z-index:9999;
 }
 
@@ -213,9 +209,13 @@ margin: 0 auto;
 					</li>		
 								
 						<div class="icon">
-							<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a></span>
+							<span class="icon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a>
+							<a v-else href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a></span>
+							
 							<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
-							<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a></span>
+							<span class="icon">
+								<a href="/basket.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a>								
+							</span>
 							<span class="icon">
 								<a v-if="uId == null || uId == ''" href="/user/join.do">JOIN</a>								
 								<a v-if="uId != null" href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a>								

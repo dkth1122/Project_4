@@ -32,6 +32,11 @@ public class CartController {
 
         return "/PaymentAndCart/cart";
     }
+	@RequestMapping("/basket.do") 
+    public String basket(Model model) throws Exception{
+
+        return "/PaymentAndCart/basket";
+    }
 	
 	
 	//장바구니 목록 출력 dox
