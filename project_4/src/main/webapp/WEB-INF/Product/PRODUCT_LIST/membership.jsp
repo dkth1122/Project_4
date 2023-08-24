@@ -43,32 +43,6 @@
 		margin-bottom: 20px;
 		width: 100%;
 	}
-    ul {
-    }
-	.pagination li {
-	    min-width:32px;
-	    padding:2px 6px;
-	    text-align:center;
-	    margin:0 3px;
-	    border-radius: 6px;
-	    border:1px solid #eee;
-	    color:#666;
-	    display : inline;
-	}
-	.pagination li:hover {
-	    background: #E4DBD6;
-	}
-	.page-item a {
-	    color:#666;
-	    text-decoration: none;
-	}
-	.pagination li.active {
-	    background-color : #E7AA8D;
-	    color:#fff;
-	}
-	.pagination li.active a {
-	    color:#fff;
-	}
 	.pImg{
 		width:300px;
 		height:400px;
@@ -97,13 +71,6 @@
 		margin-bottom:50px;
 		margin-left : 20px;
 		float: left;
-	}
-	.pageingPos{
-		clear: left;
-		float: clear;
-		position: relative;
-		left: 640px;
-		top : -350px;
 	}
 	.select{
 		position : relative;
@@ -214,14 +181,13 @@
 				 	
                 </div>
 					<div class="productPosList">
-								<span @click="productView(item)" v-for="item in list" class="productList">
-									<span><img :src = "item.path" class="pImg"></span>
-									<div class="artistDIv">{{item.artist}}</div>
-									<div>{{item.pName}}</div>
-									<h5>\{{ formatPrice(item.price) }}</h5>
-								</span>
+						<span @click="productView(item)" v-for="item in list" class="productList">
+							<span><img :src = "item.path" class="pImg"></span>
+							<div class="artistDIv">{{item.artist}}</div>
+							<div>{{item.pName}}</div>
+							<h5>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</h5>
+						</span>
 					</div>
-                <!-- ÆäÀÌÂ¡ Ãß°¡ 3 -->
             </div>        
         </div>
     </div>
@@ -281,9 +247,6 @@ var app = new Vue({
         productView : function(item){
         	var self = this;
         	$.pageChange("productView.do", {pNo : item.pNo});        	
-        },
-		formatPrice: function(price) {
-            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
     },
     created: function() {

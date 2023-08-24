@@ -72,13 +72,6 @@
 		margin-left : 20px;
 		float: left;
 	}
-	.pageingPos{
-		clear: left;
-		float: clear;
-		position: relative;
-		left: 640px;
-		top : -350px;
-	}
 	.select{
 		position : relative;
 		top: 130px;
@@ -164,12 +157,12 @@
 				 	</div>
                 </div>
 					<div class="productPosList">
-								<span @click="productView(item)" v-for="item in list" class="productList">
-									<span><img :src = "item.path" class="pImg"></span>
-									<div class="artistDIv">{{item.artist}}</div>
-									<div>{{item.pName}}</div>
-									<h5>\{{ formatPrice(item.price) }}</h5>
-								</span>
+						<span @click="productView(item)" v-for="item in list" class="productList">
+							<span><img :src = "item.path" class="pImg"></span>
+							<div class="artistDIv">{{item.artist}}</div>
+							<div>{{item.pName}}</div>
+							<h5>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</h5>
+						</span>
 					</div>
             </div>        
         </div>
@@ -220,9 +213,6 @@ var app = new Vue({
         productView : function(item){
         	var self = this;
         	$.pageChange("productView.do", {pNo : item.pNo});        	
-        },
-		formatPrice: function(price) {
-            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
     },
     created: function() {
