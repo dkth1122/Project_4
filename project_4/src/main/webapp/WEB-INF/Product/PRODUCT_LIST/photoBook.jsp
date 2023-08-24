@@ -269,7 +269,7 @@ var app = new Vue({
                 success: function (data) {
                     self.list = data.list;
                 	self.cnt = data.cnt;
-	                self.pageCount = Math.ceil(self.cnt / 10);
+	                self.pageCount = Math.ceil(self.cnt / 12);
                     console.log("data ==>", data);
                     console.log("list ==>", self.list);
                 }
@@ -278,8 +278,8 @@ var app = new Vue({
 		fnSearch : function(pageNum){
 			var self = this;
 			self.selectPage = pageNum;
-			var startNum = ((pageNum-1) * 10);
-			var lastNum = 10;
+			var startNum = ((pageNum-1) * 12);
+			var lastNum = 12;
 			var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum};
 			$.ajax({
 				url : "producListMain.dox",
@@ -289,7 +289,7 @@ var app = new Vue({
 				success : function(data) {
 					self.list = data.list;
 					self.cnt = data.cnt;
-					self.pageCount = Math.ceil(self.cnt / 10);
+					self.pageCount = Math.ceil(self.cnt / 12);
 				}
 			});
 		},
