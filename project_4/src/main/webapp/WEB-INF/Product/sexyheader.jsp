@@ -63,7 +63,7 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;
     width: 100%;
     height: 157px;
     overflow: hidden;
-    transition: all 0.6s;
+    transition: all 0.9s;
     position: relative;
     }
     
@@ -84,11 +84,11 @@ nav .menu {
 nav .menu a {
 	color: 000000;
 }
+
 .menu-container {
     display: flex;
     justify-content: center;
 }
-
 
 nav .menu>li {
 	width: 100px;
@@ -150,10 +150,12 @@ nav .menu .depths li:hover a {
 	right: 50%;
 	transform: translate(50%, -50%);
  }
+ 
 .mene{
 	text-align: center;
 	padding-left: 5px;
 }
+
 #headiner{
 width: 100%; 
 margin: 0 auto;
@@ -170,22 +172,21 @@ margin: 0 auto;
 		<div id="headiner">
 			<div class="navWrap">
 			<ul class="menu">
-					<li class="titleLi"><a href="#">ARTIST</a>
+					<li class="titleLi"><a href="/product/BTS.do">ARTIST</a>
 						<ul class="depths">
-							<li ><a  href="/product/BTS.do">BTS</a></li>
-							<li ><a   href="/product/LSF.do">LE SSERAFIM</a></li>
-							<li ><a  href="/product/SVT.do">SEVENTEEN</a></li>
-							<li ><a  href="/product/FMN.do">fromis_9</a></li>
-							<li ><a  href="/product/TXT.do">TXT</a></li>
+							<li ><a href="/product/BTS.do">BTS</a></li>
+							<li ><a href="/product/LSF.do">LE SSERAFIM</a></li>
+							<li ><a href="/product/SVT.do">SEVENTEEN</a></li>
+							<li ><a href="/product/FMN.do">fromis_9</a></li>
+							<li ><a href="/product/TXT.do">TXT</a></li>
 							<li ><a href="/product/NJS.do">NewJeans</a></li>
 							<li ><a href="/product/EHP.do">ENHYPEN</a></li>
 							<li ><a href="/product/BND.do">BOYNEXTDOOR</a></li>
 							<li ><a href="/product/ZIC.do">ZICO</a></li>
 						</ul>
 					</li>
-						
-						
-					<li class="titleLi"><a href="#">PRODUCT</a>
+					
+					<li class="titleLi"><a href="/product/membership.do">PRODUCT</a>
 						<ul class="depths">
 							<li><a href="/product/membership.do">MEMBERSHIP</a></li>
 							<li><a href="/product/album.do">ALBUM</a></li>
@@ -194,26 +195,21 @@ margin: 0 auto;
 							<li><a href="/product/photoBook.do">PHOTO BOOK</a></li>
 						</ul>
 					</li>
-				
-						
-					<li class="titleLi"><a href="/event/eventpage.do" onclick="window.open(this.href, 'event', 'width=850,height=1000,top=200,left=500'); return false;">EVENT</a>
 					
+					<li class="titleLi">
+						<a href="/event/eventpage.do" onclick="window.open(this.href, 'event', 'width=850,height=1000,top=200,left=500'); return false;">EVENT</a>
 					</li>
 
-					<li class="titleLi"><a href="/mypag/noticeList.do" onclick="window.open(this.href, 'notice', 'width=1000,height=1000,top=200,left=500'); return false;">NOTIFY</a>
-					
-					</li>					
-					
-					
-					
-					
-						
+					<li class="titleLi">
+						<a href="/mypag/noticeList.do" onclick="window.open(this.href, 'notice', 'width=1000,height=1000,top=200,left=500'); return false;">NOTIFY</a>
+					</li>		
+								
 						<div class="icon">
-						<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="/user/join.do">회원가입</a></span>
-						<span class="icon"><a href="/user/login.do">로그인</a></span>
+							<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
+							<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a></span>
+							<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
+							<span class="icon"><a href="/user/join.do">회원가입</a></span>
+							<span class="icon"><a href="/user/login.do">로그인</a></span>
 						</div>
 						
 					</ul>

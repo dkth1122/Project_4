@@ -163,7 +163,7 @@ margin: 0 auto;
 		<div id="headiner">
 			<div class="navWrap">
 			<ul class="menu">
-					<li class="titleLi"><a href="#">ARTIST</a>
+					<li class="titleLi"><a href="/product/BTS.do">ARTIST</a>
 						<ul class="depths">
 							<li ><a  href="/product/BTS.do">BTS</a></li>
 							<li ><a   href="/product/LSF.do">LE SSERAFIM</a></li>
@@ -178,7 +178,7 @@ margin: 0 auto;
 					</li>
 						
 						
-					<li class="titleLi"><a href="#">PRODUCT</a>
+					<li class="titleLi"><a href="/product/membership.do">PRODUCT</a>
 						<ul class="depths">
 <li><a href="/product/membership.do">MEMBERSHIP</a></li>
 							<li><a href="/product/album.do">ALBUM</a></li>
