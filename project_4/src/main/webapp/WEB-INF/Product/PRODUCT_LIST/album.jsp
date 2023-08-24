@@ -13,9 +13,16 @@
   <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
   <meta charset="EUC-KR">
   <title>상품 페이지</title>
-  <style type="text/css">
+<style type="text/css">
 	  .nonMember{
 	  margin: 0px 10px;
+	  }
+	  #app{
+	  	width: 1500px;
+	  }
+	  #container{
+	  	width: 1500px;
+	  
 	  }
 	  .login_loginout{  
 	  	color : #8a8a8a;
@@ -74,10 +81,42 @@
 		width:300px;
 		height:400px;
 	}
+	.slide_wrapper_main{
+		float: left;
+		margin-left: 200px;
+	}
+	.body2{
+		margin-top : 150px;
+		clear: left;
+		float: clear;
+		width: 180px;
+	}
+	.productPosList{
+		width: 1200px;
+		float: left;
+		position: relative;
+		top : -400px;
+		left: 350px;
+		
+	}
 	.productList{
-		width:1000px;
-		margin-top:30px;
-		margin-left: 100px;
+		width:300px;
+		height : 500px;
+		margin-bottom:50px;
+		margin-left : 20px;
+		float: left;
+	}
+	.pageingPos{
+		clear: left;
+		float: clear;
+		position: relative;
+		left: 640px;
+		top : -350px;
+	}
+	.select{
+		position : relative;
+		top: 130px;
+		left: 140px;
 	}
   </style>
 </head>
@@ -125,97 +164,52 @@
                 </select>
                 
                 
-                <div class="body2" style=" width: 198px; height: 600px;">
+                <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"><a href="Javascript:;" @click="fnReload">ARTIST</a></div>
-                  
+                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnGetList('BTS')">BTS</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('A')">ALBUM</a>
                             <ul class="sub">
-                                <li><a href="Javascript:;">TEST</a></li>
-                                <li><a href="Javascript:;">TEST</a></li>
-                                <li><a href="Javascript:;">TEST</a></li>
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnGetList('LSF')">LE SSERAFIM</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('M')">MERCH</a>
                         <ul class="sub2">
-                            <li><a href="Javascript:;">TEST</a></li>
-                            <li><a href="Javascript:;">TEST</a></li>
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('SVT')">SEVENTEEN</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('D')">DVD</a>
 	                    <ul class="sub3">
-	                        <li><a href="Javascript:;">TEST</a></li>
-	                        <li><a href="Javascript:;">TEST</a></li>
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnGetList('FMN')">FROMIS_9</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('P')">PHOTOBOOK</a>
 			            <ul class="sub4">
-			                <li><a href="Javascript:;">TEST</a></li>
-			                <li><a href="Javascript:;">TEST</a></li>
-			                <li><a href="Javascript:;">TEST</a></li>
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('TXT')">TXT</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Mem')">MEMBERSHIP</a>
 				        <ul class="sub5">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
 				        </ul>
 				 	</div>
-				 	
-				 	<div class="menu6">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('NJS')">NEWJEANS</a>
-				        <ul class="sub6">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
-				        </ul>
-				 	</div>
-				 	
-				 	<div class="menu7">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('EHP')">ENHYPEN</a>
-				        <ul class="sub7">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
-				        </ul>
-				 	</div>
-				 	
-				 	<div class="menu8">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BND')">BOYNEXTDOOR</a>
-				        <ul class="sub8">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
-				        </ul>
-				 	</div>
-				 	
-				 	<div class="menu9">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('ZIC')">ZICO</a>
-				        <ul class="sub9">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
-				        </ul>
-				 	</div>
-				 	
                 </div>
-
-                <div class="body2 " style=" width: 1000px; height: 2000px;">
-								<div @click="productView(item)" v-for="item in list" class="productList">
+					<div class="productPosList">
+								<span @click="productView(item)" v-for="item in list" class="productList">
 									<span><img :src = "item.path" class="pImg"></span>
 									<div>{{item.pName}}</div>
 									<div>{{item.price}}</div>
-								</div>
-                </div>
+								</span>
+					</div>
                 <!-- 페이징 추가 3 -->
             </div>        
         </div>
     </div>
+    
+    		<div class="pageingPos">
 				<template>
 				  <paginate
 				    :page-count="pageCount"
@@ -228,6 +222,7 @@
 				    :page-class="'page-item'">
 				  </paginate>
 				</template>
+			</div>
 </div>
 </body>
 </html>
@@ -249,34 +244,26 @@ var app = new Vue({
 		  ctg : "ALB"
     },
     methods: {
-    	fnGetList: function (artist) {
+    	fnGetList: function (ctg) {
             var self = this;
 			<!-- 페이징 추가 6 -->
 			var startNum = ((self.selectPage-1) * 10);
     		var lastNum = 10;
-    		console.log(self.list);
-    		if(artist == 'BTS'){
-    			self.artist = "BTS";
-    		}else if(artist == 'TXT'){
-    			self.artist = "TXT";
-    		}else if(artist == 'EHP'){
-    			self.artist = "EHP";
-    		}else if(artist == 'SVT'){
-    			self.artist = "SVT";
-    		}else if(artist == 'FMN'){
-    			self.artist = "FMN";
-    		}else if(artist == 'LSF'){
-    			self.artist = "LSF";
-    		}else if(artist == 'NJS'){
-    			self.artist = "NJS";
-    		}else if(artist == 'BND'){
-    			self.artist = "BND";
-    		}else if(artist == 'ZIC'){
-    			self.artist = "ZIC";
+    		
+    		if(ctg == 'A'){
+    			self.ctg = "ALB";
+    		}else if(ctg == 'M'){
+    			self.ctg = "MER";
+    		}else if(ctg == 'D'){
+    			self.ctg = "DVD";
+    		}else if(ctg == 'P'){
+    			self.ctg = "PTB";
+    		}else if(ctg == 'Mem'){
+    			self.ctg = "MEM";
     		}
             var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum, selectedOption : self.selectedOption, ctg : self.ctg};
             $.ajax({
-                url: "producListMain2.dox",
+                url: "producListMain.dox",
                 dataType: "json",
                 type: "POST",
                 data: nparmap,
@@ -344,85 +331,6 @@ $(window).scroll(function() {
       $("#header").removeClass("fixed");
     }
 })
-
-
-let subToggle=true;
-
-$(".menu").click(()=>{
-if(subToggle){
-  $(".sub").slideDown(500);
-}else{
-  $(".sub").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu2").click(()=>{
-if(subToggle){
-  $(".sub2").slideDown(500);
-}else{
-  $(".sub2").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-$(".menu3").click(()=>{
-if(subToggle){
-  $(".sub3").slideDown(500);
-}else{
-  $(".sub3").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu4").click(()=>{
-if(subToggle){
-  $(".sub4").slideDown(500);
-}else{
-  $(".sub4").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-
-$(".menu5").click(()=>{
-if(subToggle){
-  $(".sub5").slideDown(500);
-}else{
-  $(".sub5").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu6").click(()=>{
-if(subToggle){
-  $(".sub6").slideDown(500);
-}else{
-  $(".sub6").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-$(".menu7").click(()=>{
-if(subToggle){
-  $(".sub7").slideDown(500);
-}else{
-  $(".sub7").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu8").click(()=>{
-if(subToggle){
-  $(".sub8").slideDown(500);
-}else{
-  $(".sub8").slideUp(1000);
-}
-subToggle=!subToggle;
-});
 
 var slides = document.querySelector('.slides'), 
     slide = document.querySelectorAll('.slides li'),  //모든 슬라이드 선택 

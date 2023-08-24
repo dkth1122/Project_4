@@ -13,7 +13,7 @@
 	  /* width: 200px; */
 	  width: 10%;
 	  float: left;
-	    clear: left;
+	  clear: left;
 	  
 	}
 	
