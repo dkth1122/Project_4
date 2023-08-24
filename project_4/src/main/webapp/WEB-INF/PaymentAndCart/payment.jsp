@@ -499,17 +499,31 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             },
 	        // 상품 전체 금액 합산 메서드
        		 calculateTotalPrice: function () {
-                 var self = this;
-                 var total = 0;
-                 self.list.forEach(function (item) {
-                     total += self.calculateTotal(item);
-                 });
-	   			if (total < 50000) {
-                    self.delivery = 3000;
-                } else {
-                    self.delivery = 0;
-                } 
-                 return total;
+       		    var self = this;
+       		    var total = 0;
+       		    var membershipDelivery = 0; // 해당 조건을 만족하는 상품의 배송비
+       		    var regularDelivery = 0; // 일반 상품들의 배송비
+
+       		    self.list.forEach(function (item) {
+       		        total += self.calculateTotal(item);
+
+       		        if (item.category == 'MEM' && item.membership == 'N') {
+       		            membershipDelivery = 0;
+       		        }
+       		        else if(total < 50000){
+       		        	regularDelivery = 3000;
+       		        }
+       		        
+       		        else{
+       		        	regularDelivery = 0;
+       		        }
+       		        
+       		    });
+
+       		    self.delivery = membershipDelivery + regularDelivery;
+       		    self.totalPrice = total + self.delivery;
+
+       		    return total;
 
             },updateItemCnt: function (item) {
             	
