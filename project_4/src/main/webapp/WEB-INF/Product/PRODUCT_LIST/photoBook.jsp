@@ -162,7 +162,7 @@
                     <option value="minPrice">낮은가격</option>
                     <option value="maxPrice">높은가격</option>
                 </select>
-                
+                <!-- 안녕 난 이스터에그 -->
                 
                 <div class="body2">
 
