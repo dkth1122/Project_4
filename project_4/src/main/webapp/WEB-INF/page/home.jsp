@@ -10,12 +10,64 @@
 <%@ include file="footer.jsp" %>
 <style>
 
+/* 네온사인효과 */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* a공통 */
+div {
+    margin: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.ex1 a i {
+    display: block;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 2rem;
+    color: #fff;
+    background-color: #333;
+}
+
+.ex1 a i:hover {
+    text-shadow: 0 0 10px #f54;
+}
+
+.ex2 a {
+    display: block;
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 60px;
+    background-color: #333;
+}
+
+.ex2 a:hover {
+    text-shadow: 0 0 5px #ff0;
+}
+/*  네온사인효과 끝 */
+
+
+
+
 #footer {
   position: fixed;
   bottom: -450px;
   left: 0;
   width: 100%;
-  padding: 20px; /* 占십울옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 */
+  padding: 20px; 
 	}
 .slidetext {
 	font-size:2em;
@@ -96,15 +148,15 @@ img.topimg{
 	margin-bottom: 50px;
 	float:left;
 	}
-/* 
+
 #nav4{
 	border:5px dotted red;
 	widows: 1800px;
 	height: 800px;
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 500px;
 	float:left;
-	} */
+	} 
 
 
 .sect2 {
@@ -165,8 +217,8 @@ img.topimg{
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  margin: 0 -10px; /* 占쏙옙 占쌘쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 */
-   left: 50%; /* 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占싱듸옙 */
+  margin: 0 -10px;
+   left: 50%; 
     transform: translateX(-50%); 
 }
 
@@ -174,7 +226,7 @@ img.topimg{
   border:1px solid blue;
  
   width: 300px;
-  margin: 0 10px; /* 占쏙옙 占쌘쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 */
+  margin: 0 10px; 
   
   text-align: center;
 }
@@ -187,9 +239,9 @@ img.topimg{
 	width:1500px;
 	height: 650px;
 	position: absolute;
-    left: 50%; /* 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쌩억옙占쏙옙占쏙옙 占싱듸옙 */
+    left: 50%; 
     transform: translateX(-50%); 
-	align-items: center; /* 占쏙옙占쏙옙 占쏙옙占쏘데 占쏙옙占쏙옙 */
+	align-items: center;
 	flex-wrap: wrap;
 	padding:50px;
 } 
