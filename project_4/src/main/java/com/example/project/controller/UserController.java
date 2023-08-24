@@ -124,6 +124,19 @@ public class UserController {
 		}
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping(value = "/logout.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String logout(HttpSession session) {
+	    HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+	    // 로그아웃 처리: 세션 속성 제거
+	    session.removeAttribute("sessionId");
+	    session.removeAttribute("sessionName");
+
+	    // 클라이언트에 로그아웃 결과 전송
+	    resultMap.put("success", true);
+	    return new Gson().toJson(resultMap);
+	}
 	
 	@RequestMapping(value = "/findId.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

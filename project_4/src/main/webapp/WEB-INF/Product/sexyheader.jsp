@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"%>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+%>
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <style>
 
@@ -68,8 +75,8 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;
     }
     
 .navWrap:hover {
-    height:650px; 
-    background: rgba(245, 235, 236); 
+    height:650px; /* 화占쏙옙占쏙옙 占쏙옙체 占쏙옙占싱뤄옙 확占쏙옙 */
+    background: rgba(245, 235, 236); /* 호占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙 */
     }
 			
 nav .menu {
@@ -165,7 +172,7 @@ margin: 0 auto;
 </head>
 
 <body>
-
+	<div id="app">
 
 		<nav>
 			<span><a href="../home.do"><img id="logo" src="../../img/logo/veryperiii.png"></a></span>
@@ -205,27 +212,59 @@ margin: 0 auto;
 					</li>		
 								
 						<div class="icon">
+							<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a></span>
 							<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
 							<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a></span>
-							<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
-							<span class="icon"><a href="/user/join.do">회원가입</a></span>
-							<span class="icon"><a href="/user/login.do">로그인</a></span>
+							<span class="icon">
+								<a v-if="uId == null || uId == ''" href="/user/join.do">JOIN</a>								
+								<a v-if="uId != null" href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a>								
+							</span>
+							
+							<span class="icon">
+								<a v-if="uId == null || uId == ''" href="/user/login.do">LOGIN</a>							
+								<button v-else-if="uId != null " @click="fnLogout">LOGOUT</button>
+								
+							</span>							
 						</div>
 						
 					</ul>
-					
-					</div>
-					
-					</div>
-			</nav>
-		
-
-
-
-		
+				</div>					
+			</div>
+		</nav>
+	</div>
 </body>
 </html>
 <script>
-
-	
+var app = new Vue({
+	el : '#app',
+	data : {
+		uId : "${sessionId}"
+	},
+	methods: {
+		fnLogout : function(){
+			var self = this;
+			var param = {uId : self.uId, uPw : self.uPw};
+			$.ajax({
+                url : "/logout.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	window.location.reload();
+                }
+            }); 
+		},
+		fnGetList : function(){			
+            var self = this;
+            var nparmap = {};        
+           
+		}
+},
+	created : function() {
+		  var self = this;
+		    // 세션 값 uId가 존재하면 로그인 상태로 변경
+		  var uId = sessionStorage.getItem('uId'); // 세션스토리지에서 uId 가져오기
+		   
+	}
+});
 </script>
