@@ -294,9 +294,10 @@ input[type="date"]:focus {
                                  <td class="column">{{item.oDate}}</td>
                                  <td v-if="item.cnt >= 2">{{ item.pName }}외 {{ parseInt(item.cnt) - 1 }}건</td>
                                  <td v-else>{{ item.pName }}</td>
-                                 <td class="column-width5">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
+                                 <td class="column-width5">{{ Number(item.paymentSum).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
                                  <td class="column2">{{item.dState}}</td>                                                      
                               <tr>
+                              
                               <!-- 페이징 추가 3 -->
          <template class="pagepage">
            <paginate
@@ -310,7 +311,7 @@ input[type="date"]:focus {
              :page-class="'page-item'">
            </paginate>
          </template>                        
-                        </table>                        
+                        </table> 
                      </div>       
                   </div>
                </div>
