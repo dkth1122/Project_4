@@ -163,7 +163,10 @@ public class ProductController {
         fileName += calendar.get(Calendar.YEAR);
         fileName += calendar.get(Calendar.MONTH);
         fileName += calendar.get(Calendar.DATE);
-        fileName += calendar.get(Calendar.HOUR);      
+        fileName += calendar.get(Calendar.HOUR);
+    	fileName += calendar.get(Calendar.MINUTE);
+    	fileName += calendar.get(Calendar.SECOND);
+    	fileName += "thumb";
         fileName += extName;
         
         return fileName;
