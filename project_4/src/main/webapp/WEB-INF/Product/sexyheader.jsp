@@ -13,10 +13,16 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="EUC-KR">
 <style>
 #header{
-	margin : 0px;
+	margin: 0px;
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    z-index: 1111;
+  
 }
 #headiner {
     font-family: Graduate, Kelly Slab, Aldrich;
@@ -52,16 +58,20 @@ nav {
 	position: relative;
 	z-index: 9999;
 }
-nav{ width:100%; height:135px;position:relative; z-index:9999;
+nav{
+ width:100%;
+ height:135px;
+ position:relative;
+ z-index:9999;
 }
 .navWrap {
-    width: 100%;
+   width: 100%;
     height: 130px;
     overflow: hidden;
     transition: all 0.9s;
     position: relative;
-    background: rgba(245, 235, 236); 
-    margin : 0px;
+    background: rgba(245, 235, 236, 0); /* 완전히 투명한 배경 색상 설정 */
+    margin: 0px;
     }
     
 .navWrap:hover {
@@ -173,19 +183,20 @@ margin: 0 auto;
 .icon .logjo3{
 	position: absolute;
 	display : block;
-	right : 18%;
+	right : 16%;
 	top : 22px;
+}
+.navWrap.translucent {
+    background-color: rgba(255, 255, 255, 0.7);
 }
 </style>
 </head>
-
 <body>
-	<div id="header">
-
+	<div id="header">		
 		<nav>
 			<span><a href="../home.do"><img id="logo" src="../../img/logo/veryperiii.png"></a></span>
 		<div id="headiner">
-			<div class="navWrap">
+			<div class="navWrap" v-bind:class="{ 'translucent': isTranslucent }" >
 			<ul class="menu">
 					<li class="titleLi"><a href="/product/BTS.do">ARTIST</a>
 						<ul class="depths">
@@ -250,7 +261,9 @@ margin: 0 auto;
 var app = new Vue({
 	el : '#header',
 	data : {
-		uId : "${sessionId}"
+		uId : "${sessionId}",
+		isTranslucent: false,
+		
 	},
 	methods: {
 		fnLogout : function(){
@@ -268,15 +281,33 @@ var app = new Vue({
 		},
 		fnGetList : function(){			
             var self = this;
-            var nparmap = {};        
-           
-		}
+            var nparmap = {};                   
+		},
+		handleScroll: function() {
+            // 스크롤 위치에 따라 반투명 클래스를 추가하거나 제거합니다
+            this.isTranslucent = window.scrollY > 0;
+            var icons = document.querySelectorAll('.icon i');
+            var texts = document.querySelectorAll('.logjo, .logjo2, .logjo3');
+            var links = document.querySelectorAll('#header a');
+            var linkColor = this.isTranslucent ? "#000" : "whitesmoke";
+            var elementColor = this.isTranslucent ? "#000" : "whitesmoke";
+            for (var i = 0; i < links.length; i++) {
+                links[i].style.color = linkColor;
+            }
+            for (var i = 0; i < texts.length; i++) {
+                texts[i].style.color = elementColor;
+            }
+        }
 },
 	created : function() {
 		  var self = this;
 		    // 세션 값 uId가 존재하면 로그인 상태로 변경
 		  var uId = sessionStorage.getItem('uId'); // 세션스토리지에서 uId 가져오기
-		   
-	}
+		  window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed: function() {
+        // 컴포넌트가 제거될 때 스크롤 이벤트 리스너를 제거합니다
+		window.removeEventListener('scroll', this.handleScroll);
+    }
 });
 </script>

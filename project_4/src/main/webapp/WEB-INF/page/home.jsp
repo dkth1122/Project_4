@@ -10,16 +10,11 @@
 <%@ include file="footer.jsp" %>
 <style>
 
-/* �׿»���ȿ�� */
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-
-/* a���� */
-div {
-    margin: 20px;
 }
 
 a {
@@ -123,17 +118,15 @@ img.topimg{
 }
 
 #nav1{
-	border:5px dotted red;
-	margin-top:-200px;
+	margin-top:-60px;
 	margin-bottom:500px;
-	padding:70px;
+	padding:130px;
 	width: 100%;
 	height:1000px;
 	margin-bottom: 50px;
 	}
 
 #nav2{
-	border:5px dotted red;
 	widows: 1800px;
 	height: 1800px;
 	margin-top: 50px;
@@ -141,7 +134,6 @@ img.topimg{
 	float:left;
 }
 #nav3{
-	border:5px dotted red;
 	widows: 1800px;
 	height: 1800px;
 	margin-top: 50px;
@@ -150,7 +142,6 @@ img.topimg{
 	}
 
 #nav4{
-	border:5px dotted red;
 	widows: 1800px;
 	height: 800px;
 	margin-top: 50px;
@@ -160,7 +151,6 @@ img.topimg{
 
 
 .sect2 {
-	border:5px dotted green;
 	padding: 50px;
 	widows: 1800px;
 	height: 1500px;
@@ -189,7 +179,6 @@ img.topimg{
 }
 
 .sect3 {
-	border:1px dotted green;
 	margin :  0px auto;
 	padding: 50px;
 	widows: 1800px;
@@ -409,19 +398,19 @@ transform: translate(50%, -50%);
 				
 					<div class="mySlides fade">
 					
-						<div class="slidetext">BND</div>
+						<div class="slidetext"></div>
 				 			<img class="topimg" src="img/homeimg/boynext.jpg" >
 				  
 					</div>
 				
 						<div class="mySlides fade">
-						  <div class="slidetext">Seventeen</div>
+						  <div class="slidetext"></div>
 				 		 <img class="topimg" src="img/homeimg/seventeen_main.jpg" >
 				  
 						</div>
 				
 					<div class="mySlides fade">
-						<div class="slidetext">fromis9</div>
+						<div class="slidetext"></div>
 				 		<img class="topimg" src="img/homeimg/promiss_main.jpg">
 					</div>
 				
