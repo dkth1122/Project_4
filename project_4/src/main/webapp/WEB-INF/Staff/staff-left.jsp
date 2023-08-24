@@ -56,8 +56,6 @@
 	<button @click="fnDelivery" v-if="sStatus == 'B' || sStatus == 'M'">硅价 包府</button>
 	<span v-else></span>
 	<button @click="fnExchange">背券/券阂 包府</button>
-	<button @click="fnSales" v-if="sStatus == 'M'">概免 包府</button>
-	<span v-else></span>
 	</div>
 </div>
 </html>
@@ -113,9 +111,6 @@ var app2 = new Vue({
 		fnExchange : function() {
 				location.href="../exchange/list.do";
 		},
-		fnSales : function() {
-				location.href="../staff/sales.do";
-		}
 		
 	}, // methods
 	created : function() {

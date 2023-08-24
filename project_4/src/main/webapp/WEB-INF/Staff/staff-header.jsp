@@ -85,7 +85,7 @@ var app1 = new Vue({
 			window.open('../gboard/main.do', '_blank');
 		},
 		fnLogout : function() {
-			location.href="../staff/login.do";
+			location.href="../user/login.do";
 		},
 		fnHome : function(){
             location.href = '../staff/home.do';
