@@ -77,14 +77,14 @@
 	
 	<!-- 이미지등록 -->
 	<insert id="insertProductImg" parameterType="hashmap" >
-		INSERT INTO T4_PRODUCT_IMG(P_NO, path, class)
+		INSERT INTO T4_PRODUCT_IMG(P_NO, path, IMG_TYPE)
 		VALUES
 		(#{pNo}, #{path}, 'Y')
 	</insert>
 	
 	<!-- 상세이미지등록 -->
 	<insert id="insertProductDetailedImg" parameterType="hashmap" >
-		INSERT INTO T4_PRODUCT_IMG(P_NO, path, class)
+		INSERT INTO T4_PRODUCT_IMG(P_NO, path, IMG_TYPE)
 		VALUES
 		(#{pNo}, #{path}, 'N')
 	</insert>
@@ -142,7 +142,7 @@
 	    SELECT * FROM T4_PRODUCT P
 	    LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 	    WHERE 1=1
-	    	AND CLASS = 'Y'
+	    	AND IMG_TYPE = 'Y'
 	        AND ARTIST = #{artist}
 	    <if test="ctg != null and ctg != ''"  >
 	        AND CATEGORY = #{ctg}
@@ -160,7 +160,6 @@
 	        <otherwise>
 	        </otherwise>
 	    </choose>
-	    <!-- AND CLASS = 'Y' 추후 더미데이터 추가 후 활성화 예정 -->
 	    LIMIT #{startNum}, #{lastNum}
 	</select>
 	
@@ -176,7 +175,7 @@
 	    SELECT * FROM T4_PRODUCT P
 	    LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 	    WHERE 1=1
-	   		AND CLASS = 'Y'
+	   		AND IMG_TYPE = 'Y'
 	        AND CATEGORY = #{ctg}
 	    <if test="artist != null and artist != ''" >
 	        AND ARTIST = #{artist}
@@ -194,7 +193,6 @@
 	        <otherwise>
 	        </otherwise>
 	    </choose>
-	    <!-- AND CLASS = 'Y' 추후 더미데이터 추가 후 활성화 예정 -->
 	    LIMIT #{startNum}, #{lastNum}
 	</select>
 	
@@ -205,7 +203,7 @@
 	</select>
 	<!-- 위시리스트출력 -->
 	<insert id="insertWish" parameterType="hashmap">	   	    
-	   INSERT INTO T4_WISH (U_ID, P_NO, CLASS)
+	   INSERT INTO T4_WISH (U_ID, P_NO, IMG_TYPE)
 	   VALUES (#{uId}, #{pNo}, "W")	    
 	</insert>
 	<!-- 위시리스트 중복방지 -->
@@ -231,7 +229,7 @@
          WHERE O.U_ID = #{uId} AND O.O_NO = #{oNo}
          GROUP BY O.BUY_NO
 	</select>
-	<!-- 주문내역상세 출력 날짜조회-->
+	<!-- 주문내역상세 출력 날짜조회 -->
 	<select id="selectOrderpuductSearch" parameterType="hashmap" resultType="com.example.project.model.Product">		
 			SELECT O.O_NO, O.*, P.*, D.*, U.*, A.*
 			FROM T4_ORDER O

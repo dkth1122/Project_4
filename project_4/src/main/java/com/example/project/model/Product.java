@@ -26,6 +26,7 @@ public class Product {
 	private String pImg;
 	private String path;
 	private char exchange;
+	private String imgType;
 	 
 	// order 구매내역 조인용
 	private String oNo;
@@ -46,16 +47,16 @@ public class Product {
 	private String uDphone;
 	private String uDmessage;
 	//멤버쉽
-		private int mNo;
-		private char mStatus;
-		private String mRegDate;
-		private String mExpDate;
-		private String uId;
-		private String mArtist;
-		private char kitYn;
+	private int mNo;
+	private char mStatus;
+	private String mRegDate;
+	private String mExpDate;
+	private String uId;
+	private String mArtist;
+	private char kitYn;
 		
-		//총결제금
-		private int paymentSum;
+	//총결제금
+	private int paymentSum;
 		
 		
 		
@@ -326,6 +327,12 @@ public class Product {
 	}
 	public void setuMembership(String uMembership) {
 		this.uMembership = uMembership;
+	}
+	public String getImgType() {
+		return imgType;
+	}
+	public void setImgType(String imgType) {
+		this.imgType = imgType;
 	}
 	
 	
