@@ -122,7 +122,7 @@ public class ProductController {
 			String originFilename = multi.getOriginalFilename();
 			String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
 			long size = multi.getSize();
-			String saveFileName = genSaveFileName(extName);
+			String saveFileName = genSaveFileName1(extName);
 			
 			System.out.println("uploadpath : " + uploadpath);
 			System.out.println("originFilename : " + originFilename);
@@ -156,20 +156,31 @@ public class ProductController {
 	}
 	
 	  // 현재 시간을 기준으로 파일 이름 생성
-    private String genSaveFileName(String extName) {
+    private String genSaveFileName1(String extName) {
         String fileName = "";
         
         Calendar calendar = Calendar.getInstance();
         fileName += calendar.get(Calendar.YEAR);
         fileName += calendar.get(Calendar.MONTH);
         fileName += calendar.get(Calendar.DATE);
-        fileName += calendar.get(Calendar.HOUR);
-        fileName += calendar.get(Calendar.MINUTE);
-        fileName += calendar.get(Calendar.SECOND);
-        fileName += calendar.get(Calendar.MILLISECOND);
+        fileName += calendar.get(Calendar.HOUR);      
         fileName += extName;
         
         return fileName;
+    }
+    private String genSaveFileName(String extName) {
+    	String fileName = "";
+    	
+    	Calendar calendar = Calendar.getInstance();
+    	fileName += calendar.get(Calendar.YEAR);
+    	fileName += calendar.get(Calendar.MONTH);
+    	fileName += calendar.get(Calendar.DATE);
+    	fileName += calendar.get(Calendar.HOUR);
+    	fileName += calendar.get(Calendar.MINUTE);
+    	fileName += calendar.get(Calendar.SECOND);        
+    	fileName += extName;
+    	
+    	return fileName;
     }
 	
 
