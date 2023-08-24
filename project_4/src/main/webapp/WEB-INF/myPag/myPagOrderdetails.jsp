@@ -330,7 +330,7 @@ Vue.component('paginate', VuejsPaginate)
          info : [],
          orderCntList : [],
          uId : "${sessionId}",
-         order : "",
+         order : 0,
          exchange : "",
          refund : "",
          list : [],
@@ -497,8 +497,8 @@ Vue.component('paginate', VuejsPaginate)
  						} else if (listCnt[i].exchange == "R") {
  							self.exchange = listCnt[i].orderCnt;
  						} else{
- 							self.order = listCnt[i].orderCnt;
- 							console.log(self.order);
+ 							self.order += listCnt[i].orderCnt;
+ 							
  						}
  					}
 

@@ -142,7 +142,7 @@
 	    LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 	    WHERE 1=1
 	        AND ARTIST = #{artist}
-	    <if test="ctg != null and ctg != ''" >
+	    <if test="ctg != null and ctg != ''"  >
 	        AND CATEGORY = #{ctg}
 	    </if>
 	    <choose>

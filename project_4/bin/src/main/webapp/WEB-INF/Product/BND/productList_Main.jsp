@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head> 
-<%@ include file="../sexyheader.jsp" %>
+
   <link href="../css/ProductPag.css" rel="stylesheet" type="text/css">
   <link href="../css/header.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -15,10 +15,14 @@
   <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
   <meta charset="EUC-KR">
   <title>상품 페이지</title>
- 
+
   <style type="text/css">
-  #app{
-  width:100%;}
+ 	  #app{ /*  여기 추가  */
+  		width: 100%;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+  	   }
 	  .nonMember{
 	  margin: 0px 10px;
 	  }
@@ -84,6 +88,7 @@
 		margin-top:30px;
 		margin-left: 100px;
 	}
+
   </style>
 </head>
 <body>
@@ -97,7 +102,7 @@
         <div class="login_loginout" v-if="false"> 로그아웃</div>
         </div>
             <div id="header" >
-            
+            <%@ include file="../sexyheader.jsp" %>
             </div>
 
             <div class="slide_wrapper_main">
@@ -199,7 +204,9 @@
 				    :page-class="'page-item'">
 				  </paginate>
 				</template>
+
 </div>
+
 </body>
 </html>
 <script>

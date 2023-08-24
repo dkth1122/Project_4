@@ -273,7 +273,7 @@ Vue.use(VueAwesomeSwiper);
 			info : [],
 			orderCntList : [],
 			uId : "${sessionId}",
-			order : "",
+			order : 0,
 			exchange : "",
 			refund : "",
 			wishlist : [],
@@ -326,7 +326,7 @@ Vue.use(VueAwesomeSwiper);
 							} else if (listCnt[i].exchange == "R") {
 								self.exchange = listCnt[i].orderCnt;
 							} else{
-								self.order = listCnt[i].orderCnt;
+								self.order += listCnt[i].orderCnt;
 								console.log(self.order);
 							}
 						}

@@ -92,46 +92,41 @@
 	<div class="mainPos2">교환/반품 관리</div>
 <hr>	
     <table>
-    <thead>
       <tr>
+        <th>접수번호</th>
+        <th>구매번호</th>
         <th>주문번호</th>
+        <th>고객</th>
+        <th>상태</th>
+        <th>사유</th>
+        <th>상품번호</th>
         <th>상품명</th>
-        <th>상품코드</th>
-        <th>현재상태</th>
       </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(order, oIndex) in orders" :key="oIndex">
-        <template v-if="oIndex === 0 || orderNo(order) !== orderNo(orders[oIndex - 1])">
-          <td :rowspan="rowSpan(order, orders)">{{ order.oNo }}</td>
-          <td>{{ order.pName }}</td>
-          <td>{{ order.pNo }}</td>
+      <tr v-for="item in list">
+          <td>{{ item.exNo }}</td>
+          <td>{{ item.buyNo }}</td>
+          <td><a href="javascript:;" @click="fnProductPopup(item)">{{item.oNo}}</a></td>
+          <td><a href="javascript:;" @click="fnuserInformation(item)">{{item.uId}}</a></td>
           <td>
-            <select v-model="order.dState" @change="fnUpdateState(order, oIndex)">
-              <option value="업체확인중">업체확인중</option>
-              <option value="상품 준비중">상품 준비중</option>
-              <option value="업체 사유로 거절">업체 사유로 거절</option>
-              <option value="고객 사유로 거절">고객 사유로 거절</option>
-              <option value="배송사 사유로 거절">배송사 사유로 거절</option>
-            </select>
-          </td>
-        </template>
-        <template v-else>
-          <td>{{ order.pName }}</td>
-          <td>{{ order.pNo }}</td>
-          <td>
-            <select v-model="order.dState" @change="fnUpdateState(order, oIndex)">
-              <option value="업체확인중">업체확인중</option>
-              <option value="상품 준비중">상품 준비중</option>
-              <option value="업체 사유로 거절">업체 사유로 거절</option>
-              <option value="고객 사유로 거절">고객 사유로 거절</option>
-              <option value="배송사 사유로 거절">배송사 사유로 거절</option>
-            </select>
-          </td>
-        </template>
-      </tr>
-    </tbody>
-  </table>
+			<select v-model="item.dState" @change="fnUpdateState(item, index)">
+			    <option value="교환접수">교환접수</option>
+			    <option value="교환수거중">교환수거중</option>
+			    <option value="교환수거완료">교환수거완료</option>
+			    <option value="교환상품배송중">교환상품배송중</option>
+			    <option value="교환완료">교환완료</option>
+			    <option value="교환거절">교환거절</option>
+			    <option value="반품접수">반품접수</option>
+			    <option value="반품수거중">반품수거중</option>
+			    <option value="결제사취소중">결제사취소중</option>
+			    <option value="반품완료">반품완료</option>
+			    <option value="반품거절">반품거절</option>
+			</select>
+		  </td>
+          <td>{{ item.bReasons }}</td>
+          <td>{{ item.pNo }}</td>
+          <td>{{ item.pName }}</td>
+          </tr>
+ 	 </table>
 	
 	<template>
 	  <paginate
@@ -148,6 +143,7 @@
 	</template>
 	
 </div>
+</div>
 </body>
 </html>
 <script>
@@ -159,7 +155,6 @@ var app = new Vue({
     selectPage: 1,
     pageCount: 1,
     cnt : 0,
-    orders: []
   },// data
   methods : {
     fnGetList : function(){
@@ -173,7 +168,7 @@ var app = new Vue({
         type : "POST", 
         data : nparmap,
         success : function(data) { 
-          self.orders = data.list;
+          self.list = data.list;
           self.cnt = data.cnt;
           self.pageCount = Math.ceil(self.cnt / 10);
           console.log(data);
@@ -192,42 +187,35 @@ var app = new Vue({
         type : "POST",
         data : nparmap,
         success : function(data) {
-          self.orders = data.list;
+          self.list = data.list;
           self.cnt = data.cnt;
           self.pageCount = Math.ceil(self.cnt / 10);
         }
       });
     },
-    fnUpdateState : function(item, index) {
-      var self = this;
-      var exchangeVal = '';
-    	if (item.dState.includes('거절')) {
-    	    exchangeVal = 'R';
-    	}
-      $.ajax({
-        url: "/order/updateOrderInfo.dox",
-        dataType: "json",
-        type: "POST",
-        data: {
-          exchange: exchangeVal,
-          buyNo: item.buyNo,
-          dState: item.dState
-        },
-        success: function(data) {
-          alert("주문 상태가 업데이트 되었습니다.");
-          self.fnGetList();
-        }
-      }); 
-    },
-    rowSpan(item, list) {
-      const orderNo = this.orderNo(item);
-      const sameOrders = list.filter(v => this.orderNo(v) === orderNo);
-
-      return sameOrders.length;
-    },
-    orderNo(item) {
-      return item.oNo;
-    }
+    fnuserInformation: function(item) {
+  	  var self = this;
+  	  window.open("../user2/view.do?uId=" + item.uId, "popup", "width=800,height=1000,left=500,top=100");
+  	},
+    fnProductPopup : function(item){
+   	 window.open("../delivery/view.do?oNo=" + item.oNo, "productPopup", "width=1250,height=800,left=500,top=100");
+   },   
+   fnUpdateState : function(item) {
+	   	var self = this;
+	   	$.ajax({
+	   	    url: "/mypag/updateExchangeState.dox",
+	   	    dataType: "json",
+	   	    type: "POST",
+	   	    data: {
+	   	      buyNo: item.buyNo,
+	   	      dState: item.dState
+	   	    },
+	   	    success: function(data) {
+	   	      alert("주문 상태가 업데이트 되었습니다.");
+	   	      self.fnGetList();
+	   	    }
+	   	  }); 
+	   }
   }, // methods
   created : function() {
     var self = this;

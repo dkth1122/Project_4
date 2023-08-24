@@ -263,14 +263,18 @@ text-align: center;
 				<div id="inputaddr">
 						<div id="inputhd">
 						<h3>주문자 정보</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
+						<div>** 등록된 배송주소록이 없을 시 배송주소록을 등록해주세요.</div>
 						</div>
 						<button @click="fnAddrList" >주소록 보기</button>
 						<table>
 								 <tr v-for = "item in info" v-if="flg">
-                                 	<td>{{item.duNo}}</td>
+                                 	<td style="display : none">
+									  <input type="text" v-model="item.duNo">
+									</td>
                                  	<td>{{item.uDname}}</td>
-                                 	<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
+                                 	<td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
                                  	<td>{{item.uDphone}}</td>
+									<td><input rows="7" cols="110" v-model="item.uDmessage" hidden/> </td>
                                  	<td><button @click="fnAddAddr(item, 'y')">선택</button></td>
                                  <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
                                  </tr>
@@ -280,7 +284,7 @@ text-align: center;
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문자 명 </th>
 							<td><input  class="nameinput " type="text" v-model="uDname"> </td>
 						</tr>
-						
+						<tr style="display:none"><td><input v-model="duNo"/></td></tr>
 						<tr>
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
 							<td>
@@ -289,7 +293,7 @@ text-align: center;
 							<br>
 							<input class="addrinput2" type="text" placeholder="나머지 주소 " v-model="addrDetail">
 							<input class="addrinput2" type="text" placeholder="우편번호" v-model="zipNo">								
-							<button @click="fnSearchAddr('a')">주소 찾기</button>  
+							<button @click="fnSearchAddr">주소 찾기</button>  
 							</td>
 						</tr>
 						
@@ -306,7 +310,12 @@ text-align: center;
 									<option value="019">019</option>
 								</select>
 							<input class="numinput" type="text" v-model="phone2">	- <input class="numinput" type="text" v-model="phone3">								
-							</td>						
+							</td>	
+						<tr>
+							<th>배송메시지</th>
+							<td><textarea rows="7" cols="110" v-model="dText"></textarea></td>
+						</tr>
+							<td><button @click="fnAddAddrList">주소록 등록</button></td>	
 						</tr>
 						
 					</table>
@@ -321,7 +330,7 @@ text-align: center;
 							<td>
 								<div id="to" >
 										<label><input name="addr" type="radio" style="height: 12px; width: 30px;" @click="fnAddAddr2('y')">주문자 정보와 동일</label> 
-										<label><input name="addr" type="radio" style="height: 12px; width: 20px;" @click="fnAddAddr2('n')"> 새로운 배송지</label>
+										<label><input name="addr" type="radio" style="height: 12px; width: 20px;" @click="fnAddAddr2('n')">초기화</label>
 										
 							 	</div>
 							</td>
@@ -332,7 +341,7 @@ text-align: center;
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문자 명 </th>
 							<td><input  class="nameinput " type="text" v-model="user.uDname"> </td>
 						</tr>
-						
+						<tr style="display:none"><td><input v-model="user.duNo"/></td></tr>
 						<tr>
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
 							<td>
@@ -340,8 +349,7 @@ text-align: center;
 							<input class="addrinput2" type="text" placeholder="기본주소" v-model="user.addr" >
 							<br>
 							<input class="addrinput2" type="text" placeholder="나머지 주소" v-model="user.addrDetail">					
-							<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo">					
-							<button @click="fnSearchAddr('b')">주소 찾기</button> 
+							<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo">		
 							</td>
 						</tr>
 						
@@ -361,10 +369,6 @@ text-align: center;
 							</td>						
 						</tr>
 						
-						<tr>
-							<th>　배송메시지</th>
-							<td><textarea rows="7" cols="110" v-model="dText"></textarea> </td>
-						</tr>
 						
 					</table>
 				</div>
@@ -449,7 +453,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			zipNo : "",
 			email : "",
 			list : [],
-			totalPrice : 0,
 			delivery : 0,
 			numberWithCommas : "",
 			 user : {
@@ -461,15 +464,21 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 					addr : "",
 					addrDetail : "",
 					zipNo : "",
-					phone : ""
+					phone : "",
+					duNo : "",
+					oNo: "",
+					buyNo: "",
+					uId : ""
 				},
 			info : [],
 			flg : false,
     	   	phone1 : "",
 			phone2 : "",
 			phone3 : "",
-			check : "",
 			dText : "",
+			duNo : "",
+			oNo : "",
+			buyNo: ""
 			
 		},
 		methods : {
@@ -483,7 +492,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                data : nparmap,
 	                success : function(data) { 
 	                	self.list = data.list;
-	                	console.log(self.list);
 	                }
 	            }); 
 	        },calculateTotal: function (item) {
@@ -496,7 +504,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  self.list.forEach(function (item) {
                      total += self.calculateTotal(item);
                  });
-	   			self.totalPrice = total;
 	   			if (total < 50000) {
                     self.delivery = 3000;
                 } else {
@@ -504,15 +511,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 } 
                  return total;
                  
-        	}, decreaseCnt: function (item) {
-                if (item.cnt > 1) {
-                    item.cnt--;
-                    this.calculateTotalPrice();
-                }
-                
-            }, increaseCnt: function (item) {
-                item.cnt++;
-                this.calculateTotalPrice();
             },updateItemCnt: function (item) {
             	
             	if (parseInt(event.target.value) > 1){
@@ -528,16 +526,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
          },fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
     		var self = this;
     		
-    		if(self.check == 'a'){
 	    		self.addr = roadAddrPart1;
 	    		self.addrDetail = addrDetail;
 	    		self.zipNo = zipNo;
-    		} 
-    		else if (self.check == 'b'){
-        		self.user.addr = roadAddrPart1;
-        		self.user.addrDetail = addrDetail;
-        		self.user.zipNo = zipNo;
-    		}
     		
     	}, fnAddrList : function(){
             var self = this;
@@ -553,6 +544,31 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    
                 }
             }); 
+    	},fnAddAddrList : function(){
+	       	 var self = this;
+	       	 self.uDphone = self.phone1 + self.phone2 + self.phone3
+	       	 
+	       	 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == ""){
+					alert("내용을 모두 입력해주세요.");	
+	       		 return;	       		 
+	       	 }
+	       	 
+	       	 if(self.uId == null || self.uId == ""){
+	       		 alert("로그인 해주세요.");
+	       		 return;
+	       	 }
+	       	 
+	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo, uDmessage : self.dText };
+	         $.ajax({
+	             url : "/mypag/addAddr.dox",
+	             dataType:"json",	
+	             type : "POST", 
+	             data : nparmap,
+	             success : function(data) { 
+	             	alert("배송주소록에 추가 되었습니다!");
+	             	location.reload();
+	             }
+       		  }); 
     	},fnAddAddr : function(item, check){
     		var self = this;
     		
@@ -564,6 +580,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	    	   self.phone1 = item.uDphone.substr(0,3);
 	    	   self.phone2 = item.uDphone.substr(3,4);
 	    	   self.phone3 = item.uDphone.substr(7);
+	    	   self.duNo = item.duNo;
+	    	   self.dText = item.uDmessage;
     		}else if (check == 'n'){
     	   		self.uDname = "";
     	    	self.addr = "";
@@ -572,6 +590,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
  	    	  	self.phone1 = "";
     	    	self.phone2 = "";
     	    	self.phone3 = "";
+ 	    	   self.duNo = "";
+ 	    	  self.dText = "";
     		}
     	
     	},fnAddAddr2 : function(check){
@@ -584,6 +604,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	    	   self.user.phone1 = self.phone1;
 	    	   self.user.phone2 = self.phone2;
 	    	   self.user.phone3 = self.phone3;
+	    	   self.user.duNo = self.duNo;
+	    	   
 	    	}else if (check == 'n'){
 	    	  	self.user.uDname = "";
 	        	self.user.addr = "";
@@ -592,6 +614,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	        	self.user.phone1 = 
 	        	self.user.phone2 = "";
 	        	self.user.phone3 = "";
+		    	self.user.duNo = "";
 	    	}
    		}, requestPay : function() {
     		var self = this;
@@ -610,10 +633,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	 
     		}, function (rsp) { // callback
   	   	      if (rsp.success) {
-  	   	    	console.log("rsp ==>", rsp);
   	   	    	self.fnInsertAll();
-  	   	    	self.fnRemoveCart();
   	   	    	alert("결제 성공");
+  	   	   		location.href = "../home.do";
   	   	        
   	   	      } else {
   	   	        // 결제 실패 시
@@ -630,31 +652,50 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
-                success : function(data) { 
+                success : function(data) {
                 }
             });
             
         }, fnInsertAll : function(){
         	var self = this;
+        	var timestamp =  new Date().getTime(); 
+        	self.oNo = timestamp;
           	for(var i = 0; i < self.list.length; i++){
-                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt };
-                 	
-                 	console.log("여기=====>", nparmap);
+                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo };
 	                   $.ajax({
 	                       url : "insertALL.dox",
 	                       dataType:"json",   	
 	                       type : "POST", 
 	                       data : nparmap,
 	                       success : function(data) { 
-	                          
+	                    	   self.buyNo = data.buyNo;
+	                    	   self.fninsertDelivery();
+	                    	   self.fnRemoveCart();
 	                       }
 	                   });  
           	}//for
+        }, fninsertDelivery : function(){
+        	var self = this;
+        	self.user.uId = self.uId;
+        	self.user.oNo = self.oNo;
+        	self.user.buyNo = self.buyNo;
+         	var nparmap = self.user;
+               $.ajax({
+                   url : "insertDelivery.dox",
+                   dataType:"json",   	
+                   type : "POST", 
+                   data : nparmap,
+                   success : function(data) { 
+                   }
+               });  
+        	
+        	
         }//function
+        
+        
 	},created : function() {
 			var self = this;
 			self.fnGetList();
-			console.log(self.list);
 		}
 	});
 	

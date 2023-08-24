@@ -3,64 +3,140 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://unpkg.com/pretty-checkbox@3.0.3/dist/pretty-checkbox.min.css">
+<link href="../css/login.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
- <link href="../css/join.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
 <style>
-.input-container {
-    position: relative;
-    display: inline-block;
+
+.login-box{
+	height : 720px; 
 }
 
-.input-container i {
+
+i {
     position: absolute;
     top: 40%;
     right: 20px;
     transform: translateY(-50%);
 }
+
+    #evtyn{
+    	magin-bottom : 10px;
+    }
+    #evtyn label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0px;
+      cursor: pointer;
+    }
+
+    #evtyn input[type="checkbox"] {
+      display: none;
+    }
+
+    #evtyn .circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #d4d5d9;
+      margin-right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s ease;
+    }
+
+    #evtyn input[type="checkbox"]:checked + .circle::before {
+      content: '\2713'; /* Checkmark character */
+      color: #2d2f43;
+    }
+
+    #evtyn a {
+      color: #2d2f43;
+      text-decoration: none;
+    }
+
+    #evtyn strong {
+      font-weight: bold;
+    }
+
+    #evtyn label strong a:hover {
+      text-decoration: underline;
+    }
+
 </style>
 </head>
-<body id="Jbody">
+<body>
 <div id="app">
-<div id="wc">
-	<h2>JOIN US</h2> 
-	<hr>
-	<div class="input-container">아이디
-    	<input type="text" v-model="user.uId" placeholder="영문 소문자/숫자, 4~16자" @keyup="fnIdCheck" maxlength="16"
-           :style="{ 'border-color': uIdBorderColor }">
-             <i v-if="isAvailable && user.uId !== ''" class="fas fa-check true-sign" style="color: green;"></i>
-        	 <i v-else-if="user.uId !== ''" class="fas fa-times red-sign" style="color: red;"></i>
-    	 <div v-if="user.uId != ''" :style="{ color: messageColor }">{{message}}</div>
-	</div>
-	
-	<div class="input-container">비밀번호
-	    <input type="password" v-model="user.uPw" placeholder="영문/숫자/특문, 10자~16자" maxlength="16">
-	    <div v-if="user.uPw !== ''">
-        	<progress max="4" :value="passwordStrength()" id="meter"></progress>
-    	</div>
-	</div>
-	<div class="password-strength" :style="{ color: strengthColor() }" v-if="user.uPw !== ''">
-    {{ strengthLabel() }}
-	</div>
-	
-	<div>비밀번호 확인<input type="password" v-model="user.uPw2" placeholder="확인 비밀번호" maxlength="16"></div>
-	<div>이름<input type="text" v-model="user.uName" placeholder="이름" maxlength="8"></div>
-	<div>닉네임<input type="text" v-model="user.uName2" placeholder="닉네임" maxlength="8"></div>
-	<div>연락처<input type="text" v-model="user.uPhone" placeholder="연락처" maxlength="16"></div>
-	<div>이메일<input type="text" v-model="user.uEmail" placeholder="이메일주소"></div>
-	
-	<div id="evtyn">
-		<div><label><input type="checkbox" v-model="check" @click="fnCheck">전체동의</label></div>
-		<div><label><input type="checkbox" v-model="check1"><strong><a href="javascript:;">(필수)개인회원 약관에 동의</a></strong></label></div>
-		<div><label><input type="checkbox" v-model="check2"><strong><a href="javascript:;">(필수)개인회원 수집 및 이용에 동의</a></strong></label></div>
-		<div><label><input type="checkbox" v-model="check3">(선택)마케팅 정보 수신 동의-SMS/MMS</label></div>
-	</div>
-
-	<div><button @click="fnJoin" >가입하기</button></div>
+	<div class="container">		
+		<h2 class="h2">JOIN US</h2>
+		<div class="login-box">
+			<div class="login-box2">
+			<h3 class="stadyInfo">기본정보<span class="requiredArea "><em class="required">·</em>필수입력사항</span></h3>
+				<div class="idpw">	
+					<div><label><em class="required">·</em>ID  <span><input type="text" v-model="user.uId" placeholder="영문 소문자/숫자, 4~16자" @keyup="fnIdCheck" maxlength="16"
+           				:style="{ 'border-color': uIdBorderColor }"></span></label>
+           				<i v-if="isAvailable && user.uId !== ''" class="fas fa-check true-sign" style="color: green;"></i>
+			        	<i v-else-if="user.uId !== ''" class="fas fa-times red-sign" style="color: red;"></i>
+			    		<div v-if="user.uId != ''" :style="{ color: messageColor }">{{message}}</div>
+           			</div>
+					<div><label><em class="required">·</em>PASSWORD  <span><input type="password" v-model="user.uPw" placeholder="영문/숫자/특문, 10자~16자" maxlength="16">
+					    <div v-if="user.uPw !== ''">
+				        	<progress max="4" :value="passwordStrength()" id="meter"></progress>
+				    	</div></span></label>
+				    </div>
+			    	<div class="password-strength" :style="{ color: strengthColor() }" v-if="user.uPw !== ''">
+			    		{{ strengthLabel() }}
+					</div>
+					<div><label><em class="required">·</em>비밀번호 확인  <span><input type="password" v-model="user.uPw2" placeholder="확인 비밀번호" maxlength="16">
+					    </span></label>
+				    </div>
+				    <div><label><em class="required">·</em>이름  <span><input type="text" v-model="user.uName" placeholder="이름" maxlength="8">
+					    </span></label>
+				    </div>
+				    <div><label><em class="required">·</em>닉네임  <span><input type="text" v-model="user.uName2" placeholder="닉네임" maxlength="8">
+					    </span></label>
+				    </div>
+				    <div><label><em class="required">·</em>연락처  <span><input type="text" v-model="user.uPhone" placeholder="연락처" maxlength="16">
+					    </span></label>
+				    </div>
+				    <div><label><em class="required">·</em>이메일  <span><input type="text" v-model="user.uEmail" placeholder="이메일주소">
+					    </span></label>
+				    </div>
+					 <div id="evtyn">
+					    <div class="custom-checkbox"><label>
+					      <input type="checkbox" v-model="check" @click="fnCheck">
+					      <span class="circle"></span>
+					      전체동의</label>
+					    </div>
+					    <div class="custom-checkbox"><label>
+					      <input type="checkbox" v-model="check1">
+					      <span class="circle"></span>
+					      <strong><a href="javascript:;">(필수)개인회원 약관에 동의</a></strong></label>
+					    </div>
+					    <div class="custom-checkbox"><label>
+					      <input type="checkbox" v-model="check2">
+					      <span class="circle"></span>
+					      <strong><a href="javascript:;">(필수)개인회원 수집 및 이용에 동의</a></strong></label>
+					    </div>
+					    <div class="custom-checkbox"><label>
+					      <input type="checkbox" v-model="check3">
+					      <span class="circle"></span>
+					      (선택)마케팅 정보 수신 동의-SMS/MMS</label>
+					    </div>
+					  </div>
+				</div>
+				
+				
+				<div class="login"><button @click="fnJoin" >가입하기</button></div>
+				
+				
+			</div>
+		</div>
 	</div>
 </div>
 </body>
@@ -86,7 +162,8 @@ var app = new Vue({
 		check1 : "",
 		check2 : "",
 		check3 : "",
-		list : []
+		list : [],
+		messageColor : ""
 	},// data
 	methods : {
 		fnJoin : function(){

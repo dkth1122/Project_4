@@ -6,4 +6,14 @@
 	<select id="selectTest" resultType="com.example.project.model.Test">
 		SELECT * FROM TBL_TEST
 	</select>
+	
+	<!-- 베스트아이템 -->
+	<select parameterType="hashmap" id="bestItemLoad" resultType="com.example.project.model.Product">
+	SELECT O.P_NO, P.*, COUNT(*) AS CNT
+	FROM T4_ORDER O
+	INNER JOIN T4_PRODUCT P ON P.P_NO = O.P_NO 
+	GROUP BY O.P_NO
+	ORDER BY CNT DESC LIMIT 12;
+	</select>
+	
 </mapper>

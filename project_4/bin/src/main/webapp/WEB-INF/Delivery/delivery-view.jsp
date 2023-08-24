@@ -93,6 +93,16 @@
             <option value="업체 사유로 거절">업체 사유로 거절</option>
             <option value="고객 사유로 거절">고객 사유로 거절</option>
             <option value="배송사 사유로 거절">배송사 사유로 거절</option>
+ 			<option value="교환접수" hidden>교환접수</option>
+			 <option value="교환수거중" hidden>교환수거중</option>
+			 <option value="교환수거완료" hidden>교환수거완료</option>
+			 <option value="교환상품배송중" hidden>교환상품배송중</option>
+			 <option value="교환완료" hidden>교환완료</option>
+			 <option value="반품접수" hidden>반품접수</option>
+			 <option value="반품수거중" hidden>반품수거중</option>
+			 <option value="결제사취소중" hidden>결제사취소중</option>
+			 <option value="반품완료" hidden>반품완료</option>           
+
           </select>
         </td>
         <td>{{ item.oCount }}</td>

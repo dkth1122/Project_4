@@ -1,11 +1,18 @@
 @charset "EUC-KR";
+  *{
+  	margin: 0px;
+  	padding: 0px;
+  }
       .nickname{
   line-height:  127px;
   margin-left: 10px;
   font-weight: bold;
    color: #2d2f45;
  } 
-
+.details div:first-child{
+	font-weight: bold;
+	
+}
  .name{
    font-size: 36px;
     color: #2d2f45;
@@ -31,13 +38,13 @@
 }
 table{
 	font-size: 16px;
-	padding: 15px 25px;
+	padding: 10px;
 }
 th{
 	padding: 15px 10px;
 }
 td{
-	padding: 25px 15px;
+	padding: 25px 10px;
 	height: 60px;
 	text-align: center;
 }
@@ -48,7 +55,9 @@ td{
     
   }
   #container {
+    height: 2000px;
     width: 100%;
+    margin-bottom: 163px;
     
   }
   .artist{
