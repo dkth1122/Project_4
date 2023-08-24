@@ -10,14 +10,14 @@
 <%@ include file="footer.jsp" %>
 <style>
 
-/* 네온사인효과 */
+/* �׿»���ȿ�� */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-/* a공통 */
+/* a���� */
 div {
     margin: 20px;
 }
@@ -57,7 +57,7 @@ a {
 .ex2 a:hover {
     text-shadow: 0 0 5px #ff0;
 }
-/*  네온사인효과 끝 */
+/*  �׿»���ȿ�� �� */
 
 
 
@@ -76,7 +76,7 @@ a {
 .dot {
     width: 12px;
     height: 12px;
-    margin: 10px 5px; /* 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 첫 占쏙옙째 占쏙옙 占쏙옙占쏙옙 */
+    margin: 10px 5px; /* ���� ��ġ�� ������ �� ������ ù ��° �� ���� */
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
@@ -119,7 +119,7 @@ img.topimg{
 
  #nav1, #nav2, #nav3 {
     position: relative; 
-    z-index: z; 
+    z-index: 1; 
 }
 
 #nav1{
