@@ -6,135 +6,366 @@
 <meta charset="UTF-8">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+<%@ include file="../../Product/sexyheader.jsp" %>
 <style>
-	table, td,tr, th {
-		border : 1px solid tomato ;
-		border-collapse: collapse;
-	}
+	
 	.header{
 		border:1px solid tomato;
 	}
 	.profile-image {
-	    width: 50px; /* 원하는 이미지 크기 조절 */
-	    height: 50px;
-	    border : 1px solid tomato;
-	    border-radius: 50%; /* 50%로 설정하여 동그라미 모양으로 자름 */
-	    object-fit: cover; /* 이미지를 화면에 맞게 조절하여 잘린 부분이 잘 보이도록 함 */
+	    width: 50px;
+	    height: 50px;	
+	    border-radius: 50%; 
+	    object-fit: cover; 
+	    margin-top : 15px;
+	}
+	.container{
+		padding-top:130px;
+		background-color: #f0f0f0;
+		height : 1100px;
+	}
+	.imgBox {
+    width: 100%; 
+    max-height: 220px; 
+    overflow: hidden; 
+    background-color : #444;
+    text-align:center;
+    color:white;
+    
 }
+
+.imgBox img {
+	margin : 0px auto;
+    width: 531px;
+    aspect-ratio: auto 531 / 299;
+    height: 299px;
+    text-align:center;
+}
+.container{
+		padding-top:130px;
+	}
+	.prof{
+		width : 1100px;
+		margin : 0 auto;
+		padding : 50px 0px;
+		text-align : left;
+	}
+	.smText{
+		font-size:14px;
+		color : #d4d5d9;
+	}
+	
+	.h1{
+		font-size:32px;
+		font-weight:bold;
+	}
+	.button {
+	  display: inline-block;
+	  padding: 5px 10px;
+	  font-size: 13px;
+	  text-align: center;
+	  color: white;
+	  font-weight : bold;
+	  background-color: #555;
+	  border-radius: 30px;
+	  border : none;
+	  cursor: pointer;
+	  transition: background-color 0.3s;
+	  width : 100px;	  
+	  margin-right : 3px;	  
+	}
+	
+	/* 버튼 호버 효과 */
+	.button:hover {
+	  background-color: #666;
+	}
+	
+
+	.button:active {
+	  background-color: #666;
+	}
+	.topbar{
+		margin-left : 60%;
+	}
+	.mainAreaBox{
+		display: flex;
+	    justify-content: space-between;
+	    margin: 0px auto;
+	    padding-top: 50px;
+	    width: 1100px;
+	}
+	.mainAreaBox2{
+		display: flex;
+	    justify-content: space-between;
+	    margin: 0px auto;
+	    width: 1100px;
+	}
+	.miniBox{
+		display:block;
+		float:left;
+		width: 335px;
+		background-color: #f0f0f0;
+		height:300px;
+	}
+	.miniBox2{
+		display:block;
+		float:left;
+		width: 335px;
+		background-color: #f0f0f0;
+		height:200px;
+	}
+	.miniBox3{
+		display:block;
+		float:left;
+		width: 725px;
+		background-color: #f0f0f0;
+		height:300px;
+	}
+	.bigFont{
+		font-size : 20px;
+		font-weight : bold;
+		margin-bottom : 10px;
+	}
+	.bigFont table{
+		margin-bottom : 20px;
+		
+	}
+	.minimi{
+		width:100%;
+		background-color : white;
+		height:auto;
+		margin : 0 auto;
+		border-radius: 14px;
+    	box-shadow: 0 5px 20px rgba(0,0,0,.02);
+    	text-align: center;
+    	border-bottom: 2px solid #ccc;
+	}
+	th{
+		text-align : left;
+	}
+	
+	table{
+		border-bottom : 1px solid #d4d5d9;
+		    margin: auto;
+	}
+	.minimi2{
+		width:100%;
+		background-color : white;
+		height:auto;
+		margin : 0 auto;
+		border-radius: 14px;
+    	box-shadow: 0 5px 20px rgba(0,0,0,.02);
+    	text-align: center;
+    	border-bottom: 2px solid #ccc;
+	}
+	.minimi3{
+		width:100%;
+		background-color : white;
+		height:auto;
+		margin : 0 auto;
+		border-radius: 14px;
+    	box-shadow: 0 5px 20px rgba(0,0,0,.02);
+    	text-align: center;
+    	border-bottom: 2px solid #ccc;
+	}
+	.mainImg{
+		align-items: center;
+    	display: flex;
+    	justify-content: center;
+	}
+	#radioMenu{
+		display: flex;
+   		flex-direction: row;
+  		justify-content: space-evenly;
+  		border-bottom: 2px solid #ccc;
+	}
+	
+	#radioMenu > div{
+		width: 200px;
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+  input[type="radio"]:checked + div label a {
+    display: inline-block;
+    color: #6667AB; 
+    border-bottom: 2px solid #6667AB;
+    }
+    .button2 {
+	  display: inline-block;
+	  padding: 5px 15px;
+	  font-size: 13px;
+	  text-align: center;
+	  color: #black;
+	  background-color: white;
+	  border-radius: 30px;
+	  border : 1px solid #d4d5d9;
+	  cursor: pointer;
+	  transition: background-color 0.3s;
+	  width : 80px;
+	  margin-right : 3px;	  
+	}
+	.button2:hover {
+	  background-color: #d4d5d9;
+	}
+	.button2:active {
+	  background-color: #1f618d;
+	}
+	.hidden-input {
+   		display: none;
+ 	 }
+ 	 .smText2{
+ 	 	color:#999;
+ 	 	font-weight : bold;
+ 	 }
+ 	 .smText3{
+ 	 font-weight:200;
+ 	 }
+ 	 .minimi td{
+ 	 	color:#999;
+ 	 	right:10px;
+ 	 }
+	 #selectedMenu th{
+	 	text-align : center;
+	 	border-bottom: 1px solid #ccc;	 	
+	 }
+	 #selectedMenu td{
+	  border-bottom: 1px solid #ccc;	 	
+	 }
+	 }
 </style>
 <title>myPage</title>
 </head>
 <body>
 	<div id="app">
-	 <button @click="fnMove">뒤로가기</button>
-	<h1>마이페이지지롱~</h1>
-	<div class="header">
-		<h2>{{uId}}</h2>
-	</div>
-	
-	<div><h1>멤버쉽 정보 - 구독 내역</h1>
-		<table>
-			<tr>
-				<th>구독 상태</th>
-				<th>아티스트</th>
-				<th>구독 시작일</th>
-				<th>구독 만료일</th>
-			</tr>
-			<tr v-for = "item in mlist" >
-					<td>{{item.mStatus}}</td>
-					<td>{{item.artist}}</td>
-					<td>{{item.mRegDate}}</td>
-					<td>{{item.mExpDate}}</td>
-			</tr>
-		</table>
-	</div>
-
-<div>
-	<h1>구독 멤버 별 프로필 사진</h1>
-		<table>
-			<tr>
-				<th>번호</th>
-				<th>아티스트</th>
-				<th>닉네임</th>
-				<th>이미지</th>
-				<th>이미지 수정</th>
-				<th>완료</th>
-				<th>이미지 제거...</th>
-			</tr>
-			<tr v-for = "(pitem, index) in plist" >
-					<td>{{pitem.gpNo}}</td>
-					<td>{{pitem.artist}}</td>
-					<td>
-						<input v-model="pitem.nickName" placeholder="변경할 닉네임 입력">
-        			</td>
-					<td><img :src="pitem.gpPath" class="profile-image"></td>
+		<div class="container">
+			<div class="imgBox">
+				<div class="prof">
+					<div><span class="h1">{{list[0].uName2}}</span>
+						<span class="topbar">
+							<a href="/mypag/noticeList.do"><button class="button">공지사항</button></a>
+							<a href="/mypag/infoUpdate.do"><button class="button">계정설정</button></a>
+							<a href="/product/membership.do"><button class="button">멤버쉽구독</button></a>
+						</span>
+					</div>
+					<strong class="smText">{{list[0].uName}}</strong>
 					
-        			<td>
-        				<div>이미지</div>
-						<input type="file" :id="'index'+index"  :name="'index'+index" accept=".gif, .jpg, .png" @change="handleFileChange" >
-        			</td>
-        			<td>	
-        				<button @click="fnProfile(pitem, index)">등록</button>
-        			</td>
-        			<td><button @click="fnImgRemove(pitem.gpNo)">이미지 제거 버튼</button></td>
-        			
-			</tr>
-		</table>
-</div>
-	
-	<div><h1>내가 쓴 피드 ==> 누르면 우측에 테이블 출력</h1>
-		<table>
-			<tr>
-				<th>아티스트</th>
-				<th>작성일</th>
-				<th>피드 내용</th>
-				<th>좋아요 수</th>
-			</tr>
-			<tr v-for = "item in list"  @click="fnCheck(item.gNo)">
-					<td>{{item.artist}}</td>
-					<td>{{item.gDate}}</td>
-					<td>{{item.gContent}}</td>
-					<td>{{item.gLike}}</td>
-			</tr>
-		</table>
+					<div>
+						<strong>MEMBERSHIP ARTIST</strong> 
+							<div><span v-for="godok in plist" class="smText">
+							<span v-if="godok.artist != null"> {{godok.artist}} </span>
+							<span v-else>구독중인 ARTIST가 없습니다.</span>
+							</div>
+					</div>									
+				</div>
+			</div>
+			
+			<div class="mainAreaBox">
+				<div class="miniBox">
+				<p class="bigFont">멤버쉽 정보 - 구독 내역</p>
+				<div class="minimi">
+					<table v-for = "item in mlist">
+						<tbody>				
+						<i class="fa-solid fa-thumbtack" style="color: #000000; font-size:23px; margin-left : 15px;"></i>								
+							<tr>
+								<th>구독 상태</th><td><strong>{{item.mStatus}}</strong></td>
+							</tr>
+							<tr>
+								<th>아티스트</th><td>{{item.artist}}</td>
+							</tr>
+							<tr>
+								<th>구독 시작일</th><td>{{item.mRegDate}}</td>
+							</tr>
+							<tr>
+								<th>구독 만료일</th><td>{{item.mExpDate}}</td>							
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				</div>
+				<div class="miniBox3">
+					<div id="radioMenu">
+			    		<input id="1" type="radio" name="Menu" value="내가쓴피드" v-model="selectedMenu" hidden>
+			    		<div><label for="1" class="menu"><a>내가쓴피드</a></label></div>
+			    		<input id="2" type="radio" name="Menu" value="내가쓴댓글" v-model="selectedMenu" hidden>
+			    		<div><label for="2" class="menu"><a>내가쓴댓글</a></label></div>
+			    		<input id="3" type="radio" name="Menu" value="내가쓴대댓글" v-model="selectedMenu" hidden>
+						<div><label for="3" class="menu"><a>내가쓴대댓글</a></label></div>			    		
+			    	</div>
+					<div class="minimi3">
+						<div id="selectedMenu">
+							<table v-if="selectedMenu == '내가쓴피드'">	
+								<tr>
+									<th>아티스트</th>
+									<th>작성일</th>
+									<th>피드 내용</th>
+									<th>좋아요 수</th>
+								</tr>
+								<tr v-for = "item in list"  @click="fnCheck(item.gNo)">
+										<td>{{item.artist}}</td>
+										<td>{{item.gcDate}}</td>
+										<td>{{item.gContent}}</td>
+										<td>{{item.gLike}}</td>
+								</tr>
+							</table>
+							<table v-if="selectedMenu == '내가쓴댓글'">
+								<tr>
+									<th>아티스트</th>
+									<th>작성일</th>
+									<th>댓글 내용</th>
+									<th>좋아요 수</th>
+								</tr>
+								<tr v-for ="item in list2"  @click="fnCheck(item.gNo)">
+										<td>{{item.artist}}</td>
+										<td>{{item.gcDate}}</td>
+										<td>{{item.gcContent}}</td>
+										<td>{{item.gcLike}}</td>
+								</tr>
+							</table>
+							<table v-if="selectedMenu == '내가쓴대댓글'">
+								<tr>
+									<th>아티스트</th>
+									<th>작성일</th>
+									<th>댓글 내용</th>
+									<th>좋아요 수</th>
+								</tr>
+								<tr v-for = "item in list3"  @click="fnCheck(item.gNo)">
+										<td>{{item.artist}}</td>
+										<td>{{item.gcDate}}</td>
+										<td>{{item.gcContent}}</td>
+										<td>{{item.gcLike}}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>				
+			</div>
+			<div class="mainAreaBox2">
+				<div class="miniBox2">
+					<p class="bigFont">나의 프로필 관리</p>
+					<div class="minimi2" v-for = "(pitem, index) in plist">
+						<div class="mainImg">
+							<img :src="pitem.gpPath" class="profile-image">
+						</div>
+						<div class="mainImgBox">
+							<h3>{{pitem.nickName}}</h3>
+							<div class="smText2">
+								<div>{{pitem.artist}}</div>
+								<div class="smText3">이미지 변경</div>
+							</div>							
+							<label class="button2" for="'index'+index">파일 선택</label>
+  							<input class="hidden-input" type="file" :id="'index'+index" :name="'index'+index" accept=".gif, .jpg, .png" @change="handleFileChange">
+							<button class="button2" @click="fnProfile(pitem, index)">등록</button>
+							<button class="button2" @click="fnImgRemove(pitem.gpNo)">이미지 제거</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
 	</div>
-	
-	<div><h1>내가 쓴 댓글</h1>
-		<table>
-			<tr>
-				<th>아티스트</th>
-				<th>작성일</th>
-				<th>댓글 내용</th>
-				<th>좋아요 수</th>
-			</tr>
-			<tr v-for ="item in list2"  @click="fnCheck(item.gNo)">
-					<td>{{item.artist}}</td>
-					<td>{{item.gcDate}}</td>
-					<td>{{item.gcContent}}</td>
-					<td>{{item.gcLike}}</td>
-			</tr>
-		</table>
-	</div>
-		
-	<div><h1>내가 쓴 대댓글</h1>
-		<table >
-			<tr>
-				<th>아티스트</th>
-				<th>작성일</th>
-				<th>댓글 내용</th>
-				<th>좋아요 수</th>
-			</tr>
-			<tr v-for = "item in list3"  @click="fnCheck(item.gNo)">
-					<td>{{item.artist}}</td>
-					<td>{{item.gcDate}}</td>
-					<td>{{item.gcContent}}</td>
-					<td>{{item.gcLike}}</td>
-			</tr>
-		</table>
-	</div>
-	
-	</div>
+	<!-- <button @click="fnMove">뒤로가기</button> -->
 </body>
 </html>
 <script>
@@ -147,7 +378,8 @@
 				plist: [],	            
 				mlist: [],	            
 	            uId: "${sessionId}",
-	            artist : ""
+	            artist : "",
+	            selectedMenu : '내가쓴피드'
 	        },// data
 	        methods: {
 	            fnGetList: function() {
@@ -253,6 +485,7 @@
 		              }
 		          }
 	        }, // methods
+	        
 	        created: function () {
 	            var self = this;
 	            self.fnGetList();
