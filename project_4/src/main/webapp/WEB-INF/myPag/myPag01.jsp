@@ -187,7 +187,7 @@
 							    	<swiper-slide>
 						    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
 							            <div class="justBox">{{item.pName}}</div>
-							            <div class="justpay">\ {{item.price}}</div>		
+							            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 							    	</swiper-slide>
 							    </template>
 						          <div class="swiper-pagination"  slot="pagination"></div>
@@ -214,7 +214,7 @@
 										    	<swiper-slide>
 									    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
 										            <div class="justBox">{{item.pName}}</div>
-										            <div class="justpay">\ {{item.price}}</div>		
+										            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 										    	</swiper-slide>
 										    </template>
 									          <div class="swiper-pagination"  slot="pagination"></div>
@@ -244,7 +244,7 @@
 										    	<swiper-slide>
 									    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
 										            <div class="justBox">{{item.pName}}</div>
-										            <div class="justpay">\ {{item.price}}</div>		
+										            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 										    	</swiper-slide>
 										    </template>
 									          <div class="swiper-pagination"  slot="pagination"></div>
@@ -414,17 +414,17 @@ Vue.use(VueAwesomeSwiper);
 		    
 		    fnNotice : function (){ // 공지 
 				var self = this;
-	    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+	    		var option = "width=1000,height=1000,top=200,left=500, location = no"
 	    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
 			},
 			fnUseGuide : function (){ //이용안내
 				var self = this;
-	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		var option = "width=1000,height=1000,top=200,left=500, location = no"
 	    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
 			},
 			fnFaq : function (){ //faq
 				var self = this;
-	    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+	    		var option = "width=1000,height=1000,top=200,left=500, location = no"
 	    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
 			},
 
