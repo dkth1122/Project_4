@@ -108,10 +108,12 @@ span.pop-btn.confirm {
 
 
 .footer{
+	margin:0%;
 	text-align: center;
 	background-color: #F2DAED;
 	line-height: 30px;
 	height: 400px;
+	
 }
 .modal-open{
 border:0px;
@@ -593,7 +595,7 @@ $(function(){
 var footer = document.getElementById("footer");
 
 window.onscroll = function() {
-  var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY + 400;
+  var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY + 650;
 
   if (scrollBottom <= footer.offsetHeight) {
     // 스크롤이 맨 아래 위치할 때부터 footer가 보이도록
@@ -603,7 +605,7 @@ window.onscroll = function() {
     footer.style.zIndex = "999999";
   } else {
     // 스크롤이 맨 아래가 아닐 때
-    footer.style.bottom = "-450px"; // 또는 숨길 높이 값으로 조정
+    footer.style.bottom = "-550px"; // 또는 숨길 높이 값으로 조정
     footer.style.opacity = "0";
     footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
   }

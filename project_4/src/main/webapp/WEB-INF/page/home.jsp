@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
 <%@ include file="../Product/sexyheader.jsp" %>
+<%@ include file="footer.jsp" %>
 <style>
 
 
@@ -108,7 +109,7 @@ img.topimg{
 	}
 	
 
- #nav1, #nav2, #nav3 {
+ #nav1, #nav2, #nav3, #nav4 {
     position: relative; 
     z-index: 1; 
 }
@@ -138,10 +139,9 @@ img.topimg{
 	}
 
 #nav4{
-	border:3px solid red;
 	widows: 1800px;
 	height: 800px;
-	margin-top: 50px;
+	margin-top: 80px;
 	margin-bottom: 300px;
 	float:left;
 	} 
@@ -334,8 +334,10 @@ color: yellow;
 
 
 .ostimg {
-position: absolute;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   position: absolute;
 right: 50%;
 transform: translate(50%, -50%);
 	width: 1665px;
@@ -419,7 +421,13 @@ display:block;
 	transition: all 2s;
 }
 .sect1 {
-display:block;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 680px; 
+  background-color: #f0f0f0;
+  position: relative;
 }
 
 </style>
@@ -530,7 +538,7 @@ display:block;
 
 				<div class="img4"></div>
 
-				<div class="img5"></div>n
+				<div class="img5"></div>
 
 			</div>
 
@@ -541,9 +549,7 @@ display:block;
 	</div> 
 		
 </div> <!-- app div -->
-<div id="kkk">
-<%@ include file="footer.jsp" %>
-</div>
+
 </body>
 </html>
 <script>

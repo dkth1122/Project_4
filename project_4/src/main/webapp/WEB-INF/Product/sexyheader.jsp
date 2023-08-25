@@ -228,9 +228,11 @@ margin: 0 auto;
 
 					<li class="titleLi">
 						<a href="/mypag/noticeList.do" onclick="window.open(this.href, 'notice', 'width=1000,height=1000,top=200,left=500'); return false;">NOTIFY</a>
-					</li>		
+					</li>	
+					
 
 						<div class="icon">
+							
 							<span class="icon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a>
 							<a v-else href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a></span>
 
