@@ -23,6 +23,28 @@
 	#iQtext{
 		 min-height : 600px;
 	}
+	#addbut{
+		text-align: center;
+		margin-top: 50px;
+	}
+	#addbut button{
+		margin: 0px 10px;
+		width: 130px;
+		height: 40px;
+		border-radius: 25px;
+		border-style: solid;
+		background-color: #fff;
+		font-size: 1em;
+		border-color: #333;
+		
+	}
+	#addbut button > a{
+		font-size: 1em;
+		padding: 10px 30px;
+	}
+	#filebut input{
+		margin-top : 30px;
+	}
 </style>
 </head>
 <body>
@@ -157,16 +179,19 @@
 　- CSCENTER@SMTOWN.COM
 　- 제목양식: 주문번호/주문자명 불량CS 확인요청 (예시) 20230101-0000000/홍길동 불량CS 확인요청">							    	  		
 							    	  		</vue-editor> 							    	  		
-							    	  		</span></div>							    	
-							    	  	<div>
-							    	  	<button @click="fnBack">취소</button>
-							    	  	<button @click="addBoard">등록</button>
+							    	  		</span></div>
+							    	  			
+							    	  		<div>
+							    	  		<div id="filebut"><span>첨부파일 1 <input type="file" id="file1" name="file1"></span></div>							    	  								    	  
+							    	  		</div>
+							    	  								    	
+							    	  	<div id="addbut">
+							    	  	<button @click="fnBack"><a href="javascript:;">취소</a></button>
+							    	  	<button @click="addBoard"><a href="javascript:;">등록</a></button>
 							    	  	</div>
 							    	  	
 							    	  	
-							    	  	<div>
-							    	  		<div><span>첨부파일 1 <input type="file" id="file1" name="file1"></span></div>							    	  								    	  
-							    	  	</div>
+							    	  	
 							     </div> 
 							     
 							     

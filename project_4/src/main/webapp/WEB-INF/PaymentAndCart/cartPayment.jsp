@@ -216,9 +216,10 @@ text-align: center;
 }
 
 .pImg{
-	width: 200px;
-	height: 100px;
+	max-width: 240px;
+	max-height: 240px;
 }
+
 
 </style>
 </head>

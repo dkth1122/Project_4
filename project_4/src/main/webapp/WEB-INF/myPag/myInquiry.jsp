@@ -16,6 +16,45 @@
     width: 100%;
     margin-bottom: 163px;
 }
+table {
+	width: 910px;
+	text-align: center;
+	border-collapse: collapse;
+}
+td{
+ border-bottom: 1px solid black;
+ border-color: #ddd;
+}
+.a1{
+	width: 10%;
+}
+.a2{
+width: 10%;
+color: red;
+}
+.a3{
+width: 50%;
+}
+.a4{
+width: 20%;
+}
+.a5{
+width: 10%;
+}
+.addbutton{
+	text-align: right;
+	margin-right: 30px;
+	padding: 20px;
+}
+.addbutton > button{
+	width: 100px;
+	height: 40px;
+	border-radius: 30px;
+	border-style: solid;
+	border-color: rgb( 0 , 0, 0 , 0.5);
+	background-color: #fff;
+}
+
 </style>
 </head>
 <body>
@@ -119,17 +158,22 @@
 							      <div class="View">
 							    	  <div class="lowerBox"> 1:1문의 </div>
 							    	  	<div v-if="info.length > 0" v-for="item in info">
-							    	  		<hr>
-							    	  		<div>{{item.iNo}}
-							    	  		<span>{{item.category}}</span>
-							    	  		<span><a @click="boardView(item)">{{item.iQtitle}}</a></span>
-							    	  		<span>{{item.iQtime}}</span>
-							    	  		<span>{{item.state}}</span>
-							    	  		</div>
+							    	  	
+							    	  	<table>
+							    	  		<tr>
+							    	  			<td class="a1">{{item.iNo}}</td>
+							    	  			<td class="a2">{{item.category}}</td>
+							    	  			<td class="a3"><a href="#" @click="boardView(item)">{{item.iQtitle}}</a></td>
+							    	  			<td class="a4">{{item.iQtime}}</td>
+							    	  			<td class="a5">{{item.state}}</td>
+							    	  		</tr>
+							    	  	
+							    	  	</table>
+							    	  		
 							    	  		
 							    	  	</div>
 							    	  	<div v-if="info.length == 0" class="nodata"> 검색결과가 없습니다</div>
-							    	  	<div><button @click="addBoard"><a href="http://localhost:8082/mypag/myAddInquiry.do">글쓰기</a></button></div>
+							    	  	<div class="addbutton"><button @click="addBoard"><a href="http://localhost:8082/mypag/myAddInquiry.do">글쓰기</a></button></div>
 							     </div> 
 							     
 							     

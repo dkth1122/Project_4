@@ -102,10 +102,10 @@ var app = new Vue({
 			point : "",
 			stock : "",
 			membership : "N",
-			category : "ALB",
+			category : "PTB",
 			artist : "BTS",
 			fYn : "",
-			pLimit : "1"
+			pLimit : "2"
 		}
 	},// data
 	methods : {
