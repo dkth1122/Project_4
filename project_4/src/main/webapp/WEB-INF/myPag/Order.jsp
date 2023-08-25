@@ -236,9 +236,7 @@ text-align: center;
 						
 						<td class="a">이미지</td>
 						<td class="b">이름</td>
-						<td class="c">
-								넘어온 숫자					
-						</td>
+						<td class="c">넘어온 숫자</td>
 						<td class="d">배송비</td>
 						<td class="e">가격</td>
 						

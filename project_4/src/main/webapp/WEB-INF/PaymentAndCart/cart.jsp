@@ -191,6 +191,9 @@ select{
 	font-size: 1.5em;
 	font-weight: bold;
 }
+td{
+	height: 200px;
+}
 #baybutton{
 	width: 1500px;
 	margin: 30px auto;
@@ -215,8 +218,8 @@ text-align: center;
 }
 
 .pImg{
-	width: 200px;
-	height: 100px;
+	max-width: 240;
+	max-height: 240px;
 }
 td input{
 	text-align: center;

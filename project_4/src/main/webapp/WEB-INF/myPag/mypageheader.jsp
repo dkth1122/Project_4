@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <style>
 
+
+
 #headiner {
     font-family: Graduate, Kelly Slab, Aldrich;
     font-size: 1.1em;
@@ -26,6 +28,7 @@ padding-right : 30px;
 margin-right : 10px;
 color:black;
 height: 80px;
+
 padding-top: 35px;
 
 
@@ -151,12 +154,20 @@ nav .menu .depths li:hover a {
 width: 100%; 
 margin: 0 auto;
 }
+.q{
+width : 100px;
+	margin-left: 50px;
+}
+.q{
+	text-align: right;
+	padding-left: 400px;
+}
 
 </style>
 </head>
 
 <body>
-
+	<div id="header">		
 
 		<nav>
 		<div id="headiner">
@@ -201,18 +212,25 @@ margin: 0 auto;
 					
 						
 						<div class="icon">
-						<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl" style="color: #8a8a8a;"></i></a></span>
-						<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl" style="color: #8a8a8a;"></i></a></span>
+						<span class="icon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a>
+							<a v-else href="/cart/cartList.do"><i class="fa-solid fa-bag-shopping"></i></a></span>
+						<span class="icon"><a href="myInformation.do"><i class="fa-solid fa-bookmark fa-1xl" ></i></a></span>
+						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl"></i></a></span>
+						<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl"></i></a></span>
 						</div>
-						
+						<span class="q icon">
+												
+								<button @click="fnLogout" style="background: none; border: none; cursor: pointer;" class="logjo3">LOGOUT</button>
+
+							</span>		
+					
 					</ul>
 					
 					</div>
 					
 					</div>
 			</nav>
-		
+	</div>	
 
 
 
@@ -220,6 +238,35 @@ margin: 0 auto;
 </body>
 </html>
 <script>
-
+var app = new Vue({
+	el : '#header',
+	data : {
+		uId : "${sessionId}",
+		isTranslucent: false,
+		
+	},
+	methods: {
+		fnLogout : function(){
+			var self = this;
+			var param = {uId : self.uId};
+			$.ajax({
+                url : "/logout.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data){ 
+               	alert(data.success2);
+               	window.location.href = 'http://localhost:8082/home.do';
+                }
+            }); 
+		},
+},
+	created : function() {
+		  var self = this;
+		    // 세션 값 uId가 존재하면 로그인 상태로 변경
+		  var uId = sessionStorage.getItem('uId'); // 세션스토리지에서 uId 가져오기
+		  window.addEventListener('scroll', this.handleScroll);
+	},
+});
 	
 </script>

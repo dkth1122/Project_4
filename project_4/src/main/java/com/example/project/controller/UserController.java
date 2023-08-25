@@ -135,6 +135,7 @@ public class UserController {
 
 	    // 클라이언트에 로그아웃 결과 전송
 	    resultMap.put("success", true);
+	    resultMap.put("success2", "로그아웃 완료");
 	    return new Gson().toJson(resultMap);
 	}
 	

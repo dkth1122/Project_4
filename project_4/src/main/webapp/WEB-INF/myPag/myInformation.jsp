@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -439,17 +439,17 @@ var app = new Vue({
     },
     fnNotice : function (){ // 공지 
 		var self = this;
-		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+		var option = "width=850, height=1000, top=200, left=500, location = no"
 		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
 	},
 	fnUseGuide : function (){ //이용안내
 		var self = this;
-		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+		var option = "width=850, height=1000, top=200, left=500, location = no"
 		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
 	},
 	fnFaq : function (){ //faq
 		var self = this;
-		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+		var option = "width=850, height=1000, top=200, left=500, location = no"
 		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
 	},
 	/* 상단 구매내역 카운트 숫자 */

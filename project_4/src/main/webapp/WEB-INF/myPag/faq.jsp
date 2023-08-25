@@ -4,7 +4,6 @@
 <html>
 <head>
 <!-- 페이징 추가 1 -->
-<%@ include file="mypageheader.jsp" %>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <script src="../js/jquery.js"></script>    
@@ -144,7 +143,6 @@
 		</template>
 	</div>
 </div>
-<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
