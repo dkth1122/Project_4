@@ -26,7 +26,6 @@ padding-right : 30px;
 margin-right : 10px;
 color:black;
 height: 80px;
-
 padding-top: 35px;
 
 
