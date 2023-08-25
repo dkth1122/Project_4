@@ -173,7 +173,7 @@ width : 100px;
 		<div id="headiner">
 			<div class="navWrap">
 			<ul class="menu">
-					<li class="titleLi"><a href="/product/BTS.do">ARTIST</a>
+					<li class="titleLi"><a href="javascript:">ARTIST</a>
 						<ul class="depths">
 							<li ><a  href="/product/BTS.do">BTS</a></li>
 							<li ><a   href="/product/LSF.do">LE SSERAFIM</a></li>
@@ -188,9 +188,9 @@ width : 100px;
 					</li>
 						
 						
-					<li class="titleLi"><a href="/product/membership.do">PRODUCT</a>
+					<li class="titleLi"><a href="/product/main.do">PRODUCT</a>
 						<ul class="depths">
-<li><a href="/product/membership.do">MEMBERSHIP</a></li>
+							<li><a href="/product/membership.do">MEMBERSHIP</a></li>
 							<li><a href="/product/album.do">ALBUM</a></li>
 							<li><a href="/product/merch.do">MERCHANDISE</a></li>
 							<li><a href="/product/dvd.do">DVD</a></li>
