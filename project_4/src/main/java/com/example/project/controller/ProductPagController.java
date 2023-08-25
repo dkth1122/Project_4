@@ -111,6 +111,13 @@ public class ProductPagController {
 	
 //메인에서 PRODUCT 연결된 부분 (카테고리별 전체 상품 출력)
 	
+	// 상품 전체 출력 메인 페이지 
+	@RequestMapping("/product/main.do") 
+	public String productMain(Model model) throws Exception{
+			
+		return "/Product/PRODUCT_LIST/productAll";
+	}
+	
 	//1. 멤버쉽 상품 전체 출력
 	@RequestMapping("/product/membership.do") 
 	public String productMembership(Model model) throws Exception{
