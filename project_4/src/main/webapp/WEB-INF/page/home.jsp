@@ -150,6 +150,48 @@ img.topimg{
 	} 
 
 
+ .Sbox1 {
+ 	
+ 	border:6px solid orange;
+    vertical-align: middle;
+	width:1500px;
+	height: 1500px;
+	position: absolute;
+    left: 50%; 
+    transform: translateX(-50%); 
+	align-items: center;
+	flex-wrap: wrap;
+	padding:50px;
+} 
+
+
+.productList {
+  border:1px solid blue;
+ height:400px;
+  width: 300px;
+  margin: 0 10px; 
+  position : relative;
+  text-align: center;
+}
+
+.productList-container {
+  border:1px solid red;
+  content-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 -10px;
+   left: 50%; 
+    transform: translateX(-50%); 
+}
+
+.productList:hover .sub {
+	position: absolute;
+	bottom: 0px;
+	opacity: 1;
+} 
+
 .sect2 {
 	padding: 50px;
 	widows: 1800px;
@@ -169,88 +211,13 @@ img.topimg{
   justify-content: center;
   align-items: center; 
 }
+
 .sect2 div {
-	
-
 	float: left;
 	margin-right:10px;
 	margin:20px;
 	
 }
-
-.sect3 {
-	margin :  0px auto;
-	padding: 50px;
-	widows: 1800px;
-	height: 1500px;
-	background: #f0f0f0;
-	display: flex;
-  	flex-wrap: wrap;
-    width: 100%; 
-	
-}
-.sect3 div {
-	
-	height: 438px;
-	float: left;
-	margin-right:10px;
-	margin:20px;
-	
-}
-	
-
-.productList-container {
-  border:1px solid red;
-  content-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 -10px;
-   left: 50%; 
-    transform: translateX(-50%); 
-}
-
-.productList {
-  border:1px solid blue;
- height:400px;
-  width: 300px;
-  margin: 0 10px; 
-  position : relative;
-  
-  text-align: center;
-}
-/*new item*/
-
- .Sbox1 {
- 	
- 	border:6px solid orange;
-    vertical-align: middle;
-	width:1500px;
-	height: 1500px;
-	position: absolute;
-    left: 50%; 
-    transform: translateX(-50%); 
-	align-items: center;
-	flex-wrap: wrap;
-	padding:50px;
-} 
-
-
-/* .sect2 .Sbox1 {
-	border:4px solid black;
-	 content-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  
-  margin: 20px; 
-   left: 50%; 
-    transform: translateX(-50%); 
-	
-	
-} */
 
 
  
@@ -258,7 +225,6 @@ img.topimg{
 	opacity: 1;
 }
 
-/*SUP*/
 .sect2 div .sub {
 	position: absolute;
 	bottom: -100px;
@@ -276,11 +242,7 @@ img.topimg{
 	transition: all 1s;
 }
 
-	.productList:hover .sub {
-	position: absolute;
-	bottom: 0px;
-	opacity: 1;
-} 
+
 
 .sect2 div .sub .sname {
 	font-size: 23pt;
@@ -291,6 +253,71 @@ img.topimg{
 }
 
 
+
+
+.sect3 {
+	padding: 50px;
+	widows: 1800px;
+	height: 1500px;
+	background: #f0f0f0;
+	display: flex;
+ 	flex-wrap: wrap;
+  	width: 100%; 
+  	length: 1000px;
+}
+
+.sect3name {
+ height: 50px;
+  box-sizing: border-box;
+  display: flex; 
+  width:800px;
+  justify-content: center;
+  align-items: center; 
+}
+
+.sect3 div {
+	float: left;
+	margin-right:10px;
+	margin:20px;
+	
+}
+
+
+ 
+.sect3 div:hover a {
+	opacity: 1;
+}
+
+.sect3 div .sub {
+	position: absolute;
+	bottom: -100px;
+	width: 300px;
+	height: 250px;
+	background: rgba(255, 255, 255, 0.7);
+	color: #000;
+	line-height: 25pt;
+	font-family: arial;
+	font-size: 15pt;
+	text-align: left;
+	padding-left: 11px;
+	box-sizing: border-box;
+	opacity: 0;
+	transition: all 1s;
+}
+
+
+
+.sect3 div .sub .sname {
+	font-size: 23pt;
+	font-weight: bold;
+	padding: 50px 0 20px 0;
+	box-sizing: border-box;
+	text-align: left;
+}
+
+
+
+		
 
 
 .ostimg {
@@ -396,10 +423,9 @@ transform: translate(50%, -50%);
 			
 				<div class="slideshow-container">
 				
-					<div class="mySlides fade">
-					
+					<div class="mySlides fade">		
 						<div class="slidetext"></div>
-				 			<img class="topimg" src="img/homeimg/boynext.jpg" >
+				 		<img class="topimg" src="img/homeimg/boynext.jpg" >
 				  
 					</div>
 				
@@ -456,18 +482,18 @@ transform: translate(50%, -50%);
 		<nav id="nav3">
 		
 		  <section class="sect3">
-		  <div class="sect2name"><a href="newitem.do">BEST ITEM</a></div>
+		  <div class="sect3name"><a href="newitem.do">BEST ITEM</a></div>
      <div class="Sbox1">
-         <div v-for="(item, index) in list" class="productList" :key="index">
+         <div v-for="(item, index) in best" class="productList" :key="index">
           <span><img :src="item.path" class="pImg"></span>
           <div>{{ item.pName }}</div>
-          <div>
+          
             <ul class="sub">
               <li class="sname">{{item.artist}}</li>
               <li>{{item.category}}</li>
               <li>{{item.price}}</li>
             </ul>
-            </div>
+           
           </div>
         </div>
       </section>
@@ -535,7 +561,7 @@ var app = new Vue({
         var self = this;
         var nparmap = {uId : self.uId};            
         $.ajax({
-           url : "/home3.dox",
+           url : "/bestItemLoad.dox",
            dataType : "json",
            type : "POST",
            data : nparmap,
@@ -563,7 +589,7 @@ var app = new Vue({
 
 var slideIndex = 0;
 var slides = document.getElementsByClassName("mySlides"); 
-var colors = [ 'rgb(229, 143, 255)', ' rgb(143, 214, 255)', ' rgb(216, 255, 143)'];
+var colors = [ /* 프미나 */ 'rgb(189,24,144)', /* 보이넥스트도어  */ 'rgb(189, 24, 144)', /* 세븐 틴 */' rgb(250,188,255)'];
 showSlides();
 
 function showSlides() {

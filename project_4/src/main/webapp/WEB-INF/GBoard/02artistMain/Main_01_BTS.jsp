@@ -20,7 +20,7 @@ background-color : #D0ACDB;}
 
  
 	<div class="logos">
-      <a href="../home2.do"><img alt="" src="../img/logo/veryperiiix-.png" style="width:130px; height:80px; margin-top:25px;"></a>
+      <a href="../home.do"><img alt="" src="../img/logo/veryperiiix-.png" style="width:130px; height:80px; margin-top:25px;"></a>
       <a href="../home2.do"><img alt="" src="../img/logo/bts_logo.png" style="width:120px; height:auto;"></a>
     </div>
     
