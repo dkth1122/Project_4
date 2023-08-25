@@ -292,8 +292,8 @@ input[type="date"]:focus {
                               <tr class="footerListArea" v-for="item in list">                                                               
                                  <td class="column2"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
                                  <td class="column">{{item.oDate}}</td>
-                                 <td v-if="item.cnt >= 2">{{ item.pName }}외 {{ parseInt(item.cnt) - 1 }}건</td>
-                                 <td v-else>{{ item.pName }}</td>
+                                 <td v-if="item.cnt >= 2"><button class="button11" @click="productDetail(item)">{{ item.pName }}외 {{ parseInt(item.cnt) - 1 }}건</button></td>
+                                 <td v-else><button class="button11" @click="productDetail(item)">{{ item.pName }}</button></td>
                                  <td class="column-width5">{{ Number(item.paymentSum).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
                                  <td class="column2">{{item.dState}}</td>                                                      
                               <tr>

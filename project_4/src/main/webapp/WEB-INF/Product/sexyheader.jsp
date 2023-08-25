@@ -233,13 +233,15 @@ margin: 0 auto;
 
 						<div class="icon">
 							
-							<span class="icon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a>
-							<a v-else href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a></span>
+							<span class="icon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-brands fa-shopify"></i></a>
+							<a v-else href="bookmark.do"><i class="fa-brands fa-shopify"></i></a></span>
 
-							<span class="icon"><a href="bookmark.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a></span>
+							<span class="icon"><a href="/mypag/myInformation.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a></span>
+							
 							<span class="icon">
-								<a href="/basket.do"><i class="fa-solid fa-magnifying-glass fa-1xl" ></i></a>								
+								<a href="/gboard/main.do"><i class="fa-brands fa-wordpress-simple fa-rotate-180"></i></a>								
 							</span>
+							
 							<span class="icon">
 								<a v-if="uId == null || uId == ''" href="/user/join.do" class="logjo">JOIN</a>								
 								<a v-if="uId != null" href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl"></i></a>								
