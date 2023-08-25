@@ -20,15 +20,15 @@
 	   <button @click="fnMove('my')">마이페이지</button>
 		<ul>
             <li v-for="item in list">
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'BTS'">방탄소년단</button>
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'TXT'">투모로우바이투게더</button>
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'EHP'">엔하이픈</button>
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'SVT'">세븐틴</button>
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'FMN'">프로미스나인</button>
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'LSF'">르세라핌</button>
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'NJS'">뉴진스</button>
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'BND'">보이넥스트도어</button>
-                <button @click="fnMove(item.artist)" v-if="item.artist == 'ZIC'">지코</button>
+                <button @click="fnMove(item.artist)" >방탄소년단</button>
+                <button @click="fnMove(item.artist)" >투모로우바이투게더</button>
+                <button @click="fnMove(item.artist)" >엔하이픈</button>
+                <button @click="fnMove(item.artist)" >세븐틴</button>
+                <button @click="fnMove(item.artist)" >프로미스나인</button>
+                <button @click="fnMove(item.artist)" >르세라핌</button>
+                <button @click="fnMove(item.artist)" >뉴진스</button>
+                <button @click="fnMove(item.artist)" >보이넥스트도어</button>
+                <button @click="fnMove(item.artist)">지코</button>
             </li>
         </ul>
 	</div>
