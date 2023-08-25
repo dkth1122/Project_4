@@ -7,7 +7,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
 <%@ include file="../Product/sexyheader.jsp" %>
-<%@ include file="footer.jsp" %>
 <style>
 
 
@@ -56,7 +55,7 @@ a {
 
 #footer {
   position: fixed;
-  bottom: -450px;
+  bottom: -100px;
   left: 0;
   width: 100%;
   padding: 20px; 
@@ -143,7 +142,7 @@ img.topimg{
 	widows: 1800px;
 	height: 800px;
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 300px;
 	float:left;
 	} 
 
@@ -367,7 +366,7 @@ transform: translate(50%, -50%);
 	background-size: contain;
 }
 
-.ostimg .imgse {
+.ostimg .img3 {
 	background: url(img/homeimg/bts_album.gif);
 	background-size: contain;
 	width: 370px;
@@ -542,8 +541,9 @@ display:block;
 	</div> 
 		
 </div> <!-- app div -->
-			
-	
+<div id="kkk">
+<%@ include file="footer.jsp" %>
+</div>
 </body>
 </html>
 <script>

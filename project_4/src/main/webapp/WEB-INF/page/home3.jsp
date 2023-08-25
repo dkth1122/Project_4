@@ -620,7 +620,7 @@ img.imgslide3 {
 			</div>
 
 		</section>
-		<footer>
+	<footer>
 			<p>
 				<br> ���щ� (二�)VeryPeri Corp. ������紐� �ㅻ����
 				 <br>二쇱�� �몄�愿����� 遺���援� 遺����� 534-48 7痢�
