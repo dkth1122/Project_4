@@ -28,18 +28,6 @@ public class ProductPagController {
 	@Autowired
 	ProductService productService;
 	
-	@RequestMapping("/product/main.do") 
-    public String memberBoard5(Model model) throws Exception{
-
-        return "/Product/productPag";
-    }
-	
-	// BTS DVD 상품 리스트
-	@RequestMapping("/product/productPagBTS_DVD.do") 
-    public String BTS_DVD(Model model) throws Exception{
-
-        return "/Product/productPagBTS_DVD";
-    }
 	// 상품 상세 페이지
 		@RequestMapping("/product/productView.do") 
 		public String productView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
