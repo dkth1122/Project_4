@@ -61,7 +61,7 @@
 		width: 1200px;
 		float: left;
 		position: relative;
-		top :-700px;
+		top : -385px;
 		left: 350px;
 		
 	}
@@ -77,20 +77,12 @@
 		top: 150px;
 		left: 140px;
 	}
-	.artistDIv2{
-		width : 500px;
-		height : 100px;
-		position : absolute;
-		top : 300px;
-		left : 300px;
-		font-size: 32px;
-		color : #ccc;
-	}
   </style>
 </head>
 <body>
 
 <div id="app">
+
    <div id="wrap">
         <div id="container">
         <div id="login">
@@ -133,77 +125,46 @@
                 
                 <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
+                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnMove('BTS')">BTS</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('A')">ALBUM</a>
                             <ul class="sub">
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnMove('TXT')">TXT</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('M')">MERCH</a>
                         <ul class="sub2">
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnMove('EHP')">ENHYPEN</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('D')">DVD</a>
 	                    <ul class="sub3">
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnMove('SVT')">SEVENTEEN</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('P')">PHOTOBOOK</a>
 			            <ul class="sub4">
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('FMN')">fromis_9</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Mem')">MEMBERSHIP</a>
 				        <ul class="sub5">
 				        </ul>
 				 	</div>
-				 	
-				 	<div class="menu6">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('LSF')">LE SSERAFIM</a>
-				        <ul class="sub6">
-				        </ul>
-				 	</div>
-				 	
-				 	<div class="menu7">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('NJS')">NewJeans</a>
-				        <ul class="sub7">
-				        </ul>
-				 	</div>
-				 	
-				 	<div class="menu8">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('BND')">BOYNEXTDOOR</a>
-				        <ul class="sub8">
-				        </ul>
-				 	</div>
-				 	
-				 	<div class="menu9">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('ZIC')">ZICO</a>
-				        <ul class="sub9">
-				        </ul>
-				 	</div>
-				 	
                 </div>
 					<div class="productPosList">
-					
-						<span @click="productView(item)" v-for="item in list" class="productList" v-if = "list.length != 0">
+						<span @click="productView(item)" v-for="item in list" class="productList">
 							<span><img :src = "item.path" class="pImg"></span>
 							<div class="artistDIv">{{item.artist}}</div>
 							<div>{{item.pName}}</div>
 							<h5>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</h5>
 						</span>
-						
-						<span v-if = "list.length == 0">
-								<div class="artistDIv2"   >등록된 제품이 없습니다.</div>
-						</span>
-					
 					</div>
-            </div>        
+            </div>   
         </div>
     </div>
 </div>
@@ -221,9 +182,21 @@ var app = new Vue({
 		  ctg : ""
     },
     methods: {
-    	fnGetList: function () {
+    	fnGetList: function (ctg) {
             var self = this;
-            var nparmap = {selectedOption : self.selectedOption, ctg : self.ctg};
+    		
+    		if(ctg == 'A'){
+    			self.ctg = "ALB";
+    		}else if(ctg == 'M'){
+    			self.ctg = "MER";
+    		}else if(ctg == 'D'){
+    			self.ctg = "DVD";
+    		}else if(ctg == 'P'){
+    			self.ctg = "PTB";
+    		}else if(ctg == 'Mem'){
+    			self.ctg = "MEM";
+    		}
+            var nparmap = {artist: self.artist, selectedOption : self.selectedOption, ctg : self.ctg};
             $.ajax({
                 url: "producListMain.dox",
                 dataType: "json",
@@ -233,15 +206,16 @@ var app = new Vue({
                     self.list = data.list;
                 }
             });
-        }, fnReload : function(){
+		},
+		fnReload : function(){
 			location.reload();
-			
-		}, productView : function(item){
+		},
+        productView : function(item){
         	var self = this;
-        	$.pageChange("productView.do", {pNo : item.pNo});     
-        	
-        }, fnMove : function(artist){
-                location.href = artist + '.do'; 
+        	$.pageChange("productView.do", {pNo : item.pNo});        	
+        },
+		formatPrice: function(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
     },
     created: function() {

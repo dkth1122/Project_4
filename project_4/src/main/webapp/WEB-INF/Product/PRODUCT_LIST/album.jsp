@@ -135,55 +135,55 @@
 
                     <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnMove('BTS')">BTS</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('BTS')">BTS</a>
                             <ul class="sub">
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnMove('TXT')">TXT</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('TXT')">TXT</a>
                         <ul class="sub2">
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnMove('EHP')">ENHYPEN</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('EHP')">ENHYPEN</a>
 	                    <ul class="sub3">
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnMove('SVT')">SEVENTEEN</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('SVT')">SEVENTEEN</a>
 			            <ul class="sub4">
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('FMN')">fromis_9</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('FMN')">fromis_9</a>
 				        <ul class="sub5">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu6">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('LSF')">LE SSERAFIM</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('LSF')">LE SSERAFIM</a>
 				        <ul class="sub6">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu7">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('NJS')">NewJeans</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('NJS')">NewJeans</a>
 				        <ul class="sub7">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu8">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('BND')">BOYNEXTDOOR</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BND')">BOYNEXTDOOR</a>
 				        <ul class="sub8">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu9">
-				        <a class="aTitle" href="Javascript:;" @click="fnMove('ZIC')">ZICO</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('ZIC')">ZICO</a>
 				        <ul class="sub9">
 				        </ul>
 				 	</div>
@@ -221,9 +221,10 @@ var app = new Vue({
 		  ctg : "ALB"
     },
     methods: {
-    	fnGetList: function () {
+    	fnGetList: function (artist) {
             var self = this;
-            var nparmap = {selectedOption : self.selectedOption, ctg : self.ctg};
+            self.artist = artist;
+            var nparmap = {selectedOption : self.selectedOption, ctg : self.ctg, artist : self.artist};
             $.ajax({
                 url: "producListMain.dox",
                 dataType: "json",
