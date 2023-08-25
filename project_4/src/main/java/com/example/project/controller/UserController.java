@@ -132,6 +132,7 @@ public class UserController {
 	    // 로그아웃 처리: 세션 속성 제거
 	    session.removeAttribute("sessionId");
 	    session.removeAttribute("sessionName");
+	    session.invalidate();
 
 	    // 클라이언트에 로그아웃 결과 전송
 	    resultMap.put("success", true);

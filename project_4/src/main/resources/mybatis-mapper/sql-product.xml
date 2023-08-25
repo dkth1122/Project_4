@@ -199,22 +199,25 @@
 	    SELECT COUNT(*) FROM T4_WISH WHERE U_ID = #{uId} AND P_NO = #{pNo}
 	</select>
 	
-	<!-- 상품전체출력 -->
+	
+	<!-- 새로운 상품 전체출력 -->
 	<select parameterType="hashmap" id="searchProductNewList" resultType="com.example.project.model.Product">
-	SELECT * FROM T4_PRODUCT 
-	ORDER BY P_DATE ASC LIMIT 12
+	SELECT * 
+	FROM T4_PRODUCT P
+	INNER JOIN T4_PRODUCT_IMG I ON I.P_NO = P.P_NO
+	ORDER BY P_DATE DESC LIMIT 12
 	</select>
 	
 		<!-- 베스트아이템 -->
 	<select parameterType="hashmap" id="bestItemLoad" resultType="com.example.project.model.Product">
-	SELECT O.P_NO, P.*, COUNT(*) AS CNT
+	SELECT *, COUNT(*) AS CNT
 	FROM T4_ORDER O
 	INNER JOIN T4_PRODUCT P ON P.P_NO = O.P_NO 
 	GROUP BY O.P_NO
-	ORDER BY CNT DESC LIMIT 12;
+	ORDER BY CNT LIMIT 12;
 	</select>
 	
-	
+
 	
 	
 	<!-- 주문내역상세 출력 -->

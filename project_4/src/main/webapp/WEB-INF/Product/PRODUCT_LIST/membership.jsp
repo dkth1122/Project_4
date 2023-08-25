@@ -133,7 +133,7 @@
                 
                 <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
+                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                       <div class="menu">
                             <a class="aTitle" href="Javascript:;" @click="fnGetList('B')">BTS</a>
                             <ul class="sub">

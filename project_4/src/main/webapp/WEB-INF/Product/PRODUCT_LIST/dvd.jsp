@@ -68,13 +68,13 @@
 	.productList{
 		width:300px;
 		height : 500px;
-		margin-top:50px;
+		margin-bottom:50px;
 		margin-left : 20px;
 		float: left;
 	}
 	.select{
 		position : relative;
-		top: 150px;
+		top: 130px;
 		left: 140px;
 	}
 	.artistDIv2{
@@ -84,7 +84,7 @@
 		top : 300px;
 		left : 300px;
 		font-size: 32px;
-		color : #ccc;
+		color : 
 	}
   </style>
 </head>
@@ -133,7 +133,7 @@
                 
                 <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
+                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                       <div class="menu">
                             <a class="aTitle" href="Javascript:;" @click="fnGetList('B')">BTS</a>
                             <ul class="sub">

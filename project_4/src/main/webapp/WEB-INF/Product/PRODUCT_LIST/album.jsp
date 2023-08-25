@@ -133,39 +133,39 @@
                 
                 <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
+                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnGetList('B')">BTS</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnMove('B')">BTS</a>
                             <ul class="sub">
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnGetList('T')">TXT</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnMove('T')">TXT</a>
                         <ul class="sub2">
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('E')">ENHYPEN</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnMove('E')">ENHYPEN</a>
 	                    <ul class="sub3">
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnGetList('S')">SEVENTEEN</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnMove('S')">SEVENTEEN</a>
 			            <ul class="sub4">
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('F')">fromis_9</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnMove('F')">fromis_9</a>
 				        <ul class="sub5">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu6">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('L')">LE SSERAFIM</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnMove('L')">LE SSERAFIM</a>
 				        <ul class="sub6">
 				        </ul>
 				 	</div>

@@ -463,8 +463,8 @@ transform: translate(50%, -50%);
     
     <!--   <p class="more"><a href="#">MORE</a></p> -->
      
-       <div v-for="(item, index) in list" class="productList" :key="index">
-          <span><img :src="item.path" class="pImg"></span>
+       <div v-for="(item, index) in list" class="productList" :key="index" >
+          <img :src="item.path" class="productList">
           <div>{{ item.pName }}</div>
           
             <ul class="sub">
@@ -485,7 +485,7 @@ transform: translate(50%, -50%);
 		  <div class="sect3name"><a href="newitem.do">BEST ITEM</a></div>
      <div class="Sbox1">
          <div v-for="(item, index) in best" class="productList" :key="index">
-          <span><img :src="item.path" class="pImg"></span>
+          <span><img src="item.path" class="productList" ></span>
           <div>{{ item.pName }}</div>
           
             <ul class="sub">
@@ -539,6 +539,8 @@ var app = new Vue({
 		info : {},
 		best : []
 	}, 
+	
+	
 	methods : {
 		fnGetList : function() { 
             var self = this;

@@ -8,10 +8,11 @@
   <script src="../js/jquery.js"></script>  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <meta charset="UTF-8">
   <title>상품 페이지</title>
 <style type="text/css">
 	  .nonMember{
-	  	margin: 0px 10px;
+	  margin: 0px 10px;
 	  }
 	  #app{
 	  	width: 1500px;
@@ -25,17 +26,17 @@
 	  	text-align: right;
 	  }
 	  #login{
-	 	 margin-top :15px;
+	  margin-top :15px;
 	
 	  }
 	  #header.fixed{
-		  position: fixed; 
-		  left: 50%;
-		  width: 100%;
-		  z-index: 1;
-		  transform: translateX(-50%);
-		  transition: top 1s ease;
-		  background-color: rgba(255, 255, 255);
+	  position: fixed; 
+	  left: 50%;
+	  width: 100%;
+	  z-index: 1;
+	  transform: translateX(-50%);
+	  transition: top 1s ease;
+	  background-color: rgba(255, 255, 255);
 	  }
 
 	#header{
@@ -67,13 +68,13 @@
 	.productList{
 		width:300px;
 		height : 500px;
-		margin-bottom:50px;
+		margin-top:50px;
 		margin-left : 20px;
 		float: left;
 	}
 	.select{
 		position : relative;
-		top: 130px;
+		top: 150px;
 		left: 140px;
 	}
 	.artistDIv2{
@@ -217,7 +218,7 @@ var app = new Vue({
           uId: "${sessionId}",
           artist: "",
 		  selectedOption : "전체",
-		  ctg : "PTB"
+		  ctg : "ALB"
     },
     methods: {
     	fnGetList: function (artist) {
