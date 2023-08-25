@@ -8,10 +8,11 @@
   <script src="../js/jquery.js"></script>  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <meta charset="UTF-8">
   <title>상품 페이지</title>
 <style type="text/css">
 	  .nonMember{
-	  	margin: 0px 10px;
+	  margin: 0px 10px;
 	  }
 	  #app{
 	  	width: 1500px;
@@ -25,17 +26,17 @@
 	  	text-align: right;
 	  }
 	  #login{
-	 	 margin-top :15px;
+	  margin-top :15px;
 	
 	  }
 	  #header.fixed{
-		  position: fixed; 
-		  left: 50%;
-		  width: 100%;
-		  z-index: 1;
-		  transform: translateX(-50%);
-		  transition: top 1s ease;
-		  background-color: rgba(255, 255, 255);
+	  position: fixed; 
+	  left: 50%;
+	  width: 100%;
+	  z-index: 1;
+	  transform: translateX(-50%);
+	  transition: top 1s ease;
+	  background-color: rgba(255, 255, 255);
 	  }
 
 	#header{
@@ -67,13 +68,13 @@
 	.productList{
 		width:300px;
 		height : 500px;
-		margin-bottom:50px;
+		margin-top:50px;
 		margin-left : 20px;
 		float: left;
 	}
 	.select{
 		position : relative;
-		top: 130px;
+		top: 150px;
 		left: 140px;
 	}
 	.artistDIv2{
@@ -134,55 +135,55 @@
 
                     <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnGetList('B')">BTS</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnMove('BTS')">BTS</a>
                             <ul class="sub">
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnGetList('T')">TXT</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnMove('TXT')">TXT</a>
                         <ul class="sub2">
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('E')">ENHYPEN</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnMove('EHP')">ENHYPEN</a>
 	                    <ul class="sub3">
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnGetList('S')">SEVENTEEN</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnMove('SVT')">SEVENTEEN</a>
 			            <ul class="sub4">
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('F')">fromis_9</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnMove('FMN')">fromis_9</a>
 				        <ul class="sub5">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu6">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('L')">LE SSERAFIM</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnMove('LSF')">LE SSERAFIM</a>
 				        <ul class="sub6">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu7">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('N')">NewJeans</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnMove('NJS')">NewJeans</a>
 				        <ul class="sub7">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu8">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BN')">BOYNEXTDOOR</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnMove('BND')">BOYNEXTDOOR</a>
 				        <ul class="sub8">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu9">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Z')">ZICO</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnMove('ZIC')">ZICO</a>
 				        <ul class="sub9">
 				        </ul>
 				 	</div>
@@ -220,30 +221,9 @@ var app = new Vue({
 		  ctg : "PTB"
     },
     methods: {
-    	fnGetList: function (artist) {
+    	fnGetList: function () {
             var self = this;
-    		
-    		if(artist == 'B'){
-    			self.artist = "BTS";
-    		}else if(artist == 'T'){
-    			self.artist = "TXT";
-    		}else if(artist == 'E'){
-    			self.artist = "EHP";
-    		}else if(artist == 'S'){
-    			self.artist = "SVT";
-    		}else if(artist == 'F'){
-    			self.artist = "FMN";
-    		}else if(artist == 'L'){
-    			self.artist = "LSF";
-    		}else if(artist == 'N'){
-    			self.artist = "NJS";
-    		}else if(artist == 'BN'){
-    			self.artist = "BND";
-    		}else if(artist == 'Z'){
-    			self.artist = "ZIC";
-    		}
-    		
-            var nparmap = {artist: self.artist, selectedOption : self.selectedOption, ctg : self.ctg};
+            var nparmap = {selectedOption : self.selectedOption, ctg : self.ctg};
             $.ajax({
                 url: "producListMain.dox",
                 dataType: "json",
@@ -251,18 +231,17 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     self.list = data.list;
-                    console.log("리스트 ==>", self.list);
-                    console.log("리스트 길이 ==>",self.list.length);
-                    
                 }
             });
-        },
-		fnReload : function(){
+        }, fnReload : function(){
 			location.reload();
-		},
-        productView : function(item){
+			
+		}, productView : function(item){
         	var self = this;
-        	$.pageChange("productView.do", {pNo : item.pNo});        	
+        	$.pageChange("productView.do", {pNo : item.pNo});     
+        	
+        }, fnMove : function(artist){
+                location.href = artist + '.do'; 
         }
     },
     created: function() {
