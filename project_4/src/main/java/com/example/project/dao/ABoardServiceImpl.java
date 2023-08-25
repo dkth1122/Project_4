@@ -73,7 +73,7 @@ public class ABoardServiceImpl implements ABoardService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("list", aboardMapper.selectABoardList3(map));
-		resultMap.put("cnt", aboardMapper.selectCnt(map));
+		resultMap.put("cnt", aboardMapper.selectCntAboard(map));
 		return resultMap;				
 	}
 

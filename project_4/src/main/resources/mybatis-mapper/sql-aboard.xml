@@ -40,6 +40,11 @@
 	<select id="selectCnt" resultType="int">
 		SELECT COUNT(*) FROM T4_ABOARD
 	</select>
+	<!-- 페이징용 카운트2 -->
+	<select id="selectCntAboard" resultType="int">
+		SELECT COUNT(*) FROM T4_ABOARD
+		WHERE A_KIND = '공지'
+	</select>
 	
 	<!-- 게시글 등록 -->
 	<insert id="insertABoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="idx" keyColumn="AAF_NO">

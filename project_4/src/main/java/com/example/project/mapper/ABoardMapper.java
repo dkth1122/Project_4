@@ -26,6 +26,9 @@ public interface ABoardMapper {
 	// 페이징용 카운트
 	int selectCnt(HashMap<String, Object> map);
 	
+	// 페이징용 카운트2
+	int selectCntAboard(HashMap<String, Object> map);
+	
 	//공지 등록
 	int insertABoard(HashMap<String, Object> map);
 	
