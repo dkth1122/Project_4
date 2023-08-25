@@ -593,7 +593,7 @@ $(function(){
 var footer = document.getElementById("footer");
 
 window.onscroll = function() {
-  var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+  var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY + 400;
 
   if (scrollBottom <= footer.offsetHeight) {
     // 스크롤이 맨 아래 위치할 때부터 footer가 보이도록
