@@ -104,7 +104,7 @@
 	  border : 1px solid #d4d5d9;
 	  cursor: pointer;
 	  transition: background-color 0.3s;
-	  width : 49%;
+	  width : 80px;
 	  margin-right : 3px;	  
 	}
 	
