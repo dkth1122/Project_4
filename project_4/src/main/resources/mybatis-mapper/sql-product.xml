@@ -99,13 +99,19 @@
    </foreach>
    </delete>
    
-   <!-- 찜목록 출력 -->
+    <!-- 찜목록 출력 -->
    <select id="selectWishProdeuct" parameterType="hashmap" resultType="com.example.project.model.Wish">
       SELECT *
       FROM T4_WISH W
-      LEFT JOIN T4_PRODUCT P ON W.P_NO = P.P_NO
-      LEFT JOIN T4_PRODUCT_IMG P2 ON P.P_NO = P2.P_NO
-      WHERE U_ID = #{uId}
+      INNER JOIN 
+      (SELECT P1.P_NO, P_NAME , PRICE , P_LIMIT, PATH 
+		FROM
+		T4_PRODUCT P1
+		INNER JOIN T4_PRODUCT_IMG P2 ON
+		P1.P_NO = P2.P_NO
+		WHERE IMG_TYPE = 'Y') J
+		ON W.P_NO = J.P_NO
+      WHERE U_ID =  #{uId}
    </select>
    
    <!-- 찜목록 단일 삭제 -->

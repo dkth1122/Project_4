@@ -32,7 +32,7 @@
 	<!-- 장바구니 동일 상품 수량 추가 -->
 	<update id="updateCnt" parameterType="hashmap" >
 		UPDATE T4_CART SET 	
-		CNT = CNT + #{quantity}
+		CNT = #{quantity}
 		WHERE P_NO = #{pNo} AND U_ID = #{uId}
 	</update>
 	

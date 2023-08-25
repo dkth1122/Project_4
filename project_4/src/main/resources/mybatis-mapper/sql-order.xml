@@ -14,12 +14,20 @@
 			GROUP BY #{uId}, EXCHANGE
 	</select>
 	
-	
-	<select id="orderProductSelect" parameterType="hashmap" resultType="com.example.project.model.Order">
-	
-	 SELECT * FROM
-	 T4_ORDER O INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-	 WHERE U_ID = #{uId}
+	<!--  구매상품 확인 -->
+	<select id="orderProductSelect" parameterType="hashmap" resultType="com.example.project.model.Order">	
+	SELECT * FROM
+	T4_ORDER O INNER JOIN 	
+	(
+	SELECT P1.P_NO, P_NAME , PRICE , P_LIMIT, PATH 
+	FROM
+	T4_PRODUCT P1
+	INNER JOIN T4_PRODUCT_IMG P2 ON
+	P1.P_NO = P2.P_NO
+	WHERE IMG_TYPE = 'Y'
+	) J
+	ON O.P_NO = J.P_NO
+	WHERE U_ID =  #{uId}
 	 
 	</select>
 	
@@ -38,7 +46,6 @@
 				GROUP BY O.O_NO)A ON O.O_NO = A.O_NO
 			WHERE D_STATE = '업체확인중'
 		ORDER BY O.O_NO ASC
-
 	</select>
 	
 	<!-- 페이징용 카운트 -->
@@ -95,9 +102,15 @@
 	<select id="selectcartlist" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT *
 		FROM
-		T4_CART C INNER JOIN  T4_PRODUCT P
-	    ON C.P_NO = P.P_NO
-	    WHERE U_ID = #{uId}		
+		T4_CART C INNER JOIN  
+		(SELECT P1.P_NO, P_NAME , PRICE , P_LIMIT, PATH 
+		FROM
+		T4_PRODUCT P1
+		INNER JOIN T4_PRODUCT_IMG P2 ON
+		P1.P_NO = P2.P_NO
+		WHERE IMG_TYPE = 'Y') P
+		ON C.P_NO = P.P_NO
+		WHERE U_ID = #{uId}		
 	</select>
 	
 		<!-- 구매확정으로 업데이트 -->

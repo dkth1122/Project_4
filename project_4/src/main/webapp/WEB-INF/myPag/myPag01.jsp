@@ -185,7 +185,7 @@
 							>
 								<template v-for="item in orderlist">
 							    	<swiper-slide>
-						    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+						    			<div><img class="justimg" :src="item.path"></div>
 							            <div class="justBox">{{item.pName}}</div>
 							            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 							    	</swiper-slide>
@@ -212,7 +212,7 @@
 										>
 											<template v-for="item in cartlist">
 										    	<swiper-slide>
-									    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+									    			<div><img class="justimg" :src="item.path"></div>
 										            <div class="justBox">{{item.pName}}</div>
 										            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 										    	</swiper-slide>
@@ -242,7 +242,7 @@
 										>
 											<template v-for="item in wishlist">
 										    	<swiper-slide>
-									    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+									    			<div><img class="justimg" :src="item.path"></div>
 										            <div class="justBox">{{item.pName}}</div>
 										            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 										    	</swiper-slide>
@@ -359,7 +359,7 @@ Vue.use(VueAwesomeSwiper);
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
-					success : function(data) {
+					success : function(data) {						
 						self.orderlist = data.list;
 
 					}
@@ -375,10 +375,8 @@ Vue.use(VueAwesomeSwiper);
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
-					success : function(data) {
-						
+					success : function(data) {						
 						self.cartlist = data.list;
-		
 
 					}
 				});
