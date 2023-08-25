@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.project.dao.ComplainService;
 import com.google.gson.Gson;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -25,9 +26,14 @@ public class ComplainController {
 	ComplainService complainService;
 	 
 	@RequestMapping("/complain/list.do") 
-    public String complain(Model model) throws Exception{
-
-        return "/Inquiry/complain-list";
+    public String complain(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Inquiry/complain-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
     }
 	
 	@RequestMapping(value = "/complain/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

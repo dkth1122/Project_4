@@ -29,18 +29,26 @@ public class StaffController {
 	
 	@RequestMapping("/staff/login.do") 
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		
-        return "/Staff/staff-login";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Staff/staff-login";
+	    } else {
+	        return "redirect:../home.do";
+	    }
     }
 	@RequestMapping("/staff/left.do") 
 	public String left(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		
 		return "/Staff/staff-left";
 	}
-	@RequestMapping("/staff/home.do") 
-	public String home(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		
-		return "/Staff/staff-home";
+	@RequestMapping("/staff/home.do")
+	public String home(HttpServletRequest request, HttpSession session) {
+	    String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	        return "/Staff/staff-home";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	@RequestMapping("/staff/header.do") 
 	public String header(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
@@ -55,14 +63,23 @@ public class StaffController {
 	
 	@RequestMapping("/staff/add.do") 
 	public String add(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		
-		return "/Staff/staff-add";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Staff/staff-add";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	
 	@RequestMapping("/staff/edit.do") 
 	public String edit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/Staff/staff-edit";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Staff/staff-edit";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	@RequestMapping("/staff/sales.do") 
 	public String sales(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{

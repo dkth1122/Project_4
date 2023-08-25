@@ -33,13 +33,24 @@ public class User2Controller {
 	
 	@RequestMapping("user2/list.do") 
     public String list(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/User2/user2-list";
+		request.setAttribute("map", map);
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/User2/user2-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
     }
 	
 	@RequestMapping("user2/view.do") 
 	public String view(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/User2/user2-view";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/User2/user2-view";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	
 	@RequestMapping(value = "/user2/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

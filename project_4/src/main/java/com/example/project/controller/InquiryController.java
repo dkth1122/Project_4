@@ -28,15 +28,26 @@ public class InquiryController {
 	InquiryService inquiryService;
 	 
 	@RequestMapping("/inquiry/list.do") 
-    public String list(Model model) throws Exception{
+    public String list(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Inquiry/inquiry-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 
-        return "/Inquiry/inquiry-list";
     }
 	
 	@RequestMapping("/inquiry/view.do") 
 	public String view(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/Inquiry/inquiry-view";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Inquiry/inquiry-view";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	
 	@RequestMapping(value = "/inquiry/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
