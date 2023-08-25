@@ -20,7 +20,7 @@
 a {
     text-decoration: none;
 }
-
+/* 
 .ex1 a i {
     display: block;
     width: 100px;
@@ -52,10 +52,7 @@ a {
 .ex2 a:hover {
     text-shadow: 0 0 5px #ff0;
 }
-/*  占쌓온삼옙占쏙옙효占쏙옙 占쏙옙 */
-
-
-
+ */
 
 #footer {
   position: fixed;
@@ -71,7 +68,7 @@ a {
 .dot {
     width: 12px;
     height: 12px;
-    margin: 10px 5px; /* 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 첫 占쏙옙째 占쏙옙 占쏙옙占쏙옙 */
+    margin: 10px 5px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
@@ -142,10 +139,11 @@ img.topimg{
 	}
 
 #nav4{
+	border:3px solid red;
 	widows: 1800px;
 	height: 800px;
 	margin-top: 50px;
-	margin-bottom: 500px;
+	margin-bottom: 50px;
 	float:left;
 	} 
 
@@ -153,9 +151,10 @@ img.topimg{
  .Sbox1 {
  	
  	border:6px solid orange;
+ 	background-color:orange;
     vertical-align: middle;
 	width:1500px;
-	height: 1500px;
+	height: 1650px;
 	position: absolute;
     left: 50%; 
     transform: translateX(-50%); 
@@ -166,12 +165,12 @@ img.topimg{
 
 
 .productList {
-  border:1px solid blue;
+  border:5px solid blue;
  height:400px;
   width: 300px;
-  margin: 0 10px; 
   position : relative;
   text-align: center;
+   box-shadow:  0 10px 20px  rgba(0, 0, 0, 0.5); 
 }
 
 .productList-container {
@@ -195,7 +194,7 @@ img.topimg{
 .sect2 {
 	padding: 50px;
 	widows: 1800px;
-	height: 1500px;
+	height: 1800px;
 	background: #f0f0f0;
 	display: flex;
  	flex-wrap: wrap;
@@ -204,12 +203,15 @@ img.topimg{
 }
 
 .sect2name {
- height: 50px;
-  box-sizing: border-box;
-  display: flex; 
-  width:800px;
-  justify-content: center;
-  align-items: center; 
+	font-size:70px;
+	margin-top:0px;
+	height: 100px;
+	width:300px;
+	display: relative; 
+	width: 100%;
+	justify-content: center;
+	text-align: center; 
+	text-shadow: 0 0 .1em, 0 0 .3em skyblue; 
 }
 
 .sect2 div {
@@ -223,6 +225,7 @@ img.topimg{
  
 .sect2 div:hover a {
 	opacity: 1;
+	
 }
 
 .sect2 div .sub {
@@ -230,8 +233,9 @@ img.topimg{
 	bottom: -100px;
 	width: 300px;
 	height: 250px;
-	background: rgba(255, 255, 255, 0.7);
-	color: #000;
+	background: rgba(98,144,198, 0.7);
+	text-shadow: 0 5px 5px  rgba(199,225,50, 1);
+	color:black;
 	line-height: 25pt;
 	font-family: arial;
 	font-size: 15pt;
@@ -258,21 +262,25 @@ img.topimg{
 .sect3 {
 	padding: 50px;
 	widows: 1800px;
-	height: 1500px;
+	height: 1800px;
 	background: #f0f0f0;
 	display: flex;
  	flex-wrap: wrap;
   	width: 100%; 
   	length: 1000px;
+  
 }
 
 .sect3name {
- height: 50px;
-  box-sizing: border-box;
-  display: flex; 
-  width:800px;
-  justify-content: center;
-  align-items: center; 
+	font-size:70px;
+	margin-top:0px;
+	height: 100px;
+	width:300px;
+	display: relative; 
+	width: 100%;
+	justify-content: center;
+	text-align: center; 
+	text-shadow: 0 0 .1em, 0 0 .3em red; 
 }
 
 .sect3 div {
@@ -293,8 +301,9 @@ img.topimg{
 	bottom: -100px;
 	width: 300px;
 	height: 250px;
-	background: rgba(255, 255, 255, 0.7);
-	color: #000;
+	background: rgba(98,144,198, 0.7);
+	text-shadow: 0 5px 5px  rgba(199,225,50, 1);
+	color:black;
 	line-height: 25pt;
 	font-family: arial;
 	font-size: 15pt;
@@ -303,7 +312,7 @@ img.topimg{
 	box-sizing: border-box;
 	opacity: 0;
 	transition: all 1s;
-}
+	}
 
 
 
@@ -313,7 +322,12 @@ img.topimg{
 	padding: 50px 0 20px 0;
 	box-sizing: border-box;
 	text-align: left;
+color: yellow;
+ text-decoration: none;
+ transition: 1s;
 }
+
+
 
 
 
@@ -322,7 +336,7 @@ img.topimg{
 
 .ostimg {
 position: absolute;
-top: 550%;
+
 right: 50%;
 transform: translate(50%, -50%);
 	width: 1665px;
@@ -400,10 +414,13 @@ transform: translate(50%, -50%);
 	height: 88px;
 	background: no-repeat;
 	margin-left: 300px;
-	position: relative;
+display:block;
 	top: 74px;
 	animation: ostname 32s 4s infinite;
 	transition: all 2s;
+}
+.sect1 {
+display:block;
 }
 
 </style>
@@ -458,14 +475,14 @@ transform: translate(50%, -50%);
 <nav id="nav2">
 
   <section class="sect2">
-    <div class="sect2name"><a href="newitem.do">NEW ARRIVAL</a></div>
+   
      <div class="Sbox1">
-    
+     <div class="sect2name"><a href="newitem.do">NEW ARRIVAL</a></div>
     <!--   <p class="more"><a href="#">MORE</a></p> -->
      
-       <div v-for="(item, index) in list" class="productList" :key="index" >
+       <div v-for="(item, index) in list" class="productList" :key="index" style="border:0; margin-bottom:50px;" >
           <img :src="item.path" class="productList" style="margin : 0px;">
-          <div>{{ item.pName }}</div>
+          <div style="font-weight :bold; font-size:18px; ">{{ item.pName }}</div>
           
             <ul class="sub">
               <li class="sname">{{item.artist}}</li>
@@ -482,16 +499,17 @@ transform: translate(50%, -50%);
 		<nav id="nav3">
 		
 		  <section class="sect3">
-		  <div class="sect3name"><a href="newitem.do">BEST ITEM</a></div>
-     <div class="Sbox1">
-         <div v-for="(item, index) in best" class="productList" :key="index">
-          <span><img src="item.path" class="productList" ></span>
-          <div>{{ item.pName }}</div>
+		      <div class="Sbox1">
+      <div class="sect3name" style="font-shadow:0 0 50px; rgb(255,255,255, 0.5)"><a href="newitem.do">BEST ITEM</a></div>
+         
+         <div v-for="(zz, index) in best" class="productList" :key="index" style="border:0; margin-bottom:50px;" >
+         <img :src="zz.path" class="productList" style="margin :0px;"  >
+          <div style= "font-weight :bold; font-size:18px;">{{ zz.pName }}</div>
           
             <ul class="sub">
-              <li class="sname">{{item.artist}}</li>
-              <li>{{item.category}}</li>
-              <li>{{item.price}}</li>
+              <li class="sname">{{zz.artist}}</li>
+              <li>{{zz.category}}</li>
+              <li>{{zz.price}}</li>
             </ul>
            
           </div>
@@ -503,7 +521,6 @@ transform: translate(50%, -50%);
 		<nav id="nav4">
 		
 		<section class="sect1">
-			<div class="ost"></div>
 			<div class="ostimg">
 
 				<div class="img1"></div>
@@ -569,7 +586,7 @@ var app = new Vue({
            data : nparmap,
            success : function(data) {                  
               self.best = data.list;
-              console.log(self.best)
+              console.log("best==>",self.best);
              
               
            }
@@ -591,8 +608,9 @@ var app = new Vue({
 
 var slideIndex = 0;
 var slides = document.getElementsByClassName("mySlides"); 
-var colors = [ /* 프미나 */ 'rgb(189,24,144)', /* 보이넥스트도어  */ 'rgb(189, 24, 144)', /* 세븐 틴 */' rgb(250,188,255)'];
-showSlides();
+var gradientColors = [ 'linear-gradient(to bottom, #e5cfff, #8fd6ff, #d8ff8f)',
+    					'linear-gradient(to bottom, #f0c3ff, #8fffd8, #ffb38f)',
+    					'linear-gradient(to bottom, #e5cfff, #8fd6ff, #d8ff8f)']
 
 function showSlides() {
     var i;
@@ -610,8 +628,8 @@ function showSlides() {
     slides[slideIndex-1].style.display = "block";  
     dots[slideIndex-1].className += " active";
     
-    var bgColor = colors[slideIndex % colors.length];
-    container.style.backgroundColor = bgColor;
+    var gradient = gradientColors[slideIndex % gradientColors.length];
+    container.style.background = gradient;
     
     setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
