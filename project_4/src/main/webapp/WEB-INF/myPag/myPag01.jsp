@@ -86,7 +86,7 @@
 
 						<div class="a">
 							<div class="left topImgBoxwid">
-								<a href="/mypag/main.do"><div id="profileImg"></div></a>
+								<a class="logobut" href="/mypag/main.do"><div id="profileImg"></div></a>
 							</div>
 							<div class="topBox">
 								<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -94,8 +94,8 @@
 
 							<div class="topBox">
 								<div class="details">
-									<div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+									<div class="logotext">Order</div>
+			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
@@ -104,20 +104,23 @@
 
 								<div class="details">
 
-									<div>교환/환불</div>
+									<div class="logotext">교환/환불</div>
 									<div>
+									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
 										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>
-										
+										<span v-else>0 /</span>										
 										<span v-if="exchange != 0"> {{exchange}}</span>
 										<span v-else>0</span>
+									</a>
 									</div>
 
 								</div>
 								<div class="details">
-									<div>포인트</div>
+									<div class="logotext">포인트</div>
+									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
+									</a>
 								</div>
 								
 							</div>
