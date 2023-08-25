@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="header.jsp" %>
 <%@ include file="mypageinclude.jsp" %>
@@ -116,32 +116,32 @@ right: 50%;
 
 <div class="menu-container">
                       <div class="menu">
-                            <a href="Javascript:;">È¸¿øÁ¤º¸ º¯°æÀº ¾î¶»°Ô ÇÏ³ª¿ä?</a>
+                            <a href="Javascript:;">íšŒì›ì •ë³´ ë³€ê²½ì€ ì–´ë–»ê²Œ í•˜ë‚˜ìš”?</a>
                             <ul class="sub">
-                                SMTOWN &STORE ¸ÞÀÎ È­¸é »ó´Ü [MY PAGE] - [È¸¿øÁ¤º¸] - [È¸¿øÁ¤º¸ ¼öÁ¤]À» Å¬¸¯ÇÏ¸é °¡ÀÔ ½Ã ÀÔ·ÂÇÑ Á¤º¸¸¦ ¼öÁ¤ÇÒ ¼ö ÀÖ½À´Ï´Ù. 
+                                SMTOWN &STORE ë©”ì¸ í™”ë©´ ìƒë‹¨ [MY PAGE] - [íšŒì›ì •ë³´] - [íšŒì›ì •ë³´ ìˆ˜ì •]ì„ í´ë¦­í•˜ë©´ ê°€ìž… ì‹œ ìž…ë ¥í•œ ì •ë³´ë¥¼ ìˆ˜ì •í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. 
 
-							´Ü, ¼ºÇÔ°ú º»ÀÎÀÎÁõÇÑ ÈÞ´ëÀüÈ­ ¹øÈ£´Â Á÷Á¢ ¼öÁ¤ÀÌ ºÒ°¡ÇÏ¿À´Ï 1:1¹®ÀÇ ¶Ç´Â CS CENTER(1661-6110)¸¦ ÅëÇØ ½ÅÃ»ÇØ ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
+							ë‹¨, ì„±í•¨ê³¼ ë³¸ì¸ì¸ì¦í•œ íœ´ëŒ€ì „í™” ë²ˆí˜¸ëŠ” ì§ì ‘ ìˆ˜ì •ì´ ë¶ˆê°€í•˜ì˜¤ë‹ˆ 1:1ë¬¸ì˜ ë˜ëŠ” CS CENTER(1661-6110)ë¥¼ í†µí•´ ì‹ ì²­í•´ ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.
                              </ul>
                      </div>
                   
 <div class="menu-container">
                      <div class="menu2">
-                        <a href="Javascript:;">¾ÆÀÌµð/ºñ¹Ð¹øÈ£¸¦ ÀØ¾î¹ö·È¾î¿ä</a>
+                        <a href="Javascript:;">ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ë¥¼ ìžŠì–´ë²„ë ¸ì–´ìš”</a>
                         <ul class="sub2">
-                           °¡ÀÔÇÏ½Å ¾ÆÀÌµð ¶Ç´Â ºñ¹Ð¹øÈ£¸¦ ºÐ½ÇÇÏ½Å °æ¿ì ¾Æ·¡ °æ·Î¸¦ ÅëÇØ µî·ÏÇÑ Á¤º¸¸¦ Ã£À» ¼ö ÀÖ½À´Ï´Ù. 
+                           ê°€ìž…í•˜ì‹  ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ë¶„ì‹¤í•˜ì‹  ê²½ìš° ì•„ëž˜ ê²½ë¡œë¥¼ í†µí•´ ë“±ë¡í•œ ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ìžˆìŠµë‹ˆë‹¤. 
 
 
 
 
-- SMTOWN &STORE ¸ÞÀÎ È­¸é »ó´Ü [Login]À» Å¬¸¯ ¢º [¾ÆÀÌµð Ã£±â] / [ºñ¹Ð¹øÈ£ Ã£±â] 
+- SMTOWN &STORE ë©”ì¸ í™”ë©´ ìƒë‹¨ [Login]ì„ í´ë¦­ â–¶ [ì•„ì´ë”” ì°¾ê¸°] / [ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°] 
 
-¡Ø [ÈÞ´ëÆùÀÎÁõ(º»ÀÎ¸íÀÇ)]À» ÅëÇØ ¾ÆÀÌµð¸¦ Ã£À¸½Ç °æ¿ì °¡ÀÔµÈ ¾ÆÀÌµð ÀüÃ¼ È®ÀÎÀÌ °¡´ÉÇÕ´Ï´Ù.
+â€» [íœ´ëŒ€í°ì¸ì¦(ë³¸ì¸ëª…ì˜)]ì„ í†µí•´ ì•„ì´ë””ë¥¼ ì°¾ìœ¼ì‹¤ ê²½ìš° ê°€ìž…ëœ ì•„ì´ë”” ì „ì²´ í™•ì¸ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 
 
 
-°£Æí·Î±×ÀÎÀ» ÅëÇØ °¡ÀÔÇÏ½Å °æ¿ì °³ÀÎÁ¤º¸ º¸È£¸¦ À§ÇØ ±âÈ£(@)°¡ Æ÷ÇÔµÈ ¾ÏÈ£È­ °èÁ¤À¸·Î Ç¥½ÃµË´Ï´Ù.  
+ê°„íŽ¸ë¡œê·¸ì¸ì„ í†µí•´ ê°€ìž…í•˜ì‹  ê²½ìš° ê°œì¸ì •ë³´ ë³´í˜¸ë¥¼ ìœ„í•´ ê¸°í˜¸(@)ê°€ í¬í•¨ëœ ì•”í˜¸í™” ê³„ì •ìœ¼ë¡œ í‘œì‹œë©ë‹ˆë‹¤.  
 
-ÀÌ¿ëÇÏ½Å °£Æí·Î±×ÀÎ °æ·Î°¡ ±Ã±ÝÇÏ½Å °æ¿ì ¾Æ·¡ ³»¿ëÀ» Âü°íÇÏ½Ã¾î ·Î±×ÀÎ ½Ãµµ ¹Ù¶ø´Ï´Ù. 
+ì´ìš©í•˜ì‹  ê°„íŽ¸ë¡œê·¸ì¸ ê²½ë¡œê°€ ê¶ê¸ˆí•˜ì‹  ê²½ìš° ì•„ëž˜ ë‚´ìš©ì„ ì°¸ê³ í•˜ì‹œì–´ ë¡œê·¸ì¸ ì‹œë„ ë°”ëžë‹ˆë‹¤. 
 
                 
                         </ul>
@@ -151,63 +151,63 @@ right: 50%;
                  <div class="menu-container">
 
                  <div class="menu3">
-                    <a href="Javascript:;">È¸¿ø µî±Þ¿¡ µû¸¥ ÇýÅÃÀº ¾î¶²°Ô ÀÖ³ª¿ä?</a>
+                    <a href="Javascript:;">íšŒì› ë“±ê¸‰ì— ë”°ë¥¸ í˜œíƒì€ ì–´ë–¤ê²Œ ìžˆë‚˜ìš”?</a>
                     <ul class="sub3">
-                        SMTOWN &STORE È¸¿øµî±Þº° ÇýÅÃ ¾È³»
+                        SMTOWN &STORE íšŒì›ë“±ê¸‰ë³„ í˜œíƒ ì•ˆë‚´
 
 
 
-SMTOWN &STORE¿¡ °¡ÀÔÇÑ ¸ðµç È¸¿ø¿¡°Ô Æ¯º°ÇÑ ÇýÅÃÀÌ Á¦°øµË´Ï´Ù.
+SMTOWN &STOREì— ê°€ìž…í•œ ëª¨ë“  íšŒì›ì—ê²Œ íŠ¹ë³„í•œ í˜œíƒì´ ì œê³µë©ë‹ˆë‹¤.
 
-È¸¿ø °¡ÀÔ ÈÄ ÀÌ¿ë½ÇÀû¿¡ µû¶ó Àû¸³±Ý, ÄíÆù µîÀÌ Á¦°øµÇ¸ç È¸¿øµî±Þº° Á¦°øµÇ´Â ÇýÅÃÀº ´ÙÀ½°ú °°½À´Ï´Ù.
+íšŒì› ê°€ìž… í›„ ì´ìš©ì‹¤ì ì— ë”°ë¼ ì ë¦½ê¸ˆ, ì¿ í° ë“±ì´ ì œê³µë˜ë©° íšŒì›ë“±ê¸‰ë³„ ì œê³µë˜ëŠ” í˜œíƒì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤.
 
 
 
 PINK
 
--´ë»ó : ÃÖ±Ù 6°³¿ù °£ ±¸¸Å±Ý¾× 50¸¸¿ø ¹Ì¸¸
+-ëŒ€ìƒ : ìµœê·¼ 6ê°œì›” ê°„ êµ¬ë§¤ê¸ˆì•¡ 50ë§Œì› ë¯¸ë§Œ
 
--Àû¸³±Ý : ±¸¸Å±Ý¾×ÀÇ 0.5%
+-ì ë¦½ê¸ˆ : êµ¬ë§¤ê¸ˆì•¡ì˜ 0.5%
 
 
 
 PINK SILVER
 
--´ë»ó : ÃÖ±Ù 6°³¿ù °£ ±¸¸Å±Ý¾× 50¸¸¿ø ÀÌ»ó ~ 100¸¸¿ø ¹Ì¸¸
+-ëŒ€ìƒ : ìµœê·¼ 6ê°œì›” ê°„ êµ¬ë§¤ê¸ˆì•¡ 50ë§Œì› ì´ìƒ ~ 100ë§Œì› ë¯¸ë§Œ
 
--Àû¸³±Ý : ±¸¸Å±Ý¾×ÀÇ 0.7%
+-ì ë¦½ê¸ˆ : êµ¬ë§¤ê¸ˆì•¡ì˜ 0.7%
 
--ÄíÆù : ¹«·á¹è¼Û ÄíÆù 1Àå
+-ì¿ í° : ë¬´ë£Œë°°ì†¡ ì¿ í° 1ìž¥
 
 
 
 PINK GOLD
 
--´ë»ó : ÃÖ±Ù 6°³¿ù °£ ±¸¸Å±Ý¾× 100¸¸¿ø ÀÌ»ó
+-ëŒ€ìƒ : ìµœê·¼ 6ê°œì›” ê°„ êµ¬ë§¤ê¸ˆì•¡ 100ë§Œì› ì´ìƒ
 
--Àû¸³±Ý : ±¸¸Å±Ý¾×ÀÇ 1.0%
+-ì ë¦½ê¸ˆ : êµ¬ë§¤ê¸ˆì•¡ì˜ 1.0%
 
--ÄíÆù : ¹«·á¹è¼Û ÄíÆù 2Àå
-
-
-
-¡ØÂü°í»çÇ×
+-ì¿ í° : ë¬´ë£Œë°°ì†¡ ì¿ í° 2ìž¥
 
 
 
--ÃÖ±Ù 6°³¿ù °£ ±¸¸Å±Ý¾×(¹è¼Ûºñ, Àû¸³±Ý, ÄíÆù µîÀ» Á¦¿ÜÇÑ °áÁ¦ ±Ý¾×))¿¡ µû¶ó È¸¿ø µî±Þ »êÁ¤
+â€»ì°¸ê³ ì‚¬í•­
 
--2019³â 4¿ù 5ÀÏ SMTOWN &STORE ¿ÀÇÂÀÏ·ÎºÎÅÍ ¸Å¿ù 5ÀÏ »õ·Î¿î È¸¿øµî±Þ »êÁ¤ ¹× µî±Þº° ÇýÅÃ Á¦°ø
 
--¹è¼Û¿Ï·á ±âÁØ 7ÀÏ ÈÄ µî±Þº° Àû¸³±Ý Áö±Þ
 
--µî±Þº° ÄíÆùÀº ¿ù 1È¸ ¹ß±ÞµÇ¸ç ¹ß±ÞÀÏ·ÎºÎÅÍ 30ÀÏ°£ »ç¿ë °¡´É
+-ìµœê·¼ 6ê°œì›” ê°„ êµ¬ë§¤ê¸ˆì•¡(ë°°ì†¡ë¹„, ì ë¦½ê¸ˆ, ì¿ í° ë“±ì„ ì œì™¸í•œ ê²°ì œ ê¸ˆì•¡))ì— ë”°ë¼ íšŒì› ë“±ê¸‰ ì‚°ì •
 
--SMTOWN &STORE ¿Â¶óÀÎ½ºÅä¾î¿¡¼­¸¸ »ç¿ë °¡´É
+-2019ë…„ 4ì›” 5ì¼ SMTOWN &STORE ì˜¤í”ˆì¼ë¡œë¶€í„° ë§¤ì›” 5ì¼ ìƒˆë¡œìš´ íšŒì›ë“±ê¸‰ ì‚°ì • ë° ë“±ê¸‰ë³„ í˜œíƒ ì œê³µ
 
--»óÇ° ±¸¸Å ÈÄ ´Ü¼øº¯½É¿¡ ÀÇÇÑ ÁÖ¹® Ãë¼Ò ¹× »óÇ°ÀÇ ±³È¯/È¯ºÒ ½Ã »ç¿ëÇÑ ÄíÆù Àç»ç¿ë ºÒ°¡
+-ë°°ì†¡ì™„ë£Œ ê¸°ì¤€ 7ì¼ í›„ ë“±ê¸‰ë³„ ì ë¦½ê¸ˆ ì§€ê¸‰
 
--¹«·á¹è¼Û ÄíÆùÀº ±¹³» ¹è¼Û¿¡¼­¸¸ »ç¿ë °¡´É(ÇØ¿Ü ¹è¼Û ½Ã »ç¿ëºÒ°¡)
+-ë“±ê¸‰ë³„ ì¿ í°ì€ ì›” 1íšŒ ë°œê¸‰ë˜ë©° ë°œê¸‰ì¼ë¡œë¶€í„° 30ì¼ê°„ ì‚¬ìš© ê°€ëŠ¥
+
+-SMTOWN &STORE ì˜¨ë¼ì¸ìŠ¤í† ì–´ì—ì„œë§Œ ì‚¬ìš© ê°€ëŠ¥
+
+-ìƒí’ˆ êµ¬ë§¤ í›„ ë‹¨ìˆœë³€ì‹¬ì— ì˜í•œ ì£¼ë¬¸ ì·¨ì†Œ ë° ìƒí’ˆì˜ êµí™˜/í™˜ë¶ˆ ì‹œ ì‚¬ìš©í•œ ì¿ í° ìž¬ì‚¬ìš© ë¶ˆê°€
+
+-ë¬´ë£Œë°°ì†¡ ì¿ í°ì€ êµ­ë‚´ ë°°ì†¡ì—ì„œë§Œ ì‚¬ìš© ê°€ëŠ¥(í•´ì™¸ ë°°ì†¡ ì‹œ ì‚¬ìš©ë¶ˆê°€)
                     </ul>
              </div>
 </div>

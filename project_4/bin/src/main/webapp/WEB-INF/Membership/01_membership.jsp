@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
  <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>¸â¹ö½Ê È®ÀÎ ÆäÀÌÁö</title>
+<title>ë©¤ë²„ì‹­ í™•ì¸ íŽ˜ì´ì§€</title>
 <style>
 	body{
-		font-family: aÅ¸ÀÌÆ²°íµñ2;
+		font-family: aíƒ€ì´í‹€ê³ ë”•2;
 		width : 1250px;
 		margin : 10px auto;
 	}
@@ -18,11 +18,11 @@
 </head>
 <body>
 <div id="app">
-    <button @click="fnMove">µÚ·Î°¡±â</button>
+    <button @click="fnMove">ë’¤ë¡œê°€ê¸°</button>
 	   <div>
-		    <h1>¸â¹ö½± È®ÀÎ</h1>
+		    <h1>ë©¤ë²„ì‰½ í™•ì¸</h1>
 		    <form @submit.prevent="registerMembership">
-			      <label for="userId">»ç¿ëÀÚ ID:</label>
+			      <label for="userId">ì‚¬ìš©ìž ID:</label>
 			      <input value="uId" type="text" id="uId" name="uId" disabled="disabled"><br>
 			      
 		    </form>
@@ -77,13 +77,13 @@ var app = new Vue({
               });
               
               if (response.ok) {
-                alert("¸â¹ö½±ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+                alert("ë©¤ë²„ì‰½ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
               } else {
-                alert("¸â¹ö½± µî·Ï¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+                alert("ë©¤ë²„ì‰½ ë“±ë¡ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
               }
             } catch (error) {
               console.error("Error:", error);
-              alert("¿À·ù°¡ ¹ß»ýÇÏ¿´½À´Ï´Ù.");
+              alert("ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
             }
           },
         }

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 	body {
@@ -26,9 +26,9 @@
 <body>
 <div id="app">
 
-	<div>Á¦¸ñ : {{info.aTitle}} <span>{{info.hits}}</span></div>
-	<div>µî·ÏÀÏ : {{info.aDate}}</div>
-	<div>³»¿ë : {{info.aContent}}</div>
+	<div>ì œëª© : {{info.aTitle}} <span>{{info.hits}}</span></div>
+	<div>ë“±ë¡ì¼ : {{info.aDate}}</div>
+	<div>ë‚´ìš© : {{info.aContent}}</div>
 	<div><span>{{info.aKind}} / {{info.artist}}</span></div>
 	<div>
 		<img :src="info.thumbnail">
@@ -38,8 +38,8 @@
 
 
 
-	<button @click="fnABoardEdit">¼öÁ¤</button>
-	<button @click="fnABoardDel">»èÁ¦</button>
+	<button @click="fnABoardEdit">ìˆ˜ì •</button>
+	<button @click="fnABoardDel">ì‚­ì œ</button>
 
 
 	
@@ -74,7 +74,7 @@ var app = new Vue({
         fnABoardDel: function(){
         	  var self = this;
         	  var nparmap = {aNo : self.aNo};
-        	  if(!confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+        	  if(!confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
         	    return;
         	  }
         	  $.ajax({
@@ -83,9 +83,9 @@ var app = new Vue({
         	    type : "POST", 
         	    data : nparmap,
         	    success : function(data) { 
-        	      alert("»èÁ¦µÇ¾ú½À´Ï´Ù.");
-        	      window.close(); // ÆË¾÷Ã¢ ´İ±â
-        	      window.opener.location.reload(); // ºÎ¸ğÃ¢ »õ·Î°íÄ§
+        	      alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
+        	      window.close(); // íŒì—…ì°½ ë‹«ê¸°
+        	      window.opener.location.reload(); // ë¶€ëª¨ì°½ ìƒˆë¡œê³ ì¹¨
         	    }
         	  }); 
         	}

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -57,7 +58,7 @@
    margin : 5px 0px;
 }
 .noticeArea li:before {
-  content: "•"; 
+  content: ""; 
   margin-right: 8px; 
 }
 .ordertbody:hover {
@@ -103,7 +104,7 @@
 	  border : 1px solid #d4d5d9;
 	  cursor: pointer;
 	  transition: background-color 0.3s;
-	  width : 49%;
+	  width : 80px;
 	  margin-right : 3px;	  
 	}
 	
@@ -133,7 +134,7 @@
                         <a href="/mypag/main.do"><div id="profileImg"></div></a>
                      </div>
                      <div class="topBox">
-                        <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
+                         <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
                      </div>
 
                      <div class="topBox">
@@ -141,11 +142,10 @@
                         <div class="details">
 
                            <div>Order</div>
-                                 <label><a href="/mypag/myPagOrderdetails.do">                            
-                                 <div v-if="order != 0">{{order}}</div>
-                                 <div v-else>0</div>
-                                   </a></label>
-
+			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <div v-if="order != 0">{{order}}</div>
+			                        <div v-else>0</div>
+                          			</a></label>
                         </div>
 
                         <div class="details">
@@ -161,13 +161,9 @@
 
                         </div>
                         <div class="details">
-                           <div>포인트</div>
-                           <div>{{info.uPoint}} P</div>
-                        </div>
-                        <div class="details">
-                           <div>Jelly</div>
-                           <div>0</div>
-                        </div>
+                          <div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div v-else>0 P</div>
+                        </div>                        
                      </div>
                   </div>
 
@@ -206,9 +202,9 @@
                                  <li>
                                     <ul>
                                        <li><a href="/mypag/myInquiry.do">1:1 문의</a></li>
-                                       <li><a href="/mypag/noticeList.do">공지사항</a></li>
-                                       <li><a href="/mypag/useGuide.do">이용안내</a></li>
-                                       <li><a href="/mypag/faq.do">FAQ</a></li>                                 
+                                       <li><a @click="fnNotice" href="#javascript:;">공지사항</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">이용안내</a></li>
+                                       <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                             
                                     </ul>   
                                  </li>  
                               </ul>
@@ -247,8 +243,8 @@
                                         </a>
                                      </div>      
                                   </td>
-                                  <td>{{parseFloat(calcPrice.replace(/,/g, ''))*0.02}} P</td>                               
-                                  <td>{{calcPrice}}원
+                                  <td>{{item.price*0.02}} P</td>                               
+                                  <td>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}
                                      <div class="fontCCC">{{item.oCount}}개</div>
                                   </td>
                                   <td>
@@ -335,7 +331,7 @@
                                  <div style="font-size:12px;">예상 적립금 {{parseFloat(calcPrice.replace(/,/g, ''))*0.02}}P</div>
                               </td>
                               <td v-else style="font-weight:600; font-size:20px;">{{calcPrice}}원
-                                 <div style="font-size:12px;">예상 적립금 {{parseFloat(calcPrice.replace(/,/g, ''))*0.02}}P</div>
+                                 <div style="font-size:12px;">예상 적립금 {{calcPrice*0.02}}P</div>
                               </td>
                            </tr>
                            <tr>
@@ -357,6 +353,7 @@
       </div>
    </div>
 </div>
+<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
@@ -366,9 +363,10 @@
          info : [],
          orderCntList : [],
          uId : "${sessionId}",
-         order : "",
+         order : 0,
          exchange : "",
          refund : "",
+         maxpoint : undefined,
          list : [],
          list2 : [],
          price : [],
@@ -379,12 +377,90 @@
       }, 
        computed: {
          
-             calcPrice: function () {              
-                 var calculatedPrice = this.list2.price * this.list2.oCount;
-                 return calculatedPrice.toLocaleString();
-             }
+    	   calcPrice: function () {
+    		   var total = 0;
+    		   for (var i = 0; i < this.list.length; i++) {
+    		     var item = this.list[i];
+    		     total += item.price * item.oCount;
+    		   }
+    		   return total.toLocaleString();
+    		 }
            },
       methods : {
+    	  fnGetInfoList : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+				var self = this;
+				var nparmap = {uId : self.uId};				
+				$.ajax({
+					url : "/user2.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {						
+						self.info = data.findPw;
+					}
+				});
+			},
+			/* 상단 구매내역 카운트 숫자 */
+			fnCntList : function() {
+				var self = this;
+				var nparmap = {uId : self.uId};
+				$.ajax({
+					url : "/mypag/listExchange.dox",
+					dataType : "json",
+					type : "POST",
+					data : nparmap,
+					success : function(data) {
+						
+						var listCnt = data.list;
+						for (var i = 0; i < listCnt.length; i++) {
+							if (listCnt[i].exchange == "C") {								
+								self.refund = listCnt[i].orderCnt;							
+							} else if (listCnt[i].exchange == "R") {
+								self.exchange = listCnt[i].orderCnt;
+							} else{
+								self.order += listCnt[i].orderCnt;
+								console.log(self.order);
+							}
+						}
+
+					}
+				});
+			},
+			fnPoint : function(){ // 포인트 내역 확인
+		        var self = this;
+		        var nparmap = {uId : self.uId};
+		        $.ajax({
+		            url : "/pointList.dox",
+		            dataType:"json",	
+		            type : "POST", 
+		            data : nparmap,
+		            success : function(data) { 	
+		            	self.usepointList = data.list;
+		            	var x = 0;
+		            	var datalist = data.list;
+		            	for(var i=0; i<datalist.length; i++){
+		            		x += datalist[i].point;	
+		            	}
+		            	self.maxpoint = x; // 사용가능 포인트 
+		            
+		            }
+		        }); 
+		    },
+		    fnNotice : function (){ // 공지 
+				var self = this;
+	    		var option = "width=850, height=1000, top=200, left=500, location = no"
+	    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+			},
+			fnUseGuide : function (){ //이용안내
+				var self = this;
+	    		var option = "width=850, height=1000, top=200, left=500, location = no"
+	    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+			},
+			fnFaq : function (){ //faq
+				var self = this;
+	    		var option = "width=850, height=1000, top=200, left=500, location = no"
+	    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+			},
          fnGetList : function() { 
             var self = this;
             var nparmap = {oNo : self.oNo, uId : self.uId};            
@@ -453,6 +529,9 @@
       created : function() {
          var self = this;
          self.fnGetList();
+         self.fnPoint();
+         self.fnCntList();
+         self.fnGetInfoList();
       }
    });
 </script>

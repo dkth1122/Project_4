@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
- <link href="../css/login.css" rel="stylesheet" type="text/css">
+<link href="../css/login.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 .login-box{
@@ -31,7 +31,6 @@ h3{
 	border-bottom : 1px solid #d8d9df;
 }
 .idpw label{
-	color : #d8d9df;
 	margin : 5px;
 }
 .idpw span{
@@ -51,11 +50,11 @@ h3{
 		<div class="login-box">
 			<div class="login-box2">
 			<i class="fa-regular fa-face-smile" id="smile"></i>
-			<h3>È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù!</h3>
+			<h3>íšŒì›ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤!</h3>
 				<div class="idpw">	
-					<div><label>¾ÆÀÌµğ <span>{{user.uId}}</span></label></div>
-					<div><label>ÀÌ¸§   <span>{{user.uName}}</span></label></div>
-					<div><label>ÀÌ¸ŞÀÏ   <span>{{user.uEmail}}</span></label></div>
+					<div><label>ì•„ì´ë”” <span>{{user.uId}}</span></label></div>
+					<div><label>ì´ë¦„   <span>{{user.uName}}</span></label></div>
+					<div><label>ì´ë©”ì¼   <span>{{user.uEmail}}</span></label></div>
 				</div>
 				<div class="login">
 					<div><button @click="goToMain">GO TO MAIN</button></div>

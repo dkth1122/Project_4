@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="../css/join.css" rel="stylesheet" type="text/css">
+<link href="../css/login.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 <style>
@@ -19,21 +19,35 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
+	.login-box{
+		height : 460px;
+	}
 </style>
 </style>
 </head>
 <body>
 <div id="app">
-	<div id="wc">
-	<h2>¾ÆÀÌµğ Ã£±â</h2>
-		<div>
-		<input type="text" name="uName" v-model = "uName" placeholder="»ç¿ëÀÚÀÌ¸§">
+	<div class="container">		
+		<h2 class="h2">Find ID</h2>
+		<div class="login-box">
+			<div class="login-box2">
+			<h3 class="stadyInfo">ì•„ì´ë””ì°¾ê¸°</h3>
+				<div class="idpw">						
+				    <div><label>ì´ë¦„  <span><input type="text" name="uName" v-model = "uName" placeholder="ì‚¬ìš©ìì´ë¦„">
+					    </span></label>
+				    </div>
+				    <div><label>í•¸ë“œí°ë²ˆí˜¸  <span><input type="text" name="uPhone"  v-model = "uPhone" placeholder="í•¸ë“œí°ë²ˆí˜¸">
+					    </span></label>
+				    </div>	
+				</div>
+				
+				
+				<div class="login"><button @click="fnSearch" >í™•ì¸</button></div>
+				<div class="join">
+					<button @click="fnBack">ì·¨ì†Œ</button>
+				</div>
+			</div>
 		</div>
-		<div>
-		<input type="text" name="uPhone"  v-model = "uPhone" placeholder="ÇÚµåÆù¹øÈ£">
-		</div>
-		<div><button @click="fnSearch">°Ë»ö</button></div>
-		<div><button @click="fnBack">Ãë¼Ò</button></div>
 	</div>
 </div>
 </body>
@@ -65,18 +79,18 @@ var app = new Vue({
 			var self = this;
 			var param = {uName : self.uName, uPhone : self.uPhone};
 			$.ajax({
-                url : "findId.dox",
+                url : "/findId.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) {
                 	console.log(data.user);
                 	if(data.user != undefined){
-                		alert("¾ÆÀÌµğ Ã£±â ¼º°ø")
+                		alert("ì•„ì´ë”” ì°¾ê¸° ì„±ê³µ")
                 		$.pageChange("findIdView.do", {uPhone : self.uPhone});
                   		
                 	} else {
-                		alert("Á¸ÀçÇÏ´Â Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+                		alert("ì¡´ì¬í•˜ëŠ” ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
                 	}
                 }
             }); 

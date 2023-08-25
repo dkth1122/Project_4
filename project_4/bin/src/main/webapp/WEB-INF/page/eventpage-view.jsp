@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
     * {
@@ -75,7 +75,7 @@
 <body>
 <div id="app">
 
-	<div onclick="history.back();"><a href="javascript:;">¡ç µÇµ¹¾Æ°¡±â</a></div>
+	<div onclick="history.back();"><a href="javascript:;">â† ë˜ëŒì•„ê°€ê¸°</a></div>
 	
 	<div class="evtTitle">{{info.aTitle}}</div>
 	<div>{{info.aDate}}</div>
@@ -85,7 +85,7 @@
 	</div>
 	<div>{{info.aContent}}</div>
 	
-	<div><button @click="fnEvtApply">ÀÀ¸ğÇÏ·¯°¡±â</button></div>
+	<div><button @click="fnEvtApply">ì‘ëª¨í•˜ëŸ¬ê°€ê¸°</button></div>
 </div>
 </body>
 </body>

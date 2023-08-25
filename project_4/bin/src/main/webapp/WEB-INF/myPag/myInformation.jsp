@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-
+<%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -11,11 +11,11 @@
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 
 <style type="text/css">
 #container {
-    height: 923px;
+    height: 100%;
     width: 100%;
     margin-bottom: 163px;
 }
@@ -41,7 +41,7 @@
 	  margin-right : 3px;	  
 	}
 	
-	/* ¹öÆ° È£¹ö È¿°ú */
+	/* ë²„íŠ¼ í˜¸ë²„ íš¨ê³¼ */
 	.button:hover {
 	  background-color: #d4d5d9;
 	}
@@ -93,7 +93,7 @@
 	  background-color: #d4d5d9;
 	}
 	
-	/* ¹öÆ° Å¬¸¯ È¿°ú */
+	/* ë²„íŠ¼ í´ë¦­ íš¨ê³¼ */
 	.button3:active {
 	  background-color: #1f618d;
 	}
@@ -142,7 +142,7 @@
 
 								<div class="details">
 
-									<div>±³È¯/È¯ºÒ</div>
+									<div>êµí™˜/í™˜ë¶ˆ</div>
 									<div>
 										<span v-if="refund != 0">{{refund}} /</span>
 										<span v-else>0 /</span>
@@ -153,7 +153,7 @@
 
 								</div>
 								<div class="details">
-									<div>Æ÷ÀÎÆ®</div>
+									<div>í¬ì¸íŠ¸</div>
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
 								</div>
@@ -169,32 +169,32 @@
 					<div class="categories">MY PAGE</div>
 					<div style="text-align: left;">
 						<ul style="padding: 0px;">
-                                 <li class="ulh1">³ªÀÇ ¼îÇÎ Á¤º¸ </li>
+                                 <li class="ulh1">ë‚˜ì˜ ì‡¼í•‘ ì •ë³´ </li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myPagOrderdetails.do">ÁÖ¹®³»¿ª</a></li>
-                                       <li><a href="/cart/cartList.do">Àå¹Ù±¸´Ï</a></li>
-                                       <li><a href="/mypag/myInformation.do">Âò ¸ñ·Ï</a></li>
-                                       <li><a href="/mypag/mypageReserves.do">Æ÷ÀÎÆ®</a></li>                                 
+                                       <li><a href="/mypag/myPagOrderdetails.do">ì£¼ë¬¸ë‚´ì—­</a></li>
+                                       <li><a href="/cart/cartList.do">ì¥ë°”êµ¬ë‹ˆ</a></li>
+                                       <li><a href="/mypag/myInformation.do">ì°œ ëª©ë¡</a></li>
+                                       <li><a href="/mypag/mypageReserves.do">í¬ì¸íŠ¸</a></li>                                 
                                     </ul>   
                                  </li>  
                               </ul>
                               <ul style="padding: 0px;">
-                                 <li class="ulh1">È¸¿ø Á¤º¸</li>
+                                 <li class="ulh1">íšŒì› ì •ë³´</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/infoUpdate.do">È¸¿ø Á¤º¸ ¼öÁ¤</a></li>
-                                       <li><a href="/mypag/infoAddr.do">¹è¼ÛÁÖ¼Ò·Ï</a></li>                           
+                                       <li><a href="/mypag/infoUpdate.do">íšŒì› ì •ë³´ ìˆ˜ì •</a></li>
+                                       <li><a href="/mypag/infoAddr.do">ë°°ì†¡ì£¼ì†Œë¡</a></li>                           
                                     </ul>   
                                  </li>  
                               </ul>
                                <ul style="padding: 0px;">
-                                 <li class="ulh1">°í°´¼¾ÅÍ</li>
+                                 <li class="ulh1">ê³ ê°ì„¼í„°</li>
                                  <li>
                                     <ul>
-                                       <li><a href="/mypag/myInquiry.do">1:1 ¹®ÀÇ</a></li>
-                                       <li><a @click="fnNotice" href="#javascript:;">°øÁö»çÇ×</a></li>
-                                       <li><a @click="fnUseGuide" href="#javascript:;">ÀÌ¿ë¾È³»</a></li>
+                                       <li><a href="/mypag/myInquiry.do">1:1 ë¬¸ì˜</a></li>
+                                       <li><a @click="fnNotice" href="#javascript:;">ê³µì§€ì‚¬í•­</a></li>
+                                       <li><a @click="fnUseGuide" href="#javascript:;">ì´ìš©ì•ˆë‚´</a></li>
                                        <li><a @click="fnFaq" href="#javascript:;">FAQ</a></li>                                                              
                                     </ul>   
                                  </li>  
@@ -208,18 +208,18 @@
 
 					<div class="View">
 						<div class="lowerBox">
-							ÁÖ¹® »óÇ° Á¤º¸</div>
+							ì£¼ë¬¸ ìƒí’ˆ ì •ë³´</div>
 						<div class="box-border-bottom"></div>
 						<table>
 						<thead class="thead">
 							<tr>
 								<th><input type="checkbox" @click="fnAllCheck" v-model="selectAll"></th>
 								<th></th>
-								<th>»óÇ°Á¤º¸</th>
-								<th>Àû¸³±İ</th>
-								<th>¹è¼Ûºñ</th>
-								<th>ÆÇ¸Å°¡</th>
-								<th>¼±ÅÃ</th>
+								<th>ìƒí’ˆì •ë³´</th>
+								<th>ì ë¦½ê¸ˆ</th>
+								<th>ë°°ì†¡ë¹„</th>
+								<th>íŒë§¤ê°€</th>
+								<th>ì„ íƒ</th>
 								
 							</tr>
 						</thead>
@@ -230,21 +230,21 @@
 								<td><button class="button11" @click="productDetail(item)"><div class="artist">{{item.artist}}</div>
 									{{item.pName}}</button></td>
 								<td>{{item.price*0.005}} P</td>							
-								<td v-if="item.price < 50000">±âº»¹è¼Û<div>\3,000</div><div>(Á¶°Ç)</div></td>
-								<td v-if="item.price >= 50000">¹«·á¹è¼Û</td>
+								<td v-if="item.price < 50000">ê¸°ë³¸ë°°ì†¡<div>\3,000</div><div>(ì¡°ê±´)</div></td>
+								<td v-if="item.price >= 50000">ë¬´ë£Œë°°ì†¡</td>
 								<td><strong>\{{formatPriceWithCommas(item.price)}}</strong></td>
 								<td>
-									<button class="button" @click="OrderProduct(item)"> ÁÖ¹®ÇÏ±â </button>								
-									<button class="button" @click="insertCart(item)"> Àå¹Ù±¸´Ï </button>								
-									<button class="button" @click="fnRemoveOne(item)">»èÁ¦</button>								
+									<button class="button" @click="OrderProduct(item)"> ì£¼ë¬¸í•˜ê¸° </button>								
+									<button class="button" @click="insertCart(item)"> ì¥ë°”êµ¬ë‹ˆ </button>								
+									<button class="button" @click="fnRemoveOne(item)">ì‚­ì œ</button>								
 								</td>								
 							</tr>
 						</tbody>
 				
 						</table>
 						<div class="BTbottomArea">
-							<button class="button2" @click="fnRemove">»èÁ¦</button>
-							<button class="button3" @click="fnRemoveAll">Âò¸ñ·Ï Áö¿ì±â </button>
+							<button class="button2" @click="fnRemove">ì‚­ì œ</button>
+							<button class="button3" @click="fnRemoveAll">ì°œëª©ë¡ ì§€ìš°ê¸° </button>
 						</div>
 					</div>
 
@@ -267,7 +267,7 @@ var app = new Vue({
     	info : [],
     	orderCntList : [],
     	uId : "${sessionId}",
-    	order  : "",
+    	order  : 0,
     	exchange : "",
     	refund : "",
     	wishList : [],
@@ -279,7 +279,7 @@ var app = new Vue({
  
     },
     methods: {
-    	fnGetInfo : function() { // »ç¿ëÀÚ Á¤º¸ ºÒ·¯¿À±â ÀÌ¸§ , º°¸í (´Ğ³×ÀÓ)
+    	fnGetInfo : function() { // ì‚¬ìš©ì ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸° ì´ë¦„ , ë³„ëª… (ë‹‰ë„¤ì„)
 			var self = this;
 			var nparmap = {uId : self.uId};				
 			$.ajax({
@@ -312,7 +312,7 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	console.log(data);
-                	self.info = data.findPw; //»ç¿ëÀÚ                	
+                	self.info = data.findPw; //ì‚¬ìš©ì                	
                 	self.fnProduct();
                 }
             }); 
@@ -333,7 +333,7 @@ var app = new Vue({
 	    },
 	    fnRemove : function(){
 			var self = this;
-			if(!confirm("Á¤¸» »èÁ¦ÇÒ°Å³Ä?")){
+			if(!confirm("ì •ë§ ì‚­ì œí• ê±°ëƒ?")){
 				return;
 			}
 			var noList = JSON.stringify(self.selectItem);
@@ -344,7 +344,7 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	alert("»èÁ¦µÇ¾ú´Ù!");
+                	alert("ì‚­ì œë˜ì—ˆë‹¤!");
                 	self.fnGetList();
                 	self.selectItem = [];
                 }
@@ -352,7 +352,7 @@ var app = new Vue({
 		},
 		fnRemoveAll : function(){
 			var self = this;
-			if(!confirm("Á¤¸» »èÁ¦ÇÒ°Å³Ä?")){
+			if(!confirm("ì •ë§ ì‚­ì œí• ê±°ëƒ?")){
 				return;
 			}
 			var param = {uId : self.uId};
@@ -362,7 +362,7 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	alert("»èÁ¦µÇ¾ú´Ù!");
+                	alert("ì‚­ì œë˜ì—ˆë‹¤!");
                 	self.fnGetList();
                 	
                 }
@@ -371,7 +371,7 @@ var app = new Vue({
 		fnRemoveOne : function(item){		
 			var self = this;
 			console.log(item.wnum)
-				 if(!confirm("Á¤¸» »èÁ¦ÇÒ°Å³Ä?")){
+				 if(!confirm("ì •ë§ ì‚­ì œí• ê±°ëƒ?")){
 					return;
 				} 
 				var param ={wnum : item.wnum};
@@ -398,7 +398,7 @@ var app = new Vue({
 	                type : "POST",
 	                data : param,
 	                success : function(data) {
-	                	/* Ä«Æ®·Î »óÇ°µî·Ï¼ö Àå¹Ù±¸´Ï·Î °¥°Å³Ä ¸»²¨³Ä Ã¢¶ç¿ì±â */
+	                	/* ì¹´íŠ¸ë¡œ ìƒí’ˆë“±ë¡ìˆ˜ ì¥ë°”êµ¬ë‹ˆë¡œ ê°ˆê±°ëƒ ë§êº¼ëƒ ì°½ë„ìš°ê¸° */
 	                	alert(data.list);
 	                }
 	            });
@@ -417,7 +417,7 @@ var app = new Vue({
    		productDetail : function(item){
 			var self = this;
 			$.pageChange("/product/productView.do", {pNo : item.pNo});
-	}, fnPoint : function(){ // Æ÷ÀÎÆ® ³»¿ª È®ÀÎ
+	}, fnPoint : function(){ // í¬ì¸íŠ¸ ë‚´ì—­ í™•ì¸
         var self = this;
         var nparmap = {uId : self.uId};
         $.ajax({
@@ -432,27 +432,27 @@ var app = new Vue({
             	for(var i=0; i<datalist.length; i++){
             		x += datalist[i].point;	
             	}
-            	self.maxpoint = x; // »ç¿ë°¡´É Æ÷ÀÎÆ® 
+            	self.maxpoint = x; // ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸ 
             
             }
         }); 
     },
-    fnNotice : function (){ // °øÁö 
+    fnNotice : function (){ // ê³µì§€ 
 		var self = this;
-		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+		var option = "width=850, height=1000, top=200, left=500, location = no"
 		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
 	},
-	fnUseGuide : function (){ //ÀÌ¿ë¾È³»
+	fnUseGuide : function (){ //ì´ìš©ì•ˆë‚´
 		var self = this;
-		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+		var option = "width=850, height=1000, top=200, left=500, location = no"
 		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
 	},
 	fnFaq : function (){ //faq
 		var self = this;
-		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+		var option = "width=850, height=1000, top=200, left=500, location = no"
 		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
 	},
-	/* »ó´Ü ±¸¸Å³»¿ª Ä«¿îÆ® ¼ıÀÚ */
+	/* ìƒë‹¨ êµ¬ë§¤ë‚´ì—­ ì¹´ìš´íŠ¸ ìˆ«ì */
 	fnCntList : function() {
 		var self = this;
 		var nparmap = {uId : self.uId};
@@ -470,8 +470,8 @@ var app = new Vue({
 					} else if (listCnt[i].exchange == "R") {
 						self.exchange = listCnt[i].orderCnt;
 					} else{
-						self.order = listCnt[i].orderCnt;
-						console.log(self.order);
+						self.order += listCnt[i].orderCnt;
+						
 					}
 				}
 

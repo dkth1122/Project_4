@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -89,14 +89,14 @@
 <div id="app">
 	<div class="mainBox">
 	
-	<div class="mainPos2">°øÁö °ü¸®</div>
+	<div class="mainPos2">ê³µì§€ ê´€ë¦¬</div>
 <hr>	
     <table>
 		<tr>
-			<th>¾ÆÆ¼½ºÆ®</th>
-			<th>°Ô½Ã¹øÈ£</th>
-			<th>Á¦¸ñ</th>
-			<th>ÀÛ¼ºÀÏ</th>
+			<th>ì•„í‹°ìŠ¤íŠ¸</th>
+			<th>ê²Œì‹œë²ˆí˜¸</th>
+			<th>ì œëª©</th>
+			<th>ìž‘ì„±ì¼</th>
 		</tr>
 		
 		<tr v-for="(item, index) in list">
@@ -121,7 +121,7 @@
 	  
 	</template>
 		<div></div>
-	<button @click="fnABoardAdd">°øÁöÃß°¡</button>
+	<button @click="fnABoardAdd">ê³µì§€ì¶”ê°€</button>
 	
 </div>
 </body>

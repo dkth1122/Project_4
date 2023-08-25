@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +8,8 @@
   <script src="../js/jquery.js"></script>  
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-  <meta charset="EUC-KR">
-  <title>»óÇ° ÆäÀÌÁö</title>
+  <meta charset="UTF-8">
+  <title>ìƒí’ˆ í˜ì´ì§€</title>
   <style type="text/css">
   .nonMember{
   margin: 0px 10px;
@@ -20,7 +20,6 @@
   }
   #login{
   margin-top :15px;
-
   }
   #header.fixed{
   position: fixed; 
@@ -31,12 +30,10 @@
   transition: top 1s ease;
   background-color: rgba(255, 255, 255);
   }
-
 #header{
 	margin-bottom: 20px;
 	width: 100%;
 }
-
   </style>
 </head>
 <body>
@@ -46,13 +43,13 @@
    <div id="wrap">
         <div id="container">
         <div id="login">
-        <div class="login_loginout"><span class="nonMember">·Î±×ÀÎ</span>  |  <span class="nonMember">È¸¿ø°¡ÀÔ</span></div>
-        <div class="login_loginout" v-if="false"> ·Î±×¾Æ¿ô</div>
+        <div class="login_loginout"><span class="nonMember">ë¡œê·¸ì¸</span>  |  <span class="nonMember">íšŒì›ê°€ì…</span></div>
+        <div class="login_loginout" v-if="false"> ë¡œê·¸ì•„ì›ƒ</div>
         </div>
             <div id="header" >
-            
+
                 <%@ include file="hd.jsp" %>
-                
+
             </div>
 
             <div class="slide_wrapper_main">
@@ -62,7 +59,7 @@
                       <li ><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyPLo3%2Fbtrz6qShOq3%2FIa3mcJQ7WPrIApAN3ZlH70%2Fimg.jpg"></li>
                       <li ><img src="https://cdn.eyesmag.com/content/uploads/sliderImages/2022/07/22/NEW-JEANS-01-94cfa2f0-0e0e-493a-a811-07d3db1fa6d5.jpg"></li>
                       <li ><img src="https://blog.kakaocdn.net/dn/SbnII/btqEMwrZGyP/qsc0F50OjuXal84GGGP1ek/img.png"></li>
-               
+
                 </div>
                 <p class="controls">
                 <a class="next_prev" href="Javascript:;"><i class="fa-solid fa-chevron-left fa-2xl prev"></i></a>
@@ -75,16 +72,16 @@
             </div>
             <div class="body" style="margin-top: 80px;">
                 <select class="select">
-                    <option>ÃÖ½Å¼ø</option>
-                    <option>»óÇ°¸í</option>
-                    <option>³·Àº°¡°İ</option>
-                    <option>³ôÀº°¡°İ</option>
+                    <option>ìµœì‹ ìˆœ</option>
+                    <option>ìƒí’ˆëª…</option>
+                    <option>ë‚®ì€ê°€ê²©</option>
+                    <option>ë†’ì€ê°€ê²©</option>
                 </select>
                 <div class="body2" style=" width: 198px; height: 600px;" >
 
                     <div id="CategoryTitle" class="CategoryTitle"> PRODUCT</div>
-                  
-                  
+
+
                       <div class="menu">
                             <a class="aTitle" href="Javascript:;">MUSIC</a>
                             <ul class="sub">
@@ -121,7 +118,7 @@
                     <li><a href="Javascript:;">Pet</a></li>
                 </ul>
          </div>
-          
+
 
          <div class="menu5">
             <a class="aTitle" href="Javascript:;">BEAUTY</a>
@@ -167,24 +164,24 @@
             </ul>
             </div>
 
-                  
-                    
+
+
                 </div>
 
                 <div class="body2 " style=" width: 1000px; height: 2000px;">
 
                    <div v-for="index in 10" :key="index">
                     <div class="magin body2" style="width: 300px; height: 400px; border: 1px solid black;">
-                        
+
                     </div>
                    </div> 
-                    
+
                 </div>
 
             </div>        
         </div>
     </div>
- 
+
 </div>
 
 </body>
@@ -200,36 +197,30 @@ var app = new Vue({
     },
     created: function() {
       var self = this;
-      // Vue.js ÄÚµå ÀÛ¼º °¡´É
+      // Vue.js ì½”ë“œ ì‘ì„± ê°€ëŠ¥
     }
   });
 var lnb = $("#header").offset().top;
 $(window).scroll(function() {
     var window = $(this).scrollTop();
-
     if(lnb <= window) {
         $("#header").addClass("fixed");
-        $("#header").css("top", "0"); // ½ºÅ©·Ñ ³»¸± ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç È¿°ú
+        $("#header").css("top", "0"); // ìŠ¤í¬ë¡¤ ë‚´ë¦´ ë•Œ ì• ë‹ˆë©”ì´ì…˜ íš¨ê³¼
     } else {
         $("#header").removeClass("fixed");
-        $("#header").css("top", "-100px"); // ½ºÅ©·Ñ ¿Ã¸± ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç È¿°ú
+        $("#header").css("top", "-100px"); // ìŠ¤í¬ë¡¤ ì˜¬ë¦´ ë•Œ ì• ë‹ˆë©”ì´ì…˜ íš¨ê³¼
     }
 });
-
 var lnb = $("#header").offset().top;
 $(window).scroll(function() {
   	var window = $(this).scrollTop();
-
     if(lnb <= window) {
       $("#header").addClass("fixed");
     } else {
       $("#header").removeClass("fixed");
     }
 })
-
-
 let subToggle=true;
-
 $(".menu").click(()=>{
 if(subToggle){
   $(".sub").slideDown(500);
@@ -238,7 +229,6 @@ if(subToggle){
 }
 subToggle=!subToggle;
 });
-
 $(".menu2").click(()=>{
 if(subToggle){
   $(".sub2").slideDown(500);
@@ -247,8 +237,6 @@ if(subToggle){
 }
 subToggle=!subToggle;
 });
-
-
 $(".menu3").click(()=>{
 if(subToggle){
   $(".sub3").slideDown(500);
@@ -257,7 +245,6 @@ if(subToggle){
 }
 subToggle=!subToggle;
 });
-
 $(".menu4").click(()=>{
 if(subToggle){
   $(".sub4").slideDown(500);
@@ -266,9 +253,6 @@ if(subToggle){
 }
 subToggle=!subToggle;
 });
-
-
-
 $(".menu5").click(()=>{
 if(subToggle){
   $(".sub5").slideDown(500);
@@ -277,7 +261,6 @@ if(subToggle){
 }
 subToggle=!subToggle;
 });
-
 $(".menu6").click(()=>{
 if(subToggle){
   $(".sub6").slideDown(500);
@@ -286,8 +269,6 @@ if(subToggle){
 }
 subToggle=!subToggle;
 });
-
-
 $(".menu7").click(()=>{
 if(subToggle){
   $(".sub7").slideDown(500);
@@ -296,7 +277,6 @@ if(subToggle){
 }
 subToggle=!subToggle;
 });
-
 $(".menu8").click(()=>{
 if(subToggle){
   $(".sub8").slideDown(500);
@@ -305,74 +285,63 @@ if(subToggle){
 }
 subToggle=!subToggle;
 });
-
 var slides = document.querySelector('.slides'), 
-    slide = document.querySelectorAll('.slides li'),  //¸ğµç ½½¶óÀÌµå ¼±ÅÃ 
-    currentIdx = 0, //½½¶óÀÌµå ÀÌµ¿
-    slideCount = slide.length, //½½¶óÀÌµå °Ù¼ö
-    slideWidth = 1200, // ½½¶óÀÌµå ³Êºñ
-    slideMargin = 0, // ¸¶Áø
-    prevBtn = document.querySelector('.prev'), // ÁÂ¿ì ¹öÆ°
-    nextBtn = document.querySelector('.next'); // ÁÂ¿ì ¹öÆ°
+    slide = document.querySelectorAll('.slides li'),  //ëª¨ë“  ìŠ¬ë¼ì´ë“œ ì„ íƒ 
+    currentIdx = 0, //ìŠ¬ë¼ì´ë“œ ì´ë™
+    slideCount = slide.length, //ìŠ¬ë¼ì´ë“œ ê²Ÿìˆ˜
+    slideWidth = 1200, // ìŠ¬ë¼ì´ë“œ ë„ˆë¹„
+    slideMargin = 0, // ë§ˆì§„
+    prevBtn = document.querySelector('.prev'), // ì¢Œìš° ë²„íŠ¼
+    nextBtn = document.querySelector('.next'); // ì¢Œìš° ë²„íŠ¼
     
-
 makeClone();
-
 function makeClone(){
   for(var i = 0; i<slideCount; i++){
-    // a.cloneNode() a¿ä¼Ò º¹»ç  
-    // a.cloneNode(true) aÀÇ ÀÚ½Ä¿ä¼Ò º¹»ç 
+    // a.cloneNode() aìš”ì†Œ ë³µì‚¬  
+    // a.cloneNode(true) aì˜ ìì‹ìš”ì†Œ ë³µì‚¬ 
     var cloneSlide = slide[i].cloneNode(true);
     cloneSlide.classList.add('clone');
-    //a.appendChild(b) a¿¡´Ù°¡ b¸¦ Ãß°¡ 
-    slides.appendChild(cloneSlide); // ul º¹»çº» µÚ¿¡´Ù Ãß°¡
+    //a.appendChild(b) aì—ë‹¤ê°€ bë¥¼ ì¶”ê°€ 
+    slides.appendChild(cloneSlide); // ul ë³µì‚¬ë³¸ ë’¤ì—ë‹¤ ì¶”ê°€
   }
-
   for(var i = slideCount -1; i>=0; i--){
-    //a.prepend(b) ¾Õ¿¡ Ãß°¡
+    //a.prepend(b) ì•ì— ì¶”ê°€
     var cloneSlide = slide[i].cloneNode(true);
     cloneSlide.classList.add('clone');
-    //a.prepend(b) a¾Õ¿¡´Ù Ãß°¡ 
-    slides.prepend(cloneSlide); // ul º¹»çº» µÚ¿¡´Ù Ãß°¡      
+    //a.prepend(b) aì•ì—ë‹¤ ì¶”ê°€ 
+    slides.prepend(cloneSlide); // ul ë³µì‚¬ë³¸ ë’¤ì—ë‹¤ ì¶”ê°€      
   }
-
   updateWidth();
   setInitialpos();
-
   setTimeout(function(){
     slides.classList.add('animated');
   },100);  
-
 }
 function updateWidth(){
   var currentSlides = document.querySelectorAll('.slides li');
   var newSlideCount = currentSlides.length;
-
   var newWidth = (slideWidth + slideMargin) * newSlideCount - slideMargin + 'px';
   slides.style.width = newWidth;
 }
 function setInitialpos(){
-  var initialTranslateValue = -(slideWidth + slideMargin) * slideCount; // SlideCount¸¦ slideCount·Î ¼öÁ¤
+  var initialTranslateValue = -(slideWidth + slideMargin) * slideCount; // SlideCountë¥¼ slideCountë¡œ ìˆ˜ì •
   //slides {transform:translateX(-1000px);}
   slides.style.transform = 'translateX('+ initialTranslateValue +'px)';
 }
 nextBtn.addEventListener('click', function(){
   moveSlide(currentIdx + 1);
-
 })
-
 prevBtn.addEventListener('click', function(){
   moveSlide(currentIdx - 1);
 })
-function moveSlide(num){ // unmÀ» numÀ¸·Î ¼öÁ¤
-slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleft¸¦ left·Î ¼öÁ¤
+function moveSlide(num){ // unmì„ numìœ¼ë¡œ ìˆ˜ì •
+slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleftë¥¼ leftë¡œ ìˆ˜ì •
 currentIdx = num;
 console.log(currentIdx, slideCount);
-
 if(currentIdx == slideCount || currentIdx == -slideCount){
   setTimeout(function(){
       slides.classList.remove('animated');
-      slides.style.left = '0px'; // lift¸¦ left·Î ¼öÁ¤
+      slides.style.left = '0px'; // liftë¥¼ leftë¡œ ìˆ˜ì •
       currentIdx = 0;
   },500);
   
@@ -383,7 +352,6 @@ if(currentIdx == slideCount || currentIdx == -slideCount){
 }
 //clearInterval(timer);
 var timer = undefined;
-
 function autoSlide(){
 if(timer == undefined){
   timer = setInterval(function(){
@@ -392,65 +360,55 @@ if(timer == undefined){
 }
 }
 autoSlide();
-
 function stopSlide(){
 clearInterval(timer);   
 timer = undefined;
 console.log(timer);
 }
-
 slides.addEventListener('mouseenter', function(){
 stopSlide();
 });
-
 slides.addEventListener('mouseleave', function(){
 autoSlide();
 });
-
 const buttons = document.querySelectorAll('.controls button');
-
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', function() {
       moveSlide(i);
       updateButtonColor(i);
   });
 }
-//¹öÆ° »ö»óÀ» ¾÷µ¥ÀÌÆ®ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.
+//ë²„íŠ¼ ìƒ‰ìƒì„ ì—…ë°ì´íŠ¸í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
 function updateButtonColor(selectedIndex) {
-  // ¸ğµç ¹öÆ° ¿ä¼Ò¸¦ ¼±ÅÃÇÕ´Ï´Ù.
+  // ëª¨ë“  ë²„íŠ¼ ìš”ì†Œë¥¼ ì„ íƒí•©ë‹ˆë‹¤.
   const allButtons = document.querySelectorAll('.controls button');
   
-  // ¸ğµç ¹öÆ°À» ¼øÈ¸ÇÏ¸é¼­ ¼±ÅÃµÈ ¹öÆ°¿¡ ÇØ´çÇÏ´Â »ö»óÀ» º¯°æÇÏ°í, ³ª¸ÓÁö ¹öÆ°Àº ¿ø·¡ »ö»óÀ¸·Î º¯°æÇÕ´Ï´Ù.
+  // ëª¨ë“  ë²„íŠ¼ì„ ìˆœíšŒí•˜ë©´ì„œ ì„ íƒëœ ë²„íŠ¼ì— í•´ë‹¹í•˜ëŠ” ìƒ‰ìƒì„ ë³€ê²½í•˜ê³ , ë‚˜ë¨¸ì§€ ë²„íŠ¼ì€ ì›ë˜ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½í•©ë‹ˆë‹¤.
   for (let i = 0; i < allButtons.length; i++) {
       if (i === selectedIndex) {
-          // ¼±ÅÃµÈ ¹öÆ°ÀÇ »ö»óÀ» º¯°æÇÕ´Ï´Ù.
+          // ì„ íƒëœ ë²„íŠ¼ì˜ ìƒ‰ìƒì„ ë³€ê²½í•©ë‹ˆë‹¤.
           allButtons[i].style.backgroundColor = '#3838388f';
       } else {
-          // ¼±ÅÃµÇÁö ¾ÊÀº ¹öÆ°ÀÇ »ö»óÀ» ¿ø·¡ »ö»óÀ¸·Î º¯°æÇÕ´Ï´Ù.
+          // ì„ íƒë˜ì§€ ì•Šì€ ë²„íŠ¼ì˜ ìƒ‰ìƒì„ ì›ë˜ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½í•©ë‹ˆë‹¤.
           allButtons[i].style.backgroundColor = '#acacac8f';
       }
   }
 }
-
 function moveSlide(num) {
       slides.style.left = -num * (slideWidth + slideMargin) + 'px';
       currentIdx = num;
-
       if (currentIdx === slideCount || currentIdx === -slideCount) {
           setTimeout(function () {
               slides.classList.remove('animated');
               slides.style.left = '0px';
               currentIdx = 0;
           }, 500);
-
           setTimeout(function () {
               slides.classList.add('animated');
-              updateButtonColor(currentIdx); // Ãß°¡
+              updateButtonColor(currentIdx); // ì¶”ê°€
           }, 600);
       } else {
-          updateButtonColor(currentIdx); // Ãß°¡
+          updateButtonColor(currentIdx); // ì¶”ê°€
       }
   }
-
-
 </script>

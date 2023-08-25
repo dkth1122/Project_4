@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 	body {
@@ -15,22 +15,22 @@
 </head>
 <body>
 <div id="app">
-  <div>ÀÌ¸§ : <input v-model="info.sName"></div>
-  <div>»ç¹ø : <input v-model="info.sNo" disabled="disabled"></div>
-  <div>Á÷Åë¹øÈ£ : <input v-model="info.sPhone"></div>
-  <div>ºÎ¼­ :
+  <div>ì´ë¦„ : <input v-model="info.sName"></div>
+  <div>ì‚¬ë²ˆ : <input v-model="info.sNo" disabled="disabled"></div>
+  <div>ì§í†µë²ˆí˜¸ : <input v-model="info.sPhone"></div>
+  <div>ë¶€ì„œ :
     <select v-model="info.sPart">
-      <option value="">ºÎ¼­ ¼±ÅÃ</option>
-      <option value="°í°´°ü¸®ÆÀ">°í°´°ü¸®ÆÀ</option>
-      <option value="¹Î¿ø°ü¸®ÆÀ">¹Î¿ø°ü¸®ÆÀ</option>
-      <option value="¹è¼Û°ü¸®ÆÀ">¹è¼Û°ü¸®ÆÀ</option>
-      <option value="»óÇ°°ü¸®ÆÀ">»óÇ°°ü¸®ÆÀ</option>
-      <option value="ÀÌ»ç">ÀÌ»ç</option>
+      <option value="">ë¶€ì„œ ì„ íƒ</option>
+      <option value="ê³ ê°ê´€ë¦¬íŒ€">ê³ ê°ê´€ë¦¬íŒ€</option>
+      <option value="ë¯¼ì›ê´€ë¦¬íŒ€">ë¯¼ì›ê´€ë¦¬íŒ€</option>
+      <option value="ë°°ì†¡ê´€ë¦¬íŒ€">ë°°ì†¡ê´€ë¦¬íŒ€</option>
+      <option value="ìƒí’ˆê´€ë¦¬íŒ€">ìƒí’ˆê´€ë¦¬íŒ€</option>
+      <option value="ì´ì‚¬">ì´ì‚¬</option>
     </select>
     <input disabled v-model="info.value">
   </div>
-  <div>»ó»ç : <input v-model="info.sBoss"></div>
-  <button @click="fnEdit()">¼öÁ¤ÇÏ±â</button>
+  <div>ìƒì‚¬ : <input v-model="info.sBoss"></div>
+  <button @click="fnEdit()">ìˆ˜ì •í•˜ê¸°</button>
 </div>
 
 <script>
@@ -56,19 +56,19 @@ var app = new Vue({
   watch: {
     'info.sPart'(newVal) {
       switch (newVal) {
-        case '°í°´°ü¸®ÆÀ':
+        case 'ê³ ê°ê´€ë¦¬íŒ€':
           this.info.value = 'A';
           break;
-        case '¹Î¿ø°ü¸®ÆÀ':
+        case 'ë¯¼ì›ê´€ë¦¬íŒ€':
           this.info.value = 'C';
           break;
-        case '¹è¼Û°ü¸®ÆÀ':
+        case 'ë°°ì†¡ê´€ë¦¬íŒ€':
           this.info.value = 'B';
           break;
-        case '»óÇ°°ü¸®ÆÀ':
+        case 'ìƒí’ˆê´€ë¦¬íŒ€':
           this.info.value = 'D';
           break;
-        case 'ÀÌ»ç':
+        case 'ì´ì‚¬':
           this.info.value = 'M';
           break;
         default:
@@ -100,9 +100,9 @@ var app = new Vue({
         type: 'POST',
         data: nparmap,
         success(data) {
-          alert(self.info.sName + '´ÔÀÌ ¼öÁ¤µÇ¾ú½À´Ï´Ù.');
-          window.close(); // ÆË¾÷Ã¢ ´İ±â
-     	  window.opener.location.reload(); // ºÎ¸ğÃ¢ »õ·Î°íÄ§
+          alert(self.info.sName + 'ë‹˜ì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.');
+          window.close(); // íŒì—…ì°½ ë‹«ê¸°
+     	  window.opener.location.reload(); // ë¶€ëª¨ì°½ ìƒˆë¡œê³ ì¹¨
         },
       });
     },

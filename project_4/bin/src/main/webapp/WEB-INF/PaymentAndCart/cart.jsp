@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +10,8 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<meta charset="EUC-KR">
-<title>Àå¹Ù±¸´Ï</title>
+<meta charset="UTF-8">
+<title>ì¥ë°”êµ¬ë‹ˆ</title>
 <style>
 
 #title {
@@ -95,10 +95,10 @@ span {
 	width: 15%
 }
 .b{
-	width: 60%
+	width: 45%
 }
 .c{
-	width: 5%;
+	width: 10%;
 }
 .d{
 	width: 10%
@@ -191,6 +191,9 @@ select{
 	font-size: 1.5em;
 	font-weight: bold;
 }
+td{
+	height: 200px;
+}
 #baybutton{
 	width: 1500px;
 	margin: 30px auto;
@@ -215,10 +218,26 @@ text-align: center;
 }
 
 .pImg{
-	width: 200px;
-	height: 100px;
+	max-width: 240;
+	max-height: 240px;
 }
-
+td input{
+	text-align: center;
+	border : none;
+	width: 20px;
+	height: 20px;
+}
+i{
+	border: 1px solid black;
+	border-radius: 50%;
+	padding: 5px;
+}
+.table button{
+	background-color: #fff;
+	border-radius: 25px;
+	width: 63px;
+	height: 25px;
+}
 </style>
 </head>
 <body>
@@ -229,41 +248,41 @@ text-align: center;
 			<div class="body">
 				<table class="table">
 					<tr>
-						<th>ÀÌ¹ÌÁö</th>
-						<th colspan="2">»óÇ°Á¤º¸</th>
-						<th>¼ö·®</th>
-						<th>Á¦°Å</th>
-						<th>ÁÖ¹®±İ¾×</th>						
+						<th>ì´ë¯¸ì§€</th>
+						<th colspan="2">ìƒí’ˆì •ë³´</th>
+						<th>ìˆ˜ëŸ‰</th>
+						<th>ì œê±°</th>
+						<th>ì£¼ë¬¸ê¸ˆì•¡</th>						
 					</tr>
 					<tr v-for="(item, index) in list">
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
 						<td class="c">
-							 <input :value="item.cnt" @input="updateItemCnt(item)">
 							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
+							  <input :value="item.cnt" @input="updateItemCnt(item)" readonly>							
 							 <a href="#none" @click="increaseCnt(item)"> <i class="fa-solid fa-plus"></i> </a>
 						</td>
-						<td><button @click="fnCartChange(item)">¼öÁ¤</button></td>
-						<td><button @click ="fnRemoveCart(item.pNo)">»èÁ¦</button></td>
-						<td class="e">{{calculateTotal(item) | numberWithCommas}}¿ø</td>
+						<td class="c"><button @click="fnCartChange(item)">ìˆ˜ì •</button></td>
+						<td class="c"><button @click ="fnRemoveCart(item.pNo)">ì‚­ì œ</button></td>
+						<td class="e">{{calculateTotal(item) | numberWithCommas}}ì›</td>
 						
 					</tr>
 				</table>
 
 				<div class="ch_deletebutton">
-					<span>\ ±İ¾× {{ calculateTotalPrice() | numberWithCommas }}¿ø</span>
-					<span v-if="delivery == 0">\ ¹è¼Û {{ delivery}}¿ø</span>
-					<span v-else>\ ¹è¼Û {{ delivery | numberWithCommas }}¿ø</span>
-					<span class="red">\ ÇÕ {{ calculateTotalPrice()  + delivery | numberWithCommas }} </span>
+					<span>\ ê¸ˆì•¡ {{ calculateTotalPrice() | numberWithCommas }}ì›</span>
+					<span v-if="delivery == 0">\ ë°°ì†¡ {{ delivery}}ì›</span>
+					<span v-else>\ ë°°ì†¡ {{ delivery | numberWithCommas }}ì›</span>
+					<span class="red">\ í•© {{ calculateTotalPrice()  + delivery | numberWithCommas }} </span>
 				</div>
 			
 				<div>
 					<div class="payment"></div>
-					<div class="baybutton">»óÇ°ÀÇ ¿É¼Ç ¹× ¼ö·® º¯°æÀº »óÇ°»ó¼¼ ¶Ç´Â Àå¹Ù±¸´Ï¿¡¼­ °¡´ÉÇÕ´Ï´Ù.</div>
+					<div class="baybutton">ìƒí’ˆì˜ ì˜µì…˜ ë° ìˆ˜ëŸ‰ ë³€ê²½ì€ ìƒí’ˆìƒì„¸ ë˜ëŠ” ì¥ë°”êµ¬ë‹ˆì—ì„œ ê°€ëŠ¥í•©ë‹ˆë‹¤.</div>
 				</div>
 					
 				<div id="baybutton">
-					<button @click="fnPay">°áÁ¦ÇÏ±â</button> 
+					<button @click="fnPay">ê²°ì œí•˜ê¸°</button> 
 				</div>
 		</div>	
 	</div>
@@ -271,7 +290,7 @@ text-align: center;
 </body>
 </html>
 <script>
-// ÇÊÅÍ Á¤ÀÇ
+// í•„í„° ì •ì˜
 	Vue.filter('numberWithCommas', function (value) {
 	    if (!value) return '';
 	    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');});
@@ -294,28 +313,39 @@ text-align: center;
 	                type : "POST", 
 	                data : nparmap,
 	                success : function(data) { 
-	                	self.list = data.list; //»ç¿ëÀÚ
-	                	console.log(self.list);
+	                	self.list = data.list; //ì‚¬ìš©ì
 	                }
 	            }); 
 	        }, calculateTotal: function (item) {
                 return item.price * item.cnt;
             },
-	        // »óÇ° ÀüÃ¼ ±İ¾× ÇÕ»ê ¸Ş¼­µå
+	        // ìƒí’ˆ ì „ì²´ ê¸ˆì•¡ í•©ì‚° ë©”ì„œë“œ
        		 calculateTotalPrice: function () {
-                 var self = this;
-                 var total = 0;
-                 self.list.forEach(function (item) {
-                     total += self.calculateTotal(item);
-                 });
-	   			if (total < 50000) {
-                    self.delivery = 3000;
-                    self.totalPrice = total  + self.delivery;
-                } else {
-                    self.delivery = 0;
-                    self.totalPrice = total  + self.delivery;
-                } 
-                 return total;
+       		    var self = this;
+       		    var total = 0;
+       		    var membershipDelivery = 0; // í•´ë‹¹ ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ìƒí’ˆì˜ ë°°ì†¡ë¹„
+       		    var regularDelivery = 0; // ì¼ë°˜ ìƒí’ˆë“¤ì˜ ë°°ì†¡ë¹„
+
+       		    self.list.forEach(function (item) {
+       		        total += self.calculateTotal(item);
+
+       		        if (item.category == 'MEM' && item.membership == 'N') {
+       		            membershipDelivery = 0;
+       		        }
+       		        else if(total < 50000){
+       		        	regularDelivery = 3000;
+       		        }
+       		        
+       		        else{
+       		        	regularDelivery = 0;
+       		        }
+       		        
+       		    });
+
+       		    self.delivery = membershipDelivery + regularDelivery;
+       		    self.totalPrice = total + self.delivery;
+
+       		    return total;
                  
         	},decreaseCnt: function (item) {
                 if (item.cnt > 1) {
@@ -328,7 +358,7 @@ text-align: center;
             		 item.cnt++;
             		 this.calculateTotalPrice();
             	}else{
-            		alert("ÇØ´ç»óÇ°ÀÇ ÃÖ´ë±¸¸Å¼ö·®Àº "+item.pLimit+"°³ ÀÔ´Ï´Ù.");
+            		alert("í•´ë‹¹ìƒí’ˆì˜ ìµœëŒ€êµ¬ë§¤ìˆ˜ëŸ‰ì€ "+item.pLimit+"ê°œ ì…ë‹ˆë‹¤.");
             	}
                 
                 
@@ -342,17 +372,16 @@ text-align: center;
 	                type : "POST", 
 	                data : nparmap,
 	                success : function(data) { 
-	                	alert("ÇØ´ç Á¦Ç°ÀÌ Àå¹Ù±¸´Ï¿¡¼­ Á¦¿ÜµÇ¾ú½À´Ï´Ù.");
+	                	alert("í•´ë‹¹ ì œí’ˆì´ ì¥ë°”êµ¬ë‹ˆì—ì„œ ì œì™¸ë˜ì—ˆìŠµë‹ˆë‹¤.");
 	                	self.fnGetList();
 	                }
 	            }); 
             }, fnPay : function(item){
                 var self = this;
-        		console.log("ÅäÅ»°¡°İ=======>",self.totalPrice);
         		var currentDate = new Date();
 
             	var year = currentDate.getFullYear();
-            	var month = currentDate.getMonth() + 1; // ¿ùÀº 0ºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î 1À» ´õÇÔ
+            	var month = currentDate.getMonth() + 1; // ì›”ì€ 0ë¶€í„° ì‹œì‘í•˜ë¯€ë¡œ 1ì„ ë”í•¨
             	var day = currentDate.getDate();
             	var hours = currentDate.getHours();
             	var minutes = currentDate.getMinutes();
@@ -363,15 +392,15 @@ text-align: center;
             	for(var i=0; i<self.list.length; i++){
             		if(self.list[i].membership == "Y"){
             			if(currentDateString <= self.list[i].mExpDate || currentDateString >= self.list[i].mRegDate){
-                    		alert(self.list[i].pName+"\nÇØ´ç »óÇ°Àº ¸â¹ö½± ±¸µ¶ÀÌ ÇÊ¿äÇÑ »óÇ°ÀÔ´Ï´Ù. \nÇØ´ç ¾ÆÆ¼½ºÆ®ÀÇ ¸â¹ö½±À» ±¸µ¶ÇØÁÖ¼¼¿ä.");                    	
+                    		alert(self.list[i].pName+"\ní•´ë‹¹ ìƒí’ˆì€ ë©¤ë²„ì‰½ êµ¬ë…ì´ í•„ìš”í•œ ìƒí’ˆì…ë‹ˆë‹¤. \ní•´ë‹¹ ì•„í‹°ìŠ¤íŠ¸ì˜ ë©¤ë²„ì‰½ì„ êµ¬ë…í•´ì£¼ì„¸ìš”.");                    	
                 				if(self.list[i].kitYn == "Y"){
-                                	alert(self.list[i].pName+"\nÅ°Æ® ±¸¸Å´Â ±¸µ¶ÇÑ ¾ÆÆ¼½ºÆ® ´ç 1°³¸¸ ±¸ÀÔ °¡´ÉÇÕ´Ï´Ù.");
+                                	alert(self.list[i].pName+"\ní‚¤íŠ¸ êµ¬ë§¤ëŠ” êµ¬ë…í•œ ì•„í‹°ìŠ¤íŠ¸ ë‹¹ 1ê°œë§Œ êµ¬ì… ê°€ëŠ¥í•©ë‹ˆë‹¤.");
                                 	return;
                 			}
             			}            			                    	
             		}
             		else if(self.list[i].stock == 0){
-            			alert(self.list[i].pName + "\nÇØ´ç»óÇ°Àº ±¸¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù.\n*»çÀ¯ : SOLD OUT");            			
+            			alert(self.list[i].pName + "\ní•´ë‹¹ìƒí’ˆì€ êµ¬ë§¤í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n*ì‚¬ìœ  : SOLD OUT");            			
             		}
             		else{
             			$.pageChange("/payment/cartPayment.do", {totalPrice : self.totalPrice});
@@ -388,16 +417,16 @@ text-align: center;
                    dataType:"json",	
                    type : "POST", 
                    data : nparmap,
-                   success : function(data) { 
-                	   self.fnGetList();
+                   success : function(data) {
+	                	alert("í•´ë‹¹ ì œí’ˆì˜ ìˆ˜ëŸ‰ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.");
+	                	self.fnGetList();
                  	  }
                }); 
            },updateItemCnt: function (item) {
-           	
            	if (parseInt(event.target.value) > 1){
-               item.cnt = parseInt(event.target.value);
-               this.calculateTotalPrice();
-           	}
+                item.cnt = parseInt(event.target.value);
+                this.calculateTotalPrice();
+           	}      
        	 }
 		},
 		created : function() {

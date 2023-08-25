@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 
 <style>
 
@@ -51,7 +51,7 @@ nav {
 }
 
 <!--
-·Î°í ÀÖ´Â ºÎºĞ -->.
+ë¡œê³  ìˆëŠ” ë¶€ë¶„ -->.
 
 nav{ width:2000px; height:160px; z-index:9999;}
 		.navWrap{ width:2000px; height:35px; overflow:hidden; transition: all 0.6s; position:absolute; top:20%; font-size: 30px;}
@@ -75,7 +75,7 @@ nav .menu a {
 }
 
 
-/* °£°İ Á¶Á¤ */
+/* ê°„ê²© ì¡°ì • */
 nav .menu>li {
 	width: 130px;
 	float:left;
@@ -201,8 +201,8 @@ header #container1 {
 						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass" style="color: #8a8a8a;"></i></a></span>
 						<span class="icon"><a href="/mypag/main.do"><i class="fa-solid fa-user" style="color: #8a8a8a;"></i></a></span>
 						<span class="icon"><a href="/gboard/main.do"><i class="fa-solid fa-feather" style="color: #8a8a8a;"></i></i></a></span>
-						<span class="icon"><a href="/user/join.do">È¸¿ø°¡ÀÔ</a></span>
-						<span class="icon"><a href="/user/login.do">·Î±×ÀÎ</a></span>
+						<span class="icon"><a href="/user/join.do">íšŒì›ê°€ì…</a></span>
+						<span class="icon"><a href="/user/login.do">ë¡œê·¸ì¸</a></span>
 						</div>
 						
 					</ul>
@@ -216,21 +216,21 @@ header #container1 {
 </body>
 </html>
 <script>
-// ½½¶óÀÌµå¸¦ ÀÚµ¿À¸·Î º¯°æÇÏ´Â ÇÔ¼ö
+// ìŠ¬ë¼ì´ë“œë¥¼ ìë™ìœ¼ë¡œ ë³€ê²½í•˜ëŠ” í•¨ìˆ˜
 function changeSlide() {
   var currentSlide = document.querySelector('input[type="radio"]:checked');
   var nextSlide = currentSlide.nextElementSibling || document.querySelector('input[type="radio"]:first-child');
   nextSlide.checked = true;
 
-  // ¸¸¾à 5¹øÂ° ½½¶óÀÌµåÀÏ °æ¿ì, 1¹øÂ° ½½¶óÀÌµå·Î ÀÚµ¿À¸·Î º¯°æ
+  // ë§Œì•½ 5ë²ˆì§¸ ìŠ¬ë¼ì´ë“œì¼ ê²½ìš°, 1ë²ˆì§¸ ìŠ¬ë¼ì´ë“œë¡œ ìë™ìœ¼ë¡œ ë³€ê²½
   if (currentSlide.id === 'slide5') {
     document.querySelector('#slide1').checked = true;
   }
 }
 
-// ÆäÀÌÁö°¡ ·ÎµåµÇ¸é ½½¶óÀÌ´õ Å¸ÀÌ¸Ó¸¦ ½ÃÀÛ
+// í˜ì´ì§€ê°€ ë¡œë“œë˜ë©´ ìŠ¬ë¼ì´ë” íƒ€ì´ë¨¸ë¥¼ ì‹œì‘
 document.addEventListener('DOMContentLoaded', function() {
-  setInterval(changeSlide, 3000); // 3000 ¹Ğ¸®ÃÊ = 3ÃÊ
+  setInterval(changeSlide, 3000); // 3000 ë°€ë¦¬ì´ˆ = 3ì´ˆ
 });
 	
 </script>

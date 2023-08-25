@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -30,23 +30,23 @@
 <body>
 <div id="app">
 	<div>
-	<h2>°í°´ Á¤º¸</h2>
+	<h2>ê³ ê° ì •ë³´</h2>
 
 	<table>
 		<tr>
-			<th>¾ÆÀÌµğ</th>
-			<th>ºñ¹Ğ¹øÈ£ÃÊ±âÈ­</th>
-			<th>ºñ¹Ğ¹øÈ£¿À·ùÈ½¼ö</th>
-			<th>ÀÌ¸§</th>
-			<th>´Ğ³×ÀÓ</th>
-			<th>ÀüÈ­¹øÈ£</th>
-			<th>ÀÌ¸ŞÀÏ</th>
+			<th>ì•„ì´ë””</th>
+			<th>ë¹„ë°€ë²ˆí˜¸ì´ˆê¸°í™”</th>
+			<th>ë¹„ë°€ë²ˆí˜¸ì˜¤ë¥˜íšŸìˆ˜</th>
+			<th>ì´ë¦„</th>
+			<th>ë‹‰ë„¤ì„</th>
+			<th>ì „í™”ë²ˆí˜¸</th>
+			<th>ì´ë©”ì¼</th>
 
 		</tr>
 		<tr>
 			<td>{{info.uId}}</td>
-			<td><button @click="fnPwReset">ºñ¹Ğ¹øÈ£ ÃÊ±âÈ­</button></td>
-			<td v-if="info.uCnt >= 5"><button @click="fnCntReset">¿À·ùÃÊ±âÈ­</button></td>
+			<td><button @click="fnPwReset">ë¹„ë°€ë²ˆí˜¸ ì´ˆê¸°í™”</button></td>
+			<td v-if="info.uCnt >= 5"><button @click="fnCntReset">ì˜¤ë¥˜ì´ˆê¸°í™”</button></td>
 			<td v-else></td>
 			<td>{{info.uName}}</td>
 			<td>{{info.uName2}}</td>
@@ -58,38 +58,38 @@
 	</div>
 	
 	<div>
-	<h2>Á¤Áö</h2>
+	<h2>ì •ì§€</h2>
 	<div v-if="info.bYn =='Y'">
 	<table>
 	<tr>
-		<th>Á¤Áö»çÀ¯</th>
-		<th>Á¤Áö³¯Â¥</th>
+		<th>ì •ì§€ì‚¬ìœ </th>
+		<th>ì •ì§€ë‚ ì§œ</th>
 	</tr>
 	<tr>
 		<td>{{info.bReasons}}</td>
 		<td>{{info.bDate}}</td>
 	</tr>
 	</table>
-	<button @click="fnUserBanDel">Á¤Áö ÇØÁ¦</button>
+	<button @click="fnUserBanDel">ì •ì§€ í•´ì œ</button>
 	</div>
-	<div v-else><button @click="fnUserBan">Á¤Áö</button></div>
-	</div>
-	
-	<div>
-	<h2>Æ÷ÀÎÆ®</h2>
-	<div>°í°´ ÀÜ¿© Æ÷ÀÎÆ® : {{info.uPoint}}</div>
-	<div><button @click="fnPointAdd">Ãß°¡</button></div>
+	<div v-else><button @click="fnUserBan">ì •ì§€</button></div>
 	</div>
 	
 	<div>
-	<h2>1:1¹®ÀÇ È®ÀÎ</h2>
+	<h2>í¬ì¸íŠ¸</h2>
+	<div>ê³ ê° ì”ì—¬ í¬ì¸íŠ¸ : {{info.uPoint}}</div>
+	<div><button @click="fnPointAdd">ì¶”ê°€</button></div>
+	</div>
+	
+	<div>
+	<h2>1:1ë¬¸ì˜ í™•ì¸</h2>
   <template v-if="inquiry.length > 0 && inquiry[0].hasOwnProperty('iQtitle')">
     <table>
       <tr>
-        <th>¹®ÀÇ¹øÈ£</th>
-        <th>¹®ÀÇÁ¦¸ñ</th>
-        <th>¹®ÀÇ³¯Â¥</th>
-        <th>»óÅÂ</th>
+        <th>ë¬¸ì˜ë²ˆí˜¸</th>
+        <th>ë¬¸ì˜ì œëª©</th>
+        <th>ë¬¸ì˜ë‚ ì§œ</th>
+        <th>ìƒíƒœ</th>
       </tr>
       <tr v-for="(item, index) in inquiry">
         <td>{{item.iNo}}</td>
@@ -101,21 +101,21 @@
       </tr>
     </table>
   </template>
-  <div v-else>¹®ÀÇ ³»¿ªÀÌ ¾ø½À´Ï´Ù.</div>
+  <div v-else>ë¬¸ì˜ ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</div>
 	</div>
 	
 	<div>
-	<h2>ÁÖ¹®³»¿ª È®ÀÎ</h2>
+	<h2>ì£¼ë¬¸ë‚´ì—­ í™•ì¸</h2>
 	<template v-if="order.length > 0 && order[0].hasOwnProperty('oNo')">
     <table>
       <tr>
-        <th>ÁÖ¹®¹øÈ£</th>
-        <th>»óÇ°¸í</th>
-        <th>»óÇ°ÄÚµå</th>
-        <th>±¸¸Å°¹¼ö</th>
-        <th>ÁÖ¹®³¯Â¥</th>
-        <th>°¡°İ</th>
-        <th>°áÁ¦±İ¾×</th>
+        <th>ì£¼ë¬¸ë²ˆí˜¸</th>
+        <th>ìƒí’ˆëª…</th>
+        <th>ìƒí’ˆì½”ë“œ</th>
+        <th>êµ¬ë§¤ê°¯ìˆ˜</th>
+        <th>ì£¼ë¬¸ë‚ ì§œ</th>
+        <th>ê°€ê²©</th>
+        <th>ê²°ì œê¸ˆì•¡</th>
       </tr>
       <tr v-for="(item, index) in order">
         <td>{{item.oNo}}</td>
@@ -128,17 +128,17 @@
       </tr>
     </table>
   </template>
-  <div v-else>ÁÖ¹® ³»¿ªÀÌ ¾ø½À´Ï´Ù.</div>
+  <div v-else>ì£¼ë¬¸ ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</div>
 	</div>
 	
 	<div>
-	<h2>ÀÌº¥Æ® ÀÀ¸ğ ³»¿ª È®ÀÎ</h2>
+	<h2>ì´ë²¤íŠ¸ ì‘ëª¨ ë‚´ì—­ í™•ì¸</h2>
 	  <template v-if="apply.length > 0 && apply[0].hasOwnProperty('evtNo')">
     <table>
       <tr>
-        <th>ÀÌº¥Æ®ÄÚµå</th>
-        <th>ÀÌº¥Æ®¸í</th>
-        <th>´çÃ·¿©ºÎ</th>
+        <th>ì´ë²¤íŠ¸ì½”ë“œ</th>
+        <th>ì´ë²¤íŠ¸ëª…</th>
+        <th>ë‹¹ì²¨ì—¬ë¶€</th>
       </tr>
       <tr v-for="(item, index) in apply">
         <td>{{item.evtNo}}</td>
@@ -147,20 +147,20 @@
       </tr>
     </table>
   </template>
-  <div v-else>ÀÌº¥Æ® ³»¿ªÀÌ ¾ø½À´Ï´Ù.</div>
+  <div v-else>ì´ë²¤íŠ¸ ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</div>
 	</div>
 	
 	<div>
-	<h2>¹è¼Û Á¤º¸ È®ÀÎ</h2>
+	<h2>ë°°ì†¡ ì •ë³´ í™•ì¸</h2>
 	<template v-if="delivery.length > 0 && delivery[0].hasOwnProperty('duNo')">
     <table>
       <tr>
-        <th>ÀÌ¸§</th>
-        <th>¿ìÆí¹øÈ£</th>
-        <th>ÁÖ¼Ò</th>
-        <th>»ó¼¼ÁÖ¼Ò</th>
-        <th>¿¬¶ôÃ³</th>
-        <th>¹è¼Û¸Ş¼¼Áö</th>
+        <th>ì´ë¦„</th>
+        <th>ìš°í¸ë²ˆí˜¸</th>
+        <th>ì£¼ì†Œ</th>
+        <th>ìƒì„¸ì£¼ì†Œ</th>
+        <th>ì—°ë½ì²˜</th>
+        <th>ë°°ì†¡ë©”ì„¸ì§€</th>
       </tr>
       <tr v-for="(item, index) in delivery">
         <td>{{item.uDname}}</td>
@@ -172,7 +172,7 @@
       </tr>
     </table>
   </template>
-  <div v-else>µî·ÏµÈ ¹è¼Û ÁÖ¼Ò°¡ ¾ø½À´Ï´Ù.</div>
+  <div v-else>ë“±ë¡ëœ ë°°ì†¡ ì£¼ì†Œê°€ ì—†ìŠµë‹ˆë‹¤.</div>
 	</div>
 	
 </div>
@@ -218,7 +218,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.");
+                	alert("ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.");
                 	self.fnGetList();
                 }
             }); 
@@ -226,7 +226,7 @@ var app = new Vue({
         fnPwReset : function(){
             var self = this;
             var nparmap = {uId : self.uId , uResetPw : self.info.uPhone};
-            if(!confirm("Á¤¸» º¯°æÇÏ½Ã°Ú½À´Ï±î?")){
+            if(!confirm("ì •ë§ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
                 return;
             }
             $.ajax({
@@ -235,14 +235,14 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("ÀüÈ­¹øÈ£ ³¡ 4ÀÚ¸®·Î º¯°æµÇ¾ú½À´Ï´Ù.");
+                	alert("ì „í™”ë²ˆí˜¸ ë 4ìë¦¬ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.");
                 	self.fnGetList();
                 }
             }); 
         },
         fnPointAdd: function(){
             var self = this;
-            var pointAdd = prompt("¾ó¸¶¸¦ Ãß°¡ÇÒ±î¿ä? Â÷°¨½Ã¿¡´Â - ºÙÀÌ±â");
+            var pointAdd = prompt("ì–¼ë§ˆë¥¼ ì¶”ê°€í• ê¹Œìš”? ì°¨ê°ì‹œì—ëŠ” - ë¶™ì´ê¸°");
             if(pointAdd == undefined || pointAdd == null){
             	return;
             }
@@ -253,14 +253,14 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                    alert("Æ÷ÀÎÆ®°¡ Ãß°¡µÇ¾ú½À´Ï´Ù.");
+                    alert("í¬ì¸íŠ¸ê°€ ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤.");
                     self.fnGetList();
                 }
             }); 
         },
         fnUserBan : function(){
             var self = this;
-            var bReasons = prompt("Á¤Áö »çÀ¯¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+            var bReasons = prompt("ì •ì§€ ì‚¬ìœ ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!");
             if(bReasons == undefined || bReasons == null){
             	return;
             }
@@ -271,14 +271,14 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                    alert("Á¤ÁöµÇ¾ú½À´Ï´Ù.");
+                    alert("ì •ì§€ë˜ì—ˆìŠµë‹ˆë‹¤.");
                     self.fnGetList();
                 }
             }); 
         },
         fnUserBanDel : function(){
             var self = this;
-            if(!confirm("Á¤Áö¸¦ ÇØÁ¦ÇÏ°Ú½À´Ï±î?")){
+            if(!confirm("ì •ì§€ë¥¼ í•´ì œí•˜ê² ìŠµë‹ˆê¹Œ?")){
                 return;
             }
             var nparmap = {uId : self.uId};
@@ -288,7 +288,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                    alert("ÇØÁ¦µÇ¾ú½À´Ï´Ù.");
+                    alert("í•´ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
                     self.fnGetList();
                 }
             }); 

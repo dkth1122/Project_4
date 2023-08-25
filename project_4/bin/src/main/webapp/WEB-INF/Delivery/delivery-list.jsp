@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -89,34 +89,34 @@
 <div id="app">
 	<div class="mainBox">
 	
-	<div class="mainPos2">¹è¼Û °ü¸®</div>
+	<div class="mainPos2">ë°°ì†¡ ê´€ë¦¬</div>
 <hr>	
     <table>
 		<tr>
-			<th>ÁÖ¹®¹øÈ£</th>
-			<th>»óÇ°¸í</th>
-			<th>»óÇ°ÄÚµå</th>
-			<th>ÇöÀç»óÅÂ</th>
-			<th>ÁÖ¹®¼ö·®</th>
-			<th>ÁÖ¹®ÀÚ¸í</th>
-			<th>ÁÖ¹®ÀÚ ¿¬¶ôÃ³</th>
-			<th>Á¤Á¦ ÁÖ¼Ò</th>
+			<th>ì£¼ë¬¸ë²ˆí˜¸</th>
+			<th>ìƒí’ˆëª…</th>
+			<th>ìƒí’ˆì½”ë“œ</th>
+			<th>í˜„ì¬ìƒíƒœ</th>
+			<th>ì£¼ë¬¸ìˆ˜ëŸ‰</th>
+			<th>ì£¼ë¬¸ìëª…</th>
+			<th>ì£¼ë¬¸ì ì—°ë½ì²˜</th>
+			<th>ì •ì œ ì£¼ì†Œ</th>
 		</tr>
 		
 		<tr v-for="(item, index) in list">
 			<td><a href="javascript:;" @click="fnProductPopup(item)">{{item.oNo}}</a></td>
-			<td v-if="item.cnt >= 2">{{ item.pName }}¿Ü {{ parseInt(item.cnt) - 1 }}°Ç</td>
+			<td v-if="item.cnt >= 2">{{ item.pName }}ì™¸ {{ parseInt(item.cnt) - 1 }}ê±´</td>
 			<td v-else>{{ item.pName }}</td>
 			<td>{{item.pNo}}</td>
 			<td>
 			<select v-model="item.dState" @change="fnUpdateState(item, index)">
-			    <option value="»óÇ° ÁØºñÁß">»óÇ° ÁØºñÁß</option>
-			    <option value="¹è¼Û ÁØºñÁß">¹è¼Û ÁØºñÁß</option>
-			    <option value="¹è¼ÛÁß">¹è¼ÛÁß</option>
-			    <option value="¹è¼Û¿Ï·á">¹è¼Û¿Ï·á</option>
-			    <option value="¾÷Ã¼ »çÀ¯·Î °ÅÀı">¾÷Ã¼ »çÀ¯·Î °ÅÀı</option>
-			    <option value="°í°´ »çÀ¯·Î °ÅÀı">°í°´ »çÀ¯·Î °ÅÀı</option>
-			    <option value="¹è¼Û»ç »çÀ¯·Î °ÅÀı">¹è¼Û»ç »çÀ¯·Î °ÅÀı</option>
+			    <option value="ìƒí’ˆ ì¤€ë¹„ì¤‘">ìƒí’ˆ ì¤€ë¹„ì¤‘</option>
+			    <option value="ë°°ì†¡ ì¤€ë¹„ì¤‘">ë°°ì†¡ ì¤€ë¹„ì¤‘</option>
+			    <option value="ë°°ì†¡ì¤‘">ë°°ì†¡ì¤‘</option>
+			    <option value="ë°°ì†¡ì™„ë£Œ">ë°°ì†¡ì™„ë£Œ</option>
+			    <option value="ì—…ì²´ ì‚¬ìœ ë¡œ ê±°ì ˆ">ì—…ì²´ ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+			    <option value="ê³ ê° ì‚¬ìœ ë¡œ ê±°ì ˆ">ê³ ê° ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+			    <option value="ë°°ì†¡ì‚¬ ì‚¬ìœ ë¡œ ê±°ì ˆ">ë°°ì†¡ì‚¬ ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
 			</select>
 			</td>
 			<td>{{item.oCount}}</td>
@@ -195,7 +195,7 @@ var app = new Vue({
           },
           fnUpdateState : function(item) {
           	var self = this;
-          	if (item.dState === '¹è¼Û¿Ï·á') {
+          	if (item.dState === 'ë°°ì†¡ì™„ë£Œ') {
           	    self.updateState2(item);
           	} else {
           	    self.updateState1(item);
@@ -204,7 +204,7 @@ var app = new Vue({
           updateState1 : function(item) {
           	var self = this;
           	var exchangeVal = '';
-          	if (item.dState.includes('°ÅÀı')) {
+          	if (item.dState.includes('ê±°ì ˆ')) {
           	    exchangeVal = 'R';
           	}
           	$.ajax({
@@ -217,12 +217,12 @@ var app = new Vue({
           	      dState: item.dState
           	    },
           	    success: function(data) {
-          	      alert("ÁÖ¹® »óÅÂ°¡ ¾÷µ¥ÀÌÆ® µÇ¾ú½À´Ï´Ù.");
+          	      alert("ì£¼ë¬¸ ìƒíƒœê°€ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤.");
           	      self.fnGetList();
           	    }
           	  }); 
           },
-          updateState2 : function(item) { // »õ·Î¿î ÇÔ¼ö
+          updateState2 : function(item) { // ìƒˆë¡œìš´ í•¨ìˆ˜
         	var self = this;
           	$.ajax({
           	    url: "/delivery/updateOrder2.dox",
@@ -233,7 +233,7 @@ var app = new Vue({
           	      dState: item.dState
           	    },
           	    success: function(data) {
-          	      alert("ÁÖ¹® »óÅÂ°¡ ¾÷µ¥ÀÌÆ® µÇ¾ú½À´Ï´Ù.");
+          	      alert("ì£¼ë¬¸ ìƒíƒœê°€ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤.");
           	      self.fnGetList();
           	    }
           	  }); 

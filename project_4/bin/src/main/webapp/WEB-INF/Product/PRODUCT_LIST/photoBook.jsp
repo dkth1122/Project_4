@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,16 +6,19 @@
   <link href="../css/header.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.js"></script>  
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-  <!-- ÆäÀÌÂ¡ Ãß°¡ 1 -->
-  <script src="https://unpkg.com/vuejs-paginate@latest"></script>
-  <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-  <meta charset="EUC-KR">
-  <title>»óÇ° ÆäÀÌÁö</title>
-  <style type="text/css">
+  <title>ìƒí’ˆ í˜ì´ì§€</title>
+<style type="text/css">
 	  .nonMember{
 	  margin: 0px 10px;
+	  }
+	  #app{
+	  	width: 1500px;
+	  }
+	  #container{
+	  	width: 1500px;
+	  
 	  }
 	  .login_loginout{  
 	  	color : #8a8a8a;
@@ -39,57 +42,59 @@
 		margin-bottom: 20px;
 		width: 100%;
 	}
-	<!-- ÆäÀÌÂ¡ Ãß°¡ 2 -->
-	.pagination {
-        margin:24px;
-        display: inline-flex;
-    }
-    ul {
-    }
-	.pagination li {
-	    min-width:32px;
-	    padding:2px 6px;
-	    text-align:center;
-	    margin:0 3px;
-	    border-radius: 6px;
-	    border:1px solid #eee;
-	    color:#666;
-	    display : inline;
-	}
-	.pagination li:hover {
-	    background: #E4DBD6;
-	}
-	.page-item a {
-	    color:#666;
-	    text-decoration: none;
-	}
-	.pagination li.active {
-	    background-color : #E7AA8D;
-	    color:#fff;
-	}
-	.pagination li.active a {
-	    color:#fff;
-	}
 	.pImg{
 		width:300px;
 		height:400px;
 	}
+	.slide_wrapper_main{
+		float: left;
+		margin-left: 200px;
+	}
+	.body2{
+		margin-top : 150px;
+		clear: left;
+		float: clear;
+		width: 180px;
+	}
+	.productPosList{
+		width: 1200px;
+		float: left;
+		position: relative;
+		top :-700px;
+		left: 350px;
+		
+	}
 	.productList{
-		width:1000px;
-		margin-top:30px;
-		margin-left: 100px;
+		width:300px;
+		height : 500px;
+		margin-top:50px;
+		margin-left : 20px;
+		float: left;
+	}
+	.select{
+		position : relative;
+		top: 150px;
+		left: 140px;
+	}
+	.artistDIv2{
+		width : 500px;
+		height : 100px;
+		position : absolute;
+		top : 300px;
+		left : 300px;
+		font-size: 32px;
+		color : #ccc;
 	}
   </style>
 </head>
 <body>
 
 <div id="app">
-
    <div id="wrap">
         <div id="container">
         <div id="login">
-        <div class="login_loginout"><span class="nonMember">·Î±×ÀÎ</span>  |  <span class="nonMember">È¸¿ø°¡ÀÔ</span></div>
-        <div class="login_loginout" v-if="false"> ·Î±×¾Æ¿ô</div>
+        <div class="login_loginout"><span class="nonMember">ë¡œê·¸ì¸</span>  |  <span class="nonMember">íšŒì›ê°€ì…</span></div>
+        <div class="login_loginout" v-if="false"> ë¡œê·¸ì•„ì›ƒ</div>
         </div>
             <div id="header" >
             
@@ -118,122 +123,92 @@
             
             <div class="body" style="margin-top: 80px;">
                 <select class="select" v-model="selectedOption" @change="fnGetList">
-                    <option selected>ÀüÃ¼</option>
-                    <option value="nameList">»óÇ°¸í</option>
-                    <option value="minPrice">³·Àº°¡°İ</option>
-                    <option value="maxPrice">³ôÀº°¡°İ</option>
+                    <option selected>ì „ì²´</option>
+                    <option value="nameList">ìƒí’ˆëª…</option>
+                    <option value="minPrice">ë‚®ì€ê°€ê²©</option>
+                    <option value="maxPrice">ë†’ì€ê°€ê²©</option>
                 </select>
                 
                 
-                <div class="body2" style=" width: 198px; height: 600px;">
+                <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"><a href="Javascript:;" @click="fnReload">ARTIST</a></div>
-                  
+                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnGetList('BTS')">BTS</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('B')">BTS</a>
                             <ul class="sub">
-                                <li><a href="Javascript:;">TEST</a></li>
-                                <li><a href="Javascript:;">TEST</a></li>
-                                <li><a href="Javascript:;">TEST</a></li>
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnGetList('LSF')">LE SSERAFIM</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('T')">TXT</a>
                         <ul class="sub2">
-                            <li><a href="Javascript:;">TEST</a></li>
-                            <li><a href="Javascript:;">TEST</a></li>
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('SVT')">SEVENTEEN</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('E')">ENHYPEN</a>
 	                    <ul class="sub3">
-	                        <li><a href="Javascript:;">TEST</a></li>
-	                        <li><a href="Javascript:;">TEST</a></li>
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnGetList('FMN')">FROMIS_9</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('S')">SEVENTEEN</a>
 			            <ul class="sub4">
-			                <li><a href="Javascript:;">TEST</a></li>
-			                <li><a href="Javascript:;">TEST</a></li>
-			                <li><a href="Javascript:;">TEST</a></li>
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('TXT')">TXT</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('F')">fromis_9</a>
 				        <ul class="sub5">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu6">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('NJS')">NEWJEANS</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('L')">LE SSERAFIM</a>
 				        <ul class="sub6">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu7">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('EHP')">ENHYPEN</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('N')">NewJeans</a>
 				        <ul class="sub7">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu8">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BND')">BOYNEXTDOOR</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BN')">BOYNEXTDOOR</a>
 				        <ul class="sub8">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu9">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('ZIC')">ZICO</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Z')">ZICO</a>
 				        <ul class="sub9">
-				            <li><a href="Javascript:;">TEST</a></li>
-				            <li><a href="Javascript:;">TEST</a></li>
 				        </ul>
 				 	</div>
 				 	
                 </div>
-
-                <div class="body2 " style=" width: 1000px; height: 2000px;">
-								<div @click="productView(item)" v-for="item in list" class="productList">
-									<span><img :src = "item.path" class="pImg"></span>
-									<div>{{item.pName}}</div>
-									<div>{{item.price}}</div>
-								</div>
-                </div>
-                <!-- ÆäÀÌÂ¡ Ãß°¡ 3 -->
+					<div class="productPosList">
+					
+						<span @click="productView(item)" v-for="item in list" class="productList" v-if = "list.length != 0">
+							<span><img :src = "item.path" class="pImg"></span>
+							<div class="artistDIv">{{item.artist}}</div>
+							<div>{{item.pName}}</div>
+							<h5>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</h5>
+						</span>
+						
+						<span v-if = "list.length == 0">
+								<div class="artistDIv2"   >ë“±ë¡ëœ ì œí’ˆì´ ì—†ìŠµë‹ˆë‹¤.</div>
+						</span>
+					
+					</div>
             </div>        
         </div>
     </div>
-				<template>
-				  <paginate
-				    :page-count="pageCount"
-				    :page-range="3"
-				    :margin-pages="2"
-				    :click-handler="fnSearch"
-				    :prev-text="'<'"
-				    :next-text="'>'"
-				    :container-class="'pagination'"
-				    :page-class="'page-item'">
-				  </paginate>
-				</template>
 </div>
 </body>
 </html>
 <script>
-<!-- ÆäÀÌÂ¡ Ãß°¡ 4 -->
-Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
     el: '#app',
     data: {
@@ -241,72 +216,47 @@ var app = new Vue({
           keyword: "",
           uId: "${sessionId}",
           artist: "",
-  		<!-- ÆäÀÌÂ¡ Ãß°¡ 5 -->
-		  selectPage: 1,
-		  pageCount: 1,
-		  cnt : 0,
-		  selectedOption : "ÀüÃ¼",
+		  selectedOption : "ì „ì²´",
 		  ctg : "PTB"
     },
     methods: {
     	fnGetList: function (artist) {
             var self = this;
-			<!-- ÆäÀÌÂ¡ Ãß°¡ 6 -->
-			var startNum = ((self.selectPage-1) * 10);
-    		var lastNum = 10;
     		
-    		if(artist == 'BTS'){
+    		if(artist == 'B'){
     			self.artist = "BTS";
-    		}else if(artist == 'TXT'){
+    		}else if(artist == 'T'){
     			self.artist = "TXT";
-    		}else if(artist == 'EHP'){
+    		}else if(artist == 'E'){
     			self.artist = "EHP";
-    		}else if(artist == 'SVT'){
+    		}else if(artist == 'S'){
     			self.artist = "SVT";
-    		}else if(artist == 'FMN'){
+    		}else if(artist == 'F'){
     			self.artist = "FMN";
-    		}else if(artist == 'LSF'){
+    		}else if(artist == 'L'){
     			self.artist = "LSF";
-    		}else if(artist == 'NJS'){
+    		}else if(artist == 'N'){
     			self.artist = "NJS";
-    		}else if(artist == 'BND'){
+    		}else if(artist == 'BN'){
     			self.artist = "BND";
-    		}else if(artist == 'ZIC'){
+    		}else if(artist == 'Z'){
     			self.artist = "ZIC";
     		}
-            var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum, selectedOption : self.selectedOption, ctg : self.ctg};
+    		
+            var nparmap = {artist: self.artist, selectedOption : self.selectedOption, ctg : self.ctg};
             $.ajax({
-                url: "producListMain2.dox",
+                url: "producListMain.dox",
                 dataType: "json",
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
                     self.list = data.list;
-                	self.cnt = data.cnt;
-	                self.pageCount = Math.ceil(self.cnt / 10);
-                    console.log("data ==>", data);
-                    console.log("list ==>", self.list);
+                    console.log("ë¦¬ìŠ¤íŠ¸ ==>", self.list);
+                    console.log("ë¦¬ìŠ¤íŠ¸ ê¸¸ì´ ==>",self.list.length);
+                    
                 }
             });
-        },	<!-- ÆäÀÌÂ¡ Ãß°¡ 7-->
-		fnSearch : function(pageNum){
-			var self = this;
-			self.selectPage = pageNum;
-			var startNum = ((pageNum-1) * 10);
-			var lastNum = 10;
-			var nparmap = {artist: self.artist, startNum : startNum, lastNum : lastNum};
-			$.ajax({
-				url : "producListMain.dox",
-				dataType : "json",
-				type : "POST",
-				data : nparmap,
-				success : function(data) {
-					self.list = data.list;
-					self.cnt = data.cnt;
-					self.pageCount = Math.ceil(self.cnt / 10);
-				}
-			});
-		},
+        },
 		fnReload : function(){
 			location.reload();
 		},
@@ -318,7 +268,7 @@ var app = new Vue({
     created: function() {
       var self = this;
       self.fnGetList();
-      // Vue.js ÄÚµå ÀÛ¼º °¡´É
+      // Vue.js ì½”ë“œ ì‘ì„± ê°€ëŠ¥
     }
   });
 var lnb = $("#header").offset().top;
@@ -327,10 +277,10 @@ $(window).scroll(function() {
 
     if(lnb <= window) {
         $("#header").addClass("fixed");
-        $("#header").css("top", "0"); // ½ºÅ©·Ñ ³»¸± ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç È¿°ú
+        $("#header").css("top", "0"); // ìŠ¤í¬ë¡¤ ë‚´ë¦´ ë•Œ ì• ë‹ˆë©”ì´ì…˜ íš¨ê³¼
     } else {
         $("#header").removeClass("fixed");
-        $("#header").css("top", "-100px"); // ½ºÅ©·Ñ ¿Ã¸± ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç È¿°ú
+        $("#header").css("top", "-100px"); // ìŠ¤í¬ë¡¤ ì˜¬ë¦´ ë•Œ ì• ë‹ˆë©”ì´ì…˜ íš¨ê³¼
     }
 });
 
@@ -345,113 +295,34 @@ $(window).scroll(function() {
     }
 })
 
-
-let subToggle=true;
-
-$(".menu").click(()=>{
-if(subToggle){
-  $(".sub").slideDown(500);
-}else{
-  $(".sub").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu2").click(()=>{
-if(subToggle){
-  $(".sub2").slideDown(500);
-}else{
-  $(".sub2").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-$(".menu3").click(()=>{
-if(subToggle){
-  $(".sub3").slideDown(500);
-}else{
-  $(".sub3").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu4").click(()=>{
-if(subToggle){
-  $(".sub4").slideDown(500);
-}else{
-  $(".sub4").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-
-$(".menu5").click(()=>{
-if(subToggle){
-  $(".sub5").slideDown(500);
-}else{
-  $(".sub5").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu6").click(()=>{
-if(subToggle){
-  $(".sub6").slideDown(500);
-}else{
-  $(".sub6").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-
-$(".menu7").click(()=>{
-if(subToggle){
-  $(".sub7").slideDown(500);
-}else{
-  $(".sub7").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
-$(".menu8").click(()=>{
-if(subToggle){
-  $(".sub8").slideDown(500);
-}else{
-  $(".sub8").slideUp(1000);
-}
-subToggle=!subToggle;
-});
-
 var slides = document.querySelector('.slides'), 
-    slide = document.querySelectorAll('.slides li'),  //¸ğµç ½½¶óÀÌµå ¼±ÅÃ 
-    currentIdx = 0, //½½¶óÀÌµå ÀÌµ¿
-    slideCount = slide.length, //½½¶óÀÌµå °Ù¼ö
-    slideWidth = 1200, // ½½¶óÀÌµå ³Êºñ
-    slideMargin = 0, // ¸¶Áø
-    prevBtn = document.querySelector('.prev'), // ÁÂ¿ì ¹öÆ°
-    nextBtn = document.querySelector('.next'); // ÁÂ¿ì ¹öÆ°
+    slide = document.querySelectorAll('.slides li'),  //ëª¨ë“  ìŠ¬ë¼ì´ë“œ ì„ íƒ 
+    currentIdx = 0, //ìŠ¬ë¼ì´ë“œ ì´ë™
+    slideCount = slide.length, //ìŠ¬ë¼ì´ë“œ ê²Ÿìˆ˜
+    slideWidth = 1200, // ìŠ¬ë¼ì´ë“œ ë„ˆë¹„
+    slideMargin = 0, // ë§ˆì§„
+    prevBtn = document.querySelector('.prev'), // ì¢Œìš° ë²„íŠ¼
+    nextBtn = document.querySelector('.next'); // ì¢Œìš° ë²„íŠ¼
     
 
 makeClone();
 
 function makeClone(){
   for(var i = 0; i<slideCount; i++){
-    // a.cloneNode() a¿ä¼Ò º¹»ç  
-    // a.cloneNode(true) aÀÇ ÀÚ½Ä¿ä¼Ò º¹»ç 
+    // a.cloneNode() aìš”ì†Œ ë³µì‚¬  
+    // a.cloneNode(true) aì˜ ìì‹ìš”ì†Œ ë³µì‚¬ 
     var cloneSlide = slide[i].cloneNode(true);
     cloneSlide.classList.add('clone');
-    //a.appendChild(b) a¿¡´Ù°¡ b¸¦ Ãß°¡ 
-    slides.appendChild(cloneSlide); // ul º¹»çº» µÚ¿¡´Ù Ãß°¡
+    //a.appendChild(b) aì—ë‹¤ê°€ bë¥¼ ì¶”ê°€ 
+    slides.appendChild(cloneSlide); // ul ë³µì‚¬ë³¸ ë’¤ì—ë‹¤ ì¶”ê°€
   }
 
   for(var i = slideCount -1; i>=0; i--){
-    //a.prepend(b) ¾Õ¿¡ Ãß°¡
+    //a.prepend(b) ì•ì— ì¶”ê°€
     var cloneSlide = slide[i].cloneNode(true);
     cloneSlide.classList.add('clone');
-    //a.prepend(b) a¾Õ¿¡´Ù Ãß°¡ 
-    slides.prepend(cloneSlide); // ul º¹»çº» µÚ¿¡´Ù Ãß°¡      
+    //a.prepend(b) aì•ì—ë‹¤ ì¶”ê°€ 
+    slides.prepend(cloneSlide); // ul ë³µì‚¬ë³¸ ë’¤ì—ë‹¤ ì¶”ê°€      
   }
 
   updateWidth();
@@ -470,7 +341,7 @@ function updateWidth(){
   slides.style.width = newWidth;
 }
 function setInitialpos(){
-  var initialTranslateValue = -(slideWidth + slideMargin) * slideCount; // SlideCount¸¦ slideCount·Î ¼öÁ¤
+  var initialTranslateValue = -(slideWidth + slideMargin) * slideCount; // SlideCountë¥¼ slideCountë¡œ ìˆ˜ì •
   //slides {transform:translateX(-1000px);}
   slides.style.transform = 'translateX('+ initialTranslateValue +'px)';
 }
@@ -482,15 +353,15 @@ nextBtn.addEventListener('click', function(){
 prevBtn.addEventListener('click', function(){
   moveSlide(currentIdx - 1);
 })
-function moveSlide(num){ // unmÀ» numÀ¸·Î ¼öÁ¤
-slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleft¸¦ left·Î ¼öÁ¤
+function moveSlide(num){ // unmì„ numìœ¼ë¡œ ìˆ˜ì •
+slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleftë¥¼ leftë¡œ ìˆ˜ì •
 currentIdx = num;
 console.log(currentIdx, slideCount);
 
 if(currentIdx == slideCount || currentIdx == -slideCount){
   setTimeout(function(){
       slides.classList.remove('animated');
-      slides.style.left = '0px'; // lift¸¦ left·Î ¼öÁ¤
+      slides.style.left = '0px'; // liftë¥¼ leftë¡œ ìˆ˜ì •
       currentIdx = 0;
   },500);
   
@@ -533,18 +404,18 @@ for (let i = 0; i < buttons.length; i++) {
       updateButtonColor(i);
   });
 }
-//¹öÆ° »ö»óÀ» ¾÷µ¥ÀÌÆ®ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.
+//ë²„íŠ¼ ìƒ‰ìƒì„ ì—…ë°ì´íŠ¸í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
 function updateButtonColor(selectedIndex) {
-  // ¸ğµç ¹öÆ° ¿ä¼Ò¸¦ ¼±ÅÃÇÕ´Ï´Ù.
+  // ëª¨ë“  ë²„íŠ¼ ìš”ì†Œë¥¼ ì„ íƒí•©ë‹ˆë‹¤.
   const allButtons = document.querySelectorAll('.controls button');
   
-  // ¸ğµç ¹öÆ°À» ¼øÈ¸ÇÏ¸é¼­ ¼±ÅÃµÈ ¹öÆ°¿¡ ÇØ´çÇÏ´Â »ö»óÀ» º¯°æÇÏ°í, ³ª¸ÓÁö ¹öÆ°Àº ¿ø·¡ »ö»óÀ¸·Î º¯°æÇÕ´Ï´Ù.
+  // ëª¨ë“  ë²„íŠ¼ì„ ìˆœíšŒí•˜ë©´ì„œ ì„ íƒëœ ë²„íŠ¼ì— í•´ë‹¹í•˜ëŠ” ìƒ‰ìƒì„ ë³€ê²½í•˜ê³ , ë‚˜ë¨¸ì§€ ë²„íŠ¼ì€ ì›ë˜ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½í•©ë‹ˆë‹¤.
   for (let i = 0; i < allButtons.length; i++) {
       if (i === selectedIndex) {
-          // ¼±ÅÃµÈ ¹öÆ°ÀÇ »ö»óÀ» º¯°æÇÕ´Ï´Ù.
+          // ì„ íƒëœ ë²„íŠ¼ì˜ ìƒ‰ìƒì„ ë³€ê²½í•©ë‹ˆë‹¤.
           allButtons[i].style.backgroundColor = '#3838388f';
       } else {
-          // ¼±ÅÃµÇÁö ¾ÊÀº ¹öÆ°ÀÇ »ö»óÀ» ¿ø·¡ »ö»óÀ¸·Î º¯°æÇÕ´Ï´Ù.
+          // ì„ íƒë˜ì§€ ì•Šì€ ë²„íŠ¼ì˜ ìƒ‰ìƒì„ ì›ë˜ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½í•©ë‹ˆë‹¤.
           allButtons[i].style.backgroundColor = '#acacac8f';
       }
   }
@@ -563,10 +434,10 @@ function moveSlide(num) {
 
           setTimeout(function () {
               slides.classList.add('animated');
-              updateButtonColor(currentIdx); // Ãß°¡
+              updateButtonColor(currentIdx); // ì¶”ê°€
           }, 600);
       } else {
-          updateButtonColor(currentIdx); // Ãß°¡
+          updateButtonColor(currentIdx); // ì¶”ê°€
       }
   }
 

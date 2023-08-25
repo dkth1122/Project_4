@@ -115,7 +115,6 @@
 	  border-bottom : 2px solid #d4d5d9;
 	  justify-content: center;
 	}
-
 	#radioMenu input[type="radio"] {
 	  display: none;
 	}
@@ -204,7 +203,6 @@
 	.wishlist-button:active {
 	  background-color: #1f618d;
 	}
-
   .buyButton:hover {
    	 	 background-color:rgb(71, 72, 141);
   }
@@ -321,6 +319,13 @@
     	font-weight : bold;
     	color:#3d435f;
     }
+    #mainImg{
+    	padding-bottom : 50px;
+    	border-bottom : 2px solid #d4d5d9;
+    }
+    .explanation img{
+    	margin-top : 100px;
+    }
 </style>
 </head>
 <body>
@@ -344,7 +349,7 @@
 					<span><strong>{{formattedPrice}}</strong></span>
 				</div>
 			</div>	
-			
+
 			<div class="infoDetail">
 				<div>
 					<div class="pointArea">
@@ -365,14 +370,14 @@
 					</div>
 				</div>
 			</div>	
-			
+
 			<div class="productsAddList">
 				<div style="max-height: none;">
 					<div style="position:relative; top:0; left:0; backgound-color:#232744;">
 						<div id="totalProducts">
 							{{pName}}
 						</div>
-						
+
 						<span class="qsoldout" v-if="info.stock == 0">SOLD OUT</span>
 						<span v-else class="quantity">
 							<a href="#none" @click="decreaseQuantity"><i class="fa-solid fa-minus"></i></a>
@@ -383,13 +388,13 @@
 					</div>
 				</div>
 			</div>
-			
-			
+
+
 			<div v-if="info.stock != 0" id="totalPrice">
 				<span>TOTAL</span>
 				<span class="total"><strong style="font-size:25px;">₩{{ totalPrice }}</strong> ({{ quantity }}개)</span>
 			</div>
-			
+
 			<div class="buyArea" style="position: static; bottom: auto; width: auto; margin-left: 0px;">
 				<div style="position : relative;">
 					<button v-if="info.stock != 0" class="buyButton" style="display: block" @click="fnProductOrder">바로 구매하기</button>
@@ -399,7 +404,7 @@
 					</div>
 				</div>				
 			</div>
-			
+
 			<div class="h3"><h3>함께하면 좋은 상품!</h3></div>
 			<div id="itemSlideArea">		  
 			    <div class="itemSlide">
@@ -430,10 +435,9 @@
 			    </div>
 			</div>
 		</div>	
-		
+
 		<div class="explanation">
-			<img alt="상품상세설명" src="../img/detail01.jpg">
-			
+			<img alt="상품상세설명" :src="path2">
 			<div id="radioMenu">
 	    		<input id="1" type="radio" name="Menu" value="상품정보" v-model="selectedMenu">
 	    		<label for="1">상품정보</label>
@@ -444,7 +448,7 @@
 	    		<input id="4" type="radio" name="Menu" value="품질보증기준" v-model="selectedMenu">
 	    		<label for="4">품질보증기준</label>    		
     		</div>
-    		
+
     		<div id="selectedMenu">
     			<pre v-if = "selectedMenu == '상품정보'">
 <h4>[상품정보]</h4>
@@ -551,16 +555,16 @@
 제품의 품질에 이상이 있을 경우, 반품, 교환, A/S, 환불 , 품질보증 및 피해보상 등에 관한 사항은 소비자분쟁해결기준(공정거래위원회 고시)에 의거하여 처리됩니다.
     			</pre>
     		</div>
-			
+
 		</div>    
 	</div>
-	
+
 	<div class="xans-element- xans-myshop xans-myshop-layerwish ec-base-layer" v-show="showWishlistPopup">
-     
+
 	    <div class="header">
 	        <h3>관심상품 담기</h3>
 	    </div>
-	   
+
 		    <div class="content">
 		        <p>선택하신 상품을 관심상품에 담았습니다. <br>지금 관심상품을 확인하시겠습니까?</p>
 		    </div>
@@ -569,9 +573,9 @@
 		        <a class="action_send move"><button class="action_send move" @click="moveWish">관심상품 확인</button></a>
 		    </div>
 	    <a class="close" @click="hideWishlistPopup"></a>
-	  
+
 	</div>
-	
+
 </div>
 
 <div class="xans-myshop-layerwish ec-base-layer" style="display: none;">
@@ -581,7 +585,6 @@
    $(document).ready(function() {
     // 페이지 로드 시 팝업을 초기에 숨김
     togglePopup(false);
-
     // '위시리스트 담기' 버튼 클릭 시 팝업 표시
     $('.wishlist-button').click(function() {
         // 로컬 스토리지에 정보 저장
@@ -589,19 +592,16 @@
         // 팝업 표시
         app.showWishlistPopup = true;
     });
-
     // '쇼핑 계속하기' 링크나 '관심상품 확인' 링크 클릭 시 팝업을 숨기게 합니다.
     $('.action_cancle.move, .action_send.move').click(function() {
         togglePopup(false);
     });
-
     // 팝업 오른쪽 상단의 닫기 아이콘 클릭 시 팝업을 숨김
     $('.close').click(function() {
         // 팝업 숨김
         app.showWishlistPopup = false;
     });
 });
-
 // togglePopup 함수를 정의합니다.
 function togglePopup(show) {
     if (show) {
@@ -620,13 +620,14 @@ var app = new Vue({
     data: {    	
     	uId : "${sessionId}",    	
     	list : [],
-    	info : {},
+    	info : [],
     	pNo : "${map.pNo}",
     	pName : "",
     	price: "",
     	formattedPrice: "",
     	artist : "",
     	path : "",
+    	path2 : "",
     	category : "",
     	membership : "",
     	quantity: "1", // 기본 수량 값
@@ -645,13 +646,16 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.info = data.info; //사용자
-                	self.pName = self.info.pName;
-                	self.price = self.info.price;
+                	self.pName = self.info[0].pName;
+                	self.price = self.info[0].price;
+                	
                 	self.formattedPrice = self.formatPrice(self.price); // 가격 포맷 변환
-                	self.artist = self.info.artist;
-                	self.path = self.info.path;
-                	self.category = self.info.category;
-                	self.membership = self.info.membership;
+                	
+                	self.artist = self.info[0].artist;
+                	self.path = self.info[0].path;
+                	self.path2 = self.info[1].path;
+                	self.category = self.info[0].category;
+                	self.membership = self.info[0].membership;
                 	console.log(self.info);
                 	
                 	
@@ -662,18 +666,18 @@ var app = new Vue({
         	var self = this;
         	
         	var currentDate = new Date();
-
         	var year = currentDate.getFullYear();
         	var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
         	var day = currentDate.getDate();
         	var hours = currentDate.getHours();
         	var minutes = currentDate.getMinutes();
         	var seconds = currentDate.getSeconds();
-
         	var currentDateString = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+        	var a = currentDateString >= self.info.mRegDate;
+        	var b = currentDateString <= self.info.mExpDate;
         	
         	if(self.info.membership == 'Y'){
-        		if(currentDateString <= self.info.mExpDate || currentDateString >= self.info.mRegDate){
+        		if(!currentDateString >= self.info.mRegDate && !currentDateString <= self.info.mExpDate ){
             		alert("해당 상품은 멤버쉽 구독이 필요한 상품입니다. \n해당 아티스트의 멤버쉽을 구독해주세요.");
             	}else if(self.info.kitYn == 'Y'){
             		alert("키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
@@ -682,10 +686,14 @@ var app = new Vue({
         			var params =  {pNo : self.pNo, cnt : self.quantity};
             		$.pageChange("/payment/payment.do", params); 
             	}	
-        	}else{
+        	}else if(self.info.uMembership == 'Y' && self.info.category == 'MEM'){
+        		alert("멤버쉽 구독 상품은 한 번만 구매 가능합니다.");
+        	}
+        	else{
     			var params =  {pNo : self.pNo, cnt : self.quantity};
         		$.pageChange("/payment/payment.do", params); 
-        	} 	
+        	} 
+        	
         	//$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
         	     	
         },//위시리스트 이동  
@@ -761,10 +769,9 @@ var app = new Vue({
             	self.quantity++;	
             }
             else{
-            	alert("해당상품의 최대구매수량은 "+self.info.pLimit+"개 입니다.");
+            	alert("해당상품의 최대구매수량은 "+self.info[0].pLimit+"개 입니다.");
             }
         },
-
         decreaseQuantity: function() {
         	var self = this;
             // 수량 감소를 위한 함수

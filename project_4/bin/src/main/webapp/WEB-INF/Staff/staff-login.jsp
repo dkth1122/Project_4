@@ -1,25 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 	body {
 		background-color: #eae2eb;
 	}
+	#app {
+		width: 800px;
+		margin: 0px auto;
+	}
+	input {
+		width: 500px;
+		height: 80px;
+		margin-bottom: 20px;
+		font-size: 20px;
+	}
+	
+	button {
+	  background-color: #eddcfd;
+	  width: 200px;
+	  height: 50px;
+	  display: inline;
+	  border-radius: 20px;
+	  border: none;
+	  margin-bottom: 1px;
+	}
+	
+	button:hover {
+	  background-color: #d7acff;
+	}
+	.box1{
+		border: 3px dashed white;
+		width: 700px;
+		text-align: center;
+		padding: 50px;
+	}
+	h2{
+		margin-bottom: 50px;
+		color: #7C81BB;
+	}
+	h1{
+		color: #7C81BB;
+	}
 </style>
 </head>
 <body>
 <div id="app">
-	<form @submit.prevent="fnStaffLogin">
-	    <div><input type="text" placeholder="ÀÌ¸§" v-model="staffName"></div>
-	    <div><input type="text" placeholder="»ç¹ø" v-model="staffNo"></div>
-	    <div><button type="submit">·Î±×ÀÎ</button></div>
-    </form>
+
+	<h1>ê´€ë¦¬ì í˜ì´ì§€ì…ë‹ˆë‹¤.</h1>
+	<h2>ì„±í•¨ê³¼ ì‚¬ë²ˆì„ ì…ë ¥ í›„ ì ‘ì† ë¶€íƒë“œë¦½ë‹ˆë‹¤.</h2>
+	<div class="box1">
+		<form @submit.prevent="fnStaffLogin">
+		    <div><input type="text" placeholder="ì´ë¦„" v-model="staffName"></div>
+		    <div><input type="text" placeholder="ì‚¬ë²ˆ" v-model="staffNo"></div>
+		    <div><button type="submit">ë¡œê·¸ì¸</button></div>
+	    </form>
+    </div>
 </div>
 </body>
 </html>
@@ -58,7 +100,7 @@ var app = new Vue({
                 		alert(data.message);
                 		location.href="../staff/home.do";
                 	} else {
-                		alert("¼ºÇÔ È¤Àº »ç¹øÀ» È®ÀÎÇØÁÖ¼¼¿ä");
+                		alert("ì„±í•¨ í˜¹ì€ ì‚¬ë²ˆì„ í™•ì¸í•´ì£¼ì„¸ìš”");
                 	}
                 }
             }); 

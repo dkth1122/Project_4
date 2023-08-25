@@ -7,10 +7,10 @@
 	<!-- 바로 구매 시 상품 테이블 정보 전체 출력을 위한 쿼리-->
 	<select id="selectProductAll" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT  *
-		FROM T4_PRODUCT
-		WHERE P_NO = #{pNo}
+		FROM T4_PRODUCT P
+		LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+		WHERE P.P_NO = #{pNo} AND IMG_TYPE = 'Y'
 	</select> 
-
 
 	<!-- 결제시 오더 테이블 등록 -->
 	<insert id="insertProductBuy" parameterType="hashmap" useGeneratedKeys="true"  keyProperty="buyNo"  keyColumn="BUY_NO">
@@ -68,7 +68,7 @@
 		FROM T4_PRODUCT P
 		WHERE P_NO = #{pNo}		
 		AND CATEGORY = 'MEM'
-		AND MEMBERSHIP ='N'
+		AND MEMBERSHIP ='Y'
 	</select>
 	
 	
@@ -81,9 +81,16 @@
    
 	<!-- 위에 조건 만족 시 : 멤버쉽 구독 상품 구매 시 멤버쉽 테이블 업데이트 -->
 	<insert id="insertMembership" parameterType="hashmap">
-		INSERT INTO T4_MEMBERSHIP
-		VALUES ('ACTIVE', NOW(), NOW() + INTERVAL '1 year', #{uId}, #{artist}, 'N' )
+		INSERT INTO T4_MEMBERSHIP (M_STATUS, M_REG_DATE, M_EXP_DATE, U_ID, ARTIST, KIT_YN)
+		VALUES ('ACTIVE', NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR), #{uId}, #{artist}, 'N' )
    	</insert>  
+   	
+   	<!--  위에 조건 전부 만족 시 : 멤버쉽 구독 상품 구매 시 유저 테이블 업데이트  -->
+   <update id="updateUserMembershipY" parameterType="hashmap">
+		UPDATE T4_USER
+		SET U_MEMBERSHIP = 'Y'
+		WHERE U_ID = #{uId}
+	</update> 
    	
    	<!--  위에 조건 전부 만족 시 : 구매 완료 되면서 STOCK 재고 줄이기 -->
    <update id="updateStock" parameterType="hashmap">

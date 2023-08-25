@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -89,15 +89,15 @@
 <div id="app">
 	<div class="mainBox">
 	
-	<div class="mainPos2">ÁÖ¹® °ü¸®</div>
+	<div class="mainPos2">ì£¼ë¬¸ ê´€ë¦¬</div>
 <hr>	
     <table>
     <thead>
       <tr>
-        <th>ÁÖ¹®¹øÈ£</th>
-        <th>»óÇ°¸í</th>
-        <th>»óÇ°ÄÚµå</th>
-        <th>ÇöÀç»óÅÂ</th>
+        <th>ì£¼ë¬¸ë²ˆí˜¸</th>
+        <th>ìƒí’ˆëª…</th>
+        <th>ìƒí’ˆì½”ë“œ</th>
+        <th>í˜„ì¬ìƒíƒœ</th>
       </tr>
     </thead>
     <tbody>
@@ -108,11 +108,11 @@
           <td>{{ order.pNo }}</td>
           <td>
             <select v-model="order.dState" @change="fnUpdateState(order, oIndex)">
-              <option value="¾÷Ã¼È®ÀÎÁß">¾÷Ã¼È®ÀÎÁß</option>
-              <option value="»óÇ° ÁØºñÁß">»óÇ° ÁØºñÁß</option>
-              <option value="¾÷Ã¼ »çÀ¯·Î °ÅÀı">¾÷Ã¼ »çÀ¯·Î °ÅÀı</option>
-              <option value="°í°´ »çÀ¯·Î °ÅÀı">°í°´ »çÀ¯·Î °ÅÀı</option>
-              <option value="¹è¼Û»ç »çÀ¯·Î °ÅÀı">¹è¼Û»ç »çÀ¯·Î °ÅÀı</option>
+              <option value="ì—…ì²´í™•ì¸ì¤‘">ì—…ì²´í™•ì¸ì¤‘</option>
+              <option value="ìƒí’ˆ ì¤€ë¹„ì¤‘">ìƒí’ˆ ì¤€ë¹„ì¤‘</option>
+              <option value="ì—…ì²´ ì‚¬ìœ ë¡œ ê±°ì ˆ">ì—…ì²´ ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+              <option value="ê³ ê° ì‚¬ìœ ë¡œ ê±°ì ˆ">ê³ ê° ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+              <option value="ë°°ì†¡ì‚¬ ì‚¬ìœ ë¡œ ê±°ì ˆ">ë°°ì†¡ì‚¬ ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
             </select>
           </td>
         </template>
@@ -121,11 +121,11 @@
           <td>{{ order.pNo }}</td>
           <td>
             <select v-model="order.dState" @change="fnUpdateState(order, oIndex)">
-              <option value="¾÷Ã¼È®ÀÎÁß">¾÷Ã¼È®ÀÎÁß</option>
-              <option value="»óÇ° ÁØºñÁß">»óÇ° ÁØºñÁß</option>
-              <option value="¾÷Ã¼ »çÀ¯·Î °ÅÀı">¾÷Ã¼ »çÀ¯·Î °ÅÀı</option>
-              <option value="°í°´ »çÀ¯·Î °ÅÀı">°í°´ »çÀ¯·Î °ÅÀı</option>
-              <option value="¹è¼Û»ç »çÀ¯·Î °ÅÀı">¹è¼Û»ç »çÀ¯·Î °ÅÀı</option>
+              <option value="ì—…ì²´í™•ì¸ì¤‘">ì—…ì²´í™•ì¸ì¤‘</option>
+              <option value="ìƒí’ˆ ì¤€ë¹„ì¤‘">ìƒí’ˆ ì¤€ë¹„ì¤‘</option>
+              <option value="ì—…ì²´ ì‚¬ìœ ë¡œ ê±°ì ˆ">ì—…ì²´ ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+              <option value="ê³ ê° ì‚¬ìœ ë¡œ ê±°ì ˆ">ê³ ê° ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
+              <option value="ë°°ì†¡ì‚¬ ì‚¬ìœ ë¡œ ê±°ì ˆ">ë°°ì†¡ì‚¬ ì‚¬ìœ ë¡œ ê±°ì ˆ</option>
             </select>
           </td>
         </template>
@@ -201,7 +201,7 @@ var app = new Vue({
     fnUpdateState : function(item, index) {
       var self = this;
       var exchangeVal = '';
-    	if (item.dState.includes('°ÅÀı')) {
+    	if (item.dState.includes('ê±°ì ˆ')) {
     	    exchangeVal = 'R';
     	}
       $.ajax({
@@ -214,7 +214,7 @@ var app = new Vue({
           dState: item.dState
         },
         success: function(data) {
-          alert("ÁÖ¹® »óÅÂ°¡ ¾÷µ¥ÀÌÆ® µÇ¾ú½À´Ï´Ù.");
+          alert("ì£¼ë¬¸ ìƒíƒœê°€ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤.");
           self.fnGetList();
         }
       }); 

@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<!-- 1. vue2editor ¿¡µğÅÍ cdn -->
+	<!-- 1. vue2editor ì—ë””í„° cdn -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
 	<script src="https://unpkg.com/vue2-editor@2.3.11/dist/index.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 </style>
@@ -16,18 +16,18 @@
 <body>
 <div id="app">
 	<div>
-		<label>Á¦¸ñ : <input v-model="info.title"></label>
+		<label>ì œëª© : <input v-model="info.title"></label>
 	</div>
 	<div>
-		<vue-editor v-model="info.contents"></vue-editor> <!-- 2. È­¸é ¿¡µğÅÍ Ãß°¡ -->
+		<vue-editor v-model="info.contents"></vue-editor> <!-- 2. í™”ë©´ ì—ë””í„° ì¶”ê°€ -->
 	</div>
-	<button v-if="no == ''" @click="fnAdd">µî·Ï</button>
-	<button v-else @click="fnEdit">¼öÁ¤</button>
+	<button v-if="no == ''" @click="fnAdd">ë“±ë¡</button>
+	<button v-else @click="fnEdit">ìˆ˜ì •</button>
 </div>
 </body>
 </html>
 <script>
-//3. ºä¿¡ vue2editor Ãß°¡
+//3. ë·°ì— vue2editor ì¶”ê°€
 console.log(Vue);
 Vue.use(Vue2Editor);
 const VueEditor = Vue2Editor.VueEditor;
@@ -55,7 +55,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("µî·Ï ¿Ï·á");
+                	alert("ë“±ë¡ ì™„ë£Œ");
                 	location.href = "list.do";
                 }
             }); 
@@ -83,7 +83,7 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	alert("¼öÁ¤µÇ¾úÀ½");
+                	alert("ìˆ˜ì •ë˜ì—ˆìŒ");
                 	location.href = "list.do";
                 }
             }); 

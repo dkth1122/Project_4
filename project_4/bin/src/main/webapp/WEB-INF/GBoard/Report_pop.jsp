@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
  <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>¸â¹ö½Ê °Ô½ÃÆÇ</title>
+<title>ë©¤ë²„ì‹­ ê²Œì‹œíŒ</title>
 <style>
 </style>
 </head>
@@ -15,20 +15,20 @@
 <div id="app">
     <template>
       <div class="report-modal">
-	      <h2>°Ô½Ã¹° ½Å°í</h2>
-	      <label>½Å°í »çÀ¯ ¼±ÅÃ:</label>
+	      <h2>ê²Œì‹œë¬¼ ì‹ ê³ </h2>
+	      <label>ì‹ ê³  ì‚¬ìœ  ì„ íƒ:</label>
 	      <select v-model="selectedReason">
-	        <option value="">½Å°í »çÀ¯ ¼±ÅÃ</option>
-	        <option value="A">¿å¼³ ¹× ±«·ÓÈû</option>
-	        <option value="B">ºÎÀûÀıÇÑ ÄÜÅÙÃ÷</option>
-	        <option value="C">½ºÆÔ ¹× ±¤°í</option>
-	        <option value="D">ºÒ¹ı ÄÜÅÙÃ÷</option>
-	        <option value="E">±âÅ¸</option>
+	        <option value="">ì‹ ê³  ì‚¬ìœ  ì„ íƒ</option>
+	        <option value="A">ìš•ì„¤ ë° ê´´ë¡­í˜</option>
+	        <option value="B">ë¶€ì ì ˆí•œ ì½˜í…ì¸ </option>
+	        <option value="C">ìŠ¤íŒ¸ ë° ê´‘ê³ </option>
+	        <option value="D">ë¶ˆë²• ì½˜í…ì¸ </option>
+	        <option value="E">ê¸°íƒ€</option>
 	      </select>
-	      <input type="text" v-if="selectedReason === 'E'" v-model="otherReason" placeholder="±âÅ¸ ½Å°í »çÀ¯ ÀÔ·Â">
-	      <label>Ãß°¡ ¼³¸í:</label>
+	      <input type="text" v-if="selectedReason === 'E'" v-model="otherReason" placeholder="ê¸°íƒ€ ì‹ ê³  ì‚¬ìœ  ì…ë ¥">
+	      <label>ì¶”ê°€ ì„¤ëª…:</label>
 	      <textarea v-model="reportDescription"></textarea>
-	      <button @click="submitReport">½Å°íÇÏ±â</button>
+	      <button @click="submitReport">ì‹ ê³ í•˜ê¸°</button>
     </div>
     </template>
 
@@ -48,18 +48,18 @@ var app = new Vue({
     methods: {
         reportPost() {
         	var self = this;
-        	self.selectedReason = ""; // ÃÊ±âÈ­
-        	self.otherReason = ""; // ÃÊ±âÈ­
-        	self.reportDescription = ""; // ÃÊ±âÈ­
+        	self.selectedReason = ""; // ì´ˆê¸°í™”
+        	self.otherReason = ""; // ì´ˆê¸°í™”
+        	self.reportDescription = ""; // ì´ˆê¸°í™”
         	self.showReportModal = true;
           },
           submitReport() {
         	 var self = this;
             if (!self.selectedReason) {
-              alert("½Å°í »çÀ¯¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä.");
+              alert("ì‹ ê³  ì‚¬ìœ ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”.");
               return;
             }
-            // ½Å°í µ¥ÀÌÅÍ¸¦ ¼­¹ö·Î Àü¼ÛÇÏ´Â ·ÎÁ÷ Ãß°¡
+            // ì‹ ê³  ë°ì´í„°ë¥¼ ì„œë²„ë¡œ ì „ì†¡í•˜ëŠ” ë¡œì§ ì¶”ê°€
             var reportData = {
               gNo: self.gNo,
               reason: self.selectedReason,
@@ -69,12 +69,12 @@ var app = new Vue({
             };
 
             $.ajax({
-              url: "report.dox", // ½Å°í µ¥ÀÌÅÍ¸¦ Ã³¸®ÇÒ ¼­¹ö API ÁÖ¼Ò
+              url: "report.dox", // ì‹ ê³  ë°ì´í„°ë¥¼ ì²˜ë¦¬í•  ì„œë²„ API ì£¼ì†Œ
               dataType: "json",
               type: "POST",
               data: reportData,
               success: function (data) {
-                alert("½Å°í°¡ Á¢¼öµÇ¾ú½À´Ï´Ù. °¨»çÇÕ´Ï´Ù.");
+                alert("ì‹ ê³ ê°€ ì ‘ìˆ˜ë˜ì—ˆìŠµë‹ˆë‹¤. ê°ì‚¬í•©ë‹ˆë‹¤.");
                 window.opener.location.reload();
                 window.close();
               }

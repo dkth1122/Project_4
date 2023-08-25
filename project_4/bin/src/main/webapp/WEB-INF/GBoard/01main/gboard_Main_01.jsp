@@ -1,27 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<title>Insert title here</title>
+<title>Membership Main</title>
+<%@ include file="../../Product/sexyheader.jsp" %>
+ <%-- <%@ include file="/footer.jsp" %> --%>
+<style>
+	ul, li{
+		text-decoration: none;
+		list-style: none;
+	}
+	.container{
+		padding-top:130px;
+	}
+	.imgBox {
+    width: 100%; /* ë°•ìŠ¤ê°€ ì „ì²´ ë„ˆë¹„ë¥¼ ì°¨ì§€í•˜ë„ë¡ ì„¤ì • */
+    max-height: 400px; /* ë†’ì´ë¥¼ ìµœëŒ€ 200pxë¡œ ì œí•œ */
+    overflow: hidden; /* ìµœëŒ€ ë†’ì´ ì´ìƒì˜ ë¶€ë¶„ì€ ê°€ë ¤ì¤Œ */
+    background-color : black;
+    text-align:center;
+}
+
+.imgBox img {
+	margin : 0px auto;
+      width: 531px;
+    aspect-ratio: auto 531 / 299;
+    height: 299px;
+    text-align:center;
+}
+.artistArea{
+	padding : 80px;
+}
+.artistArea2{
+	margin : 0px 300px;
+}
+</style>
 </head>
 <body>
 	<div id="app">
-	<h1>¾ÆÆ¼½ºÆ® °Ô½ÃÆÇ ¸ŞÀÎ ÆäÀÌÁöÁö·Õ~</h1>
-	   <button @click="fnMove('my')">¸¶ÀÌÆäÀÌÁö</button>
-	<div>¸â¹ö½Ê Å×ÀÌºí Á¶ÀÎÇØ¼­ ±× ¾ÆÆ¼½ºÆ®¸¸ ¹öÆ° º¸ÀÌµµ·Ï~!</div>
-		<button @click="fnMove('b')">¹æÅº¼Ò³â´Ü</button>
-		<button @click="fnMove('t')">Åõ¸ğ·Î¿ì¹ÙÀÌÅõ°Ô´õ</button>
-		<button @click="fnMove('e')">¿£ÇÏÀÌÇÂ</button>
-		<button @click="fnMove('s')">¼¼ºìÆ¾</button>
-		<button @click="fnMove('f')">ÇÁ·Î¹Ì½º³ªÀÎ</button>
-		<button @click="fnMove('l')">¸£¼¼¶óÇË</button>
-		<button @click="fnMove('n')">´ºÁø½º</button>
-		<button @click="fnMove('d')">º¸ÀÌ³Ø½ºÆ®µµ¾î</button>
-		<button @click="fnMove('z')">ÁöÄÚ</button>
+		<div class="container">
+			<div class="imgBox">
+				<img src="https://cdn-v2pstatic.weverse.io/wev_web_fe/assets/web/home_banner_slogan.gif"/>
+			</div>
+			<div class="artistArea">
+				<div class="artistArea2">
+					<h2>ê´€ì‹¬ìˆëŠ” ì•„í‹°ìŠ¤íŠ¸ë¥¼ ë§Œë‚˜ë³´ì„¸ìš”!</h2>
+				</div>				
+			</div>
+			
+			   <button @click="fnMove('my')">ë§ˆì´í˜ì´ì§€</button>
+				<ul>
+		            <li v-for="item in list">
+		                <button @click="fnMove(item.artist)" >ë°©íƒ„ì†Œë…„ë‹¨</button>
+		                <button @click="fnMove(item.artist)" >íˆ¬ëª¨ë¡œìš°ë°”ì´íˆ¬ê²Œë”</button>
+		                <button @click="fnMove(item.artist)" >ì—”í•˜ì´í”ˆ</button>
+		                <button @click="fnMove(item.artist)" >ì„¸ë¸í‹´</button>
+		                <button @click="fnMove(item.artist)" >í”„ë¡œë¯¸ìŠ¤ë‚˜ì¸</button>
+		                <button @click="fnMove(item.artist)" >ë¥´ì„¸ë¼í•Œ</button>
+		                <button @click="fnMove(item.artist)" >ë‰´ì§„ìŠ¤</button>
+		                <button @click="fnMove(item.artist)" >ë³´ì´ë„¥ìŠ¤íŠ¸ë„ì–´</button>
+		                <button @click="fnMove(item.artist)">ì§€ì½”</button>
+		            </li>
+		        </ul>
+		     </div>
 	</div>
 </body>
 </html>
@@ -30,53 +75,28 @@
 	        el: '#app',
 	        data: {
 	            list: [],
+	            uId : "${sessionId}"
 	        },// data
 	        methods: {
 	            fnGetList: function() {
 	                var self = this;
-	                var nparmap = {};
+	                var nparmap = {uId : self.uId};
 	                $.ajax({
-	                    url: "list.dox",
+	                    url: "/gboard/membershipCheck.dox",
 	                    dataType: "json",
 	                    type: "POST",
 	                    data: nparmap,
 	                    success: function (data) {
 	                        self.list = data.list;
-	                        console.log(data);
+	                        console.log(self.list);
 	                    }
 	                });
 	            }, fnMove : function(artist){
-	            	
-	            	if(artist == 'b'){
-	            		location.href = 'bts.do'; 
-	            	}
-	            	else if(artist == 't'){
-	            		location.href = 'txt.do'; 
-	            	}
-	            	else if(artist == 'e'){
-	            		location.href = 'ehp.do'; 
-	            	}
-	            	else if(artist == 's'){
-	            		location.href = 'svt.do'; 
-	            	}
-	            	else if(artist == 'f'){
-	            		location.href = 'fmn.do'; 
-	            	}
-	            	else if(artist == 'l'){
-	            		location.href = 'lsf.do'; 
-	            	}
-	            	else if(artist == 'n'){
-	            		location.href = 'njs.do'; 
-	            	}
-	            	else if(artist == 'd'){
-	            		location.href = 'bnd.do'; 
-	            	}
-	            	else if(artist == 'z'){
-	            		location.href = 'zic.do'; 
-	            	}
-	            	else if(artist == 'my'){
-	            		location.href = "myPage.do";
-	            	}
+	                if (artist === 'my') {
+	                    location.href = "myPage.do";
+	                } else {
+	                    location.href = artist.toLowerCase() + '.do'; // ì˜ˆ: bts.do, txt.do ë“±
+	                }
 	            }
 	        }, // methods
 	        created: function () {

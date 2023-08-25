@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
         body{
@@ -20,7 +20,6 @@
                text-align: center;
                float: left;
                margin-left: 20px;
-
            }
        .mainBox{
      		   width : 1200px;
@@ -42,7 +41,6 @@
        .pagination {
            margin:24px;
            display: inline-flex;
-
        }
        ul {
        }
@@ -96,46 +94,46 @@
 
 <div id="app">
 	<div class="mainBox">
-	
 
-	
-	<div class="mainPos2">»óÇ° °ü¸®</div>
+
+
+	<div class="mainPos2">ìƒí’ˆ ê´€ë¦¬</div>
 	<hr>
 	<div class="productListButtonPos">
-		<button @click="fnProductAdd">»óÇ° Ãß°¡</button>
-		<button @click="fnProductDelete">»óÇ° »èÁ¦</button>
+		<button @click="fnProductAdd">ìƒí’ˆ ì¶”ê°€</button>
+		<button @click="fnProductDelete">ìƒí’ˆ ì‚­ì œ</button>
 	</div>
 	<div class="mainInput">
-	    
+
 		<select v-model="artist" @change="fnArtistSearch">
-		  <option value="All">ÀüÃ¼</option>
-		  <option value="BTS">¹æÅº¼Ò³â´Ü</option>
-		  <option value="TXT">Åõ¸ğ·Î¿ì¹ÙÀÌÅõ°Ô´õ</option>
-		  <option value="EHP">¿£ÇÏÀÌÇÂ</option>
-		  <option value="SVT">¼¼ºìÆ¾</option>
-		  <option value="FMN">ÇÁ·Î¹Ì½º³ªÀÎ</option>
-		  <option value="LSF">¸£¼¼¶óÇË</option>
-		  <option value="NJS">´ºÁø½º</option>
-		  <option value="BND">º¸ÀÌ³Ø½ºÆ®µµ¾î</option>
-		  <option value="ZIC">ÁöÄÚ</option>
+		  <option value="All">ì „ì²´</option>
+		  <option value="BTS">ë°©íƒ„ì†Œë…„ë‹¨</option>
+		  <option value="TXT">íˆ¬ëª¨ë¡œìš°ë°”ì´íˆ¬ê²Œë”</option>
+		  <option value="EHP">ì—”í•˜ì´í”ˆ</option>
+		  <option value="SVT">ì„¸ë¸í‹´</option>
+		  <option value="FMN">í”„ë¡œë¯¸ìŠ¤ë‚˜ì¸</option>
+		  <option value="LSF">ë¥´ì„¸ë¼í•Œ</option>
+		  <option value="NJS">ë‰´ì§„ìŠ¤</option>
+		  <option value="BND">ë³´ì´ë„¥ìŠ¤íŠ¸ë„ì–´</option>
+		  <option value="ZIC">ì§€ì½”</option>
 		</select>
 		<input type="text" v-model="keyword" @keyup.enter="fnProduckSearch"> 
-	    <button @click="fnProduckSearch">°Ë»ö</button>
+	    <button @click="fnProduckSearch">ê²€ìƒ‰</button>
 	</div>
     <table>
 		<tr>
 			<th></th>
-			<th>¾ÆÆ¼½ºÆ®</th>
-			<th>»óÇ°ÄÚµå</th>
-			<th>ÀÌ¸§</th>
-			<th>°¡°İ</th>
-			<th>Àç°í</th>
-			<th>Àç°íÁ¶Á¤</th>
-			<th>¸â¹ö½Ê</th>
-			<th>ÆÇ¸ÅÀÏ</th>
-			<th>Á¾·ù</th>
+			<th>ì•„í‹°ìŠ¤íŠ¸</th>
+			<th>ìƒí’ˆì½”ë“œ</th>
+			<th>ì´ë¦„</th>
+			<th>ê°€ê²©</th>
+			<th>ì¬ê³ </th>
+			<th>ì¬ê³ ì¡°ì •</th>
+			<th>ë©¤ë²„ì‹­</th>
+			<th>íŒë§¤ì¼</th>
+			<th>ì¢…ë¥˜</th>
 		</tr>
-		
+
 		<tr v-for="(item, index) in list">
 			<td><input type="radio" name="product" :value="item.pNo" v-model="pNo"></td>
 			<td>{{item.artist}}</td>
@@ -143,14 +141,14 @@
 			<td>{{item.pName}}</td>
 			<td>{{Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'})}}</td>
 			<td>{{item.stock}}</td>
-			<td><button @click="fnStockPopup(item)">Àç°í</button></td>
+			<td><button @click="fnStockPopup(item)">ì¬ê³ </button></td>
 			<td>{{item.membership}}</td>
 			<td>{{item.pDate}}</td>
 			<td>{{item.category}}</td>
 		</tr>
-	
+
 	</table>
-	
+
 	<template>
 	  <paginate
 	    :page-count="pageCount"
@@ -162,10 +160,10 @@
 	    :container-class="'pagination'"
 	    :page-class="'page-item'">
 	  </paginate>
-	  
+
 	</template>
     </div>
-    
+
 </div>
 </body>
 </html>
@@ -216,10 +214,10 @@ var app = new Vue({
         	var self = this;
             var nparmap = {pNo : self.pNo};
             if (self.pNo == "") {
-                alert("»èÁ¦ÇÒ »óÇ°À» ¼±ÅÃÇØÁÖ¼¼¿ä.");
+                alert("ì‚­ì œí•  ìƒí’ˆì„ ì„ íƒí•´ì£¼ì„¸ìš”.");
                 return;
             }
-            if(!confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+            if(!confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
                 return;
             }
             $.ajax({
@@ -228,7 +226,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("»èÁ¦µÇ¾ú½À´Ï´Ù.");
+                	alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
                 	self.fnGetList();
                 }
             }); 

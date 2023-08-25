@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
  <script src="../js/jquery.js"></script>
  <link href="../css/membership.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>¸â¹ö½Ê °Ô½ÃÆÇ</title>
+<title>ë©¤ë²„ì‹­ ê²Œì‹œíŒ</title>
 <style>
 	/* body{
-		font-family: aÅ¸ÀÌÆ²°íµñ2;
+		font-family: aíƒ€ì´í‹€ê³ ë”•2;
 		width : 1250px;
 		margin : 10px auto;
 	}
@@ -90,17 +90,17 @@
     </nav>
     
     <div class="artistNewFeed">
-        <!-- ³¯Â¥ ºü¸¥ ¼øÀ¸·Î Á¤·Ä ÈÄ Ãâ·Â -->
+        <!-- ë‚ ì§œ ë¹ ë¥¸ ìˆœìœ¼ë¡œ ì •ë ¬ í›„ ì¶œë ¥ -->
         	<ul class="feedType" v-if="index  < 3 " v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
 		        <a href="javascript:;">
 	         <div>
-	            	<li><span>COMMENT ¢¾ </span>{{item.gcCnt}}</li>
+	            	<li><span>COMMENT â™¥ </span>{{item.gcCnt}}</li>
 	                <li>{{item.artist}}</li>
 	            	<li>{{item.nickName}}</li>
 	            	<li><img :src = "item.gpPath" class="profile-image"></li>
 	                <li>{{item.gDate}}</li>
 	                <li>{{item.gContent}}</li>
-	                <li><span>LIKE ¢¾ </span>{{item.gLike}}</li>
+	                <li><span>LIKE â™¥ </span>{{item.gLike}}</li>
 	            </div>
 		       </a>
        	 	</ul>
@@ -110,24 +110,24 @@
     <div class="write">
         <textarea rows="10" cols="100" v-model="content"></textarea>
 			<span><input type="file" id="file1" name="file1" accept=".gif, .jpg, .png" @change="handleFileChange" style="background-color:white;"></span>
-        <button @click="fnAdd">µî·Ï</button>
+        <button @click="fnAdd">ë“±ë¡</button>
     </div>
     </nav>
     <hr>
     
     <div class="container">
         <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
-      		<li><span>COMMENT ¢¾ </span>{{item.gcCnt}}</li>
+      		<li><span>COMMENT â™¥ </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
 	        <li>{{item.nickName}}<img :src = "item.gpPath" class="profile-image"></li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
-            <li><span>LIKE ¢¾ </span>{{item.gLike}}</li>
+            <li><span>LIKE â™¥ </span>{{item.gLike}}</li>
             <img v-if="item.path" :src="item.path" class="image" />
 			<img v-else class="imageX" />
-            <li><button @click="fnLike(item.gNo)">ÁÁ¾Æ¿ä</button></li>
-            <li><button @click="fnComment(item.gNo)">´ñ±Û</button></li>
-            <li><button @click="reportPost(item.gNo)">½Å°í</button></li>
+            <li><button @click="fnLike(item.gNo)">ì¢‹ì•„ìš”</button></li>
+            <li><button @click="fnComment(item.gNo)">ëŒ“ê¸€</button></li>
+            <li><button @click="reportPost(item.gNo)">ì‹ ê³ </button></li>
             <li v-if="uId == item.uId">
                 <a href="javascript:;">
                     <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item)"></i></div>
@@ -185,10 +185,10 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     if (self.keyword === "") {
-                        self.fnGetList(); // Å°¿öµå°¡ ºñ¾îÀÖÀ¸¸é ÀüÃ¼ ¸ñ·ÏÀ» º¸¿©ÁÜ
+                        self.fnGetList(); // í‚¤ì›Œë“œê°€ ë¹„ì–´ìˆìœ¼ë©´ ì „ì²´ ëª©ë¡ì„ ë³´ì—¬ì¤Œ
                         self.search = "";
                     } else {
-                        self.list = data.info; // Å°¿öµå°¡ ÀÖÀ¸¸é °Ë»ö °á°ú¸¦ º¸¿©ÁÜ
+                        self.list = data.info; // í‚¤ì›Œë“œê°€ ìˆìœ¼ë©´ ê²€ìƒ‰ ê²°ê³¼ë¥¼ ë³´ì—¬ì¤Œ
                         self.search = "";
                     }
                 }
@@ -198,12 +198,12 @@ var app = new Vue({
             var self = this;
 
 
-            if (!confirm("µî·ÏÇÏ½Ã°Ú½À´Ï±î?")) {
+            if (!confirm("ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) {
                 return;
             }
             
             if(self.content == null || self.content == ""){
-            	alert("³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+            	alert("ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
                 return;
             }
             var nparmap = {content: self.content, artist: self.artist, uId : self.uId };
@@ -214,7 +214,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("µî·ÏµÇ¾ú¾î¿ä.");
+                    alert("ë“±ë¡ë˜ì—ˆì–´ìš”.");
                     self.comment = "";
                     self.fnGetList();
  	           		var form = new FormData();
@@ -224,7 +224,7 @@ var app = new Vue({
                 }
             });
         },
-     // ÆÄÀÏ ¾÷·Îµå
+     // íŒŒì¼ ì—…ë¡œë“œ
 	     upload : function(form){
 	    	var self = this;
 	         $.ajax({
@@ -240,7 +240,7 @@ var app = new Vue({
 		}
         ,fnRemove: function (item) {
             var self = this;
-            if (!confirm("»èÁ¦ÇÏ½Ã°Ú¾î¿ä?")) {
+            if (!confirm("ì‚­ì œí•˜ì‹œê² ì–´ìš”?")) {
                 return;
             }
             var nparmap = item;
@@ -250,7 +250,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("»èÁ¦µÇ¾ú½À´Ï´Ù.");
+                    alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
                     self.fnGetList();
                 }
             });
@@ -287,9 +287,9 @@ var app = new Vue({
         	
         },  reportPost : function(gNo) {
             var self = this;
-            self.selectedReason = ""; // ÃÊ±âÈ­
-            self.otherReason = ""; // ÃÊ±âÈ­
-            self.reportDescription = ""; // ÃÊ±âÈ­
+            self.selectedReason = ""; // ì´ˆê¸°í™”
+            self.otherReason = ""; // ì´ˆê¸°í™”
+            self.reportDescription = ""; // ì´ˆê¸°í™”
             self.showReportModal = true;
             
             var option = "width=500,height=500,top=100,right";
@@ -304,7 +304,7 @@ var app = new Vue({
             var ext = file.name.split('.').pop().toLowerCase();
 
             if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
-                alert('gif, jpg, jpeg, png Å¸ÀÔÀÇ ÆÄÀÏ¸¸ ¾÷·Îµå °¡´ÉÇÕ´Ï´Ù.');
+                alert('gif, jpg, jpeg, png íƒ€ì…ì˜ íŒŒì¼ë§Œ ì—…ë¡œë“œ ê°€ëŠ¥í•©ë‹ˆë‹¤.');
                 event.target.value = '';
             }
         }

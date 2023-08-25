@@ -9,75 +9,75 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버십 댓글</title>
 <style>
-	*{
-		font-family: a타이틀고딕2;
-	}
-	body{
-		width : 500px;
-		margin : 10px auto;
-	}
-	ul, li{
-		text-decoration : none;
-		list-style : none;	
-	}
-	.feedType{
-		width: 300px;
-		height: 200px;
-	    display: inline-block; 
-	}
-	 .feedType > div {
-	 	width: 300px;
-		height: 200px;
-	    position: relative; 
-	   	display: inline-block; 
-	    border: 1px solid tomato;
-	    padding: 32px;
-	    margin: 10px; 
-	    vertical-align: top; 
-	    box-sizing: border-box; 
-	  }
-	.container{
-		width: 500px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	a{
+   *{
+      font-family: a타이틀고딕2;
+   }
+   body{
+   background-color:#D0ACDB;
+      width : 500px;
+      margin : 10px auto;
+   }
+   ul, li{
+      text-decoration : none;
+      list-style : none;   
+   }
+   .feedType{
+      width: 300px;
+      height: 200px;
+       display: inline-block; 
+   }
+    .feedType > div {
+       width: 300px;
+      height: 200px;
+       position: relative; 
+         display: inline-block; 
+       border: 1px solid tomato;
+       padding: 32px;
+       margin: 10px; 
+       vertical-align: top; 
+       box-sizing: border-box; 
+     }
+   .container{
+      width: 500px;
+      border: 1px solid tomato;
+      padding: 32px;
+   }
+   a{
         text-decoration: none;
         color: inherit;
    }
    .write{
-   		width: 300px;
-		height: 100px;
-		border: 1px solid tomato;
-		padding: 32px;
+         width: 300px;
+      height: 100px;
+      border: 1px solid tomato;
+      padding: 32px;
    }
    
    .container > ul{
-   		border: 1px solid tomato;
+         border: 1px solid tomato;
    }
    
-   	   .profile-image {
-		    width: 50px; /* 원하는 이미지 크기 조절 */
-		    height: 50px;
-		    border : 1px solid #BB91E7;
-		    border-radius: 50%; /* 50%로 설정하여 동그라미 모양으로 자름 */
-		    object-fit: cover; /* 이미지를 화면에 맞게 조절하여 잘린 부분이 잘 보이도록 함 */
-		}
-		
-		hr{
-			 border: none; /* 기본 테두리 제거 */
-	        height: 2px; /* 높이 설정 */
-	        background: linear-gradient(to right, #BB91E7, #F2DAED); /* 그라디언트 배경 설정 */
-	        margin: 20px 0; /* 위아래 마진 설정 */
-		}
-		.image{
-			border : none;
-			width : 300px;
-			height : 300px;
-		}
-		.imageX{
-			display: none;
-		}
+  .profile-image {
+      width: 50px; /* 원하는 이미지 크기 조절 */
+      height: 50px;
+      border : 1px solid #BB91E7;
+      border-radius: 50%; /* 50%로 설정하여 동그라미 모양으로 자름 */
+      }
+      
+      hr{
+          border: none; /* 기본 테두리 제거 */
+           height: 2px; /* 높이 설정 */
+           background: linear-gradient(to right, #BB91E7, #F2DAED); /* 그라디언트 배경 설정 */
+           margin: 20px 0; /* 위아래 마진 설정 */
+      }
+      .image{
+         border : none;
+         width : 300px;
+         height : 300px;
+      }
+      .imageX{
+         display: none;
+      }
 </style>
 </head>
 <body>
@@ -87,12 +87,12 @@
         <ul v-for="item in list">
             <li>{{item.artist}}</li>
             <li>{{item.nickName}}</li>
-	        <li><img :src = "item.gpPath" class="profile-image"></li>
+           <li><img :src = "item.gpPath" class="profile-image"></li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
             <li><span>좋아요 : </span>{{item.gLike}}</li>
             <img v-if="item.path" :src="item.path" class="image" />
-			<img v-else class="imageX" />
+         <img v-else class="imageX" />
             <li><button @click="fnLike(item.gNo)">좋아요</button></li>
             <li><button @click="reportPost1(item.gNo)">신고</button></li>
             <li> 
@@ -105,42 +105,42 @@
         <ul v-for="item in commentList" v-if="item.gcDelYN !== 'Y'">
             <li>{{item.uId}}</li>
             <li>{{item.nickName}}</li>
-	        <li><img :src = "item.gpPath" class="profile-image"></li>
+           <li><img :src = "item.gpPath" class="profile-image"></li>
             <li>{{item.gcDate}}</li>
             <li>{{item.gcContent}}</li>
             <li><span>좋아요 : </span>{{item.gcLike}}</li>
             <li><button @click="fnCommnetLike(item.gcNo)">좋아요</button></li>
             <li><button @click="reportPost2(item.gcNo)">신고</button></li>
-        	<li v-if="item.uId == uId">
-        		<a href="javascript:;">
-                	<div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item.gcNo)"></i></div>
+           <li v-if="item.uId == uId">
+              <a href="javascript:;">
+                   <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item.gcNo)"></i></div>
                 </a>
             </li>
             
             <li>
-            	<div><button @click="fnCoCommentView(item.gcNo)">댓글</button> </div>
-            	
-            	<ul v-for ="citem in cocommentList" v-if="citem.gcDelYN !== 'Y' && citem.gcGroup == item.gcNo">
-            		<li>{{citem.nickName}}</li>
-	       			<li><img :src = "citem.gpPath" class="profile-image"></li>
-		            <li>{{citem.gcDate}}</li>
-		            <li>{{citem.gcContent}}</li>	
-		            <li><span>좋아요 : </span>{{citem.gcLike}}</li>
-		            <li><button @click="fnCommnetLike(citem.gcNo, item.gcNo)">좋아요</button></li>
-		            <li><button @click="reportPost2(citem.gcNo)">신고</button></li>
-		            <li v-if="citem.uId == uId">
-        				<a href="javascript:;">
-                			<div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnCocoRemove(citem.gcNo)"></i></div>
-                		</a>
-	           		</li>
-	           		
-            	</ul>
-            	<div><button @click="fnReload" v-if="reload">닫기</button></div>
-    			<textarea rows="5" cols="30" v-model="cocomment" ></textarea>
-            	<button @click="fnCoComment(item)" >등록</button>
-            	
-   		   </li>
-   		   	
+               <div><button @click="fnCoCommentView(item.gcNo)">댓글</button> </div>
+               
+               <ul v-for ="citem in cocommentList" v-if="citem.gcDelYN !== 'Y' && citem.gcGroup == item.gcNo">
+                  <li>{{citem.nickName}}</li>
+                   <li><img :src = "citem.gpPath" class="profile-image"></li>
+                  <li>{{citem.gcDate}}</li>
+                  <li>{{citem.gcContent}}</li>   
+                  <li><span>좋아요 : </span>{{citem.gcLike}}</li>
+                  <li><button @click="fnCommnetLike(citem.gcNo, item.gcNo)">좋아요</button></li>
+                  <li><button @click="reportPost2(citem.gcNo)">신고</button></li>
+                  <li v-if="citem.uId == uId">
+                    <a href="javascript:;">
+                         <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnCocoRemove(citem.gcNo)"></i></div>
+                      </a>
+                    </li>
+                    
+               </ul>
+               <div><button @click="fnReload" v-if="reload">닫기</button></div>
+             <textarea rows="5" cols="30" v-model="cocomment" ></textarea>
+               <button @click="fnCoComment(item)" >등록</button>
+               
+            </li>
+               
         </ul>
         <hr>
     <div class="write">
@@ -171,7 +171,7 @@ var app = new Vue({
         
     },// data
     methods: {
-    	 fnGetList: function () {
+        fnGetList: function () {
              var self = this;
              var nparmap = { artist: self.artist, gNo : self.gNo };
              $.ajax({
@@ -184,7 +184,7 @@ var app = new Vue({
                  }
              });
          },
-    	 fnGetCnt: function () {
+        fnGetCnt: function () {
              var self = this;
              var nparmap = {gNo : self.gNo };
              $.ajax({
@@ -244,7 +244,7 @@ var app = new Vue({
             });
         },
         fnMove: function () {
-        	window.close();
+           window.close();
         
         },fnLike: function(gNo) {
             var self = this;
@@ -255,7 +255,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                	self.fnGetList();
+                   self.fnGetList();
                 }
             });
             
@@ -268,8 +268,8 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                	self.fnGetComments();
-                	self.fnCoCommentView(gcGroup);
+                   self.fnGetComments();
+                   self.fnCoCommentView(gcGroup);
                 }
             });
             
@@ -293,11 +293,11 @@ var app = new Vue({
             
             $.ajax({
                 url: "cocomment.dox",
-                dataType: "json",	
+                dataType: "json",   
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                	location.reload();
+                   location.reload();
                 }
             });
             
@@ -306,7 +306,7 @@ var app = new Vue({
             var nparmap = { gcNo: gcNo, uId: self.uId};
             
             if(!confirm("삭제하시겠습니까?")){
-            	return;
+               return;
             }
             
             $.ajax({
@@ -315,13 +315,13 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                	alert("삭제완료");
-                	self.fnCoCommentView();
+                   alert("삭제완료");
+                   self.fnCoCommentView();
                 }
             });
         }, fnReload : function(){
-        	location.reload();
-        	
+           location.reload();
+           
         }, reportPost1 : function(gNo) {
             var self = this;
             self.selectedReason = ""; // 초기화
@@ -329,7 +329,7 @@ var app = new Vue({
             self.reportDescription = ""; // 초기화
             self.showReportModal = true;
             
-            var option = "width=500,height=500,top=100,right";
+            var option = "width=auto,height=auto,top=100,right";
             var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
             window.open(url, "gNo", option);
           

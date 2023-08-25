@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 
@@ -59,10 +59,10 @@
 <div id="app1">
     <div class="headerCenter">
     <a href="javascript:;" @click="fnHome"><img class="headerImg" src="../img/logo/veryperiii.png"></a>
-	<div class="headerPos1"> {{sName}}´Ô, È¯¿µÇÕ´Ï´Ù. <a href="javascript:;" @click="fnLogout"><i class="fa-solid fa-right-from-bracket" style="color: #7a0561;"></i></a></div>
+	<div class="headerPos1"> {{sName}}ë‹˜, í™˜ì˜í•©ë‹ˆë‹¤. <a href="javascript:;" @click="fnLogout"><i class="fa-solid fa-right-from-bracket" style="color: #7a0561;"></i></a></div>
 	<div class="headerBut1">
-	<button @click="fnMain">º£¸®Æä¸®¼¥</button>
-	<button @click="fnGBoard">¸â¹ö½Ê°Ô½ÃÆÇ</button>
+	<button @click="fnMain">ë² ë¦¬í˜ë¦¬ìƒµ</button>
+	<button @click="fnGBoard">ë©¤ë²„ì‹­ê²Œì‹œíŒ</button>
     </div>
     </div>
 </div>
@@ -85,7 +85,7 @@ var app1 = new Vue({
 			window.open('../gboard/main.do', '_blank');
 		},
 		fnLogout : function() {
-			location.href="../staff/login.do";
+			location.href="../user/login.do";
 		},
 		fnHome : function(){
             location.href = '../staff/home.do';

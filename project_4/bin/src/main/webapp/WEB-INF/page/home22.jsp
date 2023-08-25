@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 
@@ -14,22 +14,22 @@
 
     
     <meta name="title" content="HYBE">
-    <meta name="description" content="HYBE의 홈페이지 입니다.">
-    <meta name="keywords" content="HYBE, 하이브, 빅히트 뮤직, Big Hit Music, 빅히트, Bighit">
+    <meta name="description" content="HYBE�� �����댁� ������.">
+    <meta name="keywords" content="HYBE, ���대�, 鍮����� 裕ㅼ�, Big Hit Music, 鍮�����, Bighit">
 
     <!--twitter-->
     <meta name="twitter:card" content="http://hybecorp.com/images/common/logo-b.svg">
     <meta name="twitter:title" content="HYBE">
     <meta name="twitter:image" content="http://hybecorp.com/images/common/logo-b.svg">
     <meta name="twitter:url" content="http://hybecorp.com">
-    <meta name="twitter:description" content="HYBE의 홈페이지 입니다.">
+    <meta name="twitter:description" content="HYBE�� �����댁� ������.">
 
     <!-- open graph -->
     <meta property="og:title" content="HYBE">
     <meta property="og:type" content="article">
     <meta property="og:url" content="http://hybecorp.com">
     <meta property="og:image" content="http://hybecorp.com/images/common/logo-b.svg">
-    <meta property="og:description" content="HYBE의 홈페이지 입니다.">
+    <meta property="og:description" content="HYBE�� �����댁� ������.">
 
     <meta name="google-site-verification" content="DFDaD_3qg-Au_fX0Cv3zkSWc-ksGQNclHU6OJSwAnsM">
 
@@ -88,93 +88,93 @@
     <nav class="nav ver_w">
         <div class="nav_bg"></div>
         <ul class="gnb">
-            <li> <!-- TODO: 외부 OPEN PAGE 임시 추후 삭제 -->
+            <li> <!-- TODO: �몃� OPEN PAGE ���� 異��� ���� -->
                 <a href="#">COMPANY</a>
                 <ul class="menu">
                     <li>
                         <a href="/kor/company/info">
-                            기업소개
+                            湲곗����媛�
                         </a>
                     </li>
                     <li>
                         <a href="/kor/company/artist">
-                            아티스트
+                            ���곗�ㅽ��
                         </a>
                     </li>
                     <li>
                         <a href="/kor/company/business">
-                            비즈니스
+                            鍮�利�����
                         </a>
                     </li>
 
                     
                 </ul>
             </li>
-            <li> <!-- TODO: 외부 OPEN PAGE 임시 추후 삭제 -->
+            <li> <!-- TODO: �몃� OPEN PAGE ���� 異��� ���� -->
                 <a href="#">INVESTORS</a>
                 <ul class="menu">
                     <li>
                         <a href="/kor/ir/archive" rel="nosublink">
-                            IR자료실
+                            IR��猷���
                         </a>
                     </li>
                     <li>
                         <a href="/kor/ir/event" rel="nosublink">
-                            IR행사일정
+                            IR���ъ�쇱��
                         </a>
                     </li>
                     <li>
                         <a href="/kor/ir/share" rel="nosublink">
-                            주가정보
+                            二쇨���蹂�
                         </a>
                     </li>
                     <li>
                         <a href="/kor/ir/finance" rel="nosublink">
-                            재무정보
+                            �щТ��蹂�
                         </a>
                     </li>
                     <li>
                         <a href="/kor/ir/official" rel="nosublink">
-                            공시정보
+                            怨듭����蹂�
                         </a>
                     </li>
                     <li>
                         <a href="/kor/ir/announce" rel="nosublink">
-                            공고
+                            怨듦�
                         </a>
                     </li>
                     <li>
                         <a href="/kor/ir/structure" rel="nosublink">
-                            기업지배구조
+                            湲곗��吏�諛곌뎄議�
                         </a>
                     </li>
                     <li>
                         <a href="/kor/ir/esg" rel="nosublink">
-                            지속가능경영
+                            吏���媛��κ꼍��
                         </a>
                     </li>
 
                     
                 </ul>
             </li>
-            <li> <!-- TODO: 외부 OPEN PAGE 임시 추후 삭제 -->
+            <li> <!-- TODO: �몃� OPEN PAGE ���� 異��� ���� -->
                 <a href="#">NEWS</a>
                 <ul class="menu">
                     <li>
                         <a href="/kor/news/news" rel="nosublink">
-                            소식
+                            ����
                         </a>
                     </li>
                     <li>
                         <a href="/kor/news/notice" rel="nosublink">
-                            공지사항
+                            怨듭��ы��
                         </a>
                     </li>
 
                     
                 </ul>
             </li>
-            <li> <!-- TODO: 외부 OPEN PAGE 임시 추후 삭제 -->
+            <li> <!-- TODO: �몃� OPEN PAGE ���� 異��� ���� -->
                 <a href="#">CAREERS</a>
                 <ul class="menu">
                     <li>
@@ -184,7 +184,7 @@
                     </li>
                     <li>
                         <a href="https://careers.hybecorp.com/?locale=ko_KR" rel="nosublink">
-                            지원하기
+                            吏�����湲�
                         </a>
                     </li>
 
@@ -220,41 +220,41 @@
                 <li>
                     <a href="#">COMPANY</a>
                     <ul class="list">
-                        <li><a href="/kor/company/info">기업소개</a>
+                        <li><a href="/kor/company/info">湲곗����媛�</a>
                         </li>
-                        <li><a href="/kor/company/artist">아티스트</a>
+                        <li><a href="/kor/company/artist">���곗�ㅽ��</a>
                         </li>
-                        <li><a href="/kor/company/business">비즈니스</a>
+                        <li><a href="/kor/company/business">鍮�利�����</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">INVESTORS</a>
                     <ul class="list">
-                        <li><a href="/kor/ir/archive">IR자료실</a>
+                        <li><a href="/kor/ir/archive">IR��猷���</a>
                         </li>
-                        <li><a href="/kor/ir/event">IR행사일정</a>
+                        <li><a href="/kor/ir/event">IR���ъ�쇱��</a>
                         </li>
-                        <li><a href="/kor/ir/share">주가정보</a>
+                        <li><a href="/kor/ir/share">二쇨���蹂�</a>
                         </li>
-                        <li><a href="/kor/ir/finance">재무정보</a>
+                        <li><a href="/kor/ir/finance">�щТ��蹂�</a>
                         </li>
-                        <li><a href="/kor/ir/official">공시정보</a>
+                        <li><a href="/kor/ir/official">怨듭����蹂�</a>
                         </li>
-                        <li><a href="/kor/ir/announce">공고</a>
+                        <li><a href="/kor/ir/announce">怨듦�</a>
                         </li>
-                        <li><a href="/kor/ir/structure">기업지배구조</a>
+                        <li><a href="/kor/ir/structure">湲곗��吏�諛곌뎄議�</a>
                         </li>
-                        <li><a href="/kor/ir/esg">지속가능경영</a>
+                        <li><a href="/kor/ir/esg">吏���媛��κ꼍��</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">NEWS</a>
                     <ul class="list">
-                        <li><a href="/kor/news/news">소식</a>
+                        <li><a href="/kor/news/news">����</a>
                         </li>
-                        <li><a href="/kor/news/notice">공지사항</a>
+                        <li><a href="/kor/news/notice">怨듭��ы��</a>
                         </li>
                     </ul>
                 </li>
@@ -263,7 +263,7 @@
                     <ul class="list">
                         <li><a href="/kor/career/crew">HYBE DNA</a>
                         </li>
-                        <li><a href="https://careers.hybecorp.com/?locale=ko_KR">지원하기</a>
+                        <li><a href="https://careers.hybecorp.com/?locale=ko_KR">吏�����湲�</a>
                         </li>
                     </ul>
                 </li>
@@ -282,7 +282,7 @@
             </ul>
         </div>
     </nav>
-    <button type="button" class="btn_nav ver_m">메뉴</button>
+    <button type="button" class="btn_nav ver_m">硫���</button>
 
     </header>
 
@@ -296,7 +296,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/QrYIOjs7K8E?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="967409249" title="fromis_9 (프로미스나인) '#menow' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/QrYIOjs7K8E?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="967409249" title="fromis_9 (��濡�誘몄�ㅻ����) '#menow' Official MV"></iframe>
                             
                         
                         
@@ -306,7 +306,7 @@
                     
                     
                 </div>
-            <!-- 메인 > 비주얼 컨텐츠가 있을 경우 -->
+            <!-- 硫��� > 鍮�二쇱�� 而⑦��痢�媛� ���� 寃쎌�� -->
             
                 <div class="swiper-slide main_img00 main-swiper-div" data-swiper-autoplay="5000" data-video-idx="0" data-video-type="Youtube" data-swiper-slide-index="0" style="width: 768px;">
                     
@@ -351,7 +351,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/dJdqn5v4Dkw?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="643947522" title="NewJeans (뉴진스) 'ASAP' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/dJdqn5v4Dkw?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="643947522" title="NewJeans (�댁���) 'ASAP' Official MV"></iframe>
                             
                         
                         
@@ -369,7 +369,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/jOTfBlKSQYY?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="455556487" title="NewJeans (뉴진스) 'ETA' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/jOTfBlKSQYY?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="455556487" title="NewJeans (�댁���) 'ETA' Official MV"></iframe>
                             
                         
                         
@@ -387,7 +387,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/nJDMAjwxthM?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="19082288" title="NewJeans (뉴진스) 'Cool With You' &amp; 'Get Up' Official MV (side B)"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/nJDMAjwxthM?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="19082288" title="NewJeans (�댁���) 'Cool With You' &amp; 'Get Up' Official MV (side B)"></iframe>
                             
                         
                         
@@ -405,7 +405,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/zsYSSVoQnP4?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="481477266" title="NewJeans (뉴진스) 'Cool With You' Official MV (side A)"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/zsYSSVoQnP4?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="481477266" title="NewJeans (�댁���) 'Cool With You' Official MV (side A)"></iframe>
                             
                         
                         
@@ -423,7 +423,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/QU9c0053UAU?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="682523586" title="정국 (Jung Kook) 'Seven (feat. Latto)' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/QU9c0053UAU?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="682523586" title="��援� (Jung Kook) 'Seven (feat. Latto)' Official MV"></iframe>
                             
                         
                         
@@ -441,7 +441,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/0Ce2bVaktls?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="104454972" title="&amp;TEAM ‘Road Not Taken’ Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/0Ce2bVaktls?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="104454972" title="&amp;TEAM ��Road Not Taken�� Official MV"></iframe>
                             
                         
                         
@@ -459,7 +459,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/C0EYKxF1oTI?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="768558435" title="TXT (투모로우바이투게더), Jonas Brothers 'Do It Like That' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/C0EYKxF1oTI?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="768558435" title="TXT (�щえ濡��곕��댄�ш���), Jonas Brothers 'Do It Like That' Official MV"></iframe>
                             
                         
                         
@@ -477,7 +477,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/ArmDp-zijuc?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="7706865" title="NewJeans (뉴진스) 'Super Shy' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/ArmDp-zijuc?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="7706865" title="NewJeans (�댁���) 'Super Shy' Official MV"></iframe>
                             
                         
                         
@@ -495,7 +495,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/kcelgrGY1h8?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="874147785" title="NewJeans (뉴진스) 'New Jeans' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/kcelgrGY1h8?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="874147785" title="NewJeans (�댁���) 'New Jeans' Official MV"></iframe>
                             
                         
                         
@@ -549,7 +549,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/HROTJfbtcU4?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="305787953" title="ENHYPEN (엔하이픈) 'Sacrifice (Eat Me Up)' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/HROTJfbtcU4?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="305787953" title="ENHYPEN (�����댄��) 'Sacrifice (Eat Me Up)' Official MV"></iframe>
                             
                         
                         
@@ -567,7 +567,7 @@
                         </div>
 
                         
-                            <iframe class="pc_video" src="https://www.youtube.com/embed/QrYIOjs7K8E?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="967409249" title="fromis_9 (프로미스나인) '#menow' Official MV"></iframe>
+                            <iframe class="pc_video" src="https://www.youtube.com/embed/QrYIOjs7K8E?autoplay=0&amp;enablejsapi=1&amp;mute=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;controls=0&amp;loop=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-gtm-yt-inspected-4="true" id="967409249" title="fromis_9 (��濡�誘몄�ㅻ����) '#menow' Official MV"></iframe>
                             
                         
                         
@@ -579,7 +579,7 @@
                 </div>
             
 
-            <!-- 메인 > 비주얼 컨텐츠가 없을 경우 -->
+            <!-- 硫��� > 鍮�二쇱�� 而⑦��痢�媛� ���� 寃쎌�� -->
             
         <div class="swiper-slide main_img00 main-swiper-div swiper-slide-duplicate" data-swiper-autoplay="5000" data-video-idx="0" data-video-type="Youtube" data-swiper-slide-index="0" style="width: 768px;">
                     
@@ -607,46 +607,46 @@
         
     <footer class="footer c_white">
         
-    <p class="copy">© HYBE. All Rights Reserved</p>
+    <p class="copy">짤 HYBE. All Rights Reserved</p>
     <ul class="fnb">
-<!--                <li><a th:href="#{foot.privacy.url(${bighitLang})}" rel="nosublink">개인정보처리방침</a></li>-->
+<!--                <li><a th:href="#{foot.privacy.url(${bighitLang})}" rel="nosublink">媛��몄��蹂댁�由щ갑移�</a></li>-->
         <li>
             <div class="footer_select_box">
                 <div class="selectric-wrapper"><div class="selectric-hide-select selectric-is-native"><select name="name" id="footer-privacy-select" tabindex="-1">
-                    <option hidden="" disabled="" selected="" value="">개인정보처리방침</option>
-                    <option value="https://hybeinsight.com/policy/privacy?locale=ko">하이브 인사이트</option>
-                    <option value="https://careers.hybecorp.com/content/Personal-Data-Policy/?locale=ko_KR">하이브 채용</option>
-                </select></div><div class="selectric"><span class="label">개인정보처리방침</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="disabled selected">개인정보처리방침</li><li data-index="1" class="">하이브 인사이트</li><li data-index="2" class="last">하이브 채용</li></ul></div></div><input class="selectric-input" readonly="readonly"></div>
+                    <option hidden="" disabled="" selected="" value="">媛��몄��蹂댁�由щ갑移�</option>
+                    <option value="https://hybeinsight.com/policy/privacy?locale=ko">���대� �몄�ъ�댄��</option>
+                    <option value="https://careers.hybecorp.com/content/Personal-Data-Policy/?locale=ko_KR">���대� 梨���</option>
+                </select></div><div class="selectric"><span class="label">媛��몄��蹂댁�由щ갑移�</span><b class="button">��</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="disabled selected">媛��몄��蹂댁�由щ갑移�</li><li data-index="1" class="">���대� �몄�ъ�댄��</li><li data-index="2" class="last">���대� 梨���</li></ul></div></div><input class="selectric-input" readonly="readonly"></div>
             </div>
         </li>
         
         <li>
             <a href="https://www.redwhistle.org/report/reportCheck.asp?organ=8230&amp;leng=KO" class="view_site" rel="nosublink" target="_blank">
-                <span>HYBE 제보센터</span>
+                <span>HYBE ��蹂댁�쇳��</span>
             </a>
         </li>
         <li>
             <a href="/kor/related/site" class="view_site" rel="nosublink">
-                <span>관련 사이트</span>
+                <span>愿��� �ъ�댄��</span>
             </a>
         </li>
     </ul>
     <ul class="site_list">
-        <li><a target="_blank" href="" rel="nosublink">빅히트 뮤직</a>
+        <li><a target="_blank" href="" rel="nosublink">鍮����� 裕ㅼ�</a>
         </li>
-        <li><a target="_blank" href="https://www.sourcemusic.com" rel="nosublink">쏘스뮤직</a>
+        <li><a target="_blank" href="https://www.sourcemusic.com" rel="nosublink">���ㅻ�ㅼ�</a>
         </li>
-        <li><a target="_blank" href="http://www.pledis.co.kr" rel="nosublink">플레디스 엔터테인먼트</a>
+        <li><a target="_blank" href="http://www.pledis.co.kr" rel="nosublink">�������� ���고���몃㉫��</a>
         </li>
-        <li><a target="_blank" href="https://benx.co" rel="nosublink">위버스컴퍼니</a>
+        <li><a target="_blank" href="https://benx.co" rel="nosublink">��踰��ㅼ뺨�쇰��</a>
         </li>
-        <li><a target="_blank" href="" rel="nosublink">하이브 쓰리식스티</a>
+        <li><a target="_blank" href="" rel="nosublink">���대� �곕━���ㅽ��</a>
         </li>
-        <li><a target="_blank" href="" rel="nosublink">하이브 에듀</a>
+        <li><a target="_blank" href="" rel="nosublink">���대� ����</a>
         </li>
-        <li><a target="_blank" href="" rel="nosublink">하이브 아이피엑스</a>
+        <li><a target="_blank" href="" rel="nosublink">���대� ���댄�쇱����</a>
         </li>
-        <li><a target="_blank" href="https://www.superbcorp.com" rel="nosublink">수퍼브</a>
+        <li><a target="_blank" href="https://www.superbcorp.com" rel="nosublink">���쇰�</a>
         </li>
     </ul>
 

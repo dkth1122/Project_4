@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
     <style>
    
@@ -13,7 +13,7 @@
 	  /* width: 200px; */
 	  width: 10%;
 	  float: left;
-	    clear: left;
+	  clear: left;
 	  
 	}
 	
@@ -37,27 +37,25 @@
 <body>
 <div id="app2">
 	<div class="leftBut1">
-	<button @click="fnHome">¸ŞÀÎ È­¸é</button>
-	<button @click="fnInquiry" v-if="sStatus == 'A' || sStatus == 'C' || sStatus == 'M'">1:1 ¹®ÀÇ</button>
+	<button @click="fnHome">ë©”ì¸ í™”ë©´</button>
+	<button @click="fnInquiry" v-if="sStatus == 'A' || sStatus == 'C' || sStatus == 'M'">1:1 ë¬¸ì˜</button>
 	<span v-else></span>
-	<button @click="fnComplaint" v-if="sStatus == 'C' || sStatus == 'M'">¹Î¿ø °ü¸®</button>
+	<button @click="fnComplaint" v-if="sStatus == 'C' || sStatus == 'M'">ë¯¼ì› ê´€ë¦¬</button>
 	<span v-else></span>
-	<button @click="fnCustomer">°í°´ °ü¸®</button>
-	<button @click="fnProduct" v-if="sStatus == 'D' ||  sStatus == 'M'">»óÇ° °ü¸®</button>
+	<button @click="fnCustomer">ê³ ê° ê´€ë¦¬</button>
+	<button @click="fnProduct" v-if="sStatus == 'D' ||  sStatus == 'M'">ìƒí’ˆ ê´€ë¦¬</button>
 	<span v-else></span>
-	<button @click="fnABoard" v-if="sStatus == 'D' || sStatus == 'M'">°øÁö °ü¸®</button>
+	<button @click="fnABoard" v-if="sStatus == 'D' || sStatus == 'M'">ê³µì§€ ê´€ë¦¬</button>
 	<span v-else></span>
-	<button @click="fnEvent" v-if="sStatus == 'D' || sStatus == 'M'">ÀÌº¥Æ® °ü¸®</button>
+	<button @click="fnEvent" v-if="sStatus == 'D' || sStatus == 'M'">ì´ë²¤íŠ¸ ê´€ë¦¬</button>
 	<span v-else></span>
-	<button @click="fnStaff" v-if="sStatus == 'C' || sStatus == 'M'">Á÷¿ø °ü¸®</button>
+	<button @click="fnStaff" v-if="sStatus == 'C' || sStatus == 'M'">ì§ì› ê´€ë¦¬</button>
 	<span v-else></span>
-	<button @click="fnOrder" v-if="sStatus == 'B' || sStatus == 'M'">ÁÖ¹® °ü¸®</button>
+	<button @click="fnOrder" v-if="sStatus == 'B' || sStatus == 'M'">ì£¼ë¬¸ ê´€ë¦¬</button>
 	<span v-else></span>
-	<button @click="fnDelivery" v-if="sStatus == 'B' || sStatus == 'M'">¹è¼Û °ü¸®</button>
+	<button @click="fnDelivery" v-if="sStatus == 'B' || sStatus == 'M'">ë°°ì†¡ ê´€ë¦¬</button>
 	<span v-else></span>
-	<button @click="fnExchange">±³È¯/È¯ºÒ °ü¸®</button>
-	<button @click="fnSales" v-if="sStatus == 'M'">¸ÅÃâ °ü¸®</button>
-	<span v-else></span>
+	<button @click="fnExchange">êµí™˜/í™˜ë¶ˆ ê´€ë¦¬</button>
 	</div>
 </div>
 </html>
@@ -113,9 +111,6 @@ var app2 = new Vue({
 		fnExchange : function() {
 				location.href="../exchange/list.do";
 		},
-		fnSales : function() {
-				location.href="../staff/sales.do";
-		}
 		
 	}, // methods
 	created : function() {

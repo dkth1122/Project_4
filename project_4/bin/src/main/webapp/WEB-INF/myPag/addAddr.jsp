@@ -11,7 +11,7 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
- <meta charset="EUC-KR">
+ <meta charset="UTF-8">
 
   <style type="text/css">
 
@@ -86,17 +86,16 @@
            
                    <div id="top">
                    
-                      <div style="height: 150px;"></div>
-                      
+                      <div style="height: 150px;"></div>                      
                    <div class="a">
                       <div class="left topImgBoxwid">
                           <a href="/mypag/main.do"><div id="profileImg"></div></a>
-                      </div >
+                      </div	 >
                       <div class="topBox">
                       <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
                       </div>                    
-                      <div class="topBox">                      
-                         <div class="details" >
+                      <div class="topBox">       
+                         <div class="details">
                          			<div>Order</div>
 			                        <label><a href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
@@ -232,7 +231,7 @@ var app = new Vue({
        uId : "${sessionId}",
        duNo : "${map.duNo}",
        maxpoint : undefined, // 사용가능 포인트
-       order : "",
+       order : 0,
        exchange : "",
        refund : "",
 
@@ -316,8 +315,8 @@ var app = new Vue({
 						} else if (listCnt[i].exchange == "R") {
 							self.exchange = listCnt[i].orderCnt;
 						} else{
-							self.order = listCnt[i].orderCnt;
-							console.log(self.order);
+							self.order += listCnt[i].orderCnt;
+						
 						}
 					}
 
@@ -366,17 +365,17 @@ var app = new Vue({
 	    },
 	    fnNotice : function (){ // 공지 
 			var self = this;
-    		var option = "width = 915, height = 500, top = 100, left = 200, location = no"
+    		var option = "width=850, height=1000, top=200, left=500, location = no"
     		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
 		},
 		fnUseGuide : function (){ //이용안내
 			var self = this;
-    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		var option = "width=850, height=1000, top=200, left=500, location = no"
     		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
 		},
 		fnFaq : function (){ //faq
 			var self = this;
-    		var option = "width = 1100, height = 500, top = 100, left = 200, location = no"
+    		var option = "width=850, height=1000, top=200, left=500, location = no"
     		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
 		},
 

@@ -1,15 +1,14 @@
-	<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 	table{
-
 		border : 1px solid black;
 		border-collapse: collapse;
 		text-align : center;
@@ -26,68 +25,69 @@
 <body>
 <div id="app">
 
-	<div><input type="text" placeholder="»óÇ° ÄÚµå" v-model="info.pNo"></div>
-	<div><input type="text" placeholder="»óÇ° ÀÌ¸§" v-model="info.pName"></div>
-	<div><input type="number" placeholder="°¡°İ" v-model="info.price"><input type="number" placeholder="Àû¸³±İ" v-model="info.point" disabled></div>
-	<div><input type="number" placeholder="Àç°í" v-model="info.stock"></div>
+	<div><input type="text" placeholder="ìƒí’ˆ ì½”ë“œ" v-model="info.pNo"></div>
+	<div><input type="text" placeholder="ìƒí’ˆ ì´ë¦„" v-model="info.pName"></div>
+	<div><input type="number" placeholder="ê°€ê²©" v-model="info.price"><input type="number" placeholder="ì ë¦½ê¸ˆ" v-model="info.point" disabled></div>
+	<div><input type="number" placeholder="ì¬ê³ " v-model="info.stock"></div>
 	<div>
 		<select v-model="info.membership">
-			<option value="N">ÀüÃ¼±¸¸Å°¡´É</option>
-			<option value="Y">¸â¹ö½ÊÀü¿ë</option>
+			<option value="N">ì „ì²´êµ¬ë§¤ê°€ëŠ¥</option>
+			<option value="Y">ë©¤ë²„ì‹­ì „ìš©</option>
 		</select>
 	</div>
-	<div> Ä«Å×°í¸® : 
+	<div> ì¹´í…Œê³ ë¦¬ : 
 		<select v-model="info.category">
-			<option value="ALB">¾Ù¹ü</option>
-			<option value="MER">¸ÓÄ¡</option>
+			<option value="ALB">ì•¨ë²”</option>
+			<option value="MER">ë¨¸ì¹˜</option>
 			<option value="DVD">DVD</option>
-			<option value="PTB">Æ÷ÅäºÏ</option>
-			<option value="MEM">¸â¹ö½Ê</option>
+			<option value="PTB">í¬í† ë¶</option>
+			<option value="MEM">ë©¤ë²„ì‹­</option>
 		</select>
 	</div>
-	<div> »óÇ° ÀÌ¹ÌÁö :<input type="file" id="file1" name="file1" accept="image/*" @change="setThumbnail"></div>
-	<div> ÃÖ´ë±¸¸Å °¹¼ö : 
+	<div> ìƒí’ˆ ì´ë¯¸ì§€ :<input type="file" id="file1" name="file1" accept="image/*" @change="setThumbnail"></div>
+	<div> ìµœëŒ€êµ¬ë§¤ ê°¯ìˆ˜ : 
 		<select v-model="info.pLimit">
-			<option value="10">10°³</option>
-			<option value="9">9°³</option>
-			<option value="8">8°³</option>
-			<option value="7">7°³</option>
-			<option value="6">6°³</option>
-			<option value="5">5°³</option>
-			<option value="4">4°³</option>
-			<option value="3">3°³</option>
-			<option value="2">2°³</option>
-			<option value="1">1°³</option>
+			<option value="10">10ê°œ</option>
+			<option value="9">9ê°œ</option>
+			<option value="8">8ê°œ</option>
+			<option value="7">7ê°œ</option>
+			<option value="6">6ê°œ</option>
+			<option value="5">5ê°œ</option>
+			<option value="4">4ê°œ</option>
+			<option value="3">3ê°œ</option>
+			<option value="2">2ê°œ</option>
+			<option value="1">1ê°œ</option>
 		</select>
 	</div>
-	
+
 	<div>
-	»ó¼¼ ÆäÀÌÁö : 
-	<input type="file" id="file2" name="file2" accept="image/*" >
-	<input type="file" id="file3" name="file3" accept="image/*" >
-	<input type="file" id="file4" name="file4" accept="image/*" >
+	ìƒì„¸ í˜ì´ì§€ : 
+	<input type="file" id="file2" name="file2" accept="image/*" multiple>
+<!-- 	<input type="file" id="file2" name="file2" accept="image/*" multiple>
+	<input type="file" id="file2" name="file2" accept="image/*" multiple> -->
+
 
 	</div>
-	
+
 	<div>
-		¾ÆÆ¼½ºÆ® : 
+		ì•„í‹°ìŠ¤íŠ¸ : 
 	<select v-model="info.artist">
-		<option value="BTS">¹æÅº¼Ò³â´Ü</option>
-		<option value="TXT">Åõ¸ğ·Î¿ì¹ÙÀÌÅõ°Ô´õ</option>
-		<option value="EHP">¿£ÇÏÀÌÇÂ</option>
-		<option value="SVT">¼¼ºìÆ¾</option>
-		<option value="FMN">ÇÁ·Î¹Ì½º³ªÀÎ</option>
-		<option value="LSF">¸£¼¼¶óÇË</option>
-		<option value="NJS">´ºÁø½º</option>
-		<option value="BND">º¸ÀÌ³Ø½ºÆ®µµ¾î</option>
-		<option value="ZIC">ÁöÄÚ</option>
+		<option value="BTS">ë°©íƒ„ì†Œë…„ë‹¨</option>
+		<option value="TXT">íˆ¬ëª¨ë¡œìš°ë°”ì´íˆ¬ê²Œë”</option>
+		<option value="EHP">ì—”í•˜ì´í”ˆ</option>
+		<option value="SVT">ì„¸ë¸í‹´</option>
+		<option value="FMN">í”„ë¡œë¯¸ìŠ¤ë‚˜ì¸</option>
+		<option value="LSF">ë¥´ì„¸ë¼í•Œ</option>
+		<option value="NJS">ë‰´ì§„ìŠ¤</option>
+		<option value="BND">ë³´ì´ë„¥ìŠ¤íŠ¸ë„ì–´</option>
+		<option value="ZIC">ì§€ì½”</option>
 	</select>
 	</div>
-	<div><input type="text" placeholder="Æ¯ÀüÄÚµå" v-model="info.fYn"></div>
-	
-	<div><button @click="fnProductAdd">»óÇ° Ãß°¡</button></div>
+	<div><input type="text" placeholder="íŠ¹ì „ì½”ë“œ" v-model="info.fYn"></div>
+
+	<div><button @click="fnProductAdd">ìƒí’ˆ ì¶”ê°€</button></div>
  <div id="image_container"></div>
-	
+
 </div>
 </body>
 </html>
@@ -115,63 +115,61 @@ var app = new Vue({
 			  nparmap.point = parseFloat(nparmap.price) * 0.02;
 			  nparmap.pNo = (nparmap.artist + nparmap.pNo + nparmap.category);
 			  if(self.info.pNo.length != 10){
-			        alert("»óÇ°¹øÈ£¸¦ È®ÀÎÇÏ½Ã¿À");
+			        alert("ìƒí’ˆë²ˆí˜¸ë¥¼ í™•ì¸í•˜ì‹œì˜¤");
 			        return;
 			    }
 			  if(self.info.pName == "" || self.info.pName == undefined){
-			        alert("»óÇ° ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			        alert("ìƒí’ˆ ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			        return;
 			    }
 			  if(self.info.price == "" || self.info.price == undefined){
-					alert("°¡°İÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+					alert("ê°€ê²©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
 					self.info.price.focus();
 					return;
 				}
 			  if(self.info.stock == "" || self.info.stock == undefined || self.info.stock == 0){
-					alert("Àç°í¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+					alert("ì¬ê³ ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 					return;
 				}
 			  if(self.info.membership == "" || self.info.membership == undefined){
-					alert("¸â¹ö½Ê¿©ºÎ¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä");
+					alert("ë©¤ë²„ì‹­ì—¬ë¶€ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”");
 					return;
 				}
 			  if(self.info.category == "" || self.info.category == undefined){
-					alert("Ä«Å×°í¸®¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä");
+					alert("ì¹´í…Œê³ ë¦¬ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”");
 					return;
 				}
 			  if(self.info.artist == "" || self.info.artist == undefined){
-					alert("¾ÆÆ¼½ºÆ®¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä");
+					alert("ì•„í‹°ìŠ¤íŠ¸ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”");
 					return;
 				}
 			  if(self.info.pLimit == "" || self.info.pLimit == undefined){
-					alert("ÃÖ´ë±¸¸Å °¹¼ö ¼±ÅÃÇØÁÖ¼¼¿ä");
+					alert("ìµœëŒ€êµ¬ë§¤ ê°¯ìˆ˜ ì„ íƒí•´ì£¼ì„¸ìš”");
 					return;
-				}
+				} 
 			  $.ajax({
 			    url : "/product/add.dox",
 			    dataType : "json",
 			    type : "POST",
 			    data : nparmap,
 			    success : function(data) {
-			    	 alert("»óÇ°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+			    	 alert("ìƒí’ˆì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			      var form = new FormData();			     
-			      var form1 = new FormData();			     
+			      var form2 = new FormData();			     
 			      
                   form.append("file1", $("#file1")[0].files[0]);
-                  
-                  
-                  form1.append("file2", $("#file2")[0].files[0]);
-                
-                  
                   form.append("pNo", data.pNo);
-                  form1.append("pNo", data.pNo); 
-                  
-                 
                   self.upload(form);
-                  self.upload1(form1);
-              	/*   window.close(); // ÆË¾÷Ã¢ ´İ±â
-	        	  window.opener.location.reload(); // ºÎ¸ğÃ¢ »õ·Î°íÄ§ */
-           
+                  
+                  form2.append("pNo", data.pNo);
+                  for(var i=0; i < $("#file2")[0].files.length; i++){
+                	  form2.append("file2", $("#file2")[0].files[i]);
+                      self.upload1(form2);
+                  }
+                  
+              	/*   window.close(); // íŒì—…ì°½ ë‹«ê¸°*/
+	        	 /*  window.opener.location.reload(); */ // ë¶€ëª¨ì°½ ìƒˆë¡œê³ ì¹¨ 
+	        	  window.location.reload();
 			    }
 			  });
 			},
@@ -185,20 +183,18 @@ var app = new Vue({
 	                data: form,
 	                success: function(response) {
 	                }
-
 	            });
 	        },
-	        upload1: function(form1) {
+	        upload1: function(form2) {
 	            var self = this;
 	            $.ajax({
 	                url: "/product/insertProductDetailedImg.dox",
 	                type: "POST",
 	                processData: false,
 	                contentType: false,
-	                data: form,
+	                data: form2,
 	                success: function(response) {
 	                }
-
 	            });
 	        },
 	        setThumbnail: function(event){
@@ -214,7 +210,6 @@ var app = new Vue({
 	                img.setAttribute("src", event.target.result);
 	                document.querySelector("div#image_container").appendChild(img);
 	            };
-
 	            
 	            reader.readAsDataURL(event.target.files[0]);
 	        }

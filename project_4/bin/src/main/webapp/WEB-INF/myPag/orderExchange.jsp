@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 	body {
@@ -17,14 +17,14 @@
 
 	<div>
 		<select v-model="dState">
-			<option values="±³È¯Á¢¼ö">±³È¯Á¢¼ö</option>
-			<option values="¹İÇ°Á¢¼ö">¹İÇ°Á¢¼ö</option>
+			<option values="êµí™˜ì ‘ìˆ˜">êµí™˜ì ‘ìˆ˜</option>
+			<option values="ë°˜í’ˆì ‘ìˆ˜">ë°˜í’ˆì ‘ìˆ˜</option>
 		</select>
 	
 	</div>
-	<div><textarea rows="10" cols="50" v-model="bReasons" placeholder="±³È¯/¹İÇ° »çÀ¯¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä"></textarea></div>
+	<div><textarea rows="10" cols="50" v-model="bReasons" placeholder="êµí™˜/ë°˜í’ˆ ì‚¬ìœ ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”"></textarea></div>
 	
-	<button @click="fnAdd()">µî·Ï</button>
+	<button @click="fnAdd()">ë“±ë¡</button>
 	
 
 </div>
@@ -42,7 +42,7 @@ var app = new Vue({
 	methods : {
 		fnAdd : function(){
             var self = this;
-            if(self.dState == '±³È¯Á¢¼ö'){
+            if(self.dState == 'êµí™˜ì ‘ìˆ˜'){
             	self.exchange = 'C';
             }else{
             	self.exchange = 'R';
@@ -54,9 +54,9 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) {
-                	alert(self.dState + "°¡ µî·ÏµÇ¾ú½À´Ï´Ù.");
-                	window.close(); // ÆË¾÷Ã¢ ´İ±â
-   	        	  	window.opener.location.reload(); // ºÎ¸ğÃ¢ »õ·Î°íÄ§
+                	alert(self.dState + "ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
+                	window.close(); // íŒì—…ì°½ ë‹«ê¸°
+   	        	  	window.opener.location.reload(); // ë¶€ëª¨ì°½ ìƒˆë¡œê³ ì¹¨
                 }
             }); 
         }
