@@ -64,18 +64,18 @@
 		top : -385px;
 		left: 350px;
 	  }
-	  .productList{
+	.productList{
 		width:300px;
 		height : 500px;
-		margin-bottom:50px;
+		margin-top:50px;
 		margin-left : 20px;
 		float: left;
-	  }
-	  .select{
+	}
+	.select{
 		position : relative;
-		top: 130px;
+		top: 150px;
 		left: 140px;
-	  }
+	}
   </style>
 </head>
 <body>
