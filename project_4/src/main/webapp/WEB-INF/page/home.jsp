@@ -464,7 +464,7 @@ transform: translate(50%, -50%);
     <!--   <p class="more"><a href="#">MORE</a></p> -->
      
        <div v-for="(item, index) in list" class="productList" :key="index" >
-          <img :src="item.path" class="productList">
+          <img :src="item.path" class="productList" style="margin : 0px;">
           <div>{{ item.pName }}</div>
           
             <ul class="sub">
