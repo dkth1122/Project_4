@@ -61,7 +61,7 @@
 		width: 1200px;
 		float: left;
 		position: relative;
-		top :-700px;
+		top :-670px;
 		left: 350px;
 		
 	}

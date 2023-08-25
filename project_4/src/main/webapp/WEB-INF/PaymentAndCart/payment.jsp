@@ -707,7 +707,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	      if (rsp.success) {
   	   	    	self.fnInsertAll();
   	   	    	alert("결제 성공");
-  	   	  		location.href = "../home.do";
+  	   	  		location.href = "payView.do";
   	   	      } else {
   	   	        // 결제 실패 시
   	   	        alert("결제 실패");

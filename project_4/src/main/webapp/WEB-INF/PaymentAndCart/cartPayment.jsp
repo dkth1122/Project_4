@@ -619,7 +619,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	         }
 	       	 
 	       	 if(self.uId == null || self.uId == ""){
-	       		 alert("로그인 해주세요.");
+	       		 alert("세션이 만료되었습니다. 다시 로그인해주세요.");
 	       		 return;
 	       	 }
 	       	 
@@ -685,8 +685,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	      if (rsp.success) {
   	   	    	self.fnInsertAll();
   	   	    	alert("결제 성공");
-  	   	   		location.href = "../home.do";
-  	   	        
+  	   	   		location.href = "payView.do";
+  	   	   		
   	   	      } else {
   	   	        // 결제 실패 시
   	   	        alert("실패");
@@ -726,10 +726,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
           	}//for
         }, fninsertDelivery : function(){
         	var self = this;
+         	for(var i = 0; i < self.list.length; i++){
         	self.user.uId = self.uId;
         	self.user.oNo = self.oNo;
         	self.user.buyNo = self.buyNo;
-         	var nparmap = self.user;
+
+        	var nparmap = self.user;
                $.ajax({
                    url : "insertDelivery.dox",
                    dataType:"json",   	
@@ -738,6 +740,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    success : function(data) { 
                    }
                });  
+         	}
         	
         }//정규식 시작
         , validateName: function() {
