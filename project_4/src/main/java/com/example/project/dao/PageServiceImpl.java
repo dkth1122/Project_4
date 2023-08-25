@@ -28,14 +28,6 @@ public class PageServiceImpl implements PageService {
 						/* ctrl space -> sql에서 만든이름 */
 	}
 	
-	/* 베스트아이템 불러오기*/
-	@Override
-	public List<Product> bestItemLoad(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return pageMapper.bestItemLoad(map);
-	}
 
-	
-	
 	
 }

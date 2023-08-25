@@ -138,16 +138,7 @@ public class PageController {
 		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
-	@RequestMapping(value = "/bestItemLoad.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String bestItemLoad(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> list = pageService.bestItemLoad(map);
-		resultMap.put("list", list);
-		return new Gson().toJson(resultMap);
 
-	
-	}
 	
 }
 	

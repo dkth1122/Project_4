@@ -18,6 +18,5 @@ public interface PageMapper {
 			List<User> userPoint(HashMap<String, Object> map);
 
 			
-			//베스트아이템불러오기
-			List<Product>bestItemLoad(HashMap<String, Object> map);	
+		
 }

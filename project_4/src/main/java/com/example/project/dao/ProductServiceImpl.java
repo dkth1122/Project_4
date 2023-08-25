@@ -183,6 +183,16 @@ public class ProductServiceImpl implements ProductService{
 			return productMapper.searchProductNewList(map);
 		}
 		
+/* 베스트아이템 불러오기*/
+		@Override
+		public List<Product> bestItemLoad(HashMap<String, Object> map) {
+			// TODO Auto-generated method stub
+			return productMapper.bestItemLoad(map);
+		}
+
+		
+		
+		
 //주문내역상세조회
 		@Override
 		public List<Product> selectOrderpuduct(HashMap<String, Object> map) {

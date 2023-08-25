@@ -72,6 +72,8 @@ public interface ProductMapper {
 	
 	//상품전체조회
 	List<Product>searchProductNewList(HashMap<String, Object> map);	
+	//베스트아이템불러오기
+	List<Product>bestItemLoad(HashMap<String, Object> map);	
 	//주문상세목록조회
 	List<Product> selectOrderpuduct(HashMap<String, Object> map);
 	//날짜별 주문내역조회

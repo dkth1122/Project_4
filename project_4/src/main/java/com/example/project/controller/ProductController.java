@@ -295,6 +295,17 @@ public class ProductController {
 				resultMap.put("list", list);
 				return new Gson().toJson(resultMap);
 	}
+		 //베스트아이템 컨트롤러
+			@RequestMapping(value = "/bestItemLoad.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+			@ResponseBody
+			public String bestItemLoad(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+				HashMap<String, Object> resultMap = new HashMap<String, Object>();
+				List<Product> list = productService.bestItemLoad(map);
+				resultMap.put("list", list);
+				return new Gson().toJson(resultMap);
+
+			
+			}
 	//마이페이지 주문내역 상세리스트
 		@RequestMapping(value = "/mypag/OrderListView.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 		@ResponseBody
