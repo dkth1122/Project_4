@@ -219,11 +219,16 @@
 	</select>
 	<!-- 주문내역상세 출력 날짜조회 -->
 	<select id="selectOrderpuductSearch" parameterType="hashmap" resultType="com.example.project.model.Product">		
-			SELECT O.O_NO, O.*, P.*, D.*, U.*, A.*
+			SELECT O.O_NO, O.*, P.*, D.*, U.*, A.*, B.*
 			FROM T4_ORDER O
 			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
 			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
 			INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
+			INNER JOIN (
+				SELECT O_NO, SUM(PAYMENT) AS PAYMENT_SUM
+				FROM T4_ORDER
+				GROUP BY O_NO
+			) B ON O.O_NO = B.O_NO
 			INNER JOIN (
 			    SELECT O.O_NO, COUNT(*) AS CNT
 			    FROM T4_ORDER O

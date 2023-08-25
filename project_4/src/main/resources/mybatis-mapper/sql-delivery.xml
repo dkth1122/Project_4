@@ -45,8 +45,7 @@
 			    FROM T4_ORDER O
 			    INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
 			    INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-			    WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중')
-			        AND O.O_NO = O.O_NO
+			     WHERE O.O_NO = O.O_NO
 			        AND (EXCHANGE IS NULL OR EXCHANGE = '')
 			    GROUP BY O.O_NO
 			) A ON O.O_NO = A.O_NO
