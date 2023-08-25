@@ -31,7 +31,12 @@ public class ExchangeController {
 	
 	@RequestMapping("/exchange/list.do") 
 	public String deliveryView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/Exchange/exchange-list";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Exchange/exchange-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
     }
 	
 	@RequestMapping(value = "/exchange/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

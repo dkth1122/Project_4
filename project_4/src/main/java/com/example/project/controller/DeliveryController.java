@@ -29,13 +29,23 @@ public class DeliveryController {
 	
 	@RequestMapping("/delivery/list.do") 
     public String deliveryList(Model model) throws Exception{
-        return "/Delivery/delivery-list";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Delivery/delivery-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
     }
 	
 	@RequestMapping("/delivery/view.do") 
 	public String deliveryView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/Delivery/delivery-view";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Delivery/delivery-view";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	
 	
