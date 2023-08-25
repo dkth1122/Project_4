@@ -18,6 +18,7 @@ import com.example.project.model.Product;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class OrderController {
@@ -25,10 +26,17 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 	
+	@Autowired
+	HttpSession session;
+	
 	@RequestMapping("/order/list.do") 
-    public String mainGBoard(Model model) throws Exception{
-
-        return "/Delivery/order-list";
+    public String mainGBoard(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Delivery/order-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
     }
 	
 	@RequestMapping(value = "/order/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 
@@ -35,20 +36,37 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 	
+	  @Autowired 
+	  HttpSession session;
+	
 	@RequestMapping("/product/add.do") 
-	public String add(Model model) throws Exception{
+	public String add(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Product/product-add";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 		
-		return "/Product/product-add";
 	}
 	@RequestMapping("/product/list.do") 
-	public String list(Model model) throws Exception{
-		
-		return "/Product/product-list";
+	public String list(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Product/product-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	@RequestMapping("/product/stockpopup.do") 
 	public String stockpopup(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/Product/product-stockpopup";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Product/product-stockpopup";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	//주문상세조회
 		@RequestMapping("/myPag/OrderListView.do") 

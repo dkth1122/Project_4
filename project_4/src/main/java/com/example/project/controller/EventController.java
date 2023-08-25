@@ -30,7 +30,12 @@ public class EventController {
 	
 	@RequestMapping("event/list.do") 
     public String list(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/Event/event-list";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/Event/event-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
     }
 	
 	@RequestMapping("event/add.do") 

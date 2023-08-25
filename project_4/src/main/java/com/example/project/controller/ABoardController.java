@@ -33,23 +33,41 @@ public class ABoardController {
 	
 	@RequestMapping("/aboard/list.do") 
 	public String list(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		
-		return "/ABoard/aboard-list";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/ABoard/aboard-list";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	@RequestMapping("/aboard/add.do") 
 	public String add(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		
-		return "/ABoard/aboard-add";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/ABoard/aboard-add";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	@RequestMapping("/aboard/view.do") 
 	public String view(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/ABoard/aboard-view";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/ABoard/aboard-view";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 	@RequestMapping("/aboard/edit.do") 
 	public String edit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/ABoard/aboard-edit";
+		String a = (String) session.getAttribute("sessionId");
+	    if (a != null && a.equals("admin")) {
+	    	return "/ABoard/aboard-edit";
+	    } else {
+	        return "redirect:../home.do";
+	    }
 	}
 
 	@RequestMapping("event/eventpage.do") 
