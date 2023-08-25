@@ -137,7 +137,7 @@
 		<tr v-for="(item, index) in list">
 			<td><input type="radio" name="product" :value="item.pNo" v-model="pNo"></td>
 			<td>{{item.artist}}</td>
-			<td>{{item.pNo}}</td>
+			<td><a href="javascript:;" @click="fnProductPage(item)">{{item.pNo}}</a></td>
 			<td>{{item.pName}}</td>
 			<td>{{Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'})}}</td>
 			<td>{{item.stock}}</td>
@@ -179,7 +179,8 @@ var app = new Vue({
 		pageCount: 1,
 		cnt : 0,
 		artist: "",
-		keyword : ""
+		keyword : "",
+		pNo : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -205,6 +206,10 @@ var app = new Vue({
         },
         fnBack : function(){
         	location.href = '../staff/main.do';
+        },
+        fnProductPage : function(item){
+        	  var url = "../product/productView.do?pNo=" + item.pNo;
+        	  window.open(url, "_blank", "width=1300, height=600, left=250, top=200");
         },
         fnStockPopup : function(item) {
         	  var self = this;

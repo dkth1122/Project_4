@@ -175,6 +175,7 @@ var app = new Vue({
         success : function(data) { 
           self.orders = data.list;
           self.cnt = data.cnt;
+          self.orders.sort((a, b) => a.oNo - b.oNo);
           self.pageCount = Math.ceil(self.cnt / 10);
           console.log(data);
         }

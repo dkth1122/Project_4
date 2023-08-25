@@ -31,31 +31,30 @@
 	 
 	</select>
 	
-	<!-- 주문정보 확인 -->
-	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.project.model.Order">
-		SELECT *
-			FROM T4_ORDER O
-			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-			INNER JOIN (
-				SELECT O.O_NO, COUNT(*) AS CNT
-				FROM T4_ORDER O
-				INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-				INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-				WHERE D_STATE = '업체확인중' AND O.O_NO = O.O_NO AND (EXCHANGE IS NULL OR EXCHANGE = '')
-				GROUP BY O.O_NO)A ON O.O_NO = A.O_NO
-			WHERE D_STATE = '업체확인중'
-		ORDER BY O.O_NO ASC
-	</select>
-	
-	<!-- 페이징용 카운트 -->
-	<select id="selectCnt3" resultType="int">
-		SELECT COUNT(*)
-		FROM T4_ORDER O
-		INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-		INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-		WHERE D_STATE = '업체확인중';
-	</select>
+   <!-- 주문정보 확인 -->
+   <select id="selectOrderList" parameterType="hashmap" resultType="com.example.project.model.Order">
+      SELECT *
+         FROM T4_ORDER O
+         INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+         INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
+         INNER JOIN (
+      SELECT O_NO, COUNT(*) AS CNT 
+            FROM T4_DELIVERY
+            GROUP BY O_NO
+            )A ON O.O_NO = A.O_NO
+         WHERE D_STATE = '업체확인중'
+      ORDER BY O.O_NO ASC
+
+   </select>
+   
+   <!-- 페이징용 카운트 -->
+   <select id="selectCnt3" resultType="int">
+      SELECT COUNT(DISTINCT O.O_NO) AS CNT
+      FROM T4_ORDER O
+      INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+      INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
+      WHERE D_STATE = '업체확인중';
+   </select>
 	
 	<!-- 오더 상태 변경 -->
 	<update id="updateOrder" parameterType="hashmap">
