@@ -143,7 +143,7 @@ background-color:#F2DAED
       <button type="button" class="sns" id="facebook"><i class="fa-brands fa-facebook fa- fa-xl" style="color: #000000;"></i></button>
       <button type="button" class="sns" id="kakao"><i class="fa-regular fa-message fa- fa-xl" style="color: #000000; "></i></button>
   	   </div>
-COMPANYVery peri COMPANY Inc.CEO한나라CALL <br>
+COMPANYVery peri COMPANY Inc.CEO 한나라 CALL <br>
 CENTER1544-0790FAX(+82)-2-2144-9399주소<br>
 인천 부평구 경원대로 1366 7층 더조은컴퓨터아카데미 인천캠퍼스<br>
 개인정보관리책임자 여대현 (happy940823@Very perishop.io)사업자등록번호716-87-01158 <br>
