@@ -35,7 +35,7 @@
 	
 	<!-- 주문정보 확인 -->
 	<select id="deliveryListSelect" parameterType="hashmap" resultType="com.example.project.model.Order">
-			SELECT COUNT(*) AS CNT, O.O_NO, O.*, P.*, D.*, U.*, A.*
+			SELECT O.O_NO, O.*, P.*, D.*, U.*, A.CNT
 			FROM T4_ORDER O
 			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
 			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
