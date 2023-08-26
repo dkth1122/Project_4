@@ -262,6 +262,7 @@ text-align: center;
 	height: 100px;
 }
 
+
 </style>
 </head>
 <body>
@@ -369,32 +370,34 @@ text-align: center;
 				
 				<div id="inputaddr">
 						<div id="inputhd">
-						<h3>배송 정보</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
+							<h3>배송 정보</h3> 
+							<span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
 						</div>
+						
 						<table class="adr" border="0">
-						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 배송주소록 선택 </th>
-							<td>
-								<div id="to" >
-									<button @click="fnAddrList">주소록 보기</button>
-									<table>
-											 <tr v-for = "item in info" v-if="flg">
-			                                 	<td style="display : none">
-												  <input type="text" v-model="item.duNo">
-												</td>
-			                                 	<td>{{item.uDname}}</td>
-			                                 	<td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
-			                                 	<td>{{item.uDphone}}</td>
+							<tr>
+								<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 배송주소록 선택 </th>
+								<td>
+									<div id="to" >
+										<button @click="fnAddrList">주소록 보기</button>
+										<table>
+											<tr v-for = "item in info" v-if="flg">
+				                                <td style="display : none">
+													<input type="text" v-model="item.duNo">
+												<td>
+				                                <td>{{item.uDname}}</td>
+				                                <td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
+				                                <td>{{item.uDphone}}</td>
 												<td><input rows="7" cols="110" v-model="item.uDmessage" hidden/> </td>
-			                                 	<td><button @click="fnAddAddr(item, 'y')">선택</button></td>
-			                                 <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
-			                                 </tr>
-			                        </table>
-							 	</div>
-							</td>
+				                                <td><button @click="fnAddAddr(item, 'y')">선택</button></td>
+				                                <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
+				                			</tr>
+				                        </table>
+								 	</div>
+								</td>
 							</tr>
 							<tr>
-						</tr>
+							</tr>
 						<tr>
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소록 이름 </th>
 							<td>
@@ -429,9 +432,8 @@ text-align: center;
 								<input class="numinput" type="text" v-model="user.phone3" readonly>			
 							</td>						
 						</tr>
-						
-						
 					</table>
+					
 				</div>
 				</div>
 				<div id="point">

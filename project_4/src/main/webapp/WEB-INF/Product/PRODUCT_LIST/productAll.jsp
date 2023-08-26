@@ -78,6 +78,15 @@
 		top: 150px;
 		left: 140px;
 	}
+	.artistDIv2{
+		width : 500px;
+		height : 100px;
+		position : absolute;
+		top : 300px;
+		left : 300px;
+		font-size: 32px;
+		color : #ccc;
+	}
   </style>
 </head>
 <body>
@@ -114,7 +123,7 @@
             
             
             <div class="body" style="margin-top: 80px;">
-                <select class="select" v-model="selectedOption" @change="fnGetList">
+                <select class="select" v-model="selectedOption" @change="fnGetList" v-if = "list.length != 0">
                     <option selected>전체</option>
                     <option value="nameList">상품명</option>
                     <option value="minPrice">낮은가격</option>

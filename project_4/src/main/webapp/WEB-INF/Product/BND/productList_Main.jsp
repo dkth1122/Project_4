@@ -114,7 +114,7 @@
             
             
             <div class="body" style="margin-top: 80px;">
-                <select class="select" v-model="selectedOption" @change="fnGetList">
+                <select class="select" v-model="selectedOption" @change="fnGetList" v-if = "list.length != 0">
                     <option selected>전체</option>
                     <option value="nameList">상품명</option>
                     <option value="minPrice">낮은가격</option>
@@ -156,14 +156,17 @@
 				 	</div>
                 </div>
 					<div class="productPosList">
-						<span @click="productView(item)" v-for="item in list" class="productList">
+						<span @click="productView(item)" v-for="item in list" class="productList" v-if = "list.length != 0">
 							<span><img :src = "item.path" class="pImg"></span>
 							<div class="artistDIv">{{item.artist}}</div>
 							<div>{{item.pName}}</div>
 							<h5>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</h5>
 						</span>
+						<span v-if = "list.length == 0">
+							<div class="artistDIv2"   >등록된 제품이 없습니다.</div>
+						</span>
 					</div>
-            </div>   
+            </div>  
         </div>
     </div>
 </div>

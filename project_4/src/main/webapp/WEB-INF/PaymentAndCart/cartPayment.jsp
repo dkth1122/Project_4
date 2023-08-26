@@ -436,7 +436,7 @@ text-align: center;
 					</div>
 				</div>
 			</div>
-		<div id="baybutton"><button @click="requestPay">결제하기</button></div>
+		<div id="baybutton"><button @click="fnBeforePay">결제하기</button></div>
 		</div>
 
 </div>
@@ -464,6 +464,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     	   	uDphone : "",
 			addr : "",
 			addrDetail : "",
+			recipient : "",
 			zipNo : "",
 			email : "",
 			list : [],
@@ -472,6 +473,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			 user : {
 		    	   	uId : "",
 		    	   	uDname : "",
+		    	   	recipient : "",
 		    	   	phone1 : "",
 		    	   	phone2 : "",
 		    	   	phone3 : "",
@@ -494,6 +496,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			oNo : "",
 			buyNo: "",
 			nameErrorMessage : "",
+			dNameErrorMessage : "",
 			addrErrorMessage : "",
 			addrDetailErrorMessage : "",
 			addrDetailErrorMessage : "",
@@ -664,18 +667,69 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
  	    	   	self.user.duNo = "";
  	    	  	self.user.dText = "";
     		}
+    	}, fnBeforePay : function(){
+       	   		var self = this;
+        		
+       	   		//핸드폰 번호 합치기
+       	   		self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
+    	       	
+     	   		//배송 주소록 Check
+        		if(self.user.uDname == null || self.user.uDname == "" || self.user.phone1 == null || self.user.phone1 == "" || self.user.phone2 == null || self.user.phone2 == ""|| self.user.phone3 == null || self.user.phone3 == ""|| self.user.addr == null || self.user.addr == "" || self.user.addrDetail == null || self.user.addrDetail == "" ||  self.user.zipNo == null || self.user.zipNo == ""){
+    					alert("배송주소록을 선택해주세요.");	
+    	       		 return;	       		 
+    	       	 }
+       	   		
+    	       	//로그인 세션 확인 
+    	       	 if(self.uId == null || self.uId == ""){
+    	       		 alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+    	       		 return;
+    	       	 }
+    	       	
+    	       	for(var i =0; i < self.list.length; i++){
+    	       	//키트일 경우 확인 후 유저의 멤버쉽 구독 확인 프로세스
+    	       	 if(self.list[i].category == 'MEM' && self.list[i].membership == 'Y'){ 
+    	             	var nparmap = {uId : self.uId, artist : self.list[i].artist};
+    	                   $.ajax({
+    	                       url : "memberCheck.dox",
+    	                       dataType:"json",   	
+    	                       type : "POST", 
+    	                       data : nparmap,
+    	                       success : function(data) {
+    	                    	    
+    								if(data.sub == 1){
+    									if(data.kit == 1){
+    										alert("키트는 아티스트 당 한 번만 구매하실 수 있습니다.");
+    										location.href = "/product/" +self.list[0].artist+".do";
+    									}
+    								}else if (data.sub == 0){
+    									alert("키트를 구매를 위해 멤버쉽을 구독해주세요.");
+    									location.href = "/product/" +self.list[0].artist+".do";
+    								}
+    	                       }
+    	                   });  
+    	       		}
+    	       	
+    		       	if(self.list[0].category == 'MEM' && self.list[i].membership == 'N'){ 
+    	             	var nparmap = {uId : self.uId, artist : self.list[i].artist};
+    	                   $.ajax({
+    	                       url : "memberCheck.dox",
+    	                       dataType:"json",   	
+    	                       type : "POST", 
+    	                       data : nparmap,
+    	                       success : function(data) {
+    								alert("구독 쳌크");
+    								if(data.sub == 1){
+    										alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
+    										location.href = "/product/" +self.list[i].artist+".do";
+    								}
+    	                       }
+    	                   });  
+    	       		}else{
+    	       			self.requestPay();
+    	       		}
+    	       	}
     	}, requestPay : function() {
     		var self = this;
-    		self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
-	       	 if(self.user.uDname == null || self.user.uDname == "" || self.user.phone1 == null || self.user.phone1 == "" || self.user.phone2 == null || self.user.phone2 == ""|| self.user.phone3 == null || self.user.phone3 == ""|| self.user.addr == null || self.user.addr == "" || self.user.addrDetail == null || self.user.addrDetail == "" ||  self.user.zipNo == null || self.user.zipNo == ""){
-					alert("배송주소록을 선택해주세요.");	
-	       		 return;	       		 
-	       	 }
-	       	 
-	       	 if(self.uId == null || self.uId == ""){
-	       		 alert("로그인 해주세요.");
-	       		 return;
-	       	 }
             var timestamp = new Date().getTime();
     			IMP.request_pay({
        		    pg: "nice",
@@ -691,6 +745,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     		}, function (rsp) { // callback
   	   	      if (rsp.success) {
   	   	    	self.fnInsertAll();
+  	   	    	self.fnRemoveCart();
   	   	    	alert("결제 성공");
   	   	   		location.href = "payView.do";
   	   	   		
