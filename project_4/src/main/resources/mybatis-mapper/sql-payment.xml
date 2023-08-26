@@ -12,7 +12,6 @@
 		WHERE P.P_NO = #{pNo} AND IMG_TYPE = 'Y'
 	</select> 
 	
-	
 	<!-- 결제 전 : 배송 주소록 출력 쿼리 -->
 	<select id="selectDeliveryUserInfo" parameterType="hashmap" resultType="com.example.project.model.DeliveryUser">
 		SELECT *
@@ -39,7 +38,6 @@
 	    INSERT INTO T4_ORDER
 	    VALUES (NULL, #{oNo} , #{uId}, #{pNo}, #{price}, NOW(), #{cnt}, NULL)
 	</insert>
-	
 	
 	<!-- 재고 수 체크  0이면 재고 없음, 1이면 재고 있음 ========실패 사유 메시지 "재고 부족"-->
 	<select id="selectStock" parameterType="hashmap" resultType="int">
@@ -92,7 +90,6 @@
 		AND CATEGORY = 'MEM'
 		AND MEMBERSHIP ='Y'
 	</select>
-	
 	
 	<!-- 위에 키트 조건 만족 시 :  키트 구매 업데이트 -->
 	<update id="updateMembershipKit" parameterType="hashmap" >
