@@ -230,14 +230,14 @@ var app = new Vue({
             var self = this;
             self.info.uId = self.uId;
             self.info.duNo = self.duNo;
-            var nparmap = {uId : self.uId};
+            var nparmap = {uId : self.uId, };
             $.ajax({
                 url : "/delivery/list.dox",
                 dataType:"json",   
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.list; //사용자   
+                   self.info = data.list; //사용자  
                 }
             }); 
         },

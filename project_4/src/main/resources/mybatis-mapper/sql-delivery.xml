@@ -7,6 +7,9 @@
 		SELECT *
 		FROM T4_DELIVERY_USER
 		WHERE U_ID = #{uId}
+		<if test="duNo != null || duNo == ''">
+			AND DU_NO = #{duNo}
+		</if>
 	</select>
 	
 	<!-- 배송주소록 수정 -->
@@ -16,7 +19,7 @@
 			U_DADDR = #{addr},
 			U_DADDRDETAIL = #{addrDetail},
 			U_DNAME = #{uDname},
-			RECIPIENT = #{resipient},
+			RECIPIENT = #{recipient},
 			U_DPHONE = #{uDphone},
 			ZIPNO = #{zipNo}
 		WHERE U_ID = #{uId} AND DU_NO = #{duNo}

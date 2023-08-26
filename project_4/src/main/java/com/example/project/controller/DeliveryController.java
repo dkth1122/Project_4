@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dao.DeliveryService;
+import com.example.project.model.DeliveryUser;
 import com.example.project.model.Order;
 import com.google.gson.Gson;
 
@@ -92,6 +93,15 @@ public class DeliveryController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		deliveryService.updateOrderInfo2(map);
 		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/delivery/searchDeliveryUser.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String searchDeliveryUser(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<DeliveryUser> list = deliveryService.searchDeliveryUser(map);
+		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
 }

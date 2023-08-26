@@ -171,51 +171,43 @@
                               <table v-for="item in list">
                                	<tr>
                               		<th><label for="a1">· 배송지명</label></th>
-                              		<td><input id="a1" v-model="user.uDname"></td>                      		
+                              		<td><input id="a1" v-model="item.uDname"></td>                      		
                               	</tr>
                                	<tr>
                               		<th><label for="a1">· 받는 사람</label></th>
-                              		<td><input id="a1" v-model="user.resipient"></td>                      		
+                              		<td><input id="a1" v-model="item.recipient"></td>                      		
                               	</tr>
                               	<tr>
                               		<th><label for="b">· 휴대전화</label></th>
-                              		<td><input id="b" v-model="user.uDphone"></td>                      		
+                              		<td><input id="b" v-model="item.uDphone"></td>                      		
                               	</tr>
-                              	<tr v-if="list[0].addr == ''">
-                              		<th><label for="c" for="">· 주소</label></th>
-                              		<td> <input id="c" v-model="item.uDaddr" disabled/></td>                      		
-                              	</tr>
-                              	<tr v-if="list[0].addrDetail == ''">
-                              		<th><label for="b" for="">· 상세주소</label></th>
-                              		<td><input id="b" v-model="item.uDaddrDetail" disabled/></td>                      		
-                              	</tr>
-                              	<tr v-if="list[0].zipNo == ''">
-                              		<th><label for="d" for="">· 우편주소</label></th>
-                              		<td><input id="d" v-model="item.zipNo" disabled/></td>                      		
-                              	</tr>
-			                 		   	<tr v-if="user.addr != ''"  >
-			                              		<th><label for="e" for="">· 주소</label></th>
-			                              		<td><input id="e" disabled style="width : 300px;" type="text" v-model="user.addr"></td>                      		
-			                              	</tr>
-			                              	<tr v-if="user.addrDetail != ''">
-			                              		<th><label for="f" for="">· 상세주소</label></th>
-			                              		<td><input id="f"  style="width : 300px;" type="text" v-model="user.addrDetail"></td>                      		
-			                              	</tr>
-			                              	<tr v-if="user.zipNo != ''">
-			                              		<th><label for="g" for="">· 우편주소</label></th>
-			                              		<td><input id="g" style="width : 300px;" type="text" v-model="user.zipNo"></td>                      		
-			                              	</tr>
-                   
+                              	
+			               		<tr>
+			                    	<th><label for="e" for="">· 주소</label></th>
+			                        <td><input id="e" style="width : 300px;" type="text" v-model="item.uDaddr"></td>                      		
+			                    </tr>
+			                    <tr>
+			                        <th><label for="f" for="">· 상세주소</label></th>
+			                         <td><input id="f"  style="width : 300px;" type="text" v-model="item.uDaddrDetail"></td>                      		
+			                   	</tr>
+			                    <tr>
+			                         <th><label for="g" for="">· 우편주소</label></th>
+			                          <td><input id="g" style="width : 300px;" type="text" v-model="item.zipNo"></td>                      		
+			                    </tr>
+                              	
+                              	
                               </table>
+                              
 							   	 <div id="adrbutdiv"><button id="adrbut" @click="fnSearchAddr">주소 검색</button></div>
-							   	  <div id="pp"><button id="bbut" @click="infoAddr">취소</button>
-							   	  <button id="edut" @click="fnEdit">수정</button></div>
+							   	 <div id="pp"><button id="bbut" @click="infoAddr">취소</button>
+							   	 <button id="edut" @click="fnEdit">수정</button></div>
 							 					  
                               <div class="lowerBox l"> 배송 주소록 유의사항 </div>
-                              <div class="warningm"> 
-                               <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
+                              	<div class="warningm"> 
+                               		<i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i>
+                               		<span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
                         		</div>                   
-                 		   </div>
+                 		   	 </div>
              
            			</div>
   
@@ -234,16 +226,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 var app = new Vue({
     el: '#app',
     data: {
-       user : {
-    	   	uId : "",
-    	   	uDname : "",
-			resipient : "333322",
-    	   	uDphone : "",
-			addr : "",
-			addrDetail : "",
-			zipNo : "",
-			duNo : "",
-		},
        list : [],
        info :{},
        uId : "${sessionId}",
@@ -253,6 +235,16 @@ var app = new Vue({
        order : 0,
        exchange : "",
        refund : "",
+       user : {
+    	   	uId : "",
+    	   	uDname : "",
+			recipient : "",
+    	   	uDphone : "",
+    	   	addr : "",
+    	   	addrDetail : "",
+			zipNo : "",
+			duNo : "",
+		},
        
     },
     methods: {
@@ -272,9 +264,9 @@ var app = new Vue({
        fnGetList : function(){
             var self = this;
             self.info.uId = self.uId;
-            var nparmap = {uId : self.uId};
+            var nparmap = {uId : self.uId, duNo : self.duNo};
             $.ajax({
-                url : "/delivery/list.dox",
+                url : "/delivery/searchDeliveryUser.dox",
                 dataType:"json",   
                 type : "POST", 
                 data : nparmap,
@@ -282,27 +274,28 @@ var app = new Vue({
                    self.list = data.list; //사용자
                    console.log(self.list);
                    self.user.uId = self.uId;
-                   for(var i=0; i<data.list.length; i++){
-                	   self.user.uDname = data.list[i].uDname;
-                	   self.user.duNo = data.list[i].duNo;
-                	   self.user.uDphone = data.list[i].uDphone;
-                	   self.user.resipient = data.list[i].resipient;
-                   }                                   
                              
                 }
             }); 
         },
         fnEdit : function(){ // 주소록 변경
         	 var self = this;
+        	self.user.duNo = self.duNo;
+        	self.user.uDname = self.list[0].uDname;
+        	self.user.recipient = self.list[0].recipient;
+        	self.user.uDphone = self.list[0].uDphone;
+        	self.user.addr = self.list[0].uDaddr;
+        	self.user.addrDetail = self.list[0].uDaddrDetail;
+        	self.user.zipNo = self.list[0].zipNo;
+        	
              var nparmap = self.user;
-             nparmap.resipient = 
-             $.ajax({
+              console.log("파라미터 ==>",nparmap);                
+              $.ajax({
                  url : "/mypag/editAddr.dox",
                  dataType:"json",	
                  type : "POST", 
                  data : nparmap,
                  success : function(data) { 
-                	 console.log(nparmap);                
                  	alert("주소 수정 완료!");
                  	location.href ="http://localhost:8082/mypag/infoAddr.do"
                  }
@@ -346,9 +339,9 @@ var app = new Vue({
 		},
 		fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
     		var self = this;
-    		self.user.addr = roadAddrPart1;
-    		self.user.addrDetail = addrDetail;
-    		self.user.zipNo = zipNo;
+    		self.list[0].uDaddr = roadAddrPart1;
+    		self.list[0].uDaddrDetail = addrDetail;
+    		self.list[0].zipNo = zipNo;
     		// 콘솔 통해 각 변수 값 찍어보고 필요한거 가져다 쓰면 됩니다.
     		console.log(roadFullAddr);
     		console.log(roadAddrPart1);
