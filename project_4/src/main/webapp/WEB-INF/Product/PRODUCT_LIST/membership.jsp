@@ -240,9 +240,9 @@ var app = new Vue({
         	var self = this;
         	$.pageChange("productView.do", {pNo : item.pNo});     
         	
-        },     handleSelectChange(event) {
+        }, handleSelectChange(event) {
             // Vue.js 이벤트 핸들러 내에서 jQuery 사용을 최소화
-            this.fnGetList();
+            this.fnGetList(this.artist);
         }
     },
     created: function() {
