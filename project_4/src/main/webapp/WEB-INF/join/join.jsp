@@ -13,7 +13,7 @@
 <style>
 
 .login-box{
-	height : 720px; 
+	height : 758px; 
 }
 
 
@@ -67,7 +67,21 @@ i {
     #evtyn label strong a:hover {
       text-decoration: underline;
     }
-
+.qq{
+	width: 0px;
+}
+.m{
+	margin-top: 17px;
+}
+.Gender{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.Gender input{
+	width: 20px;
+	height: 15px;
+}
 </style>
 </head>
 <body>
@@ -107,7 +121,18 @@ i {
 				    <div><label><em class="required">·</em>이메일  <span><input type="text" v-model="user.uEmail" placeholder="이메일주소">
 					    </span></label>
 				    </div>
+		
 					 <div id="evtyn">
+					 <div class="Gender">
+					    <div><label>
+					      <input type="radio" name="Gender" @click="tt('M')"  v-model:="user.gender='https://image.idus.com/image/files/3c589c029d9447d797d85b583c5fe822_720.jpg'">					    
+					      남자</label>
+					    </div>
+					    <div><label>
+					      <input type="radio" name="Gender" @click="tt('W')" v-model:="user.gender='https://image.idus.com/image/files/21e9ae9b65fd4fcf9d87c1ecb6c85a5d_720.jpg'">				    
+					      여자</label>
+					    </div>
+					  </div>
 					    <div class="custom-checkbox"><label>
 					      <input type="checkbox" v-model="check" @click="fnCheck">
 					      <span class="circle"></span>
@@ -132,7 +157,7 @@ i {
 				</div>
 				
 				
-				<div class="login"><button @click="fnJoin" >가입하기</button></div>
+				<div class="login m"><button @click="fnJoin" >가입하기</button></div>
 				
 				
 			</div>
@@ -152,7 +177,9 @@ var app = new Vue({
 			uName2 : "",
 			uPhone : "",
 			uEmail : "",
-			uEventyn : ""
+			uEventyn : "",
+			gender : "https://png.pngtree.com/png-clipart/20220112/ourmid/pngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png",
+			
 		},
 		message : "",
 		uIdBorderColor: '', // 아이디 중복 체크 결과에 따라 border 색상
@@ -166,6 +193,15 @@ var app = new Vue({
 		messageColor : ""
 	},// data
 	methods : {
+		tt : function(item){
+			var self = this;
+			if(item == 'M'){
+				self.user.gender = "https://image.idus.com/image/files/3c589c029d9447d797d85b583c5fe822_720.jpg";
+			}else{
+				self.user.gender = "https://image.idus.com/image/files/21e9ae9b65fd4fcf9d87c1ecb6c85a5d_720.jpg";
+			}
+			console.log(self.user.gender);
+		},
 		fnJoin : function(){
 			var self = this;
 			var idCheck = /^[a-zA-Z0-9]*$/;

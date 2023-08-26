@@ -20,7 +20,7 @@
 	</select>
 	<insert id="insertUser" parameterType="hashmap" >
 		INSERT INTO T4_USER VALUES
-		(#{uId}, #{uPw}, #{uEventyn}, #{uName}, #{uName2}, #{uPhone}, 0,"N", 0, NOW(),#{uEmail},#{gArtist})
+		(#{uId}, #{uPw}, #{uEventyn}, #{uName}, #{uName2}, #{uPhone}, 0,"N", 0, NOW(),#{uEmail},#{gArtist} , #{gender})
 	</insert>
 	
 	<select id="selectUser" parameterType="hashmap" resultType="com.example.project.model.User">
