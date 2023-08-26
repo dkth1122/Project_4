@@ -96,6 +96,7 @@
 			) B ON O.O_NO = B.O_NO
 			   WHERE D.DU_NO = U.DU_NO AND U.U_ID = #{uId}
 			GROUP BY O.O_NO
+			ORDER BY O_DATE DESC
 	</select>
 	<!-- 사용자 장바구니 출력 -->
 	<select id="selectcartlist" parameterType="hashmap" resultType="com.example.project.model.Product">
