@@ -768,6 +768,12 @@ var app = new Vue({
         	//장바구니로 이동
         fnCart : function(){
       	  var self = this;
+      	  	
+      	  	if(self.uId == null || self.uId == '' ){
+      	  		alert("로그인이 필요한 서비스입니다. 로그인 해주세요.")
+      	  		return;
+      	  	}
+      	  
             var nparmap = {pNo : self.pNo, uId : self.uId, quantity : self.quantity};            
             $.ajax({
                 url : "/cart/addCart.dox",
