@@ -125,11 +125,11 @@ i {
 					 <div id="evtyn">
 					 <div class="Gender">
 					    <div><label>
-					      <input type="radio" name="Gender" @click="tt('M')"  v-model:="user.gender='https://image.idus.com/image/files/3c589c029d9447d797d85b583c5fe822_720.jpg'">					    
+					      <input type="radio" name="Gender" @click="tt('M')" >					    
 					      남자</label>
 					    </div>
 					    <div><label>
-					      <input type="radio" name="Gender" @click="tt('W')" v-model:="user.gender='https://image.idus.com/image/files/21e9ae9b65fd4fcf9d87c1ecb6c85a5d_720.jpg'">				    
+					      <input type="radio" name="Gender" @click="tt('W')">				    
 					      여자</label>
 					    </div>
 					  </div>
