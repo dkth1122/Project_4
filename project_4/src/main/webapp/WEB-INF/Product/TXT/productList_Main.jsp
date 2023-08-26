@@ -81,9 +81,9 @@
   </style>
 </head>
 <body>
-
 <%@ include file="../sexyheader.jsp" %>
 
+<div id="app">
    <div id="wrap">
         <div id="container">
             <div id="header" >
