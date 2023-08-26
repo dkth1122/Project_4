@@ -10,6 +10,45 @@ public class Apply {
 	private String eUphone;
 	private char eYn;
 	private char ePrize;
+	
+	//이벤트
+	private String evtName;
+	private String artist;
+	private char evtYn;
+	private int cnt;
+	private int cnt2;
+	
+	
+	public String getEvtName() {
+		return evtName;
+	}
+	public void setEvtName(String evtName) {
+		this.evtName = evtName;
+	}
+	public String getArtist() {
+		return artist;
+	}
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+	public char getEvtYn() {
+		return evtYn;
+	}
+	public void setEvtYn(char evtYn) {
+		this.evtYn = evtYn;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public int getCnt2() {
+		return cnt2;
+	}
+	public void setCnt2(int cnt2) {
+		this.cnt2 = cnt2;
+	}
 	public String getpNo() {
 		return pNo;
 	}

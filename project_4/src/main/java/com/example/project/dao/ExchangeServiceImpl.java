@@ -19,9 +19,12 @@ public class ExchangeServiceImpl implements ExchangeService{
 	ExchangeMapper exchangeMapper;
 
 	@Override
-	public List<Exchange> selectExchangeList(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectExchangeList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return exchangeMapper.selectExchangeList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", exchangeMapper.selectExchangeList(map));
+		resultMap.put("cnt", exchangeMapper.exchangeSelectCnt(map));
+		return resultMap;
 	}
 
 	@Override

@@ -18,5 +18,8 @@ public interface ExchangeMapper {
 	//교환/환불 변경
 	int updateExchangeState(HashMap<String, Object> map);
 	
+	//페이징
+	int exchangeSelectCnt(HashMap<String, Object> map);
+	
 	
 }

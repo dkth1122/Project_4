@@ -142,7 +142,7 @@
       </tr>
       <tr v-for="(item, index) in apply">
         <td>{{item.evtNo}}</td>
-        <td>{{item.eName}}</td>
+        <td>{{item.evtName}}</td>
         <td>{{item.ePrize}}</td>
       </tr>
     </table>
