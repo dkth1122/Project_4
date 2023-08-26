@@ -127,19 +127,20 @@ nav .menu .depths li:hover a {
 .titleLi{
  margin: 0xp;
 }
-#sexyLogo{
-margin : 0px auto;
-    width: 152px;
-    height : 139px; 
-    top: 21px;
-    z-index: 1;
-	display: flex;
-	justify-content: center;
-	position: absolute;
-	top: 50%;
-	 right: 50%; 
-	transform: translate(50%, -50%);
- }
+#sexyLogo {
+  margin: 0px auto;
+  width: 152px;
+  height: 139px;
+  top: 21px;
+  z-index: 11110;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
  
 .mene{
 	text-align: center;
