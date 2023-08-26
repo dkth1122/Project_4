@@ -3,7 +3,7 @@
 <html>
 <head>
   <link href="../css/ProductPag.css" rel="stylesheet" type="text/css">
-  <!-- <link href="../css/header.css" rel="stylesheet" type="text/css"> -->
+  <link href="../css/header.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.js"></script>  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -50,6 +50,7 @@
 	.slide_wrapper_main{
 		float: left;
 		margin-left: 200px;
+		margin-top: 100px;
 	}
 	.body2{
 		margin-top : 150px;
@@ -87,10 +88,6 @@
 
    <div id="wrap">
         <div id="container">
-        <div id="login">
-        <div class="login_loginout"><span class="nonMember">로그인</span>  |  <span class="nonMember">회원가입</span></div>
-        <div class="login_loginout" v-if="false"> 로그아웃</div>
-        </div>
             <div id="header" >
             
             </div>

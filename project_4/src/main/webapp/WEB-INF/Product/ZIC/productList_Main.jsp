@@ -50,6 +50,7 @@
 	.slide_wrapper_main{
 		float: left;
 		margin-left: 200px;
+		margin-top: 100px;
 	}
 	.body2{
 		margin-top : 150px;
@@ -68,13 +69,6 @@
 	.productList{
 		width:300px;
 		height : 500px;
-		margin-bottom:50px;
-		margin-left : 20px;
-		float: left;
-	}
-	.productList{
-		width:300px;
-		height : 500px;
 		margin-top:50px;
 		margin-left : 20px;
 		float: left;
@@ -88,14 +82,12 @@
 </head>
 <body>
 
+<%@ include file="../sexyheader.jsp" %>
+
 <div id="app">
 
    <div id="wrap">
         <div id="container">
-        <div id="login">
-        <div class="login_loginout"><span class="nonMember">로그인</span>  |  <span class="nonMember">회원가입</span></div>
-        <div class="login_loginout" v-if="false"> 로그아웃</div>
-        </div>
             <div id="header" >
             
             </div>

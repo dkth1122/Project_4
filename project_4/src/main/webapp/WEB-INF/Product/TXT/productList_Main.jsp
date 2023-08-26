@@ -39,31 +39,33 @@
 	  background-color: rgba(255, 255, 255);
 	  }
 
-	 #header{
+	#header{
 		margin-bottom: 20px;
 		width: 100%;
-	  }
-    .pImg{
+	}
+	.pImg{
 		width:300px;
 		height:400px;
-	  }
-	  .slide_wrapper_main{
+	}
+	.slide_wrapper_main{
 		float: left;
 		margin-left: 200px;
-	  }
-	  .body2{
+		margin-top: 100px;
+	}
+	.body2{
 		margin-top : 150px;
 		clear: left;
 		float: clear;
 		width: 180px;
-	  }
-	  .productPosList{
+	}
+	.productPosList{
 		width: 1200px;
 		float: left;
 		position: relative;
 		top : -385px;
 		left: 350px;
-	  }
+		
+	}
 	.productList{
 		width:300px;
 		height : 500px;
@@ -80,14 +82,10 @@
 </head>
 <body>
 
-<div id="app">
+<%@ include file="../sexyheader.jsp" %>
 
    <div id="wrap">
         <div id="container">
-        <div id="login">
-        <div class="login_loginout"><span class="nonMember">로그인</span>  |  <span class="nonMember">회원가입</span></div>
-        <div class="login_loginout" v-if="false"> 로그아웃</div>
-        </div>
             <div id="header" >
             
             </div>
