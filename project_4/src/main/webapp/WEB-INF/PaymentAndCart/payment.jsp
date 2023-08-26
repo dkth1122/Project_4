@@ -241,7 +241,8 @@ text-align: center;
 					<tr v-for="item in list">
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
-						<td class="d">{{item.cnt}}</td>
+						<td class="c"></td>
+						<td class="d">{{cnt}}</td>
 						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
 					</tr>
 				</table>
