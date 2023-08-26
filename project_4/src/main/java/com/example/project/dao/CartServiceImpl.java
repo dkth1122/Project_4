@@ -23,6 +23,13 @@ public class CartServiceImpl implements CartService{
 		return cartMapper.selectCartListAll(map);
 	}
 	
+	//장바구니 페이지에서 수량 자체 변경
+	@Override
+	public int cartPageChangeCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return cartMapper.cartPageUpdateCnt(map);
+	}
+
 	//장바구니에서 상품 삭제
 	@Override
 	public int removeCart(HashMap<String, Object> map) {
@@ -59,6 +66,7 @@ public class CartServiceImpl implements CartService{
 
 	    return resultMap;
 	}
+
 
 
 

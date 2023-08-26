@@ -426,7 +426,7 @@ padding-right: 0xp;
         	   var self = this;
                var nparmap = {pNo : item.pNo, uId : self.uId, quantity : item.cnt};            
                $.ajax({
-                   url : "/cart/addCart.dox",
+                   url : "/cart/cartPageChangeCnt.dox",
                    dataType:"json",	
                    type : "POST", 
                    data : nparmap,
