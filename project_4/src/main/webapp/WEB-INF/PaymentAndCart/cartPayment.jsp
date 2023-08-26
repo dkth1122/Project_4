@@ -526,6 +526,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                data : nparmap,
 	                success : function(data) { 
 	                	self.list = data.list;
+	                	console.log("리스트 ==>", self.list);
 	                	
 	                }
 	            }); 
@@ -706,7 +707,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     	       	for(var i =0; i < self.list.length; i++){
     	       	//키트일 경우 확인 후 유저의 멤버쉽 구독 확인 프로세스
     	       	 if(self.list[i].category == 'MEM' && self.list[i].membership == 'Y'){ 
-    	             	var nparmap = {uId : self.uId, artist : self.list[i].artist};
+    	       		var artist = self.list[i].artist;
+    	             	var nparmap = {uId : self.uId, artist : artist};
     	                   $.ajax({
     	                       url : "memberCheck.dox",
     	                       dataType:"json",   	
@@ -717,20 +719,19 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     								if(data.sub == 1){
     									if(data.kit == 1){
     										alert("키트는 아티스트 당 한 번만 구매하실 수 있습니다.");
-    										location.href = "/product/" +self.list[0].artist+".do";
-    										return;
+    										location.href = "/product/" +artist+".do";
     									}
     								}else if (data.sub == 0){
     									alert("키트를 구매를 위해 멤버쉽을 구독해주세요.");
-    									location.href = "/product/" +self.list[0].artist+".do";
-    									return;
+    									location.href = "/product/" +artist+".do";
     								}
     	                       }
     	                   });  
     	       		}
     	       	
-    		       	if(self.list[0].category == 'MEM' && self.list[i].membership == 'N'){ 
-    	             	var nparmap = {uId : self.uId, artist : self.list[i].artist};
+    		       	if(self.list[i].category == 'MEM' && self.list[i].membership == 'N'){ 
+    					var artist = self.list[i].artist;
+    	             	var nparmap = {uId : self.uId, artist :artist};
     	                   $.ajax({
     	                       url : "memberCheck.dox",
     	                       dataType:"json",   	
@@ -739,8 +740,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     	                       success : function(data) {
     								if(data.sub == 1){
     										alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
-    										location.href = "/product/" +self.list[i].artist+".do";
-    										return;
+    										location.href = "/product/" +artist+".do";
     								}
     	                       }
     	                   });  

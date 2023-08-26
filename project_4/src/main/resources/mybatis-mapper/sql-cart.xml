@@ -20,6 +20,13 @@
 		VALUES (#{uId}, #{pNo}, #{quantity})
 	</insert>
 	
+	<!-- 장바구니 페이지에서 수량 변경용 -->
+	<update id="cartPageUpdateCnt" parameterType="hashmap" >
+		UPDATE T4_CART SET 	
+		CNT = #{quantity}
+		WHERE P_NO = #{pNo} AND U_ID = #{uId}
+	</update>
+	
 	<!-- 장바구니 물품 리스트에서 삭제 -->
 	<delete id="deleteCart" parameterType="hashmap">
 		DELETE FROM T4_CART
