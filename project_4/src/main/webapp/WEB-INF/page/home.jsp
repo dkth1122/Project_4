@@ -165,11 +165,12 @@ img.topimg{
 
 .productList {
   border:5px solid blue;
- height:400px;
-  width: 300px;
+ height:320px;
+  width: 230px;
   position : relative;
   text-align: center;
    box-shadow:  0 10px 20px  rgba(0, 0, 0, 0.5); 
+   font-size : 16px;
 }
 
 .productList-container {
@@ -230,8 +231,8 @@ img.topimg{
 .sect2 div .sub {
 	position: absolute;
 	bottom: -100px;
-	width: 300px;
-	height: 250px;
+	width: 230px;
+	height: 200px;
 	background: rgba(98,144,198, 0.7);
 	text-shadow: 0 5px 5px  rgba(199,225,50, 1);
 	color:black;
@@ -298,8 +299,8 @@ img.topimg{
 .sect3 div .sub {
 	position: absolute;
 	bottom: -100px;
-	width: 300px;
-	height: 250px;
+	width: 230px;
+	height: 200px;
 	background: rgba(98,144,198, 0.7);
 	text-shadow: 0 5px 5px  rgba(199,225,50, 1);
 	color:black;
@@ -487,7 +488,7 @@ display:block;
      <div class="sect2name"><a href="newitem.do">NEW ARRIVAL</a></div>
     <!--   <p class="more"><a href="#">MORE</a></p> -->
      
-       <div v-for="(item, index) in list" class="productList" :key="index" style="border:0; margin-bottom:50px;" >
+       <div @click="productView(item)" v-for="(item, index) in list" class="productList" :key="index" style="border:0; margin-bottom:50px;" >
           <img :src="item.path" class="productList" style="margin : 0px;">
           <div style="font-weight :bold; font-size:18px; ">{{ item.pName }}</div>
           
@@ -509,7 +510,7 @@ display:block;
 		      <div class="Sbox1">
       <div class="sect3name" style="font-shadow:0 0 50px; rgb(255,255,255, 0.5)"><a href="newitem.do">BEST ITEM</a></div>
          
-         <div v-for="(zz, index) in best" class="productList" :key="index" style="border:0; margin-bottom:50px;" >
+         <div @click="productView(zz)" v-for="(zz, index) in best" class="productList" :key="index" style="border:0; margin-bottom:50px;" >
          <img :src="zz.path" class="productList" style="margin :0px;"  >
           <div style= "font-weight :bold; font-size:18px;">{{ zz.pName }}</div>
           
@@ -525,94 +526,94 @@ display:block;
 	</nav>
 		
 		
-		<nav id="nav4">
-		
-		<section class="sect1">
-			<div class="ostimg">
-				<div class="img1" @click="playAudio('audio1', 60)"></div> <!-- TXT - 어느날 머리에서 뿔이 자랐다 -->
-				<div class="img2" @click="playAudio('audio2', 60)"></div> <!-- LE SSERAFIM - UNFORGIVEN -->
-				<div class="img3" @click="playAudio('audio3', 60)"></div> <!-- BTS - Butter -->
-				<div class="img4" @click="playAudio('audio4', 60)"></div> <!-- NewJeans- Super Shy -->
-				<div class="img5" @click="playAudio('audio5', 60)"></div> <!-- SEVENTEEN - 손오공 -->
-			</div>
-			
-			<audio id="audio1">
-			    <source src="../audio/TXT - 어느날 머리에서 뿔이 자랐다.mp3"> <!-- TXT - 어느날 머리에서 뿔이 자랐다 -->
-			</audio>
-			<audio id="audio2">
-			    <source src="../audio/LE SSERAFIM - UNFORGIVEN.mp3"><!-- LE SSERAFIM - UNFORGIVEN -->
-			</audio>
-			<audio id="audio3">
-			    <source src="../audio/BTS -  Butter.mp3"><!-- BTS -  Butter -->
-			</audio>
-			<audio id="audio4">
-			    <source src="../audio/NewJeans- Super Shy.mp3"> <!-- NewJeans- Super Shy -->
-			</audio>
-			<audio id="audio5">
-			    <source src="../audio/SEVENTEEN - 손오공.mp3"> <!-- SEVENTEEN - 손오공 -->
-			</audio>
+		      <nav id="nav4">
+      
+      <section class="sect1">
+         <div class="ostimg">
+            <div class="img1" @click="playAudio('audio1', 60)"></div> <!-- TXT - 어느날 머리에서 뿔이 자랐다 -->
+            <div class="img2" @click="playAudio('audio2', 60)"></div> <!-- LE SSERAFIM - UNFORGIVEN -->
+            <div class="img3" @click="playAudio('audio3', 60)"></div> <!-- BTS - Butter -->
+            <div class="img4" @click="playAudio('audio4', 60)"></div> <!-- NewJeans- Super Shy -->
+            <div class="img5" @click="playAudio('audio5', 60)"></div> <!-- SEVENTEEN - 손오공 -->
+         </div>
+         
+         <audio id="audio1">
+             <source src="../audio/TXT - 어느날 머리에서 뿔이 자랐다.mp3"> <!-- TXT - 어느날 머리에서 뿔이 자랐다 -->
+         </audio>
+         <audio id="audio2">
+             <source src="../audio/LE SSERAFIM - UNFORGIVEN.mp3"><!-- LE SSERAFIM - UNFORGIVEN -->
+         </audio>
+         <audio id="audio3">
+             <source src="../audio/BTS -  Butter.mp3"><!-- BTS -  Butter -->
+         </audio>
+         <audio id="audio4">
+             <source src="../audio/NewJeans- Super Shy.mp3"> <!-- NewJeans- Super Shy -->
+         </audio>
+         <audio id="audio5">
+             <source src="../audio/SEVENTEEN - 손오공.mp3"> <!-- SEVENTEEN - 손오공 -->
+         </audio>
 
-		</section>
-		
-		</nav>
+      </section>
+      
+      </nav>
 
-	</div> 
-		
+   </div> 
+      
 </div> <!-- app div -->
 
 </body>
 </html>
 <script>
 var app = new Vue({
-	el : '#app',
-	data : {
-		uId : "${sessionId}",
-		list : [],
-		info : {},
-		best : [],
+   el : '#app',
+   data : {
+      uId : "${sessionId}",
+      list : [],
+      info : {},
+      best : [],
     currentAudio: null 
-	}, 
-	
-	methods : {
-		playAudio(audioId, durationInSeconds) {
-			  var audio = document.getElementById(audioId);
+   }, 
+   
+   methods : {
+      playAudio(audioId, durationInSeconds) {
+           var audio = document.getElementById(audioId);
 
-			  if (this.currentAudio === audio && !audio.paused) {
-			    // 동일한 오디오 요소를 눌렀고, 현재 재생 중인 경우에는 일시정지
-			    audio.pause();
-			    audio.currentTime = 0;
-			    clearTimeout(this.audioTimer);
-			  } else {
-			    if (this.currentAudio && !this.currentAudio.paused) {
-			      // 다른 오디오 요소가 재생 중인 경우에는 일시정지
-			      this.currentAudio.pause();
-			      this.currentAudio.currentTime = 0;
-			      clearTimeout(this.audioTimer);
-			    }
+           if (this.currentAudio === audio && !audio.paused) {
+             // 동일한 오디오 요소를 눌렀고, 현재 재생 중인 경우에는 일시정지
+             audio.pause();
+             audio.currentTime = 0;
+             clearTimeout(this.audioTimer);
+           } else {
+             if (this.currentAudio && !this.currentAudio.paused) {
+               // 다른 오디오 요소가 재생 중인 경우에는 일시정지
+               this.currentAudio.pause();
+               this.currentAudio.currentTime = 0;
+               clearTimeout(this.audioTimer);
+             }
 
-			    audio.play();
+             audio.play();
 
-			    // 기존 타이머 제거
-			    clearTimeout(this.audioTimer);
+             // 기존 타이머 제거
+             clearTimeout(this.audioTimer);
 
-			    this.audioTimer = setTimeout(function () {
-			      audio.pause();
-			      audio.currentTime = 0;
-			    }, durationInSeconds * 1000);
-			  }
+             this.audioTimer = setTimeout(function () {
+               audio.pause();
+               audio.currentTime = 0;
+             }, durationInSeconds * 1000);
+           }
 
-			  this.currentAudio = audio; // 현재 재생 중인 오디오 요소 저장
-			},
+           this.currentAudio = audio; // 현재 재생 중인 오디오 요소 저장
+         },
 
-			stopAllAudio() {
-			  if (this.currentAudio && !this.currentAudio.paused) {
-			    this.currentAudio.pause();
-			    this.currentAudio.currentTime = 0;
-			    clearTimeout(this.audioTimer);
-			  }
-			},
-	  
-	  fnGetList() { 
+         stopAllAudio() {
+           if (this.currentAudio && !this.currentAudio.paused) {
+             this.currentAudio.pause();
+             this.currentAudio.currentTime = 0;
+             clearTimeout(this.audioTimer);
+           }
+         },
+     
+     fnGetList() { 
         var self = this;
         var nparmap = {uId: self.uId};            
         $.ajax({
@@ -625,9 +626,9 @@ var app = new Vue({
               console.log(self.list)
            }
         });
-	  },
+     },
 
-	  fnBestItem() { 
+     fnBestItem() { 
         var self = this;
         var nparmap = {uId: self.uId};            
         $.ajax({
@@ -641,25 +642,25 @@ var app = new Vue({
           }
        });
     },
-	 
+    
     productView(item) {
       console.log("Clicked product:", item);
     }
   },
-	
-	created() {
-		var self = this;
-		self.fnGetList();
-		self.fnBestItem();
+   
+   created() {
+      var self = this;
+      self.fnGetList();
+      self.fnBestItem();
 
-	}
+   }
 });
 
 var slideIndex = 0;
 var slides = document.getElementsByClassName("mySlides"); 
 var gradientColors = [ 'linear-gradient(to bottom, #e5cfff, #8fd6ff, #d8ff8f)',
-    					'linear-gradient(to bottom, #f0c3ff, #8fffd8, #ffb38f)',
-    					'linear-gradient(to bottom, #e5cfff, #8fd6ff, #d8ff8f)']
+                   'linear-gradient(to bottom, #f0c3ff, #8fffd8, #ffb38f)',
+                   'linear-gradient(to bottom, #e5cfff, #8fd6ff, #d8ff8f)']
 
 function showSlides() {
     var i;
