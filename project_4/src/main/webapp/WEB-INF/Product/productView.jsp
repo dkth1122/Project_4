@@ -452,36 +452,21 @@
 		
 			
 			<div class="h3"><h3>함께하면 좋은 상품!</h3></div>
-			<div id="itemSlideArea">		  
-			    <div class="itemSlide">
-			    <a href="/product/NJS.do">
-			        <div class="itemContainer">
+			<div id="itemSlideArea">		  			 
+			    <div class="itemSlide" v-for="item in together">
+			    	<a @click="fucking(item)">
+			        <div class="itemContainer" >			        
 			            <div>
-			                <img style="width:155px;" src="../img/202372595121thumb.png">
+			                <img style="width:155px;" :src="item.path">
 			            </div>
 			            <div class="txt-box">
-			                <span class="xname">PHOTO SET VER.1</span>
+			                <span class="xname">{{item.pName}}</span>
 			                <div>
-			                    <span class="price" style="color:undefined">₩ 15,000</span>
+			                    <span class="price">₩ {{formattedPrice}}</span>
 			                </div>
 			            </div>
 			        </div>
-			    </a>
-			    </div>
-			    <div class="itemSlide">
-			    <a href="/product/ZIC.do">
-			        <div class="itemContainer">			        
-			            <div>
-			                <img style="width:155px;" src="../img/202372453418thumb.png">
-			            </div>
-			            <div class="txt-box">
-			                <span class="xname">3rd Mini Album [RANDOM BOX]</span>
-			                <div>
-			                    <span class="price">₩ 26,700</span>
-			                </div>
-			            </div>
-			        </div>
-			    </a>
+			        </a>
 			    </div>
 			</div>
 		</div>	
@@ -669,8 +654,10 @@ var app = new Vue({
     	uId : "${sessionId}",    	
     	list : [],
     	info : [],
+    	together : [],
     	pNo : "${map.pNo}",
     	pName : "",
+    	artist : "",
     	price: "",
     	formattedPrice: "",
     	artist : "",
@@ -704,16 +691,14 @@ var app = new Vue({
                 	self.path2 = self.info[1].path;
                 	self.category = self.info[0].category;
                 	self.membership = self.info[0].membership;
-                	console.log(self.info);
-                	
-                	
+                	console.log(self.info);     
+                	self.fnGetList2();
                 }
             }); 
             //주문 페이지로 이동
         },  fnProductOrder : function(){
         	var self = this;
         	var param = {cnt : self.quantity, pNo : self.pNo}
-        	
         	if(self.uId == null || self.uId == ''){
         		if(confirm("비회원으로 구매하시겠습니까?")){
         			if(self.info[0].category == 'MEM'){
@@ -725,8 +710,7 @@ var app = new Vue({
         		}
         	}
         	
-        	$.pageChange("/payment/payment.do", param);        	
-        	     	
+        	$.pageChange("/payment/payment.do", param);
         },//위시리스트 이동  
         wishList : function(){
         	var self = this;
@@ -764,6 +748,13 @@ var app = new Vue({
         	$.pageChange("/mypag/myInformation.do",{uId : self.uId}); 
         	self.showWishlistPopup = true;
         },
+        //함께하면 좋은상품!!이동
+        fucking : function(item){
+        	var self = this;
+        	$.pageChange("/product/productView.do",{pNo : item.pNo}); 
+        },
+        
+        
         //pop-up 팝업을 숨기는 동작
         hideWishlistPopup() {  
         	var self = this;
@@ -829,8 +820,24 @@ var app = new Vue({
             var self = this;
             var numericQuantity = parseInt(self.quantity.replace(/\D/g, '')); // 숫자로 변환
             self.totalPrice = (self.price * numericQuantity).toLocaleString();
-        }
-    	
+        },
+         fnGetList2 : function(){
+            var self = this;            
+            var nparmap = {artist : self.artist}; 
+            console.log(nparmap);
+            $.ajax({
+                url : "/product/together.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	self.together = data.together; //사용자
+                	console.log(self.together);
+                	console.log(self.artist);
+                	console.log("together ==>",self.together);
+                }
+            })
+        } 
     },
     //총 가격 계산
    computed: {

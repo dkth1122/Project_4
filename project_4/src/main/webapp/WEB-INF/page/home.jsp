@@ -408,7 +408,6 @@ display:block;
 }
 .newIssue{
 	width : 100%;
-	background-color : #ccc;
 	text-align : center;	
 }
 .newIssue h1{
@@ -423,7 +422,9 @@ display:block;
 }
 .evtBox img{
 	width : 390px;
-	height : 520px;
+	height : 520px;	 
+}
+.evtBox p{
 	
 }
 .evtBox img:hover {
@@ -435,6 +436,31 @@ display:block;
     bottom: 45px;
     left: 25px;
     height: 50px;
+}
+.overlay-container {
+  position: relative;
+  display: inline-block;
+  width: 500px;
+  margin-left : 15px;
+}
+
+.overlay-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay-container p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
 }
 
 </style>
@@ -479,20 +505,19 @@ display:block;
 				</div>
 			</nav>
 			
-			<div id="div3">
-			     <div class="newIssue">
-			     	<h1>New Issue</h1>
-			     	<div class="evtList">			     		
-			     		<div class="evtBox" v-for="(item, index) in evt.slice(0, 3)" :key="index">
-					      <figure>
-					        <img :src="item.thumbnail">
-					        
-					      </figure>
-					      <p>{{item.aTitle}}</p>
-					    </div>
-			     	</div>
-			     </div>			   
-			</div>
+		<div id="div3">
+		  <div class="newIssue">
+		    <h1>New Issue</h1>
+		    <div class="evtList">
+		      <div class="evtBox" v-for="(item, index) in evt.slice(0, 3)" :key="index">
+		        <div class="overlay-container">
+		          <img :src="item.thumbnail" @click="evtInfo(item)">
+		          <p>{{ item.aTitle }}</p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 			
 			
 <nav id="nav2">
@@ -670,6 +695,20 @@ var app = new Vue({
     productView(item) {
     	var self = this;
         $.pageChange("/product/productView.do", {pNo : item.pNo});
+    },
+    evtInfo : function(item){
+    	var popWidth = 840;
+        var popHeight = 1000;
+        // 화면 정 중앙에 띄우기 위한 변수
+        var screenWidth = window.screen.width;
+        var screenHeight = window.screen.height;
+        
+        var left = (screenWidth - popWidth) / 2;
+        var top = ((screenHeight - popHeight) / 2) - 100; // 세로 높이는 정 중앙보다 조금 높은 위치에 띄우기 위해 -100 하였다.
+        
+        var popSize = "width=" + popWidth + ", height=" + popHeight + ", top=" + top + ", left=" + left;
+        
+        window.open("/event/eventpageView.do?aNo=" + item.aNo, "request", popSize);
     },
     EventList : function(){
         var self = this;

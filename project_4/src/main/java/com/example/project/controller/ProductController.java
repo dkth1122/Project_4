@@ -342,6 +342,15 @@ public class ProductController {
 			resultMap.put("list", list);
 			return new Gson().toJson(resultMap);
 }
+		//함께상품 출력
+		@RequestMapping(value = "/product/together.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String together(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			List<Product> together = productService.together(map);
+			resultMap.put("together", together);
+			return new Gson().toJson(resultMap);
+		}
 	
 	
 }
