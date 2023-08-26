@@ -712,6 +712,7 @@ var app = new Vue({
             //주문 페이지로 이동
         },  fnProductOrder : function(){
         	var self = this;
+        	var param = {cnt : self.quantity, pNo : self.pNo}
         	
         	if(self.uId == null || self.uId == ''){
         		if(confirm("비회원으로 구매하시겠습니까?")){
@@ -719,19 +720,22 @@ var app = new Vue({
                 		alert("비회원은 멤버쉽 상품을 구매하실 수 없습니다.");	
                 		return;
                 	}else{
-                		$.pageChange("/payment/payment.do", {pNo : self.pNo});
+                		$.pageChange("/payment/payment.do", param);
                 	}	
         		}
         	}
         	
-        	$.pageChange("/payment/payment.do", {pNo : self.pNo});        	
+        	$.pageChange("/payment/payment.do", param);        	
         	     	
         },//위시리스트 이동  
         wishList : function(){
         	var self = this;
-        	if(self.uId == null){
-        		alert("회원 로그인 후 이용하실 수 있습니다.");
-        		}
+        	
+      	  	if(self.uId == null || self.uId == '' ){
+      	  		alert("회원 로그인 후 이용하실 수 있습니다.")
+      	  		return;
+      	  	}
+        	
             var nparmap = {pNo : self.pNo, uId : self.uId};            
             $.ajax({
                 url : "/product/insertWish.dox",
@@ -770,7 +774,7 @@ var app = new Vue({
       	  var self = this;
       	  	
       	  	if(self.uId == null || self.uId == '' ){
-      	  		alert("로그인이 필요한 서비스입니다. 로그인 해주세요.")
+      	  		alert("회원 로그인 후 이용하실 수 있습니다.")
       	  		return;
       	  	}
       	  
@@ -801,7 +805,7 @@ var app = new Vue({
     	increaseQuantity: function() {
     		var self = this;
             // 수량 증가를 위한 함수
-            if(self.quantity < self.info.pLimit){
+            if(self.quantity < self.info[0].pLimit){
             	self.quantity++;	
             }
             else{
