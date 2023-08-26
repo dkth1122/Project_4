@@ -19,7 +19,7 @@
     	width: 900px;
    }
    .warning{
-   	 padding-left : 822px;
+   	     padding-left: 690px;
    	 text-align: right;
    }
    .updatetable th {

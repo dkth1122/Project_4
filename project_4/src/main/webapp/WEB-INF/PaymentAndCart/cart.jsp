@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../Product/sexyheader.jsp" %>
+
 <script src="../js/jquery.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -239,9 +239,14 @@ i{
 	width: 63px;
 	height: 25px;
 }
+#headerd{
+	margin-bottom: 80px;
+	width: 1500px;
+}
 </style>
 </head>
 <body>
+<div id="headerd"><%@ include file="../Product/sexyheader.jsp" %></div>
 	<div id="app">
 		<div id="container">
 		
