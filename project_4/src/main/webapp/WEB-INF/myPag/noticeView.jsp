@@ -40,7 +40,8 @@
 	
 	img{
 		width: 300px;
-		height: 300px
+		height: 300px;
+		border: none;
 	}
 
   </style>
@@ -61,8 +62,11 @@
     			<hr>
     		</div>
     	<div>
-	    		<div class="noticeContentPos1">
+	    		<div class="noticeContentPos1" v-if="item.thumbnail != NULL">
 					<img :src="item.thumbnail">
+	    		</div>
+	    		<div class="noticeContentPos1" v-else>
+	    			<span></span>
 	    		</div>
 	    			<div class="noticeContentPos2">{{item.aContent}}</div>
         			<hr>

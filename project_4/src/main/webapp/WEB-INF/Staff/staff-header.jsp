@@ -84,8 +84,18 @@ var app1 = new Vue({
 		fnGBoard : function() {
 			window.open('../gboard/main.do', '_blank');
 		},
-		fnLogout : function() {
-			location.href="../user/login.do";
+		fnLogout : function(){
+			var self = this;
+			var param = {uId : self.uId, uPw : self.uPw};
+			$.ajax({
+                url : "/logout.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	window.location.reload();
+                }
+            }); 
 		},
 		fnHome : function(){
             location.href = '../staff/home.do';
