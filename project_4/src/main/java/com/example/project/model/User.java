@@ -155,6 +155,12 @@ public class User {
 	public void setPodata(String podata) {
 		this.podata = podata;
 	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	
 	
 	

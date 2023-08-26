@@ -118,6 +118,7 @@ public class UserController {
 			User user = (User)resultMap.get("user");
 			session.setAttribute("sessionId", user.getuId());
 			session.setAttribute("sessionName", user.getuName());
+			session.setAttribute("sessionPoint", user.getuPoint());
 			//세션유지시간 1시간지정
 			session.setMaxInactiveInterval(360*60);
 			//session.setAttribute("sessionStatus", user.getStatus());
