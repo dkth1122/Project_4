@@ -20,39 +20,6 @@
 a {
     text-decoration: none;
 }
-/* 
-.ex1 a i {
-    display: block;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    line-height: 100px;
-    font-size: 2rem;
-    color: #fff;
-    background-color: #333;
-}
-
-.ex1 a i:hover {
-    text-shadow: 0 0 10px #f54;
-}
-
-.ex2 a {
-    display: block;
-    width: 200px;
-    height: 60px;
-    border-radius: 10px;
-    text-align: center;
-    color: #fff;
-    font-weight: bold;
-    font-size: 2rem;
-    line-height: 60px;
-    background-color: #333;
-}
-
-.ex2 a:hover {
-    text-shadow: 0 0 5px #ff0;
-}
- */
 
 #footer {
   position: fixed;
@@ -164,13 +131,13 @@ img.topimg{
 
 
 .productList {
-  border:5px solid blue;
  height:320px;
   width: 230px;
   position : relative;
   text-align: center;
    box-shadow:  0 10px 20px  rgba(0, 0, 0, 0.5); 
    font-size : 16px;
+   border-radius : 10px;
 }
 
 .productList-container {
@@ -232,7 +199,7 @@ img.topimg{
 	position: absolute;
 	bottom: -100px;
 	width: 230px;
-	height: 200px;
+	height: 140px;
 	background: rgba(98,144,198, 0.7);
 	text-shadow: 0 5px 5px  rgba(199,225,50, 1);
 	color:black;
@@ -244,18 +211,23 @@ img.topimg{
 	box-sizing: border-box;
 	opacity: 0;
 	transition: all 1s;
+	border-radius : 0px 0px 10px 10px;
 }
 
 
 
 .sect2 div .sub .sname {
-	font-size: 23pt;
-	font-weight: bold;
-	padding: 50px 0 20px 0;
+	font-size: 16px;
+	font-weight: lighter;
 	box-sizing: border-box;
 	text-align: left;
+ height: 30px;
+    margin-top: 20px;
 }
-
+.sub li {
+	height : 50px;
+	line-height: 20px;
+}
 
 
 
@@ -300,7 +272,7 @@ img.topimg{
 	position: absolute;
 	bottom: -100px;
 	width: 230px;
-	height: 200px;
+	height: 140px;
 	background: rgba(98,144,198, 0.7);
 	text-shadow: 0 5px 5px  rgba(199,225,50, 1);
 	color:black;
@@ -312,19 +284,20 @@ img.topimg{
 	box-sizing: border-box;
 	opacity: 0;
 	transition: all 1s;
+	border-radius : 0px 0px 10px 10px;
 	}
 
 
 
 .sect3 div .sub .sname {
-	font-size: 23pt;
-	font-weight: bold;
-	padding: 50px 0 20px 0;
+	font-size: 16px;
+	font-weight: lighter;
 	box-sizing: border-box;
 	text-align: left;
-color: yellow;
- text-decoration: none;
- transition: 1s;
+/*  text-decoration: none;
+ transition: 1s; */
+ height: 30px;
+    margin-top: 20px;
 }
 
 
@@ -430,6 +403,11 @@ display:block;
   background-color: #f0f0f0;
   position: relative;
 }
+.sPname{
+	height : 50px;
+	font-size : 14px;
+	
+}
 
 </style>
 <!-- Start HEAD section -->
@@ -494,8 +472,8 @@ display:block;
           
             <ul class="sub">
               <li class="sname">{{item.artist}}</li>
-              <li>{{item.category}}</li>
-              <li>{{item.price}}</li>
+              <li class="sPname">{{item.pName}}</li>
+              <li>₩<strong>{{ item.price | formatPrice }}</strong></li>
             </ul>
            
           </div>
@@ -516,8 +494,8 @@ display:block;
           
             <ul class="sub">
               <li class="sname">{{zz.artist}}</li>
-              <li>{{zz.category}}</li>
-              <li>{{zz.price}}</li>
+              <li class="sPname">{{zz.pName}}</li>
+              <li>₩<strong>{{ zz.price | formatPrice }}</strong></li>
             </ul>
            
           </div>
@@ -564,6 +542,15 @@ display:block;
 </body>
 </html>
 <script>
+Vue.filter('formatPrice', function(value) {
+	  if (typeof value !== 'number') {
+	    return value;
+	  }
+	  const formatter = new Intl.NumberFormat('en-US');
+	  return formatter.format(value);
+	});
+	
+	
 var app = new Vue({
    el : '#app',
    data : {
@@ -644,7 +631,8 @@ var app = new Vue({
     },
     
     productView(item) {
-      console.log("Clicked product:", item);
+    	var self = this;
+        $.pageChange("/product/productView.do", {pNo : item.pNo});
     }
   },
    
