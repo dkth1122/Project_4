@@ -125,11 +125,11 @@ i {
 					 <div id="evtyn">
 					 <div class="Gender">
 					    <div><label>
-					      <input type="radio" name="Gender" @click="tt('M')" >					    
+					      <input type="radio" name="Gender" @click="fngender('M')" >					    
 					      남자</label>
 					    </div>
 					    <div><label>
-					      <input type="radio" name="Gender" @click="tt('W')">				    
+					      <input type="radio" name="Gender" @click="fngender('W')">				    
 					      여자</label>
 					    </div>
 					  </div>
@@ -193,7 +193,7 @@ var app = new Vue({
 		messageColor : ""
 	},// data
 	methods : {
-		tt : function(item){
+		fngender : function(item){ // 성별 버튼
 			var self = this;
 			if(item == 'M'){
 				self.user.gender = "https://image.idus.com/image/files/3c589c029d9447d797d85b583c5fe822_720.jpg";
