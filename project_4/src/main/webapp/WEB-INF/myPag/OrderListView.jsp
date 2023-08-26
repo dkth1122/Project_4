@@ -5,6 +5,7 @@
 <head>
 <%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -356,8 +357,9 @@
          </div>
       </div>
    </div>
+   <div><%@ include file="../page/footer.jsp" %></div>
 </div>
-<div><%@ include file="../page/footer.jsp" %></div>
+
 </body>
 </html>
 <script type="text/javascript">

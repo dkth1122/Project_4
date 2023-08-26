@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<%@ include file="../Product/sexyheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -228,7 +228,7 @@ td input{
 	width: 20px;
 	height: 20px;
 }
-i{
+.c i{
 	border: 1px solid black;
 	border-radius: 50%;
 	padding: 5px;
@@ -243,10 +243,13 @@ i{
 	margin-bottom: 80px;
 	width: 1500px;
 }
+.sexyIcon {
+padding-right: 0xp;
+}
 </style>
 </head>
 <body>
-<div id="headerd"><%@ include file="../Product/sexyheader.jsp" %></div>
+
 	<div id="app">
 		<div id="container">
 		

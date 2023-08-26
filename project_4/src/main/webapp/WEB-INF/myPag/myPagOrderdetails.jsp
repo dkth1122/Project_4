@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="mypageheader.jsp" %>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -318,9 +319,10 @@ input[type="date"]:focus {
                   </div>
                </div>
             </div>
-         </div>         
+         </div>       
+               <div><%@ include file="../page/footer.jsp" %></div>  
       </div>
-      <div><%@ include file="../page/footer.jsp" %></div>
+
 </body>
 </html>
 <script type="text/javascript">

@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="mypageheader.jsp" %>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>  
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <!-- 1. vue2editor 에디터 cdn -->
@@ -202,9 +203,9 @@
 					    </div>
 			    
 			  </div>
-  
-</div>
 <div><%@ include file="../page/footer.jsp" %></div>
+</div>
+
 </body>
 </html>
 <script type="text/javascript">

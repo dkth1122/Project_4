@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="mypageheader.jsp" %>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
   <script src="../js/jquery.js"></script>  
      <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -229,10 +230,11 @@ select{
                    </div>
              
            </div>
-  
+
 	</div>
+	  <div><%@ include file="../page/footer.jsp" %></div>
+	
 </div>
-<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
