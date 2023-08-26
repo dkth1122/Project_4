@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <script src="../js/jquery.js"></script>
-  <link href="../css/membership.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js"></script>
+<link href="../css/membership.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버쉽 게시판 </title>
@@ -21,7 +21,13 @@
     *{
     	font-family: ridibatang;
     }
-		
+    .artistNewFeed{
+    	background-color: rgb(230, 230, 255);
+    }
+    a{
+    	text-decoration: none;
+    	color: rgb(76, 76, 76);
+    }
 		
 </style>
 </head>
@@ -29,7 +35,7 @@
  <div id="app">
 	<div class="logos">
       <a href="../home.do"><img alt="" src="../img/logo/veryperiiix-.png" style="width:130px; height:80px; margin-top:25px;"></a>
-      <a href="../home2.do"><img alt="" src="../img/logo/bts_logo.png" style="width:120px; height:auto;"></a>
+      <a href="/gboard/main.do"><img alt="" src="../img/logo/bts_logo.png" style="width:120px; height:auto;"></a>
     </div>
     
 	<nav id="buttons">
@@ -48,17 +54,17 @@
     </nav>
     <nav id="contents">
     <div class="artistNewFeed">
-        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
-	            	<li><span>COMMENT ✉<span>{{item.gcCnt}}</li>
+        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2">
+	            	<li><span style="color: rgb(179, 179, 255);">COMMENT ✉<span>{{item.gcCnt}}</li>
 	                <li>{{item.artist}}</li>
 	            	<li>{{item.nickName}}</li>
 	            	<li>
 	            		<img :src = "item.gpPath" class="profile-image" v-if="item.gpPath != null && item.gpPath != ''">
-	            		<img src ="/gboard/profileImg.jpg"class="profile-image" v-else />
+	            		<img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
 	            	</li>
 	                <li>{{item.gDate}}</li>
-	                <li>{{item.gContent}}</li>
-	                <li><span>LIKE ♥ </span>{{item.gLike}}</li>
+	                <li @click = "fnComment(item.gNo)">{{item.gContent}}</li>
+	                <li><span @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a></span>{{item.gLike}}</li>
        	 	</ul>
     </div>
     </nav>
@@ -73,23 +79,24 @@
     <hr>
     <div class="container">
         <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
-        	<li><span>COMMENT ✉ </span>{{item.gcCnt}}</li>
+        	<li><span style="color: rgb(179, 179, 255);">COMMENT ✉ </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
-	        <li><img :src = "item.gpPath" class="profile-image">{{item.nickName}}</li>
+	        <li>{{item.nickName}}</li>
+	        <li>
+	          	<img :src = "item.gpPath" class="profile-image" v-if="item.gpPath != null && item.gpPath != ''">
+	          	<img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
+	        </li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
-            <li><span>LIKE ♥ </span>{{item.gLike}}</li>
+            <li><span @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a></span>{{item.gLike}}</li>
             <li>
 	            <img v-if="item.path" :src="item.path" class="image" />
 				<img v-else class="imageX" />
 			</li>
-            <li><button @click="fnLike(item.gNo)">좋아요</button></li>
-            <li><button @click="fnComment(item.gNo)">댓글</button></li>
-            <li><button @click="reportPost(item.gNo)">신고</button></li>
-            <li v-if="uId == item.uId">
-                <a href="javascript:;">
-                    <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item)"></i></div>
-                </a>
+            <li class="clickThis"><span @click="fnComment(item.gNo)"><a href="javascript:">댓글✉</a></span></li>
+            <li class="clickThis"><span @click="reportPost(item.gNo)"><a href="javascript:">신고🚨<a></span></li>
+            <li v-if="uId == item.uId" class="clickThis">
+                    <div class="clickThis"><span @click="fnRemove(item)"><a href="javascript:">✖</a></span></div>
             </li>
             <hr>
         </ul>

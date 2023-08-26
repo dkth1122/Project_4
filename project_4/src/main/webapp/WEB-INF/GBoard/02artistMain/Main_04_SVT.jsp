@@ -4,89 +4,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <script src="../js/jquery.js"></script>
- <link href="../css/membership.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js"></script>
+<link href="../css/membership.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<title>멤버십 게시판</title>
+<title>멤버쉽 게시판 </title>
 <style>
-	@font-face {
-    	font-family: "a타이틀고딕2";
-        src: url("../../../font/A타이틀고딕2.TTF") format("truetype");
+	#app{
+		background-color : white;
+	}
+    @font-face {
+    	font-family: "ridibatang";
+        src: url("../../../font/ridibatang.ttf") format("truetype");
     }
     
     *{
-    	font-family: a타이틀고딕2;
+    	font-family: ridibatang;
     }
-	/* body{
-		font-family: a타이틀고딕2;
-		width : 1250px;
-		margin : 10px auto;
-	}
-	ul, li{
-		text-decoration : none;
-		list-style : none;	
-	}
-	.header{
-		width: 1000px;
-		height: 100px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	.artistNewFeed{
-		width: 1000px;
-		height: 300px;
-	}
-	.feedType{
-		width: 300px;
-		height: 200px;
-	    display: inline-block; 
-	}	
-	 .feedType > a > div {
-	 	width: 300px;
-		height: 200px;
-	    position: relative; 
-	   	display: inline-block; 
-	    border: 1px solid tomato;
-	    padding: 32px;
-	    margin: 10px; 
-	    vertical-align: top; 
-	    box-sizing: border-box; 
-	  }
-	.container{
-		width: 1000px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	a{
-        text-decoration: none;
-        color: inherit;
-   }
-   .write{
-   		width: 1000px;
-		height: 300px;
-		border: 1px solid tomato;
-		padding: 32px;
-   }
-   
-   .container > ul{
-   		border: 1px solid tomato;
-   } */
+    .artistNewFeed{
+    	background-color: rgb(230, 230, 255);
+    }
+    a{
+    	text-decoration: none;
+    	color: rgb(76, 76, 76);
+    }
+		
 </style>
 </head>
 <body>
- 
+ <div id="app">
 	<div class="logos">
-      <a href="../home2.do"><img alt="" src="../img/logo/veryperiiix.png" style="width:125px; height:80px; margin-top:25px;"></a>
-      <a href="../home2.do"><img alt="" src="../img/logo/svt_logo.png" style="width:100px; height:auto;  margin-top:13px;"></a>
+      <a href="../home.do"><img alt="" src="../img/logo/veryperiiix-.png" style="width:130px; height:80px; margin-top:25px;"></a>
+      <a href="/gboard/main.do"><img alt="" src="../img/logo/svt_logo.png" style="width:120px; height:auto;"></a>
     </div>
     
 	<nav id="buttons">
 		<div class="header">
 			<div class="btn">
     			<button @click="fnMove">back</button>
-    			<button @click="fnMove('my')">menu</button>
-    			<button>mypage</button>
+    			<button @click="fnMove('my')">mypage</button>
       		</div> 
        
      	    <label>  
@@ -96,25 +52,24 @@
         </div>
         <hr>
     </nav>
-    
+    <nav id="contents">
     <div class="artistNewFeed">
-        <!-- 날짜 빠른 순으로 정렬 후 출력 -->
-        	<ul class="feedType" v-if="index  < 3 " v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
-		        <a href="javascript:;">
-	         <div>
-	            	<li><span>COMMENT ♥ </span>{{item.gcCnt}}</li>
+        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2">
+	            	<li><span style="color: rgb(179, 179, 255);">COMMENT ✉<span>{{item.gcCnt}}</li>
 	                <li>{{item.artist}}</li>
 	            	<li>{{item.nickName}}</li>
-	            	<li><img :src = "item.gpPath" class="profile-image"></li>
+	            	<li>
+	            		<img :src = "item.gpPath" class="profile-image" v-if="item.gpPath != null && item.gpPath != ''">
+	            		<img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
+	            	</li>
 	                <li>{{item.gDate}}</li>
-	                <li>{{item.gContent}}</li>
-	                <li><span>LIKE ♥ </span>{{item.gLike}}</li>
-	            </div>
-		       </a>
+	                <li @click = "fnComment(item.gNo)">{{item.gContent}}</li>
+	                <li><span @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a></span>{{item.gLike}}</li>
        	 	</ul>
     </div>
-    
-     <nav id= "writearea">
+    </nav>
+    <hr>
+    <nav id= "writearea">
     <div class="write">
         <textarea rows="10" cols="100" v-model="content"></textarea>
 			<span><input type="file" id="file1" name="file1" accept=".gif, .jpg, .png" @change="handleFileChange" style="background-color:white;"></span>
@@ -122,31 +77,32 @@
     </div>
     </nav>
     <hr>
-    
     <div class="container">
         <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
-      		<li><span>COMMENT ♥ </span>{{item.gcCnt}}</li>
+        	<li><span style="color: rgb(179, 179, 255);">COMMENT ✉ </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
-	        <li>{{item.nickName}}<img :src = "item.gpPath" class="profile-image"></li>
+	        <li>{{item.nickName}}</li>
+	        <li>
+	          	<img :src = "item.gpPath" class="profile-image" v-if="item.gpPath != null && item.gpPath != ''">
+	          	<img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
+	        </li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
-            <li><span>LIKE ♥ </span>{{item.gLike}}</li>
-            <img v-if="item.path" :src="item.path" class="image" />
-			<img v-else class="imageX" />
-            <li><button @click="fnLike(item.gNo)">좋아요</button></li>
-            <li><button @click="fnComment(item.gNo)">댓글</button></li>
-            <li><button @click="reportPost(item.gNo)">신고</button></li>
-            <li v-if="uId == item.uId">
-                <a href="javascript:;">
-                    <div><i class="fa-regular fa-circle-xmark fa-xs" @click="fnRemove(item)"></i></div>
-                </a>
+            <li><span @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a></span>{{item.gLike}}</li>
+            <li>
+	            <img v-if="item.path" :src="item.path" class="image" />
+				<img v-else class="imageX" />
+			</li>
+            <li class="clickThis"><span @click="fnComment(item.gNo)"><a href="javascript:">댓글✉</a></span></li>
+            <li class="clickThis"><span @click="reportPost(item.gNo)"><a href="javascript:">신고🚨<a></span></li>
+            <li v-if="uId == item.uId" class="clickThis">
+                    <div class="clickThis"><span @click="fnRemove(item)"><a href="javascript:">✖</a></span></div>
             </li>
-             <hr>
+            <hr>
         </ul>
     </div>
-     <hr>
-     
-</div>
+    <hr>
+  </div>
 </body>
 </html>
 <script>
@@ -176,7 +132,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                	self.list = data.list;
+                    self.list = data.list;
                     self.list2 = data.list2;
                     console.log(self.list);
                     console.log(self.list2);
@@ -193,10 +149,10 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     if (self.keyword === "") {
-                        self.fnGetList(); // 키워드가 비어있으면 전체 목록을 보여줌
+                        self.fnGetList(); 
                         self.search = "";
                     } else {
-                        self.list = data.info; // 키워드가 있으면 검색 결과를 보여줌
+                        self.list = data.info; 
                         self.search = "";
                     }
                 }
@@ -204,7 +160,6 @@ var app = new Vue({
         },
         fnAdd: function () {
             var self = this;
-
 
             if (!confirm("등록하시겠습니까?")) {
                 return;
@@ -222,7 +177,7 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("등록되었어요.");
+                    alert("등록 완료");
                     self.comment = "";
                     self.fnGetList();
  	           		var form = new FormData();
@@ -232,7 +187,6 @@ var app = new Vue({
                 }
             });
         },
-     // 파일 업로드
 	     upload : function(form){
 	    	var self = this;
 	         $.ajax({
@@ -248,7 +202,7 @@ var app = new Vue({
 		}
         ,fnRemove: function (item) {
             var self = this;
-            if (!confirm("삭제하시겠어요?")) {
+            if (!confirm("삭제하시겠습니까?")) {
                 return;
             }
             var nparmap = item;
@@ -258,18 +212,18 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
-                    alert("삭제되었습니다.");
+                    alert("삭제 완료");
                     self.fnGetList();
                 }
             });
             
-        },fnMove: function  (where) {
-      	  	window.history.back();
-          
-         	 if(where == 'my'){
-          		location.href = "myPage.do";
-          	}
-         	 
+        },fnMove: function (where) {
+        	  window.history.back();
+	            
+	            if(where == 'my'){
+	            	location.href = "myPage.do";
+	            }
+	            
         },fnLike: function(gNo) {
             var self = this;
             var nparmap = {artist : self.artist, gNo: gNo, uId : self.uId};
@@ -284,38 +238,40 @@ var app = new Vue({
                 }
             });
         }, fnComment : function(gNo){
-        	 var self = this;
-             var width = 700;
-             var height = 500;
-             var left = (window.innerWidth - width) / 2;
-             var top = (window.innerHeight - height) / 2;
-             var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
-             var url = "view.do?gNo=" + gNo + "&uId=" + self.uId;
-             window.open(url, "gNo", option);
+            var self = this;
+            var width = 500;
+            var height = 500;
+            var left = (window.innerWidth - width) / 2;
+            var top = (window.innerHeight - height) / 2;
+            var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
+            var url = "view.do?gNo=" + gNo + "&uId=" + self.uId;
+            window.open(url, "gNo", option);
         	
         },  reportPost : function(gNo) {
             var self = this;
-            self.selectedReason = ""; // 초기화
-            self.otherReason = ""; // 초기화
-            self.reportDescription = ""; // 초기화
+            self.selectedReason = ""; 
+            self.otherReason = "";
+            self.reportDescription = ""; 
             self.showReportModal = true;
             
-            var option = "width=500,height=500,top=100,right";
+            var option = "width=700,height=500,top=100,right";
             var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
             window.open(url, "gNo", option);
-                 
-  	  }, handleFileChange: function(event) {
-        var self = this;
-        var file = event.target.files[0];
-        
-        if (file) {
-            var ext = file.name.split('.').pop().toLowerCase();
+            
+          }, handleFileChange: function(event) {
+              var self = this;
+              var file = event.target.files[0];
+              
+              if (file) {
+                  var ext = file.name.split('.').pop().toLowerCase();
 
-            if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
-                alert('gif, jpg, jpeg, png 타입의 파일만 업로드 가능합니다.');
-                event.target.value = '';
-            }
-        }
+                  if (['gif', 'jpg', 'jpeg', 'png'].indexOf(ext) === -1) {
+                      alert('gif, jpg, jpeg, png 타입의 파일만 업로드 가능합니다.');
+                      event.target.value = '';
+                  }
+              }
+          }
+        	
     }, // methods
     created: function () {
         var self = this;

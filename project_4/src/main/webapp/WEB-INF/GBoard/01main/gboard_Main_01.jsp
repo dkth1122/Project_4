@@ -111,7 +111,7 @@ a:hover{
 							<div class="artistText"><strong>엔하이픈</strong></div></a></li>
 						<li><a href="svt.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA0MTVfMjky/MDAxNjgxNDg0ODk1OTM0.hgDXuhSs45mvYhQFpCZssg703JOF9pGxHSca3PzEiXsg.amuI9iS6nDLJqwhR5ad4d0zGaxsZz0wVns3YXH2d4wMg.PNG/178367443285053282989e3de-2d15-46e5-818b-73b2cdeab453.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>세븐틴</strong></div></a></li>
-						<li><a href="pmn.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA1MjVfMjA3/MDAxNjg1MDE3OTYwOTY3.It-QCieMbJEupe9ljb03Bza8p8e7tWOUCMmuUgmqzy4g.fYICCBLYFGJxky_WUeM7dPjbhtYlqb6cykapIG_tE08g.PNG/18677645385851861a9ea80be-6fa8-42e9-bc2a-9d3700099e48.png?type=f416_416" width="208" height="208" alt=""></div>
+						<li><a href="fmn.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA1MjVfMjA3/MDAxNjg1MDE3OTYwOTY3.It-QCieMbJEupe9ljb03Bza8p8e7tWOUCMmuUgmqzy4g.fYICCBLYFGJxky_WUeM7dPjbhtYlqb6cykapIG_tE08g.PNG/18677645385851861a9ea80be-6fa8-42e9-bc2a-9d3700099e48.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>프로미스나인</strong></div></a></li>
 						<li><a href="lsf.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA0MThfMTYz/MDAxNjgxNzc5NTYzOTg5.nbfYYYPT9R_V1-h7a-IFajvmrVNBeQ9bLSyYmfWULN0g.d4huHued8TsqCoZOZgozThXFraLHJzzuVF69KFWxY4Ug.PNG/773745721093888179bd7fbe0-3f88-4e86-a06e-cf20a4b05acf.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>르세라핌</strong></div></a></li>

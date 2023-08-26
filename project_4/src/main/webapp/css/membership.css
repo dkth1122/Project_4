@@ -31,7 +31,6 @@
         	height: 50px;
          	background-color: rgb(255, 255, 255);
          	padding : 30px;
-         	margin-bottom:50px;
         
         }
         .btn {
@@ -64,8 +63,7 @@
             display: inline-block;
             width: calc(30% - 2%); 
             height: 230px;
-        	margin: 0 30px;
-        	margin-bottom: 30px;
+        	margin: 30px 30px;
             box-sizing: border-box;
             vertical-align: top;
             background-color: rgb(255, 255, 255);
@@ -102,7 +100,7 @@
         
         .container ul {
             list-style: none;
-            padding: 0;
+            padding:0;
         }
         
         .container ul li {
@@ -115,10 +113,8 @@
             margin-right: 5px;
         }
         
-        .container ul li button {
-            background-color: #FFFFFF;
-            border: 1px solid rgb(220, 198, 242);
-            color: #BB91E7;
+        .container ul li i {
+            float: left;
             padding: 5px 10px;
             cursor: pointer;
         }
@@ -127,6 +123,9 @@
             background-color: rgb(222, 186, 254);
             color: white;
         }
+        .clickThis{
+			display: inline;
+		}
    
 	   .profile-image {
 		    width: 50px;
