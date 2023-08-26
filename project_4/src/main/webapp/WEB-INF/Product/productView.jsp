@@ -713,6 +713,17 @@ var app = new Vue({
         },  fnProductOrder : function(){
         	var self = this;
         	
+        	if(self.uId == null || self.uId == ''){
+        		if(confirm("비회원으로 구매하시겠습니까?")){
+        			if(self.info[0].category == 'MEM'){
+                		alert("비회원은 멤버쉽 상품을 구매하실 수 없습니다.");	
+                		return;
+                	}else{
+                		$.pageChange("/payment/payment.do", {pNo : self.pNo});
+                	}	
+        		}
+        	}
+        	
         	$.pageChange("/payment/payment.do", {pNo : self.pNo});        	
         	     	
         },//위시리스트 이동  
