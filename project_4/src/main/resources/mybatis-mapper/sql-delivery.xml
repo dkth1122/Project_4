@@ -64,11 +64,8 @@
 	
 	<!-- 페이징용 카운트 -->
 	<select id="selectCnt4" resultType="int">
-		SELECT COUNT(*)
-		FROM T4_ORDER O
-		INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-		INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-		INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
+		SELECT COUNT(DISTINCT O_NO) AS CNT
+		FROM T4_DELIVERY
 		WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중')
 	</select>
 	
