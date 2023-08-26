@@ -262,6 +262,11 @@
 			    AND D.DU_NO = U.DU_NO
 			WHERE O.U_ID = #{uId} AND O_DATE BETWEEN #{startDate} AND #{endDate}
 			GROUP BY O.O_NO
-
 	</select>	
+	<select id="together" parameterType="hashmap" resultType="com.example.project.model.Product">
+		SELECT * FROM T4_PRODUCT P
+		INNER JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
+		WHERE ARTIST = #{artist} AND IMG_TYPE = "Y" 
+		ORDER BY P.P_NO DESC LIMIT 2;
+	</select>
 </mapper>

@@ -208,6 +208,12 @@ public List<Product> selectOrderpuductSearch(HashMap<String, Object> map) {
 	return productMapper.selectOrderpuductSearch(map);
 }
 
+@Override
+public List<Product> together(HashMap<String, Object> map) {
+	// TODO Auto-generated method stub
+	return productMapper.together(map);
+}
+
 
 		
 }
