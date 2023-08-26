@@ -9,7 +9,9 @@ import com.example.project.model.Wish;
 
 
 public interface dd {
-
+	
+	//사용자 프로필 업데이트
+	int updateprofile(HashMap<String, Object> map);
 
 
 

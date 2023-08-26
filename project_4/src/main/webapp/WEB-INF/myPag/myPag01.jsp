@@ -87,7 +87,7 @@
 
 						<div class="a">
 							<div class="left topImgBoxwid">
-								<a class="logobut" href="/mypag/main.do"><div id="profileImg"></div></a>
+								<a class="logobut" href="/mypag/main.do"><div id="profileImg"><img :src="info.profile"></div></a>
 							</div>
 							<div class="topBox">
 								<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>

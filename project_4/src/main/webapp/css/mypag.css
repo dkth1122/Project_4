@@ -104,13 +104,20 @@ td{
 	  border-bottom: #a7a9b5;
   }
   #profileImg{
-     border-radius: 50%;
-     background-color: purple;
      box-shadow: 4px 3px 10px;
      width: 200px;
      height: 200px;
      margin-left: 55px;
      margin-top : -15px;
+     border-radius: 50%;
+     border: none;
+  }
+  #profileImg img{
+     border-radius: 50%;
+     width: 200px;
+     height: 200px;
+     border: none;
+
   }
   .left{
   float: left;

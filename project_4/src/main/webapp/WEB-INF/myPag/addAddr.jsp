@@ -1,11 +1,9 @@
-
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="mypageheader.jsp" %>
+
   <script src="../js/jquery.js"></script>  
   <link href="../css/footer.css" rel="stylesheet" type="text/css">
    <link href="../css/mypag.css" rel="stylesheet" type="text/css">  
@@ -15,15 +13,13 @@
  <meta charset="UTF-8">
 
   <style type="text/css">
-
   	  	.warningm{
   		width: 930px;
    		line-height: 80px;
    		color : rgb(73, 73, 73);
   	}
   	  	#warningImg{
-  		margin-right: 20px;
-  		
+  		margin-right: 20px;  		
   	}
   	.l{
   		margin-bottom: 20px;
@@ -90,7 +86,7 @@
                       <div style="height: 150px;"></div>                      
                    <div class="a">
                       <div class="left topImgBoxwid">
-                          <a href="/mypag/main.do"><div id="profileImg"></div></a>
+                          <a href="/mypag/main.do"><div id="profileImg"><img :src="info.profile"></div></a>
                       </div	 >
                       <div class="topBox">
                       <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -102,7 +98,6 @@
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
-
 								</div>
 
 								<div class="details">
@@ -216,8 +211,8 @@
 			</div>
 		
 		</div>
+	
 
-	<div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script>

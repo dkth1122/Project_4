@@ -167,7 +167,7 @@ input[type="date"]:focus {
 
                   <div class="a">
                      <div class="left topImgBoxwid">
-                        <a href="/mypag/main.do"><div id="profileImg"></div></a>
+                        <a href="/mypag/main.do"><div id="profileImg"><img :src="infouser.profile"></div></a>
                      </div>
                      <div class="topBox">
                         <span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>

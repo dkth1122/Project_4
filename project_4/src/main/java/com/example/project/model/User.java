@@ -19,6 +19,7 @@ public class User {
 	private String bYn;
 	private String bReasons;
 	private String bDate;
+	private String profile;
 	
 	
 	
