@@ -98,7 +98,7 @@
 	.explanation{
 		width: 1200px;
     	margin: 80px auto;
-    	margin: 80px auto 0 !important;
+    	margin: 130px auto 0 !important;
 	}
 	#container{
 		height: auto;
@@ -370,6 +370,7 @@
   transform: translate(677%, 0%);
 }
 
+
 </style>
 </head>
 <body>
@@ -622,9 +623,7 @@
 		        <a class="action_send move"><button class="action_send move" @click="moveWish">관심상품 확인</button></a>
 		    </div>
 	    <a class="close" @click="hideWishlistPopup"></a>
-
 	</div>
-
 </div>
 
 <div class="xans-myshop-layerwish ec-base-layer" style="display: none;">

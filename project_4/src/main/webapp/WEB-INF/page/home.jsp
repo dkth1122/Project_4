@@ -529,28 +529,18 @@ display:block;
 		
 		<section class="sect1">
 			<div class="ostimg">
-				<div class="img1" @click="playAudio('audio1', 60)"></div> <!-- TXT - 어느날 머리에서 뿔이 자랐다 -->
-				<div class="img2" @click="playAudio('audio2', 60)"></div> <!-- LE SSERAFIM - UNFORGIVEN -->
-				<div class="img3" @click="playAudio('audio3', 60)"></div> <!-- BTS - Butter -->
-				<div class="img4" @click="playAudio('audio4', 60)"></div> <!-- NewJeans- Super Shy -->
-				<div class="img5" @click="playAudio('audio5', 60)"></div> <!-- SEVENTEEN - 손오공 -->
+
+				<div class="img1"></div>
+
+				<div class="img2"></div>
+
+				<div class="img3"></div>
+
+				<div class="img4"></div>
+
+				<div class="img5"></div>
+
 			</div>
-			
-			<audio id="audio1">
-			    <source src="../audio/TXT - 어느날 머리에서 뿔이 자랐다.mp3"> <!-- TXT - 어느날 머리에서 뿔이 자랐다 -->
-			</audio>
-			<audio id="audio2">
-			    <source src="../audio/LE SSERAFIM - UNFORGIVEN.mp3"><!-- LE SSERAFIM - UNFORGIVEN -->
-			</audio>
-			<audio id="audio3">
-			    <source src="../audio/BTS -  Butter.mp3"><!-- BTS -  Butter -->
-			</audio>
-			<audio id="audio4">
-			    <source src="../audio/NewJeans- Super Shy.mp3"> <!-- NewJeans- Super Shy -->
-			</audio>
-			<audio id="audio5">
-			    <source src="../audio/SEVENTEEN - 손오공.mp3"> <!-- SEVENTEEN - 손오공 -->
-			</audio>
 
 		</section>
 		
@@ -563,83 +553,58 @@ display:block;
 </body>
 </html>
 <script>
+
 var app = new Vue({
 	el : '#app',
 	data : {
 		uId : "${sessionId}",
 		list : [],
 		info : {},
-		best : [],
-    currentAudio: null 
+		best : []
 	}, 
 	
+	
 	methods : {
-		playAudio(audioId, durationInSeconds) {
-			  var audio = document.getElementById(audioId);
+		fnGetList : function() { 
+            var self = this;
+            var nparmap = {uId : self.uId};            
+            $.ajax({
+               url : "/home3.dox",
+               dataType : "json",
+               type : "POST",
+               data : nparmap,
+               success : function(data) {                  
+                  self.list = data.list;
+                  console.log(self.list)
+                 
+                  
+               }
+          });
+	},
 
-			  if (this.currentAudio === audio && !audio.paused) {
-			    // 동일한 오디오 요소를 눌렀고, 현재 재생 중인 경우에는 일시정지
-			    audio.pause();
-			    audio.currentTime = 0;
-			    clearTimeout(this.audioTimer);
-			  } else {
-			    if (this.currentAudio && !this.currentAudio.paused) {
-			      // 다른 오디오 요소가 재생 중인 경우에는 일시정지
-			      this.currentAudio.pause();
-			      this.currentAudio.currentTime = 0;
-			      clearTimeout(this.audioTimer);
-			    }
-
-			    audio.play();
-
-			    // 기존 타이머 제거
-			    clearTimeout(this.audioTimer);
-
-			    this.audioTimer = setTimeout(function () {
-			      audio.pause();
-			      audio.currentTime = 0;
-			    }, durationInSeconds * 1000);
-			  }
-
-			  this.currentAudio = audio; // 현재 재생 중인 오디오 요소 저장
-			},
-	  
-	  fnGetList() { 
+	fnBestItem : function() { 
         var self = this;
-        var nparmap = {uId: self.uId};            
+        var nparmap = {uId : self.uId};            
         $.ajax({
-           url: "/home3.dox",
-           dataType: "json",
-           type: "POST",
-           data: nparmap,
-           success(data) {                  
-              self.list = data.list;
-              console.log(self.list)
+           url : "/bestItemLoad.dox",
+           dataType : "json",
+           type : "POST",
+           data : nparmap,
+           success : function(data) {                  
+              self.best = data.list;
+              console.log("best==>",self.best);
+             
+              
            }
-        });
-	  },
-
-	  fnBestItem() { 
-        var self = this;
-        var nparmap = {uId: self.uId};            
-        $.ajax({
-          url: "/bestItemLoad.dox",
-          dataType: "json",
-          type: "POST",
-          data: nparmap,
-          success(data) {                  
-            self.best = data.list;
-            console.log("best==>",self.best);
-          }
-       });
-    },
+      });
+},
 	 
-    productView(item) {
+    productView: function(item) {
       console.log("Clicked product:", item);
+     
     }
   },
-	
-	created() {
+	created : function() {
 		var self = this;
 		self.fnGetList();
 		self.fnBestItem();
