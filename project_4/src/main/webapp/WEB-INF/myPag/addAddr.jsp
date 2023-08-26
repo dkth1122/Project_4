@@ -180,6 +180,10 @@
                               		<td><input id="a" v-model="user.uDname"></td>
                               	</tr>
                               	<tr>
+                              		<th><label for="a">· 받는 사람</label></th>
+                              		<td><input id="a" v-model="user.recipient"></td>
+                              	</tr>
+                              	<tr>
                               		<th><label for="b">· 휴대전화</label></th>
                               		<td><input id="b" v-model="user.uDphone"></td>
                               	</tr>
@@ -227,6 +231,7 @@ var app = new Vue({
        user : {
     	   	uId : "",
     	   	uDname : "",
+    	   	recipient : "",
     	   	uDphone : "",
 			addr : "",
 			addrDetail : "",

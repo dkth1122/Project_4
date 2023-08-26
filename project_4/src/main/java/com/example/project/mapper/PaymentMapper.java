@@ -5,14 +5,24 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.project.model.DeliveryUser;
 import com.example.project.model.Product;
 
 @Mapper
 public interface PaymentMapper {
 	
-	//바로 구매용 제품 출력 쿼리 
+	//바로 구매 시 제품 출력 쿼리 
 	List<Product> selectProductAll(HashMap<String, Object> map);
 	
+	//배송 출력
+	List<DeliveryUser> selectDeliveryUserInfo(HashMap<String, Object> map);
+	
+	//해당 제품 아티스트의 멤버쉽 유저인지 체크
+	int selectMembershipCheck(HashMap<String, Object> map);
+	
+	//키트 상품 구매했는지 안했는지 체크
+	Product selectMembershipKit(HashMap<String, Object> map);
+
 	//결제시 오더 테이블 등록
 	int insertProductBuy(HashMap<String, Object> map);
 	//결제시 딜리버리 테이블 등록

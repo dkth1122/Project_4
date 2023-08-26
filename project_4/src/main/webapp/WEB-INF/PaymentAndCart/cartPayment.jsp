@@ -12,8 +12,13 @@
 <!-- 결제 연동을 위한 포트원 라이브러리 추가 --> 
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script> 
 <meta charset="UTF-8">
-<title>결제 페이지</title>
+<title>Payment page</title>
+<%@ include file="../Product/sexyheader.jsp" %>
 <style>
+
+#headerMargin{
+	margin-bottom: 100px;
+}
 
 #title {
 	width: 1500px;
@@ -224,6 +229,7 @@ text-align: center;
 </style>
 </head>
 <body>
+<div id="headerMargin"> </div>
 	<div id="app">
 
 		<div id="container">

@@ -173,6 +173,10 @@
                               		<th><label for="a1">· 배송지명</label></th>
                               		<td><input id="a1" v-model="item.uDname"></td>                      		
                               	</tr>
+                               	<tr>
+                              		<th><label for="a1">· 받는 사람</label></th>
+                              		<td><input id="a1" v-model="item.resipient"></td>                      		
+                              	</tr>
                               	<tr>
                               		<th><label for="b">· 휴대전화</label></th>
                               		<td><input id="b" v-model="item.uDphone"></td>                      		
@@ -202,9 +206,7 @@
 			                              		<td><input id="g" style="width : 300px;" type="text" v-model="user.zipNo"></td>                      		
 			                              	</tr>
                    
-                              	
                               </table>
-                            
 							   	 <div id="adrbutdiv"><button id="adrbut" @click="fnSearchAddr">주소 검색</button></div>
 							   	  <div id="pp"><button id="bbut" @click="infoAddr">취소</button>
 							   	  <button id="edut" @click="fnEdit">수정</button></div>
@@ -235,10 +237,11 @@ var app = new Vue({
        user : {
     	   	uId : "",
     	   	uDname : "",
+			resipient : "",
     	   	uDphone : "",
 			addr : "",
 			addrDetail : "",
-			zipNo : ""
+			zipNo : "",
 		},
        list : [],
        info :{},
@@ -249,7 +252,6 @@ var app = new Vue({
        order : 0,
        exchange : "",
        refund : "",
-
        
     },
     methods: {
@@ -281,6 +283,7 @@ var app = new Vue({
                    for(var i=0; i<data.list.length; i++){
                 	   self.user.uDname = data.list[i].uDname;
                 	   self.user.uDphone = data.list[i].uDphone;
+                	   self.user.recipient = data.list[i].recipient;
                    }                                   
                    console.log(self.duNo);                    
                    console.log(self.user);                    

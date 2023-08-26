@@ -4,14 +4,36 @@
 
 <mapper namespace="com.example.project.mapper.PaymentMapper">
 
-	<!-- 바로 구매 시 상품 테이블 정보 전체 출력을 위한 쿼리-->
+	<!-- 결제 전 : 상품 테이블 정보 전체 출력을 위한 쿼리-->
 	<select id="selectProductAll" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT  *
 		FROM T4_PRODUCT P
 		LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 		WHERE P.P_NO = #{pNo} AND IMG_TYPE = 'Y'
 	</select> 
-
+	
+	
+	<!-- 결제 전 : 배송 주소록 출력 쿼리 -->
+	<select id="selectDeliveryUserInfo" parameterType="hashmap" resultType="com.example.project.model.DeliveryUser">
+		SELECT *
+		FROM T4_DELIVERY_USER
+		WHERE U_ID = #{uId}
+	</select>
+	
+	<!-- 결제 : 유저의 멤버쉽 정보를 전체 출력을 위한 쿼리-->
+	<select id="selectMembershipCheck" parameterType="hashmap" resultType="int">
+		SELECT  COUNT(*)
+		FROM T4_MEMBERSHIP
+		WHERE U_ID = #{uId} AND ARTIST = #{artist} AND M_EXP_DATE > CURDATE()
+	</select> 
+	
+	<!-- 결제 : 키트 상품 구매 여부 출력을 위한 쿼리  -->
+	<select id="selectMembershipKit" parameterType="hashmap" resultType="com.example.project.model.Product">
+		SELECT KIT_YN
+		FROM T4_MEMBERSHIP
+		WHERE U_ID = #{uId} AND ARTIST = #{artist}
+	</select> 
+	
 	<!-- 결제시 오더 테이블 등록 -->
 	<insert id="insertProductBuy" parameterType="hashmap" useGeneratedKeys="true"  keyProperty="buyNo"  keyColumn="BUY_NO">
 	    INSERT INTO T4_ORDER

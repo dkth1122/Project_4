@@ -17,6 +17,7 @@ public class Delivery {
 	private int duNo;
 	private String uDname;
 	private String uDaddr;
+	private String recipient;
 	private String uDaddrDetail;
 	private String zipNo;
 	private String fixAddr;
@@ -138,6 +139,12 @@ public class Delivery {
 	}
 	public void setAfNo(int afNo) {
 		this.afNo = afNo;
+	}
+	public String getRecipient() {
+		return recipient;
+	}
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
 	}
 	
 	

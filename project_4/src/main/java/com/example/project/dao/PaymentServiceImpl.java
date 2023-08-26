@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.mapper.OrderMapper;
 import com.example.project.mapper.PaymentMapper;
+import com.example.project.model.DeliveryUser;
 import com.example.project.model.Order;
 import com.example.project.model.Product;
 
@@ -16,6 +17,40 @@ public class PaymentServiceImpl implements PaymentService{
 
 	@Autowired
 	PaymentMapper paymentMapper;
+	
+	//상품 출력 
+	@Override
+	public List<Product> searchProductAll(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return paymentMapper.selectProductAll(map);
+	}
+	
+	@Override
+	public List<DeliveryUser> searchDeliveryUserInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return paymentMapper.selectDeliveryUserInfo(map);
+	}
+	
+	//멤버쉽 유저인지 체크
+	@Override
+	public HashMap<String, Object> searchMembershipCheck(HashMap<String, Object> map) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int memCheck = paymentMapper.selectMembershipCheck(map);
+		Product Kit = paymentMapper.selectMembershipKit(map);
+		System.out.println("키트 구매여부 : " + Kit);
+		
+		
+		if(memCheck == 0) {
+			resultMap.put("message", "멤버쉽 구독 안함");
+		}
+		else {
+			resultMap.put("message", "멤버쉽 구독 확인");
+		}
+		
+		
+		
+		return resultMap;
+	}
 	
 	//결제 오더 테이블 등록
 	@Override
@@ -69,11 +104,7 @@ public class PaymentServiceImpl implements PaymentService{
 		return paymentMapper.insertDelivery(map);
 	}
 
-	@Override
-	public List<Product> searchProductAll(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return paymentMapper.selectProductAll(map);
-	}
+
 
 	
 }

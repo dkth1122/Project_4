@@ -10,6 +10,7 @@ public class DeliveryUser {
 	private String fixAddr;
 	private String uDphone;
 	private String uDmessage;
+	private String recipient;
 	
 	
 	public String getuDaddrDetail() {
@@ -66,5 +67,11 @@ public class DeliveryUser {
 	}
 	public void setuDmessage(String uDmessage) {
 		this.uDmessage = uDmessage;
+	}
+	public String getRecipient() {
+		return recipient;
+	}
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
 	}
 }
