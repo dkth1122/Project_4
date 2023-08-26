@@ -308,7 +308,7 @@ select{
                       					<div><a @click="addimg('../../img/Artist/zico.png')"href="javascript:;"><img src="../../img/Artist/zico.png"></a></div>
                       					<div><a @click="addimg('../../img/Artist/les.jpg')"href="javascript:;"><img src="../../img/Artist/les.jpg"></a></div>
                       					<div><a @click="addimg('../../img/Artist/su.png')"href="javascript:;"><img src="../../img/Artist/su.png"></a></div>
-                      					<div><a @click="addimg('../../img/Artist/dueo.jpg')"href="javascript:;"><img src="../../img/Artist/dueo.jpg"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/dog.jpg')"href="javascript:;"><img src="../../img/Artist/dog.jpg"></a></div>
                       					
 								
                       				</div>               			
