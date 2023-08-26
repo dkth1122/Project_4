@@ -113,7 +113,7 @@
             
             
             <div class="body" style="margin-top: 80px;">
-                <select class="select" v-model="selectedOption" @change="fnGetList">
+                <select class="select" v-model="selectedOption" v-on:change="handleSelectChange">
                     <option selected>전체</option>
                     <option value="nameList">상품명</option>
                     <option value="minPrice">낮은가격</option>
@@ -231,6 +231,9 @@ var app = new Vue({
         	var self = this;
         	$.pageChange("productView.do", {pNo : item.pNo});     
         	
+        },     handleSelectChange(event) {
+            // Vue.js 이벤트 핸들러 내에서 jQuery 사용을 최소화
+            this.fnGetList();
         }
     },
     created: function() {
