@@ -710,10 +710,10 @@ var app = new Vue({
                 }
             }); 
             //주문 페이지로 이동
-        },  fnProductOrder : function(item){
+        },  fnProductOrder : function(){
         	var self = this;
         	
-        	$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
+        	$.pageChange("/payment/payment.do", {pNo : self.pNo});        	
         	     	
         },//위시리스트 이동  
         wishList : function(){
