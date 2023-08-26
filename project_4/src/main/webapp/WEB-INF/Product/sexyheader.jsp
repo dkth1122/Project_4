@@ -294,8 +294,8 @@ var app = new Vue({
             var icons = document.querySelectorAll('.sexyIcon i');
             var texts = document.querySelectorAll('.logjo, .logjo2, .logjo3');
             var links = document.querySelectorAll('#sexyHeadiner a');
-            var linkColor = this.isTranslucent ? "#000" : "whitesmoke";
-            var elementColor = this.isTranslucent ? "#000" : "whitesmoke";
+            var linkColor = this.isTranslucent ? "#000" : "#6667AB";
+            var elementColor = this.isTranslucent ? "#000" : "#6667AB";
             for (var i = 0; i < links.length; i++) {
                 links[i].style.color = linkColor;
             }

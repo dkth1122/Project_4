@@ -11,6 +11,7 @@
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <meta charset="UTF-8">
 <title>마이페이지</title>
+<%@ include file="../Product/sexyheader.jsp" %>
 <style>
 	div{
 		display : block;
@@ -108,8 +109,6 @@
     	display: block;
     	clear: both; */
 	}
-	
-	
 	#radioMenu {
 	  display: flex;
 	  gap: 20px;
@@ -322,7 +321,11 @@
     }
     #mainImg{
     	padding-bottom : 50px;
-    	border-bottom : 2px solid #d4d5d9;
+    	border-bottom : 2px solid #d4d5d9;    	
+    }
+    #mainImg img{
+    	width : 100%;
+    	height: 100%;
     }
     .explanation img{
     	margin-top : 100px;
@@ -353,6 +356,20 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+#sexyLogo {
+  margin: 0px auto;
+  width: 152px;
+  height: 139px;
+  top: 21px;
+  z-index: 11110;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(677%, 0%);
+}
+
 </style>
 </head>
 <body>
@@ -436,30 +453,34 @@
 			<div class="h3"><h3>함께하면 좋은 상품!</h3></div>
 			<div id="itemSlideArea">		  
 			    <div class="itemSlide">
+			    <a href="/product/NJS.do">
 			        <div class="itemContainer">
 			            <div>
-			                <img style="width:155px;" src="../img/aespaFilm.jpg">
+			                <img style="width:155px;" src="../img/202372595121thumb.png">
 			            </div>
 			            <div class="txt-box">
-			                <span class="xname">SuperM The 1st Mini Album</span>
+			                <span class="xname">PHOTO SET VER.1</span>
 			                <div>
-			                    <span class="price" style="color:undefined">₩ 18,300</span>
+			                    <span class="price" style="color:undefined">₩ 15,000</span>
 			                </div>
 			            </div>
 			        </div>
+			    </a>
 			    </div>
 			    <div class="itemSlide">
-			        <div class="itemContainer">
+			    <a href="/product/ZIC.do">
+			        <div class="itemContainer">			        
 			            <div>
-			                <img style="width:155px;" src="../img/aespaA4photo.jpg">
+			                <img style="width:155px;" src="../img/202372453418thumb.png">
 			            </div>
 			            <div class="txt-box">
-			                <span class="xname">aespa A4 PHOTO - Girls</span>
+			                <span class="xname">3rd Mini Album [RANDOM BOX]</span>
 			                <div>
-			                    <span class="price">₩ 9,900</span>
+			                    <span class="price">₩ 26,700</span>
 			                </div>
 			            </div>
 			        </div>
+			    </a>
 			    </div>
 			</div>
 		</div>	
@@ -703,26 +724,8 @@ var app = new Vue({
         	var currentDateString = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
         	var a = currentDateString >= self.info.mRegDate;
         	var b = currentDateString <= self.info.mExpDate;
-        	
-        	if(self.info.membership == 'Y'){
-        		if(!currentDateString >= self.info.mRegDate && !currentDateString <= self.info.mExpDate ){
-            		alert("해당 상품은 멤버쉽 구독이 필요한 상품입니다. \n해당 아티스트의 멤버쉽을 구독해주세요.");
-            	}else if(self.info.kitYn == 'Y'){
-            		alert("키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
-            	}
-        		else{
-        			var params =  {pNo : self.pNo, cnt : self.quantity};
-            		$.pageChange("/payment/payment.do", params); 
-            	}	
-        	}else if(self.info.uMembership == 'Y' && self.info.category == 'MEM'){
-        		alert("멤버쉽 구독 상품은 한 번만 구매 가능합니다.");
-        	}
-        	else{
-    			var params =  {pNo : self.pNo, cnt : self.quantity};
-        		$.pageChange("/payment/payment.do", params); 
-        	} 
-        	
-        	//$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
+        	//$.pageChange("/payment/payment.do", params); 
+        	$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
         	     	
         },//위시리스트 이동  
         wishList : function(){
