@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <style>
-#header{
+#sexyHeadiner{
 	margin: 0px;
     top: 0px;
     position: fixed;
@@ -33,7 +33,7 @@
     width: 100vw;
     margin: 0;
 }
-.icon {
+.sexyIcon {
 float : right;
 padding-right : 30px;
 margin-right : 10px;
@@ -127,9 +127,10 @@ nav .menu .depths li:hover a {
 .titleLi{
  margin: 0xp;
 }
-#logo{
+#sexyLogo{
 margin : 0px auto;
-    width: 100px; 
+    width: 152px;
+    height : 139px; 
     top: 21px;
     z-index: 1;
 	display: flex;
@@ -148,7 +149,7 @@ margin : 0px auto;
 width: 100%; 
 margin: 0 auto;
 }
-.icon{
+.sexyIcon{
 	color : rgb(45, 47, 70);
 }
 .logjo{
@@ -166,21 +167,21 @@ margin: 0 auto;
 	font-size : 14px;
 	font-weight : 300;
 }
-.icon .logjo{
+.sexyIcon .logjo{
 	position: absolute;
 	display : block;
 	right : 17%;
 	top : 5px;
 	float : right;
 }
-.icon .logjo2{
+.sexyIcon .logjo2{
 	position: absolute;
 	display : block;
 	right : 20%;
 	top : 5px;
 	float : right;
 }
-.icon .logjo3{
+.sexyIcon .logjo3{
 	position: absolute;
 	display : block;
 	right : 16%;
@@ -192,10 +193,10 @@ margin: 0 auto;
 </style>
 </head>
 <body>
-	<div id="header">		
+	<div id="sexyHeadiner">		
 		<nav>
-			<span><a href="../home.do"><img id="logo" src="../../img/logo/veryperiii.png"></a></span>
-		<div id="headiner">
+			<span><a href="../home.do"><img id="sexyLogo" src="../../img/logo/veryperiii.png"></a></span>
+		<div id="sexyHeadiner">
 			<div class="navWrap" v-bind:class="{ 'translucent': isTranslucent }" >
 			<ul class="menu">
 					<li class="titleLi"><a href="javascript:">ARTIST</a>
@@ -231,23 +232,23 @@ margin: 0 auto;
 					</li>	
 					
 
-						<div class="icon">
+						<div class="sexyIcon">
 							
 							<span class="icon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-brands fa-shopify"></i></a>
 							<a v-else href="bookmark.do"><i class="fa-brands fa-shopify"></i></a></span>
 
-							<span class="icon"><a href="/mypag/myInformation.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a></span>
+							<span class="sexyIcon"><a href="/mypag/myInformation.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a></span>
 							
-							<span class="icon">
+							<span class="sexyIcon">
 								<a href="/gboard/main.do"><i class="fa-brands fa-wordpress-simple fa-rotate-180"></i></a>								
 							</span>
 							
-							<span class="icon">
+							<span class="sexyIcon">
 								<a v-if="uId == null || uId == ''" href="/user/join.do" class="logjo">JOIN</a>								
 								<a v-if="uId != null" href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl"></i></a>								
 							</span>
 
-							<span class="icon">
+							<span class="sexyIcon">
 								<a v-if="uId == null || uId == ''" href="/user/login.do" class="logjo2">LOGIN</a>							
 								<button v-else-if="uId != null " @click="fnLogout" style="background: none; border: none; cursor: pointer;" class="logjo3">LOGOUT</button>
 
@@ -263,7 +264,7 @@ margin: 0 auto;
 </html>
 <script>
 var app = new Vue({
-	el : '#header',
+	el : '#sexyHeadiner',
 	data : {
 		uId : "${sessionId}",
 		isTranslucent: false,
@@ -290,9 +291,9 @@ var app = new Vue({
 		handleScroll: function() {
             // 스크롤 위치에 따라 반투명 클래스를 추가하거나 제거합니다
             this.isTranslucent = window.scrollY > 0;
-            var icons = document.querySelectorAll('.icon i');
+            var icons = document.querySelectorAll('.sexyIcon i');
             var texts = document.querySelectorAll('.logjo, .logjo2, .logjo3');
-            var links = document.querySelectorAll('#header a');
+            var links = document.querySelectorAll('#sexyHeadiner a');
             var linkColor = this.isTranslucent ? "#000" : "whitesmoke";
             var elementColor = this.isTranslucent ? "#000" : "whitesmoke";
             for (var i = 0; i < links.length; i++) {
