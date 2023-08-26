@@ -147,7 +147,7 @@ i {
 					      <input type="checkbox" v-model="check2">
 					      <span class="circle"></span>
 					      <strong><a href="javascript:;">(필수)개인회원 수집 및 이용에 동의</a></strong></label>
-					    </div>
+					    </div> 
 					    <div class="custom-checkbox"><label>
 					      <input type="checkbox" v-model="check3">
 					      <span class="circle"></span>
