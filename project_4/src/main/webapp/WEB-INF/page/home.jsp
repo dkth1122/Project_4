@@ -603,6 +603,14 @@ var app = new Vue({
 
 			  this.currentAudio = audio; // 현재 재생 중인 오디오 요소 저장
 			},
+
+			stopAllAudio() {
+			  if (this.currentAudio && !this.currentAudio.paused) {
+			    this.currentAudio.pause();
+			    this.currentAudio.currentTime = 0;
+			    clearTimeout(this.audioTimer);
+			  }
+			},
 	  
 	  fnGetList() { 
         var self = this;
