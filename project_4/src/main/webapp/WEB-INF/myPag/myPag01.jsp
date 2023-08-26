@@ -94,7 +94,7 @@
 
 							<div class="topBox">
 								<div class="details">
-									<div class="logotext">Order</div>
+									<div>Order</div>
 			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
@@ -104,7 +104,7 @@
 
 								<div class="details">
 
-									<div class="logotext">교환/환불</div>
+									<div >교환/환불</div>
 									<div>
 									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
 										<span v-if="refund != 0">{{refund}} /</span>
@@ -116,7 +116,7 @@
 
 								</div>
 								<div class="details">
-									<div class="logotext">포인트</div>
+									<div >포인트</div>
 									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>

@@ -139,31 +139,35 @@
 
                      <div class="topBox">
 
-                        <div class="details">
-
-                           <div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+                      				 <div class="details">
+									<div>Order</div>
+			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
-                        </div>
 
-                        <div class="details">
+								</div>
 
-                           <div>교환/환불</div>
-                           <div>
-                              <span v-if="refund != 0">{{refund}} /</span>
-                              <span v-else>0 /</span>
-                              
-                              <span v-if="exchange != 0"> {{exchange}}</span>
-                              <span v-else>0</span>
-                           </div>
+								<div class="details">
 
-                        </div>
-                        <div class="details">
-                          <div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div >교환/환불</div>
+									<div>
+									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
+										<span v-if="refund != 0">{{refund}} /</span>
+										<span v-else>0 /</span>										
+										<span v-if="exchange != 0"> {{exchange}}</span>
+										<span v-else>0</span>
+									</a>
+									</div>
+
+								</div>
+								<div class="details">
+									<div >포인트</div>
+									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
-                        </div>                        
+									</a>
+								</div>              
                      </div>
                   </div>
 
