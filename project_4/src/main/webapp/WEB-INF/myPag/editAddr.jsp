@@ -171,15 +171,15 @@
                               <table v-for="item in list">
                                	<tr>
                               		<th><label for="a1">· 배송지명</label></th>
-                              		<td><input id="a1" v-model="item.uDname"></td>                      		
+                              		<td><input id="a1" v-model="user.uDname"></td>                      		
                               	</tr>
                                	<tr>
                               		<th><label for="a1">· 받는 사람</label></th>
-                              		<td><input id="a1" v-model="item.resipient"></td>                      		
+                              		<td><input id="a1" v-model="user.resipient"></td>                      		
                               	</tr>
                               	<tr>
                               		<th><label for="b">· 휴대전화</label></th>
-                              		<td><input id="b" v-model="item.uDphone"></td>                      		
+                              		<td><input id="b" v-model="user.uDphone"></td>                      		
                               	</tr>
                               	<tr v-if="list[0].addr == ''">
                               		<th><label for="c" for="">· 주소</label></th>
@@ -237,11 +237,12 @@ var app = new Vue({
        user : {
     	   	uId : "",
     	   	uDname : "",
-			resipient : "",
+			resipient : "333322",
     	   	uDphone : "",
 			addr : "",
 			addrDetail : "",
 			zipNo : "",
+			duNo : "",
 		},
        list : [],
        info :{},
@@ -279,28 +280,31 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                    self.list = data.list; //사용자
+                   console.log(self.list);
                    self.user.uId = self.uId;
                    for(var i=0; i<data.list.length; i++){
                 	   self.user.uDname = data.list[i].uDname;
+                	   self.user.duNo = data.list[i].duNo;
                 	   self.user.uDphone = data.list[i].uDphone;
-                	   self.user.recipient = data.list[i].recipient;
+                	   self.user.resipient = data.list[i].resipient;
                    }                                   
-                   console.log(self.duNo);                    
-                   console.log(self.user);                    
+                             
                 }
             }); 
         },
-        fnEdit : function(){
+        fnEdit : function(){ // 주소록 변경
         	 var self = this;
              var nparmap = self.user;
+             nparmap.resipient = 
              $.ajax({
-                 url : "editAddr.dox",
+                 url : "/mypag/editAddr.dox",
                  dataType:"json",	
                  type : "POST", 
                  data : nparmap,
                  success : function(data) { 
+                	 console.log(nparmap);                
                  	alert("주소 수정 완료!");
-                 	 $.pageChange("infoAddr.do", {uId : self.uId});
+                 	location.href ="http://localhost:8082/mypag/infoAddr.do"
                  }
              }); 
         

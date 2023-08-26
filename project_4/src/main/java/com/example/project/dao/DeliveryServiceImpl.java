@@ -21,7 +21,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 		// TODO Auto-generated method stub
 		return deliveryMapper.selectDeliveryUser(map);
 	}
-
+	//사용자주소수정
 	@Override
 	public int editAddr(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub

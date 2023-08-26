@@ -16,11 +16,12 @@
 			U_DADDR = #{addr},
 			U_DADDRDETAIL = #{addrDetail},
 			U_DNAME = #{uDname},
-			RECIPIENT = #{recipient},
+			RECIPIENT = #{resipient},
 			U_DPHONE = #{uDphone},
 			ZIPNO = #{zipNo}
 		WHERE U_ID = #{uId} AND DU_NO = #{duNo}
 	</update>
+
 	
 	<!-- 배송주소지 등록 -->
 	<insert id="insertAddr" parameterType="hashmap" >
