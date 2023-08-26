@@ -718,10 +718,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     									if(data.kit == 1){
     										alert("키트는 아티스트 당 한 번만 구매하실 수 있습니다.");
     										location.href = "/product/" +self.list[0].artist+".do";
+    										return;
     									}
     								}else if (data.sub == 0){
     									alert("키트를 구매를 위해 멤버쉽을 구독해주세요.");
     									location.href = "/product/" +self.list[0].artist+".do";
+    									return;
     								}
     	                       }
     	                   });  
@@ -738,6 +740,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     								if(data.sub == 1){
     										alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
     										location.href = "/product/" +self.list[i].artist+".do";
+    										return;
     								}
     	                       }
     	                   });  

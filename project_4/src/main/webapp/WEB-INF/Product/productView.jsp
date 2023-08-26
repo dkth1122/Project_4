@@ -777,6 +777,11 @@ var app = new Vue({
       	  		alert("회원 로그인 후 이용하실 수 있습니다.")
       	  		return;
       	  	}
+      	  	
+      	  	if(self.quantity > self.info[0].pLimit){
+      	  	alert("1회 구매 횟수 제한을 초과하였습니다.")
+      	  		return;
+      	  	}
       	  
             var nparmap = {pNo : self.pNo, uId : self.uId, quantity : self.quantity};            
             $.ajax({
