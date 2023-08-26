@@ -9,6 +9,14 @@
 <title>Membership Main</title>
 <%@ include file="../../Product/sexyheader.jsp" %>
 <style>
+    @font-face {
+    	font-family: "a타이틀고딕2";
+        src: url("../../../font/A타이틀고딕2.TTF") format("truetype");
+    }
+    
+    *{
+    	font-family: a타이틀고딕2;
+    }
 	ul, li{
 		text-decoration: none;
 		list-style: none;

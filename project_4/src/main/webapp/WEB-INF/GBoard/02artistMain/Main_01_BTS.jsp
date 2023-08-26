@@ -10,15 +10,23 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버쉽 게시판 </title>
 <style>
-#app{
-background-color : #D0ACDB;}
+	#app{
+		background-color : white;
+	}
+    @font-face {
+    	font-family: "ridibatang";
+        src: url("../../../font/ridibatang.ttf") format("truetype");
+    }
+    
+    *{
+    	font-family: ridibatang;
+    }
 		
 		
 </style>
 </head>
 <body>
-
- 
+ <div id="app">
 	<div class="logos">
       <a href="../home.do"><img alt="" src="../img/logo/veryperiiix-.png" style="width:130px; height:80px; margin-top:25px;"></a>
       <a href="../home2.do"><img alt="" src="../img/logo/bts_logo.png" style="width:120px; height:auto;"></a>
@@ -28,8 +36,7 @@ background-color : #D0ACDB;}
 		<div class="header">
 			<div class="btn">
     			<button @click="fnMove">back</button>
-    			<button @click="fnMove('my')">menu</button>
-    			<button>mypage</button>
+    			<button @click="fnMove('my')">mypage</button>
       		</div> 
        
      	    <label>  
@@ -39,23 +46,22 @@ background-color : #D0ACDB;}
         </div>
         <hr>
     </nav>
-     <nav id="app">
+    <nav id="contents">
     <div class="artistNewFeed">
         	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2"  @click = "fnComment(item.gNo)" >
-		        <a href="javascript:;">
-	            <div>
-	            	<li><span>COMMENT ♥ </span>{{item.gcCnt}}</li>
+	            	<li><span>COMMENT ✉<span>{{item.gcCnt}}</li>
 	                <li>{{item.artist}}</li>
 	            	<li>{{item.nickName}}</li>
-	            	<li><img :src = "item.gpPath" class="profile-image"></li>
+	            	<li>
+	            		<img :src = "item.gpPath" class="profile-image" v-if="item.gpPath != null && item.gpPath != ''">
+	            		<img src ="/gboard/profileImg.jpg"class="profile-image" v-else />
+	            	</li>
 	                <li>{{item.gDate}}</li>
 	                <li>{{item.gContent}}</li>
 	                <li><span>LIKE ♥ </span>{{item.gLike}}</li>
-	            </div>
-		       </a>
        	 	</ul>
     </div>
-    
+    </nav>
     <hr>
     <nav id= "writearea">
     <div class="write">
@@ -67,14 +73,16 @@ background-color : #D0ACDB;}
     <hr>
     <div class="container">
         <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
-        	<li><span>COMMENT ♥ </span>{{item.gcCnt}}</li>
+        	<li><span>COMMENT ✉ </span>{{item.gcCnt}}</li>
             <li>{{item.artist}}</li>
-	        <li>{{item.nickName}}<img :src = "item.gpPath" class="profile-image"></li>
+	        <li><img :src = "item.gpPath" class="profile-image">{{item.nickName}}</li>
             <li>{{item.gDate}}</li>
             <li>{{item.gContent}}</li>
             <li><span>LIKE ♥ </span>{{item.gLike}}</li>
-            <img v-if="item.path" :src="item.path" class="image" />
-			<img v-else class="imageX" />
+            <li>
+	            <img v-if="item.path" :src="item.path" class="image" />
+				<img v-else class="imageX" />
+			</li>
             <li><button @click="fnLike(item.gNo)">좋아요</button></li>
             <li><button @click="fnComment(item.gNo)">댓글</button></li>
             <li><button @click="reportPost(item.gNo)">신고</button></li>
@@ -87,8 +95,7 @@ background-color : #D0ACDB;}
         </ul>
     </div>
     <hr>
-    
-</div>
+  </div>
 </body>
 </html>
 <script>

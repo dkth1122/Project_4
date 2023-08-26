@@ -12,7 +12,15 @@
 <style>
 	#app{
 	background-color:black;}
-		
+	
+	@font-face {
+    	font-family: "a타이틀고딕2";
+        src: url("../../../font/A타이틀고딕2.TTF") format("truetype");
+    }
+    
+    *{
+    	font-family: a타이틀고딕2;
+    }
 		
 </style>
 </head>

@@ -8,10 +8,15 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <%@ include file="../../Product/sexyheader.jsp" %>
 <style>
+    @font-face {
+    	font-family: "ridibatang";
+        src: url("../../../font/ridibatang.ttf") format("truetype");
+    }
+    
+    *{
+    	font-family: ridibatang;
+    }
 	
-	.header{
-		border:1px solid tomato;
-	}
 	.profile-image {
 	    width: 50px;
 	    height: 50px;	
@@ -19,29 +24,28 @@
 	    object-fit: cover; 
 	    margin-top : 15px;
 	}
+	
 	.container{
 		padding-top:130px;
 		background-color: #f0f0f0;
 		height : 1100px;
 	}
 	.imgBox {
-    width: 100%; 
-    max-height: 220px; 
-    overflow: hidden; 
-    background-color : #444;
-    text-align:center;
-    color:white;
-    
-}
-
-.imgBox img {
-	margin : 0px auto;
-    width: 531px;
-    aspect-ratio: auto 531 / 299;
-    height: 299px;
-    text-align:center;
-}
-.container{
+	    width: 100%; 
+	    max-height: 220px; 
+	    overflow: hidden; 
+	    background-color : #444;
+	    text-align:center;
+	    color:white;
+	}
+	.imgBox img {
+		margin : 0px auto;
+	    width: 531px;
+	    aspect-ratio: auto 531 / 299;
+	    height: 299px;
+	    text-align:center;
+	}
+	.container{
 		padding-top:130px;
 	}
 	.prof{
