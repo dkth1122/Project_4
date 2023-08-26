@@ -80,7 +80,14 @@ img.topimg{
     position: relative; 
     z-index: 1; 
 }
-
+#div3{
+	position: relative; 
+    z-index: 1; 
+    margin-top: 50px;
+	margin-bottom: 50px;
+	float:left;
+	width : 100%;
+}
 #nav1{
 	margin-top:-60px;
 	margin-bottom:500px;
@@ -97,13 +104,6 @@ img.topimg{
 	margin-bottom: 50px;
 	float:left;
 }
-#nav3{
-	widows: 1800px;
-	height: 1800px;
-	margin-top: 50px;
-	margin-bottom: 50px;
-	float:left;
-	}
 
 #nav4{
 	widows: 1800px;
@@ -138,6 +138,10 @@ img.topimg{
    box-shadow:  0 10px 20px  rgba(0, 0, 0, 0.5); 
    font-size : 16px;
    border-radius : 10px;
+   
+}
+.productList:hover{
+	cursor:pointer;
 }
 
 .productList-container {
@@ -200,9 +204,9 @@ img.topimg{
 	bottom: -100px;
 	width: 230px;
 	height: 140px;
-	background: rgba(98,144,198, 0.7);
-	text-shadow: 0 5px 5px  rgba(199,225,50, 1);
-	color:black;
+	background: rgba(45,47,67,0.8);
+	/* text-shadow: 0 5px 5px  rgba(199,225,50, 1); */
+	color:white;
 	line-height: 25pt;
 	font-family: arial;
 	font-size: 15pt;
@@ -217,12 +221,13 @@ img.topimg{
 
 
 .sect2 div .sub .sname {
-	font-size: 16px;
+	font-size: 13px;
 	font-weight: lighter;
 	box-sizing: border-box;
 	text-align: left;
- height: 30px;
+ 	height: 30px;
     margin-top: 20px;
+    color:grey;
 }
 .sub li {
 	height : 50px;
@@ -273,9 +278,9 @@ img.topimg{
 	bottom: -100px;
 	width: 230px;
 	height: 140px;
-	background: rgba(98,144,198, 0.7);
-	text-shadow: 0 5px 5px  rgba(199,225,50, 1);
-	color:black;
+	background: rgba(45,47,67,0.8);
+	/* text-shadow: 0 5px 5px  rgba(199,225,50, 1); */
+	color:white;
 	line-height: 25pt;
 	font-family: arial;
 	font-size: 15pt;
@@ -290,7 +295,7 @@ img.topimg{
 
 
 .sect3 div .sub .sname {
-	font-size: 16px;
+	font-size: 13px;
 	font-weight: lighter;
 	box-sizing: border-box;
 	text-align: left;
@@ -298,15 +303,9 @@ img.topimg{
  transition: 1s; */
  height: 30px;
     margin-top: 20px;
+    color:grey;
+    
 }
-
-
-
-
-
-		
-
-
 .ostimg {
     display: flex;
     justify-content: center;
@@ -405,8 +404,37 @@ display:block;
 }
 .sPname{
 	height : 50px;
-	font-size : 14px;
+	font-size : 16px;
+}
+.newIssue{
+	width : 100%;
+	background-color : #ccc;
+	text-align : center;	
+}
+.newIssue h1{
+	font-size : 46px;
+	margin-bottom : 50px;
+}
+.evtList{
+	width : 100%;
+	background-color : #fff;
+	display: flex;
+	justify-content: center;
+}
+.evtBox img{
+	width : 390px;
+	height : 520px;
 	
+}
+.evtBox img:hover {
+	transition: opacity 0.35s;
+	opacity: 0.8;
+	cursor : pointer;
+}
+.evtBox p {
+    bottom: 45px;
+    left: 25px;
+    height: 50px;
 }
 
 </style>
@@ -442,20 +470,29 @@ display:block;
 						<div class="slidetext"></div>
 				 		<img class="topimg" src="img/homeimg/promiss_main.jpg">
 					</div>
-				
 				</div>
-				
 			<br>
-				
 				<div style="text-align:center">
 				  <span class="dot"></span> 
 				  <span class="dot"></span> 
 				  <span class="dot"></span> 
 				</div>
-				
 			</nav>
 			
-			
+			<div id="div3">
+			     <div class="newIssue">
+			     	<h1>New Issue</h1>
+			     	<div class="evtList">			     		
+			     		<div class="evtBox" v-for="(item, index) in evt.slice(0, 3)" :key="index">
+					      <figure>
+					        <img :src="item.thumbnail">
+					        
+					      </figure>
+					      <p>{{item.aTitle}}</p>
+					    </div>
+			     	</div>
+			     </div>			   
+			</div>
 			
 			
 <nav id="nav2">
@@ -468,10 +505,10 @@ display:block;
      
        <div @click="productView(item)" v-for="(item, index) in list" class="productList" :key="index" style="border:0; margin-bottom:50px;" >
           <img :src="item.path" class="productList" style="margin : 0px;">
-          <div style="font-weight :bold; font-size:18px; ">{{ item.pName }}</div>
+          <!-- <div style="font-weight :bold; font-size:18px; ">{{ item.pName }}</div> -->
           
             <ul class="sub">
-              <li class="sname">{{item.artist}}</li>
+              <li class="sname">[{{item.category}}]{{item.artist}}</li>
               <li class="sPname">{{item.pName}}</li>
               <li>₩<strong>{{ item.price | formatPrice }}</strong></li>
             </ul>
@@ -490,10 +527,9 @@ display:block;
          
          <div @click="productView(zz)" v-for="(zz, index) in best" class="productList" :key="index" style="border:0; margin-bottom:50px;" >
          <img :src="zz.path" class="productList" style="margin :0px;"  >
-          <div style= "font-weight :bold; font-size:18px;">{{ zz.pName }}</div>
-          
+          <!-- <div style= "font-weight :bold; font-size:18px;">{{ zz.pName }}</div> -->
             <ul class="sub">
-              <li class="sname">{{zz.artist}}</li>
+              <li class="sname">[{{zz.category}}]{{zz.artist}}</li>
               <li class="sPname">{{zz.pName}}</li>
               <li>₩<strong>{{ zz.price | formatPrice }}</strong></li>
             </ul>
@@ -558,6 +594,7 @@ var app = new Vue({
       list : [],
       info : {},
       best : [],
+      evt : [],
     currentAudio: null 
    }, 
    
@@ -633,13 +670,27 @@ var app = new Vue({
     productView(item) {
     	var self = this;
         $.pageChange("/product/productView.do", {pNo : item.pNo});
-    }
+    },
+    EventList : function(){
+        var self = this;
+        var nparmap = {};
+        $.ajax({
+            url : "/event/list4.dox",
+            dataType:"json",	
+            type : "POST", 
+            data : nparmap,
+            success : function(data) { 
+            	self.evt = data.list;            	  	
+            }
+        }); 
+    },
   },
    
    created() {
       var self = this;
       self.fnGetList();
       self.fnBestItem();
+      self.EventList();
 
    }
 });
