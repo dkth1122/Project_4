@@ -643,7 +643,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		       	 }
 	       	 
 	         // 정규식 패턴 설정
-		         var dNamePattern = /^[가-힣]{1,20}$/;
+		         var dNamePattern = /^[가-힣\s]{1,20}$/;
 		         var namePattern = /^[가-힣]{1,10}$/;
 		         var phonePattern = /^\d{4}$/;
 		         var zipNoPattern = /^\d{1,10}$/;
@@ -660,7 +660,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		         }
 	
 		         if (!phonePattern.test(self.phone2) || !phonePattern.test(self.phone3)) {
-		             alert("핸드폰 번호는 4자리 숫자만 입력 가능합니다.");
+		             alert("핸드폰 번호는 공백 없이 4자리 숫자만 입력 가능합니다.");
 		             return;
 		         }
 	
@@ -777,7 +777,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	                       type : "POST", 
 	                       data : nparmap,
 	                       success : function(data) {
-								alert("구독 쳌크");
 								if(data.sub == 1){
 										alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
 										location.href = "/product/" +self.list[0].artist+".do";
@@ -848,7 +847,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             var self = this;
             if (!self.uDname) {
                 self.dNameErrorMessage = '';
-            } else if (!/^[가-힣]{1,20}$/.test(self.uDname)) {
+            } else if (!/^[가-힣\s]{1,20}$/.test(self.uDname)) {
                 self.dNameErrorMessage = '배송주소록의 이름은 20자 이하의 한글로 입력하세요.';
             } else {
                 self.dNameErrorMessage = '';

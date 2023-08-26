@@ -273,9 +273,16 @@ text-align: center;
 						</div>
 					<table class="adr" border="0">
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문자 명 </th>
+							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소록 이름 </th>
 							<td>
-								<input  class="nameinput " type="text" v-model="uDname" @input="validateName">
+								<input  class="nameinput " type="text" v-model="uDname" @input="validateDname">
+								<div class="error-message" v-if="dNameErrorMessage">{{ dNameErrorMessage }}</div>
+							</td>
+						</tr>
+						<tr>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 받는 사람 </th>
+							<td>
+								<input  class="nameinput " type="text" v-model="recipient" @input="validateName">
 								<div class="error-message" v-if="nameErrorMessage">{{ nameErrorMessage }}</div>
 							</td>
 						</tr>
@@ -352,34 +359,37 @@ text-align: center;
 							<tr>
 						</tr>
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;" ></i> 주문자 명 </th>
-							<td><input  class="nameinput " type="text" v-model="user.uDname" readonly> </td>
+							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소록 이름 </th>
+							<td>
+								<input  class="nameinput " type="text" v-model="user.uDname" @input="validateName" readonly>
+								<div class="error-message" v-if="nameErrorMessage">{{ dNameErrorMessage }}</div>
+							</td>
+						</tr>
+						<tr>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;" ></i> 받는 사람 </th>
+							<td>
+								<input  class="nameinput " type="text" v-model="user.recipient" @input="validateName" readonly>
+								<div class="error-message" v-if="nameErrorMessage">{{ nameErrorMessage }}</div>
+							</td>
 						</tr>
 						<tr style="display:none"><td><input v-model="user.duNo" readonly/></td></tr>
 						<tr>
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
 							<td>
-							<br>
-							<input class="addrinput2" type="text" placeholder="기본주소" v-model="user.addr" readonly/>
-							<br>
-							<input class="addrinput2" type="text" placeholder="나머지 주소" v-model="user.addrDetail" readonly/>					
-							<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo" readonly/>		
+								<br>
+								<input class="addrinput2" type="text" placeholder="기본주소" v-model="user.addr" readonly/>
+								<br>
+								<input class="addrinput2" type="text" placeholder="나머지 주소" v-model="user.addrDetail" readonly/>					
+								<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo" readonly/>		
 							</td>
 						</tr>
 						
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
 							<td>
-								<select class="select" v-model="user.phone1">
-									<option value="">선택</option>
-									<option value="010">010</option>
-									<option value="011">011</option>
-									<option value="016">016</option>
-									<option value="017">017</option>
-									<option value="018">018</option>
-									<option value="019">019</option>
-								</select>
-							<input class="numinput" type="text" v-model="user.phone2" > - <input class="numinput" type="text" v-model="user.phone3">			
+								<input class="numinput" type="text" v-model="user.phone1" readonly> - 
+								<input class="numinput" type="text" v-model="user.phone2" readonly> - 
+								<input class="numinput" type="text" v-model="user.phone3" readonly>					
 							</td>						
 						</tr>
 						
@@ -587,24 +597,29 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     	},fnAddAddrList : function(){
 	       	 var self = this;
 	       	 
-	       	 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == ""){
+	       	 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == "" || self.recipient == null || self.recipient == ''){
 					alert("내용을 모두 입력해주세요.");	
 	       		 return;	       		 
 	       	 }
 	       	 
-	         // 정규식 패턴 설정
-	         var namePattern = /^[가-힣]{1,20}$/;
+	         var dNamePattern = /^[가-힣\s]{1,20}$/;
+	         var namePattern = /^[가-힣]{1,10}$/;
 	         var phonePattern = /^\d{4}$/;
 	         var zipNoPattern = /^\d{1,10}$/;
 	         var messagePattern = /^.{0,30}$/;
 
-	         if (!namePattern.test(self.uDname)) {
-	             alert("이름은 20자 이하의 한글만 입력 가능합니다.");
+	         if (!dNamePattern.test(self.uDname)) {
+	             alert("배송주소록의 이름은 20자 이하의 한글만 입력 가능합니다.");
+	             return;
+	         }
+	         	
+	         if (!namePattern.test(self.recipient)) {
+	             alert("받는 사람은 10자 이하의 한글만 입력 가능합니다.");
 	             return;
 	         }
 
 	         if (!phonePattern.test(self.phone2) || !phonePattern.test(self.phone3)) {
-	             alert("핸드폰 번호는 4자리 숫자만 입력 가능합니다.");
+	             alert("핸드폰 번호는 공백 없이 4자리 숫자만 입력 가능합니다.");
 	             return;
 	         }
 
@@ -633,7 +648,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	       		 return;
 	       	 }
 	       	 
-	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo, uDmessage : self.dText };
+	       	self.uDphone = self.phone1 + self.phone2 + self.phone3;
+	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo, uDmessage : self.dText, recipient : self.recipient };
 	         $.ajax({
 	             url : "/mypag/addAddr.dox",
 	             dataType:"json",	
@@ -648,6 +664,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     		var self = this;
     		if(check == 'y'){
 	    	   self.user.uDname = item.uDname;
+	    	   self.user.recipient = item.recipient;
 	    	   self.user.addr = item.uDaddr;
 	    	   self.user.addrDetail = item.uDaddrDetail;
 	    	   self.user.zipNo = item.zipNo;
@@ -658,6 +675,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	    	   self.user.dText = item.uDmessage;
     		}else if (check == 'n'){
     	   		self.user.uDname = "";
+    	   		self.user.recipient = "";
     	    	self.user.addr = "";
     	    	self.user.addrDetail = "";
     	    	self.user.zipNo = "";
@@ -717,7 +735,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     	                       type : "POST", 
     	                       data : nparmap,
     	                       success : function(data) {
-    								alert("구독 쳌크");
     								if(data.sub == 1){
     										alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
     										location.href = "/product/" +self.list[i].artist+".do";
@@ -805,12 +822,21 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
          	}
         	
         }//정규식 시작
-        , validateName: function() {
+        , validateDname: function() {
             var self = this;
             if (!self.uDname) {
+                self.dNameErrorMessage = '';
+            } else if (!/^[가-힣\s]{1,20}$/.test(self.uDname)) {
+                self.dNameErrorMessage = '배송주소록의 이름은 20자 이하의 한글로 입력하세요.';
+            } else {
+                self.dNameErrorMessage = '';
+            }
+        }, validateName: function() {
+            var self = this;
+            if (!self.recipient) {
                 self.nameErrorMessage = '';
-            } else if (!/^[가-힣]{1,20}$/.test(self.uDname)) {
-                self.nameErrorMessage = '이름은 20자 이하의 한글로 입력하세요.';
+            } else if (!/^[가-힣]{1,10}$/.test(self.recipient)) {
+                self.nameErrorMessage = '받는 사람은 10자 이하의 한글로 입력하세요.';
             } else {
                 self.nameErrorMessage = '';
             }
