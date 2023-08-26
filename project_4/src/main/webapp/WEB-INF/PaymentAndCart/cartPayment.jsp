@@ -741,10 +741,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     								}
     	                       }
     	                   });  
-    	       		}else{
-    	       			self.requestPay();
     	       		}
     	       	}
+    	       	self.requestPay();
     	}, requestPay : function() {
     		var self = this;
             var timestamp = new Date().getTime();

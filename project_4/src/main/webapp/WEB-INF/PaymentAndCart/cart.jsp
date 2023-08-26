@@ -372,6 +372,7 @@ padding-right: 0xp;
             		 this.calculateTotalPrice();
             	}else{
             		alert("해당상품의 최대구매수량은 "+item.pLimit+"개 입니다.");
+            		item.cnt = item.pLimit;
             	}
                 
                 
