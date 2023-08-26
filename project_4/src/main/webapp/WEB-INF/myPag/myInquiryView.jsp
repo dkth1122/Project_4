@@ -141,9 +141,9 @@
 					    </div>
 			    	</div>
 			  </div>
-  <div><%@ include file="../page/footer.jsp" %></div>
+ 
 </div>
-
+ <div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
