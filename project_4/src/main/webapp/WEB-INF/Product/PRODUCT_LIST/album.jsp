@@ -50,6 +50,7 @@
 	.slide_wrapper_main{
 		float: left;
 		margin-left: 200px;
+		margin-top: 100px;
 	}
 	.body2{
 		margin-top : 150px;
@@ -61,7 +62,7 @@
 		width: 1200px;
 		float: left;
 		position: relative;
-		top :-670px;
+		top : -385px;
 		left: 350px;
 		
 	}
@@ -77,26 +78,15 @@
 		top: 150px;
 		left: 140px;
 	}
-	.artistDIv2{
-		width : 500px;
-		height : 100px;
-		position : absolute;
-		top : 300px;
-		left : 300px;
-		font-size: 32px;
-		color : #ccc;
-	}
   </style>
 </head>
 <body>
 
+<%@ include file="../sexyheader.jsp" %>
+
 <div id="app">
    <div id="wrap">
         <div id="container">
-        <div id="login">
-        <div class="login_loginout"><span class="nonMember">로그인</span>  |  <span class="nonMember">회원가입</span></div>
-        <div class="login_loginout" v-if="false"> 로그아웃</div>
-        </div>
             <div id="header" >
             
             </div>
