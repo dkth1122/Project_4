@@ -44,5 +44,8 @@ public interface OrderMapper {
 	// 유저 포인트 추가 
 	int userPointAdd(HashMap<String, Object> map);
 	
+	// 유저 포인트 테이블에 추가 
+	int userPointAdd2(HashMap<String, Object> map);
+	
 	
 }

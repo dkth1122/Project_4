@@ -512,7 +512,7 @@
                    return;
                }
             var userPointAdd = parseInt((self.list2.price * self.list2.oCount) * 0.02);
-            var nparmap = {buyNo : item.buyNo, userPointAdd : userPointAdd, uId : self.uId};
+            var nparmap = {buyNo : item.buyNo, userPointAdd : userPointAdd, uId : self.uId, oNo : self.oNo};
             console.log(nparmap);
             $.ajax({
                url : "/mypag/mypageOrderConfirm.dox",

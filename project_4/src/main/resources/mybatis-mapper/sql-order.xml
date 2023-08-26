@@ -98,6 +98,7 @@
 			GROUP BY O.O_NO
 			ORDER BY O_DATE DESC
 	</select>
+	
 	<!-- 사용자 장바구니 출력 -->
 	<select id="selectcartlist" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT *
@@ -154,5 +155,11 @@
 			U_POINT = U_POINT + #{userPointAdd}
 		WHERE U_ID = #{uId}
 	</update>
+	
+	<!-- 유저 포인트 테이블에 정보 추가 -->
+	<insert id="userPointAdd2">
+		INSERT INTO T4_USER_POINT (O_NO, POINT, PODATA) 
+		VALUES (#{oNo}, #{userPointAdd} NOW());
+	</insert>
 	
 </mapper>

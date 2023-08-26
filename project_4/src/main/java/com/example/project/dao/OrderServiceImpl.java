@@ -76,6 +76,7 @@ public class OrderServiceImpl implements OrderService{
 	public int mypageOrderConfirm(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		orderMapper.userPointAdd(map);
+		orderMapper.userPointAdd2(map);
 		return orderMapper.mypageOrderConfirm(map);
 	}
 	
