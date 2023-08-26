@@ -96,7 +96,7 @@
             <li class="clickThis"><span @click="fnComment(item.gNo)"><a href="javascript:">댓글✉</a></span></li>
             <li class="clickThis"><span @click="reportPost(item.gNo)"><a href="javascript:">신고🚨<a></span></li>
             <li v-if="uId == item.uId" class="clickThis">
-                    <div class="clickThis"><span @click="fnRemove(item)"><a href="javascript:">✖</a></span></div>
+            	<div class="clickThis" @click="fnRemove(item)"><span><a href="javascript:">✖</a></span></div>
             </li>
             <hr>
         </ul>
@@ -239,22 +239,35 @@ var app = new Vue({
             });
         }, fnComment : function(gNo){
             var self = this;
-            var width = 500;
-            var height = 500;
-            var left = (window.innerWidth - width) / 2;
-            var top = (window.innerHeight - height) / 2;
+            
+            var width = 850;
+            var height = 800;
+            var screenWidth = window.innerWidth; // 브라우저의 너비
+            var screenHeight = window.innerHeight; // 브라우저의 높이
+            
+            var left = (screenWidth - width) / 2; // 팝업의 왼쪽 위치 계산
+            var top = (screenHeight - height) / 2; // 팝업의 상단 위치 계산
+            
             var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
             var url = "view.do?gNo=" + gNo + "&uId=" + self.uId;
-            window.open(url, "gNo", option);
+            window.open(url, "view", option);
         	
-        },  reportPost : function(gNo) {
-            var self = this;
+        }, reportPost : function(gNo) {
+        	var self = this;
             self.selectedReason = ""; 
             self.otherReason = "";
             self.reportDescription = ""; 
             self.showReportModal = true;
             
-            var option = "width=700,height=500,top=100,right";
+            var popupWidth = 700; // 팝업의 너비
+            var popupHeight = 500; // 팝업의 높이
+            var screenWidth = window.innerWidth; // 브라우저의 너비
+            var screenHeight = window.innerHeight; // 브라우저의 높이
+            
+            var left = (screenWidth - popupWidth) / 2; // 팝업의 왼쪽 위치 계산
+            var top = (screenHeight - popupHeight) / 2; // 팝업의 상단 위치 계산
+            
+            var option = "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top;
             var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
             window.open(url, "gNo", option);
             

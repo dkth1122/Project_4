@@ -96,7 +96,7 @@
             <li class="clickThis"><span @click="fnComment(item.gNo)"><a href="javascript:">댓글✉</a></span></li>
             <li class="clickThis"><span @click="reportPost(item.gNo)"><a href="javascript:">신고🚨<a></span></li>
             <li v-if="uId == item.uId" class="clickThis">
-                    <div class="clickThis"><span @click="fnRemove(item)"><a href="javascript:">✖</a></span></div>
+            	<div class="clickThis" @click="fnRemove(item)"><span><a href="javascript:">✖</a></span></div>
             </li>
             <hr>
         </ul>
