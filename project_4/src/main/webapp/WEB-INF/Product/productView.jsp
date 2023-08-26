@@ -713,17 +713,6 @@ var app = new Vue({
         },  fnProductOrder : function(item){
         	var self = this;
         	
-        	var currentDate = new Date();
-        	var year = currentDate.getFullYear();
-        	var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
-        	var day = currentDate.getDate();
-        	var hours = currentDate.getHours();
-        	var minutes = currentDate.getMinutes();
-        	var seconds = currentDate.getSeconds();
-        	var currentDateString = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
-        	var a = currentDateString >= self.info.mRegDate;
-        	var b = currentDateString <= self.info.mExpDate;
-        	//$.pageChange("/payment/payment.do", params); 
         	$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
         	     	
         },//위시리스트 이동  

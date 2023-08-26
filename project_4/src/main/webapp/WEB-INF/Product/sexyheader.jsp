@@ -280,7 +280,7 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	window.location.reload();
+                	location.href = "http://localhost:8082/home.do"
                 }
             }); 
 		},
