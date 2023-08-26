@@ -70,8 +70,8 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;}
     position: relative;
     }
 		.navWrap:hover {
-      height:650px; /* 화占쏙옙占쏙옙 占쏙옙체 占쏙옙占싱뤄옙 확占쏙옙 */
-      background: rgba(245, 235, 236); /* 호占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙 */
+      height:650px; 
+      background: rgba(245, 235, 236); 
     }
 			
 nav .menu {
@@ -212,17 +212,14 @@ width : 100px;
 					
 						
 						<div class="icon">
-						<span class="icon"><a href="/basket.do" href="bookmark.do"><i class="fa-brands fa-shopify"></i></a></span>
+						<span class="icon"><a href="/cart/cartList.do"><i class="fa-brands fa-shopify"></i></a></span>
 						<span class="icon"><a href="myInformation.do"><i class="fa-solid fa-bookmark fa-1xl" ></i></a></span>
-						<span class="icon"><a href="/gboard/main.do"><i class="fa-brands fa-wordpress-simple fa-rotate-180"></i></a>		</span>
+						<span class="icon"><a href="/gboard/main.do"><i class="fa-brands fa-wordpress-simple fa-rotate-180"></i></a></span>
 						<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl"></i></a></span>
 						</div>
 						<span class="q icon">
-												
 								<button @click="fnLogout" style="background: none; border: none; cursor: pointer;" class="logjo3">LOGOUT</button>
-
 							</span>		
-					
 					</ul>
 					
 					</div>

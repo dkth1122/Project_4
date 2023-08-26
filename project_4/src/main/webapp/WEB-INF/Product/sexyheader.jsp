@@ -235,7 +235,7 @@ margin: 0 auto;
 						<div class="sexyIcon">
 							
 							<span class="sexyIcon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-brands fa-shopify"></i></a>
-							<a v-else href="bookmark.do"><i class="fa-brands fa-shopify"></i></a></span>
+							<a v-else href="/cart/cartList.do"><i class="fa-brands fa-shopify"></i></a></span>
 
 							<span class="sexyIcon"><a href="/mypag/myInformation.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a></span>
 							
