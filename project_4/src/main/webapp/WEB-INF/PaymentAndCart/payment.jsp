@@ -258,8 +258,8 @@ text-align: center;
 }
 
 .pImg{
-	width: 200px;
-	height: 100px;
+	max-width: 240;
+	max-height: 240px;
 }
 
 

@@ -222,7 +222,7 @@ text-align: center;
 }
 
 .pImg{
-	max-width: 240;
+	max-width: 240px;
 	max-height: 240px;
 }
 td input{
