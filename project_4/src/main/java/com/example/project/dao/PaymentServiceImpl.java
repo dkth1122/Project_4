@@ -37,17 +37,25 @@ public class PaymentServiceImpl implements PaymentService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		int memCheck = paymentMapper.selectMembershipCheck(map);
 		Product Kit = paymentMapper.selectMembershipKit(map);
-		System.out.println("키트 구매여부 : " + Kit);
-		
 		
 		if(memCheck == 0) {
-			resultMap.put("message", "멤버쉽 구독 안함");
+			//멤버쉽 구독 안함
+			resultMap.put("sub", 0);
 		}
 		else {
-			resultMap.put("message", "멤버쉽 구독 확인");
+			//멤버쉽 구독함
+			resultMap.put("sub", 1);
 		}
 		
-		
+		if(Kit != null){
+			//멤버쉽 키트 구매 함
+			if(Kit.getKitYn() =='Y') {
+				resultMap.put("kit", 1);
+			}else{
+				//구매 안햇음
+				resultMap.put("kit", 0);
+			}
+		}
 		
 		return resultMap;
 	}

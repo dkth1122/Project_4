@@ -69,6 +69,14 @@ public class PaymentController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	//멤버쉽 체크
+	@RequestMapping(value = "/payment/memberCheck.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String memberCheck(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = paymentService.searchMembershipCheck(map);
+		return new Gson().toJson(resultMap);
+	}
 	
 	 
 	//결제 후 -> 인서트 여러개 하기
@@ -92,8 +100,5 @@ public class PaymentController {
 			resultMap.put("message", "success");
 			return new Gson().toJson(resultMap);
 	}
-	 
-	//멤버쉽 상품 구매 시, 해당 아티스트의 멤버쉽에 가입되어 있는지 확인하는 dox
-	
 		
 }

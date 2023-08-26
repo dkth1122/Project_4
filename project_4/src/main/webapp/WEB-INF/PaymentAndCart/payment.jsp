@@ -310,9 +310,16 @@ text-align: center;
 						</div>
 					<table class="adr" border="0">
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주문자 명 </th>
+							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소록 이름 </th>
 							<td>
-								<input  class="nameinput " type="text" v-model="uDname" @input="validateName">
+								<input  class="nameinput " type="text" v-model="uDname" @input="validateDname">
+								<div class="error-message" v-if="dNameErrorMessage">{{ dNameErrorMessage }}</div>
+							</td>
+						</tr>
+						<tr>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 받는 사람 </th>
+							<td>
+								<input  class="nameinput " type="text" v-model="recipient" @input="validateName">
 								<div class="error-message" v-if="nameErrorMessage">{{ nameErrorMessage }}</div>
 							</td>
 						</tr>
@@ -389,8 +396,18 @@ text-align: center;
 							<tr>
 						</tr>
 						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;" ></i> 주문자 명 </th>
-							<td><input  class="nameinput " type="text" v-model="user.uDname" readonly> </td>
+							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소록 이름 </th>
+							<td>
+								<input  class="nameinput " type="text" v-model="user.uDname" @input="validateName" readonly>
+								<div class="error-message" v-if="nameErrorMessage">{{ dNameErrorMessage }}</div>
+							</td>
+						</tr>
+						<tr>
+							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;" ></i> 받는 사람 </th>
+							<td>
+								<input  class="nameinput " type="text" v-model="user.recipient" @input="validateName" readonly>
+								<div class="error-message" v-if="nameErrorMessage">{{ nameErrorMessage }}</div>
+							</td>
 						</tr>
 						<tr style="display:none"><td><input v-model="user.duNo" readonly/></td></tr>
 						<tr>
@@ -407,16 +424,9 @@ text-align: center;
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
 							<td>
-								<select class="select" v-model="user.phone1">
-									<option value="">선택</option>
-									<option value="010">010</option>
-									<option value="011">011</option>
-									<option value="016">016</option>
-									<option value="017">017</option>
-									<option value="018">018</option>
-									<option value="019">019</option>
-								</select>
-							<input class="numinput" type="text" v-model="user.phone2" > - <input class="numinput" type="text" v-model="user.phone3">			
+								<input class="numinput" type="text" v-model="user.phone1" readonly> - 
+								<input class="numinput" type="text" v-model="user.phone2" readonly> - 
+								<input class="numinput" type="text" v-model="user.phone3" readonly>			
 							</td>						
 						</tr>
 						
@@ -499,6 +509,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			pNo : "${map.pNo}",
 			cnt : "${map.cnt}",
     	   	uDname : "",
+    	   	recipient : "",
     	   	uDphone : "",
 			addr : "",
 			addrDetail : "",
@@ -511,6 +522,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			 user : {
 		    	   	uId : "",
 		    	   	uDname : "",
+		    	   	recipient : "",
 		    	   	phone1 : "",
 		    	   	phone2 : "",
 		    	   	phone3 : "",
@@ -533,6 +545,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 			oNo : "",
 			buyNo: "",
 			nameErrorMessage : "",
+			dNameErrorMessage : "",
 			addrErrorMessage : "",
 			addrDetailErrorMessage : "",
 			addrDetailErrorMessage : "",
@@ -585,146 +598,133 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
        		    return total;
 
             },updateItemCnt: function (item) {
-            	
             	if (parseInt(event.target.value) > 1){
-                item.cnt = parseInt(event.target.value);
-                this.calculateTotalPrice();
+               	 item.cnt = parseInt(event.target.value);
+              	this.calculateTotalPrice();
             	}
-         },fnSearchAddr : function (check){
-			var self = this;
-    		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-    		window.open("/mypag/addr.do", "test", option);
-			self.check = check;
-			
-         },fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
-    		var self = this;
+         	},fnSearchAddr : function (check){
+				var self = this;
+	    		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	    		window.open("/mypag/addr.do", "test", option);
+				self.check = check;
+				
+        	 },fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+	    		var self = this;
+	    		
+		    		self.addr = roadAddrPart1;
+		    		self.addrDetail = addrDetail;
+		    		self.zipNo = zipNo;
     		
-	    		self.addr = roadAddrPart1;
-	    		self.addrDetail = addrDetail;
-	    		self.zipNo = zipNo;
-    		
-    	}, fnAddrList : function(){
-            var self = this;
-            if (self.uId == null || self.uId == "") {
-                alert('세션이 만료되었습니다. 다시 로그인해주세요.');
-                location.href ="/user/login.do"
-            }
-            var nparmap = {uId : self.uId};
-            $.ajax({
-                url : "searchDeliveryUserInfo.dox",
-                dataType:"json",   
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-                   self.info = data.list; //사용자
-                   self.flg = !self.flg;
-                }
-            }); 
-    	},fnAddAddrList : function(){
- 			 var self = this;
-	       	 
-	       	 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == ""){
-					alert("내용을 모두 입력해주세요.");	
-	       		 return;	       		 
-	       	 }
+    		}, fnAddrList : function(){
+	            var self = this;
+	            if (self.uId == null || self.uId == "") {
+	                alert('세션이 만료되었습니다. 다시 로그인해주세요.');
+	                location.href ="/user/login.do"
+	            }
+	            var nparmap = {uId : self.uId};
+	            $.ajax({
+	                url : "searchDeliveryUserInfo.dox",
+	                dataType:"json",   
+	                type : "POST", 
+	                data : nparmap,
+	                success : function(data) { 
+	                   self.info = data.dlist; //사용자
+	                   self.flg = !self.flg;
+	                }
+	            }); 
+    		},fnAddAddrList : function(){
+	 			 var self = this;
+		       	 
+		       	 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == "" || self.recipient == null || self.recipient == ''){
+						alert("내용을 모두 입력해주세요.");	
+		       		 return;	       		 
+		       	 }
 	       	 
 	         // 정규식 패턴 설정
-	         var namePattern = /^[가-힣]{1,20}$/;
-	         var phonePattern = /^\d{4}$/;
-	         var zipNoPattern = /^\d{1,10}$/;
-	         var messagePattern = /^.{0,30}$/;
-
-	         if (!namePattern.test(self.uDname)) {
-	             alert("이름은 20자 이하의 한글만 입력 가능합니다.");
-	             return;
-	         }
-
-	         if (!phonePattern.test(self.phone2) || !phonePattern.test(self.phone3)) {
-	             alert("핸드폰 번호는 4자리 숫자만 입력 가능합니다.");
-	             return;
-	         }
-
-	         if (self.addr.length > 50) {
-	             alert("주소는 50자 이하의 한글 및 숫자만 입력 가능합니다.");
-	             return;
-	         }
-
-	         if (self.addrDetail.length > 50) {
-	             alert("상세 주소는 50자 이하의 한글 및 숫자만 입력 가능합니다.");
-	             return;
-	         }
-
-	         if (!zipNoPattern.test(self.zipNo) || self.zipNo.length > 10) {
-	             alert("우편번호는 10자 이하의 숫자만 입력 가능합니다.");
-	             return;
-	         }
-
-	         if (!messagePattern.test(self.dText)) {
-	             alert("배송 메시지는 30자 이하로 입력 가능합니다.");
-	             return;
-	         }
-	       	 
-	       	 if(self.uId == null || self.uId == ""){
-	       		 alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-	       		 return;
-	       	 }
-	       	 
-	         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo, uDmessage : self.dText };
-	         $.ajax({
-	             url : "/mypag/addAddr.dox",
-	             dataType:"json",	
-	             type : "POST", 
-	             data : nparmap,
-	             success : function(data) { 
-	             	alert("배송주소록에 추가 되었습니다!");
-	             	self.fnAddrList();
-	             }
-       		  }); 
-    	},fnAddAddr : function(item, check){
-    		var self = this;
-    		if(check == 'y'){
- 	    	   self.user.uDname = item.uDname;
- 	    	   self.user.addr = item.uDaddr;
- 	    	   self.user.addrDetail = item.uDaddrDetail;
- 	    	   self.user.zipNo = item.zipNo;
- 	    	   self.user.phone1 = item.uDphone.substr(0,3);
- 	    	   self.user.phone2 = item.uDphone.substr(3,4);
- 	    	   self.user.phone3 = item.uDphone.substr(7);
- 	    	   self.user.duNo = item.duNo;
- 	    	   self.user.dText = item.uDmessage;
-     		}else if (check == 'n'){
-     	   		self.user.uDname = "";
-     	    	self.user.addr = "";
-     	    	self.user.addrDetail = "";
-     	    	self.user.zipNo = "";
-  	    	  	self.user.phone1 = "";
-     	    	self.user.phone2 = "";
-     	    	self.user.phone3 = "";
-  	    	   	self.user.duNo = "";
-  	    	  	self.user.dText = "";
-     		}
-    	},fnAddAddr2 : function(check){
-    		var self = this;
-	    	if(check == 'y'){
-	    	   self.user.uDname = self.uDname;
-	    	   self.user.addr = self.addr;
-	    	   self.user.addrDetail = self.addrDetail;
-	    	   self.user.zipNo = self.zipNo;
-	    	   self.user.phone1 = self.phone1;
-	    	   self.user.phone2 = self.phone2;
-	    	   self.user.phone3 = self.phone3;
-	    	   self.user.duNo = self.duNo;
-	    	}else if (check == 'n'){
-	    	  	self.user.uDname = "";
-	        	self.user.addr = "";
-	        	self.user.addrDetail = "";
-	        	self.user.zipNo = "";
-	        	self.user.phone1 = 
-	        	self.user.phone2 = "";
-	        	self.user.phone3 = "";
-		    	self.user.duNo = "";
-	    	}
-   		}, fnBeforePay : function(){
+		         var dNamePattern = /^[가-힣]{1,20}$/;
+		         var namePattern = /^[가-힣]{1,10}$/;
+		         var phonePattern = /^\d{4}$/;
+		         var zipNoPattern = /^\d{1,10}$/;
+		         var messagePattern = /^.{0,30}$/;
+	
+		         if (!dNamePattern.test(self.uDname)) {
+		             alert("배송주소록의 이름은 20자 이하의 한글만 입력 가능합니다.");
+		             return;
+		         }
+		         
+		         if (!namePattern.test(self.recipient)) {
+		             alert("받는 사람은 10자 이하의 한글만 입력 가능합니다.");
+		             return;
+		         }
+	
+		         if (!phonePattern.test(self.phone2) || !phonePattern.test(self.phone3)) {
+		             alert("핸드폰 번호는 4자리 숫자만 입력 가능합니다.");
+		             return;
+		         }
+	
+		         if (self.addr.length > 50) {
+		             alert("주소는 50자 이하의 한글 및 숫자만 입력 가능합니다.");
+		             return;
+		         }
+	
+		         if (self.addrDetail.length > 50) {
+		             alert("상세 주소는 50자 이하의 한글 및 숫자만 입력 가능합니다.");
+		             return;
+		         }
+	
+		         if (!zipNoPattern.test(self.zipNo) || self.zipNo.length > 10) {
+		             alert("우편번호는 10자 이하의 숫자만 입력 가능합니다.");
+		             return;
+		         }
+	
+		         if (!messagePattern.test(self.dText)) {
+		             alert("배송 메시지는 30자 이하로 입력 가능합니다.");
+		             return;
+		         }
+		       	 
+		       	 if(self.uId == null || self.uId == ""){
+		       		 alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+		       		 return;
+		       	 }
+		       	 
+		       	 self.uDphone = self.phone1 + self.phone2 + self.phone3;
+		         var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo, uDmessage : self.dText, recipient : self.recipient };
+		         $.ajax({
+		             url : "/mypag/addAddr.dox",
+		             dataType:"json",	
+		             type : "POST", 
+		             data : nparmap,
+		             success : function(data) { 
+		             	alert("배송주소록에 추가 되었습니다!");
+		             	self.fnAddrList();
+		             }
+	       		  }); 
+    		},fnAddAddr : function(item, check){
+	    		var self = this;
+	    		if(check == 'y'){
+	 	    	   self.user.uDname = item.uDname;
+	 	    	   self.user.recipient = item.recipient;
+	 	    	   self.user.addr = item.uDaddr;
+	 	    	   self.user.addrDetail = item.uDaddrDetail;
+	 	    	   self.user.zipNo = item.zipNo;
+	 	    	   self.user.phone1 = item.uDphone.substr(0,3);
+	 	    	   self.user.phone2 = item.uDphone.substr(3,4);
+	 	    	   self.user.phone3 = item.uDphone.substr(7);
+	 	    	   self.user.duNo = item.duNo;
+	 	    	   self.user.dText = item.uDmessage;
+	     		}else if (check == 'n'){
+	     	   		self.user.uDname = "";
+	     	   		self.user.recipient = "";
+	     	    	self.user.addr = "";
+	     	    	self.user.addrDetail = "";
+	     	    	self.user.zipNo = "";
+	  	    	  	self.user.phone1 = "";
+	     	    	self.user.phone2 = "";
+	     	    	self.user.phone3 = "";
+	  	    	   	self.user.duNo = "";
+	  	    	  	self.user.dText = "";
+	     		}
+    	}, fnBeforePay : function(){
    	   		var self = this;
     		
    	   		//핸드폰 번호 합치기
@@ -743,25 +743,51 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	       	 }
 	       	
 	       	//키트일 경우 확인 후 유저의 멤버쉽 구독 확인 프로세스
-	       	 if(self.list.category == 'MEM' && self.list.membership == 'Y'){
-	             	var nparmap = {uId : self.uId, artist : self.list.artist};
+	       	 if(self.list[0].category == 'MEM' && self.list[0].membership == 'Y'){ 
+	             	var nparmap = {uId : self.uId, artist : self.list[0].artist};
 	                   $.ajax({
 	                       url : "memberCheck.dox",
 	                       dataType:"json",   	
 	                       type : "POST", 
 	                       data : nparmap,
 	                       success : function(data) {
-								alert("체크 완료");
-	                    	  /*  alert(data.message);
-	                    	   if(data.message == '응안돼'){
-	                    		   alert("멤버쉽 구독 상품은 한 번만 구매 가능");
-	                    		   alert("해당 상품은 멤버쉽 구독 후 구매하실 수 있습니다.");
-	                    		   location.href="../home.do";
-	                    	   } */
+	                    	    
+								if(data.sub == 1){
+									if(data.kit == 1){
+										alert("키트는 아티스트 당 한 번만 구매하실 수 있습니다.");
+										location.href = "/product/" +self.list[0].artist+".do";
+									}else if(data.kit == 0){
+										self.requestPay();
+									}
+								}else if (data.sub == 0){
+									alert("키트를 구매를 위해 멤버쉽을 구독해주세요.");
+									location.href = "/product/" +self.list[0].artist+".do";
+								}
 	                       }
 	                   });  
-	       	 }
-   		
+	       		}
+	       	
+		       	if(self.list[0].category == 'MEM' && self.list[0].membership == 'N'){ 
+	             	var nparmap = {uId : self.uId, artist : self.list[0].artist};
+	                   $.ajax({
+	                       url : "memberCheck.dox",
+	                       dataType:"json",   	
+	                       type : "POST", 
+	                       data : nparmap,
+	                       success : function(data) {
+								alert("구독 쳌크");
+								if(data.sub == 1){
+										alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
+										location.href = "/product/" +self.list[0].artist+".do";
+								}else{
+									self.requestPay();
+								}
+	                       }
+	                   });  
+	       		}else{
+	       			self.requestPay();
+	       		}
+		       	
    		}, requestPay : function() {
     		var self = this;
             var timestamp = new Date().getTime();
@@ -816,12 +842,21 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    }
                });  
         }//정규식 시작
-        , validateName: function() {
+        , validateDname: function() {
             var self = this;
             if (!self.uDname) {
-                self.nameErrorMessage = '';
+                self.dNameErrorMessage = '';
             } else if (!/^[가-힣]{1,20}$/.test(self.uDname)) {
-                self.nameErrorMessage = '이름은 20자 이하의 한글로 입력하세요.';
+                self.dNameErrorMessage = '배송주소록의 이름은 20자 이하의 한글로 입력하세요.';
+            } else {
+                self.dNameErrorMessage = '';
+            }
+        }, validateName: function() {
+            var self = this;
+            if (!self.recipient) {
+                self.nameErrorMessage = '';
+            } else if (!/^[가-힣]{1,10}$/.test(self.recipient)) {
+                self.nameErrorMessage = '받는 사람은 10자 이하의 한글로 입력하세요.';
             } else {
                 self.nameErrorMessage = '';
             }
