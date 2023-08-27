@@ -12,7 +12,7 @@
  <meta charset="UTF-8">
   <style type="text/css">
   #container {
-    height: 1535px;
+    height: 2457px;
     width: 100%;
     margin-bottom: 163px;
 }
@@ -249,7 +249,7 @@ select{
                               	</tr>
                              	<tr>
                               		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 비밀번호</th>
-                              		<td><input type="password" v-model="info.uPw" placeholder="영문/숫자/특수문자 중 2가지 이상 조합,10자~16자"></td>
+                              		<td><input type="password" v-model="info.uPw" placeholder="영문+숫자+특수문자 조합하여 사용해야 합니다"></td>
                               	</tr>
                              	<tr>
                               		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 새 비밀번호 확인</th>
@@ -328,7 +328,7 @@ select{
 	
 	
 </div>
- <%--  <%@ include file="../page/footer.jsp" %> --%>
+   <%@ include file="../page/footer.jsp" %> 
 </body>
 </html>
 <script type="text/javascript">
@@ -406,6 +406,12 @@ var app = new Vue({
 			}
         	if(self.info.uPw != self.user.uPw2){
 				alert("확인패스워드가 일치하지 않습니다.");
+				return;
+			}
+        	var pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{2,16}$/;
+			if (!pwCheck.test(self.info.uPw))
+			{
+				alert("비밀번호는 영문+숫자+특수문자 조합하여 사용해야 합니다");
 				return;
 			}
         	if(self.info.uName == undefined || self.info.uName == ""){

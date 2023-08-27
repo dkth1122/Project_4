@@ -11,53 +11,54 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
   <style type="text/css">
-  	table{
-  		width: 910px;
-  		border-collapse : collapse;
-  		text-align: center;
-  	}
-  	table td{
-  	height : 40px;
-  	padding : 25px 0px;
-  		border-bottom: 1px solid #e3e3e3; 
-  	}
-  	.tablebutton{
-  		width: 930px;
-  		display: flex;
-  		flex-direction: column;
-  		align-items: center;
-  	}	
-  	.button > button{
-  		margin: 40px 10px;
-  		width: 150px;
-  		height: 60px;
-  		border-radius: 50px;
-  		background-color: #fff;
-  		font-size: 0.5em;
-  		font-weight: bold;
-  	}
-  	#remo{
-  		border: none;
-  		background-color: rgb(24, 0, 109);
-  		color: #fff;]
-  		
-  	}
-  	.l{
-  		margin-bottom: 30px;
-  	}
-  	.warningm{
-  		width: 900px;
-   		line-height: 80px;
-   		color : rgb(73, 73, 73);
-  	}
-  	#warningImg{
-  		margin-right: 20px;
-  	}
-  	#editbut{
-  		width: 50px;
-  		height: 50px;
-  		border-radius: 50%;
-  	}
+     table{
+        width: 910px;
+        border-collapse : collapse;
+        text-align: center;
+     }
+     table td{
+     height : 40px;
+     padding : 25px 0px;
+        border-bottom: 1px solid #e3e3e3; 
+     }
+     .tablebutton{
+        width: 930px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+     }   
+     .button > button{
+        margin: 40px 10px;
+        width: 150px;
+        height: 60px;
+        border-radius: 50px;
+        background-color: #fff;
+        font-size: 0.5em;
+        font-weight: bold;
+     }
+     #remo{
+        border: none;
+        background-color: rgb(24, 0, 109);
+        color: #fff;]
+        
+     }
+     .l{
+        margin-bottom: 30px;
+     }
+     .warningm{
+        width: 900px;
+         line-height: 80px;
+         color : rgb(73, 73, 73);
+     }
+     #warningImg{
+        margin-right: 20px;
+     }
+     #editbut{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+     }
+
 
   </style>
 </head>
@@ -72,41 +73,41 @@
                       
                    <div class="a">
                       <div class="left topImgBoxwid">
-                         	<a href="/mypag/main.do"><div id="profileImg"><img :src="infouser.profile"></div></a>
+                            <a href="/mypag/main.do"><div id="profileImg"><img :src="infouser.profile"></div></a>
                       </div >
                       <div class="topBox">
                       <span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
                       </div>                    
                       <div class="topBox">                      
                         <div class="details">
-									<div>Order</div>
-			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
-			                        <div v-if="order != 0">{{order}}</div>
-			                        <div v-else>0</div>
-                          			</a></label>
+                           <div>Order</div>
+                                 <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
+                                 <div v-if="order != 0">{{order}}</div>
+                                 <div v-else>0</div>
+                                   </a></label>
 
-								</div>
+                        </div>
 
-								<div class="details">
+                        <div class="details">
 
-									<div >교환/환불</div>
-									<div>
-									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
-										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>										
-										<span v-if="exchange != 0"> {{exchange}}</span>
-										<span v-else>0</span>
-									</a>
-									</div>
+                           <div >교환/환불</div>
+                           <div>
+                           <a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
+                              <span v-if="refund != 0">{{refund}} /</span>
+                              <span v-else>0 /</span>                              
+                              <span v-if="exchange != 0"> {{exchange}}</span>
+                              <span v-else>0</span>
+                           </a>
+                           </div>
 
-								</div>
-								<div class="details">
-									<div >포인트</div>
-									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
-									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
-									<div v-else>0 P</div>
-									</a>
-								</div>
+                        </div>
+                        <div class="details">
+                           <div >포인트</div>
+                           <a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
+                           <div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+                           <div v-else>0 P</div>
+                           </a>
+                        </div>
                       </div>
                    </div>
                       
@@ -157,44 +158,44 @@
                            <div class="View">
                               <div class="lowerBox"> 배송 주소록 관리 </div>
                                  <div> 
-                                 	<table>
-                                 		<tr>
-                                 			<th>　</th>
-                                 			<th>No.</th>
-                                 			<th>배송지</th>
-                                 			<th>주소</th>
-                                 			<th>연락처</th>
-                                 			<th>배송지 관리</th>
-                                 		</tr>
-                                 		<tr v-for = "item in info">
-                                 			<td><input type="radio" v-model="duNo" :value="item.duNo"></td>
-                                 			<td>{{item.duNo}}</td>
-                                 			<td>{{item.uDname}}</td>
-                                 			<td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
-                                 			<td>{{item.uDphone}}</td>
-                                 			<td><button @click="editAddr(item)" id="editbut"><a href="http://localhost:8082/mypag/editAddr.do"> 수정</a></button></td>
-                                 		</tr>
-                                 	</table>
-                                 	<div class="tablebutton">
-                                 		<div class="button">
-	                                 		<button id="eid" @click="removeAddr(duNo)">선택 주소록 삭제</button>
-	                                 		<button id="remo" @click="addAddr">배송지 등록</button>
-                                 		</div>
-                                 	</div>
+                                    <table>
+                                       <tr>
+                                          <th>　</th>
+                                          <th>No.</th>
+                                          <th>배송지</th>
+                                          <th>주소</th>
+                                          <th>연락처</th>
+                                          <th>배송지 관리</th>
+                                       </tr>
+                                       <tr v-for = "(item, index) in info">
+                                          <td><input type="radio" v-model="duNo" :value="item.duNo"></td>
+                                          <td>{{index + 1}}</td>
+                                          <td>{{item.uDname}}</td>
+                                          <td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
+                                          <td>{{item.uDphone}}</td>
+                                          <td><button @click="editAddr(item)" id="editbut"><a href="http://localhost:8082/mypag/editAddr.do"> 수정</a></button></td>
+                                       </tr>
+                                    </table>
+                                    <div class="tablebutton">
+                                       <div class="button">
+                                          <button id="eid" @click="removeAddr(duNo)">선택 주소록 삭제</button>
+                                          <button id="remo" @click="addAddr">배송지 등록</button>
+                                       </div>
+                                    </div>
                                  </div>
                                 <div class="lowerBox l"> 배송 주소록 유의사항 </div>
                                <div class="warningm">  <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
-                      		  </div>
+                              </div>
                            </div>
                    
                    </div>
              
            </div>
   
-	</div>
-	
+   </div>
+   
 </div>
-<div><%@ include file="../page/footer.jsp" %></div>	
+<div><%@ include file="../page/footer.jsp" %></div>   
 </body>
 </html>
 <script type="text/javascript">
@@ -202,30 +203,30 @@ var app = new Vue({
     el: '#app',
     data: {
        list : [],
-       info :{},
+       info :[],
        uId : "${sessionId}",
        duNo : "",
        order : 0,
        exchange : "",
-	   refund : "",
-	   maxpoint : undefined,
-	   infouser : [],
+      refund : "",
+      maxpoint : undefined,
+      infouser : [],
        
     },
     methods: {
-    	fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
-			var self = this;
-			var nparmap = {uId : self.uId};				
-			$.ajax({
-				url : "/user2.dox",
-				dataType : "json",
-				type : "POST",
-				data : nparmap,
-				success : function(data) {						
-					self.infouser = data.findPw;
-				}
-			});
-		},
+       fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+         var self = this;
+         var nparmap = {uId : self.uId};            
+         $.ajax({
+            url : "/user2.dox",
+            dataType : "json",
+            type : "POST",
+            data : nparmap,
+            success : function(data) {                  
+               self.infouser = data.findPw;
+            }
+         });
+      },
        fnGetList : function(){
             var self = this;
             self.info.uId = self.uId;
@@ -237,7 +238,7 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                   self.info = data.list; //사용자  
+                   self.info = data.list; //사용자                   
                 }
             }); 
         },
@@ -246,107 +247,111 @@ var app = new Vue({
             $.pageChange("editAddr.do", {uId : self.uId, duNo : item.duNo});
         },
         infoAddr : function(){
-        	var self = this;
-        	$.pageChange("infoAddr.do", {uId : self.uId});
+           var self = this;
+           $.pageChange("infoAddr.do", {uId : self.uId});
         },
         infoUpdate : function(){
-        	var self = this;
-        	$.pageChange("infoUpdate.do", {uId : self.uId});
+           var self = this;
+           $.pageChange("infoUpdate.do", {uId : self.uId});
         },
         addAddr : function(){
-        	var self = this;
-        	$.pageChange("addAddr.do", {uId : self.uId});
+           var self = this;
+           if(self.info.length == 10){
+        	   alert("10개까지만 등록 가능합니다");
+        	   return;
+           }
+           $.pageChange("addAddr.do", {uId : self.uId});
         },
         myInquiry : function(){
-	    	var self = this;
-	    	$.pageChange("myInquiry.do", {uId : self.uId});
-	    },
+          var self = this;
+          $.pageChange("myInquiry.do", {uId : self.uId});
+       },
         removeAddr : function(duNo){
-        	var self = this;
-        	if(!confirm("선택주소를 삭제하시겠습니까?")){
-        		return;
-        	}
+           var self = this;
+           if(!confirm("선택주소를 삭제하시겠습니까?")){
+              return;
+           }
             var nparmap = {duNo : self.duNo};
             console.log(duNo);
             $.ajax({
                 url : "deleteAddr.dox",
-                dataType:"json",	
+                dataType:"json",   
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("해당주소가 삭제되었습니다.");
-                	self.fnGetList();
+                   alert("해당주소가 삭제되었습니다.");
+                   self.fnGetList();
                 }
             });
         },
         fnPoint : function(){ // 포인트 내역 확인
-	        var self = this;
-	        var nparmap = {uId : self.uId};
-	        $.ajax({
-	            url : "/pointList.dox",
-	            dataType:"json",	
-	            type : "POST", 
-	            data : nparmap,
-	            success : function(data) { 	
-	            	self.usepointList = data.list;
-	            	var x = 0;
-	            	var datalist = data.list;
-	            	for(var i=0; i<datalist.length; i++){
-	            		x += datalist[i].point;	
-	            	}
-	            	self.maxpoint = x; // 사용가능 포인트 
-	            
-	            }
-	        }); 
-	    },
-	    fnNotice : function (){ // 공지 
-			var self = this;
-    		var option = "width=850, height=1000, top=200, left=500, location = no"
-    		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
-		},
-		fnUseGuide : function (){ //이용안내
-			var self = this;
-    		var option = "width=850, height=1000, top=200, left=500, location = no"
-    		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
-		},
-		fnFaq : function (){ //faq
-			var self = this;
-    		var option = "width=850, height=1000, top=200, left=500, location = no"
-    		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
-		},
-		/* 상단 구매내역 카운트 숫자 */
-		fnCntList : function() {
-			var self = this;
-			var nparmap = {uId : self.uId};
-			$.ajax({
-				url : "/mypag/listExchange.dox",
-				dataType : "json",
-				type : "POST",
-				data : nparmap,
-				success : function(data) {
-					
-					var listCnt = data.list;
-					for (var i = 0; i < listCnt.length; i++) {
-						if (listCnt[i].exchange == "C") {								
-							self.refund = listCnt[i].orderCnt;							
-						} else if (listCnt[i].exchange == "R") {
-							self.exchange = listCnt[i].orderCnt;
-						} else{
-							self.order += listCnt[i].orderCnt;
-							
-						}
-					}
+           var self = this;
+           var nparmap = {uId : self.uId};
+           $.ajax({
+               url : "/pointList.dox",
+               dataType:"json",   
+               type : "POST", 
+               data : nparmap,
+               success : function(data) {    
+                  self.usepointList = data.list;
+                  var x = 0;
+                  var datalist = data.list;
+                  for(var i=0; i<datalist.length; i++){
+                     x += datalist[i].point;   
+                  }
+                  self.maxpoint = x; // 사용가능 포인트 
+               
+               }
+           }); 
+       },
+       fnNotice : function (){ // 공지 
+         var self = this;
+          var option = "width=850, height=1000, top=200, left=500, location = no"
+          window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+      },
+      fnUseGuide : function (){ //이용안내
+         var self = this;
+          var option = "width=850, height=1000, top=200, left=500, location = no"
+          window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+      },
+      fnFaq : function (){ //faq
+         var self = this;
+          var option = "width=850, height=1000, top=200, left=500, location = no"
+          window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+      },
+      /* 상단 구매내역 카운트 숫자 */
+      fnCntList : function() {
+         var self = this;
+         var nparmap = {uId : self.uId};
+         $.ajax({
+            url : "/mypag/listExchange.dox",
+            dataType : "json",
+            type : "POST",
+            data : nparmap,
+            success : function(data) {
+               
+               var listCnt = data.list;
+               for (var i = 0; i < listCnt.length; i++) {
+                  if (listCnt[i].exchange == "C") {                        
+                     self.refund = listCnt[i].orderCnt;                     
+                  } else if (listCnt[i].exchange == "R") {
+                     self.exchange = listCnt[i].orderCnt;
+                  } else{
+                     self.order += listCnt[i].orderCnt;
+                     
+                  }
+               }
 
-				}
-			});
-		},
+            }
+         });
+      },
     },
     created: function() {
       var self = this;
       self.fnGetList();
       self.fnGetInfo();
-		self.fnPoint();
-		self.fnCntList();
+      self.fnPoint();
+      self.fnCntList();
     }
 });
 </script>

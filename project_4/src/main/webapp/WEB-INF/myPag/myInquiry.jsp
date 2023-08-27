@@ -33,6 +33,10 @@ td{
 width: 10%;
 color: red;
 }
+.a2 a{
+
+color: red;
+}
 .a3{
 width: 50%;
 }
@@ -162,8 +166,8 @@ width: 10%;
 							    	  	
 							    	  	<table>
 							    	  		<tr>
-							    	  			<td class="a1">{{item.iNo}}</td>
-							    	  			<td class="a2">{{item.category}}</td>
+							    	  			<td class="a1"><a href="#" @click="boardView(item)">{{item.iNo}}</a></td>
+							    	  			<td class="a2"><a href="#" @click="boardView(item)">{{item.category}}</a></td>
 							    	  			<td class="a3"><a href="#" @click="boardView(item)">{{item.iQtitle}}</a></td>
 							    	  			<td class="a4">{{item.iQtime}}</td>
 							    	  			<td class="a5">{{item.state}}</td>
@@ -305,8 +309,8 @@ var app = new Vue({
       var self = this;
       self.fnGetList();
       self.fnGetInfo();
-		self.fnPoint();
-		self.fnCntList();
+	  self.fnPoint();
+	  self.fnCntList();
     }
 });
 </script>

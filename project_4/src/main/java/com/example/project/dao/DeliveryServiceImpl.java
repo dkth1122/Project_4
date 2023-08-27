@@ -15,7 +15,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 
 	@Autowired
 	DeliveryMapper deliveryMapper;
-
+	// 유저 배송지 출력
 	@Override
 	public List<DeliveryUser> searchDeliveryUser(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub

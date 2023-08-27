@@ -95,7 +95,7 @@ public class DeliveryController {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
-	
+	// 사용자 배송 주소록 
 	@RequestMapping(value = "/delivery/searchDeliveryUser.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String searchDeliveryUser(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

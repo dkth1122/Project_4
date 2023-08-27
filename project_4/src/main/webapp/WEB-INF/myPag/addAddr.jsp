@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+    
 <!DOCTYPE html>
 <html>
 <head>
-
+<%@ include file="mypageheader.jsp" %>
   <script src="../js/jquery.js"></script>  
   <link href="../css/footer.css" rel="stylesheet" type="text/css">
    <link href="../css/mypag.css" rel="stylesheet" type="text/css">  
@@ -61,20 +62,28 @@
 	font-size: 1.1em;
 	}
 	.editbutt{
+	
 		display: flex;
 		justify-content: space-around;
 	}
 	.editbutt  > button{
-			width: 100px;
-		height: 50px;
-		border-radius: 50px;
-		background-color: rgb(47, 47, 145);
-		border-color: rgba(0, 0, 0, 0.2);
-		border-style :solid;
-		color: #fff;
-		font-size: 0.6em;
+		width: 213px;
+	    height: 66px;
+	    border-radius: 50px;
+	    background-color: rgb(47, 47, 145);
+	    border-color: rgba(0, 0, 0, 0.2);
+	    border-style: solid;
+	    color: #fff;
+	    font-size: 0.9em;
+	    margin-top: 60px;
+		}
+	
+	.q{
+		margin-top: 200px;
 	}
-
+#container{
+	height: 1500px;
+}
   </style>
 </head>
 <body>
@@ -199,7 +208,7 @@
                                                             
 							   	  <div class="editbutt"><button  @click="addAddr">등록하기</button></div>
 							   	</div>							  
-                              <div class="lowerBox"> 배송 주소록 유의사항 </div>
+                              <div class="lowerBox q"> 배송 주소록 유의사항 </div>
                               <div class="warningm"> 
                                <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
                         		</div>
@@ -211,8 +220,8 @@
 			</div>
 		
 		</div>
-	
-
+	 
+<%@ include file="../page/footer.jsp" %> 
 </body>
 </html>
 <script>
@@ -275,6 +284,27 @@ var app = new Vue({
         },
         addAddr : function(){
         	 var self = this;
+        	 if(self.user.uDname == "" || self.user.uDname == undefined){
+            	 alert("배송지를 입력해주세요");
+            	 return;
+            }
+            if(self.user.recipient == "" || self.user.recipient == undefined){
+           	 alert("받는사람을 입력해주세요");
+           	 return;
+           }
+            if(self.user.addrDetail == "" || self.user.addrDetail == undefined){
+           	 alert("주소를 입력해주세요");
+           	 return;
+           }
+        	  if(self.user.uDphone == "" || self.user.uDphone == undefined){
+        	       	 alert("전화번호를 입력해주세요");
+        	       	 return;
+        	       }
+        	        var phoneRegex = /^\d{11}$/; // 숫자 11자리
+        	        if (!phoneRegex.test(self.user.uDphone)) {
+        	            alert("연락처 형식에 맞추어 작성하세요.\n ex) 01012345678 11글자 ");
+        	            return;
+        	        }
              var nparmap = self.user;
              $.ajax({
                  url : "addAddr.dox",

@@ -7,6 +7,7 @@ import com.example.project.model.DeliveryUser;
 import com.example.project.model.Order;
 
 public interface DeliveryService {
+	// 유저 배송지 출력
 	List<DeliveryUser> searchDeliveryUser(HashMap<String, Object> map);
 	//유저 배송주소록 수정
 	int editAddr(HashMap<String, Object> map);

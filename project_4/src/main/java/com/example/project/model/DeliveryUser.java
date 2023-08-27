@@ -1,5 +1,8 @@
 package com.example.project.model;
 
+import lombok.Data;
+
+@Data
 public class DeliveryUser {
 	private String uId;
 	private int duNo;

@@ -11,6 +11,37 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 	<meta charset="UTF-8">
 	<title>마이페이지</title>
+	<style type="text/css">
+	.tit{
+		padding-top: 10px;
+		padding-bottom: 10px;	
+	}
+	.tspn{
+		padding-top: 20px;
+		padding-bottom: 5	0px;	
+	}
+	.tspn span{
+		margin-left: 30px;
+		margin-right: 123px;
+	}
+	.text2{
+		padding-top : 20px;
+		height: 500px;
+		width: auto;
+	}
+	.padd{
+		padding: 30px 0px;	
+	}
+	#목록{
+		width: 70px;
+		height: 30px;
+		border-radius: 50px;
+		background-color: #fff;
+	}
+	#rr{/*목록 버튼 상위 di  */
+		text-align: right;
+	}
+	</style>
 </head>
 <body>
 
@@ -24,7 +55,7 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 <a href="#"><div id="profileImg"><img :src="info.profile"></div></a>
+					    	 		<a href="/mypag/main.do"><div id="profileImg"><img :src="infouser.profile"></div></a>
 					    	</div >
 					    	<div class="topBox">
 					    	<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
@@ -112,13 +143,13 @@
 							      <div class="View">
 							    	  <div class="lowerBox"> 1:1문의 </div>
 							    	  	<div v-for="item in info">
-								    	  		<div><h4>{{item.iQtitle}}</h4></div>
-								    	  		<div>작성일<span>{{item.iQtime}}</span>답변여부<span>{{item.state}}</span></div>
+								    	  		<div class="tit"><h4>{{item.iQtitle}}</h4></div>
+								    	  		<div class="tspn">작성일<span>{{item.iQtime}}</span>답변여부<span>{{item.state}}</span></div>
 								    	  		<hr>
-								    	  		<div><pre v-html="item.iQcontent"></pre></div>							    	  	
+								    	  		<div class="text2"><pre v-html="item.iQcontent"></pre></div>							    	  	
 								    	  	<div v-if="item.iAcontent == null && iNo == item.iNo">
 								    	  		<hr>
-								    	  			<div>빠른시간내에 답변드리겠습니다. 잠시만 기다려 주세요!</div>
+								    	  			<div class="padd">빠른시간내에 답변드리겠습니다. 잠시만 기다려 주세요!</div>
 								    	  		<hr>
 								    	  	</div>
 								    	  	<div v-else>
@@ -131,7 +162,7 @@
 								    	  		<img :src="item.path">
 								    	  	</div>					
 							    	  <div>
-							    	  	<div><button @click="fnList">목록</button></div>
+							    	  	<div id="rr"><button id="목록" @click="fnList">목록</button></div>
 							    	  </div>
 							     </div> 
 							     

@@ -11,7 +11,22 @@
 <meta charset="UTF-8">
 <title></title>
 <style>
-
+input:focus {outline:none;}
+select{
+	width: 50px;
+    height: 36px;
+    border-style: none;
+    border-bottom: 1px solid #d4d5d9;
+    margin-right: 16px;
+}
+#iii{
+	width: 80px;
+    margin-right: 19px;
+}
+#ii{
+	width: 80px;
+    margin-right: 104px;
+}
 .login-box{
 	height : 787px; 
 }
@@ -115,7 +130,16 @@ i {
 				    <div><label><em class="required">·</em>닉네임  <span><input type="text" v-model="user.uName2" placeholder="닉네임" maxlength="8">
 					    </span></label>
 				    </div>
-				    <div><label><em class="required">·</em>연락처  <span><input type="text" v-model="user.uPhone" placeholder="연락처" maxlength="16">
+				    <div><label><em class="required">·</em>연락처  <span>	
+				    			<select v-model="selectph"> 
+				    				<option value="010">010 </option>
+				    				<option value="011">011</option>
+				    				<option value="016">016 </option>
+				    				<option value="017">017</option>
+				    			 </select>	
+				    
+				    				<input id="iii" type="text" v-model="uPhone1"  maxlength="16">
+				    				<input id="ii" type="text" v-model="uPhone2" maxlength="16"> 
 					    </span></label>
 				    </div>
 				    <div><label><em class="required">·</em>이메일  <span><input type="text" v-model="user.uEmail" placeholder="이메일주소">
@@ -190,7 +214,10 @@ var app = new Vue({
 		check2 : "",
 		check3 : "",
 		list : [],
-		messageColor : ""
+		messageColor : "",		
+		uPhone1 : "",
+		uPhone2 : "",
+		selectph: "010",
 	},// data
 	methods : {
 		fngender : function(item){ // 성별 버튼
@@ -201,9 +228,11 @@ var app = new Vue({
 				self.user.gender = "https://image.idus.com/image/files/21e9ae9b65fd4fcf9d87c1ecb6c85a5d_720.jpg";
 			}
 			console.log(self.user.gender);
-		},
-		fnJoin : function(){
+		},		
+		fnJoin : function(){		
 			var self = this;
+			var userUphone = self.selectph +"-" +self.uPhone1 + "-"+self.uPhone2;
+			self.user.uPhone = userUphone;
 			var idCheck = /^[a-zA-Z0-9]*$/;
 			if (!idCheck.test(self.user.uId))
 			{
@@ -273,6 +302,7 @@ var app = new Vue({
 				alert("필수약관 동의가 필요합니다.");
 				return;
 			}
+			
 		 	var nparmap = self.user;
             $.ajax({
                 url : "/userJoin/add.dox",
@@ -320,7 +350,7 @@ var app = new Vue({
                 		self.isAvailable = false;
                         
                 	} else {
-                		self.message = "사용 가능한 아이디입니다.";
+                		self.message = "중복되지 않은 아이디입니다.";
                 		self.messageColor = 'blue';
                 		self.uIdBorderColor = 'blue';  // 사용 가능시 파란색 border
                 		self.isAvailable = true;
