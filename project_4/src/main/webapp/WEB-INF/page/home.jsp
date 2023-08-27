@@ -21,13 +21,13 @@ a {
     text-decoration: none;
 }
 
-#footer {
-  position: fixed;
-  bottom: -100px;
+* #footer {
   left: 0;
+  position:absolute;
+  bottom: -5308px;
   width: 100%;
-  padding: 20px; 
-	}
+   z-index: 100; /* 푸터의 z-index 값을 높게 설정 */
+}
 .slidetext {
 	font-size:2em;
 
@@ -48,11 +48,6 @@ a {
 
 #app{
 	widows: 100%
-	}
-	
-	#footer{
-	  justify-content:flex-end;
-	  margin-bottom:0;
 	}
 
 #container-color{

@@ -107,7 +107,7 @@ span.pop-btn.confirm {
 }
 
 
-.footer{
+body .footer{
 	margin:0%;
 	text-align: center;
 	background-color: #F2DAED;
@@ -577,7 +577,7 @@ document.getElementById("kakao").addEventListener("click", function() {
  window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
 });
 
-
+/* 
 $(function(){
 	  $(".modal-open").click(function() {
 	    var index = $(this).index();
@@ -592,9 +592,9 @@ $(function(){
 	    $(this).closest(".popup-wrap").fadeOut();
 	  }
 	});
-var footer = document.getElementById("footer");
+var footer = document.getElementById("footer"); */
 
-window.onscroll = function() {
+/* window.onscroll = function() {
   var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY + 650;
 
   if (scrollBottom <= footer.offsetHeight) {
@@ -610,6 +610,6 @@ window.onscroll = function() {
     footer.style.transition = "opacity 3s ease"; // 그라데이션 효과 추가
   }
 };
-</script>
+ */</script>
 </body>
 </html>
