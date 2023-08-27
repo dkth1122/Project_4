@@ -225,11 +225,15 @@ text-align: center;
 	max-height: 240px;
 }
 
+.poinPos{
+   margin-left: 300px;
+}
 
 </style>
 </head>
 <body>
 <div id="headerMargin"> </div>
+
 	<div id="app">
 
 		<div id="container">
@@ -249,7 +253,7 @@ text-align: center;
 						<td class="a"><img :src="item.path" class="pImg"></td>
 						<td class="b">{{item.pName}}</td>
 						<td class="c"></td>
-						<td class="d">{{item.cnt}}</td>
+						<td class="d">{{cnt}}</td>
 						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
 					</tr>
 				</table>
@@ -258,7 +262,9 @@ text-align: center;
 					<span>\ 금액 {{ calculateTotalPrice() | numberWithCommas }}원</span>
 					<span v-if="delivery == 0">\ 배송 {{ delivery}}원</span>
 					<span v-else>\ 배송 {{ delivery | numberWithCommas }}원</span>
-					<span class="red">\ 합 {{ calculateTotalPrice()  + delivery | numberWithCommas }} </span>
+					<span >\ 사용포인트 {{usePoint}}</span>
+               		<span class="red">\ 합 {{ calculateTotalPrice()  + delivery - usePoint| numberWithCommas }} </span>
+
 				</div>
 			
 				<div class="payment"></div>
@@ -332,32 +338,34 @@ text-align: center;
 				
 				<div id="inputaddr">
 						<div id="inputhd">
-						<h3>배송 정보</h3> <span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
+							<h3>배송 정보</h3> 
+							<span><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>필수 입력사항</span>
 						</div>
+						
 						<table class="adr" border="0">
-						<tr>
-							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 배송주소록 선택 </th>
-							<td>
-								<div id="to" >
-									<button @click="fnAddrList">주소록 보기</button>
-									<table>
-											 <tr v-for = "item in info" v-if="flg">
-			                                 	<td style="display : none">
-												  <input type="text" v-model="item.duNo">
-												</td>
-			                                 	<td>{{item.uDname}}</td>
-			                                 	<td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
-			                                 	<td>{{item.uDphone}}</td>
+							<tr>
+								<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 배송주소록 선택 </th>
+								<td>
+									<div id="to" >
+										<button @click="fnAddrList">주소록 보기</button>
+										<table>
+											<tr v-for = "item in info" v-if="flg">
+				                                <td style="display : none">
+													<input type="text" v-model="item.duNo">
+												<td>
+				                                <td>{{item.uDname}}</td>
+				                                <td>{{item.uDaddr}}{{item.uDaddrDetail}}</td>
+				                                <td>{{item.uDphone}}</td>
 												<td><input rows="7" cols="110" v-model="item.uDmessage" hidden/> </td>
-			                                 	<td><button @click="fnAddAddr(item, 'y')">선택</button></td>
-			                                 <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
-			                                 </tr>
-			                        </table>
-							 	</div>
-							</td>
+				                                <td><button @click="fnAddAddr(item, 'y')">선택</button></td>
+				                                <td><button @click="fnAddAddr(item, 'n')">취소</button></td>
+				                			</tr>
+				                        </table>
+								 	</div>
+								</td>
 							</tr>
 							<tr>
-						</tr>
+							</tr>
 						<tr>
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소록 이름 </th>
 							<td>
@@ -376,11 +384,11 @@ text-align: center;
 						<tr>
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
 							<td>
-								<br>
-								<input class="addrinput2" type="text" placeholder="기본주소" v-model="user.addr" readonly/>
-								<br>
-								<input class="addrinput2" type="text" placeholder="나머지 주소" v-model="user.addrDetail" readonly/>					
-								<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo" readonly/>		
+							<br>
+							<input class="addrinput2" type="text" placeholder="기본주소" v-model="user.addr" readonly/>
+							<br>
+							<input class="addrinput2" type="text" placeholder="나머지 주소" v-model="user.addrDetail" readonly/>					
+							<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo" readonly/>		
 							</td>
 						</tr>
 						
@@ -389,35 +397,48 @@ text-align: center;
 							<td>
 								<input class="numinput" type="text" v-model="user.phone1" readonly> - 
 								<input class="numinput" type="text" v-model="user.phone2" readonly> - 
-								<input class="numinput" type="text" v-model="user.phone3" readonly>					
+								<input class="numinput" type="text" v-model="user.phone3" readonly>			
 							</td>						
 						</tr>
-						
-						
 					</table>
-				</div>
-				</div>
-				<div id="point">
-				<div id="pointhd">
-					할인 쿠폰/적립 혜택
-				</div>	
-					<div id="viewpoint">
-						<table class="pointable">
-							<tr>
-								<th>
-									적립 예정 금액
-								</th>
-								
-								<td>
-									{{ (calculateTotalPrice()  + delivery | numberWithCommas) * 0.02 }} 
-								</td>
-							</tr>
-						</table>
-						<div class="pontbottombor"></div>
-					</div>					
 					
+				</div>
+				 <div id="inputaddr">
+                  <div id="inputhd">
+                     <h3>포인트</h3> 
+                  </div>
+                  
+         <div class="poinPos">
+            <div>현재 포인트: {{ Number(uPoint).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>
+            <div>사용할 포인트: <input type="number" v-model="usePoint"></div>
+            <div v-if ="errorMessage">{{errorMessage}}</div>
+            <div><button @click="allPointUse">전체사용</button></div>
+           </div>
+
+            </div>
+            
+            </div>
+            <div id="point">
+            <div id="pointhd">
+               할인 쿠폰/적립 혜택
+            </div>   
+               <div id="viewpoint">
+                  <table class="pointable">
+                     <tr>
+                        <th>
+                           적립 예정 금액
+                        </th>
+                        
+                        <td>
+                           {{ (calculateTotalPrice()  + delivery | numberWithCommas) * 0.02 }} 
+                        </td>
+                     </tr>
+                  </table>
+                  <div class="pontbottombor"></div>
+               </div>               
+               
 <div id="note">
-<div style="font-weight: bold;">				
+<div style="font-weight: bold;">            
 [주문 및 배송정보]
 </div>
 
@@ -430,24 +451,26 @@ text-align: center;
 · 배송비용 : 3,000원 / 주문금액 50,000원 이상 시 무료배송<br>
 · 산간벽지나 도서산간지역은 추가 배송비가 발생할 수 있습니다.  <br>           
 · 배송기간 : 결제 후 7~10일 이내 배송 시작될 예정입니다.<br>
-</p>					
-					
-	
+</p>               
+               
+   
 
 <p>
 <div>- 상품의 재고상황에 따라 배송기간이 다소 지연될 수도 있습니다.</div>
 <div>- 물류센터 사정으로 인해 배송이 지연될 수 있습니다.</div>
 <div style="color: red">- 사전예약/주문제작 등 당일 배송이 어려운 상품을 함께 구매하시는 경우 모든
-   			상품이 배송 가능한 상태가 되는 시점에 주문하신 상품이 함께 배송 됩니다.</div>
+            상품이 배송 가능한 상태가 되는 시점에 주문하신 상품이 함께 배송 됩니다.</div>
 <div>- 기본 배송기간 이상 소요되는 상품 또는 품절된 상품은 개별 연락 드리겠습니다.</div>
 
 <div style="color: red">- 복제 가능한 상품의 경우 개봉 후 단순 변심으로 인한 반품이 불가합니다.</div>
 </p>
-					</div>
-				</div>
-			</div>
-		<div id="baybutton"><button @click="fnBeforePay">결제하기</button></div>
-		</div>
+               </div>
+            </div>
+         </div>
+      
+      <div id="baybutton"><button @click="fnBeforePay">결제하기</button></div>
+      </div>
+      <div><button @click="fninsertDelivery">테스트</button></div>
 
 </div>
 </body>
@@ -468,53 +491,58 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	var app = new Vue({
 		el : '#app',
 		data : {
-			uId : "${sessionId}",
-			totalPrice : "${map.totalPrice}",
-    	   	uDname : "",
-    	   	uDphone : "",
-			addr : "",
-			addrDetail : "",
-			recipient : "",
-			zipNo : "",
-			email : "",
-			list : [],
-			delivery : 0,
-			numberWithCommas : "",
-			 user : {
-		    	   	uId : "",
-		    	   	uDname : "",
-		    	   	recipient : "",
-		    	   	phone1 : "",
-		    	   	phone2 : "",
-		    	   	phone3 : "",
-					addr : "",
-					addrDetail : "",
-					zipNo : "",
-					phone : "",
-					duNo : "",
-					oNo: "",
-					buyNo: "",
-					uId : ""
-				},
-			info : [],
-			flg : false,
-    	   	phone1 : "",
-			phone2 : "",
-			phone3 : "",
-			dText : "",
-			duNo : "",
-			oNo : "",
-			buyNo: "",
-			nameErrorMessage : "",
-			dNameErrorMessage : "",
-			addrErrorMessage : "",
-			addrDetailErrorMessage : "",
-			addrDetailErrorMessage : "",
-			zipNoErrorMessage : "",
-			dTextErrorMessage : "",
-			phoneErrorMessage : "",
-			
-		},
+	         usePoint : 0,
+	         uId : "${sessionId}",
+	         uPoint : 0,
+	         pNo : "${map.pNo}",
+	         cnt : "${map.cnt}",
+	             uDname : "",
+	             recipient : "",
+	             uDphone : "",
+	         addr : "",
+	         addrDetail : "",
+	         zipNo : "",
+	         email : "",
+	         list : [],
+	         delivery : 0,
+	         numberWithCommas : "",
+	         totalPrice: 0,
+	          user : {
+	                   uId : "",
+	                   uDname : "",
+	                   uPoint2 : 0,
+	                   recipient : "",
+	                   phone1 : "",
+	                   phone2 : "",
+	                   phone3 : "",
+		               addr : "",
+		               addrDetail : "",
+		               zipNo : "",
+		               phone : "",
+		               duNo : "",
+		               oNo: "",
+		               buyNo: "",
+		               uId : ""
+	            },
+	         info : [],
+	         flg : false,
+	             phone1 : "",
+	         phone2 : "",
+	         phone3 : "",
+	         dText : "",
+	         duNo : "",
+	         oNo : "",
+	         buyNo: "",
+	         nameErrorMessage : "",
+	         dNameErrorMessage : "",
+	         addrErrorMessage : "",
+	         addrDetailErrorMessage : "",
+	         addrDetailErrorMessage : "",
+	         zipNoErrorMessage : "",
+	         dTextErrorMessage : "",
+	         phoneErrorMessage : "",
+	         
+	      },
 		methods : {
 			fnGetList : function(){
 	            var self = this;
@@ -728,7 +756,18 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     	                       }
     	                   });  
     	       		}
-    	       	
+    	      // 사용할 포인트가 가격보다 높은 경우 제한
+     			 if(self.usePoint > self.uPoint){
+     			    alert("소지한 포인트만 사용할 수 있습니다.");
+     			    self.usePoint = self.uPoint;
+     			    return;
+     			 }
+     			// 포인트가 소지한 포인트보다 낮은 경우 제한
+     			if((self.totalPrice - self.usePoint) < 0){
+     				alert("사용 포인트를 확인해주세요, 상품의 값을 초과하여 사용할 수 없습니다.");
+     				self.usePoint = self.totalPrice;
+     				return;
+     			}
     		       	if(self.list[i].category == 'MEM' && self.list[i].membership == 'N'){ 
     					var artist = self.list[i].artist;
     	             	var nparmap = {uId : self.uId, artist :artist};
@@ -741,7 +780,11 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     								if(data.sub == 1){
     										alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
     										location.href = "/product/" +artist+".do";
-    								}
+    								}else if((self.totalPrice - self.usePoint) == 0){
+    			          				 self.fnInsertAll2();
+    			          			 }else {
+    			          				self.requestPay();
+    			          			 }
     	                       }
     	                   });  
     	       		}
@@ -755,7 +798,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
        		    pay_method: "card",
        		    merchant_uid:  "order_" + timestamp,
        		    name: "결제 실행",
-       		    amount: self.totalPrice,
+       		    amount: self.totalPrice - self.usePoint,
        		    buyer_addr : self.user.addr + self.user.addrDetail,
        		    buyer_postcord : self.user.zipNo,
        		    buyer_name: self.user.uDname,
@@ -792,7 +835,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
         	var timestamp =  new Date().getTime(); 
         	self.oNo = timestamp;
           	for(var i = 0; i < self.list.length; i++){
-                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo };
+                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo, usePoint : self.usePoint };
 	                   $.ajax({
 	                       url : "insertALL.dox",
 	                       dataType:"json",   	
@@ -811,6 +854,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
         	self.user.uId = self.uId;
         	self.user.oNo = self.oNo;
         	self.user.buyNo = self.buyNo;
+        	self.user.uPoint2 = self.usePoint;
 
         	var nparmap = self.user;
                $.ajax({
@@ -822,9 +866,46 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    }
                });  
          	}
-        	
-        }//정규식 시작
-        , validateDname: function() {
+        }, fnInsertAll2 : function(){
+        	var self = this;
+        	var timestamp =  new Date().getTime(); 
+        	self.oNo = timestamp;
+          	for(var i = 0; i < self.list.length; i++){
+                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo, usePoint : self.usePoint };
+	                   $.ajax({
+	                       url : "insertALL.dox",
+	                       dataType:"json",   	
+	                       type : "POST", 
+	                       data : nparmap,
+	                       success : function(data) { 
+	                    	   self.buyNo = data.buyNo;
+	                    	   self.fninsertDelivery2();
+	                    	   self.fnRemoveCart();
+	                       }
+	                   });  
+          	}//for
+        }, fninsertDelivery2 : function(){
+        	var self = this;
+         	for(var i = 0; i < self.list.length; i++){
+        	self.user.uId = self.uId;
+        	self.user.oNo = self.oNo;
+        	self.user.buyNo = self.buyNo;
+        	self.user.uPoint2 = self.usePoint;
+
+        	var nparmap = self.user;
+               $.ajax({
+                   url : "insertDelivery.dox",
+                   dataType:"json",   	
+                   type : "POST", 
+                   data : nparmap,
+                   success : function(data) { 
+                       alert("결제 성공");
+                       location.href = "payView.do"; 
+                   }
+               });  
+         	}
+        },//정규식 시작
+        validateDname: function() {
             var self = this;
             if (!self.uDname) {
                 self.dNameErrorMessage = '';
@@ -894,10 +975,30 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             } else {
                 self.phoneErrorMessage = '';
             }
-        }
+        },
+        allPointUse: function () {
+        	var self = this;
+        	if(self.totalPrice >= self.uPoint){
+        		self.usePoint = self.uPoint;
+        	}else{
+        		self.usePoint = self.totalPrice;
+        	}
+        },
+        poinAppl: function () {
+             var self = this;
+             var totalPrice = self.totalPrice - self.usePoint;
+
+             if (totalPrice < 0) {
+               totalPrice = 0;
+             }
+
+             self.totalPrice = totalPrice;
+           }
+
         
 	},created : function() {
 			var self = this;
+			self.uPoint = "${sessionPoint}";
 			self.fnGetList();
 		}
 	});

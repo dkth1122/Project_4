@@ -867,7 +867,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                              self.buyNo = data.buyNo;
                              self.fninsertDelivery();
                           }
-                      });  
+                      });
         }, fninsertDelivery : function(){
            var self = this;
            self.user.uId = self.uId;
