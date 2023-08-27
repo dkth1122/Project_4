@@ -128,7 +128,7 @@
 	<!-- 댓글 추가 기능 -->
 	<insert id="insertComment" parameterType="hashmap">
 		INSERT INTO T4_GCOMMENTS VALUES
-		(NULL, #{artist}, #{gNo}, #{uId}, #{comment}, 0, NOW(),'N', NULL, 0)
+		(NULL, #{artist}, #{gNo}, #{uId}, #{comment}, 0, NOW(),'N', NULL, 0, #{check})
 	</insert>
 	
 	<!-- 댓글 삭제 기능 -->
@@ -175,7 +175,7 @@
 	<!-- 대댓글 추가 기능 -->
 	<insert id="insertCocomment" parameterType="hashmap">
 		INSERT INTO T4_GCOMMENTS VALUES
-		(NULL, #{artist}, #{gcNo}, #{uId}, #{cocomment}, 0, NOW(), 'N', #{gcNo}, 0)
+		(NULL, #{artist}, #{gcNo}, #{uId}, #{cocomment}, 0, NOW(), 'N', #{gcNo}, 0, #{check})
 	</insert>
 	
 		
@@ -288,56 +288,87 @@
 	</update>
 	
 <!-- 알림 기능 구현  -->
-	<!-- 알람 인서트 기능 -->
+	<!-- 게시글 알람 인서트 기능 -->
 	<insert id="insertAlram" parameterType="hashmap">
 		INSERT T4_GBOARD_NOTICE (U_ID, NO_TYPE, G_NO, NO_MESSAGE, NO_TIME, G_ARTIST)
 		VALUES(#{uId}, #{type}, #{gNo}, #{message}, NOW(), #{check})
 	</insert>
 	
-	<!-- 알람 읽음 처리 업데이트 -->
+	<!-- 게시글 알람 읽음 처리 업데이트 -->
 	<update id="updateAleramRead" parameterType="hashmap">
 		UPDATE T4_GBOARD_NOTICE
 		SET NO_READ = 'Y'
 		WHERE NO_NO = #{noNo}
 	</update>
 	
-	<!-- 내 특정 게시글에 댓글이 달렸을 때 아이디 + 댓글 단 갯수 표기 -->
-	<select id="selectMyBoadCommentCnt" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+	<!-- 서비스에서 중복 알람 발생 방지  :  내 알람 출력용 -->
+	<select id="selectMyBoadAlamList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT U_ID, NO_TYPE, G_NO
+		FROM T4_GBOARD_NOTICE
+	</select>
+	
+	<!-- 출력용 : 내 특정 게시글에 댓글 단 아이디 + 댓글 단 갯수 표기 -->
+	<select id="selectMyBoadCommentList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT C.U_ID, COUNT(*) AS myBoardCommentCnt
 	    FROM T4_GBOARD G
 	    INNER JOIN T4_USER U ON G.U_ID = U.U_ID
 	    INNER JOIN T4_GCOMMENTS C ON G.G_NO = C.G_NO
-	    WHERE U.U_ID = #{uId} AND G.G_NO = #{gNo}
+	    WHERE U.U_ID = #{uId} AND U.U_ID = G.U_ID AND G.G_NO = #{gNo}
 	    GROUP BY C.U_ID
 	</select>
 	
-	<!-- 내 특정 게시글에 좋아요가 눌렸을 때 누가 했는지 + 좋아요 갯수 표기 -->
-	<select id="selectMyBoardLikeCnt" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+	<!-- 출력용 : 내 특정 게시글에 좋아요가 눌렸을 때 누가 했는지 + 좋아요 갯수 표기 -->
+	<select id="selectMyBoardLikeList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT L.U_ID, COUNT(*) AS myBoardLikeCnt
 	    FROM T4_GBOARD G
 	    INNER JOIN T4_USER U ON G.U_ID = U.U_ID
 	    INNER JOIN T4_GBOARD_LIKE L ON G.G_NO = L.G_NO
-	    WHERE U.U_ID = #{uId} AND G.G_NO = #{gNo}
+	    WHERE U.U_ID = #{uId} AND U.U_ID = G.U_ID AND G.G_NO = #{gNo}
 	    GROUP BY L.U_ID
 	</select>
 	
-	<!-- 내 특정 댓글에 대댓글이 달렸을 때 아이디 + 갯수 -->
-	<select id="selectMyCommentCoCommentCnt" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+	
+<!-- 댓글용 알람 기능 -->	
+	
+	<!-- 댓글용 알람 인서트 기능 -->
+	<insert id="insertCommentAlram" parameterType="hashmap">
+		INSERT T4_GCOMMENTS_NOTICE (U_ID, CNO_TYPE, GC_NO, CNO_MESSAGE, CNO_TIME, GC_ARTIST)
+		VALUES(#{uId}, #{type}, #{gcNo}, #{message}, NOW(), #{check})
+	</insert>
+	
+	<!-- 댓글용 알람 읽음 처리 업데이트 -->
+	<update id="updateCommentAleramRead" parameterType="hashmap">
+		UPDATE T4_GCOMMENTS_NOTICE
+		SET CNO_READ = 'Y'
+		WHERE CNO_NO = #{cNoNo}
+	</update>
+	
+	
+	<!-- 서비스에서 중복 알람 발생 방지  :  내 알람 출력용 -->
+	<select id="selectMyCommnetAlamList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT U_ID, CNO_TYPE, GC_NO
+		FROM T4_GCOMMENTS_NOTICE
+	</select>
+	
+	
+	<!-- 출력용 : 내 특정 댓글에 대댓글이 달렸을 때 아이디 + 갯수 -->
+	<select id="selectMyCommentCoCommentList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT C.U_ID, COUNT(*) AS myCommentCoComment
 	    FROM T4_GCOMMENTS C
 	    INNER JOIN T4_USER U ON C.U_ID = U.U_ID
 	    INNER JOIN T4_GCOMMENTS T ON C.GC_NO = T.GC_GROUP 
-	    WHERE U.U_ID = #{uId}  AND C.GC_NO = #{gcNo} 
+	    WHERE U.U_ID= #{uId} AND U.U_ID = C.U_ID AND C.GC_NO = #{gcNo} 
 	    GROUP BY C.U_ID
 	</select>
 	
-	<!-- 내 특정 댓글에 좋아요가 눌렸을 때 아이디 + 갯수 -->
-	<select id="selectCommentLikeCnt" parameterType="hashmap" resultType="com.example.project.model.GBoard">
-		SELECT L.U_ID, COUNT(*) AS CNT
+	<!-- 출력용 : 내 특정 댓글에 좋아요가 눌렸을 때 아이디 + 갯수 -->
+	<select id="selectMyCommentLikeList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT L.U_ID, COUNT(*) AS myCommentLikeCnt
 	    FROM T4_GCOMMENTS C
-	   LEFT JOIN T4_USER U ON C.U_ID = U.U_ID
+	    LEFT JOIN T4_USER U ON C.U_ID = U.U_ID
 	    INNER JOIN T4_GCOMMENTS_LIKE L ON L.GC_NO = C.GC_NO
-	    WHERE C.U_ID = 'test' AND C.GC_NO = 80
+	    WHERE U.U_ID = #{uId} AND U.U_ID = C.U_ID AND C.GC_NO = #{gcNo}
 	    GROUP BY L.U_ID
 	</select>
+	
 </mapper>

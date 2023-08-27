@@ -92,5 +92,16 @@ public interface GBoardService {
 	//프로필 이미지 제거
 	int removeProfileImg(HashMap<String, Object> map);
 
+//알림 기능 구현
+	//서비스 선에서 구현 불가능 또는 귀찮은 것들
+	//내 글에 댓글 달린 갯수 
+	List<GBoard> searchMyBoadCommentCnt(HashMap<String, Object> map);
+	//내 글에 좋아요 달린 갯수
+	List<GBoard> searchMyBoardLikeCnt(HashMap<String, Object> map);
+	//내 댓글에 대댓글 달린 갯수
+	List<GBoard> searchMyCommentCoCommentCnt(HashMap<String, Object> map);
+	//내 댓글에 좋아요 달린 갯수
+	List<GBoard> searchMyCommentLikeCnt(HashMap<String, Object> map);
+
 
 }

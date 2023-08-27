@@ -43,6 +43,7 @@
 			<div class="btn">
     			<button @click="fnMove">back</button>
     			<button @click="fnMove('my')">mypage</button>
+    			<button >알람</button>
       		</div> 
        
      	    <label>  
@@ -132,6 +133,10 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
+                    if(self.uId == null || self.uId == ''){
+                    	alert("로그인 해주세요.");
+                    	location.href = "main.do";
+                    }
                     self.list = data.list;
                     self.list2 = data.list2;
                     console.log(self.list);
@@ -148,6 +153,11 @@ var app = new Vue({
                 type: "POST",
                 data: nparmap,
                 success: function (data) {
+                    if(self.uId == null || self.uId == ''){
+                    	alert("로그인 해주세요.");
+                    	location.href = "main.do";
+                    }
+                    
                     if (self.keyword === "") {
                         self.fnGetList(); 
                         self.search = "";
@@ -165,10 +175,17 @@ var app = new Vue({
                 return;
             }
             
+            if(self.uId == null || self.uId == ''){
+            	alert("로그인 해주세요.");
+            	location.href = "main.do";
+            }
+
             if(self.content == null || self.content == ""){
             	alert("내용을 입력해주세요.");
                 return;
             }
+            
+            
             var nparmap = {content: self.content, artist: self.artist, uId : self.uId };
 
             $.ajax({
@@ -290,6 +307,10 @@ var app = new Vue({
     }, // methods
     created: function () {
         var self = this;
+        if(self.uId == null || self.uId == ''){
+        	alert("로그인 해주세요.");
+        	location.href = "main.do";
+        }
         self.fnGetList();
     }// created
 });

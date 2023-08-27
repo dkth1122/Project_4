@@ -113,12 +113,47 @@ import com.example.project.model.GBoard;
 		//마이페이지 프로필 이미지 제거
 		int deleteProfileImg(HashMap<String, Object> map);
 		
-		//알람 추가 기능
+//알림 기능 구현
+		
+		//게시글 알람 추가 기능
 		int insertAlram(HashMap<String, Object> map);
 		
-		//알람 업데이트 기능 - 읽음 여부 Y
+		//댓글 알람 추가 기능
+		int insertCommentAlram(HashMap<String, Object> map);
+		
+		//게시글알람 업데이트 기능 - 읽음 여부 Y
 		int updateAleramRead(HashMap<String, Object> map);
+		
+		//댓글 알람 업데이트 기능 - 읽음 여부 Y
+		int updateCommentAleramRead(HashMap<String, Object> map);
+				
 		
 		//해당 유저가 아티스트인지 체크
 		int selectArtistCheck(HashMap<String, Object> map);
+		
+		//서비스딴 사용 : 게시글 알람 전체 출력
+		List<GBoard> selectMyBoadAlamList(HashMap<String, Object> map);
+		
+		//서비스 사용 : 댓글 알람 전체 출력
+		List<GBoard> selectMyCommnetAlamList(HashMap<String, Object> map);
+		
+		//출력용 
+		//내 글에 댓글 달린 갯수 + 아이디 
+		List<GBoard> selectMyBoadCommentList(HashMap<String, Object> map);
+	    //내 글에 좋아요 달린 갯수 + 아이디 
+		List<GBoard> selectMyBoardLikeList(HashMap<String, Object> map);
+	    //내 댓글에 대댓글 달린 갯수 + 아이디 
+		List<GBoard> selectMyCommentCoCommentList(HashMap<String, Object> map);
+	    //내 댓글에 좋아요 달린 갯수 + 아이디 
+		List<GBoard> selectMyCommentLikeList(HashMap<String, Object> map);
+		
+		//서비스 추가용
+		//내 글에 댓글 달린 갯수만
+		int selectMyBoadCommentCnt(HashMap<String, Object> map);
+	    //내 글에 좋아요 달린 갯수만
+		int selectMyBoardLikeCnt(HashMap<String, Object> map);
+	    //내 댓글에 대댓글 달린 갯수만
+		int selectMyCommentCoCommentCnt(HashMap<String, Object> map);
+	    //내 댓글에 좋아요 달린 갯수만
+		int selectMyCommentLikeCnt(HashMap<String, Object> map);
 	}

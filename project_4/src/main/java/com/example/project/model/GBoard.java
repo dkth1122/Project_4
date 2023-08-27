@@ -62,14 +62,59 @@ public class GBoard {
     private String gpPath;
     private String gpFileName;
     
-    //알람 기능 테이블
+    //게시글 알람 기능 테이블
     private int noNo;
     private String noRead;
     private String noType;
     private String noMessage;
     private String noTime;
-    private String noCheck;
-    //내 글에 댓글 달린 갯수 
+    
+    //댓글 알람 기능 테이블
+    private int cNoNo;
+    private String cNoRead;
+    private String cNoType;
+    private String cNoMessage;
+    private String cNoTime;
+    private String gcArtist;
+    
+    
+    public int getcNoNo() {
+		return cNoNo;
+	}
+	public void setcNoNo(int cNoNo) {
+		this.cNoNo = cNoNo;
+	}
+	public String getcNoRead() {
+		return cNoRead;
+	}
+	public void setcNoRead(String cNoRead) {
+		this.cNoRead = cNoRead;
+	}
+	public String getcNoType() {
+		return cNoType;
+	}
+	public void setcNoType(String cNoType) {
+		this.cNoType = cNoType;
+	}
+	public String getcNoMessage() {
+		return cNoMessage;
+	}
+	public void setcNoMessage(String cNoMessage) {
+		this.cNoMessage = cNoMessage;
+	}
+	public String getcNoTime() {
+		return cNoTime;
+	}
+	public void setcNoTime(String cNoTime) {
+		this.cNoTime = cNoTime;
+	}
+	public String getGcArtist() {
+		return gcArtist;
+	}
+	public void setGcArtist(String gcArtist) {
+		this.gcArtist = gcArtist;
+	}
+	//내 글에 댓글 달린 갯수 
     private int myBoardCommentCnt;
     //내 글에 좋아요 달린 갯수
     private int myBoardLikeCnt;
@@ -146,12 +191,6 @@ public class GBoard {
 	}
 	public void setNoTime(String noTime) {
 		this.noTime = noTime;
-	}
-	public String getNoCheck() {
-		return noCheck;
-	}
-	public void setNoCheck(String noCheck) {
-		this.noCheck = noCheck;
 	}
 	public int getgNo() {
 		return gNo;
