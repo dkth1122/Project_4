@@ -160,7 +160,13 @@ public class PaymentServiceImpl implements PaymentService{
 		// TODO Auto-generated method stub
 		return paymentMapper.insertDelivery(map);
 	}
-
+	
+	@Override
+	public int addDelivery3(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return paymentMapper.insertNonDelivery(map);
+	}
+	
 	@Override
 	public int useUserPoint2(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub

@@ -27,7 +27,8 @@ public interface PaymentMapper {
 	int insertProductBuy(HashMap<String, Object> map);
 	//결제시 딜리버리 테이블 등록
 	int insertDelivery(HashMap<String, Object> map);
-	
+	//비회원결제시 딜리버리 테이블 등록
+	int insertNonDelivery(HashMap<String, Object> map);
 	//조건
 
 	/* <!-- 재고 수 체크 0이면 재고 없음, 1이면 재고 있음 ========실패 사유 메시지 "재고 부족"--> */

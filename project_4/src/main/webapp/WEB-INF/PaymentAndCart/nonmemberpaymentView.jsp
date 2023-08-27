@@ -65,7 +65,7 @@ h3{
 var app = new Vue({
 	el : '#app',
 	data : {
-		uId : "${sessionId}",
+		uId : "${map.uId}",
 	},// data
 	methods : {
 	   	goToMain : function(){

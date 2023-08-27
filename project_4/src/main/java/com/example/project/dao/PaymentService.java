@@ -32,4 +32,7 @@ public interface PaymentService {
 	//묶음 상품 결제 후 유저 포인트와, 포인트 테이블 등록(for문 제외)
 	int useUserPoint2 (HashMap<String, Object> map);
 	
+	//비회원결제 시 딜리버리 테이블 등록
+	int addDelivery3(HashMap<String, Object> map);
+		
 }

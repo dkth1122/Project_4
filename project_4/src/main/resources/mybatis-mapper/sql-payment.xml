@@ -123,7 +123,11 @@
 		INSERT INTO T4_DELIVERY (BUY_NO, O_NO, U_ID, D_STATE, DU_NO)
 		VALUES (#{buyNo}, #{oNo}, #{uId}, '업체확인중', #{duNo} )
    </insert>
-   
+   <!-- 비회원 결제 후 오더  -->
+    <insert id="insertNonDelivery" parameterType="hashmap">
+		INSERT INTO T4_DELIVERY (BUY_NO, O_NO, U_ID, D_STATE)
+		VALUES (#{buyNo}, #{oNo}, #{uId}, '업체확인중')
+   </insert>
    <!-- 결제시 포인트 사용 -->
    <update id="paymentPointUse">
    		UPDATE T4_USER

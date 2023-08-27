@@ -404,12 +404,12 @@ text-align: center;
 							<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 주소</th>
 							<td>
 								<br>
-								<input class="addrinput2" type="text" placeholder="기본주소"v-model="addr"  @input="validateAddress">
+								<input class="addrinput2" type="text" placeholder="기본주소"v-model="user.addr"  @input="validateAddress">
 								<div class="error-message" v-if="addrErrorMessage">{{ addrErrorMessage  }}</div>
 								<br>
-								<input class="addrinput2" type="text" placeholder="나머지 주소 " v-model="addrDetail"  @input="validateAddrDetail">
+								<input class="addrinput2" type="text" placeholder="나머지 주소 " v-model="user.addrDetail"  @input="validateAddrDetail">
 								<div class="error-message" v-if="addrDetailErrorMessage">{{ addrDetailErrorMessage }}</div>
-								<input class="addrinput2" type="text" placeholder="우편번호" v-model="zipNo"  @input="validateZipNo">	
+								<input class="addrinput2" type="text" placeholder="우편번호" v-model="user.zipNo"  @input="validateZipNo">	
 								<div class="error-message" v-if="zipNoErrorMessage">{{ zipNoErrorMessage  }}</div>							
 								<button @click="fnSearchAddr">주소 찾기</button>
 							</td>
@@ -418,7 +418,7 @@ text-align: center;
 						<tr>
 							<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i>휴대전화</th>
 							<td>
-							<select class="select" v-model="phone1">
+							<select class="select" v-model="user.phone1">
 									<option value="">선택</option>
 									<option value="010">010</option>
 									<option value="011">011</option>
@@ -427,7 +427,7 @@ text-align: center;
 									<option value="018">018</option>
 									<option value="019">019</option>
 								</select>
-							<input class="numinput" type="text" v-model="phone2" @input="validatePhone"> - <input class="numinput" type="text" v-model="phone3"  @input="validatePhone2">	
+							<input class="numinput" type="text" v-model="user.phone2" @input="validatePhone"> - <input class="numinput" type="text" v-model="user.phone3"  @input="validatePhone2">	
 							<div class="error-message" v-if="phoneErrorMessage">{{ phoneErrorMessage }}</div>							
 							</td>					
 						</tr>
@@ -628,9 +628,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             },fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
              var self = this;
              
-                self.addr = roadAddrPart1;
-                self.addrDetail = addrDetail;
-                self.zipNo = zipNo;
+                self.user.addr = roadAddrPart1;
+                self.user.addrDetail = addrDetail;
+                self.user.zipNo = zipNo;
           
           }, fnAddrList : function(){
                var self = this;
@@ -716,32 +716,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                       self.fnAddrList();
                    }
                   }); 
-          } */,fnAddAddr : function(item, check){
-             var self = this;
-             if(check == 'y'){
-                 self.user.uDname = item.uDname;
-                 self.user.recipient = item.recipient;
-                 self.user.addr = item.uDaddr;
-                 self.user.addrDetail = item.uDaddrDetail;
-                 self.user.zipNo = item.zipNo;
-                 self.user.phone1 = item.uDphone.substr(0,3);
-                 self.user.phone2 = item.uDphone.substr(3,4);
-                 self.user.phone3 = item.uDphone.substr(7);
-                 self.user.duNo = item.duNo;
-                 self.user.dText = item.uDmessage;
-              }else if (check == 'n'){
-                    self.user.uDname = "";
-                    self.user.recipient = "";
-                  self.user.addr = "";
-                  self.user.addrDetail = "";
-                  self.user.zipNo = "";
-                    self.user.phone1 = "";
-                  self.user.phone2 = "";
-                  self.user.phone3 = "";
-                     self.user.duNo = "";
-                    self.user.dText = "";
-              }
-       }, fnBeforePay : function(){
+          } */, fnBeforePay : function(){
                var self = this;
                //핸드폰 번호 합치기
                self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
@@ -765,13 +740,13 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  if (rsp.success) {
                   self.fnInsertAll();
                   alert("결제 성공");
-                   /* location.href = "payView.do";  */
+                  //location.href = "nonmemberpayView.do"; 
                  } else {
                    // 결제 실패 시
                    alert("결제 실패");
                    //비회원결제테스트중
-                  /*  location.href = "nonmemberpayView.do"; */
-                  /*  self.fnInsertAll(); */
+                   //location.href = "nonmemberpayView.do"; 
+                   self.fnInsertAll(); 
                  }
              });
         }, fnInsertAll : function(){
@@ -797,12 +772,11 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
            self.user.oNo = self.oNo;
            self.user.buyNo = self.buyNo;
            self.user.uPoint2 = self.usePoint;
-           self.user.duNo = '';
            
             var nparmap = self.user;
             console.log("파람값==>",nparmap); 
                $.ajax({
-                   url : "insertDelivery.dox",
+                   url : "insertNonDelivery.dox",
                    dataType:"json",      
                    type : "POST", 
                    data : nparmap,

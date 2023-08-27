@@ -133,6 +133,16 @@ public class PaymentController {
 		 return new Gson().toJson(resultMap);
 	 }
 	 
+	//비회원 결제 -> 인서트 후 -> 딜리버리 테이블에 등록
+	@RequestMapping(value = "/payment/insertNonDelivery.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String insertNonDelivery(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		paymentService.addDelivery3(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	 
 	@RequestMapping(value = "/payment/useUserPoint2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String useUserPoint2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
