@@ -822,9 +822,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                         }
                           }
                       });  
-                }else{
-                   self.requestPay();
-                }
+               			 }else if((self.totalPrice - self.usePoint) == 0){
+               				 self.fnInsertAll2();
+               				 
+               			 }else{
+		                   self.requestPay();
+		                }
                 
          }, requestPay : function() {
           var self = this;
@@ -880,7 +883,40 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    success : function(data) { 
                    }
                });  
-        }//정규식 시작
+        }
+        , fnInsertAll2 : function(){
+            var self = this;
+            var timestamp =  new Date().getTime(); 
+            self.oNo = timestamp;
+                     var nparmap = {uId : self.uId, pNo : self.list[0].pNo, price : self.list[0].price, cnt : self.cnt, artist : self.list[0].artist, oNo : self.oNo, usePoint : self.usePoint};
+                       $.ajax({
+                           url : "insertALL.dox",
+                           dataType:"json",      
+                           type : "POST", 
+                           data : nparmap,
+                           success : function(data) { 
+                              self.buyNo = data.buyNo;
+                              self.fninsertDelivery2();
+                           }
+                       });  
+         }, fninsertDelivery2 : function(){
+            var self = this;
+            self.user.uId = self.uId;
+            self.user.oNo = self.oNo;
+            self.user.buyNo = self.buyNo;
+            self.user.uPoint2 = self.usePoint;
+             var nparmap = self.user;
+                $.ajax({
+                    url : "insertDelivery.dox",
+                    dataType:"json",      
+                    type : "POST", 
+                    data : nparmap,
+                    success : function(data) { 
+                        alert("결제 성공");
+                        location.href = "payView.do"; 
+                    }
+                });  
+         }//정규식 시작
         , validateDname: function() {
             var self = this;
             if (!self.uDname) {
