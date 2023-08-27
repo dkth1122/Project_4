@@ -237,10 +237,12 @@ margin: 0 auto;
 							<span class="sexyIcon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-brands fa-shopify"></i></a>
 							<a v-else href="/cart/cartList.do"><i class="fa-brands fa-shopify"></i></a></span>
 
-							<span class="sexyIcon"><a href="/mypag/myInformation.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a></span>
+							<span class="sexyIcon"><a v-if=" uId !='' " href="/mypag/myInformation.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a>
+							<a v-if="uId == ''" href="/user/login.do"><i class="fa-solid fa-bookmark fa-1xl"></i></a></span>
 							
 							<span class="sexyIcon">
-								<a href="/gboard/main.do"><i class="fa-brands fa-wordpress-simple fa-rotate-180"></i></a>								
+								<a v-if="uId == ''" href="/user/login.do"><i class="fa-brands fa-wordpress-simple fa-rotate-180"></i></a>								
+								<a v-if="uId != ''" href="/gboard/main.do"><i class="fa-brands fa-wordpress-simple fa-rotate-180"></i></a>								
 							</span>
 							
 							<span class="sexyIcon">
