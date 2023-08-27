@@ -48,6 +48,7 @@ p{
   bottom:0;
   display:none;
   padding:15px;
+  z-index: 100;
  }
 .popup{
  z-index:9999;
