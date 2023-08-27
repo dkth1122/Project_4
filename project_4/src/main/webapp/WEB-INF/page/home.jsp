@@ -90,7 +90,7 @@ img.topimg{
 }
 #nav1{
 	margin-top:-60px;
-	margin-bottom:500px;
+	margin-bottom:30px;
 	padding:130px;
 	width: 100%;
 	height:1000px;
@@ -113,12 +113,11 @@ img.topimg{
 	} 
 
  .Sbox1 {
- 	
  	border:6px solid orange;
  	background-color:orange;
     vertical-align: middle;
 	width:1500px;
-	height: 1650px;
+	height: 1500px;
 	position: absolute;
     left: 50%; 
     transform: translateX(-50%); 
@@ -129,13 +128,13 @@ img.topimg{
 
 
 .productList {
- height:320px;
-  width: 230px;
-  position : relative;
-  text-align: center;
-   box-shadow:  0 10px 20px  rgba(0, 0, 0, 0.5); 
-   font-size : 16px;
-   border-radius : 10px;
+ 	height:320px;
+  	width: 230px;
+  	position : relative;
+  	text-align: center;
+   	box-shadow:  0 10px 20px  rgba(0, 0, 0, 0.5); 
+  	font-size : 16px;
+   	border-radius : 10px;
    
 }
 .productList:hover{
@@ -297,9 +296,9 @@ img.topimg{
 	font-weight: lighter;
 	box-sizing: border-box;
 	text-align: left;
-/*  text-decoration: none;
- transition: 1s; */
- height: 30px;
+/*	text-decoration: none;
+	transition: 1s; */
+ 	height: 30px;
     margin-top: 20px;
     color:grey;
     
@@ -308,9 +307,9 @@ img.topimg{
     display: flex;
     justify-content: center;
     align-items: center;
-   position: absolute;
-right: 50%;
-transform: translate(50%, -50%);
+   	position: absolute;
+	right: 50%;
+	transform: translate(50%, -50%);
 	width: 1665px;
 	margin: 0 auto;
 	margin-top: 240px;
