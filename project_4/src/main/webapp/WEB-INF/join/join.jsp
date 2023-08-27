@@ -13,7 +13,7 @@
 <style>
 
 .login-box{
-	height : 758px; 
+	height : 787px; 
 }
 
 
@@ -254,11 +254,12 @@ var app = new Vue({
 				alert("연락처를 입력해주세요.");
 				return;
 			}
-			var phoneCheck = /^\d{3}-\d{3,4}-\d{4}$/;
-			if (!phoneCheck.test(self.user.uPhone))
-			{
-				alert("연락처 형식에 맞추어 작성하세요.\n ex)010-1234-5678");
-				return;
+			var phoneCheck = /^(\d{3})-\d{3,4}-\d{4}$/;
+			if (phoneCheck.test(self.user.uPhone)) {
+			    self.user.uPhone = self.user.uPhone.replace(/-/g, ''); // 하이픈 제거
+			} else {
+			    alert("연락처 형식에 맞추어 작성하세요.\n ex)010-1234-5678");
+			    return;
 			}
 			var emailCheck = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 			if (!emailCheck.test(self.user.uEmail))
