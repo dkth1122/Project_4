@@ -287,6 +287,7 @@
 		WHERE GP_NO = #{gpNo}
 	</update>
 	
+<!-- 알림 기능 구현  -->
 	<!-- 알람 인서트 기능 -->
 	<insert id="insertAlram" parameterType="hashmap">
 		INSERT T4_GBOARD_NOTICE (U_ID, NO_TYPE, G_NO, NO_MESSAGE, NO_TIME, G_ARTIST)
@@ -299,4 +300,44 @@
 		SET NO_READ = 'Y'
 		WHERE NO_NO = #{noNo}
 	</update>
+	
+	<!-- 내 특정 게시글에 댓글이 달렸을 때 아이디 + 댓글 단 갯수 표기 -->
+	<select id="selectMyBoadCommentCnt" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT C.U_ID, COUNT(*) AS myBoardCommentCnt
+	    FROM T4_GBOARD G
+	    INNER JOIN T4_USER U ON G.U_ID = U.U_ID
+	    INNER JOIN T4_GCOMMENTS C ON G.G_NO = C.G_NO
+	    WHERE U.U_ID = #{uId} AND G.G_NO = #{gNo}
+	    GROUP BY C.U_ID
+	</select>
+	
+	<!-- 내 특정 게시글에 좋아요가 눌렸을 때 누가 했는지 + 좋아요 갯수 표기 -->
+	<select id="selectMyBoardLikeCnt" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT L.U_ID, COUNT(*) AS myBoardLikeCnt
+	    FROM T4_GBOARD G
+	    INNER JOIN T4_USER U ON G.U_ID = U.U_ID
+	    INNER JOIN T4_GBOARD_LIKE L ON G.G_NO = L.G_NO
+	    WHERE U.U_ID = #{uId} AND G.G_NO = #{gNo}
+	    GROUP BY L.U_ID
+	</select>
+	
+	<!-- 내 특정 댓글에 대댓글이 달렸을 때 아이디 + 갯수 -->
+	<select id="selectMyCommentCoCommentCnt" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT C.U_ID, COUNT(*) AS myCommentCoComment
+	    FROM T4_GCOMMENTS C
+	    INNER JOIN T4_USER U ON C.U_ID = U.U_ID
+	    INNER JOIN T4_GCOMMENTS T ON C.GC_NO = T.GC_GROUP 
+	    WHERE U.U_ID = #{uId}  AND C.GC_NO = #{gcNo} 
+	    GROUP BY C.U_ID
+	</select>
+	
+	<!-- 내 특정 댓글에 좋아요가 눌렸을 때 아이디 + 갯수 -->
+	<select id="selectCommentLikeCnt" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT L.U_ID, COUNT(*) AS CNT
+	    FROM T4_GCOMMENTS C
+	   LEFT JOIN T4_USER U ON C.U_ID = U.U_ID
+	    INNER JOIN T4_GCOMMENTS_LIKE L ON L.GC_NO = C.GC_NO
+	    WHERE C.U_ID = 'test' AND C.GC_NO = 80
+	    GROUP BY L.U_ID
+	</select>
 </mapper>

@@ -69,8 +69,42 @@ public class GBoard {
     private String noMessage;
     private String noTime;
     private String noCheck;
+    //내 글에 댓글 달린 갯수 
+    private int myBoardCommentCnt;
+    //내 글에 좋아요 달린 갯수
+    private int myBoardLikeCnt;
+    //내 댓글에 대댓글 달린 갯수
+    private int myCommentCoComment;
+    //내 댓글에 좋아요 달린 갯수
+    private int myCommentLikeCnt;
     
     
+    
+    
+	public int getMyBoardCommentCnt() {
+		return myBoardCommentCnt;
+	}
+	public void setMyBoardCommentCnt(int myBoardCommentCnt) {
+		this.myBoardCommentCnt = myBoardCommentCnt;
+	}
+	public int getMyBoardLikeCnt() {
+		return myBoardLikeCnt;
+	}
+	public void setMyBoardLikeCnt(int myBoardLikeCnt) {
+		this.myBoardLikeCnt = myBoardLikeCnt;
+	}
+	public int getMyCommentCoComment() {
+		return myCommentCoComment;
+	}
+	public void setMyCommentCoComment(int myCommentCoComment) {
+		this.myCommentCoComment = myCommentCoComment;
+	}
+	public int getMyCommentLikeCnt() {
+		return myCommentLikeCnt;
+	}
+	public void setMyCommentLikeCnt(int myCommentLikeCnt) {
+		this.myCommentLikeCnt = myCommentLikeCnt;
+	}
 	public String getGpPath() {
 		return gpPath;
 	}

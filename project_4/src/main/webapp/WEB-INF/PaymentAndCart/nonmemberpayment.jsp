@@ -743,74 +743,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
               }
        }, fnBeforePay : function(){
                var self = this;
-          
                //핸드폰 번호 합치기
                self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
-             
-             //로그인 세션 확인 
-              if(self.uId == null || self.uId == ""){
-                 alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-                 return;
-              }
-             
-             //키트일 경우 확인 후 유저의 멤버쉽 구독 확인 프로세스
-              if(self.list[0].category == 'MEM' && self.list[0].membership == 'Y'){ 
-                   var nparmap = {uId : self.uId, artist : self.list[0].artist};
-                      $.ajax({
-                          url : "memberCheck.dox",
-                          dataType:"json",      
-                          type : "POST", 
-                          data : nparmap,
-                          success : function(data) {
-                              
-                        if(data.sub == 1){
-                           if(data.kit == 1){
-                              alert("키트는 아티스트 당 한 번만 구매하실 수 있습니다.");
-                              location.href = "/product/" +self.list[0].artist+".do";
-                           }else if(data.kit == 0){
-                              self.requestPay();
-                           }
-                        }else if (data.sub == 0){
-                           alert("키트를 구매를 위해 멤버쉽을 구독해주세요.");
-                           location.href = "/product/" +self.list[0].artist+".do";
-                        }
-                          }
-                      });  
-                }
-             			// 사용할 포인트가 가격보다 높은 경우 제한
-             			 if(self.usePoint > self.uPoint){
-             			    alert("소지한 포인트만 사용할 수 있습니다.");
-             			    self.usePoint = self.uPoint;
-             			    return;
-             			 }
-             			// 포인트가 소지한 포인트보다 낮은 경우 제한
-             			if((self.totalPrice - self.usePoint) < 0){
-             				alert("사용 포인트를 확인해주세요, 상품의 값을 초과하여 사용할 수 없습니다.");
-             				self.usePoint = self.totalPrice;
-             				return;
-             			}
-                if(self.list[0].category == 'MEM' && self.list[0].membership == 'N'){ 
-                   var nparmap = {uId : self.uId, artist : self.list[0].artist};
-                      $.ajax({
-                          url : "memberCheck.dox",
-                          dataType:"json",      
-                          type : "POST", 
-                          data : nparmap,
-                          success : function(data) {
-                        if(data.sub == 1){
-                              alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
-                              location.href = "/product/" +self.list[0].artist+".do";
-                        }else{
-                           self.requestPay();
-                        }
-                          }
-                      });  
-               			 }else if((self.totalPrice - self.usePoint) == 0){
-               				 self.fnInsertAll2();
-               				 
-               			 }else{
-		                   self.requestPay();
-		                }
+		       self.requestPay();
                 
          }, requestPay : function() {
           var self = this;
@@ -830,13 +765,13 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  if (rsp.success) {
                   self.fnInsertAll();
                   alert("결제 성공");
-                   location.href = "payView.do"; 
+                   /* location.href = "payView.do";  */
                  } else {
                    // 결제 실패 시
                    alert("결제 실패");
                    //비회원결제테스트중
-                   location.href = "nonmemberpayView.do";
-                   self.fnInsertAll();
+                  /*  location.href = "nonmemberpayView.do"; */
+                  /*  self.fnInsertAll(); */
                  }
              });
         }, fnInsertAll : function(){
@@ -844,7 +779,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
            var timestamp =  new Date().getTime(); 
            self.oNo = timestamp;
                     var nparmap = {uId : self.uId, pNo : self.list[0].pNo, price : self.list[0].price, cnt : self.cnt, artist : self.list[0].artist, oNo : self.oNo, usePoint : self.usePoint};
-                      $.ajax({
+                    console.log("파람값==>",nparmap); 
+                    
+                    $.ajax({
                           url : "insertALL.dox",
                           dataType:"json",      
                           type : "POST", 
@@ -860,7 +797,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
            self.user.oNo = self.oNo;
            self.user.buyNo = self.buyNo;
            self.user.uPoint2 = self.usePoint;
+           self.user.duNo = '';
+           
             var nparmap = self.user;
+            console.log("파람값==>",nparmap); 
                $.ajax({
                    url : "insertDelivery.dox",
                    dataType:"json",      
