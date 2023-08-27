@@ -135,7 +135,7 @@
    <!-- 결제시 포인트 사용 후 포인트 테이블 등록 -->
    <insert id="paymentPointInsert">
    		INSERT INTO T4_USER_POINT (O_NO, USEPOINT, PODATA)
-		VALUES(#{oNo}, #{usePoint}, NOW());
+		VALUES(#{oNo}, #{uPoint2}, NOW());
    </insert>
    
    
