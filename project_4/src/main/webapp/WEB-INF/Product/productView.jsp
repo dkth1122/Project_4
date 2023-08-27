@@ -709,8 +709,8 @@ var app = new Vue({
                 	}
         		}
         	}
+        	$.pageChange("/payment/payment.do", param)
         	
-        	/* $.pageChange("/payment/payment.do", param); */
         },//위시리스트 이동  
         wishList : function(){
         	var self = this;
