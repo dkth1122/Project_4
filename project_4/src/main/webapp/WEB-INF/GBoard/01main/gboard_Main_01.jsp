@@ -147,15 +147,20 @@ a:hover{
 	                    data: nparmap,
 	                    success: function (data) {
 	                        self.list = data.list;
-	                        console.log(self.list);
+	                        console.log("list==>",self.list);
 	                    }
 	                });
 	            }, fnMove : function(artist){
-	                if (artist === 'my') {
-	                    location.href = "myPage.do";
-	                } else {
-	                    location.href = artist.toLowerCase() + '.do'; // 예: bts.do, txt.do 등
-	                }
+	            	var self = this;
+	            	if(self.list.length != 0){
+	            		if (artist === 'my') {
+		                    location.href = "myPage.do";
+		                } else {
+		                    location.href = artist.toLowerCase() + '.do'; // 예: bts.do, txt.do 등
+		                }	            	
+	            	}else{
+	            		location.href = "/product/membership.do";
+	            	}              
 	            }
 	        }, // methods
 	        created: function () {

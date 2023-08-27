@@ -247,14 +247,14 @@
 		<div class="container">
 			<div class="imgBox">
 				<div class="prof">
-					<div><span class="h1">{{list[0].uName2}}</span>
+					<div><span class="h1">{{uName2}}</span>
 						<span class="topbar">
 							<a href="/mypag/noticeList.do"><button class="button">공지사항</button></a>
 							<a href="/mypag/infoUpdate.do"><button class="button">계정설정</button></a>
 							<a href="/product/membership.do"><button class="button">멤버쉽구독</button></a>
 						</span>
 					</div>
-					<strong class="smText">{{list[0].uName}}</strong>
+					<strong class="smText">{{uName}}</strong>
 					
 					<div>
 						<strong>MEMBERSHIP ARTIST</strong> 
@@ -383,7 +383,9 @@
 				mlist: [],	            
 	            uId: "${sessionId}",
 	            artist : "",
-	            selectedMenu : '내가쓴피드'
+	            selectedMenu : '내가쓴피드',
+	            uName2 : "",
+	            uName : ""
 	        },// data
 	        methods: {
 	            fnGetList: function() {
@@ -395,12 +397,19 @@
 	                    type: "POST",
 	                    data: nparmap,
 	                    success: function (data) {
-	                        self.list = data.list;
-	                        self.list2 = data.list2;
-	                        self.list3 = data.list3;
-	                        self.plist = data.plist;
-	                        self.mlist = data.mlist;
-	                        console.log("plist==>", data);
+	                    	/* if(data.list[0].uName == ""){
+	                    		location.href="/user/login.do";
+	                    	}else{ */
+	                    		self.list = data.list;
+	 	                        self.list2 = data.list2;
+	 	                        self.list3 = data.list3;
+	 	                        self.plist = data.plist;
+	 	                        self.mlist = data.mlist;
+	 	                        self.uName = data.list[0].uName
+	 	                        self.uName2 = data.list[0].uName2
+	 	                        console.log("plist==>", data);
+	 	                        	
+	                    		                      
 	                    }
 	                });
 	            }, fnMove : function(){
