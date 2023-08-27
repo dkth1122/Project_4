@@ -100,5 +100,35 @@ public class PaymentController {
 			resultMap.put("message", "success");
 			return new Gson().toJson(resultMap);
 	}
+	 //결제 후 -> 인서트 여러개 하기
+	 @RequestMapping(value = "/payment/insertALL2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	 @ResponseBody
+	 public String insertALL2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		 HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		 resultMap = paymentService.addProductBuy2(map);
+		 
+		 System.out.println(resultMap.get("buyNo"));
+		 
+		 return new Gson().toJson(resultMap);
+	 }
+	 
+	 //결제 -> 인서트 후 -> 딜리버리 테이블에 등록
+	 @RequestMapping(value = "/payment/insertDelivery2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	 @ResponseBody
+	 public String addDelivery2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		 HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		 paymentService.addDelivery2(map);
+		 resultMap.put("message", "success");
+		 return new Gson().toJson(resultMap);
+	 }
+	 
+		@RequestMapping(value = "/payment/useUserPoint2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String useUserPoint2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			paymentService.useUserPoint2(map);
+			resultMap.put("message", "success");
+			return new Gson().toJson(resultMap);
+		}
 		
 }

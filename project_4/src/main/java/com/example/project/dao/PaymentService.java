@@ -23,4 +23,13 @@ public interface PaymentService {
 	//결제 시 딜리버리 테이블 등록
 	int addDelivery(HashMap<String, Object> map);
 	
+	//묶음 상품 결제 시 조건 충족 확인 후 오더 테이블 등록
+	HashMap<String, Object> addProductBuy2(HashMap<String, Object> map);
+	
+	//묶음 상품 결제 시 딜리버리 테이블 등록
+	int addDelivery2(HashMap<String, Object> map);
+	
+	//묶음 상품 결제 후 유저 포인트와, 포인트 테이블 등록(for문 제외)
+	int useUserPoint2 (HashMap<String, Object> map);
+	
 }
