@@ -162,7 +162,7 @@ img.topimg{
 .sect2 {
 	padding: 50px;
 	widows: 1800px;
-	height: 1800px;
+	height: 1900px;
 	background: #f0f0f0;
 	display: flex;
  	flex-wrap: wrap;
@@ -392,7 +392,7 @@ img.topimg{
 }
 .sect1 {
   position: absolute;
-  bottom: -1420px;
+  bottom: -1330px;
   left: 0;
   width: 100%;
   flex-wrap: wrap;
