@@ -62,7 +62,7 @@
 		width: 1200px;
 		float: left;
 		position: relative;
-		top : -385px;
+		top : -638px;
 		left: 350px;
 		
 	}
