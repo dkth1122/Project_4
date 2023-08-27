@@ -325,11 +325,12 @@ img.topimg{
 }
 
 .ostimg .img1 {
-	background: url(img/homeimg/ost1.png);
+	background: url(img/homeimg/txt_ost.gif);
+	background-size: cover;
 }
 
 .ostimg .img2 {
-	background: url(img/homeimg/lsf_album.jpg);
+	background: url(img/homeimg/lsf_ost.gif);
 	background-size: contain;
 }
 
@@ -342,11 +343,13 @@ img.topimg{
 }
 
 .ostimg .img4 {
-	background: url(img/homeimg/ost4.png);
+	background: url(img/homeimg/njs_ost.gif);
+	background-size: cover;
 }
 
 .ostimg .img5 {
-	background: url(img/homeimg/ost5.png);
+	background: url(img/homeimg/svt_ost.gif);
+	background-size: cover;
 }
 
 /*SECT1- animation*/
