@@ -249,6 +249,15 @@ td input{
 .sexyIcon {
 padding-right: 0xp;
 }
+.button11{
+   background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -266,9 +275,9 @@ padding-right: 0xp;
 						<th>제거</th>
 						<th>주문금액</th>						
 					</tr>
-					<tr v-for="(item, index) in list">
-						<td class="a"><img :src="item.path" class="pImg"></td>
-						<td class="b">{{item.pName}}</td>
+					<tr v-for="(item, index) in list">						
+						<td class="a"><button class="button11" @click="productDetail(item)"><img :src="item.path" class="pImg"></button></td>
+						<td class="b">{{item.pName}}</td>					
 						<td class="c">
 							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
 							  <input :value="item.cnt" @input="updateItemCnt(item)" readonly>							
@@ -440,7 +449,11 @@ padding-right: 0xp;
                 item.cnt = parseInt(event.target.value);
                 this.calculateTotalPrice();
            	}      
-       	 }
+       	 },    
+         productDetail : function(item){
+             var self = this;
+             $.pageChange("/product/productView.do", {pNo : item.pNo});
+          }
 		},
 		created : function() {
 			var self = this;

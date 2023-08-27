@@ -95,9 +95,10 @@
 	color: red;
 }
 
-span {
+/* 헤더 아이콘창 줄이기위해 제거 - 여대
+	span {
 	margin-left: 111px;
-}
+} */
 
 .baybutton{
 	width: 1500px;
