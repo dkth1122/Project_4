@@ -101,23 +101,31 @@ a:hover{
 				<div class="artistArea2">
 					<h2 style="text-align:center; color:#3d435f;">관심있는 아티스트를 만나보세요!</h2>
 					<ul>
-						<li><a class="artistBox" href="bts.do"><div><img src="https://phinf.wevpstatic.net/MjAyMzA2MDlfMjA5/MDAxNjg2MjgyOTI4MjM4.uzwN0D1RUzZ7zjv451iLx3k58NbU5tuNGQcNriaLGMog.8BqToW1rnUi10zbpxcvjow74zOJ8mUCJ49z2yGQVaEMg.PNG/8799005373953432ff510aa1-b04b-40f8-8b6d-1e7883e7a481.png?type=f416_416" width="208" height="208" alt=""></div>
+						<li><a class="artistBox" href="javascript:"><div @click="fnMove('BTS')"><img src="https://phinf.wevpstatic.net/MjAyMzA2MDlfMjA5/MDAxNjg2MjgyOTI4MjM4.uzwN0D1RUzZ7zjv451iLx3k58NbU5tuNGQcNriaLGMog.8BqToW1rnUi10zbpxcvjow74zOJ8mUCJ49z2yGQVaEMg.PNG/8799005373953432ff510aa1-b04b-40f8-8b6d-1e7883e7a481.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>방탄소년단</strong></div></a></li>
-						<li><a href="njs.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA3MDZfNjAg/MDAxNjg4NjU1NTEwNDk5.8BzMNO2CEBiV7FiQf0sqP-y_CcXTVfMsmQ8QugCtengg.eQc3M6dbk8xgaRFzbdFkJNNWDmDReznOSwdS_EhAwRkg.PNG/320158174454655029be17145-30a2-45e9-9134-ab4619dc057e.png?type=f416_416" width="208" height="208" alt=""></div>
+							
+						<li><a href="javascript:"><div class="artistBox" @click="fnMove('NJS')"><img src="https://phinf.wevpstatic.net/MjAyMzA3MDZfNjAg/MDAxNjg4NjU1NTEwNDk5.8BzMNO2CEBiV7FiQf0sqP-y_CcXTVfMsmQ8QugCtengg.eQc3M6dbk8xgaRFzbdFkJNNWDmDReznOSwdS_EhAwRkg.PNG/320158174454655029be17145-30a2-45e9-9134-ab4619dc057e.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>뉴진스</strong></div></a></li>
-						<li><a href="zic.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMjA3MTlfMTAw/MDAxNjU4MjAwMzQ4MTEw.4Hx5nWX-whENqwgXbTGI5v7OM_meNjpjRT552TB25SEg.Msf5w64dAA_uTH9VPuTSQZjZSzICDfCkqTGuhQ4waowg.PNG/4268524813805226322d3bb6f-4aae-44c9-a87a-0154ff5c8e47.png?type=f416_416" width="208" height="208" alt=""></div>
+							
+						<li><a href="javascript:"><div class="artistBox" @click="fnMove('ZIC')"><img src="https://phinf.wevpstatic.net/MjAyMjA3MTlfMTAw/MDAxNjU4MjAwMzQ4MTEw.4Hx5nWX-whENqwgXbTGI5v7OM_meNjpjRT552TB25SEg.Msf5w64dAA_uTH9VPuTSQZjZSzICDfCkqTGuhQ4waowg.PNG/4268524813805226322d3bb6f-4aae-44c9-a87a-0154ff5c8e47.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>지코</strong></div></a></li>
-						<li><a href="ehp.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA1MDlfMTk1/MDAxNjgzNjQ0MjEwMzM4.CpcRsTOtUKAaA-xHsgUPjdfDyMwdC4pZVxTChgoCMdUg.MJSGYFAN9x6n0Zlij0j0adHpt1weRrO5s8FrX4V5tAEg.PNG/6160287466499467001d8c96-089a-4b05-a758-6891b41be817.png?type=f416_416" width="208" height="208" alt=""></div>
+							
+						<li><a href="javascript:"><div class="artistBox" @click="fnMove('EHP')"><img src="https://phinf.wevpstatic.net/MjAyMzA1MDlfMTk1/MDAxNjgzNjQ0MjEwMzM4.CpcRsTOtUKAaA-xHsgUPjdfDyMwdC4pZVxTChgoCMdUg.MJSGYFAN9x6n0Zlij0j0adHpt1weRrO5s8FrX4V5tAEg.PNG/6160287466499467001d8c96-089a-4b05-a758-6891b41be817.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>엔하이픈</strong></div></a></li>
-						<li><a href="svt.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA0MTVfMjky/MDAxNjgxNDg0ODk1OTM0.hgDXuhSs45mvYhQFpCZssg703JOF9pGxHSca3PzEiXsg.amuI9iS6nDLJqwhR5ad4d0zGaxsZz0wVns3YXH2d4wMg.PNG/178367443285053282989e3de-2d15-46e5-818b-73b2cdeab453.png?type=f416_416" width="208" height="208" alt=""></div>
+							
+						<li><a href="javascript:"><div class="artistBox" @click="fnMove('SVT')"><img src="https://phinf.wevpstatic.net/MjAyMzA0MTVfMjky/MDAxNjgxNDg0ODk1OTM0.hgDXuhSs45mvYhQFpCZssg703JOF9pGxHSca3PzEiXsg.amuI9iS6nDLJqwhR5ad4d0zGaxsZz0wVns3YXH2d4wMg.PNG/178367443285053282989e3de-2d15-46e5-818b-73b2cdeab453.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>세븐틴</strong></div></a></li>
-						<li><a href="fmn.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA1MjVfMjA3/MDAxNjg1MDE3OTYwOTY3.It-QCieMbJEupe9ljb03Bza8p8e7tWOUCMmuUgmqzy4g.fYICCBLYFGJxky_WUeM7dPjbhtYlqb6cykapIG_tE08g.PNG/18677645385851861a9ea80be-6fa8-42e9-bc2a-9d3700099e48.png?type=f416_416" width="208" height="208" alt=""></div>
+							
+						<li><a href="javascript:"><div class="artistBox" @click="fnMove('FMN')"><img src="https://phinf.wevpstatic.net/MjAyMzA1MjVfMjA3/MDAxNjg1MDE3OTYwOTY3.It-QCieMbJEupe9ljb03Bza8p8e7tWOUCMmuUgmqzy4g.fYICCBLYFGJxky_WUeM7dPjbhtYlqb6cykapIG_tE08g.PNG/18677645385851861a9ea80be-6fa8-42e9-bc2a-9d3700099e48.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>프로미스나인</strong></div></a></li>
-						<li><a href="lsf.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA0MThfMTYz/MDAxNjgxNzc5NTYzOTg5.nbfYYYPT9R_V1-h7a-IFajvmrVNBeQ9bLSyYmfWULN0g.d4huHued8TsqCoZOZgozThXFraLHJzzuVF69KFWxY4Ug.PNG/773745721093888179bd7fbe0-3f88-4e86-a06e-cf20a4b05acf.png?type=f416_416" width="208" height="208" alt=""></div>
+							
+						<li><a href="javascript:"><div class="artistBox" @click="fnMove('LSF')"><img src="https://phinf.wevpstatic.net/MjAyMzA0MThfMTYz/MDAxNjgxNzc5NTYzOTg5.nbfYYYPT9R_V1-h7a-IFajvmrVNBeQ9bLSyYmfWULN0g.d4huHued8TsqCoZOZgozThXFraLHJzzuVF69KFWxY4Ug.PNG/773745721093888179bd7fbe0-3f88-4e86-a06e-cf20a4b05acf.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>르세라핌</strong></div></a></li>
-						<li><a href="txt.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA3MDZfNzgg/MDAxNjg4NTY5NzQ4NDI5.niD9DkXuaiyevBHm-egtOP3SAgviERNpcLFaIbz8Zc8g.vpnLqw1Qz0nEld4Ufc51HNOhxGUyHNVaOJSvNrpHYk8g.PNG/239543933128684334abf30a5-cf31-470d-8de3-5e31a2a6cb06.png?type=f416_416" width="208" height="208" alt=""></div>
+							
+						<li><a href="javascript:"><div class="artistBox" @click="fnMove('TXT')"><img src="https://phinf.wevpstatic.net/MjAyMzA3MDZfNzgg/MDAxNjg4NTY5NzQ4NDI5.niD9DkXuaiyevBHm-egtOP3SAgviERNpcLFaIbz8Zc8g.vpnLqw1Qz0nEld4Ufc51HNOhxGUyHNVaOJSvNrpHYk8g.PNG/239543933128684334abf30a5-cf31-470d-8de3-5e31a2a6cb06.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>투모로우바이투게더</strong></div></a></li>
-						<li><a href="bnd.do"><div class="artistBox"><img src="https://phinf.wevpstatic.net/MjAyMzA4MjJfMjc1/MDAxNjkyNzEyNTIzMTc3.dUOo7M7h8qn-C0X7u9Ou718ljJZLGxSv8lHmRSC6fWog.irQ474UFF2vw7hruRE6qmJbfsEG4clFR6_sPcHheSocg.PNG/7719739320887855418eb035c-5c7e-44e4-be43-8c4519755c84.png?type=f416_416" width="208" height="208" alt=""></div>
+							
+						<li><a href="javascript:"><div class="artistBox" @click="fnMove('BND')"><img src="https://phinf.wevpstatic.net/MjAyMzA4MjJfMjc1/MDAxNjkyNzEyNTIzMTc3.dUOo7M7h8qn-C0X7u9Ou718ljJZLGxSv8lHmRSC6fWog.irQ474UFF2vw7hruRE6qmJbfsEG4clFR6_sPcHheSocg.PNG/7719739320887855418eb035c-5c7e-44e4-be43-8c4519755c84.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>보이넥스트도어</strong></div></a></li>						
 					</ul>
 					<a @click="fnMove('my')" style="text-align:center; color:#3d435f;"><h2>MEMBERSHIP MY PAGE <i class="fa-solid fa-door-open"></i></h2></a>					
@@ -161,7 +169,6 @@ a:hover{
 	            	        }
 	            	    }
 	            	    
-	            	    
 	            	    if (membershipSubscribed) {
 	            	        if (artist === 'my') {
 	            	            location.href = "myPage.do";
@@ -170,7 +177,6 @@ a:hover{
 	            	        }
 	            	    } else {
 	            	        alert("해당 멤버십을 구독하지 않았습니다.");
-	            	        location.href = "/product/membership.do";
 	            	    } 
 	            	}
 	            	
