@@ -100,6 +100,9 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		System.out.println("주문 테이블 업데이트 함");
 		
+		paymentMapper.paymentPointUse(map);
+		System.out.println("포인트 테이블 얹혀갈게요 ㅎㅅㅎ");
+		
 		return resultMap;
 		
 	}
@@ -108,7 +111,8 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public int addDelivery(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-			
+		
+			paymentMapper.paymentPointInsert(map);
 		return paymentMapper.insertDelivery(map);
 	}
 

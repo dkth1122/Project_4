@@ -448,7 +448,7 @@ text-align: center;
                   
          <div class="poinPos">
             <div>현재 포인트: {{ Number(uPoint).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>
-            <div>사용할 포인트: <input type="text" v-model="usePoint"></div>
+            <div>사용할 포인트: <input type="number" v-model="usePoint"></div>
             <div v-if ="errorMessage">{{errorMessage}}</div>
             <div><button @click="allPointUse">전체사용</button></div>
            </div>
@@ -508,6 +508,7 @@ text-align: center;
       
       <div id="baybutton"><button @click="fnBeforePay">결제하기</button></div>
       </div>
+      <div><button @click="fninsertDelivery">테스트</button></div>
 
 </div>
 </body>
@@ -528,9 +529,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
    var app = new Vue({
       el : '#app',
       data : {
+         usePoint : 0,
          uId : "${sessionId}",
          uPoint : 0,
-         usePoint : 0,
          pNo : "${map.pNo}",
          cnt : "${map.cnt}",
              uDname : "",
@@ -547,18 +548,19 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
           user : {
                    uId : "",
                    uDname : "",
+                   uPoint2 : 0,
                    recipient : "",
                    phone1 : "",
                    phone2 : "",
                    phone3 : "",
-               addr : "",
-               addrDetail : "",
-               zipNo : "",
-               phone : "",
-               duNo : "",
-               oNo: "",
-               buyNo: "",
-               uId : ""
+	               addr : "",
+	               addrDetail : "",
+	               zipNo : "",
+	               phone : "",
+	               duNo : "",
+	               oNo: "",
+	               buyNo: "",
+	               uId : ""
             },
          info : [],
          flg : false,
@@ -841,7 +843,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  if (rsp.success) {
                   self.fnInsertAll();
                   alert("결제 성공");
-                   location.href = "payView.do";
+                   location.href = "payView.do"; 
                  } else {
                    // 결제 실패 시
                    alert("결제 실패");
@@ -851,7 +853,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
            var self = this;
            var timestamp =  new Date().getTime(); 
            self.oNo = timestamp;
-                    var nparmap = {uId : self.uId, pNo : self.list[0].pNo, price : self.list[0].price, cnt : self.cnt, artist : self.list[0].artist, oNo : self.oNo };
+                    var nparmap = {uId : self.uId, pNo : self.list[0].pNo, price : self.list[0].price, cnt : self.cnt, artist : self.list[0].artist, oNo : self.oNo, usePoint : self.usePoint};
                       $.ajax({
                           url : "insertALL.dox",
                           dataType:"json",      
@@ -867,6 +869,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
            self.user.uId = self.uId;
            self.user.oNo = self.oNo;
            self.user.buyNo = self.buyNo;
+           self.user.uPoint2 = self.usePoint;
             var nparmap = self.user;
                $.ajax({
                    url : "insertDelivery.dox",
@@ -949,7 +952,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
             }
         },
         allPointUse: function () {
-            this.usePoint = this.uPoint;
+        	var self = this;
+        	if(self.totalPrice >= self.uPoint){
+        		self.usePoint = self.uPoint;
+        	}else{
+        		self.usePoint = self.totalPrice;
+        	}
         },
         poinAppl: function () {
              var self = this;

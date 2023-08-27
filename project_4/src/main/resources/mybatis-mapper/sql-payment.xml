@@ -124,5 +124,19 @@
 		VALUES (#{buyNo}, #{oNo},  #{uId}, '업체확인중',#{duNo} )
    </insert>
    
+   <!-- 결제시 포인트 사용 -->
+   <update id="paymentPointUse">
+   		UPDATE T4_USER
+		SET
+		   U_POINT = U_POINT - #{usePoint}
+		WHERE U_ID = #{uId}
+   </update>
+   
+   <!-- 결제시 포인트 사용 후 포인트 테이블 등록 -->
+   <insert id="paymentPointInsert">
+   		INSERT INTO T4_USER_POINT (O_NO, USEPOINT, PODATA)
+		VALUES(#{oNo}, #{uPoint2}, NOW());
+   </insert>
+   
    
 </mapper>

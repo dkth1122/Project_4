@@ -65,5 +65,11 @@ public interface PaymentMapper {
    	
 	/* <!--  위에 조건 전부 만족 시 : 구매 완료 되면서 STOCK 재고 줄이기 -->*/
 	int updateStock(HashMap<String, Object> map);
+	
+	//결제시 포인트 사용 
+	int paymentPointUse(HashMap<String, Object> map);
+	
+	//결제시 포인트 사용 후 포인트 테이블 등록
+	int paymentPointInsert(HashMap<String, Object> map);
    
 }
