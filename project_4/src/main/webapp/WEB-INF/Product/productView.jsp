@@ -705,7 +705,8 @@ var app = new Vue({
                 		alert("비회원은 멤버쉽 상품을 구매하실 수 없습니다.");	
                 		return;
                 	}else{
-                		$.pageChange("/payment/payment.do", param);
+                		param = {cnt : self.quantity, pNo : self.pNo, uId : "비회원"}
+                		$.pageChange("/payment/nonmemberpayment.do", param);
                 	}
         		}
         	}else{

@@ -34,6 +34,12 @@ public class PaymentController {
 		request.setAttribute("map", map);
         return "/PaymentAndCart/payment";
     }
+	//바로 구매 - 비회원 결제 페이지
+		@RequestMapping("/payment/nonmemberpayment.do") 
+	    public String nonmemberpayment(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+			request.setAttribute("map", map);
+	        return "/PaymentAndCart/nonmemberpayment";
+	    }
 	
 	
 	//장바구니 - 결제 페이지
@@ -48,6 +54,11 @@ public class PaymentController {
     public String paymentView(Model model) throws Exception{
         return "/PaymentAndCart/paymentView";
     }
+	//비회원 결제완료 페이지
+		@RequestMapping("/payment/nonmemberpayView.do") 
+	    public String nonmemberpaymentView(Model model) throws Exception{
+	        return "/PaymentAndCart/nonmemberpaymentView";
+	    }
 	
 	//바로 구매용 독스 : fnGetList
 	@RequestMapping(value = "/payment/searchProductAll.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -122,13 +133,13 @@ public class PaymentController {
 		 return new Gson().toJson(resultMap);
 	 }
 	 
-		@RequestMapping(value = "/payment/useUserPoint2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-		@ResponseBody
-		public String useUserPoint2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-			HashMap<String, Object> resultMap = new HashMap<String, Object>();
-			paymentService.useUserPoint2(map);
-			resultMap.put("message", "success");
-			return new Gson().toJson(resultMap);
+	@RequestMapping(value = "/payment/useUserPoint2.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String useUserPoint2(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		paymentService.useUserPoint2(map);
+		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
 		}
 		
 }
