@@ -94,7 +94,6 @@ img.topimg{
 	padding:130px;
 	width: 100%;
 	height:1000px;
-	margin-bottom: 50px;
 	}
 
 #nav2{
@@ -112,7 +111,6 @@ img.topimg{
 	margin-bottom: 300px;
 	float:left;
 	} 
-
 
  .Sbox1 {
  	
@@ -388,19 +386,21 @@ transform: translate(50%, -50%);
 	height: 88px;
 	background: no-repeat;
 	margin-left: 300px;
-display:block;
+	display:block;
 	top: 74px;
 	animation: ostname 32s 4s infinite;
 	transition: all 2s;
 }
 .sect1 {
+  position: absolute;
+  bottom: -1420px;
+  left: 0;
+  width: 100%;
   flex-wrap: wrap;
-  display: flex;
   justify-content: center;
   align-items: center;
-  height: 680px; 
+  height: 500px;
   background-color: #f0f0f0;
-  position: relative;
 }
 .sPname{
 	height : 50px;
