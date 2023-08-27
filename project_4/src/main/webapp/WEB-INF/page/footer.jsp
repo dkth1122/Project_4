@@ -577,7 +577,7 @@ document.getElementById("kakao").addEventListener("click", function() {
  window.location.href = "https://www.instagram.com/nalanhl"; // 네이버 링크로 변경
 });
 
-/* 
+
 $(function(){
 	  $(".modal-open").click(function() {
 	    var index = $(this).index();
@@ -592,7 +592,7 @@ $(function(){
 	    $(this).closest(".popup-wrap").fadeOut();
 	  }
 	});
-var footer = document.getElementById("footer"); */
+var footer = document.getElementById("footer");
 
 /* window.onscroll = function() {
   var scrollBottom = document.body.scrollHeight - window.innerHeight - window.scrollY + 650;
