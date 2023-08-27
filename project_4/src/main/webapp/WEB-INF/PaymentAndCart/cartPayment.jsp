@@ -873,7 +873,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
           	for(var i = 0; i < self.list.length; i++){
                  	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo, usePoint : self.usePoint };
 	                   $.ajax({
-	                       url : "insertALL.dox",
+	                       url : "insertALL2.dox",
 	                       dataType:"json",   	
 	                       type : "POST", 
 	                       data : nparmap,
@@ -894,7 +894,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 
         	var nparmap = self.user;
                $.ajax({
-                   url : "insertDelivery.dox",
+                   url : "insertDelivery2.dox",
                    dataType:"json",   	
                    type : "POST", 
                    data : nparmap,
