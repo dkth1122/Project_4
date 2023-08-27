@@ -69,7 +69,6 @@
 	    WHERE G_NO = #{gNo}
 	</delete>
 	
-	
 	<!-- 검색 기능 -->
 	<select id="selectGBoardInfo" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 	 	SELECT *

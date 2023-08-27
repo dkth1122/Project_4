@@ -97,7 +97,7 @@
             <li>{{item.gContent}}</li>
             <li><span>좋아요 : </span>{{item.gLike}}</li>
             <img v-if="item.path" :src="item.path" class="image" />
-         <img v-else class="imageX" />
+         	<img v-else class="imageX" />
             <li><button @click="fnLike(item.gNo)">좋아요</button></li>
             <li><button @click="reportPost1(item.gNo)">신고</button></li>
             <li> 
