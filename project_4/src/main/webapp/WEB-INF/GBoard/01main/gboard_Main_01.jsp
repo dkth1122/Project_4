@@ -151,17 +151,29 @@ a:hover{
 	                    }
 	                });
 	            }, fnMove : function(artist){
-	            	var self = this;
-	            	if(self.list.length != 0){
-	            		if (artist === 'my') {
-		                    location.href = "myPage.do";
-		                } else {
-		                    location.href = artist.toLowerCase() + '.do'; // 예: bts.do, txt.do 등
-		                }	            	
-	            	}else{
-	            		location.href = "/product/membership.do";
-	            	}              
-	            }
+	            	 var self = this;
+	            	    var membershipSubscribed = false;
+
+	            	    for (var i = 0; i < self.list.length; i++) {
+	            	        if (self.list[i].artist === artist) {
+	            	            membershipSubscribed = true;
+	            	            break;
+	            	        }
+	            	    }
+	            	    
+	            	    
+	            	    if (membershipSubscribed) {
+	            	        if (artist === 'my') {
+	            	            location.href = "myPage.do";
+	            	        } else {
+	            	            location.href = artist.toLowerCase() + '.do';
+	            	        }
+	            	    } else {
+	            	        alert("해당 멤버십을 구독하지 않았습니다.");
+	            	        location.href = "/product/membership.do";
+	            	    } 
+	            	}
+	            	
 	        }, // methods
 	        created: function () {
 	            var self = this;
