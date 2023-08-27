@@ -121,7 +121,7 @@
     <!-- 결제 후 오더 테이블 등록 후에 딜리버리 테이블 등록 -->
    <insert id="insertDelivery" parameterType="hashmap">
 		INSERT INTO T4_DELIVERY (BUY_NO, O_NO, U_ID, D_STATE, DU_NO)
-		VALUES (#{buyNo}, #{oNo},  #{uId}, '업체확인중',#{duNo} )
+		VALUES (#{buyNo}, #{oNo}, #{uId}, '업체확인중', #{duNo} )
    </insert>
    
    <!-- 결제시 포인트 사용 -->
