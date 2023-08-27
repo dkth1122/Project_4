@@ -128,7 +128,7 @@ a:hover{
 						<li><a href="javascript:"><div class="artistBox" @click="fnMove('BND')"><img src="https://phinf.wevpstatic.net/MjAyMzA4MjJfMjc1/MDAxNjkyNzEyNTIzMTc3.dUOo7M7h8qn-C0X7u9Ou718ljJZLGxSv8lHmRSC6fWog.irQ474UFF2vw7hruRE6qmJbfsEG4clFR6_sPcHheSocg.PNG/7719739320887855418eb035c-5c7e-44e4-be43-8c4519755c84.png?type=f416_416" width="208" height="208" alt=""></div>
 							<div class="artistText"><strong>보이넥스트도어</strong></div></a></li>						
 					</ul>
-					<a @click="fnMove('my')" style="text-align:center; color:#3d435f;"><h2>MEMBERSHIP MY PAGE <i class="fa-solid fa-door-open"></i></h2></a>					
+					<a @click="fnMyPage" style="text-align:center; color:#3d435f;"><h2>MEMBERSHIP MY PAGE <i class="fa-solid fa-door-open"></i></h2></a>					
 				</div>				
 			</div>
 		</div>
@@ -170,15 +170,14 @@ a:hover{
 	            	    }
 	            	    
 	            	    if (membershipSubscribed) {
-	            	        if (artist === 'my') {
-	            	            location.href = "myPage.do";
-	            	        } else {
-	            	            location.href = artist.toLowerCase() + '.do';
-	            	        }
+	            	     	location.href = artist.toLowerCase() + '.do';
 	            	    } else {
 	            	        alert("해당 멤버십을 구독하지 않았습니다.");
 	            	    } 
-	            	}
+	           }, fnMyPage : function(){
+	        	   location.href ="myPage.do"
+	        	   
+	           }
 	            	
 	        }, // methods
 	        created: function () {

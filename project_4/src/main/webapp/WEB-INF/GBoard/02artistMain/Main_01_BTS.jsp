@@ -63,7 +63,7 @@
 	            		<img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
 	            	</li>
 	                <li>{{item.gDate}}</li>
-	                <li @click = "fnComment(item.gNo)">{{item.gContent}}</li>
+	                <li @click = "fnComment(item.gNo)">{{ item.gContent.length > 20 ? item.gContent.substring(0, 20) + '...' : item.gContent }}</li>
 	                <li><span @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a></span>{{item.gLike}}</li>
        	 	</ul>
     </div>
@@ -178,12 +178,14 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     alert("등록 완료");
-                    self.comment = "";
+	       	     	self.content = "";
                     self.fnGetList();
+                    
  	           		var form = new FormData();
 	       	        form.append( "file1",  $("#file1")[0].files[0] );
 	       	     	form.append( "gNo",  data.gNo); // pk
 	           		self.upload(form); 
+	       	     	
                 }
             });
         },

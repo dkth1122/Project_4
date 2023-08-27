@@ -113,4 +113,12 @@ import com.example.project.model.GBoard;
 		//마이페이지 프로필 이미지 제거
 		int deleteProfileImg(HashMap<String, Object> map);
 		
+		//알람 추가 기능
+		int insertAlram(HashMap<String, Object> map);
+		
+		//알람 업데이트 기능 - 읽음 여부 Y
+		int updateAleramRead(HashMap<String, Object> map);
+		
+		//해당 유저가 아티스트인지 체크
+		int selectArtistCheck(HashMap<String, Object> map);
 	}

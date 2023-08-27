@@ -29,12 +29,28 @@ public class GBoardServiceImpl implements GBoardService{
 		return gboardMapper.selectArtistGBoard(map);
 	}
 	
-	//게시글 작성 기능
+	//게시글 작성 기능 + 아티스트인지 체크하고 맞으면 파라미터 check랑 에 보내기
 	@Override
 	public HashMap<String, Object> addGBoard(HashMap<String, Object> map) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		gboardMapper.insertGBoard(map);
-		resultMap.put("gNo", map.get("gNo"));
+		
+		int artistChekc = gboardMapper.selectArtistCheck(map);
+		
+		if(artistChekc == 0) {
+			gboardMapper.insertGBoard(map);
+			resultMap.put("gNo", map.get("gNo"));
+		}else {
+			map.put("check", "Y");
+			map.put("type", "A_WRITE");
+			
+			var message = map.get("uId") + "님이 게시글을 작성하였습니다!";
+			map.put("message", message);
+			
+			gboardMapper.insertGBoard(map);
+			gboardMapper.insertAlram(map);
+			resultMap.put("gNo", map.get("gNo"));
+		}
+		
 		return resultMap;
 	}
 	

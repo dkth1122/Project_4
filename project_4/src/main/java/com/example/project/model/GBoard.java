@@ -56,15 +56,69 @@ public class GBoard {
     private String mExpDate;
     private String kitYN;
     
-    
-    
     //프로필 테이블
     private int gpNo;
     private String nickName;
     private String gpPath;
     private String gpFileName;
     
+    //알람 기능 테이블
+    private int noNo;
+    private String noRead;
+    private String noType;
+    private String noMessage;
+    private String noTime;
+    private String noCheck;
     
+    
+	public String getGpPath() {
+		return gpPath;
+	}
+	public void setGpPath(String gpPath) {
+		this.gpPath = gpPath;
+	}
+	public String getGpFileName() {
+		return gpFileName;
+	}
+	public void setGpFileName(String gpFileName) {
+		this.gpFileName = gpFileName;
+	}
+	public int getNoNo() {
+		return noNo;
+	}
+	public void setNoNo(int noNo) {
+		this.noNo = noNo;
+	}
+	public String getNoRead() {
+		return noRead;
+	}
+	public void setNoRead(String noRead) {
+		this.noRead = noRead;
+	}
+	public String getNoType() {
+		return noType;
+	}
+	public void setNoType(String noType) {
+		this.noType = noType;
+	}
+	public String getNoMessage() {
+		return noMessage;
+	}
+	public void setNoMessage(String noMessage) {
+		this.noMessage = noMessage;
+	}
+	public String getNoTime() {
+		return noTime;
+	}
+	public void setNoTime(String noTime) {
+		this.noTime = noTime;
+	}
+	public String getNoCheck() {
+		return noCheck;
+	}
+	public void setNoCheck(String noCheck) {
+		this.noCheck = noCheck;
+	}
 	public int getgNo() {
 		return gNo;
 	}
