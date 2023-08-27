@@ -85,9 +85,11 @@
 .red{
 	color: red;
 }
+
+/* 헤더 아이콘 띄워져서 주석처리 - 여대현 
 span {
 	margin-left: 111px;
-}
+} */
 .baybutton{
 	width: 1500px;
 	text-align: right;
@@ -333,8 +335,12 @@ padding-right: 0xp;
 	                dataType:"json",	
 	                type : "POST", 
 	                data : nparmap,
-	                success : function(data) { 
-	                	self.list = data.list; //사용자
+	                success : function(data) { 	                	
+	                	if(data.list.length == 0){
+	                		location.href = "/basket.do";
+	                	}else{
+	                		self.list = data.list; //사용자
+	                	}
 	                }
 	            }); 
 	        }, calculateTotal: function (item) {

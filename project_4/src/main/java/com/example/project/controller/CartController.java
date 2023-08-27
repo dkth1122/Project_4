@@ -45,7 +45,7 @@ public class CartController {
 	public String searchCart(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<Cart> list =  cartService.searchCartListAll(map);
-		resultMap.put("list", list);
+		resultMap.put("list", list);		
 		return new Gson().toJson(resultMap);
 	}
 	

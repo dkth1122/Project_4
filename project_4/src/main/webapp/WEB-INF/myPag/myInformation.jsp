@@ -107,7 +107,22 @@
 	 color: inherit;
 	 cursor: pointer;
 }
-.thead th{
+.calenderArea{
+   margin-top: 40px;
+    background-color: #fcfcfc;
+    border: 1px solid #d8d9df;
+    
+}
+.calenderArea ul li {
+    color: #96979e;
+    padding: 0 0 0 25px;
+    height: 33px;
+    line-height: 33px;
+    font-weight: 400;
+    font-size: 14px;
+}
+.calenderArea i {
+   padding-right: 10px;
 }
 </style>
 
@@ -209,10 +224,16 @@
 
 					<div class="View">
 						<div class="lowerBox">
-							주문 상품 정보</div>
+							찜목록</div>
 						<div class="box-border-bottom"></div>
+						<div class="calenderArea" v-if="wishList.length == 0">
+                           <ul>
+                              <li><i class="fa-regular fa-face-smile"></i> 찜목록이 존재하지 않습니다.</li>
+                              <li><i class="fa-regular fa-face-smile"></i> 위시리스트 담기 후 확인이 가능합니다.</li>
+                           </ul>                                    
+                        </div>
 						<table>
-						<thead class="thead">
+						<thead v-if="wishList.length > 0" class="thead">
 							<tr>
 								<th><input type="checkbox" @click="fnAllCheck" v-model="selectAll"></th>
 								<th></th>
@@ -221,7 +242,6 @@
 								<th>배송비</th>
 								<th>판매가</th>
 								<th>선택</th>
-								
 							</tr>
 						</thead>
 						<tbody>
@@ -487,6 +507,7 @@ var app = new Vue({
       self.fnGetInfo();
 		self.fnPoint();
 		self.fnCntList();
+		self.fnProduct();
     }
 });
 </script>
