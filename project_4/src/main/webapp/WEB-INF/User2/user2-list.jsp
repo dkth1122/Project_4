@@ -8,7 +8,7 @@
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>고객 리스트</title>
 <style>
         body{
      		   background-color: #decfdf;

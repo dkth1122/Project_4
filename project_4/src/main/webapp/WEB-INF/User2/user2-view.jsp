@@ -6,7 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>고객 상세보기</title>
 <style>
         body{
                background-color: #decfdf;
