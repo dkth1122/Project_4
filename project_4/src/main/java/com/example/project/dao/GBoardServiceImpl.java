@@ -263,8 +263,24 @@ public class GBoardServiceImpl implements GBoardService{
 	//신고 -> 댓글 신고 횟수 증가 + 댓글용 신고 테이블에 insert
 	@Override
 	public int addGCReport(HashMap<String, Object> map) {
-		gboardMapper.gcBanCnt(map);
-		return gboardMapper.insertGCReport(map);
+		
+		List<GBoard> list = gboardMapper.selectReportComm(map);
+		
+		boolean duplicateAlert = false;
+        
+		for (int i = 0; i < list.size(); i++) {
+		    GBoard gboard = list.get(i);
+		    if (gboard.getuId().equals(map.get("uId")) && gboard.getGcNo() == Integer.parseInt((String) map.get("gcNo"))) {
+		        System.out.println("이미 신고했잖아 너");
+		        duplicateAlert = true;
+		        break; // 이미 중복 알람을 확인했으므로 루프 종료
+		    }
+		}
+		if (!duplicateAlert) {
+		    gboardMapper.gcBanCnt(map);
+		    gboardMapper.insertGCReport(map);
+		}
+		return 1;
 	}
 
 	
