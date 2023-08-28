@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>주문 내역 조회</title>
 <%@ include file="mypageheader.jsp" %>
 <link href="../css/footer.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
@@ -18,12 +17,23 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="UTF-8">
 <style type="text/css">
+
+#ftnav{
+position: absolute;
+left:0%;
+width:100%;
+font-size:0.7em;
+}
+
+
 #container {
     height: 1650px;
     width: 100%;
     margin-bottom: 163px;
 }
 <!-- 페이징 추가 2-->
+.ft{
+}
 .pagination {
      margin:24px;
      display: inline-flex;
@@ -157,9 +167,10 @@ input[type="date"]:focus {
     border-color: #3498db;
 }
 </style>
-
+<title>주문 내역 조회</title>
 </head>
 <body>
+
    <div id="app">
          <div id="container">
             <div id="top">
@@ -253,7 +264,7 @@ input[type="date"]:focus {
 
                   </div>
                </div>
-
+			
                <div id="right">
 
                   <div class="View">
@@ -316,14 +327,20 @@ input[type="date"]:focus {
            </paginate>
          </template>                        
                         </table> 
-                     </div>       
+                     </div>  
+                         <nav id="ftnav">
+      	<div id="ft"><%@ include file="../page/footer.jsp" %></div>
+      </nav>     
                   </div>
+                  
                </div>
+                  
             </div>
+            
          </div>       
-               
       </div>
-<div><%@ include file="../page/footer.jsp" %></div>  
+ 
+    
 </body>
 </html>
 <script type="text/javascript">
@@ -414,12 +431,14 @@ Vue.component('paginate', VuejsPaginate)
                data : nparmap,
                success : function(data) {                  
                   self.list = data.list;
-
+                  console.log(self.list);
                }
             });
          },
          searchCalender : function(){
             var self = this;
+            console.log(self.startDate);
+            console.log(self.endDate);
             if(self.startDate > self.endDate){
                alert("조회날짜를 다시 확인해주세요.");
                return;
