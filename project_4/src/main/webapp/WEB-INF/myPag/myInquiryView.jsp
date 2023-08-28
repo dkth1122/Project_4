@@ -12,6 +12,14 @@
 	<meta charset="UTF-8">
 	<title>1:1 문의 답변</title>
 	<style type="text/css">
+	    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 	.tit{
 		padding-top: 10px;
 		padding-bottom: 10px;	

@@ -12,6 +12,14 @@
  <meta charset="UTF-8">
 <title>1:1문의 목록</title>
 <style type="text/css">
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #container {
     height: 1055px;
     width: 100%;
@@ -86,35 +94,35 @@ width: 10%;
 					    	
 					    	<div class="topBox">
 					    	
-					    		<div class="details" >
-					    		
-					    			<div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+					    		<div class="details">
+									<div>Order</div>
+			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
-					    			
-					    		</div>
-					    		
-					    		<div class="details" >
-					    		
-					    			<div>교환/환불</div>
-					    			<div>
-					    				<div>
+
+								</div>
+
+								<div class="details">
+
+									<div >교환/환불</div>
+									<div>
+									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
 										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>
-										
+										<span v-else>0 /</span>										
 										<span v-if="exchange != 0"> {{exchange}}</span>
 										<span v-else>0</span>
+									</a>
 									</div>
-					    			</div>
-					    			
-					    		</div>
-					    		<div class="details" >
-					    			<div>포인트</div>
+
+								</div>
+								<div class="details">
+									<div >포인트</div>
+									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
-					    		</div>
+									</a>
+								</div>
 					    	</div>
 					    </div>
 					    	

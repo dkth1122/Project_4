@@ -10,6 +10,14 @@
  <meta charset="UTF-8">
   <title>이용안내</title>
   <style type="text/css">
+      @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
   	#useGuide{
   		margin-top : 150px;
 		width: 1200px;

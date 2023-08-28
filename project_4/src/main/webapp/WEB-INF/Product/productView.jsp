@@ -13,6 +13,14 @@
 <title>상품 상세&구매 페이지</title>
 <%@ include file="../Product/sexyheader.jsp" %>
 <style>
+  .nonMember{
+         font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 	div{
 		display : block;
 	}

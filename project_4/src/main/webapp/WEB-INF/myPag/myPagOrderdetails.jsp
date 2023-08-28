@@ -17,7 +17,14 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="UTF-8">
 <style type="text/css">
-
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #ftnav{
 position: absolute;
 left:0%;
