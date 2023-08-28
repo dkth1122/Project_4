@@ -829,6 +829,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                 type : "POST", 
                 data : nparmap,
                 success : function(data) {
+                	location.href = "payView.do";
                 }
             });
             
@@ -901,9 +902,11 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                          var data = lastData[0];
                          self.fnUseUserPoint();
                      }
+                     for(var i=0; i<self.list.length; i++){
+                    	 var buyNo = arguments[i][0].buyNo;
+                    	 self.fninsertDelivery2(buyNo);
+                     }
                  }
-                     self.buyNo = data.buyNo;
-                     self.fninsertDelivery2();
                      self.fnRemoveCart();
              });
         },
@@ -917,29 +920,27 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    type : "POST", 
                    data : nparmap,
                    success : function(data) { 
-                       location.href = "payView.do"; 
+                    //   location.href = "payView.do"; 
                    }
                });  
             },
-        fninsertDelivery2 : function(){
+        fninsertDelivery2 : function(buyNo){
            var self = this;
-            for(var i = 0; i < self.list.length; i++){
            self.user.uId = self.uId;
            self.user.oNo = self.oNo;
-           self.user.buyNo = self.buyNo;
+           self.user.buyNo = buyNo;
            self.user.uPoint2 = self.usePoint;
 
            var nparmap = self.user;
-               $.ajax({
-                   url : "insertDelivery2.dox",
-                   dataType:"json",      
-                   type : "POST", 
-                   data : nparmap,
-                   success : function(data) { 
-                       location.href = "payView.do"; 
-                   }
-               });  
-            }
+           $.ajax({
+               url : "insertDelivery2.dox",
+               dataType:"json",      
+               type : "POST", 
+               data : nparmap,
+               success : function(data) { 
+               //    location.href = "payView.do"; 
+               }
+           });  
         },//정규식 시작
         validateDname: function() {
             var self = this;
