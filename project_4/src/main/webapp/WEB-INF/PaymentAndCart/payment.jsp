@@ -794,12 +794,13 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                           }
                       });  
                 }
-             			// 사용할 포인트가 가격보다 높은 경우 제한
-             			 if(self.usePoint > self.uPoint){
-             			    alert("소지한 포인트만 사용할 수 있습니다.");
-             			    self.usePoint = self.uPoint;
-             			    return;
-             			 }
+			           // 사용할 포인트가 가격보다 높은 경우 제한
+			              if (parseInt(self.usePoint) > parseInt(self.uPoint)) {
+			                  alert("소지한 포인트만 사용할 수 있습니다.");
+			                  self.usePoint = self.uPoint;
+			                  return;
+			              }
+
              			// 포인트가 소지한 포인트보다 낮은 경우 제한
              			if((self.totalPrice - self.usePoint) < 0){
              				alert("사용 포인트를 확인해주세요, 상품의 값을 초과하여 사용할 수 없습니다.");
