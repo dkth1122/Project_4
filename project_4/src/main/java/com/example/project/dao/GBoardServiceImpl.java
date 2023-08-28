@@ -377,7 +377,11 @@ public class GBoardServiceImpl implements GBoardService{
 		// TODO Auto-generated method stub
 		return gboardMapper.selectMyCommentLikeList(map);
 	}
-
-	
+	//알림 3개 출력
+	@Override
+	public List<GBoard> selectAlram(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return gboardMapper.selectAlram(map);
+	}
 
 }

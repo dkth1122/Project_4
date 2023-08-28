@@ -160,4 +160,6 @@ import com.example.project.model.GBoard;
 		int selectMyCommentCoCommentCnt(HashMap<String, Object> map);
 	    //내 댓글에 좋아요 달린 갯수만
 		int selectMyCommentLikeCnt(HashMap<String, Object> map);
+		//알림 3개 출력
+		List<GBoard> selectAlram(HashMap<String, Object> map);
 	}

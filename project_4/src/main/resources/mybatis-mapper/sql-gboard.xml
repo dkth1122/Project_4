@@ -382,4 +382,12 @@
 	    GROUP BY L.U_ID
 	</select>
 	
+	<select id="selectAlram" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT *
+		FROM T4_GBOARD G 
+		INNER JOIN T4_GBOARD_NOTICE N ON G.G_NO = N.G_NO
+		WHERE G.U_ID = #{uId} AND ARTIST = #{artist}
+		ORDER BY G.G_NO DESC LIMIT 3
+	</select>
+	
 </mapper>

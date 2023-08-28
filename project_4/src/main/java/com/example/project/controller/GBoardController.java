@@ -436,5 +436,14 @@ public class GBoardController {
 			resultMap.put("list", list);
 			return new Gson().toJson(resultMap);
 		}
+		//알림 3개출력
+		@RequestMapping(value = "/gboard/alramList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String alramList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+			HashMap<String, Object> resultMap = new HashMap<String, Object>();
+			List<GBoard> list = gboardService.selectAlram(map);
+			resultMap.put("list", list);
+			return new Gson().toJson(resultMap);
+		}
 
 }
