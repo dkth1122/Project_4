@@ -15,7 +15,8 @@ public interface InquiryMapper {
 	List<Inquiry> selectInquiryList(HashMap<String, Object> map);
 	// 페이징용 카운트
 	int selectCnt(HashMap<String, Object> map);
-	
+	//페이징용 
+	List<Inquiry> selectInquiry(HashMap<String, Object> map);
 	//문의 상세 보기
 	Inquiry selectInquiryInfo(HashMap<String, Object> map);
 	
@@ -34,4 +35,7 @@ public interface InquiryMapper {
 	//마이페이지 1:1문의 첨부파일등록
 	int myPageinsertBoardImg(HashMap<String, Object> map);
 	
+	//1:1문의 페이징카운트
+	int selectCnt2(HashMap<String, Object> map);
+			
 }

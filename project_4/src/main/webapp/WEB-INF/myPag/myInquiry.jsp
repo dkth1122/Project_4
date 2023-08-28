@@ -9,6 +9,9 @@
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <!-- 페이징 추가 1 -->
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
  <meta charset="UTF-8">
 <title>1:1문의 목록</title>
 <style type="text/css">
@@ -21,7 +24,7 @@
        font-family: a타이틀고딕1;
     }
 #container {
-    height: 1055px;
+    height: 1300px;
     width: 100%;
     margin-bottom: 163px;
 }
@@ -70,7 +73,38 @@ width: 10%;
 .addbutton a{
     padding: 12px 24px;
 }
-
+<!-- 페이징 추가 2-->
+	.pagination {
+        margin:24px;
+        display: inline-flex;
+        
+    }
+    ul {
+    }
+	.pagination li {
+	    min-width:32px;
+	    padding:2px 6px;
+	    text-align:center;
+	    margin:0 3px;
+	    border-radius: 6px;
+	    border:1px solid #eee;
+	    color:#666;
+	    display : inline;
+	}
+	.pagination li:hover {
+	    background: #E4DBD6;
+	}
+	.page-item a {
+	    color:#666;
+	    text-decoration: none;
+	}
+	.pagination li.active {
+	    background-color : #E7AA8D;
+	    color:#fff;
+	}
+	.pagination li.active a {
+	    color:#fff;
+	}
 </style>
 </head>
 <body>
@@ -198,12 +232,26 @@ width: 10%;
 					    </div>
 			    
 			  </div>
- 
 </div>
+<!-- 페이징 추가 3 -->
+	<template>
+	  <paginate
+	    :page-count="pageCount"
+	    :page-range="3"
+	    :margin-pages="2"
+	    :click-handler="fnSearch"
+	    :prev-text="'<'"
+	    :next-text="'>'"
+	    :container-class="'pagination'"
+	    :page-class="'page-item'">
+	  </paginate>
+	</template>
  <div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
+<!-- 페이징 추가 4 -->
+Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
     el: '#app',
     data: {
@@ -216,6 +264,10 @@ var app = new Vue({
     	list : [],
     	maxpoint : undefined,
  	    infouser : [],
+ 	   <!-- 페이징 추가 5 -->
+		selectPage: 1,
+		pageCount: 1,
+		cnt : 0
     },
     methods: {
     	fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
@@ -233,7 +285,10 @@ var app = new Vue({
 		},
     	fnGetList : function(){
             var self = this;
-            var nparmap = {uId : self.uId};
+            <!-- 페이징 추가 6 -->
+			var startNum = ((self.selectPage-1) * 10);
+    		var lastNum = 10;
+            var nparmap = {uId : self.uId,startNum : startNum, lastNum : lastNum};
             $.ajax({
                 url : "/mypag/userInquiry.dox",
                 dataType:"json",	
@@ -241,6 +296,9 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.info = data.list; //사용자
+                	self.cnt = data.cnt;
+	                self.pageCount = Math.ceil(self.cnt / 10);
+                	console.log(self.info);
                 }
             }); 
         },	    
@@ -313,6 +371,25 @@ var app = new Vue({
 				}
 			});
 		},
+		<!-- 페이징 추가 7-->
+		fnSearch : function(pageNum){
+			var self = this;
+			self.selectPage = pageNum;
+			var startNum = ((pageNum-1) * 10);
+			var lastNum = 10;
+			var nparmap = {startNum : startNum, lastNum : lastNum};
+			$.ajax({
+				url : "list.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {
+					self.list = data.list;
+					self.cnt = data.cnt;
+					self.pageCount = Math.ceil(self.cnt / 10);
+				}
+			});
+		}
 	   
     },
     created: function() {

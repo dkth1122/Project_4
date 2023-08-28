@@ -72,6 +72,15 @@
 			(#{iNo}, #{path}, #{filename})
 	</insert>
 	
+	<select id="selectInquiry" parameterType="hashmap" resultType="com.example.project.model.Inquiry">
+		SELECT * FROM T4_INQUIRY
+		ORDER BY I_NO DESC
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	<select id="selectCnt2" resultType="int">
+		SELECT COUNT(*) FROM T4_INQUIRY
+	</select>
+	
 	
 	
 </mapper>

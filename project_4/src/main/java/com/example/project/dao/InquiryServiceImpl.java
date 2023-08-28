@@ -62,5 +62,17 @@ public class InquiryServiceImpl implements InquiryService{
 		// TODO Auto-generated method stub
 		return inquiryMapper.searchInquiryList(map);
 	}
+	
+
+	@Override
+	public HashMap<String, Object> selectInquiry(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();		
+		resultMap.put("list", inquiryMapper.selectInquiry(map));
+		resultMap.put("cnt", inquiryMapper.selectCnt2(map));
+		return resultMap;
+	}
+
+	
 
 }

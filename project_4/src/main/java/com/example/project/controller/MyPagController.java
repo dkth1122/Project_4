@@ -304,8 +304,11 @@ public class MyPagController {
 		@ResponseBody
 		public String userInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
-			List<Inquiry> list = inquiryService.searchMypageInquiry(map);
-			resultMap.put("list", list);
+			int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+			int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+			map.put("startNum", startNum);
+			map.put("lastNum", lastNum);
+			resultMap = inquiryService.selectInquiry(map);
 			return new Gson().toJson(resultMap);
 		}
 	//마이페이지 1:1등록

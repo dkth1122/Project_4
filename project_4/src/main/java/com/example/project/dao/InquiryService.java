@@ -24,5 +24,8 @@ public interface InquiryService {
 	
 	//마이페이지 1:1문의 첨부파일등록
 	int addBoardImg(HashMap<String, Object> map);
+	//1:1문의 페이징
+	HashMap<String, Object> selectInquiry(HashMap<String, Object> map);
+	
 		
 }
