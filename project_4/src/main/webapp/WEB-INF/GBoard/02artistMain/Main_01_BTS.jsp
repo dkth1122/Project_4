@@ -14,12 +14,12 @@
 			background-color : white;
 		}
 	    @font-face {
-	    	font-family: "ridibatang";
-	        src: url("../../../font/ridibatang.ttf") format("truetype");
+	    	font-family: "a타이틀고딕1";
+	        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
 	    }
 	    
 	    *{
-	    	font-family: ridibatang;
+	    	font-family: a타이틀고딕1;
 	    }
 	    .artistNewFeed{
 	    	background-color: rgb(230, 230, 255);
@@ -29,7 +29,6 @@
 	    	color: rgb(76, 76, 76);
 	    }
 	    body.dimmed::before{
-		    content: '';
 		    position: fixed;
 		    left: 0;
 		    right: 0;
@@ -41,7 +40,6 @@
 		    z-index: 1000; 
 		}
 		.popup {
-		    z-index: 1001;
 		    overflow: auto;
 		    position: absolute;
 		    top: 50%;
@@ -55,10 +53,11 @@
 		    box-shadow: 0 2px 55px -25px rgb(0 0 0 / 100%);
 		}	
 		.popup > .title{
-		    border-radius: 15px 15px 0 0;
+			text-align:right;
+		    border-radius: 0px 0px 0 0;
 		    min-height: 40px;
 		    color: #fff;
-		    background-color: #b66;
+		    background-color: rgb(230, 230, 255);
 		    padding: 10px 15px;
 		    box-sizing: border-box;
 		    font-weight: bold;
@@ -90,8 +89,22 @@
 		ul, li{
 			list-style: none;
 		}
-		.ulList{
-			border: 1px solid rgb(230, 230, 255);
+		#textArea{
+			width: 500px;
+			height: 100px;
+			margit-left: 100px;
+		}
+		#sectCoList{
+			padding:0px 30px;
+		}
+		#ulCCC{
+			position: relative;
+		}
+		ul{
+			padding: 0px;
+		}
+		#txAreaLast{
+			display: flex;
 		}
 	</style>
 	</head>
@@ -119,13 +132,14 @@
 	    </nav>
 	    <nav id="contents">
 	    <div class="artistNewFeed">
-	        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2">
+	        	<ul class="feedType" v-if="index  < 3 && item.gDelYN != 'Y'" v-for="(item, index) in list2" >
 		            	<li><span style="color: rgb(179, 179, 255);">COMMENT ✉<span>{{item.gcCnt}}</li>
 		                <li>{{item.artist}}</li>
 		            	<li>{{item.nickName}}</li>
-		            	<li>
+		            	<li @click="fnCommentAndOpenPopup(item.gNo)"><a href="#">
 		            		<img :src = "item.gpPath" class="profile-image" v-if="item.gpPath != null && item.gpPath != ''">
 		            		<img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
+		            		</a>
 		            	</li>
 		                <li>{{item.gDate}}</li>
 		                <li @click = "fnComment(item.gNo)">{{ item.gContent.length > 20 ? item.gContent.substring(0, 20) + '...' : item.gContent }}</li>
@@ -142,8 +156,8 @@
 	    </div>
 	    </nav>
 	    <hr>
-	    <div class="container">
-	        <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'">
+	    <div id="container">
+	        <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'" id="ulCCC">
 	        	<li><span style="color: rgb(179, 179, 255);">COMMENT ✉ </span>{{item.gcCnt}}</li>
 	            <li>{{item.artist}}</li>
 		        <li>{{item.nickName}}</li>
@@ -158,25 +172,24 @@
 		            <img v-if="item.path" :src="item.path" class="image" />
 					<img v-else class="imageX" />
 				</li>
-	            <li class="clickThis"><span @click="fnCommentAndOpenPopup(item.gNo, $event)" class="open-popup-button"><a href="javascript:">댓글✉</a></span></li>
-	            <li class="clickThis"><span @click="reportPost(item.gNo)"><a href="javascript:">신고🚨<a></span></li>
+	            <li class="clickThis"><span @click="fnCommentAndOpenPopup(item.gNo, $event)" class="open-popup-button"><a href="#">댓글✉</a></span></li>
+	            <li class="clickThis"><span @click="reportPost(item.gNo)" v-if="item.gArtist != 'Y'"><a href="javascript:">신고🚨<a></span></li>
 	            <li v-if="uId == item.uId || uId =='admin'" class="clickThis">
-	               <div class="clickThis" @click="fnRemove(item)"><span><a href="javascript:">✖</a></span></div>
+	               <div class="clickThis" @click="fnRemove(item)"><span><a href="javascript:">삭제✖</a></span></div>
 	            </li>
 	            <hr>
 	        </ul>
-	    </div>
-	    <hr>
-	    
+	        
+	        
 	    <div class="popup" v-if="flg">
-	        <div class="title">댓글</div>
-	        <div class="cmd">
-	            <input type="button" name="btnclose" class="close-popup-button" value="닫기" @click="CoMove">
+	        <div class="title">
+	            <a href="#"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="CoMove"></i></a>
 	        </div>
+	        <div id="sectCoList">
 			<!-- 게시글 출력 -->
 	        <ul v-for="item in clist">
-	            <li>{{item.artist}}</li>
-	            <li>{{item.nickName}}</li>
+	            <li style="font-weight: bold;" v-if="item.nickName">{{item.nickName}}</li>
+	            <li style="font-weight: bold;" v-else>{{item.uName2}}</li>
 	           	<li>
 	           		<img :src = "item.gpPath" class="profile-image" v-if="item.gpPath">
 	           		<img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
@@ -186,44 +199,41 @@
 	            <li>
 		            <img v-if="item.path" :src="item.path" class="image" />
 		        </li>
-	            <li><span @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gLike}}</span></li>
-	            <li><span @click="reportPost1(item.gNo)"><a href="javascript:">신고🚨<a></span></li>
-	        	<li v-if="uId == item.uId || uId =='admin'" class="clickThis">
-	               <div class="clickThis" @click="CoRemove(item.gcNo)"><span><a href="javascript:">✖</a></span></div>
+	            <li><span class="clickThis"  @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gLike}}</span></li>
+	            <li><span class="clickThis"  @click="reportPost1(item.gNo)" v-if="item.gArtist != 'Y'"><a href="javascript:">신고🚨<a></span></li>
+	        	<li v-if="uId == item.uId || uId =='admin'" >
+	               <span @click="CoRemove(item.gcNo)" ><a href="javascript:">✖</a></span>
 	            </li>
 	        </ul>
 	        <hr>
 			    <div class="write">
-			        <textarea rows="5" cols="30" v-model="comment"></textarea>
-			        <button @click="CommentAdd()">댓글 등록</button>
-			    </div>
+			        <textarea id="textArea" v-model="comment"></textarea>
+			        <div><button @click="CommentAdd()">댓글 등록</button></div>
 	        <hr>
-	        <button @click = "CoReload">새로 고침</button>
+			    </div>
 	        
 	        <!-- 댓글 리스트 출력 -->
-	        <ul v-for="item in commentList" v-if="item.gcDelYN !== 'Y' && commentList.length != 0" class="ulList">
-	            <li>{{item.uId}}</li>
-	            <li>{{item.nickName}}</li>
+	        <ul v-for="item in commentList" v-if="item.gcDelYN !== 'Y' && commentList.length != 0">
+	            <li style="font-weight: bold;" v-if="item.nickName">{{item.nickName}}</li>
+	            <li style="font-weight: bold;" v-else>{{item.uName2}}</li>
 	            <li>
 		            <img v-if="item.gpPath" :src="item.gpPath" class="profile-image" />
 		            <img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
 		        </li>
 	            <li>{{item.gcDate}}</li>
 	            <li>{{item.gcContent}}</li>
-	            <li><span @click="CommnetLike(item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
-	            <li><span @click="reportPost2(item.gcNo)"><a href="javascript:">신고🚨<a></span></li>
-		        <li v-if="item.uId == uId || uId =='admin'">
-		          <a href="javascript:;">
-		          	<div @click="CoRemove(item.gcNo)"><span><a href="javascript:">✖</a></span></div>
-		          </a>
+	            <li><span class="clickThis" @click="CommnetLike(item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
+	            <li><span class="clickThis" @click="reportPost2(item.gcNo)" v-if="item.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
+		          	<span @click="CoRemove(item.gcNo)" v-if="item.uId == uId || uId =='admin'" class="clickThis"><a href="javascript:"> 삭제✖</a></span>
+	            <div><span @click="CoCommentView(item.gNo, item.gcNo)" ><a href="javascript:">댓글✉</a></span><div>
 		        </li>
 	            
 	            <!-- 대댓글 출력 -->
 	            <hr>
-	            
 	            <li>
-	               <ul v-for ="citem in cocommentList" v-if="citem.gcDelYN !== 'Y' && citem.gcGroup == item.gcNo">
-	                  <li>{{citem.nickName}}</li>
+	               <ul v-for ="citem in cocommentList" v-if="citem.gcDelYN != 'Y' && item.gcNo == citem.gcGroup">
+	                  <li style="margin:10px 0px;" v-if="citem.nickName"><i class="fa-solid fa-comments fa-2xl" style="color: #e6e6ff;"></i><span style="margin-left:10px; font-weight: bold;">{{citem.nickName}}</span></li>
+	                  <li style="font-weight: bold;" v-else>{{citem.uName2}}</li>
 	                  <li>
 	                  	<img :src = "citem.gpPath" class="profile-image" v-if="citem.gpPath">
 	                  	<img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
@@ -231,35 +241,27 @@
 	                  <li>{{citem.gcDate}}</li>
 	                  <li>{{citem.gcContent}}</li>   
 	                  <li><span @click="CommnetLike(citem.gcNo, item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{citem.gcLike}}</span></li>
-	                  <li><button @click="reportPost2(citem.gcNo)">신고</button></li>
-	                  <li v-if="citem.uId == uId || uId =='admin'">
+	                  <li><span @click="reportPost2(citem.gcNo)" v-if="citem.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
 	                    <a href="javascript:;">
-	                  	<div @click="CocoRemove(citem.gcNo)"><span><a href="javascript:">✖</a></span></div>
+	                  	<span @click="CocoRemove(citem.gcNo)"  v-if="citem.uId == uId || uId =='admin'"><a href="javascript:"> 삭제✖</a></span>
 	                    </a>
 	                 </li>
 	                 
 	               	<hr>
 	               	
+	               <div id="txAreaLast">
+	             	<textarea rows="5" cols="40" v-model="cocomment" ></textarea>
+	               <button @click="CoComment(citem)" style="margin-left:10px; ">등록</button>
+	               </div>
+	               <hr>
 	               </ul>
-	               <div><button @click="CoReload">닫기</button></div>
-	             	<textarea rows="5" cols="30" v-model="cocomment" ></textarea>
-	               <button @click="CoComment(item)">등록</button>
-	               	
-	               
-	               <!-- 대댓글이 없을 때 -->
-<!-- 	               <ul v-if="cocommentList.length == 0 ">
-		               	<div>등록된 댓글이 없습니다.</div>
-		             	<textarea rows="5" cols="30" v-model="cocomment" ></textarea>
-		               	<button @click="CoComment(item)">등록</button>
-		               <div><button @click="CoReload" >닫기</button></div>
-	               </ul> -->
-	            </li>
-	        <hr>
+	       	 <hr>
 	        </ul>
-	        <div class="cmd">
-	            <input type="button" name="btnclose" class="button" value="닫기" @click="CoMove">
 	        </div>
 	        </div>
+	    </div>
+	    <hr>
+	    
 	    </div>
 	</body>
 	</html>
@@ -285,12 +287,14 @@
 	        comment: "",
 	        commentList : [],
 	        gNo : "",
+	        gcNo : "",
 	        cocomment : "",
 	        cocommentList : [],
 	        reload : false,
 	        selectedReason: "",
 	        otherReason: "",
 	        flg : false,
+	       
 	            
 	    },// data
 	    methods: {
@@ -419,7 +423,6 @@
 	                type: "POST",
 	                data: nparmap,
 	                success: function (data) {
-	                	console.log(data);
 	                	self.fnGetList();
 	                }
 	            });
@@ -459,11 +462,7 @@
 	        	 var self = this;
 	             self.GetCoList(gNo);
 	             self.GetComments(gNo);
-	             self.CoCommentView(gNo);
 	             self.flg = !self.flg;
-	             self.openPopupCentered(event);
-	             // 마우스 클릭 시 이벤트 리스너 등록
-	             document.addEventListener('click', self.clickEventHandler);
 	             
 	         }, GetCoList: function(gNo) {
 	             var self = this;
@@ -555,9 +554,9 @@
 	                }
 	            });
 	            
-	        }, CoCommentView : function(gcNo) {
+	        }, CoCommentView : function(gNo, gcNo) {
 	            var self = this;
-	            var nparmap = { gcNo: gcNo,  artist: self.artist };
+	            var nparmap = { gNo : gNo, gcNo: gcNo,  artist: self.artist };
 	            $.ajax({
 	                url: "cocommentList.dox",
 	                dataType: "json",
@@ -565,7 +564,6 @@
 	                data: nparmap,
 	                success: function (data) {
 	                    self.cocommentList = data.cocommentList;
-	                    console.log("대댓글 ==>", self.cocommentList);
 	                }
 	            });
 	            
@@ -579,7 +577,9 @@
 	                type: "POST",
 	                data: nparmap,
 	                success: function (data) {
-	                	self.CoCommentView();
+	                	alert("댓글 작성 완료");
+	                	self.CoCommentView(gNo, gcNo);
+	                	window.location.reload(); 
 	                }
 	            });
 	            
@@ -601,9 +601,6 @@
 	                   self.CoCommentView();
 	                }
 	            });
-	        }, CoReload : function(){
-	           alert("새로고침");
-	           
 	        }, reportPost1 : function(gNo) {
 	            var self = this;
 	            self.selectedReason = ""; // 초기화
@@ -626,30 +623,6 @@
 	            var url = "report2.do?gcNo=" + gcNo + "&uId=" + self.uId;
 	            window.open(url, "gcNo", option);
 	       
-	        }, openPopupCentered: function(event) {
-	            var popup = document.querySelector('.popup');
-	            var offsetX = event.clientX - popup.clientWidth / 2;
-	            var offsetY = event.clientY - popup.clientHeight / 2;
-	            
-	            // 버튼의 위치를 고려하여 수정된 위치 계산
-	            var buttonOffsetY = event.target.getBoundingClientRect().top;
-	            var finalOffsetY = buttonOffsetY + offsetY;
-	
-	            popup.style.left = offsetX + 'px';
-	            popup.style.top = finalOffsetY + 'px';
-	            popup.style.display = 'block';
-	        
-	        },closePopup: function() {
-	        	var popup = document.querySelector('.popup');
-	            popup.style.display = 'none';
-	        
-	        }, clickEventHandler: function(event) {
-	        	var target = event.target;
-	            if (target.classList.contains('open-popup-button')) {
-	                this.openPopup(event);
-	            } else if (target.classList.contains('close-popup-button')) {
-	                this.closePopup();
-	            }
 	        }
 	    },
 	    created: function() {
