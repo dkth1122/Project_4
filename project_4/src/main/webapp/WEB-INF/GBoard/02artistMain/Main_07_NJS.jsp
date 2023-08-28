@@ -86,56 +86,6 @@
           border-color: #000;
       }
       
-      
-      
-      
-       .popup2 {
-          overflow: auto;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%,-50%);
-          min-width: 600px;
-          max-width: 800px;
-          max-height: 600px; /* 최대 높이 설정 */
-          background-color: #fff;
-          border-radius: 15px;
-          box-shadow: 0 2px 55px -25px rgb(0 0 0 / 100%);
-      }   
-      .popup2 > .title{
-         text-align:right;
-          border-radius: 0px 0px 0 0;
-          min-height: 40px;
-          color: #fff;
-          background-color: rgb(230, 230, 255);
-          padding: 10px 15px;
-          box-sizing: border-box;
-          font-weight: bold;
-      }
-      .popup2 > .content {
-          padding: 20px;
-          box-sizing: border-box;
-      }
-      .popup2 > .cmd {
-          bottom: 0;
-          min-height: 40px;
-          padding: 15px 15px;
-          box-sizing: border-box;
-          border-radius: 0 0 15px 15px;
-          min-height: 40px;
-          text-align: right;
-      }
-      .popup2 > .cmd .button {
-          border-radius: 8px;
-          padding: 5px 10px;
-          border: 1px solid #aaa;
-      }
-      .popup2 > .cmd .button:hover {
-          color: #fff;
-          background-color: #000;
-          border-color: #000;
-      }
-      
       ul, li{
          list-style: none;
       }
@@ -156,6 +106,13 @@
       #txAreaLast{
          display: flex;
       }
+      .closeButton{
+      	float: right;
+      	background-color:rgb(255, 221, 240);
+      }
+      #report{
+      	
+      }
    </style>
    </head>
    <body :class="{ dimmed: flg }">
@@ -170,7 +127,7 @@
             <div class="btn">
                 <button @click="fnMove">back</button>
                 <button @click="fnMove('my')">mypage</button>
-                <button @click="fnCommentAndOpenPopup2">알람</button>
+                <button >알람</button>
                </div> 
           
                <label>  
@@ -250,9 +207,9 @@
                   <img v-if="item.path" :src="item.path" class="image" />
               </li>
                <li><span class="clickThis"  @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gLike}}</span></li>
-               <li><span class="clickThis"  @click="reportPost1(item.gNo)" v-if="item.gArtist != 'Y'"><a href="javascript:">신고🚨<a></span></li>
-              <li v-if="uId == item.uId || uId =='admin'" >
-                  <span @click="CoRemove(item.gcNo)" ><a href="javascript:">✖</a></span>
+               <li>
+               		<span class="clickThis"  @click="reportPost1(item.gNo)" v-if="item.gArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
+                  	 <div class="clickThis" @click="CoRemove(item.gcNo)" v-if="uId == item.uId || uId =='admin'"><span><a href="javascript:">삭제✖</a></span></div>
                </li>
            </ul>
            <hr>
@@ -274,8 +231,8 @@
                <li>{{item.gcContent}}</li>
                <li><span class="clickThis" @click="CommnetLike(item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
                <li><span class="clickThis" @click="reportPost2(item.gcNo)" v-if="item.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
-                   <span @click="CoRemove(item.gcNo)" v-if="item.uId == uId || uId =='admin'" class="clickThis"><a href="javascript:"> 삭제✖</a></span>
-               <div><span @click="CoCommentView(item.gNo, item.gcNo)" ><a href="javascript:">댓글✉</a></span><div>
+           			<div class="clickThis" @click="CoRemove(item.gcNo)" v-if="uId == item.uId || uId =='admin'"><span><a href="javascript:">삭제✖</a></span></div>
+               <div><span @click="CoCoBefore(item.gNo, item.gcNo)" ><a href="javascript:">댓글✉</a></span><div>
               </li>
                
                <!-- 대댓글 출력 -->
@@ -291,101 +248,28 @@
                      <li>{{citem.gcDate}}</li>
                      <li>{{citem.gcContent}}</li>   
                      <li><span @click="CommnetLike(citem.gcNo, item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{citem.gcLike}}</span></li>
-                     <li><span @click="reportPost2(citem.gcNo)" v-if="citem.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
-                       <a href="javascript:;">
-                        <span @click="CocoRemove(citem.gcNo)"  v-if="citem.uId == uId || uId =='admin'"><a href="javascript:"> 삭제✖</a></span>
-                       </a>
-                    </li>
-                    
-                     <hr>
-                     
-                  <div id="txAreaLast">
-                   <textarea rows="5" cols="40" v-model="cocomment" ></textarea>
-                  <button @click="CoComment(citem)" style="margin-left:10px; ">등록</button>
-                  </div>
-                  <hr>
-                  </ul>
-              <hr>
-           </ul>
-           </div>
-           </div>
-           
-           <div class="popup2" v-if="flg2">
-           <div class="title">
-               <a href="#"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="CoMove"></i></a>
-           </div>
-           <div id="sectCoList">
-         <!-- 게시글 출력 -->
-           <ul v-for="item in alram">
-               <li style="font-weight: bold;" v-if="item.artist">{{item.artist}}</li>
-               <li style="font-weight: bold;" v-else>{{item.noMessage}}</li>
-                 <li>
-                    <img :src = "item.gpPath" class="profile-image" v-if="item.gpPath">
-                    <img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
-                 </li>
-               <li>{{item.gDate}}</li>
-               <li>{{item.gContent}}</li>
-               <li>
-                  <img v-if="item.path" :src="item.path" class="image" />
-              </li>
-               <li><span class="clickThis"  @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gLike}}</span></li>
-               <li><span class="clickThis"  @click="reportPost1(item.gNo)" v-if="item.gArtist != 'Y'"><a href="javascript:">신고🚨<a></span></li>
-              <li v-if="uId == item.uId || uId =='admin'" >
-                  <span @click="CoRemove(item.gcNo)" ><a href="javascript:">✖</a></span>
-               </li>
-           </ul>
-           <hr>
-             <div class="write">
-                 <textarea id="textArea" v-model="comment"></textarea>
-                 <div><button @click="CommentAdd()">댓글 등록</button></div>
-           <hr>
-             </div>
-           
-           <!-- 댓글 리스트 출력 -->
-           <ul v-for="item in commentList" v-if="item.gcDelYN !== 'Y' && commentList.length != 0">
-               <li style="font-weight: bold;" v-if="item.nickName">{{item.nickName}}</li>
-               <li style="font-weight: bold;" v-else>{{item.uName2}}</li>
-               <li>
-                  <img v-if="item.gpPath" :src="item.gpPath" class="profile-image" />
-                  <img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
-              </li>
-               <li>{{item.gcDate}}</li>
-               <li>{{item.gcContent}}</li>
-               <li><span class="clickThis" @click="CommnetLike(item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
-               <li><span class="clickThis" @click="reportPost2(item.gcNo)" v-if="item.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
-                   <span @click="CoRemove(item.gcNo)" v-if="item.uId == uId || uId =='admin'" class="clickThis"><a href="javascript:"> 삭제✖</a></span>
-               <div><span @click="CoCommentView(item.gNo, item.gcNo)" ><a href="javascript:">댓글✉</a></span><div>
-              </li>
-               
-               <!-- 대댓글 출력 -->
-               <hr>
-               <li>
-                  <ul v-for ="citem in cocommentList" v-if="citem.gcDelYN != 'Y' && item.gcNo == citem.gcGroup">
-                     <li style="margin:10px 0px;" v-if="citem.nickName"><i class="fa-solid fa-comments fa-2xl" style="color: #e6e6ff;"></i><span style="margin-left:10px; font-weight: bold;">{{citem.nickName}}</span></li>
-                     <li style="font-weight: bold;" v-else>{{citem.uName2}}</li>
                      <li>
-                        <img :src = "citem.gpPath" class="profile-image" v-if="citem.gpPath">
-                        <img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
-                     </li>
-                     <li>{{citem.gcDate}}</li>
-                     <li>{{citem.gcContent}}</li>   
-                     <li><span @click="CommnetLike(citem.gcNo, item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{citem.gcLike}}</span></li>
-                     <li><span @click="reportPost2(citem.gcNo)" v-if="citem.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
-                       <a href="javascript:;">
-                        <span @click="CocoRemove(citem.gcNo)"  v-if="citem.uId == uId || uId =='admin'"><a href="javascript:"> 삭제✖</a></span>
-                       </a>
+                     	<span @click="reportPost2(citem.gcNo)" v-if="citem.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
+                        <div class="clickThis" @click="CocoRemove(citem.gcNo)" v-if="uId == citem.uId || uId =='admin'"><span><a href="javascript:">삭제✖</a></span></div>
                     </li>
                     
-                     <hr>
-                     
-                  <div id="txAreaLast">
-                   <textarea rows="5" cols="40" v-model="cocomment" ></textarea>
-                  <button @click="CoComment(citem)" style="margin-left:10px; ">등록</button>
-                  </div>
                   <hr>
-                  </ul>
+                     
+                  <div id="txAreaLast" v-if="cocommentList.length != 0">
+	                  <textarea rows="5" cols="40" v-model="cocomment" ></textarea>
+	                  <button @click="CoComment" style="margin-left:10px; ">등록</button>
+                  </div>
+                 </ul>
+                 
+                  <div id="txAreaLast" v-if="cocommentList.length == 0" >
+	                  <textarea rows="5" cols="40" v-model="cocomment" ></textarea>
+	                  <button @click="CoComment" style="margin-left:10px; ">등록</button>
+                  </div>
+                  
               <hr>
            </ul>
+	            	<input type="button" name="btnclose" class="closeButton" value="닫기" @click="CoMove">
+           </div>
            </div>
            </div>
        </div>
@@ -395,6 +279,8 @@
    </body>
    </html>
    <script>
+   
+   
    var app = new Vue({
        el: '#app',
        data: {
@@ -421,8 +307,6 @@
            selectedReason: "",
            otherReason: "",
            flg : false,
-           flg2 : false,
-           alram : []
           
                
        },// data
@@ -556,23 +440,23 @@
                    }
                });
            },  reportPost : function(gNo) {
-                  var self = this;
-                  self.selectedReason = ""; 
-                  self.otherReason = "";
-                  self.reportDescription = ""; 
-                  self.showReportModal = true;
-                  
-                  var popupWidth = 600; // 팝업의 너비
-                  var popupHeight = 200; // 팝업의 높이
-                  var screenWidth = window.innerWidth; // 브라우저의 너비
-                  var screenHeight = window.innerHeight; // 브라우저의 높이
-                  
-                  var left = (screenWidth - popupWidth) / 2; // 팝업의 왼쪽 위치 계산
-                  var top = (screenHeight - popupHeight) / 2; // 팝업의 상단 위치 계산
-                  
-                  var option = "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top;
-                  var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
-                  window.open(url, "gNo", option);
+        	   var self = this;
+        	    self.selectedReason = ""; 
+        	    self.otherReason = "";
+        	    self.reportDescription = ""; 
+        	    self.showReportModal = true;
+
+        	    var popupWidth = 600; // 팝업의 너비
+        	    var popupHeight = 200; // 팝업의 높이
+        	    var screenWidth = window.innerWidth; // 브라우저의 너비
+        	    var screenHeight = window.innerHeight; // 브라우저의 높이
+
+        	    var left = (screenWidth - popupWidth) / 2; // 팝업의 왼쪽 위치 계산
+        	    var top = (screenHeight - popupHeight) / 2; // 팝업의 상단 위치 계산
+
+        	    var option = "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top;
+        	    var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
+        	    window.open(url, "gNo", option);
                
              }, handleFileChange: function(event) {
                  var self = this;
@@ -593,25 +477,7 @@
                 self.GetComments(gNo);
                 self.flg = !self.flg;
                 
-            }, fnCommentAndOpenPopup2: function() {
-                var self = this;              
-                self.flg2 = !self.flg2;                                
-                var nparmap = {artist : self.artist, uId : self.uId};
-                console.log(nparmap);
-                $.ajax({
-                    url: "/gboard/alramList.dox",
-                    dataType: "json",
-                    type: "POST",
-                    data: nparmap,
-                    success: function (data) {
-                    	self.alram = data.list;
-                    	console.log(self.alram);
-                    	
-                       
-                       self.fnGetList();
-                    }
-                });
-            },GetCoList: function(gNo) {
+            }, GetCoList: function(gNo) {
                 var self = this;
                 self.gNo = gNo;
                 var nparmap = { artist: self.artist, gNo : gNo };
@@ -660,7 +526,7 @@
                if (!confirm("삭제하시겠어요?")) {
                    return;
                }
-               var nparmap = { gcNo: gcNo };
+               var nparmap = {gcNo: gcNo};
                $.ajax({
                    url: "commentRemove.dox",
                    dataType: "json",
@@ -668,7 +534,7 @@
                    data: nparmap,
                    success: function (data) {
                        alert("삭제되었습니다.");
-                       self.fnGetComments();
+                       window.location.reload();
                    }
                });
            }, CoMove: function () {
@@ -701,9 +567,18 @@
                    }
                });
                
-           }, CoCommentView : function(gNo, gcNo) {
+           }, CoCoBefore : function(gNo,gcNo){
+        	   var self = this;
+        	   self.gNo = gNo;
+        	   self.gcNo = gcNo;
+        	   console.log("self.gNo === ", self.gNo);
+        	   console.log("self.gcNo === ", self.gcNo);
+        	   self.CoCommentView();
+        	   
+           }, CoCommentView : function() {
                var self = this;
-               var nparmap = { gNo : gNo, gcNo: gcNo,  artist: self.artist };
+               var nparmap = { gNo : self.gNo, gcNo: self.gcNo,  artist: self.artist };
+               console.log("대댓글 파람값 ==> ", nparmap);
                $.ajax({
                    url: "cocommentList.dox",
                    dataType: "json",
@@ -711,12 +586,13 @@
                    data: nparmap,
                    success: function (data) {
                        self.cocommentList = data.cocommentList;
+                       console.log("대댓글========>", self.cocommentList);
                    }
                });
                
-           }, CoComment: function(item) {
+           }, CoComment: function() {
                var self = this;
-               var nparmap = { artist: self.artist, gcNo: item.gcNo, uId: self.uId, cocomment: self.cocomment, gNo:item.gNo };
+               var nparmap = { artist: self.artist, gcNo: self.gcNo, uId: self.uId, cocomment: self.cocomment, gNo:self.gNo };
                
                $.ajax({
                    url: "addCocomment.dox",
@@ -725,8 +601,9 @@
                    data: nparmap,
                    success: function (data) {
                       alert("댓글 작성 완료");
-                      self.CoCommentView(gNo, gcNo);
-                      window.location.reload(); 
+                      self.cocomment = "";
+                      self.CoCommentView();
+                      /* window.location.reload();  */
                    }
                });
                
@@ -755,7 +632,7 @@
                self.reportDescription = ""; // 초기화
                self.showReportModal = true;
                
-               var option = "width=auto,height=auto,top=100,right";
+               var option = "width=600,height=200,top=100,right";
                var url = "report.do?gNo=" + gNo + "&uId=" + self.uId;
                window.open(url, "gNo", option);
              
@@ -766,7 +643,7 @@
                self.reportDescription = ""; // 초기화
                self.showReportModal = true;
                
-               var option = "width=700,height=500,top=100,right";
+               var option = "width=600,height=200,top=100,right";
                var url = "report2.do?gcNo=" + gcNo + "&uId=" + self.uId;
                window.open(url, "gcNo", option);
           
@@ -779,11 +656,6 @@
               location.href = "main.do";
            }
            self.fnGetList();
-       },
-       destroyed: function() {
-          var self = this;
-           // 컴포넌트가 소멸될 때 이벤트 리스너 제거
-           document.removeEventListener('click', self.clickEventHandler);
        }
    });
    </script>
