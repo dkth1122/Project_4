@@ -60,10 +60,10 @@ h3{
 			<i class="fa-regular fa-face-smile" id="smile"></i>
 			<h3>주문이 완료되었습니다!</h3>
 				<div class="idpw">	
-					<div><label>상품명  <span><input :value="list[0] ? list[0].pNo : ''" readonly></span></label></div>
-					<div><label>주문번호  <span><input :value="list[0] ? list[0].oNo : ''" readonly></span></label></div>					
-					<div><label>결제금액  <span><input :value="list[0] ? numberWithCommas(list[0].payment) : ''" readonly></span></label></div>
-					<div><label>주문일자  <span><input :value="list[0] ? list[0].oDate : ''" readonly></span></label></div>
+					<div><label>상품명  <span><input :value="list ? list.pNo : ''" readonly></span></label></div>
+					<div><label>주문번호  <span><input :value="list ? list.oNo : ''" readonly></span></label></div>					
+					<div><label>결제금액  <span><input :value="list ? numberWithCommas(list.payment) : ''" readonly></span></label></div>
+					<div><label>주문일자  <span><input :value="list ? list.oDate : ''" readonly></span></label></div>
 				</div>
 				<div class="notiti">주문번호는 비회원 주문조회시 필수이므로<p>캡처나 따로 저장하시는걸 권장드립니다.</p></div>
 				
@@ -83,31 +83,44 @@ var app = new Vue({
 		uId : "${map.uId}",
 		oNo : "${map.oNo}",
 		list : [],
-		pNo: ""
+		pNo:"",
+		price:"",
+		oDate:""
+		
 	},// data
 	methods : {
 		 fnGetList : function(){
              var self = this;
              var nparmap = {oNo : self.oNo};        
              $.ajax({
-                 url : "/mypag/NonOrderList.dox",
+                 url : "/user3.dox",
                  dataType:"json",   
                  type : "POST", 
                  data : nparmap,
-                 success : function(data) { 
-                    self.list = data.list;
-                    self.pNo = self.list.pNo;
-                    console.log("리스트 ==>",self.list);
-                 }
+                 success: function(data) { 
+                	    self.list = data.nonOrder;
+                	    if (self.list) {
+                	        self.pNo = self.list.pNo;
+                	        self.price = self.list.price;
+                	        self.oDate = self.list.oDate;
+                	    }
+                	    console.log("리스트 ==>", self.list);
+                	    console.log("nonOrder ==>", data.nonOrder);
+                	}
+
              }); 
         },
 	   	goToMain : function(){
 	   		var self = this;
-               		$.pageChange("../home.do", {uId : self.uId});
+               		location.href = "/user/login.do";
         },
-        numberWithCommas : function(number) {
+        numberWithCommas: function(number) {
+            if (number === undefined) {
+                return ''; // Return an empty string if the number is undefined
+            }
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
+
 	}, // methods
 	created : function() {
 		 var self = this;

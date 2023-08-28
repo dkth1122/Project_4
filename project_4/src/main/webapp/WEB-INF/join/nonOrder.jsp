@@ -76,8 +76,7 @@ var app = new Vue({
                 success : function(data) {
                 	console.log(data.list);
                 	if(data.list != undefined){                		
-                		$.pageChange("nonOrderView.do", {oNo : self.nmNo});
-                  		
+                		$.pageChange("nonOrderView.do", {oNo : self.nmNo});                  		
                 	} else {
                 		alert("존재하는 정보가 없습니다.");
                 	}

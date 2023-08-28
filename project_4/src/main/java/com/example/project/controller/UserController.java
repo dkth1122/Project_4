@@ -95,7 +95,7 @@ public class UserController {
 	}
 	@RequestMapping(value = "/user3.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String viewNonOrder(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String viewNonOrdernonOrder(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		User nonOrder = userService.searchNonOrderNo(map);
 		resultMap.put("nonOrder", nonOrder);

@@ -162,7 +162,7 @@
 		VALUES (#{oNo}, #{userPointAdd}, NOW());
 	</insert>
 	
-	<!-- 비회원 주문내역 조회 -->
+	<!-- 비회원 주문내역 조회  -->
 	<select id="selectNonOrderList" parameterType="hashmap" resultType="com.example.project.model.Order">
 		SELECT *
 		FROM T4_ORDER O
