@@ -40,22 +40,28 @@
 <div id="app">
     
     <div class="container">
-        <ul v-for="item in list" v-if="item.noRead != 'Y'">
-            <li>{{item.noMessage}}  <a href="#" class="aa"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="fnAlarmRemove"></i></a></li>
+    
+    	<!-- 게시글 최신 알람 1개 -->
+        <ul v-for="item in list" v-if="item.noRead != 'Y' && flg1">
+            <li @click="fnMove(item.gNo, 'a')">{{item.noMessage}}  <a href="#" class="aa"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="fnAlarmRemove('a')"></i></a></li>
         </ul>
         
-        <ul v-for="item in list2" v-if="item.cNoRead != 'Y'">
-            <li>{{item.cNoMessage}}  <a href="#" class="aa"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="fnAlarmRemove"></i></a></li>
+        <!-- 댓글 최신 알람 1개 -->
+        <ul v-for="item in list2" v-if="item.cNoRead != 'Y' && flg2" >
+            <li @click="fnMove(item.gNo, 'b')">{{item.cNoMessage}}  <a href="#" class="aa"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="fnAlarmRemove('b')"></i></a></li>
         </ul>
       
-      	<ul v-for="item in list3" v-if="item.noRead != 'Y'">
-            <li>{{item.noMessage}}  <a href="#" class="aa"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="fnAlarmRemove"></i></a></li>
+      	<!-- 아티스트 최신 게시글 알람 1개 -->
+      	<ul v-for="item in list3" v-if="item.noRead != 'Y' && flg3">
+            <li @click="fnMove(item.gNo, 'a')">{{item.noMessage}}  <a href="#" class="aa"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="fnAlarmRemove('c')"></i></a></li>
         </ul>
         
-        <ul v-for="item in list4" v-if="item.cNoRead != 'Y'">
-            <li>{{item.cNoMessage}}  <a href="#" class="aa"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="fnAlarmRemove"></i></a></li>
+        <!-- 아티스트 최신 댓글 알람 1개 -->
+        <ul v-for="item in list4" v-if="item.cNoRead != 'Y' && flg4">
+            <li @click="fnMove(item.gNo, 'b')">{{item.cNoMessage}}  <a href="#" class="aa"><i class="fa-solid fa-xmark" style="color: #f20707;" @click="fnAlarmRemove('d')"></i></a></li>
         </ul>
-      
+        
+      	<button @click="fnAlarmRemove('all')" style="float:right;">모두 삭제</button>
       </div>  
         
 </div>
@@ -71,6 +77,10 @@ var app = new Vue({
         list4 : [],
         uId: "${sessionId}",
         artist: "${map.artist}",
+        flg1 : true,
+        flg2 : true,
+        flg3 : true,
+        flg4 : true,
     },// data
     methods: {
         fnGetList: function () {
@@ -90,16 +100,40 @@ var app = new Vue({
                      console.log("여기 댓글 리스트===>",self.list2);
                  }
              });
-         },fnAlarmRemove : function(){
+         },fnAlarmRemove : function(check){
+        	 var self = this;
+        	 if(check == 'a'){
+				self.flg1 = false;        		 
+        	 }else if (check == 'b'){
+				self.flg2 = false;        		 
+        	 }else if (check == 'c'){
+				self.flg3 = false;        		 
+        	 }else if (check == 'd'){
+				self.flg4 = false;        		 
+        	 }else if (check == 'all'){
+        		 self.flg1 = false;   
+        		 self.flg2 = false; 
+        		 self.flg3 = false;  
+        		 self.flg4 = false;
+        	 }
         	 
-        	 
-         },fnMove : function(num){
-
-			if(1){
-				
-			}
-        	 param = {}
-     		$.pageChange("/payment/nonmemberpayment.do", param);
+         }, fnMove : function(num, check){
+        	 var self = this;
+        	 var param = {}
+             var width = 700;
+             var height = 500;
+             var left = (window.innerWidth - width) / 2;
+             var top = (window.innerHeight - height) / 2;
+             var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
+             
+             if(check == 'a'){
+		         var url = "view.do?gNo=" + num;
+		         window.open(url, "gNo", option);
+             }
+             else{
+    	         var url = "view.do?gNo=" + num;
+    	         window.open(url, "gNo", option);
+             }
         	 
          }
         
