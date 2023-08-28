@@ -28,6 +28,7 @@
 	height : 100px;
 }
 .button {
+    margin: 5px 0px;
 	  display: inline-block;
 	  padding: 5px 10px;
 	  font-size: 13px;

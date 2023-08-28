@@ -54,12 +54,22 @@
         margin-right: 20px;
      }
      #editbut{
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
+            margin: 5px;
+		    width: 73px;
+		    height: 33px;
+		    border-radius: 25px;
+		    background-color: #fff;
      }
+      #editbut:hover{
+       background-color: #d4d5d9;
+      }
 
-
+#editbut a{
+	padding: 8px;
+}
+.i{
+	padding: 20px;
+}
   </style>
   <title>배송 주소록</title>
   
@@ -162,7 +172,7 @@
                                  <div> 
                                     <table>
                                        <tr>
-                                          <th>　</th>
+                                          
                                           <th>No.</th>
                                           <th>배송지</th>
                                           <th>주소</th>
@@ -170,18 +180,22 @@
                                           <th>배송지 관리</th>
                                        </tr>
                                        <tr v-for = "(item, index) in info">
-                                          <td><input type="radio" v-model="duNo" :value="item.duNo"></td>
+                                          
                                           <td>{{index + 1}}</td>
                                           <td>{{item.uDname}}</td>
                                           <td>{{item.uDaddr}} {{item.uDaddrDetail}}</td>
                                           <td>{{item.uDphone}}</td>
-                                          <td><button @click="editAddr(item)" id="editbut"><a href="http://localhost:8082/mypag/editAddr.do"> 수정</a></button></td>
+                                          <td>
+                                          <button class="button" @click="editAddr(item)" id="editbut"><a href="javascript:;"> 수정</a></button>
+                                          <br><button class="button" @click="removeAddr(item.duNo)" id="editbut"><a href="javascript:;"> 삭제</a></button>
+                                          
+                                          </td>
                                        </tr>
                                     </table>
                                     <div class="tablebutton">
                                        <div class="button">
-                                          <button id="eid" @click="removeAddr(duNo)">선택 주소록 삭제</button>
-                                          <button id="remo" @click="addAddr">배송지 등록</button>
+                                          <button id="eid" @click="fnremoveaddr"><a class="i" href="javascript:;">주소 전체 삭제</a></button>
+                                          <button id="remo" @click="addAddr"><a class="i" href="javascript:;" style="color: #fff;">배송지 등록</a></button>
                                        </div>
                                     </div>
                                  </div>
@@ -216,6 +230,22 @@ var app = new Vue({
        
     },
     methods: {
+    	fnremoveaddr : function(){
+    		var self = this;
+    		if(!confirm("전체주소를 삭제하시겠습니까?")){
+                return;
+             }
+            var nparmap = {uId : self.uId};            
+            $.ajax({
+               url : "/addrAllDelete.dox",
+               dataType : "json",
+               type : "POST",
+               data : nparmap,
+               success : function(data) {                  
+            	   self.fnGetList();
+               }
+            });    		
+    	},
        fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
          var self = this;
          var nparmap = {uId : self.uId};            
@@ -268,12 +298,12 @@ var app = new Vue({
           var self = this;
           $.pageChange("myInquiry.do", {uId : self.uId});
        },
-        removeAddr : function(duNo){
+        removeAddr : function(duNo){ // 주소삭제
            var self = this;
            if(!confirm("선택주소를 삭제하시겠습니까?")){
               return;
            }
-            var nparmap = {duNo : self.duNo};
+            var nparmap = {duNo : duNo};
             $.ajax({
                 url : "deleteAddr.dox",
                 dataType:"json",   

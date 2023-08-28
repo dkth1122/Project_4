@@ -189,6 +189,16 @@ public class UserController {
 		userService.removeUser(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+	
+	@RequestMapping(value = "/addrAllDelete.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addrAllDelete(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		userService.addrAllDelete(map);
+		return new Gson().toJson(resultMap);
+	}
+	
 	@RequestMapping(value = "/meme/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

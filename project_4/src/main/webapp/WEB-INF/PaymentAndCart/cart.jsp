@@ -200,6 +200,7 @@ select{
 td{
 	height: 200px;
 }
+
 #baybutton{
 	width: 1500px;
 	margin: 30px auto;
@@ -260,6 +261,11 @@ padding-right: 0xp;
     color: inherit;
     cursor: pointer;
 }
+#editbutt{
+	padding: 23px 126px;
+	font-size: 1.3em;
+	color: #fff;
+}
 </style>
 </head>
 <body>
@@ -281,12 +287,15 @@ padding-right: 0xp;
 						<td class="a"><button class="button11" @click="productDetail(item)"><img :src="item.path" class="pImg"></button></td>
 						<td class="b">{{item.pName}}</td>					
 						<td class="c">
-							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
+							
+						</td>
+						<td class="c">
+						 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
 							  <input :value="item.cnt" @input="updateItemCnt(item)" readonly>							
 							 <a href="#none" @click="increaseCnt(item)"> <i class="fa-solid fa-plus"></i> </a>
+							 <br><button style="margin-top:20px;" @click="fnCartChange(item)"><a href="javascript:;">수정</a></button>
 						</td>
-						<td class="c"><button @click="fnCartChange(item)">수정</button></td>
-						<td class="c"><button @click ="fnRemoveCart(item.pNo)">삭제</button></td>
+						<td class="c"><button @click ="fnRemoveCart(item.pNo)"><a href="javascript:;">삭제</a></button></td>
 						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
 						
 					</tr>
@@ -305,7 +314,7 @@ padding-right: 0xp;
 				</div>
 					
 				<div id="baybutton">
-					<button @click="fnPay">결제하기</button> 
+					<button @click="fnPay"><a id="editbutt" href="javascript:;">결제하기</a></button> 
 				</div>
 		</div>	
 	</div>

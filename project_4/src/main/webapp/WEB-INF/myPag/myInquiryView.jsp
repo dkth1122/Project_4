@@ -41,6 +41,9 @@
 	#rr{/*목록 버튼 상위 di  */
 		text-align: right;
 	}
+	#목록 a{ 
+		padding: 8px 17px;
+	}
 	</style>
 </head>
 <body>
@@ -162,7 +165,7 @@
 								    	  		<img :src="item.path">
 								    	  	</div>					
 							    	  <div>
-							    	  	<div id="rr"><button id="목록" @click="fnList">목록</button></div>
+							    	  	<div id="rr"><button id="목록" @click="fnList"><a href="#">목록</a></button></div>
 							    	  </div>
 							     </div> 
 							     

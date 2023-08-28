@@ -123,5 +123,11 @@ public class UserServiceImpl implements UserService{
 		resultMap.put("cnt", userMapper.selectOrderListPageCnt2(map));
 		return resultMap;
 	}
+	// 주소 전체 제거
+	@Override
+	public int addrAllDelete(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.addrAllDelete(map);
+	}
 	
 }

@@ -59,6 +59,9 @@ width: 10%;
 	border-color: rgb( 0 , 0, 0 , 0.5);
 	background-color: #fff;
 }
+.addbutton a{
+    padding: 12px 24px;
+}
 
 </style>
 </head>
@@ -178,7 +181,7 @@ width: 10%;
 							    	  		
 							    	  	</div>
 							    	  	<div v-if="info.length == 0" class="nodata"> 검색결과가 없습니다</div>
-							    	  	<div class="addbutton"><button @click="addBoard"><a href="http://localhost:8082/mypag/myAddInquiry.do">글쓰기</a></button></div>
+							    	  	<div class="addbutton"><button @click="addBoard"><a href="#">글쓰기</a></button></div>
 							     </div> 
 							     
 							     

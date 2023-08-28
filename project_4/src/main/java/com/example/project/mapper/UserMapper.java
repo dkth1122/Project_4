@@ -43,7 +43,8 @@ public interface UserMapper {
 	int selectOrderListPageCnt(HashMap<String, Object> map);
 	//고객별 주문내역페이지
 	int selectOrderListPageCnt2(HashMap<String, Object> map);
-	
+	// 주소목록 전체삭제
+	int addrAllDelete(HashMap<String, Object> map);
 	
 	
 }

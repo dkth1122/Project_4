@@ -25,7 +25,7 @@ public class ㄷㅎㅋ {
 	
 	@Autowired
 	dd dd;
-	
+	//프로필 사진 등록
 	@RequestMapping(value = "/updateupdateprofile.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String updateprofile(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

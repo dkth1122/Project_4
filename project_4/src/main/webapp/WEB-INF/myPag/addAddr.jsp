@@ -45,7 +45,7 @@
 	}
 	td > button{
 		width: 100px;
-		height: 30px;
+		height: 36px;
 		border-radius: 50px;
 		background-color: #fff;
 		border-color: rgba(0, 0, 0, 0.4);
@@ -78,11 +78,24 @@
 	    margin-top: 60px;
 		}
 	
-	.q{
+	.qq{
+	
 		margin-top: 200px;
 	}
 #container{
 	height: 1500px;
+}
+.i{
+	color: #fff;
+	font-size: 1.0em;
+	padding: 20px 60px;
+
+}
+#seltbut a{
+	    padding: 9px 17px;
+}
+#seltbut:hover {
+	background-color: #d3d3d3;
 }
   </style>
 </head>
@@ -194,7 +207,7 @@
                               	</tr>
                               	<tr>
                               		<th><label for="c">· 주소 </label></th>
-                              		<td><input id="c" disabled style="width : 300px;" type="text" v-model="user.addr"> <button @click="fnSearchAddr">주소 검색</button></td>
+                              		<td><input id="c" disabled style="width : 300px;" type="text" v-model="user.addr"> <button id="seltbut" @click="fnSearchAddr"><a href="javascript:;">주소 검색</a></button></td>
                               	</tr>
                               	<tr>
                               		<th><label for="d">· 상세 주소</label></th>
@@ -207,9 +220,9 @@
                               	
                               </table>
                                                             
-							   	  <div class="editbutt"><button  @click="addAddr">등록하기</button></div>
+							   	  <div class="editbutt"><button  @click="addAddr"><a class="i" href="javascript:;">등록하기</a></button></div>
 							   	</div>							  
-                              <div class="lowerBox q"> 배송 주소록 유의사항 </div>
+                              <div class="lowerBox qq"> 배송 주소록 유의사항 </div>
                               <div class="warningm"> 
                                <i id="warningImg" class="fa-solid fa-circle-exclamation fa-2xl" style="color: #ff5c5c;"></i><span>배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</span>
                         		</div>

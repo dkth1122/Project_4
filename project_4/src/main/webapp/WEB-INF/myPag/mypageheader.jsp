@@ -38,10 +38,12 @@ padding-top: 35px;
 * {
 	margin: 0;
 	padding: 0;
-}
+	
+	}
 
 
 ul, ol, li {
+font-weight: bold;
 	list-style: none;
 	line-height: 50px;
 }
@@ -109,11 +111,13 @@ nav .menu>li:last-child {
 
 
 nav .menu>li a {
-	display: block;
-	width: 105px;
-	height: 100%;
-	text-align: center;
-	line-height: 120px;
+	font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    width: 105px;
+    height: 100%;
+    text-align: center;
+    line-height: 120px;
 }
 
 nav .menu .depths {

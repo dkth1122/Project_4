@@ -64,10 +64,20 @@ select{
 	background-color: #fff;
 	font-weight: bold;
 }
+.buttomfn a{
+padding: 19px 34px;
+	font-size: 0.8em;
+	font-weight: bold;
+	padding: 30px;
+}
 #fndd{
-	color: #fff;
+	
 	background-color:rgb(24, 0, 109);
 }
+#fndd a{
+color: #fff;
+}
+
 #remove{
 	margin-left: 200px;
 }
@@ -287,9 +297,9 @@ select{
                                
                                  <div class="buttomfn">
                                  
-                                 <button @click="fnback">취소</button>
-                                 <button id="fndd" @click="fnUpdate">확인</button>
-                                 <button id="remove" @click="userRemove">회원 탈퇴</button>                                 
+                                <button @click="fnback"><a href="javascript:;">취소</a></button>
+                                 <button id="fndd" @click="fnUpdate"><a href="javascript:;">확인</a></button>
+                                 <button id="remove" @click="userRemove"><a href="javascript:;">회원 탈퇴</a></button>                                 
                                 
                                  </div> 
                                  

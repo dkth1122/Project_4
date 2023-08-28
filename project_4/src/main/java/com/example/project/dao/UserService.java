@@ -30,4 +30,6 @@ public interface UserService {
 	int removeUser(HashMap<String, Object> map);
 	//주문내역페이지 페이징
 	HashMap<String, Object> selectOrderListPage(HashMap<String, Object> map);
+	// 주소목록 전체삭제
+	int addrAllDelete(HashMap<String, Object> map);
 }

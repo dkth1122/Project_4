@@ -93,10 +93,15 @@
 	<select id="selectOrderListPageCnt" resultType="int">
 		SELECT COUNT(*) FROM T4_USER
 	</select>
-		<select id="selectOrderListPageCnt2" resultType="int">
+	
+	<select id="selectOrderListPageCnt2" resultType="int">
 		SELECT COUNT(*) FROM T4_USER
 		WHERE U_ID = #{uId}
 	</select>
 	
+	<delete id="addrAllDelete" parameterType="hashmap">
+		DELETE  FROM T4_DELIVERY_USER
+		WHERE U_ID = #{uId}
+	</delete>
 	
 </mapper>
