@@ -315,7 +315,7 @@
 									<th>피드 내용</th>
 									<th>좋아요 수</th>
 								</tr>
-								<tr v-for = "item in list"  @click="fnCheck(item.gNo)">
+								<tr v-for = "item in list" >
 										<td>{{item.artist}}</td>
 										<td>{{item.gcDate}}</td>
 										<td>{{item.gContent}}</td>
@@ -329,7 +329,7 @@
 									<th>댓글 내용</th>
 									<th>좋아요 수</th>
 								</tr>
-								<tr v-for ="item in list2"  @click="fnCheck(item.gNo)">
+								<tr v-for ="item in list2">
 										<td>{{item.artist}}</td>
 										<td>{{item.gcDate}}</td>
 										<td>{{item.gcContent}}</td>
@@ -343,7 +343,7 @@
 									<th>댓글 내용</th>
 									<th>좋아요 수</th>
 								</tr>
-								<tr v-for = "item in list3"  @click="fnCheck(item.gNo)">
+								<tr v-for = "item in list3">
 										<td>{{item.artist}}</td>
 										<td>{{item.gcDate}}</td>
 										<td>{{item.gcContent}}</td>
@@ -499,12 +499,6 @@
 	    	        	   location.reload();
 	    	           }
 	    	       });
-	    		},  fnCheck: function(gNo){
-	                var self = this;
-	                var option = "width=500,height=500,top=100,left";
-	                var url = "view.do?gNo=" + gNo + "&uId=" + self.uId;
-	                window.open(url, "gNo", option);
-	                
 	    		},fnMove: function () {
 		            window.history.back();
 		            
