@@ -21,6 +21,14 @@
     *{
        font-family: a타이틀고딕1;
     }
+    #ftnav{
+position: absolute;
+left:0%;
+width:100%;
+font-size:0.7em;
+margin-top:200px;
+}
+
 #container {
     height: 1166px;
     width: 100%;
@@ -212,18 +220,17 @@
 							     	 		</tr>
 							     	 		
 							     	 	</table>
-							     	 </div>
-							     	
-							     	
-							     
+									<nav id="ftnav">
+      									<div id="ft"><%@ include file="../page/footer.jsp" %></div>
+      								</nav> 
+							     	 </div>  
+		  
+                  			</div>	
 					</div>
-					    
-					    </div>
-			    
-			  </div>
+			 </div>   
+		</div>
 
 </div>
-  <div><%@ include file="../page/footer.jsp" %></div>
 
 </body>
 </html>

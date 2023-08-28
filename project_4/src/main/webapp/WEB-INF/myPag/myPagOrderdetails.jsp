@@ -17,14 +17,7 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="UTF-8">
 <style type="text/css">
-    @font-face {
-       font-family: "a타이틀고딕1";
-        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
-    }
-    
-    *{
-       font-family: a타이틀고딕1;
-    }
+
 #ftnav{
 position: absolute;
 left:0%;
@@ -38,6 +31,7 @@ font-size:0.7em;
     width: 100%;
     margin-bottom: 163px;
 }
+
 <!-- 페이징 추가 2-->
 .ft{
 }
@@ -195,34 +189,34 @@ input[type="date"]:focus {
                      <div class="topBox">
 
                        <div class="details">
-									<div>Order</div>
-			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
-			                        <div v-if="order != 0">{{order}}</div>
-			                        <div v-else>0</div>
-                          			</a></label>
+                           <div>Order</div>
+                                 <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
+                                 <div v-if="order != 0">{{order}}</div>
+                                 <div v-else>0</div>
+                                   </a></label>
 
-								</div>
+                        </div>
 
-								<div class="details">
+                        <div class="details">
 
-									<div >교환/환불</div>
-									<div>
-									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
-										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>										
-										<span v-if="exchange != 0"> {{exchange}}</span>
-										<span v-else>0</span>
-									</a>
-									</div>
+                           <div >교환/환불</div>
+                           <div>
+                           <a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
+                              <span v-if="refund != 0">{{refund}} /</span>
+                              <span v-else>0 /</span>                              
+                              <span v-if="exchange != 0"> {{exchange}}</span>
+                              <span v-else>0</span>
+                           </a>
+                           </div>
 
-								</div>
-								<div class="details">
-									<div >포인트</div>
-									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
-									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
-									<div v-else>0 P</div>
-									</a>
-								</div>
+                        </div>
+                        <div class="details">
+                           <div >포인트</div>
+                           <a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
+                           <div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+                           <div v-else>0 P</div>
+                           </a>
+                        </div>
                      </div>
                   </div>
 
@@ -271,7 +265,7 @@ input[type="date"]:focus {
 
                   </div>
                </div>
-			
+         
                <div id="right">
 
                   <div class="View">
@@ -336,7 +330,7 @@ input[type="date"]:focus {
                         </table> 
                      </div>  
                          <nav id="ftnav">
-      	<div id="ft"><%@ include file="../page/footer.jsp" %></div>
+         <div id="ft"><%@ include file="../page/footer.jsp" %></div>
       </nav>     
                   </div>
                   
@@ -372,23 +366,23 @@ Vue.component('paginate', VuejsPaginate)
          startDate: '', 
          endDate: '',
          maxpoint : undefined,
-  	     infouser : [], 
+          infouser : [], 
    
       }, 
       methods : {
-    	  fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
-  			var self = this;
-  			var nparmap = {uId : self.uId};				
-  			$.ajax({
-  				url : "/user2.dox",
-  				dataType : "json",
-  				type : "POST",
-  				data : nparmap,
-  				success : function(data) {						
-  					self.infouser = data.findPw;
-  				}
-  			});
-  		},
+         fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+           var self = this;
+           var nparmap = {uId : self.uId};            
+           $.ajax({
+              url : "/user2.dox",
+              dataType : "json",
+              type : "POST",
+              data : nparmap,
+              success : function(data) {                  
+                 self.infouser = data.findPw;
+              }
+           });
+        },
          fnGetList : function() {
             var self = this;
             <!-- 페이징 추가 6 -->
@@ -474,66 +468,66 @@ Vue.component('paginate', VuejsPaginate)
             }); 
          },
          fnPoint : function(){ // 포인트 내역 확인
- 	        var self = this;
- 	        var nparmap = {uId : self.uId};
- 	        $.ajax({
- 	            url : "/pointList.dox",
- 	            dataType:"json",	
- 	            type : "POST", 
- 	            data : nparmap,
- 	            success : function(data) { 	
- 	            	self.usepointList = data.list;
- 	            	var x = 0;
- 	            	var datalist = data.list;
- 	            	for(var i=0; i<datalist.length; i++){
- 	            		x += datalist[i].point;	
- 	            	}
- 	            	self.maxpoint = x; // 사용가능 포인트 
- 	            
- 	            }
- 	        }); 
- 	    },
- 	    fnNotice : function (){ // 공지 
- 			var self = this;
-     		var option = "width=850, height=1000, top=200, left=500, location = no"
-     		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
- 		},
- 		fnUseGuide : function (){ //이용안내
- 			var self = this;
-     		var option = "width=850, height=1000, top=200, left=500, location = no"
-     		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
- 		},
- 		fnFaq : function (){ //faq
- 			var self = this;
-     		var option = "width=850, height=1000, top=200, left=500, location = no"
-     		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
- 		},
- 		/* 상단 구매내역 카운트 숫자 */
- 		fnCntList : function() {
- 			var self = this;
- 			var nparmap = {uId : self.uId};
- 			$.ajax({
- 				url : "/mypag/listExchange.dox",
- 				dataType : "json",
- 				type : "POST",
- 				data : nparmap,
- 				success : function(data) {
- 					
- 					var listCnt = data.list;
- 					for (var i = 0; i < listCnt.length; i++) {
- 						if (listCnt[i].exchange == "C") {								
- 							self.refund = listCnt[i].orderCnt;							
- 						} else if (listCnt[i].exchange == "R") {
- 							self.exchange = listCnt[i].orderCnt;
- 						} else{
- 							self.order += listCnt[i].orderCnt;
- 							
- 						}
- 					}
+            var self = this;
+            var nparmap = {uId : self.uId};
+            $.ajax({
+                url : "/pointList.dox",
+                dataType:"json",   
+                type : "POST", 
+                data : nparmap,
+                success : function(data) {    
+                   self.usepointList = data.list;
+                   var x = 0;
+                   var datalist = data.list;
+                   for(var i=0; i<datalist.length; i++){
+                      x += datalist[i].point;   
+                   }
+                   self.maxpoint = x; // 사용가능 포인트 
+                
+                }
+            }); 
+        },
+        fnNotice : function (){ // 공지 
+          var self = this;
+           var option = "width=850, height=1000, top=200, left=500, location = no"
+           window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+       },
+       fnUseGuide : function (){ //이용안내
+          var self = this;
+           var option = "width=850, height=1000, top=200, left=500, location = no"
+           window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+       },
+       fnFaq : function (){ //faq
+          var self = this;
+           var option = "width=850, height=1000, top=200, left=500, location = no"
+           window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+       },
+       /* 상단 구매내역 카운트 숫자 */
+       fnCntList : function() {
+          var self = this;
+          var nparmap = {uId : self.uId};
+          $.ajax({
+             url : "/mypag/listExchange.dox",
+             dataType : "json",
+             type : "POST",
+             data : nparmap,
+             success : function(data) {
+                
+                var listCnt = data.list;
+                for (var i = 0; i < listCnt.length; i++) {
+                   if (listCnt[i].exchange == "C") {                        
+                      self.refund = listCnt[i].orderCnt;                     
+                   } else if (listCnt[i].exchange == "R") {
+                      self.exchange = listCnt[i].orderCnt;
+                   } else{
+                      self.order += listCnt[i].orderCnt;
+                      
+                   }
+                }
 
- 				}
- 			});
- 		},    
+             }
+          });
+       },    
          productDetail : function(item){
             var self = this;
             $.pageChange("/product/productView.do", {pNo : item.pNo});
@@ -547,8 +541,8 @@ Vue.component('paginate', VuejsPaginate)
          var self = this;
          self.fnGetList();         
          self.fnGetInfo();
- 		self.fnPoint();
- 		self.fnCntList();
+       self.fnPoint();
+       self.fnCntList();
       }
    });
 </script>
