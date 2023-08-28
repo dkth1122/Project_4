@@ -11,6 +11,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+@font-face {
+   font-family: "a타이틀고딕1";
+   src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+ }
+*{
+ 	font-family: a타이틀고딕1;    	
+ }
 body {
 	background-color:#f0f0f0;
 }

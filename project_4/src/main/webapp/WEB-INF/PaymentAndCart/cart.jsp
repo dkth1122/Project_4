@@ -14,6 +14,16 @@
 <title>Cart page</title>
 <%@ include file="../Product/sexyheader.jsp" %>
 <style>
+
+@font-face {
+   font-family: "a타이틀고딕1";
+   src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+ }
+ 
+*{
+ 	font-family: a타이틀고딕1;    	
+ }
+ 
 #headerMargin{
 	margin-bottom: 100px;
 }

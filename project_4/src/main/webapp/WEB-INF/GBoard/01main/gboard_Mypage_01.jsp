@@ -9,12 +9,12 @@
 <%@ include file="../../Product/sexyheader.jsp" %>
 <style>
     @font-face {
-       font-family: "ridibatang";
-        src: url("../../../font/ridibatang.ttf") format("truetype");
+    	font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
     }
     
     *{
-       font-family: ridibatang;
+    	font-family: a타이틀고딕1;
     }
    
    .profile-image {
@@ -120,7 +120,7 @@
       float:left;
       width: 335px;
       background-color: #f0f0f0;
-      height:200px;
+      height:300px;
    }
    .miniBox3{
       display:block;
@@ -159,12 +159,12 @@
    .minimi2{
       width:100%;
       background-color : white;
-      height:auto;
+      height: 250px;
       margin : 0 auto;
       border-radius: 14px;
-       box-shadow: 0 5px 20px rgba(0,0,0,.02);
-       text-align: center;
-       border-bottom: 2px solid #ccc;
+      box-shadow: 0 5px 20px rgba(0,0,0,.02);
+      text-align: center;
+      border-bottom: 2px solid #ccc;
    }
    .minimi3{
       width:100%;
@@ -359,15 +359,19 @@
                <p class="bigFont">나의 프로필 관리</p>
                <div v-if="plist != 0" class="minimi2" v-for = "(pitem, index) in plist">
                   <div class="mainImg">
-                     <img :src="pitem.gpPath" class="profile-image">
+                     <img :src="pitem.gpPath" class="profile-image" v-if="pitem.gpPath">
+                      <img src ="../img/logo/profileImg.jpg"class="profile-image" v-else />
                   </div>
                   <div class="mainImgBox">
                      <h3>{{pitem.nickName}}</h3>
-                     <div class="smText2">
+                     <div class="smText2">	
                         <div>{{pitem.artist}}</div>
                         <div class="smText3">이미지 변경</div>
                      </div>                     
-                       <input type="file" :id="'index'+index" :name="'index'+index" accept=".gif, .jpg, .png" @change="handleFileChange($event)">
+                     <div>
+                     	<input type="file" :id="'index'+index" :name="'index'+index" accept=".gif, .jpg, .png" @change="handleFileChange($event)" style="margin:5px 0px;">
+                     	<input v-model="pitem.nickName" placeholder="변경할 닉네임 입력" style="margin:5px 0px;"/>
+                     </div>
                      <button class="button2" @click="fnProfile(pitem, index)">등록</button>
                      <button class="button2" @click="fnImgRemove(pitem.gpNo)">제거</button>
                   </div>
@@ -376,7 +380,7 @@
                
                   <h1>구독 멤버 별 프로필 사진</h1>
                      <table>
-                        <tr>
+                        <tr>	
                            <th>번호</th>
                            <th>아티스트</th>
                            <th>닉네임</th>
@@ -417,16 +421,17 @@
        var app = new Vue({
            el: '#app',
            data: {
-               list: [],
-               list2: [],
-               list3: [],
-            plist: [],               
+            list: [],
+            list2: [],
+            list3: [],
+           	plist: [],               
             mlist: [],               
-               uId: "${sessionId}",
-               artist : "",
-               selectedMenu : '내가쓴피드',
-               uName2 : "",
-               uName : ""
+            uId: "${sessionId}",
+            artist : "",
+            selectedMenu : '내가쓴피드',
+            uName2 : "",
+            uName : "",
+            nickName : "",
            },// data
            methods: {
                fnGetList: function() {
@@ -438,19 +443,20 @@
                        type: "POST",
                        data: nparmap,
                        success: function (data) {
-                          /* if(data.list[0].uName == ""){
-                             location.href="/user/login.do";
-                          }else{ */
-                             self.list = data.list;
+                               console.log("리스트 ==> ", data);
+                             	self.list = data.list;
                                self.list2 = data.list2;
                                self.list3 = data.list3;
                                self.plist = data.plist;
                                self.mlist = data.mlist;
-                               self.uName = data.list[0].uName
-                               self.uName2 = data.list[0].uName2
-                               console.log("plist==>", data);
+                               self.uName = self.mlist[0].uName
+                               self.uName2 = self.mlist[0].uName2
+                               
+                               if(self.mlist.length == 0){
+                           		alert("멤버쉽을 구독해주세요.");
+                           		location.href ="main.do";
+                              }
                                   
-                                                   
                        }
                    });
                }, fnMove : function(){
@@ -458,13 +464,11 @@
                   
                }, fnProfile: function(pitem, index) {
                     var self = this;
-                  console.log("pitem==>", pitem);
-                  console.log("index==>", index);
-                  console.log("nickName==>", pitem.nickName);
-                  
+                    
                       if (!confirm("등록할까요?")) {
                           return;
                       }
+
                       var nparmap = {nickName : pitem.nickName, artist: pitem.artist, uId : self.uId, gpNo : pitem.gpNo };
                       
                       $.ajax({
@@ -473,16 +477,17 @@
                           type: "POST",
                           data: nparmap,
                           success: function (data) {
-                              alert("등록되었어요.");
-                               self.fnGetList();
                               
-                                var form = new FormData();
+                            var form = new FormData();
                             form.append("nickName", pitem.nickName);
                             form.append("gpNo", pitem.gpNo);
                             form.append("artist", pitem.artist);
                             form.append("uId", self.uId); 
-                              form.append( "index",  $("#index"+index)[0].files[0] );
-                              self.upload(form); 
+                            form.append( "index",  $("#index"+index)[0].files[0] );
+							self.upload(form); 
+                              
+                            alert("등록되었어요.");
+                            location.reload();
                           }
                       });
                },

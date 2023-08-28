@@ -16,6 +16,15 @@
 <%@ include file="../Product/sexyheader.jsp" %>
 <style>
 
+@font-face {
+   font-family: "a타이틀고딕1";
+   src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+ }
+
+*{
+ 	font-family: a타이틀고딕1;    	
+ }
+
 #title {
 	width: 1500px;
 	margin-bottom: 50px;
