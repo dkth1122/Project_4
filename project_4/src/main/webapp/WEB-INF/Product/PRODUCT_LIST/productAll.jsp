@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <meta charset="UTF-8">
-  <title>상품 페이지</title>
+  <title>전체 상품 페이지</title>
 <style type="text/css">
 	  .nonMember{
 	  margin: 0px 10px;
@@ -317,7 +317,6 @@ prevBtn.addEventListener('click', function(){
 function moveSlide(num){ // unm을 num으로 수정
 slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleft를 left로 수정
 currentIdx = num;
-console.log(currentIdx, slideCount);
 
 if(currentIdx == slideCount || currentIdx == -slideCount){
   setTimeout(function(){
@@ -346,7 +345,6 @@ autoSlide();
 function stopSlide(){
 clearInterval(timer);   
 timer = undefined;
-console.log(timer);
 }
 
 slides.addEventListener('mouseenter', function(){

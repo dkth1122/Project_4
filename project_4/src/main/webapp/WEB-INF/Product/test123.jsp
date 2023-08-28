@@ -337,7 +337,6 @@ prevBtn.addEventListener('click', function(){
 function moveSlide(num){ // unm을 num으로 수정
 slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleft를 left로 수정
 currentIdx = num;
-console.log(currentIdx, slideCount);
 if(currentIdx == slideCount || currentIdx == -slideCount){
   setTimeout(function(){
       slides.classList.remove('animated');
@@ -363,7 +362,6 @@ autoSlide();
 function stopSlide(){
 clearInterval(timer);   
 timer = undefined;
-console.log(timer);
 }
 slides.addEventListener('mouseenter', function(){
 stopSlide();

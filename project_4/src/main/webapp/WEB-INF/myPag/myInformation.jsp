@@ -13,7 +13,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <meta charset="UTF-8">
-
+<title>찜목록</title>
 <style type="text/css">
 #container {
     height: 100%;
@@ -332,7 +332,6 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	console.log(data);
                 	self.info = data.findPw; //사용자                	
                 	self.fnProduct();
                 }
@@ -347,8 +346,7 @@ var app = new Vue({
 	            type : "POST", 
 	            data : nparmap,
 	            success : function(data) { 	
-					self.wishList = data.list;
-					console.log(data);	            	
+					self.wishList = data.list;           	
 	            }
 	        }); 
 	    },
@@ -391,12 +389,10 @@ var app = new Vue({
 		},		
 		fnRemoveOne : function(item){		
 			var self = this;
-			console.log(item.wnum)
 				 if(!confirm("정말 삭제할거냐?")){
 					return;
 				} 
 				var param ={wnum : item.wnum};
-				console.log(param);
 				 $.ajax({
 	                url : "/mypag/removeSingleProdeuctWish.dox",
 	                dataType:"json",	
@@ -426,7 +422,6 @@ var app = new Vue({
 		},	   
 		OrderProduct : function(item){
 			var self = this;
-			console.log(item.wnum);
 		},	   
         myInquiry : function(){
    	    	var self = this;

@@ -8,7 +8,7 @@
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>이용안내</title>
   <style type="text/css">
   	#useGuide{
   		margin-top : 150px;

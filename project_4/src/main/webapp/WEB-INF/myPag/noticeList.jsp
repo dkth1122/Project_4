@@ -10,7 +10,7 @@
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>공지사항</title>
   <style>
   body{
   	background-color: #F1E9F0;

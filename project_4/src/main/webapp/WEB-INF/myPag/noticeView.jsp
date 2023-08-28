@@ -8,7 +8,7 @@
    <link href="../css/mypag.css" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>Notice</title>
   <style type="text/css">
     body{
   	background-color: #F1E9F0;
@@ -114,8 +114,6 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                    self.list = data.list; //사용자                  
-                   console.log(self.currentIndex);
-                 
                 }
             }); 
         },

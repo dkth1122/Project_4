@@ -86,6 +86,7 @@
 }
   </style>
 </head>
+<title>배송 주소록 관리</title>
 <body>
 <div id="app">
            <div id="container">
@@ -278,7 +279,7 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                    self.list = data.list; //사용자
-                   console.log(self.user);
+                  
                 }
             }); 
         },
@@ -329,10 +330,7 @@ var app = new Vue({
     		self.user.addrDetail = addrDetail;
     		self.user.zipNo = zipNo;
     		// 콘솔 통해 각 변수 값 찍어보고 필요한거 가져다 쓰면 됩니다.
-    		console.log(roadFullAddr);
-    		console.log(roadAddrPart1);
-    		console.log(addrDetail);
-    		console.log(engAddr);
+    	
     	},
     	/* 상단 구매내역 카운트 숫자 */
 		fnCntList : function() {

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>MY PAGE</title>
 <%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypage.css" rel="stylesheet" type="text/css">
@@ -332,7 +333,7 @@ Vue.use(VueAwesomeSwiper);
 								self.exchange = listCnt[i].orderCnt;
 							} else{
 								self.order += listCnt[i].orderCnt;
-								console.log(self.order);
+
 							}
 						}
 
@@ -406,13 +407,13 @@ Vue.use(VueAwesomeSwiper);
 		        }); 
 		    },
 			onSetTranslate() {
-			      console.log('onSetTranslate')
+			    /*   console.log('onSetTranslate') */
 		    },
 		    onSwiperSlideChangeTransitionStart() {
-		      console.log('onSwiperSlideChangeTransitionStart')
+		     /*  console.log('onSwiperSlideChangeTransitionStart') */
 		    },
 		    onSwiperClickSlide(index, reallyIndex) {
-		      console.log('Swiper click slide!', reallyIndex)
+		      /* console.log('Swiper click slide!', reallyIndex) */
 		    },
 		    
 		    fnNotice : function (){ // 공지 
@@ -434,8 +435,8 @@ Vue.use(VueAwesomeSwiper);
 		
 		},
 		mounted() {
-			console.log('Swiper instances:', this.$refs.swiperComponent.$swiper, this.swiper);
-		},
+/* 			console.log('Swiper instances:', this.$refs.swiperComponent.$swiper, this.swiper);
+ */		},
 		created : function() {
 			var self = this;
 			self.fnGetList();
