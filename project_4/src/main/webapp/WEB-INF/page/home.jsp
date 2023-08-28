@@ -101,7 +101,7 @@ img.topimg{
 	widows: 1800px;
 	height: 1800px;
 	margin-top: 50px;
-	margin-bottom: 500px;
+	margin-bottom: 50px;
 	float:left;
 }
 #nav3{
@@ -169,7 +169,7 @@ img.topimg{
 .sect2 {
 	padding: 50px;
 	widows: 1800px;
-	height: 1900px;
+	height: 1800px;
 	display: flex;
  	flex-wrap: wrap;
   	width: 100%; 
@@ -406,7 +406,7 @@ img.topimg{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 600px;
   background-color: #C4F5DC;
   margin-top:150px;
   margin-bottom:300px;
@@ -517,7 +517,7 @@ img.topimg{
 			
 		<div id="div3">
 		  <div class="newIssue">
-		    <h1>New Issue</h1>
+		    <div class="sect2name">NEW ISSUE</div>
 		    <div class="evtList">
 		      <div class="evtBox" v-for="(item, index) in evt.slice(0, 3)" :key="index">
 		        <div class="overlay-container">
@@ -576,8 +576,8 @@ img.topimg{
 		
 		
 		      <nav id="nav4">
-      
       <section class="sect1">
+      <div class="sect2name">NEW SONG</div>
          <div class="ostimg">
             <div class="img1" @click="playAudio('audio1', 60)"></div> <!-- TXT - 어느날 머리에서 뿔이 자랐다 -->
             <div class="img2" @click="playAudio('audio2', 60)"></div> <!-- LE SSERAFIM - UNFORGIVEN -->
