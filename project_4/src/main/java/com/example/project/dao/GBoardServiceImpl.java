@@ -38,6 +38,7 @@ public class GBoardServiceImpl implements GBoardService{
 		
 		if(artistCheck == 0) {
 			gboardMapper.insertGBoard(map);
+			map.put("check", "N");
 			resultMap.put("gNo", map.get("gNo"));
 		}else {
 			map.put("check", "Y");
