@@ -217,6 +217,7 @@
 	  transition: background-color 0.3s;
 	  width : 80px;
 	  margin-right : 3px;	  
+	  margin-top: 5px;
 	}
 	.button2:hover {
 	  background-color: #d4d5d9;
@@ -366,10 +367,9 @@
 								<div>{{pitem.artist}}</div>
 								<div class="smText3">이미지 변경</div>
 							</div>							
-							<label class="button2" for="'index'+index">파일 선택</label>
-  							<input class="hidden-input" type="file" :id="'index'+index" :name="'index'+index" accept=".gif, .jpg, .png" @change="handleFileChange">
+  							<input type="file" :id="'index'+index" :name="'index'+index" accept=".gif, .jpg, .png" @change="handleFileChange($event)">
 							<button class="button2" @click="fnProfile(pitem, index)">등록</button>
-							<button class="button2" @click="fnImgRemove(pitem.gpNo)">이미지 제거</button>
+							<button class="button2" @click="fnImgRemove(pitem.gpNo)">제거</button>
 						</div>
 					</div>
 					<div v-if="plist == 0" class="minimi2">
@@ -474,7 +474,7 @@
 	            	        data: nparmap,
 		                    success: function (data) {
 		                    	 alert("등록되었어요.");
-		                        self.fnGetList();
+		                         self.fnGetList();
 		                        
  		     	           		var form = new FormData();
 			            	    form.append("nickName", pitem.nickName);
