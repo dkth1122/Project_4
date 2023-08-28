@@ -427,7 +427,7 @@ text-align: center;
 									<option value="018">018</option>
 									<option value="019">019</option>
 								</select>
-							<input class="numinput" type="text" v-model="user.phone2" @input="validatePhone"> - <input class="numinput" type="text" v-model="user.phone3"  @input="validatePhone2">	
+							<input class="numinput" type="text" v-model="user.phone2" @input="validatePhone" maxlength="4"> - <input class="numinput" type="text" v-model="user.phone3"  @input="validatePhone2" maxlength="4">	
 							<div class="error-message" v-if="phoneErrorMessage">{{ phoneErrorMessage }}</div>							
 							</td>					
 						</tr>
@@ -658,7 +658,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  }
               
             // 정규식 패턴 설정
-               var dNamePattern = /^[가-힣\s]{1,20}$/;
+              /*  var dNamePattern = /^[가-힣\s]{1,20}$/;
                var namePattern = /^[가-힣]{1,10}$/;
                var phonePattern = /^\d{4}$/;
                var zipNoPattern = /^\d{1,10}$/;
@@ -702,7 +702,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  if(self.uId == null || self.uId == ""){
                     alert("세션이 만료되었습니다. 다시 로그인해주세요.");
                     return;
-                 }
+                 } */
                  
                  self.user.uDphone = self.user.phone1 + self.user.phone2 + self.user.phone3;
                var nparmap = {uId : self.uId, uDname : self.user.uDname, uDphone : self.user.uDphone, addr : self.user.addr, addrDetail : self.user.addrDetail, zipNo : self.user.zipNo, uDmessage : self.user.dText, recipient : self.user.recipient };
@@ -712,7 +712,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    type : "POST", 
                    data : nparmap,
                    success : function(data) { 
-                      
+                      console.log("배송지 등록 성공");
                       
                    }
                   }); 
@@ -772,7 +772,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
            self.user.uId = self.uId;
            self.user.oNo = self.oNo;
            self.user.buyNo = self.buyNo;
-           self.user.uPoint2 = self.usePoint;
            
             var nparmap = self.user;
             console.log("파람값==>",nparmap); 

@@ -395,8 +395,6 @@
    </body>
    </html>
    <script>
-   
-   
    var app = new Vue({
        el: '#app',
        data: {
@@ -598,7 +596,8 @@
             }, fnCommentAndOpenPopup2: function() {
                 var self = this;              
                 self.flg2 = !self.flg2;                                
-                var nparmap = {artist : self.artist, uId : self.uId};                
+                var nparmap = {artist : self.artist, uId : self.uId};
+                console.log(nparmap);
                 $.ajax({
                     url: "/gboard/alramList.dox",
                     dataType: "json",
@@ -606,7 +605,9 @@
                     data: nparmap,
                     success: function (data) {
                     	self.alram = data.list;
-                    	console.log(data.list);
+                    	console.log(self.alram);
+                    	
+                       
                        self.fnGetList();
                     }
                 });

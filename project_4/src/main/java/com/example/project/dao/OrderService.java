@@ -37,4 +37,7 @@ public interface OrderService {
 	
 	//비회원 주문내역 조회
 	List<Order> selectNonOrderList(HashMap<String, Object> map);
+	
+	//비회원 주문결제 성공페이지
+	List<Order> nonPaymentkkk(HashMap<String, Object> map);
 }

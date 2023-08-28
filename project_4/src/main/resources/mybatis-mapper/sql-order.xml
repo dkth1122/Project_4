@@ -170,4 +170,12 @@
 		INNER JOIN T4_DELIVERY_USER U ON U.U_ID = D.U_ID
 		WHERE O.O_NO = #{nmNo} AND U_DPHONE = #{nmPhone}
 	</select>
+	
+	<!-- 비회원 결제성공 페이지 -->
+	<select id="nonPaymentkkk" parameterType="hashmap" resultType="com.example.project.model.Order">
+		SELECT * 
+      FROM T4_ORDER O
+      INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO      
+      WHERE O.O_NO = #{oNo} 
+	</select>
 </mapper>

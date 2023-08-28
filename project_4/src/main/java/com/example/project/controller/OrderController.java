@@ -123,4 +123,13 @@ public class OrderController {
 		return new Gson().toJson(resultMap);
 		}
 	
+	@RequestMapping(value = "/mypag/nonPaymentkkk.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String nonPaymentkkk(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Order> list = orderService.nonPaymentkkk(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+		}
+	
 }

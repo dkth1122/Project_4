@@ -49,4 +49,6 @@ public interface OrderMapper {
 	
 	//비회원 주문 조회
 	List<Order> selectNonOrderList(HashMap<String, Object> map);
+	//비회원 결제성공 페이지
+	List<Order> nonPaymentkkk(HashMap<String, Object> map);
 }

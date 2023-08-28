@@ -102,5 +102,12 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.selectNonOrderList(map);
 	}
 
+	//비회원 주문결제 성공페이지
+	@Override
+	public List<Order> nonPaymentkkk(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return orderMapper.nonPaymentkkk(map);
+	}
+
 	
 }

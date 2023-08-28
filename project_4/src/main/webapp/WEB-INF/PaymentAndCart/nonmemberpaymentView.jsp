@@ -59,11 +59,11 @@ h3{
 			<div class="login-box2">
 			<i class="fa-regular fa-face-smile" id="smile"></i>
 			<h3>주문이 완료되었습니다!</h3>
-				<div class="idpw">	
-					<div><label>주문자명<span><input :value="list[0] ? list[0].recipient : ''" readonly></span></label></div>
+				<div class="idpw">						
 					<div><label>주문번호  <span><input :value="list[0] ? list[0].oNo : ''" readonly></span></label></div>					
-					<div><label>배송지  <span><input :value="list[0] ? list[0].uDaddr : ''" readonly></span></label></div>
-					<div><label>상세배송지  <span><input :value="list[0] ? list[0].uDaddrDetail : ''" readonly></span></label></div>
+					<div><label>주문상품  <span><input :value="list[0] ? list[0].pNo : ''" readonly></span></label></div>
+					<div><label>결제금액  <span><input :value="list[0] ? list[0].payment : ''" readonly></span></label></div>
+					<div><label>주문일자  <span><input :value="list[0] ? list[0].oDate : ''" readonly></span></label></div>
 				</div>
 				<div class="notiti">주문번호는 비회원 주문조회시 필수이므로<p>캡처나 따로 저장하시는걸 권장드립니다.</p></div>
 				
@@ -84,9 +84,9 @@ var app = new Vue({
 		oNo : "${map.oNo}",
 		list : [],
 		pNo:"",
-		price:"",
+		payment:"",
 		oDate:"",
-		Addr:""
+		oCount: ""
 		
 	},// data
 	methods : {
@@ -94,17 +94,17 @@ var app = new Vue({
              var self = this;
              var nparmap = {oNo : self.oNo};        
              $.ajax({
-                 url : "/user3.dox",
+                 url : "/mypag/nonPaymentkkk.dox",
                  dataType:"json",   
                  type : "POST", 
                  data : nparmap,
                  success: function(data) { 
-                	    self.list = data.nonOrder;
+                	    self.list = data.list;
                 	    if (self.list) {
-                	        self.pNo = self.list.pNo;
-                	        self.price = self.list.price;
-                	        self.oDate = self.list.oDate;
-                	        self.Addr = self.list.uDaddr +" "+self.list.uDaddrDetail +" ("+self.list.zipNo+")";
+                	        self.pNo = self.list[0].pNo;
+                	        self.payment = self.list[0].payment;
+                	        self.oDate = self.list[0].oDate;
+                	        self.oCount = self.list[0].oCount;
                 	    }
                 	    console.log("리스트 ==>", self.list);
                 	    
