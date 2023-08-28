@@ -32,7 +32,7 @@ public interface UserMapper {
 	//비회원 주문조회
 	User selectNonOrder(HashMap<String, Object> map);
 	//비회원 주문 주문번호로 검색
-	User selectNonOrderNo(HashMap<String, Object> map);
+	List<User> selectNonOrderNo(HashMap<String, Object> map);
 	//회원정보 수정
 	int infoUpdate(HashMap<String, Object> map);
 	//회원탈퇴

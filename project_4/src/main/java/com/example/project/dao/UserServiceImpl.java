@@ -1,6 +1,7 @@
 package com.example.project.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -96,10 +97,11 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userMapper.selectNonOrder(map);
 	}
-
+	
 	@Override
-	public User searchNonOrderNo(HashMap<String, Object> map) {
+	public List<User> searchNonOrderNo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
+		System.out.println(map.get("oNo"));
 		return userMapper.selectNonOrderNo(map);
 	}
 

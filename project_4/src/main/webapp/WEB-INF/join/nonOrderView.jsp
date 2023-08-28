@@ -60,11 +60,11 @@ h3{
 			<i class="fa-regular fa-face-smile" id="smile"></i>
 			<h3>비회원 주문내역</h3>
 				<div class="idpw">	
-					<div><label>주문번호  <span><input :value="list ? list.oNo : ''" readonly></span></label></div>
-					<div><label>받는사람  <span><input :value="list ? list.recipient : ''" readonly></span></label></div>					
-					<div><label>연락처  <span><input :value="list ? list.uDphone : ''" readonly></span></label></div>					
+					<div><label>주문번호  <span><input :value="list[0] ? list[0].oNo : ''" readonly></span></label></div>
+					<div><label>받는사람  <span><input :value="list[0] ? list[0].recipient : ''" readonly></span></label></div>					
+					<div><label>연락처  <span><input :value="list[0] ? list[0].uDphone : ''" readonly></span></label></div>					
 					<div><label>배송주소  <span><input :value="Addr" readonly></span></label></div>
-					<div><label>주문상태  <span><input :value="list ? list.dState : ''" readonly></span></label></div>
+					<div><label>주문상태  <span><input :value="list[0] ? list[0].dState : ''" readonly></span></label></div>
 				</div>
 				<div class="notiti">주문번호는 비회원 주문조회시 필수이므로<p>캡처나 따로 저장하시는걸 권장드립니다.</p></div>
 				
@@ -102,7 +102,8 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	 self.list = data.nonOrder;
-                	    self.Addr = self.list.uDaddr +" "+self.list.uDaddrDetail +" ("+self.list.zipNo+")";
+                	 self.Addr = self.list[0].uDaddr + " " + self.list[0].uDaddrDetail + " (" + self.list[0].zipNo + ")";
+
                 	console.log(self.list);
                 	console.log(self.nmNo);
                 }

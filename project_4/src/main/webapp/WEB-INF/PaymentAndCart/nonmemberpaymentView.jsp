@@ -60,10 +60,10 @@ h3{
 			<i class="fa-regular fa-face-smile" id="smile"></i>
 			<h3>주문이 완료되었습니다!</h3>
 				<div class="idpw">	
-					<div><label>상품명  <span><input :value="list ? list.pNo : ''" readonly></span></label></div>
-					<div><label>주문번호  <span><input :value="list ? list.oNo : ''" readonly></span></label></div>					
-					<div><label>결제금액  <span><input :value="list ? numberWithCommas(list.payment) : ''" readonly></span></label></div>
-					<div><label>주문일자  <span><input :value="list ? list.oDate : ''" readonly></span></label></div>
+					<div><label>주문자명<span><input :value="list[0] ? list[0].recipient : ''" readonly></span></label></div>
+					<div><label>주문번호  <span><input :value="list[0] ? list[0].oNo : ''" readonly></span></label></div>					
+					<div><label>배송지  <span><input :value="list[0] ? list[0].uDaddr : ''" readonly></span></label></div>
+					<div><label>상세배송지  <span><input :value="list[0] ? list[0].uDaddrDetail : ''" readonly></span></label></div>
 				</div>
 				<div class="notiti">주문번호는 비회원 주문조회시 필수이므로<p>캡처나 따로 저장하시는걸 권장드립니다.</p></div>
 				
@@ -85,7 +85,8 @@ var app = new Vue({
 		list : [],
 		pNo:"",
 		price:"",
-		oDate:""
+		oDate:"",
+		Addr:""
 		
 	},// data
 	methods : {
@@ -103,9 +104,10 @@ var app = new Vue({
                 	        self.pNo = self.list.pNo;
                 	        self.price = self.list.price;
                 	        self.oDate = self.list.oDate;
+                	        self.Addr = self.list.uDaddr +" "+self.list.uDaddrDetail +" ("+self.list.zipNo+")";
                 	    }
                 	    console.log("리스트 ==>", self.list);
-                	    console.log("nonOrder ==>", data.nonOrder);
+                	    
                 	}
 
              }); 
@@ -114,10 +116,7 @@ var app = new Vue({
 	   		var self = this;
                		location.href = "/user/login.do";
         },
-        numberWithCommas: function(number) {
-            if (number === undefined) {
-                return ''; // Return an empty string if the number is undefined
-            }
+        numberWithCommas : function(number) {
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 

@@ -1,6 +1,7 @@
 package com.example.project.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -97,7 +98,7 @@ public class UserController {
 	@ResponseBody
 	public String viewNonOrdernonOrder(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		User nonOrder = userService.searchNonOrderNo(map);
+		List<User> nonOrder = userService.searchNonOrderNo(map);
 		resultMap.put("nonOrder", nonOrder);
 		return new Gson().toJson(resultMap);
 	}
