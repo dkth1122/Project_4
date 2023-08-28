@@ -59,6 +59,8 @@ public interface PaymentMapper {
 	
 	/* <!-- 멤버쉽 구독 상품인지 체크 ======= 맞으면 멤버쉽 테이블 업데이트 진행--> */
 	int selectMembershipProduct(HashMap<String, Object> map);
+	//멤버쉽 구독 상품 O -> 멤버쉽 게시판 프로필 업데이트
+	int insertGboardProfile(HashMap<String, Object> map);
 	
 	/* <!-- 위에 조건 만족 시 : 멤버쉽 구독 상품 구매 시 멤버쉽 테이블 업데이트 + 유저 테이블 업데이트 --> */
 	int insertMembership(HashMap<String, Object> map);

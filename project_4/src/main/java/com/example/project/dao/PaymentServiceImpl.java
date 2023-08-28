@@ -82,6 +82,8 @@ public class PaymentServiceImpl implements PaymentService{
 			System.out.println("멤버쉽 구독 맞아용 멤버쉽 테이블 추가함~");
 			paymentMapper.updateUserMembershipY(map);
 			System.out.println("멤버쉽 구독 맞아용 유저 테이블 업데이트함~");
+			paymentMapper.insertGboardProfile(map);
+			System.out.println("멤버쉽 구독 맞아용 프로필 업데이트함~");
 			}
 		
 			/*
@@ -138,9 +140,11 @@ public class PaymentServiceImpl implements PaymentService{
 			System.out.println("멤버쉽 구독 맞아용 멤버쉽 테이블 추가함~");
 			paymentMapper.updateUserMembershipY(map);
 			System.out.println("멤버쉽 구독 맞아용 유저 테이블 업데이트함~");
+			paymentMapper.insertGboardProfile(map);
+			System.out.println("멤버쉽 구독 맞아용 프로필 업데이트함~");
 			}
 		
-		System.out.println("위에 두 개 체크 함");
+		System.out.println("위에 세 개 체크 함");
 		
 		//재고 업데이트
 		paymentMapper.updateStock(map);

@@ -155,7 +155,7 @@
 	        <button @click="fnAdd">등록</button>
 	    </div>
 	    </nav>
-	    <hr>
+	    <hr> 
 	    <div id="container">
 	        <ul v-for="item in list" v-if="item.gBanYN < 5 && item.gDelYN != 'Y'" id="ulCCC">
 	        	<li><span style="color: rgb(179, 179, 255);">COMMENT ✉ </span>{{item.gcCnt}}</li>

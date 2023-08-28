@@ -102,7 +102,13 @@
 	<insert id="insertMembership" parameterType="hashmap">
 		INSERT INTO T4_MEMBERSHIP (M_STATUS, M_REG_DATE, M_EXP_DATE, U_ID, ARTIST, KIT_YN)
 		VALUES ('ACTIVE', NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR), #{uId}, #{artist}, 'N' )
-   	</insert>  
+   	</insert> 
+   	
+   	<!-- 위에 조건 만족 시 : 멤버쉽 구독 상품 구매 시 멤버쉽 테이블 업데이트 -->
+	<insert id="insertGboardProfile" parameterType="hashmap">
+		INSERT INTO T4_GBOARD_PROFILE (U_ID, NICKNAME, ARTIST)
+		VALUES (#{uId}, #{uId}, #{artist} )
+   	</insert> 
    	
    	<!--  위에 조건 전부 만족 시 : 멤버쉽 구독 상품 구매 시 유저 테이블 업데이트  -->
    <update id="updateUserMembershipY" parameterType="hashmap">
@@ -110,7 +116,7 @@
 		SET U_MEMBERSHIP = 'Y'
 		WHERE U_ID = #{uId}
 	</update> 
-   	
+	
    	<!--  위에 조건 전부 만족 시 : 구매 완료 되면서 STOCK 재고 줄이기 -->
    <update id="updateStock" parameterType="hashmap">
 		UPDATE T4_PRODUCT
