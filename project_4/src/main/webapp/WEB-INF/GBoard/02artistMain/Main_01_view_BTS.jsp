@@ -18,7 +18,7 @@
     	font-family: a타이틀고딕2;
     }
    body{
-   background-color:#D0ACDB;
+   background-color:#d4d5d9;
       width : 500px;
       margin : 10px auto;
    }
@@ -43,9 +43,10 @@
        box-sizing: border-box; 
      }
    .container{
-      width: 500px;
-      border: 1px solid tomato;
+      width: 500px;      
       padding: 32px;
+      background-color:white;
+      border-radius: 10px;
    }
    a{
         text-decoration: none;
@@ -59,7 +60,8 @@
    }
    
    .container > ul{
-         border: 1px solid tomato;
+        background-color: #eee;
+        border-radius: 10px;
    }
    
   .profile-image {

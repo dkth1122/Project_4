@@ -29,6 +29,8 @@
 		padding-top:130px;
 		background-color: #f0f0f0;
 		height : 1100px;
+		 overflow: auto;
+         max-height: 800px;
 	}
 	.imgBox {
 	    width: 100%; 
@@ -110,6 +112,8 @@
 		width: 335px;
 		background-color: #f0f0f0;
 		height:300px;
+		overflow: auto;
+        max-height: 300px;
 	}
 	.miniBox2{
 		display:block;
@@ -171,6 +175,9 @@
     	box-shadow: 0 5px 20px rgba(0,0,0,.02);
     	text-align: center;
     	border-bottom: 2px solid #ccc;
+    	overflow: auto;
+        max-height: 700px;
+    	
 	}
 	.mainImg{
 		align-items: center;
@@ -349,7 +356,7 @@
 			<div class="mainAreaBox2">
 				<div class="miniBox2">
 					<p class="bigFont">나의 프로필 관리</p>
-					<div class="minimi2" v-for = "(pitem, index) in plist">
+					<div v-if="plist != 0" class="minimi2" v-for = "(pitem, index) in plist">
 						<div class="mainImg">
 							<img :src="pitem.gpPath" class="profile-image">
 						</div>
@@ -364,6 +371,40 @@
 							<button class="button2" @click="fnProfile(pitem, index)">등록</button>
 							<button class="button2" @click="fnImgRemove(pitem.gpNo)">이미지 제거</button>
 						</div>
+					</div>
+					<div v-if="plist == 0" class="minimi2">
+					
+						<h1>구독 멤버 별 프로필 사진</h1>
+					      <table>
+					         <tr>
+					            <th>번호</th>
+					            <th>아티스트</th>
+					            <th>닉네임</th>
+					            <th>이미지</th>
+					            <th>이미지 수정</th>
+					            <th>완료</th>
+					            <th>이미지 제거...</th>
+					         </tr>
+					         <tr v-for = "(pitem, index) in plist" >
+					               <td>{{pitem.gpNo}}</td>
+					               <td>{{pitem.artist}}</td>
+					               <td>
+					                  <input v-model="pitem.nickName" placeholder="변경할 닉네임 입력">
+					                 </td>
+					               <td><img :src="pitem.gpPath" class="profile-image"></td>
+					               
+					                 <td>
+					                    <div>이미지</div>
+					                  <input type="file" :id="'index'+index"  :name="'index'+index" accept=".gif, .jpg, .png" @change="handleFileChange" >
+					                 </td>
+					                 <td>   
+					                    <button @click="fnProfile(pitem, index)">등록</button>
+					                 </td>
+					                 <td><button @click="fnImgRemove(pitem.gpNo)">이미지 제거 버튼</button></td>
+					                 
+					         </tr>
+					      </table>
+
 					</div>
 				</div>
 			</div>
