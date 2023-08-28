@@ -12,6 +12,13 @@
   <title>상품 페이지</title>
   <style type="text/css">
   .nonMember{
+         font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
   margin: 0px 10px;
   }
   .login_loginout{  

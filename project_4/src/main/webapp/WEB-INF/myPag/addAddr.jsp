@@ -14,6 +14,14 @@
  <meta charset="UTF-8">
 
   <style type="text/css">
+      @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
   	  	.warningm{
   		width: 930px;
    		line-height: 80px;

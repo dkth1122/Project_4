@@ -10,6 +10,14 @@
  <meta charset="UTF-8">
   <title>Notice</title>
   <style type="text/css">
+      @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
     body{
   	background-color: #F1E9F0;
   	}

@@ -15,6 +15,14 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <meta charset="UTF-8">
 <style>
+  .nonMember{
+         font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #sexyHeadiner{
 	margin: 0px;
     top: 0px;

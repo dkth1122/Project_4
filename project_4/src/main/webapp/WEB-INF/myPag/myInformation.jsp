@@ -15,6 +15,14 @@
 <meta charset="UTF-8">
 <title>찜목록</title>
 <style type="text/css">
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #container {
     height: 100%;
     width: 100%;

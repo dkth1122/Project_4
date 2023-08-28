@@ -12,6 +12,14 @@
  <meta charset="UTF-8">
  <title>회원 정보 수정 </title>
   <style type="text/css">
+      @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
   #container {
     height: 2457px;
     width: 100%;

@@ -12,7 +12,14 @@
 <meta charset="UTF-8">
 <title>장바구니 구매 버튼누르면 구매로 이동</title>
 <style>
-
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #title {
 	width: 1500px;
 	margin-bottom: 50px;

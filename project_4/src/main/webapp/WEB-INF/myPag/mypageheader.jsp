@@ -8,9 +8,14 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
 <style>
-
-
-
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #headiner {
     font-family: Graduate, Kelly Slab, Aldrich;
     font-size: 1.1em;
