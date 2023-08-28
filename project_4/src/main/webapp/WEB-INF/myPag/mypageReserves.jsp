@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>포인트</title>
 <%@ include file="mypageheader.jsp" %>
 <link href="../css/footer.css" rel="stylesheet" type="text/css">
   <script src="../js/jquery.js"></script>  
@@ -314,7 +315,6 @@ var app = new Vue({
 	            data : nparmap,
 	            success : function(data) { 	
 	            	self.usepointList = data.list;
-	            	console.log(self.usepointList);
 	            	var x = 0;
 	            	var y = 0;
 	            	var z = 0;

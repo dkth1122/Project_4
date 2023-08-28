@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>주문 내역 조회</title>
 <%@ include file="mypageheader.jsp" %>
 <link href="../css/footer.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
@@ -413,14 +414,12 @@ Vue.component('paginate', VuejsPaginate)
                data : nparmap,
                success : function(data) {                  
                   self.list = data.list;
-                  console.log(self.list);
+
                }
             });
          },
          searchCalender : function(){
             var self = this;
-            console.log(self.startDate);
-            console.log(self.endDate);
             if(self.startDate > self.endDate){
                alert("조회날짜를 다시 확인해주세요.");
                return;

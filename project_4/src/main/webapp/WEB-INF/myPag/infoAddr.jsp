@@ -61,6 +61,8 @@
 
 
   </style>
+  <title>배송 주소록</title>
+  
 </head>
 <body>
 <div id="app">
@@ -272,7 +274,6 @@ var app = new Vue({
               return;
            }
             var nparmap = {duNo : self.duNo};
-            console.log(duNo);
             $.ajax({
                 url : "deleteAddr.dox",
                 dataType:"json",   

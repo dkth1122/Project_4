@@ -10,6 +10,7 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
+ <title>회원 정보 수정 </title>
   <style type="text/css">
   #container {
     height: 2457px;
@@ -367,7 +368,6 @@ var app = new Vue({
                  success : function(data) { 
                 	 alert("변경 완료되었습니다");
                 	 location.replace(location.href);
-                	 console.log(self.info);
                
                  }
              });
@@ -383,13 +383,11 @@ var app = new Vue({
                 success : function(data) { 
                    self.info = data.findPw; //사용자
                    self.user = self.info;
-                   console.log(self.info);
                	   self.user.uPw = undefined;
              	   const phoneNumber = self.user.uPhone.substring(3);
             	   self.prefix = phoneNumber.substring(0, 4);            	   
             	   self.suffix = phoneNumber.substring(4);
             	   self.info.uSmsyn = self.user.uSmsyn === 'Y' ? 'Y' : 'N';
-            	   console.log(self.info.uPw);
                 }
             }); 
         },

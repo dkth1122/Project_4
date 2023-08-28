@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>주문 상세 내역</title>
 <%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/footer.css" rel="stylesheet" type="text/css">
@@ -425,7 +426,6 @@
 								self.exchange = listCnt[i].orderCnt;
 							} else{
 								self.order += listCnt[i].orderCnt;
-								console.log(self.order);
 							}
 						}
 
@@ -476,11 +476,9 @@
                type : "POST",
                data : nparmap,
                success : function(data) {   
-                  console.log(data);
                   self.list = data.list;
                   self.list2 = data.list[0];
                   self.oDate = self.list[0].oDate;
-                  console.log(self.list2);
                   
                }
             });
@@ -495,7 +493,6 @@
                    return;
                }
             var nparmap = {buyNo : item.buyNo};
-            console.log(nparmap);
             $.ajax({
                url : "/mypag/mypageOrderCancel.dox",
                dataType : "json",
@@ -519,7 +516,6 @@
                }
             var userPointAdd = parseInt((self.list2.price * self.list2.oCount) * 0.02);
             var nparmap = {buyNo : item.buyNo, userPointAdd : userPointAdd, uId : self.uId, oNo : self.oNo};
-            console.log(nparmap);
             $.ajax({
                url : "/mypag/mypageOrderConfirm.dox",
                dataType : "json",

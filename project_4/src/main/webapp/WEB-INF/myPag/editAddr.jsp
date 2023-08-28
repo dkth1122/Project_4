@@ -73,6 +73,7 @@
    }
   </style>
 </head>
+<title>배송 주소록 수정</title>
 <body>
 <div id="app">
 
@@ -273,7 +274,6 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                    self.list = data.list; //사용자
-                   console.log(self.list);
                    self.user.uId = self.uId;
                              
                 }
@@ -307,8 +307,7 @@ var app = new Vue({
             return;
         }
           
-             var nparmap = self.user;
-              console.log("파라미터 ==>",nparmap);                
+             var nparmap = self.user;               
               $.ajax({
                  url : "/mypag/editAddr.dox",
                  dataType:"json",   
@@ -340,7 +339,6 @@ var app = new Vue({
                      self.exchange = listCnt[i].orderCnt;
                   } else{
                      self.order += listCnt[i].orderCnt;
-                     console.log(self.order);
                   }
                }
 
@@ -362,10 +360,6 @@ var app = new Vue({
           self.user.uDaddrDetail = addrDetail;
           self.user.zipNo = zipNo;
           // 콘솔 통해 각 변수 값 찍어보고 필요한거 가져다 쓰면 됩니다.
-          console.log(roadFullAddr);
-          console.log(roadAddrPart1);
-          console.log(addrDetail);
-          console.log(engAddr);
        },
        infoAddr : function(){
            var self = this;

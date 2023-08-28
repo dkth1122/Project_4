@@ -11,7 +11,7 @@
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>FAQ</title>
   <style type="text/css">
   	#useGuide{
   		font-size: 4em;  		
