@@ -312,10 +312,10 @@ padding-right: 0xp;
 				</table>
 
 				<div class="ch_deletebutton">
-					<span>\ 금액 {{ calculateTotalPrice() | numberWithCommas }}원</span>
-					<span v-if="delivery == 0">\ 배송 {{ delivery}}원</span>
-					<span v-else>\ 배송 {{ delivery | numberWithCommas }}원</span>
-					<span class="red">\ 합 {{ calculateTotalPrice()  + delivery | numberWithCommas }} </span>
+					<span>₩ 금액 {{ calculateTotalPrice() | numberWithCommas }}원</span>
+					<span v-if="delivery == 0">₩ 배송 {{ delivery}}원</span>
+					<span v-else>₩ 배송 {{ delivery | numberWithCommas }}원</span>
+					<span class="red">₩ 합 {{ calculateTotalPrice()  + delivery | numberWithCommas }} </span>
 				</div>
 			
 				<div>
