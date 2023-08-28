@@ -13,11 +13,7 @@
 		FROM T4_USER
 		WHERE U_ID = #{uId}
 	</select>
-	<select id="selectNonOrder" parameterType="hashmap" resultType="com.example.project.model.NonMember">
-		SELECT *
-		FROM T4_NONMEMBER
-		WHERE NM_NO = #{nmNo} AND NM_NAME = #{nmName}
-	</select>
+	
 	<insert id="insertUser" parameterType="hashmap" >
 		INSERT INTO T4_USER VALUES
 		(#{uId}, #{uPw}, #{uEventyn}, #{uName}, #{uName2}, #{uPhone}, 0,"N", 0, NOW(),#{uEmail},#{gArtist} , #{gender})
