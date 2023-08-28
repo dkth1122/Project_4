@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>VERY & PERL</title>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
@@ -669,7 +670,6 @@ var app = new Vue({
            data: nparmap,
            success(data) {                  
               self.list = data.list;
-              console.log(self.list)
            }
         });
      },
@@ -684,7 +684,6 @@ var app = new Vue({
           data: nparmap,
           success(data) {                  
             self.best = data.list;
-            console.log("best==>",self.best);
           }
        });
     },
