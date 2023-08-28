@@ -263,7 +263,8 @@ text-align: center;
 					<span v-if="delivery == 0">\ 배송 {{ delivery}}원</span>
 					<span v-else>\ 배송 {{ delivery | numberWithCommas }}원</span>
 					<span >\ 사용포인트 {{usePoint}}</span>
-               		<span class="red">\ 합 {{ calculateTotalPrice()  + delivery - usePoint| numberWithCommas }} </span>
+               		<span class="red" v-if="(calculateTotalPrice()  + delivery - usePoint) > 1">\ 합 {{ calculateTotalPrice()  + delivery - usePoint| numberWithCommas }} </span>
+               		<span class="red" v-else>\ 합 0 </span>
 
 				</div>
 			
@@ -411,7 +412,6 @@ text-align: center;
          <div class="poinPos">
             <div>현재 포인트: {{ Number(uPoint).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>
             <div>사용할 포인트: <input type="number" v-model="usePoint"></div>
-            <div v-if ="errorMessage">{{errorMessage}}</div>
             <div><button @click="allPointUse">전체사용</button></div>
            </div>
 
@@ -780,16 +780,16 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
     								if(data.sub == 1){
     										alert("멤버쉽 구독 상품은 1회만 구매 가능합니다.");
     										location.href = "/product/" +artist+".do";
-    								}else if((self.totalPrice - self.usePoint) == 0){
-    			          				 self.fnInsertAll2();
-    			          			 }else {
-    			          				self.requestPay();
-    			          			 }
+    								}
     	                       }
     	                   });  
     	       		}
-    	       	}
-    	       	self.requestPay();
+    	       	}if((self.totalPrice - self.usePoint) == 0){
+        				 self.fnInsertAll2();
+        			 	}else{
+    	     			self.requestPay();
+        			 		
+        			 	}
     	}, requestPay : function() {
     		var self = this;
             var timestamp = new Date().getTime();
@@ -810,10 +810,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
   	   	    	self.fnRemoveCart();
   	   	    	alert("결제 성공");
   	   	   		location.href = "payView.do";
+    	        console.log(rsp);
   	   	   		
   	   	      } else {
   	   	        // 결제 실패 시
   	   	        alert("실패");
+    	        console.log(rsp);
   	   	      }
     		
   	   	  });
@@ -866,25 +868,60 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    }
                });  
          	}
-        }, fnInsertAll2 : function(){
+        }, fnInsertAll2: function() {
+            var self = this;
+            var timestamp = new Date().getTime();
+            self.oNo = timestamp;
+            
+            var ajaxRequests = [];
+            
+            for (var i = 0; i < self.list.length; i++) {
+                var nparmap = {
+                    uId: self.uId,
+                    pNo: self.list[i].pNo,
+                    price: self.list[i].price,
+                    cnt: self.list[i].cnt,
+                    artist: self.list[i].artist,
+                    oNo: self.oNo,
+                    usePoint: self.usePoint
+                };
+                
+                ajaxRequests.push($.ajax({
+                    url: "insertALL2.dox",
+                    dataType: "json",
+                    type: "POST",
+                    data : nparmap
+                }));
+             }
+             
+             $.when.apply($, ajaxRequests).then(function() {
+                 if (self.list.length > 0) {
+                     var lastData = arguments[self.list.length - 1];
+                     if (lastData && lastData[0]) {
+                         var data = lastData[0];
+                         self.fnUseUserPoint();
+                     }
+                 }
+                     self.buyNo = data.buyNo;
+                     self.fninsertDelivery2();
+                     self.fnRemoveCart();
+             });
+        },
+
+        fnUseUserPoint : function(){
         	var self = this;
-        	var timestamp =  new Date().getTime(); 
-        	self.oNo = timestamp;
-          	for(var i = 0; i < self.list.length; i++){
-                 	var nparmap = {uId : self.uId, pNo : self.list[i].pNo, price : self.list[i].price, cnt : self.list[i].cnt, artist : self.list[i].artist, oNo : self.oNo, usePoint : self.usePoint };
-	                   $.ajax({
-	                       url : "insertALL2.dox",
-	                       dataType:"json",   	
-	                       type : "POST", 
-	                       data : nparmap,
-	                       success : function(data) { 
-	                    	   self.buyNo = data.buyNo;
-	                    	   self.fninsertDelivery2();
-	                    	   self.fnRemoveCart();
-	                       }
-	                   });  
-          	}//for
-        }, fninsertDelivery2 : function(){
+        	var nparmap = {uId : self.uId, oNo : self.oNo, uPoint2 : self.usePoint, usePoint : self.usePoint}
+               $.ajax({
+                   url : "/payment/useUserPoint2.dox",
+                   dataType:"json",   	
+                   type : "POST", 
+                   data : nparmap,
+                   success : function(data) { 
+                       location.href = "payView.do"; 
+                   }
+               });  
+         	},
+        fninsertDelivery2 : function(){
         	var self = this;
          	for(var i = 0; i < self.list.length; i++){
         	self.user.uId = self.uId;
@@ -899,7 +936,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    type : "POST", 
                    data : nparmap,
                    success : function(data) { 
-                       alert("결제 성공");
                        location.href = "payView.do"; 
                    }
                });  
