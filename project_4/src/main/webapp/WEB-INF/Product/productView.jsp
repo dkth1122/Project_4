@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <meta charset="UTF-8">
-<title>Product detail page</title>
+<title>상품 상세&구매 페이지</title>
 <%@ include file="../Product/sexyheader.jsp" %>
 <style>
 	div{
