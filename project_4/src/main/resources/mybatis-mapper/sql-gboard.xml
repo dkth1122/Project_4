@@ -313,7 +313,7 @@
 	</update>
 	
 	<!-- 서비스에서 중복 알람 발생 방지  :  내 알람 출력용 -->
-	<select id="selectMyBoadAlamList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+	<select id="selectMyBoadAlarmList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT U_ID, NO_TYPE, G_NO
 		FROM T4_GBOARD_NOTICE
 	</select>

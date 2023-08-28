@@ -96,8 +96,6 @@ var app = new Vue({
                      self.list2 = data.list2;
                      self.list3 = data.list3;
                      self.list4 = data.list4;
-                     console.log("여기 게시글 리스트===>",self.list);
-                     console.log("여기 댓글 리스트===>",self.list2);
                  }
              });
          },fnAlarmRemove : function(check){

@@ -8,7 +8,7 @@
    <link href="../css/membership.css" rel="stylesheet" type="text/css">
    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <title>멤버쉽 게시판 </title>
+   <title>Periwinkle</title>
    <style>
       #app{
          background-color : white;
@@ -137,7 +137,7 @@
             <div class="btn">
                 <button @click="fnMove">back</button>
                 <button @click="fnMove('my')">mypage</button>
-                <button @click="fnAPop">알람</button>
+                <button @click="fnAPop">alarm</button>
                </div> 
           
                <label>  
@@ -187,7 +187,7 @@
                <li><span @click="fnLike(item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a></span>{{item.gLike}}</li>
                <li>
                   <img v-if="item.path" :src="item.path" class="image" />
-               <img v-else class="imageX" />
+               	  <img v-else class="imageX" />
             </li>
                <li class="clickThis"><span @click="fnCommentAndOpenPopup(item.gNo, $event)" class="open-popup-button"><a href="#">댓글✉</a></span></li>
                <li class="clickThis"><span @click="reportPost(item.gNo)" v-if="item.gArtist != 'Y'"><a href="javascript:">신고🚨<a></span></li>
@@ -364,10 +364,6 @@
                });
            },fnAdd: function () {
                var self = this;
-   
-               if (!confirm("등록하시겠습니까?")) {
-                   return;
-               }
                
                if(self.uId == null || self.uId == ''){
                   alert("로그인 해주세요.");
@@ -378,8 +374,15 @@
                   alert("내용을 입력해주세요.");
                    return;
                }
+ 	          
+ 	          if (self.content.length > 500) {
+ 	              alert("500자까지만 입력 가능합니다.");
+ 	              return;
+ 	          }
                
-               
+               if (!confirm("등록하시겠습니까?")) {
+                   return;
+               }
                var nparmap = {content: self.content, artist: self.artist, uId : self.uId };
    
                $.ajax({
@@ -491,7 +494,6 @@
                 var self = this;
                 self.gNo = gNo;
                 var nparmap = { artist: self.artist, gNo : gNo };
-                console.log("댓글 ==>", nparmap);
                 $.ajax({
                     url: "list.dox",
                     dataType: "json",
@@ -499,7 +501,6 @@
                     data: nparmap,
                     success: function (data) {
                         self.clist = data.list;
-                        console.log("게시글 ==>",self.clist);
                     }
                 });
                 
@@ -513,13 +514,30 @@
                    data: nparmap,
                    success: function (data) {
                        self.commentList = data.commentList;
-                       console.log("댓글 리스트==>",self.commentList);
                    }
                });
            },CommentAdd: function () {
                var self = this;
                var nparmap = {comment: self.comment, artist: self.artist, uId : self.uId, gNo : self.gNo, artist : self.artist };
-   
+   				
+               if(self.uId == null || self.uId == ''){
+                   alert("로그인 해주세요.");
+                   location.href = "main.do";
+                }
+    
+                if(self.comment == null || self.comment == ""){
+                   alert("내용을 입력해주세요.");
+                    return;
+                }
+  	          
+  	          if (self.comment.length > 500) {
+  	              alert("500자까지만 입력 가능합니다.");
+  	              return;
+  	          }
+                
+                if (!confirm("등록하시겠습니까?")) {
+                    return;
+                }
                $.ajax({
                    url: "addComment.dox",
                    dataType: "json",
@@ -581,14 +599,11 @@
         	   var self = this;
         	   self.gNo = gNo;
         	   self.gcNo = gcNo;
-        	   console.log("self.gNo === ", self.gNo);
-        	   console.log("self.gcNo === ", self.gcNo);
         	   self.CoCommentView();
         	   
            }, CoCommentView : function() {
                var self = this;
                var nparmap = { gNo : self.gNo, gcNo: self.gcNo,  artist: self.artist };
-               console.log("대댓글 파람값 ==> ", nparmap);
                $.ajax({
                    url: "cocommentList.dox",
                    dataType: "json",
@@ -596,13 +611,31 @@
                    data: nparmap,
                    success: function (data) {
                        self.cocommentList = data.cocommentList;
-                       console.log("대댓글========>", self.cocommentList);
                    }
                });
                
            }, CoComment: function() {
                var self = this;
                var nparmap = { artist: self.artist, gcNo: self.gcNo, uId: self.uId, cocomment: self.cocomment, gNo:self.gNo };
+               
+               if(self.uId == null || self.uId == ''){
+                   alert("로그인 해주세요.");
+                   location.href = "main.do";
+                }
+    
+                if(self.cocomment == null || self.cocomment == ""){
+                   alert("내용을 입력해주세요.");
+                    return;
+                }
+  	          
+  	          if (self.cocomment.length > 500) {
+  	              alert("500자까지만 입력 가능합니다.");
+  	              return;
+  	          }
+                
+                if (!confirm("등록하시겠습니까?")) {
+                    return;
+                }
                
                $.ajax({
                    url: "addCocomment.dox",
@@ -662,7 +695,6 @@
                
                var option = "width=600,height=200,top=100,right";
                var url = "alarm.do?artist=" + self.artist + "&uId=" + self.uId;
-               console.log("유알엘==>",url);
                window.open(url, "alarm", option);
            }
        },
