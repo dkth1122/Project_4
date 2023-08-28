@@ -192,12 +192,16 @@
 	               <div class="clickThis" @click="CoRemove(item.gcNo)"><span><a href="javascript:">✖</a></span></div>
 	            </li>
 	        </ul>
-	        
+	        <hr>
+			    <div class="write">
+			        <textarea rows="5" cols="30" v-model="comment"></textarea>
+			        <button @click="CommentAdd()">댓글 등록</button>
+			    </div>
 	        <hr>
 	        <button @click = "CoReload">새로 고침</button>
 	        
 	        <!-- 댓글 리스트 출력 -->
-	        <ul v-for="item in commentList" v-if="item.gcDelYN !== 'Y'" class="ulList">
+	        <ul v-for="item in commentList" v-if="item.gcDelYN !== 'Y' && commentList.length != 0" class="ulList">
 	            <li>{{item.uId}}</li>
 	            <li>{{item.nickName}}</li>
 	            <li>
@@ -215,9 +219,9 @@
 		        </li>
 	            
 	            <!-- 대댓글 출력 -->
-	               <div><button @click="CoCommentView(item.gcNo)">댓글</button> </div>
+	            <hr>
+	            
 	            <li>
-	               
 	               <ul v-for ="citem in cocommentList" v-if="citem.gcDelYN !== 'Y' && citem.gcGroup == item.gcNo">
 	                  <li>{{citem.nickName}}</li>
 	                  <li>
@@ -230,21 +234,28 @@
 	                  <li><button @click="reportPost2(citem.gcNo)">신고</button></li>
 	                  <li v-if="citem.uId == uId || uId =='admin'">
 	                    <a href="javascript:;">
-	                         <div @click="CocoRemove(citem.gcNo)"><span><a href="javascript:">✖</a></span></div>
-	                      </a>
-	                    </li>
-	               <hr>
+	                  	<div @click="CocoRemove(citem.gcNo)"><span><a href="javascript:">✖</a></span></div>
+	                    </a>
+	                 </li>
+	                 
+	               	<hr>
+	               	
 	               </ul>
-	               <div><button @click="fnReload" v-if="reload">닫기</button></div>
+	               <div><button @click="CoReload">닫기</button></div>
 	             	<textarea rows="5" cols="30" v-model="cocomment" ></textarea>
 	               <button @click="CoComment(item)">등록</button>
+	               	
+	               
+	               <!-- 대댓글이 없을 때 -->
+<!-- 	               <ul v-if="cocommentList.length == 0 ">
+		               	<div>등록된 댓글이 없습니다.</div>
+		             	<textarea rows="5" cols="30" v-model="cocomment" ></textarea>
+		               	<button @click="CoComment(item)">등록</button>
+		               <div><button @click="CoReload" >닫기</button></div>
+	               </ul> -->
 	            </li>
 	        <hr>
 	        </ul>
-			    <div class="write">
-			        <textarea rows="5" cols="30" v-model="comment"></textarea>
-			        <button @click="CommentAdd()">댓글 등록</button>
-			    </div>
 	        <div class="cmd">
 	            <input type="button" name="btnclose" class="button" value="닫기" @click="CoMove">
 	        </div>
@@ -448,6 +459,7 @@
 	        	 var self = this;
 	             self.GetCoList(gNo);
 	             self.GetComments(gNo);
+	             self.CoCommentView(gNo);
 	             self.flg = !self.flg;
 	             self.openPopupCentered(event);
 	             // 마우스 클릭 시 이벤트 리스너 등록
@@ -465,27 +477,13 @@
 	                 data: nparmap,
 	                 success: function (data) {
 	                     self.clist = data.list;
-	                     console.log("댓리스트==>",self.clist);
+	                     console.log("게시글 ==>",self.clist);
 	                 }
 	             });
 	             
-	         //왜 있는지 모르겠음
-	         }, GetCnt: function () {
-	             var self = this;
-	             var nparmap = {gNo : self.gNo };
-	             $.ajax({
-	                 url: "list.dox",
-	                 dataType: "json",
-	                 type: "POST",
-	                 data: nparmap,
-	                 success: function (data) {
-	                     self.clist = data.list;
-	                 }
-	             });
-	         //해당 게시글의 댓글 가져오는 독스
 	         }, GetComments: function(gNo) {
 	            var self = this;
-	            var nparmap = { artist: self.artist, gNo : self.gNo };
+	            var nparmap = { artist: self.artist, gNo : gNo };
 	            $.ajax({
 	                url: "commentList.dox",
 	                dataType: "json",
@@ -493,6 +491,7 @@
 	                data: nparmap,
 	                success: function (data) {
 	                    self.commentList = data.commentList;
+	                    console.log("댓글 리스트==>",self.commentList);
 	                }
 	            });
 	        },CommentAdd: function () {
@@ -538,7 +537,7 @@
 	                type: "POST",
 	                data: nparmap,
 	                success: function (data) {
-	                   self.fnGetList();
+	                	self.GetCoList(self.gNo);
 	                }
 	            });
 	            
@@ -551,8 +550,8 @@
 	                type: "POST",
 	                data: nparmap,
 	                success: function (data) {
-	                   self.fnGetComments();
-	                   self.fnCoCommentView(gcGroup);
+	                   self.GetComments();
+	                   self.CoCommentView(gcGroup);
 	                }
 	            });
 	            
@@ -566,21 +565,21 @@
 	                data: nparmap,
 	                success: function (data) {
 	                    self.cocommentList = data.cocommentList;
-	                    self.reload = true;
+	                    console.log("대댓글 ==>", self.cocommentList);
 	                }
 	            });
 	            
 	        }, CoComment: function(item) {
 	            var self = this;
-	            var nparmap = { artist: self.artist, gcNo: item.gcNo, uId: self.uId, cocomment: self.cocomment };
+	            var nparmap = { artist: self.artist, gcNo: item.gcNo, uId: self.uId, cocomment: self.cocomment, gNo:item.gNo };
 	            
 	            $.ajax({
-	                url: "cocomment.dox",
+	                url: "addCocomment.dox",
 	                dataType: "json",   
 	                type: "POST",
 	                data: nparmap,
 	                success: function (data) {
-	                   location.reload();
+	                	self.CoCommentView();
 	                }
 	            });
 	            
@@ -599,11 +598,11 @@
 	                data: nparmap,
 	                success: function (data) {
 	                   alert("삭제완료");
-	                   self.fnCoCommentView();
+	                   self.CoCommentView();
 	                }
 	            });
 	        }, CoReload : function(){
-	           location.reload();
+	           alert("새로고침");
 	           
 	        }, reportPost1 : function(gNo) {
 	            var self = this;

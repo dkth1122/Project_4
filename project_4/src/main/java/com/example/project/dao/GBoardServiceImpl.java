@@ -19,7 +19,6 @@ public class GBoardServiceImpl implements GBoardService{
 	//전체 게시글 출력
 	@Override
 	public List<GBoard> searchGBoardList(HashMap<String, Object> map) {
-		System.out.println("gNo ==> " + map.get("gNo"));
 		return gboardMapper.selectGBoardList(map);
 	}
 
@@ -136,7 +135,6 @@ public class GBoardServiceImpl implements GBoardService{
 			
 			gboardMapper.insertComment(map);
 			gboardMapper.insertAlram(map);
-			gboardMapper.insertComment(map);
 		}else {
 			map.put("check", "Y");
 			map.put("type", "COMM");

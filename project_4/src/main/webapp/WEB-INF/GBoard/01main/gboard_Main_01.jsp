@@ -10,12 +10,12 @@
 <%@ include file="../../Product/sexyheader.jsp" %>
 <style>
     @font-face {
-    	font-family: "a타이틀고딕2";
-        src: url("../../../font/A타이틀고딕2.TTF") format("truetype");
+    	font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
     }
     
     *{
-    	font-family: a타이틀고딕2;
+    	font-family: a타이틀고딕1;
     }
 	ul, li{
 		text-decoration: none;

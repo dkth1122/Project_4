@@ -289,7 +289,7 @@ public class GBoardController {
 	}
 
 	// 대댓글 작성 기능
-	@RequestMapping(value = "/gboard/cocomment.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/gboard/addCocomment.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String addCocomment(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();

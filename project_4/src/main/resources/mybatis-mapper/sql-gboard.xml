@@ -174,17 +174,17 @@
 	<!-- 대댓글 추가 기능 -->
 	<insert id="insertCocomment" parameterType="hashmap">
 		INSERT INTO T4_GCOMMENTS VALUES
-		(NULL, #{artist}, #{gcNo}, #{uId}, #{cocomment}, 0, NOW(), 'N', #{gcNo}, 0, #{check})
+		(NULL, #{artist}, #{gNo}, #{uId}, #{cocomment}, 0, NOW(), 'N', #{gcNo}, 0, #{check})
 	</insert>
 	
 		
-	<!-- 대댓글 출력  기능 -->
+	<!-- 대댓글 전부 출력  기능 -->
 	<select id="selectCocomment" parameterType="hashmap" resultType="com.example.project.model.GBoard">
-		SELECT C.GC_NO,C.GC_GROUP, C.GC_CONTENT, C.U_ID, C.GC_DATE, C.GC_DELYN, C.GC_LIKE, NICKNAME, GP_PATH
+			SELECT *
 		    FROM T4_GCOMMENTS G
 		    INNER JOIN T4_GCOMMENTS C ON G.GC_NO = C.GC_GROUP
 		    LEFT JOIN T4_GBOARD_PROFILE P ON G.U_ID = P.U_ID AND G.ARTIST = P.ARTIST
-		    WHERE G.GC_NO = #{gcNo} AND C.GC_GROUP = #{gcNo}
+			WHERE G.G_NO = #{gNo} AND C.GC_GROUP = #{gcNo}
 	</select>
 	
 	<!-- 대댓글 삭제 기능 -->
