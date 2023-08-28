@@ -908,7 +908,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
              });
         },
 
-        fnUseUserPoint : function(){
+        fnUseUserPoint : function(){ //ㅇㅇㅇㅇ
         	var self = this;
         	var nparmap = {uId : self.uId, oNo : self.oNo, uPoint2 : self.usePoint, usePoint : self.usePoint}
                $.ajax({
