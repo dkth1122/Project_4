@@ -34,6 +34,14 @@
 	margin-bottom: 20px;
 	width: 100%;
 }
+  .nonMember{
+         font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
   </style>
 </head>
 <body>
@@ -337,7 +345,6 @@ prevBtn.addEventListener('click', function(){
 function moveSlide(num){ // unm을 num으로 수정
 slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleft를 left로 수정
 currentIdx = num;
-console.log(currentIdx, slideCount);
 if(currentIdx == slideCount || currentIdx == -slideCount){
   setTimeout(function(){
       slides.classList.remove('animated');
@@ -363,7 +370,6 @@ autoSlide();
 function stopSlide(){
 clearInterval(timer);   
 timer = undefined;
-console.log(timer);
 }
 slides.addEventListener('mouseenter', function(){
 stopSlide();

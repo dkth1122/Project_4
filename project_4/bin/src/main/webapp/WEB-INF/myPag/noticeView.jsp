@@ -8,8 +8,16 @@
    <link href="../css/mypag.css" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>Notice</title>
   <style type="text/css">
+      @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
     body{
   	background-color: #F1E9F0;
   	}
@@ -37,6 +45,12 @@
 	hr {
 		margin-top : 20px;
 	}
+	
+	img{
+		width: 300px;
+		height: 300px;
+		border: none;
+	}
 
   </style>
 </head>
@@ -56,8 +70,11 @@
     			<hr>
     		</div>
     	<div>
-	    		<div class="noticeContentPos1">
+	    		<div class="noticeContentPos1" v-if="item.thumbnail != NULL">
 					<img :src="item.thumbnail">
+	    		</div>
+	    		<div class="noticeContentPos1" v-else>
+	    			<span></span>
 	    		</div>
 	    			<div class="noticeContentPos2">{{item.aContent}}</div>
         			<hr>
@@ -105,8 +122,6 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                    self.list = data.list; //사용자                  
-                   console.log(self.currentIndex);
-                 
                 }
             }); 
         },

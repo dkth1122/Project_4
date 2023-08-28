@@ -11,8 +11,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <meta charset="UTF-8">
-<title>장바구니</title>
+<title>Cart page</title>
+<%@ include file="../Product/sexyheader.jsp" %>
 <style>
+#headerMargin{
+	margin-bottom: 100px;
+}
 
 #title {
 	width: 1500px;
@@ -81,9 +85,11 @@
 .red{
 	color: red;
 }
+
+/* 헤더 아이콘 띄워져서 주석처리 - 여대현 
 span {
 	margin-left: 111px;
-}
+} */
 .baybutton{
 	width: 1500px;
 	text-align: right;
@@ -194,6 +200,7 @@ select{
 td{
 	height: 200px;
 }
+
 #baybutton{
 	width: 1500px;
 	margin: 30px auto;
@@ -218,7 +225,7 @@ text-align: center;
 }
 
 .pImg{
-	max-width: 240;
+	max-width: 240px;
 	max-height: 240px;
 }
 td input{
@@ -227,7 +234,7 @@ td input{
 	width: 20px;
 	height: 20px;
 }
-i{
+.c i{
 	border: 1px solid black;
 	border-radius: 50%;
 	padding: 5px;
@@ -238,9 +245,31 @@ i{
 	width: 63px;
 	height: 25px;
 }
+#headerd{
+	margin-bottom: 80px;
+	width: 1500px;
+}
+.sexyIcon {
+padding-right: 0xp;
+}
+.button11{
+   background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+#editbutt{
+	padding: 23px 126px;
+	font-size: 1.3em;
+	color: #fff;
+}
 </style>
 </head>
 <body>
+<div id="headerMargin"> </div>
 	<div id="app">
 		<div id="container">
 		
@@ -254,16 +283,19 @@ i{
 						<th>제거</th>
 						<th>주문금액</th>						
 					</tr>
-					<tr v-for="(item, index) in list">
-						<td class="a"><img :src="item.path" class="pImg"></td>
-						<td class="b">{{item.pName}}</td>
+					<tr v-for="(item, index) in list">						
+						<td class="a"><button class="button11" @click="productDetail(item)"><img :src="item.path" class="pImg"></button></td>
+						<td class="b">{{item.pName}}</td>					
 						<td class="c">
-							 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
+							
+						</td>
+						<td class="c">
+						 <a href="#none" @click="decreaseCnt(item)"> <i class="fa-solid fa-minus"></i> </a>
 							  <input :value="item.cnt" @input="updateItemCnt(item)" readonly>							
 							 <a href="#none" @click="increaseCnt(item)"> <i class="fa-solid fa-plus"></i> </a>
+							 <br><button style="margin-top:20px;" @click="fnCartChange(item)"><a href="javascript:;">수정</a></button>
 						</td>
-						<td class="c"><button @click="fnCartChange(item)">수정</button></td>
-						<td class="c"><button @click ="fnRemoveCart(item.pNo)">삭제</button></td>
+						<td class="c"><button @click ="fnRemoveCart(item.pNo)"><a href="javascript:;">삭제</a></button></td>
 						<td class="e">{{calculateTotal(item) | numberWithCommas}}원</td>
 						
 					</tr>
@@ -282,7 +314,7 @@ i{
 				</div>
 					
 				<div id="baybutton">
-					<button @click="fnPay">결제하기</button> 
+					<button @click="fnPay"><a id="editbutt" href="javascript:;">결제하기</a></button> 
 				</div>
 		</div>	
 	</div>
@@ -312,8 +344,12 @@ i{
 	                dataType:"json",	
 	                type : "POST", 
 	                data : nparmap,
-	                success : function(data) { 
-	                	self.list = data.list; //사용자
+	                success : function(data) { 	                	
+	                	if(data.list.length == 0){
+	                		location.href = "/basket.do";
+	                	}else{
+	                		self.list = data.list; //사용자
+	                	}
 	                }
 	            }); 
 	        }, calculateTotal: function (item) {
@@ -359,6 +395,7 @@ i{
             		 this.calculateTotalPrice();
             	}else{
             		alert("해당상품의 최대구매수량은 "+item.pLimit+"개 입니다.");
+            		item.cnt = item.pLimit;
             	}
                 
                 
@@ -413,7 +450,7 @@ i{
         	   var self = this;
                var nparmap = {pNo : item.pNo, uId : self.uId, quantity : item.cnt};            
                $.ajax({
-                   url : "/cart/addCart.dox",
+                   url : "/cart/cartPageChangeCnt.dox",
                    dataType:"json",	
                    type : "POST", 
                    data : nparmap,
@@ -427,7 +464,11 @@ i{
                 item.cnt = parseInt(event.target.value);
                 this.calculateTotalPrice();
            	}      
-       	 }
+       	 },    
+         productDetail : function(item){
+             var self = this;
+             $.pageChange("/product/productView.do", {pNo : item.pNo});
+          }
 		},
 		created : function() {
 			var self = this;

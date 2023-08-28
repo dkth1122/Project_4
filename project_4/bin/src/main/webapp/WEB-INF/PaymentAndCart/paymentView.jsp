@@ -11,8 +11,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body {
+	background-color:#f0f0f0;
+}
 .login-box{
-	height : 600px;
+	height : 300px;
 }
 .login button{
 	font-weight:500;
@@ -20,12 +23,6 @@
 }
 h3{
 	text-align : center;
-}
-.idpw{
-	width : 300px;
-	margin : 0px auto;
-	padding-left : 100px;	
-	padding-bottom : 50px;
 }
 .idpw div{
 	border-bottom : 1px solid #d8d9df;
@@ -40,8 +37,10 @@ h3{
 	font-size: 70px;
 	margin-left : 220px;
 }
-.login{
-	margin-top : 60px;
+.container{
+	position : relative;
+	top : -100px;
+	
 }
 </style>
 </head>
@@ -53,13 +52,6 @@ h3{
 			<div class="login-box2">
 			<i class="fa-regular fa-face-smile" id="smile"></i>
 			<h3>주문이 완료되었습니다!</h3>
-				<div class="idpw">	
-					<div><label>주문자명 <span>{{user.uId}}</span></label></div>
-					<div><label>주문번호   <span>{{user.uName}}</span></label></div>
-					<div><label>상품명   <span>{{user.uEmail}} {{user.oCount}}</span></label></div>
-					<div><label>결제금액   <span>{{user.uEmail}}</span></label></div>
-					<div><label>주문일자   <span>{{user.uEmail}}</span></label></div>
-				</div>
 				<div class="login">
 					<div><button @click="goToMain">GO TO MAIN</button></div>
 				</div>
@@ -73,46 +65,15 @@ h3{
 var app = new Vue({
 	el : '#app',
 	data : {
-		user : {
-			uId : "",
-			uName : "",
-			uEmail : ""
-		},
-		uId : "${map.uId}",
-		list : []
+		uId : "${sessionId}",
 	},// data
 	methods : {
-		fnGetList : function(){
-	   		var self = this;
-			var nparmap = {uId : self.uId};
-            /* $.ajax({
-                url : "/user2.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-               		self.user = data.findPw;
-                }
-            }); */
-	   	},
 	   	goToMain : function(){
 	   		var self = this;
-			var nparmap = {uId : self.user.uId};
-            $.ajax({
-                url : "/user2.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-               		self.user = data.findPw;
-               		$.pageChange("/home.do", {uId : self.uId});
-                }
-            });
-	   	}
+               		$.pageChange("../home.do", {uId : self.uId});
+        }
 	}, // methods
 	created : function() {
-		var self = this;
-		self.fnGetList();
 		
 	}// created
 });

@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나는 스테프 헤더</title>
 <style>
 
         #app1{
@@ -84,8 +84,18 @@ var app1 = new Vue({
 		fnGBoard : function() {
 			window.open('../gboard/main.do', '_blank');
 		},
-		fnLogout : function() {
-			location.href="../user/login.do";
+		fnLogout : function(){
+			var self = this;
+			var param = {uId : self.uId, uPw : self.uPw};
+			$.ajax({
+                url : "/logout.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	window.location.reload();
+                }
+            }); 
 		},
 		fnHome : function(){
             location.href = '../staff/home.do';

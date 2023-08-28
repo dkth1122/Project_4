@@ -5,19 +5,27 @@
 <head>
 <script src="../js/jquery.js"></script>    
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <!-- 페이징 추가 1 -->
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
-  <style type="text/css">
+  <title>공지사항</title>
+  <style>
+      @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
   body{
   	background-color: #F1E9F0;
   }
   #app{
   	width: 600px;
+  	height: 800px;  	
   }
   #wc, table{
   	margin: 0px auto;
@@ -37,6 +45,7 @@
   }
   #contaienr{
   	width: 100%;
+  	height: 800px;
   	display: flex;
   	flex-direction: column;
   }
@@ -101,7 +110,7 @@
 	}
 	.notice{
 	background-color : #E6CDFF;
-	  padding : 20px;
+	padding : 20px;
    font-size : 2rem;
    text-align : left;
   	margin: 0px auto;
@@ -111,6 +120,13 @@
 	}
 	hr{
 		width: 800px;
+	}
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	a:hover {
+		color: #ccc;
 	}
   </style>
 </head>

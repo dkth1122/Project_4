@@ -9,49 +9,83 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버십 댓글</title>
 <style>
-	body{
-		width : 500px;
-		margin : 10px auto;
-	}
-	ul, li{
-		text-decoration : none;
-		list-style : none;	
-	}
-	.feedType{
-		width: 300px;
-		height: 200px;
-	    display: inline-block; 
-	}
-	 .feedType > div {
-	 	width: 300px;
-		height: 200px;
-	    position: relative; 
-	   	display: inline-block; 
-	    border: 1px solid tomato;
-	    padding: 32px;
-	    margin: 10px; 
-	    vertical-align: top; 
-	    box-sizing: border-box; 
-	  }
-	.container{
-		width: 500px;
-		border: 1px solid tomato;
-		padding: 32px;
-	}
-	a{
+	@font-face {
+    	font-family: "a타이틀고딕2";
+        src: url("../../../font/A타이틀고딕2.TTF") format("truetype");
+    }
+    
+    *{
+    	font-family: a타이틀고딕2;
+    }
+   body{
+   background-color:#d4d5d9;
+      width : 500px;
+      margin : 10px auto;
+   }
+   ul, li{
+      text-decoration : none;
+      list-style : none;   
+   }
+   .feedType{
+      width: 300px;
+      height: 200px;
+       display: inline-block; 
+   }
+    .feedType > div {
+       width: 300px;
+      height: 200px;
+       position: relative; 
+         display: inline-block; 
+       border: 1px solid tomato;
+       padding: 32px;
+       margin: 10px; 
+       vertical-align: top; 
+       box-sizing: border-box; 
+     }
+   .container{
+      width: 500px;      
+      padding: 32px;
+      background-color:white;
+      border-radius: 10px;
+   }
+   a{
         text-decoration: none;
         color: inherit;
    }
    .write{
-   		width: 300px;
-		height: 100px;
-		border: 1px solid tomato;
-		padding: 32px;
+         width: 300px;
+      height: 100px;
+      border: 1px solid tomato;
+      padding: 32px;
    }
    
    .container > ul{
-   		border: 1px solid tomato;
+        background-color: #eee;
+        border-radius: 10px;
    }
+   
+  .profile-image {
+      width: 50px; /* 원하는 이미지 크기 조절 */
+      height: 50px;
+      border : 1px solid #BB91E7;
+      border-radius: 50%; /* 50%로 설정하여 동그라미 모양으로 자름 */
+      }
+      
+      hr{
+          border: none; /* 기본 테두리 제거 */
+           height: 2px; /* 높이 설정 */
+           background: linear-gradient(to right, #BB91E7, #F2DAED); /* 그라디언트 배경 설정 */
+           margin: 20px 0; /* 위아래 마진 설정 */
+      }
+      .image{
+         border : none;
+         width : 300px;
+         height : 300px;
+      }
+      .imageX{
+         display: none;
+      }
+</style>
 </style>
 </head>
 <body>

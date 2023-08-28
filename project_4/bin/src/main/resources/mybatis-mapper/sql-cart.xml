@@ -10,7 +10,6 @@
 		FROM T4_CART C
 		INNER JOIN T4_PRODUCT P ON C.P_NO = P.P_NO
 		LEFT JOIN T4_PRODUCT_IMG I ON C.P_NO = I.P_NO
-		LEFT JOIN T4_MEMBERSHIP M ON M.ARTIST = P.ARTIST
 		WHERE C.U_ID = #{uId} AND IMG_TYPE = 'Y'
 	</select>
 		
@@ -19,6 +18,13 @@
 		INSERT INTO T4_CART (U_ID, P_NO, CNT)
 		VALUES (#{uId}, #{pNo}, #{quantity})
 	</insert>
+	
+	<!-- 장바구니 페이지에서 수량 변경용 -->
+	<update id="cartPageUpdateCnt" parameterType="hashmap" >
+		UPDATE T4_CART SET 	
+		CNT = #{quantity}
+		WHERE P_NO = #{pNo} AND U_ID = #{uId}
+	</update>
 	
 	<!-- 장바구니 물품 리스트에서 삭제 -->
 	<delete id="deleteCart" parameterType="hashmap">
@@ -32,7 +38,7 @@
 	<!-- 장바구니 동일 상품 수량 추가 -->
 	<update id="updateCnt" parameterType="hashmap" >
 		UPDATE T4_CART SET 	
-		CNT = #{quantity}
+		CNT = CNT + #{quantity}
 		WHERE P_NO = #{pNo} AND U_ID = #{uId}
 	</update>
 	

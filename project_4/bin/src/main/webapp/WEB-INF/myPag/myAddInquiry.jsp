@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="mypageheader.jsp" %>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>  
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <!-- 1. vue2editor 에디터 cdn -->
@@ -13,8 +14,16 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
-
+<title>문의</title>
 <style>
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #container {
     height: 1325px;
     width: 100%;
@@ -22,6 +31,28 @@
 }
 	#iQtext{
 		 min-height : 600px;
+	}
+	#addbut{
+		text-align: center;
+		margin-top: 50px;
+	}
+	#addbut button{
+		margin: 0px 10px;
+		width: 130px;
+		height: 40px;
+		border-radius: 25px;
+		border-style: solid;
+		background-color: #fff;
+		font-size: 1em;
+		border-color: #333;
+		
+	}
+	#addbut button > a{
+		font-size: 1em;
+		padding: 10px 30px;
+	}
+	#filebut input{
+		margin-top : 30px;
 	}
 </style>
 </head>
@@ -36,7 +67,7 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 <a href="/mypag/main.do"><div id="profileImg"></div></a>
+					    	 	 <a href="/mypag/main.do"><div id="profileImg"><img :src="infouser.profile"></div></a>
 					    	</div >
 					    	<div class="topBox">
 					    	<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
@@ -44,33 +75,35 @@
 					    	
 					    	<div class="topBox">
 					    	
-					    		<div class="details" >
-					    		
-							    	<div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+					    	<div class="details">
+									<div>Order</div>
+			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
-					    			
-					    		</div>
-					    		
-					    		<div class="details" >
-					    		
-					    			<div>교환/환불</div>
-					    			<div>
+
+								</div>
+
+								<div class="details">
+
+									<div >교환/환불</div>
+									<div>
+									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
 										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>
-										
+										<span v-else>0 /</span>										
 										<span v-if="exchange != 0"> {{exchange}}</span>
 										<span v-else>0</span>
+									</a>
 									</div>
-					    			
-					    		</div>
-					    		<div class="details" >
-					    			<div>포인트</div>
+
+								</div>
+								<div class="details">
+									<div >포인트</div>
+									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
-					    		</div>					    		
+									</a>
+								</div>		    		
 					    	</div>
 					    </div>
 					    	
@@ -157,16 +190,19 @@
 　- CSCENTER@SMTOWN.COM
 　- 제목양식: 주문번호/주문자명 불량CS 확인요청 (예시) 20230101-0000000/홍길동 불량CS 확인요청">							    	  		
 							    	  		</vue-editor> 							    	  		
-							    	  		</span></div>							    	
-							    	  	<div>
-							    	  	<button @click="fnBack">취소</button>
-							    	  	<button @click="addBoard">등록</button>
+							    	  		</span></div>
+							    	  			
+							    	  		<div>
+							    	  		<div id="filebut"><span>첨부파일 1 <input type="file" id="file1" name="file1"></span></div>							    	  								    	  
+							    	  		</div>
+							    	  								    	
+							    	  	<div id="addbut">
+							    	  	<button @click="fnBack"><a href="javascript:;">취소</a></button>
+							    	  	<button @click="addBoard"><a href="javascript:;">등록</a></button>
 							    	  	</div>
 							    	  	
 							    	  	
-							    	  	<div>
-							    	  		<div><span>첨부파일 1 <input type="file" id="file1" name="file1"></span></div>							    	  								    	  
-							    	  	</div>
+							    	  	
 							     </div> 
 							     
 							     
@@ -175,14 +211,13 @@
 					    </div>
 			    
 			  </div>
-  
+
 </div>
 <div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
 //3. 뷰에 vue2editor 추가
-console.log(Vue);
 Vue.use(Vue2Editor);
 const VueEditor = Vue2Editor.VueEditor;
 
@@ -249,7 +284,6 @@ var app = new Vue({
 	    addBoard : function(){
             var self = this;
             var nparmap = self.info;
-            console.log(self.info);
             $.ajax({
                 url : "/mypag/myPageAddInquiry.dox",
                 dataType:"json",	

@@ -4,18 +4,73 @@
 <html>
 <head>
   <%@ include file="mypageheader.jsp" %>
+  <link href="../css/footer.css" rel="stylesheet" type="text/css">
   <script src="../js/jquery.js"></script>  
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>1:1문의 목록</title>
 <style type="text/css">
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #container {
     height: 1055px;
     width: 100%;
     margin-bottom: 163px;
 }
+table {
+	width: 910px;
+	text-align: center;
+	border-collapse: collapse;
+}
+td{
+ border-bottom: 1px solid black;
+ border-color: #ddd;
+}
+.a1{
+	width: 10%;
+}
+.a2{
+width: 10%;
+color: red;
+}
+.a2 a{
+
+color: red;
+}
+.a3{
+width: 50%;
+}
+.a4{
+width: 20%;
+}
+.a5{
+width: 10%;
+}
+.addbutton{
+	text-align: right;
+	margin-right: 30px;
+	padding: 20px;
+}
+.addbutton > button{
+	width: 100px;
+	height: 40px;
+	border-radius: 30px;
+	border-style: solid;
+	border-color: rgb( 0 , 0, 0 , 0.5);
+	background-color: #fff;
+}
+.addbutton a{
+    padding: 12px 24px;
+}
+
 </style>
 </head>
 <body>
@@ -31,7 +86,7 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 	<a href="/mypag/main.do"><div id="profileImg"></div></a>
+					    	 	 	<a href="/mypag/main.do"><div id="profileImg"><img :src="infouser.profile"></div></a>
 					    	</div >
 					    	<div class="topBox">
 					    	<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
@@ -39,35 +94,35 @@
 					    	
 					    	<div class="topBox">
 					    	
-					    		<div class="details" >
-					    		
-					    			<div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+					    		<div class="details">
+									<div>Order</div>
+			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
-					    			
-					    		</div>
-					    		
-					    		<div class="details" >
-					    		
-					    			<div>교환/환불</div>
-					    			<div>
-					    				<div>
+
+								</div>
+
+								<div class="details">
+
+									<div >교환/환불</div>
+									<div>
+									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
 										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>
-										
+										<span v-else>0 /</span>										
 										<span v-if="exchange != 0"> {{exchange}}</span>
 										<span v-else>0</span>
+									</a>
 									</div>
-					    			</div>
-					    			
-					    		</div>
-					    		<div class="details" >
-					    			<div>포인트</div>
+
+								</div>
+								<div class="details">
+									<div >포인트</div>
+									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
-					    		</div>
+									</a>
+								</div>
 					    	</div>
 					    </div>
 					    	
@@ -119,17 +174,22 @@
 							      <div class="View">
 							    	  <div class="lowerBox"> 1:1문의 </div>
 							    	  	<div v-if="info.length > 0" v-for="item in info">
-							    	  		<hr>
-							    	  		<div>{{item.iNo}}
-							    	  		<span>{{item.category}}</span>
-							    	  		<span><a @click="boardView(item)">{{item.iQtitle}}</a></span>
-							    	  		<span>{{item.iQtime}}</span>
-							    	  		<span>{{item.state}}</span>
-							    	  		</div>
+							    	  	
+							    	  	<table>
+							    	  		<tr>
+							    	  			<td class="a1"><a href="#" @click="boardView(item)">{{item.iNo}}</a></td>
+							    	  			<td class="a2"><a href="#" @click="boardView(item)">{{item.category}}</a></td>
+							    	  			<td class="a3"><a href="#" @click="boardView(item)">{{item.iQtitle}}</a></td>
+							    	  			<td class="a4">{{item.iQtime}}</td>
+							    	  			<td class="a5">{{item.state}}</td>
+							    	  		</tr>
+							    	  	
+							    	  	</table>
+							    	  		
 							    	  		
 							    	  	</div>
 							    	  	<div v-if="info.length == 0" class="nodata"> 검색결과가 없습니다</div>
-							    	  	<div><button @click="addBoard"><a href="http://localhost:8082/mypag/myAddInquiry.do">글쓰기</a></button></div>
+							    	  	<div class="addbutton"><button @click="addBoard"><a href="#">글쓰기</a></button></div>
 							     </div> 
 							     
 							     
@@ -138,9 +198,9 @@
 					    </div>
 			    
 			  </div>
-  
+ 
 </div>
-<div><%@ include file="../page/footer.jsp" %></div>
+ <div><%@ include file="../page/footer.jsp" %></div>
 </body>
 </html>
 <script type="text/javascript">
@@ -181,7 +241,6 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.info = data.list; //사용자
-                	console.log(self.info);
                 }
             }); 
         },	    
@@ -260,8 +319,8 @@ var app = new Vue({
       var self = this;
       self.fnGetList();
       self.fnGetInfo();
-		self.fnPoint();
-		self.fnCntList();
+	  self.fnPoint();
+	  self.fnCntList();
     }
 });
 </script>

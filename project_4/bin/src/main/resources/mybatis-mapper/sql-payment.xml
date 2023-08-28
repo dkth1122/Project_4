@@ -4,20 +4,40 @@
 
 <mapper namespace="com.example.project.mapper.PaymentMapper">
 
-	<!-- 바로 구매 시 상품 테이블 정보 전체 출력을 위한 쿼리-->
+	<!-- 결제 전 : 상품 테이블 정보 전체 출력을 위한 쿼리-->
 	<select id="selectProductAll" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT  *
 		FROM T4_PRODUCT P
 		LEFT JOIN T4_PRODUCT_IMG I ON P.P_NO = I.P_NO
 		WHERE P.P_NO = #{pNo} AND IMG_TYPE = 'Y'
 	</select> 
-
+	
+	<!-- 결제 전 : 배송 주소록 출력 쿼리 -->
+	<select id="selectDeliveryUserInfo" parameterType="hashmap" resultType="com.example.project.model.DeliveryUser">
+		SELECT *
+		FROM T4_DELIVERY_USER
+		WHERE U_ID = #{uId}
+	</select>
+	
+	<!-- 결제 : 유저의 멤버쉽 정보를 전체 출력을 위한 쿼리-->
+	<select id="selectMembershipCheck" parameterType="hashmap" resultType="int">
+		SELECT  COUNT(*)
+		FROM T4_MEMBERSHIP
+		WHERE U_ID = #{uId} AND ARTIST = #{artist} AND M_EXP_DATE > CURDATE()
+	</select> 
+	
+	<!-- 결제 : 키트 상품 구매 여부 출력을 위한 쿼리  -->
+	<select id="selectMembershipKit" parameterType="hashmap" resultType="com.example.project.model.Product">
+		SELECT KIT_YN
+		FROM T4_MEMBERSHIP
+		WHERE U_ID = #{uId} AND ARTIST = #{artist}
+	</select> 
+	
 	<!-- 결제시 오더 테이블 등록 -->
 	<insert id="insertProductBuy" parameterType="hashmap" useGeneratedKeys="true"  keyProperty="buyNo"  keyColumn="BUY_NO">
 	    INSERT INTO T4_ORDER
 	    VALUES (NULL, #{oNo} , #{uId}, #{pNo}, #{price}, NOW(), #{cnt}, NULL)
 	</insert>
-	
 	
 	<!-- 재고 수 체크  0이면 재고 없음, 1이면 재고 있음 ========실패 사유 메시지 "재고 부족"-->
 	<select id="selectStock" parameterType="hashmap" resultType="int">
@@ -71,7 +91,6 @@
 		AND MEMBERSHIP ='Y'
 	</select>
 	
-	
 	<!-- 위에 키트 조건 만족 시 :  키트 구매 업데이트 -->
 	<update id="updateMembershipKit" parameterType="hashmap" >
 		UPDATE T4_MEMBERSHIP 
@@ -83,7 +102,13 @@
 	<insert id="insertMembership" parameterType="hashmap">
 		INSERT INTO T4_MEMBERSHIP (M_STATUS, M_REG_DATE, M_EXP_DATE, U_ID, ARTIST, KIT_YN)
 		VALUES ('ACTIVE', NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR), #{uId}, #{artist}, 'N' )
-   	</insert>  
+   	</insert> 
+   	
+   	<!-- 위에 조건 만족 시 : 멤버쉽 구독 상품 구매 시 멤버쉽 테이블 업데이트 -->
+	<insert id="insertGboardProfile" parameterType="hashmap">
+		INSERT INTO T4_GBOARD_PROFILE (U_ID, NICKNAME, ARTIST)
+		VALUES (#{uId}, #{uId}, #{artist} )
+   	</insert> 
    	
    	<!--  위에 조건 전부 만족 시 : 멤버쉽 구독 상품 구매 시 유저 테이블 업데이트  -->
    <update id="updateUserMembershipY" parameterType="hashmap">
@@ -91,7 +116,7 @@
 		SET U_MEMBERSHIP = 'Y'
 		WHERE U_ID = #{uId}
 	</update> 
-   	
+	
    	<!--  위에 조건 전부 만족 시 : 구매 완료 되면서 STOCK 재고 줄이기 -->
    <update id="updateStock" parameterType="hashmap">
 		UPDATE T4_PRODUCT
@@ -102,7 +127,25 @@
     <!-- 결제 후 오더 테이블 등록 후에 딜리버리 테이블 등록 -->
    <insert id="insertDelivery" parameterType="hashmap">
 		INSERT INTO T4_DELIVERY (BUY_NO, O_NO, U_ID, D_STATE, DU_NO)
-		VALUES (#{buyNo}, #{oNo},  #{uId}, '업체확인중',#{duNo} )
+		VALUES (#{buyNo}, #{oNo}, #{uId}, '업체확인중', #{duNo} )
+   </insert>
+   <!-- 비회원 결제 후 오더  -->
+    <insert id="insertNonDelivery" parameterType="hashmap">
+		INSERT INTO T4_DELIVERY (BUY_NO, O_NO, U_ID, D_STATE)
+		VALUES (#{buyNo}, #{oNo}, #{uId}, '업체확인중')
+   </insert>
+   <!-- 결제시 포인트 사용 -->
+   <update id="paymentPointUse">
+   		UPDATE T4_USER
+		SET
+		   U_POINT = U_POINT - #{usePoint}
+		WHERE U_ID = #{uId}
+   </update>
+   
+   <!-- 결제시 포인트 사용 후 포인트 테이블 등록 -->
+   <insert id="paymentPointInsert">
+   		INSERT INTO T4_USER_POINT (O_NO, USEPOINT, PODATA)
+		VALUES(#{oNo}, #{uPoint2}, NOW());
    </insert>
    
    

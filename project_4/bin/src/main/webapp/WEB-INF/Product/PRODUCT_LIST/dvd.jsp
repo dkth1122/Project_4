@@ -9,8 +9,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <meta charset="UTF-8">
-  <title>상품 페이지</title>
+  <title>DVD 상품 페이지</title>
 <style type="text/css">
+ @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    
 	  .nonMember{
 	  margin: 0px 10px;
 	  }
@@ -50,6 +58,7 @@
 	.slide_wrapper_main{
 		float: left;
 		margin-left: 200px;
+		margin-top: 100px;
 	}
 	.body2{
 		margin-top : 150px;
@@ -61,7 +70,7 @@
 		width: 1200px;
 		float: left;
 		position: relative;
-		top :-700px;
+		top :-638px;
 		left: 350px;
 		
 	}
@@ -90,13 +99,11 @@
 </head>
 <body>
 
+<%@ include file="../sexyheader.jsp" %>
+
 <div id="app">
    <div id="wrap">
         <div id="container">
-        <div id="login">
-        <div class="login_loginout"><span class="nonMember">로그인</span>  |  <span class="nonMember">회원가입</span></div>
-        <div class="login_loginout" v-if="false"> 로그아웃</div>
-        </div>
             <div id="header" >
             
             </div>
@@ -123,7 +130,7 @@
             
             
             <div class="body" style="margin-top: 80px;">
-                <select class="select" v-model="selectedOption" @change="fnGetList">
+                <select class="select" v-model="selectedOption" v-on:change="handleSelectChange" v-if = "list.length != 0">
                     <option selected>전체</option>
                     <option value="nameList">상품명</option>
                     <option value="minPrice">낮은가격</option>
@@ -133,57 +140,57 @@
                 
                 <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
+                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnGetList('B')">BTS</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('BTS')">BTS</a>
                             <ul class="sub">
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnGetList('T')">TXT</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('TXT')">TXT</a>
                         <ul class="sub2">
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('E')">ENHYPEN</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('EHP')">ENHYPEN</a>
 	                    <ul class="sub3">
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnGetList('S')">SEVENTEEN</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('SVT')">SEVENTEEN</a>
 			            <ul class="sub4">
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('F')">fromis_9</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('FMN')">fromis_9</a>
 				        <ul class="sub5">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu6">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('L')">LE SSERAFIM</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('LSF')">LE SSERAFIM</a>
 				        <ul class="sub6">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu7">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('N')">NewJeans</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('NJS')">NewJeans</a>
 				        <ul class="sub7">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu8">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BN')">BOYNEXTDOOR</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BND')">BOYNEXTDOOR</a>
 				        <ul class="sub8">
 				        </ul>
 				 	</div>
 				 	
 				 	<div class="menu9">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Z')">ZICO</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('ZIC')">ZICO</a>
 				        <ul class="sub9">
 				        </ul>
 				 	</div>
@@ -223,28 +230,8 @@ var app = new Vue({
     methods: {
     	fnGetList: function (artist) {
             var self = this;
-    		
-    		if(artist == 'B'){
-    			self.artist = "BTS";
-    		}else if(artist == 'T'){
-    			self.artist = "TXT";
-    		}else if(artist == 'E'){
-    			self.artist = "EHP";
-    		}else if(artist == 'S'){
-    			self.artist = "SVT";
-    		}else if(artist == 'F'){
-    			self.artist = "FMN";
-    		}else if(artist == 'L'){
-    			self.artist = "LSF";
-    		}else if(artist == 'N'){
-    			self.artist = "NJS";
-    		}else if(artist == 'BN'){
-    			self.artist = "BND";
-    		}else if(artist == 'Z'){
-    			self.artist = "ZIC";
-    		}
-    		
-            var nparmap = {artist: self.artist, selectedOption : self.selectedOption, ctg : self.ctg};
+            self.artist = artist;
+            var nparmap = {selectedOption : self.selectedOption, ctg : self.ctg, artist : self.artist};
             $.ajax({
                 url: "producListMain.dox",
                 dataType: "json",
@@ -252,18 +239,18 @@ var app = new Vue({
                 data: nparmap,
                 success: function (data) {
                     self.list = data.list;
-                    console.log("리스트 ==>", self.list);
-                    console.log("리스트 길이 ==>",self.list.length);
-                    
                 }
             });
-        },
-		fnReload : function(){
+        }, fnReload : function(){
 			location.reload();
-		},
-        productView : function(item){
+			
+		}, productView : function(item){
         	var self = this;
-        	$.pageChange("productView.do", {pNo : item.pNo});        	
+        	$.pageChange("productView.do", {pNo : item.pNo});     
+        	
+        }, handleSelectChange(event) {
+            // Vue.js 이벤트 핸들러 내에서 jQuery 사용을 최소화
+        	 this.fnGetList(this.artist);
         }
     },
     created: function() {
@@ -357,7 +344,6 @@ prevBtn.addEventListener('click', function(){
 function moveSlide(num){ // unm을 num으로 수정
 slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleft를 left로 수정
 currentIdx = num;
-console.log(currentIdx, slideCount);
 
 if(currentIdx == slideCount || currentIdx == -slideCount){
   setTimeout(function(){
@@ -386,7 +372,6 @@ autoSlide();
 function stopSlide(){
 clearInterval(timer);   
 timer = undefined;
-console.log(timer);
 }
 
 slides.addEventListener('mouseenter', function(){

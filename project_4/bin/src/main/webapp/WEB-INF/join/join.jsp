@@ -11,9 +11,31 @@
 <meta charset="UTF-8">
 <title></title>
 <style>
-
+ font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
+input:focus {outline:none;}
+select{
+	width: 50px;
+    height: 36px;
+    border-style: none;
+    border-bottom: 1px solid #d4d5d9;
+    margin-right: 16px;
+}
+#iii{
+	width: 80px;
+    margin-right: 19px;
+}
+#ii{
+	width: 80px;
+    margin-right: 104px;
+}
 .login-box{
-	height : 720px; 
+	height : 787px; 
 }
 
 
@@ -67,7 +89,21 @@ i {
     #evtyn label strong a:hover {
       text-decoration: underline;
     }
-
+.qq{
+	width: 0px;
+}
+.m{
+	margin-top: 17px;
+}
+.Gender{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.Gender input{
+	width: 20px;
+	height: 15px;
+}
 </style>
 </head>
 <body>
@@ -101,13 +137,33 @@ i {
 				    <div><label><em class="required">·</em>닉네임  <span><input type="text" v-model="user.uName2" placeholder="닉네임" maxlength="8">
 					    </span></label>
 				    </div>
-				    <div><label><em class="required">·</em>연락처  <span><input type="text" v-model="user.uPhone" placeholder="연락처" maxlength="16">
+				    <div><label><em class="required">·</em>연락처  <span>	
+				    			<select v-model="selectph"> 
+				    				<option value="010">010 </option>
+				    				<option value="011">011</option>
+				    				<option value="016">016 </option>
+				    				<option value="017">017</option>
+				    			 </select>	
+				    
+				    				<input id="iii" type="text" v-model="uPhone1"  maxlength="16">
+				    				<input id="ii" type="text" v-model="uPhone2" maxlength="16"> 
 					    </span></label>
 				    </div>
 				    <div><label><em class="required">·</em>이메일  <span><input type="text" v-model="user.uEmail" placeholder="이메일주소">
 					    </span></label>
 				    </div>
+		
 					 <div id="evtyn">
+					 <div class="Gender">
+					    <div><label>
+					      <input type="radio" name="Gender" @click="fngender('M')" >					    
+					      남자</label>
+					    </div>
+					    <div><label>
+					      <input type="radio" name="Gender" @click="fngender('W')">				    
+					      여자</label>
+					    </div>
+					  </div>
 					    <div class="custom-checkbox"><label>
 					      <input type="checkbox" v-model="check" @click="fnCheck">
 					      <span class="circle"></span>
@@ -122,7 +178,7 @@ i {
 					      <input type="checkbox" v-model="check2">
 					      <span class="circle"></span>
 					      <strong><a href="javascript:;">(필수)개인회원 수집 및 이용에 동의</a></strong></label>
-					    </div>
+					    </div> 
 					    <div class="custom-checkbox"><label>
 					      <input type="checkbox" v-model="check3">
 					      <span class="circle"></span>
@@ -132,7 +188,7 @@ i {
 				</div>
 				
 				
-				<div class="login"><button @click="fnJoin" >가입하기</button></div>
+				<div class="login m"><button @click="fnJoin" >가입하기</button></div>
 				
 				
 			</div>
@@ -152,7 +208,9 @@ var app = new Vue({
 			uName2 : "",
 			uPhone : "",
 			uEmail : "",
-			uEventyn : ""
+			uEventyn : "",
+			gender : "https://png.pngtree.com/png-clipart/20220112/ourmid/pngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png",
+			
 		},
 		message : "",
 		uIdBorderColor: '', // 아이디 중복 체크 결과에 따라 border 색상
@@ -163,11 +221,25 @@ var app = new Vue({
 		check2 : "",
 		check3 : "",
 		list : [],
-		messageColor : ""
+		messageColor : "",		
+		uPhone1 : "",
+		uPhone2 : "",
+		selectph: "010",
 	},// data
 	methods : {
-		fnJoin : function(){
+		fngender : function(item){ // 성별 버튼
 			var self = this;
+			if(item == 'M'){
+				self.user.gender = "https://image.idus.com/image/files/3c589c029d9447d797d85b583c5fe822_720.jpg";
+			}else{
+				self.user.gender = "https://image.idus.com/image/files/21e9ae9b65fd4fcf9d87c1ecb6c85a5d_720.jpg";
+			}
+			console.log(self.user.gender);
+		},		
+		fnJoin : function(){		
+			var self = this;
+			var userUphone = self.selectph +"-" +self.uPhone1 + "-"+self.uPhone2;
+			self.user.uPhone = userUphone;
 			var idCheck = /^[a-zA-Z0-9]*$/;
 			if (!idCheck.test(self.user.uId))
 			{
@@ -218,11 +290,12 @@ var app = new Vue({
 				alert("연락처를 입력해주세요.");
 				return;
 			}
-			var phoneCheck = /^\d{3}-\d{3,4}-\d{4}$/;
-			if (!phoneCheck.test(self.user.uPhone))
-			{
-				alert("연락처 형식에 맞추어 작성하세요.\n ex)010-1234-5678");
-				return;
+			var phoneCheck = /^(\d{3})-\d{3,4}-\d{4}$/;
+			if (phoneCheck.test(self.user.uPhone)) {
+			    self.user.uPhone = self.user.uPhone.replace(/-/g, ''); // 하이픈 제거
+			} else {
+			    alert("연락처 형식에 맞추어 작성하세요.\n ex)010-1234-5678");
+			    return;
 			}
 			var emailCheck = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 			if (!emailCheck.test(self.user.uEmail))
@@ -236,6 +309,7 @@ var app = new Vue({
 				alert("필수약관 동의가 필요합니다.");
 				return;
 			}
+			
 		 	var nparmap = self.user;
             $.ajax({
                 url : "/userJoin/add.dox",
@@ -283,7 +357,7 @@ var app = new Vue({
                 		self.isAvailable = false;
                         
                 	} else {
-                		self.message = "사용 가능한 아이디입니다.";
+                		self.message = "중복되지 않은 아이디입니다.";
                 		self.messageColor = 'blue';
                 		self.uIdBorderColor = 'blue';  // 사용 가능시 파란색 border
                 		self.isAvailable = true;

@@ -6,7 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나는 스테프 버튼</title>
     <style>
    
 	#app2 {
