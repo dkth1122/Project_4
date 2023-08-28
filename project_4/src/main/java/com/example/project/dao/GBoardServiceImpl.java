@@ -242,9 +242,21 @@ public class GBoardServiceImpl implements GBoardService{
 	public int addReport(HashMap<String, Object> map) {
 		List<GBoard> list = gboardMapper.selectReportBoard(map);
 			
+		boolean duplicateAlert = false;
+        
+		for (int i = 0; i < list.size(); i++) {
+		    GBoard gboard = list.get(i);
+		    if (gboard.getuId().equals(map.get("uId")) && gboard.getgNo() == Integer.parseInt((String) map.get("gNo"))) {
+		        System.out.println("이미 신고했잖아 너");
+		        duplicateAlert = true;
+		        break; // 이미 중복 알람을 확인했으므로 루프 종료
+		    }
+		}
+		if (!duplicateAlert) {
+		    gboardMapper.reportCnt(map);
+		    gboardMapper.insertReport(map);
+		}
 		
-		gboardMapper.reportCnt(map);
-		gboardMapper.insertReport(map);
 		return 1;
 	}
 	

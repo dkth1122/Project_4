@@ -249,11 +249,11 @@
                     
                      <hr>
                      
+                  <hr>
                   <div id="txAreaLast">
                    <textarea rows="5" cols="40" v-model="cocomment" ></textarea>
                   <button @click="CoComment(citem)" style="margin-left:10px; ">등록</button>
                   </div>
-                  <hr>
                   </ul>
               <hr>
            </ul>
@@ -564,6 +564,7 @@
                    data: nparmap,
                    success: function (data) {
                        self.cocommentList = data.cocommentList;
+                       console.log("대댓글========>", self.cocommentList);
                    }
                });
                
@@ -632,11 +633,6 @@
               location.href = "main.do";
            }
            self.fnGetList();
-       },
-       destroyed: function() {
-          var self = this;
-           // 컴포넌트가 소멸될 때 이벤트 리스너 제거
-           document.removeEventListener('click', self.clickEventHandler);
        }
    });
    </script>
