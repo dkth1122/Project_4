@@ -79,9 +79,9 @@ import com.example.project.model.GBoard;
 		
 		//신고 기능 구현 
 		//게시글 신고 테이블 전체 출력
-		int selectReportBoard(HashMap<String, Object> map);
+		List<GBoard> selectReportBoard(HashMap<String, Object> map);
 		//댓글 신고 테이블 전체 출력
-		int selectReportComm(HashMap<String, Object> map);
+		List<GBoard> selectReportComm(HashMap<String, Object> map);
 		
 		//1. Report 테이블에 신고 추가
 		int insertReport(HashMap<String, Object> map);

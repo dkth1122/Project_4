@@ -239,10 +239,12 @@ public class GBoardServiceImpl implements GBoardService{
 	//신고 -> 게시글 신고 횟수 증가 + 신고 테이블에 insert
 	@Override
 	public int addReport(HashMap<String, Object> map) {
-		
+		List<GBoard> list = gboardMapper.selectReportBoard(map);
+			
 		
 		gboardMapper.reportCnt(map);
-		return gboardMapper.insertReport(map);
+		gboardMapper.insertReport(map);
+		return 1;
 	}
 	
 	//신고 -> 댓글 신고 횟수 증가 + 댓글용 신고 테이블에 insert
