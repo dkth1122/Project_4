@@ -120,10 +120,10 @@ import com.example.project.model.GBoard;
 //알림 기능 구현
 		
 		//게시글 알람 추가 기능
-		int insertAlram(HashMap<String, Object> map);
+		int insertAlarm(HashMap<String, Object> map);
 		
 		//댓글 알람 추가 기능
-		int insertCommentAlram(HashMap<String, Object> map);
+		int insertCommentAlarm(HashMap<String, Object> map);
 		
 		//게시글알람 업데이트 기능 - 읽음 여부 Y
 		int updateAleramRead(HashMap<String, Object> map);
@@ -136,10 +136,10 @@ import com.example.project.model.GBoard;
 		int selectArtistCheck(HashMap<String, Object> map);
 		
 		//서비스딴 사용 : 게시글 알람 전체 출력
-		List<GBoard> selectMyBoadAlamList(HashMap<String, Object> map);
+		List<GBoard> selectMyBoadAlarmList(HashMap<String, Object> map);
 		
 		//서비스 사용 : 댓글 알람 전체 출력
-		List<GBoard> selectMyCommnetAlamList(HashMap<String, Object> map);
+		List<GBoard> selectMyCommentAlarmList(HashMap<String, Object> map);
 		
 		//출력용 
 		//내 글에 댓글 달린 갯수 + 아이디 
@@ -160,6 +160,14 @@ import com.example.project.model.GBoard;
 		int selectMyCommentCoCommentCnt(HashMap<String, Object> map);
 	    //내 댓글에 좋아요 달린 갯수만
 		int selectMyCommentLikeCnt(HashMap<String, Object> map);
-		//알림 3개 출력
-		List<GBoard> selectAlram(HashMap<String, Object> map);
+		
+		//게시글 알림 1개 출력
+		List<GBoard> selectAlarm(HashMap<String, Object> map);
+		//댓글 알림 1개 출력
+		List<GBoard> selectAlarm2(HashMap<String, Object> map);
+		
+		//아티스트 게시글, 댓글 관련 알람 1개
+		List<GBoard> selectAlarm3(HashMap<String, Object> map);
+		//아티스트 대댓글 관련 알람 1개
+		List<GBoard> selectAlarm4(HashMap<String, Object> map);
 	}

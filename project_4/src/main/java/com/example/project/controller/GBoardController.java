@@ -135,6 +135,14 @@ public class GBoardController {
 		request.setAttribute("map", map);
 		return "/GBoard/Report_pop2";
 	}
+	
+	//알람 팝업창
+	@RequestMapping("/gboard/alarm.do")
+	public String alarm(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map)
+			throws Exception {
+		request.setAttribute("map", map);
+		return "/GBoard/Alarm_pop";
+	}
 
 	// 게시글 전체 조회 기능
 	@RequestMapping(value = "/gboard/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -441,8 +449,7 @@ public class GBoardController {
 		@ResponseBody
 		public String alramList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
-			List<GBoard> list = gboardService.selectAlram(map);
-			resultMap.put("list", list);
+			resultMap = gboardService.selectAlarm(map);
 			return new Gson().toJson(resultMap);
 		}
 

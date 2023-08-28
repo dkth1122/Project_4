@@ -110,9 +110,19 @@
       	float: right;
       	background-color:rgb(255, 221, 240);
       }
-      #report{
-      	
-      }
+      .popup2 {
+          overflow: auto;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          min-width: 600px;
+          max-width: 800px;
+          max-height: 600px; /* 최대 높이 설정 */
+          background-color: #fff;
+          border-radius: 15px;
+          box-shadow: 0 2px 55px -25px rgb(0 0 0 / 100%);
+      }   
    </style>
    </head>
    <body :class="{ dimmed: flg }">
@@ -127,7 +137,7 @@
             <div class="btn">
                 <button @click="fnMove">back</button>
                 <button @click="fnMove('my')">mypage</button>
-                <button >알람</button>
+                <button @click="fnAPop">알람</button>
                </div> 
           
                <label>  
@@ -268,14 +278,13 @@
                   
               <hr>
            </ul>
-	            	<input type="button" name="btnclose" class="closeButton" value="닫기" @click="CoMove">
+	            <input type="button" name="btnclose" class="closeButton" value="닫기" @click="CoMove">
            </div>
            </div>
            </div>
        </div>
        <hr>
-       
-       </div>
+   </div>
    </body>
    </html>
    <script>
@@ -307,6 +316,7 @@
            selectedReason: "",
            otherReason: "",
            flg : false,
+           flg2 : false
           
                
        },// data
@@ -647,6 +657,13 @@
                var url = "report2.do?gcNo=" + gcNo + "&uId=" + self.uId;
                window.open(url, "gcNo", option);
           
+           }, fnAPop : function(){
+        	   var self = this;
+               
+               var option = "width=600,height=200,top=100,right";
+               var url = "alarm.do?artist=" + self.artist + "&uId=" + self.uId;
+               console.log("유알엘==>",url);
+               window.open(url, "alarm", option);
            }
        },
        created: function() {

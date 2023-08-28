@@ -300,7 +300,7 @@
 	
 <!-- 알림 기능 구현  -->
 	<!-- 게시글 알람 인서트 기능 -->
-	<insert id="insertAlram" parameterType="hashmap">
+	<insert id="insertAlarm" parameterType="hashmap">
 		INSERT T4_GBOARD_NOTICE (U_ID, NO_TYPE, G_NO, NO_MESSAGE, NO_TIME, G_ARTIST)
 		VALUES(#{uId}, #{type}, #{gNo}, #{message}, NOW(), #{check})
 	</insert>
@@ -342,7 +342,7 @@
 <!-- 댓글용 알람 기능 -->	
 	
 	<!-- 댓글용 알람 인서트 기능 -->
-	<insert id="insertCommentAlram" parameterType="hashmap">
+	<insert id="insertCommentAlarm" parameterType="hashmap">
 		INSERT T4_GCOMMENTS_NOTICE (U_ID, CNO_TYPE, GC_NO, CNO_MESSAGE, CNO_TIME, GC_ARTIST)
 		VALUES(#{uId}, #{type}, #{gcNo}, #{message}, NOW(), #{check})
 	</insert>
@@ -356,7 +356,7 @@
 	
 	
 	<!-- 서비스에서 중복 알람 발생 방지  :  내 알람 출력용 -->
-	<select id="selectMyCommnetAlamList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+	<select id="selectMyCommentAlarmList" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT U_ID, CNO_TYPE, GC_NO
 		FROM T4_GCOMMENTS_NOTICE
 	</select>
@@ -382,12 +382,40 @@
 	    GROUP BY L.U_ID
 	</select>
 	
-	<select id="selectAlram" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+	<!-- 게시글 최신 알람 1개 -->
+	<select id="selectAlarm" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT *
 		FROM T4_GBOARD G 
 		INNER JOIN T4_GBOARD_NOTICE N ON G.G_NO = N.G_NO
 		WHERE G.U_ID = #{uId} AND ARTIST = #{artist}
-		ORDER BY G.G_NO DESC LIMIT 3
+		ORDER BY G_DATE DESC LIMIT 1
+	</select>
+	
+	<!-- 댓글 최신 알람 1개 -->
+	<select id="selectAlarm2" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT *
+		FROM T4_GCOMMENTS G 
+		INNER JOIN T4_GCOMMENTS_NOTICE N ON G.GC_NO = N.GC_NO
+		WHERE G.U_ID = #{uId} AND ARTIST = #{artist}
+		ORDER BY GC_DATE DESC LIMIT 1
+	</select>
+	
+	<!-- 아티스트 최신 게시글 알람 1개 -->
+	<select id="selectAlarm3" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT *
+		FROM T4_GBOARD G 
+		INNER JOIN T4_GBOARD_NOTICE N ON G.G_NO = N.G_NO
+		WHERE N.G_ARTIST = 'Y' AND RIGHT(N.U_ID, 3) = #{artist}
+		ORDER BY G_DATE DESC LIMIT 1
+	</select>
+	
+	<!-- 아티스트 최신 댓글 알람 1개 -->
+	<select id="selectAlarm4" parameterType="hashmap" resultType="com.example.project.model.GBoard">
+		SELECT *
+		FROM T4_GCOMMENTS G 
+		INNER JOIN T4_GCOMMENTS_NOTICE N ON G.GC_NO = N.GC_NO
+		WHERE N.GC_ARTIST = 'Y' AND RIGHT(N.U_ID, 3) = #{artist}
+		ORDER BY GC_DATE DESC LIMIT 1
 	</select>
 	
 </mapper>

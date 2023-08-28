@@ -48,7 +48,7 @@ public class GBoardServiceImpl implements GBoardService{
 			map.put("message", message);
 			
 			gboardMapper.insertGBoard(map);
-			gboardMapper.insertAlram(map);
+			gboardMapper.insertAlarm(map);
 			resultMap.put("gNo", map.get("gNo"));
 		}
 		
@@ -91,7 +91,7 @@ public class GBoardServiceImpl implements GBoardService{
 	        gboardMapper.plusLike(map);
 	        
 	        int artistCheck = gboardMapper.selectArtistCheck(map);
-	        List<GBoard> list = gboardMapper.selectMyBoadAlamList(map);
+	        List<GBoard> list = gboardMapper.selectMyBoadAlarmList(map);
 	        
 	        boolean duplicateAlert = false;
 	        
@@ -109,7 +109,7 @@ public class GBoardServiceImpl implements GBoardService{
 				    map.put("type", "LIKE");
 				    var message = map.get("uId") + "님이 게시글에 좋아요를 눌렀습니다.";
 				    map.put("message", message);
-				    gboardMapper.insertAlram(map);
+				    gboardMapper.insertAlarm(map);
 				}
 	        return 1;
 	    }
@@ -136,7 +136,7 @@ public class GBoardServiceImpl implements GBoardService{
 			map.put("message", message);
 			
 			gboardMapper.insertComment(map);
-			gboardMapper.insertAlram(map);
+			gboardMapper.insertAlarm(map);
 		}else {
 			map.put("check", "Y");
 			map.put("type", "COMM");
@@ -145,7 +145,7 @@ public class GBoardServiceImpl implements GBoardService{
 			map.put("message", message);
 			
 			gboardMapper.insertComment(map);
-			gboardMapper.insertAlram(map);
+			gboardMapper.insertAlarm(map);
 		}
 		
 		
@@ -172,7 +172,7 @@ public class GBoardServiceImpl implements GBoardService{
 	        gboardMapper.plusLikeComment2(map);
 	        
 	        int artistCheck = gboardMapper.selectArtistCheck(map);
-	        List<GBoard> list = gboardMapper.selectMyCommnetAlamList(map);
+	        List<GBoard> list = gboardMapper.selectMyCommentAlarmList(map);
 	        boolean duplicateAlert = false;
 	        
 				for (int i = 0; i < list.size(); i++) {
@@ -189,7 +189,7 @@ public class GBoardServiceImpl implements GBoardService{
 				    map.put("type", "LIKE");
 				    var message = map.get("uId") + "님이 댓글에 좋아요를 눌렀습니다.";
 				    map.put("message", message);
-				    gboardMapper.insertCommentAlram(map);
+				    gboardMapper.insertCommentAlarm(map);
 				}
 	        
 	        return 1; // 좋아요 추가된 경우 1 반환
@@ -210,7 +210,7 @@ public class GBoardServiceImpl implements GBoardService{
 					map.put("message", message);
 					
 					gboardMapper.insertCocomment(map);
-					gboardMapper.insertCommentAlram(map);
+					gboardMapper.insertCommentAlarm(map);
 				}else {
 					map.put("check", "Y");
 					map.put("type", "COCOMM");
@@ -219,7 +219,7 @@ public class GBoardServiceImpl implements GBoardService{
 					map.put("message", message);
 					
 					gboardMapper.insertCocomment(map);
-					gboardMapper.insertCommentAlram(map);
+					gboardMapper.insertCommentAlarm(map);
 				}
 		
 		return 1;
@@ -379,9 +379,18 @@ public class GBoardServiceImpl implements GBoardService{
 	}
 	//알림 3개 출력
 	@Override
-	public List<GBoard> selectAlram(HashMap<String, Object> map) {
+	public HashMap<String, Object> selectAlarm(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return gboardMapper.selectAlram(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<GBoard> list = gboardMapper.selectAlarm(map);
+		List<GBoard> list2 = gboardMapper.selectAlarm2(map);
+		List<GBoard> list3 = gboardMapper.selectAlarm3(map);
+		List<GBoard> list4 = gboardMapper.selectAlarm4(map);
+		resultMap.put("list", list);
+		resultMap.put("list2", list2);
+		resultMap.put("list3", list3);
+		resultMap.put("list4", list4);
+		return resultMap;
 	}
 
 }

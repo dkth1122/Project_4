@@ -103,7 +103,7 @@ public interface GBoardService {
 	//내 댓글에 좋아요 달린 갯수
 	List<GBoard> searchMyCommentLikeCnt(HashMap<String, Object> map);
 	//알림 3개 출력
-	List<GBoard> selectAlram(HashMap<String, Object> map);
+	HashMap<String, Object> selectAlarm(HashMap<String, Object> map);
 
 
 }

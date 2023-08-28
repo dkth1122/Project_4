@@ -17,6 +17,9 @@
     *{
     	font-family: a타이틀고딕2;
     }
+    body{
+    	background-color: rgb(230, 230, 255);
+    }
 </style>
 </head>
 <body>
