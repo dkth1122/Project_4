@@ -21,6 +21,26 @@ public class User {
 	private String bDate;
 	private String profile;
 	
+	//딜리버리 테이블
+	private int duNo;
+	private String uDname;
+	private String uDaddr;
+	private String uDaddrDetail;
+	private String zipNo;
+	private String fixAddr;
+	private String uDphone;
+	private String uDmessage;
+	private String recipient;
+	
+	private String oNo;
+	private String dDate;
+	private String dState;
+	private int afNo;
+	private char exchange;
+	private int buyNo;
+	private String path;
+	private int oCount;
+	
 	
 	
 	//포인트 테이블
@@ -49,6 +69,108 @@ public class User {
 	}
 	public String getuId() {
 		return uId;
+	}
+	public int getDuNo() {
+		return duNo;
+	}
+	public void setDuNo(int duNo) {
+		this.duNo = duNo;
+	}
+	public String getuDname() {
+		return uDname;
+	}
+	public void setuDname(String uDname) {
+		this.uDname = uDname;
+	}
+	public String getuDaddr() {
+		return uDaddr;
+	}
+	public void setuDaddr(String uDaddr) {
+		this.uDaddr = uDaddr;
+	}
+	public String getuDaddrDetail() {
+		return uDaddrDetail;
+	}
+	public void setuDaddrDetail(String uDaddrDetail) {
+		this.uDaddrDetail = uDaddrDetail;
+	}
+	public String getZipNo() {
+		return zipNo;
+	}
+	public void setZipNo(String zipNo) {
+		this.zipNo = zipNo;
+	}
+	public String getFixAddr() {
+		return fixAddr;
+	}
+	public void setFixAddr(String fixAddr) {
+		this.fixAddr = fixAddr;
+	}
+	public String getuDphone() {
+		return uDphone;
+	}
+	public void setuDphone(String uDphone) {
+		this.uDphone = uDphone;
+	}
+	public String getuDmessage() {
+		return uDmessage;
+	}
+	public void setuDmessage(String uDmessage) {
+		this.uDmessage = uDmessage;
+	}
+	public String getRecipient() {
+		return recipient;
+	}
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
+	}
+	public String getoNo() {
+		return oNo;
+	}
+	public void setoNo(String oNo) {
+		this.oNo = oNo;
+	}
+	public String getdDate() {
+		return dDate;
+	}
+	public void setdDate(String dDate) {
+		this.dDate = dDate;
+	}
+	public String getdState() {
+		return dState;
+	}
+	public void setdState(String dState) {
+		this.dState = dState;
+	}
+	public int getAfNo() {
+		return afNo;
+	}
+	public void setAfNo(int afNo) {
+		this.afNo = afNo;
+	}
+	public char getExchange() {
+		return exchange;
+	}
+	public void setExchange(char exchange) {
+		this.exchange = exchange;
+	}
+	public int getBuyNo() {
+		return buyNo;
+	}
+	public void setBuyNo(int buyNo) {
+		this.buyNo = buyNo;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public int getoCount() {
+		return oCount;
+	}
+	public void setoCount(int oCount) {
+		this.oCount = oCount;
 	}
 	public void setuId(String uId) {
 		this.uId = uId;

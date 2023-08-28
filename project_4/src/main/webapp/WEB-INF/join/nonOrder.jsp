@@ -67,17 +67,16 @@ var app = new Vue({
 		},
 		fnSearch : function(){
 			var self = this;
-			var param = {nmNo : self.nmNo, nmName : self.nmPhone};
+			var param = {nmNo : self.nmNo, nmPhone : self.nmPhone};			
 			$.ajax({
-                url : "nonOrder.dox",
+                url : "/mypag/NonOrderList.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) {
                 	console.log(data.list);
-                	if(data.list != undefined){
-                		alert("success Test")
-                		$.pageChange("nonOrder.do", {nmNo : self.nmNo});
+                	if(data.list != undefined){                		
+                		$.pageChange("nonOrderView.do", {oNo : self.nmNo});
                   		
                 	} else {
                 		alert("존재하는 정보가 없습니다.");

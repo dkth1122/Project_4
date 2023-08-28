@@ -167,6 +167,7 @@
 		SELECT *
 		FROM T4_ORDER O
 		INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
-		WHERE O.O_NO = #{oNo}
+		INNER JOIN T4_DELIVERY_USER U ON U.U_ID = D.U_ID
+		WHERE O.O_NO = #{nmNo} AND U_DPHONE = #{nmPhone}
 	</select>
 </mapper>
