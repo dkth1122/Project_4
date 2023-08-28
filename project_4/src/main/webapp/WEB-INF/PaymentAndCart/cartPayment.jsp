@@ -228,6 +228,11 @@ text-align: center;
 .poinPos{
    margin-left: 300px;
 }
+#editbutt{
+   padding: 23px 126px;
+   font-size: 1.3em;
+   color: #fff;
+}
 
 </style>
 </head>
@@ -468,7 +473,7 @@ text-align: center;
             </div>
          </div>
       
-      <div id="baybutton"><button @click="fnBeforePay">결제하기</button></div>
+      <div id="baybutton"><button @click="fnBeforePay"><a id="editbutt" href="javascript:;">결제하기</a></button></div>
       </div>
       <div><button @click="fninsertDelivery">테스트</button></div>
 
