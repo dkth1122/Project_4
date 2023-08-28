@@ -3,14 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>VERY & PERL</title>
+<title>VERY & PERI</title>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
+
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
 <%@ include file="../Product/sexyheader.jsp" %>
-<%@ include file="footer.jsp" %>
+
 <style>
 
+.popup{
+z-index: -111;}
 
 * {
     padding: 0;
@@ -23,9 +27,10 @@ a {
 }
 
 * #footer {
+ margin-top: auto;
   left: 0;
-  position:absolute;
-  bottom: -5308px;
+  position: relative;
+  bottom:-10px;
   width: 100%;
    z-index: 100; /* 푸터의 z-index 값을 높게 설정 */
 }
@@ -96,20 +101,27 @@ img.topimg{
 	widows: 1800px;
 	height: 1800px;
 	margin-top: 50px;
+	margin-bottom: 500px;
+	float:left;
+}
+#nav3{
+	widows: 1800px;
+	height: 1800px;
+	margin-top: 50px;
 	margin-bottom: 50px;
 	float:left;
+
 }
 
 #nav4{
 	widows: 1800px;
 	height: 800px;
 	margin-top: 80px;
-	margin-bottom: 300px;
+	margin-bottom: 50px;
 	float:left;
 	} 
 
  .Sbox1 {
- 	border:6px solid orange;
  	background-color:orange;
     vertical-align: middle;
 	width:1500px;
@@ -138,7 +150,6 @@ img.topimg{
 }
 
 .productList-container {
-  border:1px solid red;
   content-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -159,7 +170,6 @@ img.topimg{
 	padding: 50px;
 	widows: 1800px;
 	height: 1900px;
-	background: #f0f0f0;
 	display: flex;
  	flex-wrap: wrap;
   	width: 100%; 
@@ -233,7 +243,6 @@ img.topimg{
 	padding: 50px;
 	widows: 1800px;
 	height: 1800px;
-	background: #f0f0f0;
 	display: flex;
  	flex-wrap: wrap;
   	width: 100%; 
@@ -390,15 +399,18 @@ img.topimg{
 	transition: all 2s;
 }
 .sect1 {
-  position: absolute;
-  bottom: -1330px;
+  position: relative;
+  
   left: 0;
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   height: 500px;
-  background-color: #f0f0f0;
+  background-color: #C4F5DC;
+  margin-top:150px;
+  margin-bottom:300px;
+  padding-top:55px;
 }
 .sPname{
 	height : 50px;
@@ -591,14 +603,15 @@ img.topimg{
          </audio>
 
       </section>
-      
+      <%@ include file="footer.jsp" %>
       </nav>
 
    </div> 
-      
+     
 </div> <!-- app div -->
 
 </body>
+ 
 </html>
 <script>
 Vue.filter('formatPrice', function(value) {
