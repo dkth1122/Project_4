@@ -16,12 +16,16 @@
     *{
        font-family: a타이틀고딕1;
     }
+    a{
+    	text-decoration: none;
+    	color:black;
+    }
 </style>
 </head>
 <body>
 <div id="app">
 	<div class="container">		
-		<h2 class="h2">Login</h2>
+		<h2 class="h2"><a href="home.do">Login</a></h2>
 		<div class="login-box">
 			<div class="login-box2">
 				<div class="idpw">	
