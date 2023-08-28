@@ -25,7 +25,7 @@
 <body>
 <div id="app">
 	<div class="container">		
-		<h2 class="h2"><a href="home.do">Login</a></h2>
+		<h2 class="h2"><a href="../home.do">Login</a></h2>
 		<div class="login-box">
 			<div class="login-box2">
 				<div class="idpw">	
