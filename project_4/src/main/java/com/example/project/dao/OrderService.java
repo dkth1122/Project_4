@@ -35,4 +35,6 @@ public interface OrderService {
 	//배송 완료 후 교환/반품
 	int mypageOrderchange(HashMap<String, Object> map);
 	
+	//비회원 주문내역 조회
+	List<Order> selectNonOrderList(HashMap<String, Object> map);
 }

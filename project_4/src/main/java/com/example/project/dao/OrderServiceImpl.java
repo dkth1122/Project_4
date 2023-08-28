@@ -95,5 +95,12 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.mypageOrderchangeInsert(map);
 	}
 
+
+	@Override
+	public List<Order> selectNonOrderList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return orderMapper.selectNonOrderList(map);
+	}
+
 	
 }

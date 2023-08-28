@@ -649,10 +649,10 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                       self.flg = !self.flg;
                    }
                }); 
-          }/* ,fnAddAddrList : function(){
+          } ,fnAddAddrList : function(){
               var self = this;
                  
-                 if(self.uDname == null || self.uDname == "" || self.phone1 == null || self.phone1 == "" || self.phone2 == null || self.phone2 == ""|| self.phone3 == null || self.phone3 == ""|| self.addr == null || self.addr == "" || self.addrDetail == null || self.addrDetail == "" ||  self.zipNo == null || self.zipNo == "" || self.recipient == null || self.recipient == ''){
+                 if(self.user.uDname == null || self.user.uDname == "" || self.user.phone1 == null || self.user.phone1 == "" || self.user.phone2 == null || self.user.phone2 == ""|| self.user.phone3 == null || self.user.phone3 == ""|| self.user.addr == null || self.user.addr == "" || self.user.addrDetail == null || self.user.addrDetail == "" ||  self.user.zipNo == null || self.user.zipNo == "" || self.user.recipient == null || self.user.recipient == ''){
                   alert("내용을 모두 입력해주세요.");   
                     return;                 
                  }
@@ -664,37 +664,37 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                var zipNoPattern = /^\d{1,10}$/;
                var messagePattern = /^.{0,30}$/;
    
-               if (!dNamePattern.test(self.uDname)) {
+               if (!dNamePattern.test(self.user.uDname)) {
                    alert("배송주소록의 이름은 20자 이하의 한글만 입력 가능합니다.");
                    return;
                }
                
-               if (!namePattern.test(self.recipient)) {
+               if (!namePattern.test(self.user.recipient)) {
                    alert("받는 사람은 10자 이하의 한글만 입력 가능합니다.");
                    return;
                }
    
-               if (!phonePattern.test(self.phone2) || !phonePattern.test(self.phone3)) {
+               if (!phonePattern.test(self.user.phone2) || !phonePattern.test(self.user.phone3)) {
                    alert("핸드폰 번호는 공백 없이 4자리 숫자만 입력 가능합니다.");
                    return;
                }
    
-               if (self.addr.length > 50) {
+               if (self.user.addr.length > 50) {
                    alert("주소는 50자 이하의 한글 및 숫자만 입력 가능합니다.");
                    return;
                }
    
-               if (self.addrDetail.length > 50) {
+               if (self.user.addrDetail.length > 50) {
                    alert("상세 주소는 50자 이하의 한글 및 숫자만 입력 가능합니다.");
                    return;
                }
    
-               if (!zipNoPattern.test(self.zipNo) || self.zipNo.length > 10) {
+               if (!zipNoPattern.test(self.user.zipNo) || self.user.zipNo.length > 10) {
                    alert("우편번호는 10자 이하의 숫자만 입력 가능합니다.");
                    return;
                }
    
-               if (!messagePattern.test(self.dText)) {
+               if (!messagePattern.test(self.user.dText)) {
                    alert("배송 메시지는 30자 이하로 입력 가능합니다.");
                    return;
                }
@@ -704,19 +704,19 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                     return;
                  }
                  
-                 self.uDphone = self.phone1 + self.phone2 + self.phone3;
-               var nparmap = {uId : self.uId, uDname : self.uDname, uDphone : self.uDphone, addr : self.addr, addrDetail : self.addrDetail, zipNo : self.zipNo, uDmessage : self.dText, recipient : self.recipient };
+                 self.user.uDphone = self.user.phone1 + self.user.phone2 + self.user.phone3;
+               var nparmap = {uId : self.uId, uDname : self.user.uDname, uDphone : self.user.uDphone, addr : self.user.addr, addrDetail : self.user.addrDetail, zipNo : self.user.zipNo, uDmessage : self.user.dText, recipient : self.user.recipient };
                $.ajax({
                    url : "/mypag/addAddr.dox",
                    dataType:"json",   
                    type : "POST", 
                    data : nparmap,
                    success : function(data) { 
-                      alert("배송주소록에 추가 되었습니다!");
-                      self.fnAddrList();
+                      
+                      
                    }
                   }); 
-          } */, fnBeforePay : function(){
+          }, fnBeforePay : function(){
                var self = this;
                //핸드폰 번호 합치기
                self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
@@ -737,16 +737,18 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                  buyer_tel: self.user.phone,
             
           }, function (rsp) { // callback
-                 if (rsp.success) {
+                 if (rsp.success) {               
                   self.fnInsertAll();
                   alert("결제 성공");
                   //location.href = "nonmemberpayView.do"; 
                  } else {
                    // 결제 실패 시
+                   self.fnAddAddrList();
+                   self.fnInsertAll();               
                    alert("결제 실패");
                    //비회원결제테스트중
-                   //location.href = "nonmemberpayView.do"; 
-                   self.fnInsertAll(); 
+                   //location.href = "nonmemberpayView.do";                                                 
+                   $.pageChange("nonmemberpayView.do", {oNo : self.oNo});
                  }
              });
         }, fnInsertAll : function(){
@@ -754,8 +756,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
            var timestamp =  new Date().getTime(); 
            self.oNo = timestamp;
                     var nparmap = {uId : self.uId, pNo : self.list[0].pNo, price : self.list[0].price, cnt : self.cnt, artist : self.list[0].artist, oNo : self.oNo, usePoint : self.usePoint};
-                    console.log("파람값==>",nparmap); 
-                    
+                    console.log("파람값==>",nparmap);                     
                     $.ajax({
                           url : "insertALL.dox",
                           dataType:"json",      

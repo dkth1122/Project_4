@@ -26,7 +26,7 @@
 				    <div><label>주문번호  <span><input type="text" name="nmNo" v-model = "nmNo" placeholder="주문번호">
 					    </span></label>
 				    </div>
-				    <div><label>수령자명  <span><input type="text" name="nmName"  v-model = "nmName" placeholder="수령자명">
+				    <div><label>연락처  <span><input type="text" name="nmPhone"  v-model = "nmPhone" placeholder="연락처">
 					    </span></label>
 				    </div>				    
 				</div>
@@ -48,7 +48,7 @@ var app = new Vue({
 	data : {
 		list : [],
 		nmNo : "",
-		nmName : ""
+		nmPhone : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -67,7 +67,7 @@ var app = new Vue({
 		},
 		fnSearch : function(){
 			var self = this;
-			var param = {nmNo : self.nmNo, nmName : self.nmName};
+			var param = {nmNo : self.nmNo, nmName : self.nmPhone};
 			$.ajax({
                 url : "nonOrder.dox",
                 dataType:"json",	

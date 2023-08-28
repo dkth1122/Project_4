@@ -56,8 +56,9 @@ public class PaymentController {
     }
 	//비회원 결제완료 페이지
 		@RequestMapping("/payment/nonmemberpayView.do") 
-	    public String nonmemberpaymentView(Model model) throws Exception{
-	        return "/PaymentAndCart/nonmemberpaymentView";
+		public String nonmemberpayView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+			request.setAttribute("map", map);   
+			return "/PaymentAndCart/nonmemberpaymentView";
 	    }
 	
 	//바로 구매용 독스 : fnGetList
@@ -140,6 +141,7 @@ public class PaymentController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		paymentService.addDelivery3(map);
 		resultMap.put("message", "success");
+		
 		return new Gson().toJson(resultMap);
 	}
 	 

@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.project.dao.DeliveryService;
 import com.example.project.dao.OrderService;
-import com.example.project.model.DeliveryUser;
+import com.example.project.model.Order;
 import com.example.project.model.Product;
 import com.google.gson.Gson;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -114,5 +112,15 @@ public class OrderController {
 		orderService.mypageOrderchange(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+	//비회원 주문 조회
+	@RequestMapping(value = "/mypag/NonOrderList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String NonOrderList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Order> list = orderService.selectNonOrderList(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+		}
 	
 }
