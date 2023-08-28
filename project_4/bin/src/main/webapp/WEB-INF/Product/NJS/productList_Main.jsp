@@ -9,8 +9,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <meta charset="UTF-8">
-  <title>상품 페이지</title>
+  <title>NJS 상품 페이지</title>
 <style type="text/css">
+ @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    
 	  .nonMember{
 	  margin: 0px 10px;
 	  }
@@ -50,6 +58,7 @@
 	.slide_wrapper_main{
 		float: left;
 		margin-left: 200px;
+		margin-top: 100px;
 	}
 	.body2{
 		margin-top : 150px;
@@ -77,18 +86,24 @@
 		top: 150px;
 		left: 140px;
 	}
+	.artistDIv2{
+		width : 500px;
+		height : 100px;
+		position : absolute;
+		top : 300px;
+		left : 300px;
+		font-size: 32px;
+		color : #ccc;
+	}
   </style>
 </head>
 <body>
 
+<%@ include file="../sexyheader.jsp" %>
 <div id="app">
 
    <div id="wrap">
         <div id="container">
-        <div id="login">
-        <div class="login_loginout"><span class="nonMember">로그인</span>  |  <span class="nonMember">회원가입</span></div>
-        <div class="login_loginout" v-if="false"> 로그아웃</div>
-        </div>
             <div id="header" >
             
             </div>
@@ -115,7 +130,7 @@
             
             
             <div class="body" style="margin-top: 80px;">
-                <select class="select" v-model="selectedOption" @change="fnGetList">
+                <select class="select" v-model="selectedOption" @change="fnGetList" v-if = "list.length != 0">
                     <option selected>전체</option>
                     <option value="nameList">상품명</option>
                     <option value="minPrice">낮은가격</option>
@@ -157,11 +172,14 @@
 				 	</div>
                 </div>
 					<div class="productPosList">
-						<span @click="productView(item)" v-for="item in list" class="productList">
+						<span @click="productView(item)" v-for="item in list" class="productList" v-if = "list.length != 0">
 							<span><img :src = "item.path" class="pImg"></span>
 							<div class="artistDIv">{{item.artist}}</div>
 							<div>{{item.pName}}</div>
 							<h5>{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</h5>
+						</span>
+						<span v-if = "list.length == 0">
+							<div class="artistDIv2">등록된 제품이 없습니다.</div>
 						</span>
 					</div>
             </div>        
@@ -306,7 +324,6 @@ prevBtn.addEventListener('click', function(){
 function moveSlide(num){ // unm을 num으로 수정
 slides.style.left= -num * (slideWidth + slideMargin) +'px'; // sleft를 left로 수정
 currentIdx = num;
-console.log(currentIdx, slideCount);
 
 if(currentIdx == slideCount || currentIdx == -slideCount){
   setTimeout(function(){
@@ -335,7 +352,6 @@ autoSlide();
 function stopSlide(){
 clearInterval(timer);   
 timer = undefined;
-console.log(timer);
 }
 
 slides.addEventListener('mouseenter', function(){

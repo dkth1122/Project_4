@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="mypageheader.jsp" %>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -16,12 +17,24 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="UTF-8">
 <style type="text/css">
+
+#ftnav{
+position: absolute;
+left:0%;
+width:100%;
+font-size:0.7em;
+}
+
+
 #container {
     height: 1650px;
     width: 100%;
     margin-bottom: 163px;
 }
+
 <!-- 페이징 추가 2-->
+.ft{
+}
 .pagination {
      margin:24px;
      display: inline-flex;
@@ -155,9 +168,10 @@ input[type="date"]:focus {
     border-color: #3498db;
 }
 </style>
-
+<title>주문 내역 조회</title>
 </head>
 <body>
+
    <div id="app">
          <div id="container">
             <div id="top">
@@ -166,7 +180,7 @@ input[type="date"]:focus {
 
                   <div class="a">
                      <div class="left topImgBoxwid">
-                        <a href="/mypag/main.do"><div id="profileImg"></div></a>
+                        <a href="/mypag/main.do"><div id="profileImg"><img :src="infouser.profile"></div></a>
                      </div>
                      <div class="topBox">
                         <span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
@@ -174,32 +188,34 @@ input[type="date"]:focus {
 
                      <div class="topBox">
 
-                        <div class="details">
-
-                        		  <div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
-			                        <div v-if="order != 0">{{order}}</div>
-			                        <div v-else>0</div>
-                          			</a></label>
+                       <div class="details">
+                           <div>Order</div>
+                                 <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
+                                 <div v-if="order != 0">{{order}}</div>
+                                 <div v-else>0</div>
+                                   </a></label>
 
                         </div>
 
                         <div class="details">
 
-                           <div>교환/환불</div>
+                           <div >교환/환불</div>
                            <div>
+                           <a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
                               <span v-if="refund != 0">{{refund}} /</span>
-                              <span v-else>0 /</span>
-                              
+                              <span v-else>0 /</span>                              
                               <span v-if="exchange != 0"> {{exchange}}</span>
                               <span v-else>0</span>
+                           </a>
                            </div>
 
                         </div>
                         <div class="details">
-                         			<div>포인트</div>
-									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
-									<div v-else>0 P</div>
+                           <div >포인트</div>
+                           <a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
+                           <div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+                           <div v-else>0 P</div>
+                           </a>
                         </div>
                      </div>
                   </div>
@@ -249,7 +265,7 @@ input[type="date"]:focus {
 
                   </div>
                </div>
-
+         
                <div id="right">
 
                   <div class="View">
@@ -292,8 +308,8 @@ input[type="date"]:focus {
                               <tr class="footerListArea" v-for="item in list">                                                               
                                  <td class="column2"><button class="button11" @click="orderDetail(item)">{{item.oNo}}</button></td>
                                  <td class="column">{{item.oDate}}</td>
-                                 <td v-if="item.cnt >= 2">{{ item.pName }}외 {{ parseInt(item.cnt) - 1 }}건</td>
-                                 <td v-else>{{ item.pName }}</td>
+                                 <td v-if="item.cnt >= 2"><button class="button11" @click="productDetail(item)">{{ item.pName }}외 {{ parseInt(item.cnt) - 1 }}건</button></td>
+                                 <td v-else><button class="button11" @click="productDetail(item)">{{ item.pName }}</button></td>
                                  <td class="column-width5">{{ Number(item.paymentSum).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</td>
                                  <td class="column2">{{item.dState}}</td>                                                      
                               <tr>
@@ -312,13 +328,20 @@ input[type="date"]:focus {
            </paginate>
          </template>                        
                         </table> 
-                     </div>       
+                     </div>  
+                         <nav id="ftnav">
+         <div id="ft"><%@ include file="../page/footer.jsp" %></div>
+      </nav>     
                   </div>
+                  
                </div>
+                  
             </div>
-         </div>         
+            
+         </div>       
       </div>
-      <div><%@ include file="../page/footer.jsp" %></div>
+ 
+    
 </body>
 </html>
 <script type="text/javascript">
@@ -343,23 +366,23 @@ Vue.component('paginate', VuejsPaginate)
          startDate: '', 
          endDate: '',
          maxpoint : undefined,
-  	     infouser : [], 
+          infouser : [], 
    
       }, 
       methods : {
-    	  fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
-  			var self = this;
-  			var nparmap = {uId : self.uId};				
-  			$.ajax({
-  				url : "/user2.dox",
-  				dataType : "json",
-  				type : "POST",
-  				data : nparmap,
-  				success : function(data) {						
-  					self.infouser = data.findPw;
-  				}
-  			});
-  		},
+         fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
+           var self = this;
+           var nparmap = {uId : self.uId};            
+           $.ajax({
+              url : "/user2.dox",
+              dataType : "json",
+              type : "POST",
+              data : nparmap,
+              success : function(data) {                  
+                 self.infouser = data.findPw;
+              }
+           });
+        },
          fnGetList : function() {
             var self = this;
             <!-- 페이징 추가 6 -->
@@ -445,66 +468,66 @@ Vue.component('paginate', VuejsPaginate)
             }); 
          },
          fnPoint : function(){ // 포인트 내역 확인
- 	        var self = this;
- 	        var nparmap = {uId : self.uId};
- 	        $.ajax({
- 	            url : "/pointList.dox",
- 	            dataType:"json",	
- 	            type : "POST", 
- 	            data : nparmap,
- 	            success : function(data) { 	
- 	            	self.usepointList = data.list;
- 	            	var x = 0;
- 	            	var datalist = data.list;
- 	            	for(var i=0; i<datalist.length; i++){
- 	            		x += datalist[i].point;	
- 	            	}
- 	            	self.maxpoint = x; // 사용가능 포인트 
- 	            
- 	            }
- 	        }); 
- 	    },
- 	    fnNotice : function (){ // 공지 
- 			var self = this;
-     		var option = "width=850, height=1000, top=200, left=500, location = no"
-     		window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
- 		},
- 		fnUseGuide : function (){ //이용안내
- 			var self = this;
-     		var option = "width=850, height=1000, top=200, left=500, location = no"
-     		window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
- 		},
- 		fnFaq : function (){ //faq
- 			var self = this;
-     		var option = "width=850, height=1000, top=200, left=500, location = no"
-     		window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
- 		},
- 		/* 상단 구매내역 카운트 숫자 */
- 		fnCntList : function() {
- 			var self = this;
- 			var nparmap = {uId : self.uId};
- 			$.ajax({
- 				url : "/mypag/listExchange.dox",
- 				dataType : "json",
- 				type : "POST",
- 				data : nparmap,
- 				success : function(data) {
- 					
- 					var listCnt = data.list;
- 					for (var i = 0; i < listCnt.length; i++) {
- 						if (listCnt[i].exchange == "C") {								
- 							self.refund = listCnt[i].orderCnt;							
- 						} else if (listCnt[i].exchange == "R") {
- 							self.exchange = listCnt[i].orderCnt;
- 						} else{
- 							self.order += listCnt[i].orderCnt;
- 							
- 						}
- 					}
+            var self = this;
+            var nparmap = {uId : self.uId};
+            $.ajax({
+                url : "/pointList.dox",
+                dataType:"json",   
+                type : "POST", 
+                data : nparmap,
+                success : function(data) {    
+                   self.usepointList = data.list;
+                   var x = 0;
+                   var datalist = data.list;
+                   for(var i=0; i<datalist.length; i++){
+                      x += datalist[i].point;   
+                   }
+                   self.maxpoint = x; // 사용가능 포인트 
+                
+                }
+            }); 
+        },
+        fnNotice : function (){ // 공지 
+          var self = this;
+           var option = "width=850, height=1000, top=200, left=500, location = no"
+           window.open("http://localhost:8082/mypag/noticeList.do", "Notice", option);
+       },
+       fnUseGuide : function (){ //이용안내
+          var self = this;
+           var option = "width=850, height=1000, top=200, left=500, location = no"
+           window.open("http://localhost:8082/mypag/useGuide.do", "UseGuide", option);
+       },
+       fnFaq : function (){ //faq
+          var self = this;
+           var option = "width=850, height=1000, top=200, left=500, location = no"
+           window.open("http://localhost:8082/mypag/faq.do", "fnFaq", option);
+       },
+       /* 상단 구매내역 카운트 숫자 */
+       fnCntList : function() {
+          var self = this;
+          var nparmap = {uId : self.uId};
+          $.ajax({
+             url : "/mypag/listExchange.dox",
+             dataType : "json",
+             type : "POST",
+             data : nparmap,
+             success : function(data) {
+                
+                var listCnt = data.list;
+                for (var i = 0; i < listCnt.length; i++) {
+                   if (listCnt[i].exchange == "C") {                        
+                      self.refund = listCnt[i].orderCnt;                     
+                   } else if (listCnt[i].exchange == "R") {
+                      self.exchange = listCnt[i].orderCnt;
+                   } else{
+                      self.order += listCnt[i].orderCnt;
+                      
+                   }
+                }
 
- 				}
- 			});
- 		},    
+             }
+          });
+       },    
          productDetail : function(item){
             var self = this;
             $.pageChange("/product/productView.do", {pNo : item.pNo});
@@ -518,8 +541,8 @@ Vue.component('paginate', VuejsPaginate)
          var self = this;
          self.fnGetList();         
          self.fnGetInfo();
- 		self.fnPoint();
- 		self.fnCntList();
+       self.fnPoint();
+       self.fnCntList();
       }
    });
 </script>

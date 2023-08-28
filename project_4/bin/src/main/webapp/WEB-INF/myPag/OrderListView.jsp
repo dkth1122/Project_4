@@ -3,8 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>주문 상세 내역</title>
 <%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -18,7 +20,14 @@
 
 <style type="text/css">
 
-
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 .orderArea{
    font-size : 15px;
 }
@@ -131,7 +140,7 @@
 
                   <div class="a">
                      <div class="left topImgBoxwid">
-                        <a href="/mypag/main.do"><div id="profileImg"></div></a>
+                        <a href="/mypag/main.do"><div id="profileImg"><img :src="info.profile"></div></a>
                      </div>
                      <div class="topBox">
                          <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -139,31 +148,35 @@
 
                      <div class="topBox">
 
-                        <div class="details">
-
-                           <div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+                      				 <div class="details">
+									<div>Order</div>
+			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
-                        </div>
 
-                        <div class="details">
+								</div>
 
-                           <div>교환/환불</div>
-                           <div>
-                              <span v-if="refund != 0">{{refund}} /</span>
-                              <span v-else>0 /</span>
-                              
-                              <span v-if="exchange != 0"> {{exchange}}</span>
-                              <span v-else>0</span>
-                           </div>
+								<div class="details">
 
-                        </div>
-                        <div class="details">
-                          <div v-if="!maxpoint == 0">{{maxpoint}} P</div>
+									<div >교환/환불</div>
+									<div>
+									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
+										<span v-if="refund != 0">{{refund}} /</span>
+										<span v-else>0 /</span>										
+										<span v-if="exchange != 0"> {{exchange}}</span>
+										<span v-else>0</span>
+									</a>
+									</div>
+
+								</div>
+								<div class="details">
+									<div >포인트</div>
+									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
+									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
-                        </div>                        
+									</a>
+								</div>              
                      </div>
                   </div>
 
@@ -352,6 +365,7 @@
          </div>
       </div>
    </div>
+   
 </div>
 <div><%@ include file="../page/footer.jsp" %></div>
 </body>
@@ -419,7 +433,6 @@
 								self.exchange = listCnt[i].orderCnt;
 							} else{
 								self.order += listCnt[i].orderCnt;
-								console.log(self.order);
 							}
 						}
 
@@ -470,11 +483,9 @@
                type : "POST",
                data : nparmap,
                success : function(data) {   
-                  console.log(data);
                   self.list = data.list;
                   self.list2 = data.list[0];
                   self.oDate = self.list[0].oDate;
-                  console.log(self.list2);
                   
                }
             });
@@ -489,7 +500,6 @@
                    return;
                }
             var nparmap = {buyNo : item.buyNo};
-            console.log(nparmap);
             $.ajax({
                url : "/mypag/mypageOrderCancel.dox",
                dataType : "json",
@@ -512,8 +522,7 @@
                    return;
                }
             var userPointAdd = parseInt((self.list2.price * self.list2.oCount) * 0.02);
-            var nparmap = {buyNo : item.buyNo, userPointAdd : userPointAdd, uId : self.uId};
-            console.log(nparmap);
+            var nparmap = {buyNo : item.buyNo, userPointAdd : userPointAdd, uId : self.uId, oNo : self.oNo};
             $.ajax({
                url : "/mypag/mypageOrderConfirm.dox",
                dataType : "json",

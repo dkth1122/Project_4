@@ -7,6 +7,9 @@
 		SELECT *
 		FROM T4_DELIVERY_USER
 		WHERE U_ID = #{uId}
+		<if test="duNo != null || duNo == ''">
+			AND DU_NO = #{duNo}
+		</if>
 	</select>
 	
 	<!-- 배송주소록 수정 -->
@@ -16,15 +19,17 @@
 			U_DADDR = #{addr},
 			U_DADDRDETAIL = #{addrDetail},
 			U_DNAME = #{uDname},
+			RECIPIENT = #{recipient},
 			U_DPHONE = #{uDphone},
 			ZIPNO = #{zipNo}
 		WHERE U_ID = #{uId} AND DU_NO = #{duNo}
 	</update>
+
 	
 	<!-- 배송주소지 등록 -->
 	<insert id="insertAddr" parameterType="hashmap" >
-		INSERT INTO T4_DELIVERY_USER (U_ID, U_DNAME, U_DPHONE, U_DADDR, U_DADDRDETAIL, ZIPNO, U_DMESSAGE) VALUES
-		(#{uId}, #{uDname}, #{uDphone}, #{addr}, #{addrDetail}, #{zipNo}, #{uDmessage}) 
+		INSERT INTO T4_DELIVERY_USER (U_ID, U_DNAME,RECIPIENT, U_DPHONE, U_DADDR, U_DADDRDETAIL, ZIPNO, U_DMESSAGE) VALUES
+		(#{uId}, #{uDname},#{recipient}, #{uDphone}, #{addr}, #{addrDetail}, #{zipNo}, #{uDmessage}) 
 	</insert>
 	
 	<!-- 선택 배송주소록 삭제 -->
@@ -64,11 +69,8 @@
 	
 	<!-- 페이징용 카운트 -->
 	<select id="selectCnt4" resultType="int">
-		SELECT COUNT(*)
-		FROM T4_ORDER O
-		INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-		INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-		INNER JOIN T4_DELIVERY_USER U ON O.U_ID = U.U_ID
+		SELECT COUNT(DISTINCT O_NO) AS CNT
+		FROM T4_DELIVERY
 		WHERE D_STATE IN ('상품 준비중', '배송 준비중', '배송중')
 	</select>
 	

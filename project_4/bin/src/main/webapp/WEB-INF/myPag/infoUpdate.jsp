@@ -4,14 +4,24 @@
 <html>
 <head>
 <%@ include file="mypageheader.jsp" %>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
   <script src="../js/jquery.js"></script>  
      <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
+ <title>회원 정보 수정 </title>
   <style type="text/css">
+      @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
   #container {
-    height: 1535px;
+    height: 2457px;
     width: 100%;
     margin-bottom: 163px;
 }
@@ -19,7 +29,7 @@
     	width: 900px;
    }
    .warning{
-   	 padding-left : 822px;
+   	     padding-left: 690px;
    	 text-align: right;
    }
    .updatetable th {
@@ -62,10 +72,20 @@ select{
 	background-color: #fff;
 	font-weight: bold;
 }
+.buttomfn a{
+padding: 19px 34px;
+	font-size: 0.8em;
+	font-weight: bold;
+	padding: 30px;
+}
 #fndd{
-	color: #fff;
+	
 	background-color:rgb(24, 0, 109);
 }
+#fndd a{
+color: #fff;
+}
+
 #remove{
 	margin-left: 200px;
 }
@@ -73,6 +93,73 @@ select{
 	width: 50px;
 	height: 20px;
 	text-align: left;
+}
+#art{
+	padding: 30px;
+}
+#extext p{
+	padding-left : 30px;
+	font-size: 0.6em;
+}
+#artimg input{
+	width: 30px;
+	height:18px;
+}
+#artimg{
+	margin: 40px;
+}
+#add1 input[type="radio"] {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #1FBED6;
+  background-color: white;
+  -webkit-appearance: none; /*to disable the default appearance of radio button*/
+  -moz-appearance: none;
+}
+
+#add1 input[type="radio"]:focus { /*no need, if you don't disable default appearance*/
+  outline: none; /*to remove the square border on focus*/
+}
+
+#add1 input[type="radio"]:checked { /*no need, if you don't disable default appearance*/
+  background-color: #1FBED6;
+}
+
+#add1 input[type="radio"]:checked ~ span:first-of-type {
+  color: white;
+}
+
+#add1 label span:first-of-type {
+  position: relative;
+  left: -27px;
+  font-size: 15px;
+  color: #1FBED6;
+}
+
+#add1 label span {
+  position: relative;
+  top: -12px;
+}
+#add1 div{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	margin: 30px;
+	
+}
+
+#add1{
+	display: flex;
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#add1 div img{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+
 }
   </style>
 </head>
@@ -87,7 +174,7 @@ select{
                       
                    <div class="a">
                       <div class="left topImgBoxwid">
-                         	<a href="/mypag/main.do"><div id="profileImg"></div></a>
+                         	<a href="/mypag/main.do"><div id="profileImg"><img :src="info.profile"></div></a>
                       </div >
                       <div class="topBox">
                       <span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -181,7 +268,7 @@ select{
                               	</tr>
                              	<tr>
                               		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 비밀번호</th>
-                              		<td><input type="password" v-model="info.uPw" placeholder="영문/숫자/특수문자 중 2가지 이상 조합,10자~16자"></td>
+                              		<td><input type="password" v-model="info.uPw" placeholder="영문+숫자+특수문자 조합하여 사용해야 합니다"></td>
                               	</tr>
                              	<tr>
                               		<th><i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 새 비밀번호 확인</th>
@@ -218,21 +305,49 @@ select{
                                
                                  <div class="buttomfn">
                                  
-                                 <button @click="fnback">취소</button>
-                                 <button id="fndd" @click="fnUpdate">확인</button>
-                                 <button id="remove" @click="userRemove">회원 탈퇴</button>                                 
-                                 
+                                <button @click="fnback"><a href="javascript:;">취소</a></button>
+                                 <button id="fndd" @click="fnUpdate"><a href="javascript:;">확인</a></button>
+                                 <button id="remove" @click="userRemove"><a href="javascript:;">회원 탈퇴</a></button>                                 
+                                
                                  </div> 
-                        
+                                 
+                      		<div id="art">Artist 선택</div>
+                      		<hr>
+			                <div id="extext">
+			                	<p>좋아하는 Artist을 선택해주세요!</p>
+			                </div>      		
+                      			<div id="artimg">                      			
+                      				<div id="add1">
+                      				
+                      					<div><a @click="addimg('../../img/Artist/boy.jpg')" href="javascript:;"><img src="../../img/Artist/boy.jpg"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/bts.png')"href="javascript:;"><img src="../../img/Artist/bts.png"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/epn.jpeg')"href="javascript:;"><img src="../../img/Artist/epn.jpeg"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/new.jpg')"href="javascript:;"><img src="../../img/Artist/new.jpg"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/txt.jpg')"href="javascript:;"><img src="../../img/Artist/txt.jpg"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/zico.png')"href="javascript:;"><img src="../../img/Artist/zico.png"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/les.jpg')"href="javascript:;"><img src="../../img/Artist/les.jpg"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/su.png')"href="javascript:;"><img src="../../img/Artist/su.png"></a></div>
+                      					<div><a @click="addimg('../../img/Artist/dog.jpg')"href="javascript:;"><img src="../../img/Artist/dog.jpg"></a></div>
+                      					 
+								
+                      				</div>               			
+                      			</div>
+                      			
+                      			
+                      			
                            </div>
+                           
+                          
                    
                    </div>
              
            </div>
-  
+
 	</div>
+	
+	
 </div>
-<div><%@ include file="../page/footer.jsp" %></div>
+   <%@ include file="../page/footer.jsp" %> 
 </body>
 </html>
 <script type="text/javascript">
@@ -259,6 +374,22 @@ var app = new Vue({
        
     },
     methods: {
+    	
+    	addimg : function(item){    	
+    		 var self = this;
+             var nparmap = {img : item, uId : self.uId};
+             $.ajax({
+                 url : "/updateupdateprofile.dox",
+                 dataType:"json",   
+                 type : "POST", 
+                 data : nparmap,
+                 success : function(data) { 
+                	 alert("변경 완료되었습니다");
+                	 location.replace(location.href);
+               
+                 }
+             });
+    	},
        fnGetList : function(){
             var self = this;
             var nparmap = {uId : self.uId};
@@ -275,7 +406,6 @@ var app = new Vue({
             	   self.prefix = phoneNumber.substring(0, 4);            	   
             	   self.suffix = phoneNumber.substring(4);
             	   self.info.uSmsyn = self.user.uSmsyn === 'Y' ? 'Y' : 'N';
-            	   console.log(self.info.uPw);
                 }
             }); 
         },
@@ -292,6 +422,12 @@ var app = new Vue({
 			}
         	if(self.info.uPw != self.user.uPw2){
 				alert("확인패스워드가 일치하지 않습니다.");
+				return;
+			}
+        	var pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{2,16}$/;
+			if (!pwCheck.test(self.info.uPw))
+			{
+				alert("비밀번호는 영문+숫자+특수문자 조합하여 사용해야 합니다");
 				return;
 			}
         	if(self.info.uName == undefined || self.info.uName == ""){

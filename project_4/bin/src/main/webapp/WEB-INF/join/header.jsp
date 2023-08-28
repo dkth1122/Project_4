@@ -9,6 +9,13 @@
 <meta charset="UTF-8">
 
 <style>
+ font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 
 .icon {
 float : right;

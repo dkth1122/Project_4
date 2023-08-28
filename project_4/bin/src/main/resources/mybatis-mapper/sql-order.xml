@@ -14,41 +14,47 @@
 			GROUP BY #{uId}, EXCHANGE
 	</select>
 	
-	
-	<select id="orderProductSelect" parameterType="hashmap" resultType="com.example.project.model.Order">
-	
-	 SELECT * FROM
-	 T4_ORDER O INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-	 WHERE U_ID = #{uId}
+	<!--  구매상품 확인 -->
+	<select id="orderProductSelect" parameterType="hashmap" resultType="com.example.project.model.Order">	
+	SELECT * FROM
+	T4_ORDER O INNER JOIN 	
+	(
+	SELECT P1.P_NO, P_NAME , PRICE , P_LIMIT, PATH 
+	FROM
+	T4_PRODUCT P1
+	INNER JOIN T4_PRODUCT_IMG P2 ON
+	P1.P_NO = P2.P_NO
+	WHERE IMG_TYPE = 'Y'
+	) J
+	ON O.P_NO = J.P_NO
+	WHERE U_ID =  #{uId}
 	 
 	</select>
 	
-	<!-- 주문정보 확인 -->
-	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.project.model.Order">
-		SELECT *
-			FROM T4_ORDER O
-			INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-			INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-			INNER JOIN (
-				SELECT O.O_NO, COUNT(*) AS CNT
-				FROM T4_ORDER O
-				INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-				INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-				WHERE D_STATE = '업체확인중' AND O.O_NO = O.O_NO AND (EXCHANGE IS NULL OR EXCHANGE = '')
-				GROUP BY O.O_NO)A ON O.O_NO = A.O_NO
-			WHERE D_STATE = '업체확인중'
-		ORDER BY O.O_NO ASC
+   <!-- 주문정보 확인 -->
+   <select id="selectOrderList" parameterType="hashmap" resultType="com.example.project.model.Order">
+      SELECT *
+         FROM T4_ORDER O
+         INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+         INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
+         INNER JOIN (
+      SELECT O_NO, COUNT(*) AS CNT 
+            FROM T4_DELIVERY
+            GROUP BY O_NO
+            )A ON O.O_NO = A.O_NO
+         WHERE D_STATE = '업체확인중'
+      ORDER BY O.O_NO ASC
 
-	</select>
-	
-	<!-- 페이징용 카운트 -->
-	<select id="selectCnt3" resultType="int">
-		SELECT COUNT(*)
-		FROM T4_ORDER O
-		INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
-		INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
-		WHERE D_STATE = '업체확인중';
-	</select>
+   </select>
+   
+   <!-- 페이징용 카운트 -->
+   <select id="selectCnt3" resultType="int">
+      SELECT COUNT(DISTINCT O.O_NO) AS CNT
+      FROM T4_ORDER O
+      INNER JOIN T4_PRODUCT P ON O.P_NO = P.P_NO
+      INNER JOIN T4_DELIVERY D ON O.BUY_NO = D.BUY_NO
+      WHERE D_STATE = '업체확인중';
+   </select>
 	
 	<!-- 오더 상태 변경 -->
 	<update id="updateOrder" parameterType="hashmap">
@@ -90,14 +96,22 @@
 			) B ON O.O_NO = B.O_NO
 			   WHERE D.DU_NO = U.DU_NO AND U.U_ID = #{uId}
 			GROUP BY O.O_NO
+			ORDER BY O_DATE DESC
 	</select>
+	
 	<!-- 사용자 장바구니 출력 -->
 	<select id="selectcartlist" parameterType="hashmap" resultType="com.example.project.model.Product">
 		SELECT *
 		FROM
-		T4_CART C INNER JOIN  T4_PRODUCT P
-	    ON C.P_NO = P.P_NO
-	    WHERE U_ID = #{uId}		
+		T4_CART C INNER JOIN  
+		(SELECT P1.P_NO, P_NAME , PRICE , P_LIMIT, PATH 
+		FROM
+		T4_PRODUCT P1
+		INNER JOIN T4_PRODUCT_IMG P2 ON
+		P1.P_NO = P2.P_NO
+		WHERE IMG_TYPE = 'Y') P
+		ON C.P_NO = P.P_NO
+		WHERE U_ID = #{uId}		
 	</select>
 	
 		<!-- 구매확정으로 업데이트 -->
@@ -142,4 +156,18 @@
 		WHERE U_ID = #{uId}
 	</update>
 	
+	<!-- 유저 포인트 테이블에 정보 추가 -->
+	<insert id="userPointAdd2">
+		INSERT INTO T4_USER_POINT (O_NO, POINT, PODATA) 
+		VALUES (#{oNo}, #{userPointAdd}, NOW());
+	</insert>
+	
+	<!-- 비회원 주문내역 조회  -->
+	<select id="selectNonOrderList" parameterType="hashmap" resultType="com.example.project.model.Order">
+		SELECT *
+		FROM T4_ORDER O
+		INNER JOIN T4_DELIVERY D ON O.O_NO = D.O_NO
+		INNER JOIN T4_DELIVERY_USER U ON U.U_ID = D.U_ID
+		WHERE O.O_NO = #{nmNo} AND U_DPHONE = #{nmPhone}
+	</select>
 </mapper>

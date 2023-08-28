@@ -8,9 +8,14 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="UTF-8">
 <style>
-
-
-
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #headiner {
     font-family: Graduate, Kelly Slab, Aldrich;
     font-size: 1.1em;
@@ -38,10 +43,12 @@ padding-top: 35px;
 * {
 	margin: 0;
 	padding: 0;
-}
+	
+	}
 
 
 ul, ol, li {
+font-weight: bold;
 	list-style: none;
 	line-height: 50px;
 }
@@ -70,8 +77,8 @@ nav{ width:100%; height:135px;position:relative; z-index:9999;}
     position: relative;
     }
 		.navWrap:hover {
-      height:650px; /* 화占쏙옙占쏙옙 占쏙옙체 占쏙옙占싱뤄옙 확占쏙옙 */
-      background: rgba(245, 235, 236); /* 호占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙 */
+      height:650px; 
+      background: rgba(245, 235, 236); 
     }
 			
 nav .menu {
@@ -109,11 +116,13 @@ nav .menu>li:last-child {
 
 
 nav .menu>li a {
-	display: block;
-	width: 105px;
-	height: 100%;
-	text-align: center;
-	line-height: 120px;
+	font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    width: 105px;
+    height: 100%;
+    text-align: center;
+    line-height: 120px;
 }
 
 nav .menu .depths {
@@ -173,7 +182,7 @@ width : 100px;
 		<div id="headiner">
 			<div class="navWrap">
 			<ul class="menu">
-					<li class="titleLi"><a href="/product/BTS.do">ARTIST</a>
+					<li class="titleLi"><a href="javascript:">ARTIST</a>
 						<ul class="depths">
 							<li ><a  href="/product/BTS.do">BTS</a></li>
 							<li ><a   href="/product/LSF.do">LE SSERAFIM</a></li>
@@ -188,9 +197,9 @@ width : 100px;
 					</li>
 						
 						
-					<li class="titleLi"><a href="/product/membership.do">PRODUCT</a>
+					<li class="titleLi"><a href="/product/main.do">PRODUCT</a>
 						<ul class="depths">
-<li><a href="/product/membership.do">MEMBERSHIP</a></li>
+							<li><a href="/product/membership.do">MEMBERSHIP</a></li>
 							<li><a href="/product/album.do">ALBUM</a></li>
 							<li><a href="/product/merch.do">MERCHANDISE</a></li>
 							<li><a href="/product/dvd.do">DVD</a></li>
@@ -212,18 +221,14 @@ width : 100px;
 					
 						
 						<div class="icon">
-						<span class="icon"><a v-if="uId == null || uId =='' " href="/basket.do" href="bookmark.do"><i class="fa-solid fa-bag-shopping"></i></a>
-							<a v-else href="/cart/cartList.do"><i class="fa-solid fa-bag-shopping"></i></a></span>
+						<span class="icon"><a href="/cart/cartList.do"><i class="fa-brands fa-shopify"></i></a></span>
 						<span class="icon"><a href="myInformation.do"><i class="fa-solid fa-bookmark fa-1xl" ></i></a></span>
-						<span class="icon"><a href="search.do"><i class="fa-solid fa-magnifying-glass fa-1xl"></i></a></span>
+						<span class="icon"><a href="/gboard/main.do"><i class="fa-brands fa-wordpress-simple fa-rotate-180"></i></a></span>
 						<span class="icon"><a href="../mypag/main.do"><i class="fa-solid fa-user fa-1xl"></i></a></span>
 						</div>
 						<span class="q icon">
-												
 								<button @click="fnLogout" style="background: none; border: none; cursor: pointer;" class="logjo3">LOGOUT</button>
-
 							</span>		
-					
 					</ul>
 					
 					</div>

@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>MY PAGE</title>
 <%@ include file="mypageheader.jsp" %>
 <script src="../js/jquery.js"></script>
 <link href="../css/mypage.css" rel="stylesheet" type="text/css">
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -23,6 +25,14 @@
 
 <meta charset="UTF-8">
 <style type="text/css">
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 .swiper-container {
 	height:420px;
 	border-radius:7px;
@@ -86,7 +96,7 @@
 
 						<div class="a">
 							<div class="left topImgBoxwid">
-								<a href="/mypag/main.do"><div id="profileImg"></div></a>
+								<a class="logobut" href="/mypag/main.do"><div id="profileImg"><img :src="info.profile"></div></a>
 							</div>
 							<div class="topBox">
 								<span class="name">{{info.uName}}</span> <span class="nickname">{{info.uName2}}</span>
@@ -95,7 +105,7 @@
 							<div class="topBox">
 								<div class="details">
 									<div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
@@ -104,20 +114,23 @@
 
 								<div class="details">
 
-									<div>교환/환불</div>
+									<div >교환/환불</div>
 									<div>
+									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
 										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>
-										
+										<span v-else>0 /</span>										
 										<span v-if="exchange != 0"> {{exchange}}</span>
 										<span v-else>0</span>
+									</a>
 									</div>
 
 								</div>
 								<div class="details">
-									<div>포인트</div>
+									<div >포인트</div>
+									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
+									</a>
 								</div>
 								
 							</div>
@@ -185,7 +198,7 @@
 							>
 								<template v-for="item in orderlist">
 							    	<swiper-slide>
-						    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+						    			<div><img class="justimg" :src="item.path"></div>
 							            <div class="justBox">{{item.pName}}</div>
 							            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 							    	</swiper-slide>
@@ -212,7 +225,7 @@
 										>
 											<template v-for="item in cartlist">
 										    	<swiper-slide>
-									    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+									    			<div><img class="justimg" :src="item.path"></div>
 										            <div class="justBox">{{item.pName}}</div>
 										            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 										    	</swiper-slide>
@@ -242,7 +255,7 @@
 										>
 											<template v-for="item in wishlist">
 										    	<swiper-slide>
-									    			<div><img class="justimg" src="https://cdn-contents.weverseshop.io/public/shop/6df06f3bee8cfbe8aba44a9ae0cce338.png?q=95&w=720"></div>
+									    			<div><img class="justimg" :src="item.path"></div>
 										            <div class="justBox">{{item.pName}}</div>
 										            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 										    	</swiper-slide>
@@ -260,8 +273,9 @@
 
 
 			</div>
+		
 		</div>
-<div><%@ include file="../page/footer.jsp" %></div>
+	<div><%@ include file="../page/footer.jsp" %></div>
 		
 </body>
 </html>
@@ -327,7 +341,7 @@ Vue.use(VueAwesomeSwiper);
 								self.exchange = listCnt[i].orderCnt;
 							} else{
 								self.order += listCnt[i].orderCnt;
-								console.log(self.order);
+
 							}
 						}
 
@@ -359,7 +373,7 @@ Vue.use(VueAwesomeSwiper);
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
-					success : function(data) {
+					success : function(data) {						
 						self.orderlist = data.list;
 
 					}
@@ -375,10 +389,8 @@ Vue.use(VueAwesomeSwiper);
 					dataType : "json",
 					type : "POST",
 					data : nparmap,
-					success : function(data) {
-						
+					success : function(data) {						
 						self.cartlist = data.list;
-		
 
 					}
 				});
@@ -403,13 +415,13 @@ Vue.use(VueAwesomeSwiper);
 		        }); 
 		    },
 			onSetTranslate() {
-			      console.log('onSetTranslate')
+			    /*   console.log('onSetTranslate') */
 		    },
 		    onSwiperSlideChangeTransitionStart() {
-		      console.log('onSwiperSlideChangeTransitionStart')
+		     /*  console.log('onSwiperSlideChangeTransitionStart') */
 		    },
 		    onSwiperClickSlide(index, reallyIndex) {
-		      console.log('Swiper click slide!', reallyIndex)
+		      /* console.log('Swiper click slide!', reallyIndex) */
 		    },
 		    
 		    fnNotice : function (){ // 공지 
@@ -431,8 +443,8 @@ Vue.use(VueAwesomeSwiper);
 		
 		},
 		mounted() {
-			console.log('Swiper instances:', this.$refs.swiperComponent.$swiper, this.swiper);
-		},
+/* 			console.log('Swiper instances:', this.$refs.swiperComponent.$swiper, this.swiper);
+ */		},
 		created : function() {
 			var self = this;
 			self.fnGetList();

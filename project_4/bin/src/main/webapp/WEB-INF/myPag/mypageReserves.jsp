@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>포인트</title>
 <%@ include file="mypageheader.jsp" %>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
   <script src="../js/jquery.js"></script>  
   <link href="../css/mypag.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -11,6 +13,22 @@
  <meta charset="UTF-8">
 
 <style type="text/css">
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
+    #ftnav{
+position: absolute;
+left:0%;
+width:100%;
+font-size:0.7em;
+margin-top:200px;
+}
+
 #container {
     height: 1166px;
     width: 100%;
@@ -75,7 +93,7 @@
 					    	
 					    <div class="a">
 					    	<div class="left topImgBoxwid">
-					    	 	 <a href="/mypag/main.do"><div id="profileImg"></div></a>
+					    	 	 <a href="/mypag/main.do"><div id="profileImg"><img :src="info.profile"></div></a>
 					    	</div >
 					    	<div class="topBox">
 					    	<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
@@ -83,33 +101,35 @@
 					    	
 					    	<div class="topBox">
 					    	
-					    		<div class="details" >
-					    		
-					    		 	<div>Order</div>
-			                        <label><a href="/mypag/myPagOrderdetails.do">                            
+					    		<div class="details">
+									<div>Order</div>
+			                        <label><a class="logobut" href="/mypag/myPagOrderdetails.do">                            
 			                        <div v-if="order != 0">{{order}}</div>
 			                        <div v-else>0</div>
                           			</a></label>
-						    				
-					    		</div>
-					    		
-					    		<div class="details" >
-					    		
-					    			<div>교환/환불</div>
-					    			<div>
+
+								</div>
+
+								<div class="details">
+
+									<div >교환/환불</div>
+									<div>
+									<a class="logobut" href="http://localhost:8082/mypag/myPagOrderdetails.do">
 										<span v-if="refund != 0">{{refund}} /</span>
-										<span v-else>0 /</span>
-										
+										<span v-else>0 /</span>										
 										<span v-if="exchange != 0"> {{exchange}}</span>
 										<span v-else>0</span>
+									</a>
 									</div>
-					    			
-					    		</div>
-					    		<div class="details" >
-					    				<div>포인트</div>
+
+								</div>
+								<div class="details">
+									<div >포인트</div>
+									<a class="logobut" href="http://localhost:8082/mypag/mypageReserves.do">
 									<div v-if="!maxpoint == 0">{{maxpoint}} P</div>
 									<div v-else>0 P</div>
-					    		</div>
+									</a>
+								</div>
 					    		
 					    	</div>
 					    </div>
@@ -200,18 +220,17 @@
 							     	 		</tr>
 							     	 		
 							     	 	</table>
-							     	 </div>
-							     	
-							     	
-							     
+									<nav id="ftnav">
+      									<div id="ft"><%@ include file="../page/footer.jsp" %></div>
+      								</nav> 
+							     	 </div>  
+		  
+                  			</div>	
 					</div>
-					    
-					    </div>
-			    
-			  </div>
-  
+			 </div>   
+		</div>
+
 </div>
-<div><%@ include file="../page/footer.jsp" %></div>
 
 </body>
 </html>
@@ -311,7 +330,6 @@ var app = new Vue({
 	            data : nparmap,
 	            success : function(data) { 	
 	            	self.usepointList = data.list;
-	            	console.log(self.usepointList);
 	            	var x = 0;
 	            	var y = 0;
 	            	var z = 0;

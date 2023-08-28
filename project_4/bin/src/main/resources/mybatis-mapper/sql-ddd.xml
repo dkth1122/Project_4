@@ -4,6 +4,11 @@
 
 <mapper namespace="com.example.project.mapper.DDDDD">
 
-	
+	<!-- 사용자 프로필 업데이트 -->
+	<update id="updateprofile" parameterType="hashmap">
+		UPDATE T4_USER SET PROFILE = #{img}
+		WHERE U_ID = #{uId}
+	</update>
+		
 	
 </mapper>

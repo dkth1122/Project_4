@@ -78,6 +78,10 @@ import com.example.project.model.GBoard;
 		int deleteCocomment(HashMap<String, Object> map);
 		
 		//신고 기능 구현 
+		//게시글 신고 테이블 전체 출력
+		int selectReportBoard(HashMap<String, Object> map);
+		//댓글 신고 테이블 전체 출력
+		int selectReportComm(HashMap<String, Object> map);
 		
 		//1. Report 테이블에 신고 추가
 		int insertReport(HashMap<String, Object> map);

@@ -58,7 +58,7 @@
 			U_POINT = U_POINT + (#{pointAdd})
 		WHERE U_ID = #{uId}
 	</update>
-	
+		
 	<!-- 고객 문의 확인 (상세페이지용) -->
 	<select id="user2SelectInquiry" parameterType="hashmap" resultType="com.example.project.model.Inquiry">
 		SELECT *
@@ -85,7 +85,8 @@
 	<!-- 고객 이벤트 응모내역 확인 (상세페이지용) -->
 	<select id="user2SelectApply" parameterType="hashmap" resultType="com.example.project.model.Apply">
 	SELECT *
-	FROM T4_APPLY
+	FROM T4_APPLY A
+	INNER JOIN T4_EVENT E ON A.EVT_NO = E.EVT_NO
 	WHERE U_ID = #{uId} AND E_YN = 'Y'
 	ORDER BY (CASE WHEN E_PRIZE IS NULL OR E_PRIZE = '' THEN 2 ELSE 1 END) DESC, 
 	         E_PRIZE DESC

@@ -91,6 +91,7 @@ public class GBoardServiceImpl implements GBoardService{
 	        
 	        int artistCheck = gboardMapper.selectArtistCheck(map);
 	        List<GBoard> list = gboardMapper.selectMyBoadAlamList(map);
+	        
 	        boolean duplicateAlert = false;
 	        
 				for (int i = 0; i < list.size(); i++) {
@@ -238,6 +239,8 @@ public class GBoardServiceImpl implements GBoardService{
 	//신고 -> 게시글 신고 횟수 증가 + 신고 테이블에 insert
 	@Override
 	public int addReport(HashMap<String, Object> map) {
+		
+		
 		gboardMapper.reportCnt(map);
 		return gboardMapper.insertReport(map);
 	}

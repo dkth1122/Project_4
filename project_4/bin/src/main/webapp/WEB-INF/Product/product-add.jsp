@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 	table{
 		border : 1px solid black;
 		border-collapse: collapse;
@@ -102,10 +109,10 @@ var app = new Vue({
 			point : "",
 			stock : "",
 			membership : "N",
-			category : "ALB",
+			category : "PTB",
 			artist : "BTS",
 			fYn : "",
-			pLimit : "1"
+			pLimit : "2"
 		}
 	},// data
 	methods : {

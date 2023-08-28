@@ -6,11 +6,21 @@
 <script src="../js/jquery.js"></script>  
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>상품 상세&구매 페이지</title>
+<%@ include file="../Product/sexyheader.jsp" %>
 <style>
+  .nonMember{
+         font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 	div{
 		display : block;
 	}
@@ -96,7 +106,7 @@
 	.explanation{
 		width: 1200px;
     	margin: 80px auto;
-    	margin: 80px auto 0 !important;
+    	margin: 130px auto 0 !important;
 	}
 	#container{
 		height: auto;
@@ -107,8 +117,6 @@
     	display: block;
     	clear: both; */
 	}
-	
-	
 	#radioMenu {
 	  display: flex;
 	  gap: 20px;
@@ -321,11 +329,56 @@
     }
     #mainImg{
     	padding-bottom : 50px;
-    	border-bottom : 2px solid #d4d5d9;
+    	border-bottom : 2px solid #d4d5d9;    	
+    }
+    #mainImg img{
+    	width : 100%;
+    	height: 100%;
     }
     .explanation img{
     	margin-top : 100px;
     }
+    
+    .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#sexyLogo {
+  margin: 0px auto;
+  width: 152px;
+  height: 139px;
+  top: 21px;
+  z-index: 11110;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(677%, 0%);
+}
+
+
 </style>
 </head>
 <body>
@@ -404,34 +457,24 @@
 					</div>
 				</div>				
 			</div>
-
+		
+			
 			<div class="h3"><h3>함께하면 좋은 상품!</h3></div>
-			<div id="itemSlideArea">		  
-			    <div class="itemSlide">
-			        <div class="itemContainer">
+			<div id="itemSlideArea">		  			 
+			    <div class="itemSlide" v-for="item in together">
+			    	<a @click="fucking(item)">
+			        <div class="itemContainer" >			        
 			            <div>
-			                <img style="width:155px;" src="../img/aespaFilm.jpg">
+			                <img style="width:155px;" :src="item.path">
 			            </div>
 			            <div class="txt-box">
-			                <span class="xname">SuperM The 1st Mini Album</span>
+			                <span class="xname">{{item.pName}}</span>
 			                <div>
-			                    <span class="price" style="color:undefined">₩ 18,300</span>
+			                    <span class="price">₩ {{formattedPrice}}</span>
 			                </div>
 			            </div>
 			        </div>
-			    </div>
-			    <div class="itemSlide">
-			        <div class="itemContainer">
-			            <div>
-			                <img style="width:155px;" src="../img/aespaA4photo.jpg">
-			            </div>
-			            <div class="txt-box">
-			                <span class="xname">aespa A4 PHOTO - Girls</span>
-			                <div>
-			                    <span class="price">₩ 9,900</span>
-			                </div>
-			            </div>
-			        </div>
+			        </a>
 			    </div>
 			</div>
 		</div>	
@@ -573,9 +616,7 @@
 		        <a class="action_send move"><button class="action_send move" @click="moveWish">관심상품 확인</button></a>
 		    </div>
 	    <a class="close" @click="hideWishlistPopup"></a>
-
 	</div>
-
 </div>
 
 <div class="xans-myshop-layerwish ec-base-layer" style="display: none;">
@@ -621,8 +662,10 @@ var app = new Vue({
     	uId : "${sessionId}",    	
     	list : [],
     	info : [],
+    	together : [],
     	pNo : "${map.pNo}",
     	pName : "",
+    	artist : "",
     	price: "",
     	formattedPrice: "",
     	artist : "",
@@ -656,52 +699,37 @@ var app = new Vue({
                 	self.path2 = self.info[1].path;
                 	self.category = self.info[0].category;
                 	self.membership = self.info[0].membership;
-                	console.log(self.info);
-                	
-                	
+                	console.log(self.info);     
+                	self.fnGetList2();
                 }
             }); 
             //주문 페이지로 이동
-        },  fnProductOrder : function(item){
+        },  fnProductOrder : function(){
         	var self = this;
+        	var param = {cnt : self.quantity, pNo : self.pNo}
+        	if(self.uId == null || self.uId == ''){
+        		if(confirm("비회원으로 구매하시겠습니까?")){
+        			if(self.info[0].category == 'MEM'){
+                		alert("비회원은 멤버쉽 상품을 구매하실 수 없습니다.");	
+                		return;
+                	}else{
+                		param = {cnt : self.quantity, pNo : self.pNo, uId : "비회원"}
+                		$.pageChange("/payment/nonmemberpayment.do", param);
+                	}
+        		}
+        	}else{
+        		$.pageChange("/payment/payment.do", param);	
+        	}        	
         	
-        	var currentDate = new Date();
-        	var year = currentDate.getFullYear();
-        	var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
-        	var day = currentDate.getDate();
-        	var hours = currentDate.getHours();
-        	var minutes = currentDate.getMinutes();
-        	var seconds = currentDate.getSeconds();
-        	var currentDateString = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
-        	var a = currentDateString >= self.info.mRegDate;
-        	var b = currentDateString <= self.info.mExpDate;
-        	
-        	if(self.info.membership == 'Y'){
-        		if(!currentDateString >= self.info.mRegDate && !currentDateString <= self.info.mExpDate ){
-            		alert("해당 상품은 멤버쉽 구독이 필요한 상품입니다. \n해당 아티스트의 멤버쉽을 구독해주세요.");
-            	}else if(self.info.kitYn == 'Y'){
-            		alert("키트 구매는 구독한 아티스트 당 1개만 구입 가능합니다.");
-            	}
-        		else{
-        			var params =  {pNo : self.pNo, cnt : self.quantity};
-            		$.pageChange("/payment/payment.do", params); 
-            	}	
-        	}else if(self.info.uMembership == 'Y' && self.info.category == 'MEM'){
-        		alert("멤버쉽 구독 상품은 한 번만 구매 가능합니다.");
-        	}
-        	else{
-    			var params =  {pNo : self.pNo, cnt : self.quantity};
-        		$.pageChange("/payment/payment.do", params); 
-        	} 
-        	
-        	//$.pageChange("/payment/payment.do", {pNo : item.pNo});        	
-        	     	
         },//위시리스트 이동  
         wishList : function(){
         	var self = this;
-        	if(self.uId == null){
-        		alert("회원 로그인 후 이용하실 수 있습니다.");
-        		}
+        	
+      	  	if(self.uId == null || self.uId == '' ){
+      	  		alert("회원 로그인 후 이용하실 수 있습니다.")
+      	  		return;
+      	  	}
+        	
             var nparmap = {pNo : self.pNo, uId : self.uId};            
             $.ajax({
                 url : "/product/insertWish.dox",
@@ -730,6 +758,13 @@ var app = new Vue({
         	$.pageChange("/mypag/myInformation.do",{uId : self.uId}); 
         	self.showWishlistPopup = true;
         },
+        //함께하면 좋은상품!!이동
+        fucking : function(item){
+        	var self = this;
+        	$.pageChange("/product/productView.do",{pNo : item.pNo}); 
+        },
+        
+        
         //pop-up 팝업을 숨기는 동작
         hideWishlistPopup() {  
         	var self = this;
@@ -738,6 +773,17 @@ var app = new Vue({
         	//장바구니로 이동
         fnCart : function(){
       	  var self = this;
+      	  	
+      	  	if(self.uId == null || self.uId == '' ){
+      	  		alert("회원 로그인 후 이용하실 수 있습니다.")
+      	  		return;
+      	  	}
+      	  	
+      	  	if(self.quantity > self.info[0].pLimit){
+      	  	alert("1회 구매 횟수 제한을 초과하였습니다.")
+      	  		return;
+      	  	}
+      	  
             var nparmap = {pNo : self.pNo, uId : self.uId, quantity : self.quantity};            
             $.ajax({
                 url : "/cart/addCart.dox",
@@ -765,7 +811,7 @@ var app = new Vue({
     	increaseQuantity: function() {
     		var self = this;
             // 수량 증가를 위한 함수
-            if(self.quantity < self.info.pLimit){
+            if(self.quantity < self.info[0].pLimit){
             	self.quantity++;	
             }
             else{
@@ -784,8 +830,24 @@ var app = new Vue({
             var self = this;
             var numericQuantity = parseInt(self.quantity.replace(/\D/g, '')); // 숫자로 변환
             self.totalPrice = (self.price * numericQuantity).toLocaleString();
-        }
-    	
+        },
+         fnGetList2 : function(){
+            var self = this;            
+            var nparmap = {artist : self.artist}; 
+            console.log(nparmap);
+            $.ajax({
+                url : "/product/together.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	self.together = data.together; //사용자
+                	console.log(self.together);
+                	console.log(self.artist);
+                	console.log("together ==>",self.together);
+                }
+            })
+        } 
     },
     //총 가격 계산
    computed: {

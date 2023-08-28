@@ -8,8 +8,16 @@
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <meta charset="UTF-8">
-  <title>마이페이지</title>
+  <title>이용안내</title>
   <style type="text/css">
+      @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
   	#useGuide{
   		margin-top : 150px;
 		width: 1200px;
@@ -43,19 +51,19 @@
     	
     	<div id="radioMenu">
     		<input id="1" type="radio" name="Menu" value="회원가입" v-model="selectedMenu" hidden>
-    		<div><label for="1"><a href="#javascript:;">회원가입</a></label></div>
+    		<div><label for="1">회원가입</label></div>
     		<input id="2" type="radio" name="Menu" value="주문" v-model="selectedMenu" hidden>
-    		<div><label for="2"><a href="#javascript:;">주문</a></label></div>
+    		<div><label for="2">주문</label></div>
     		<input id="3" type="radio" name="Menu" value="결제" v-model="selectedMenu" hidden>
-    		<div><label for="3"><a href="#javascript:;">결제</a></label></div>
+    		<div><label for="3">결제</label></div>
     		<input id="4" type="radio" name="Menu" value="배송" v-model="selectedMenu" hidden>
-    		<div><label for="4"><a href="#javascript:;">배송</a></label></div>
+    		<div><label for="4">배송</label></div>
     		<input id="5" type="radio" name="Menu" value="교환/반품" v-model="selectedMenu" hidden>
-    		<div><label for="5"><a href="#javascript:;">교환/반품</a></label></div>
+    		<div><label for="5">교환/반품</label></div>
     		<input id="6" type="radio" name="Menu" value="환불" v-model="selectedMenu" hidden>
-    		<div><label for="6"><a href="#javascript:;">환불</a></label></div>
+    		<div><label for="6">환불</label></div>
     		<input id="7" type="radio" name="Menu" value="기타" v-model="selectedMenu" hidden>
-    		<div><label for="7"><a href="#javascript:;">기타</a></label></div>
+    		<div><label for="7">기타</label></div>
     	</div>
     	
     	<div id="selectedMenu">

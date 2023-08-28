@@ -210,12 +210,15 @@ margin-top:200px;
 							     	 			<th>관련주문</th>
 							     	 			<th>적립금</th>
 							     	 										     	 		
-							     	 		</tr>
+							     	 		</tr> 
 							     	 		
-							     	 		<tr v-for="item in usepointList">
+							     	 		<tr v-for="item in usepointList" >
 							     	 			<td>{{item.podata}}</td>
 							     	 			<td class="potd">{{item.pName}}</td>
-							     	 			<td>{{item.point}}</td>
+							     	 			<td> 
+								     	 			<span v-if="!item.point == 0">+ {{item.point}}</span>
+								     	 			<span v-else>- {{item.usepoint}}</span>	
+							     	 			</td>							     	 			
 							     	 			
 							     	 		</tr>
 							     	 		

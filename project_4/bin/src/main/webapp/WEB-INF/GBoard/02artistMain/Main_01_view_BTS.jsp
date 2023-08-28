@@ -9,11 +9,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>멤버십 댓글</title>
 <style>
-   *{
-      font-family: a타이틀고딕2;
-   }
+	@font-face {
+    	font-family: "a타이틀고딕2";
+        src: url("../../../font/A타이틀고딕2.TTF") format("truetype");
+    }
+    
+    *{
+    	font-family: a타이틀고딕2;
+    }
    body{
-   background-color:#D0ACDB;
+   background-color:#d4d5d9;
       width : 500px;
       margin : 10px auto;
    }
@@ -38,9 +43,10 @@
        box-sizing: border-box; 
      }
    .container{
-      width: 500px;
-      border: 1px solid tomato;
+      width: 500px;      
       padding: 32px;
+      background-color:white;
+      border-radius: 10px;
    }
    a{
         text-decoration: none;
@@ -54,7 +60,8 @@
    }
    
    .container > ul{
-         border: 1px solid tomato;
+        background-color: #eee;
+        border-radius: 10px;
    }
    
   .profile-image {
@@ -92,7 +99,7 @@
             <li>{{item.gContent}}</li>
             <li><span>좋아요 : </span>{{item.gLike}}</li>
             <img v-if="item.path" :src="item.path" class="image" />
-         <img v-else class="imageX" />
+         	<img v-else class="imageX" />
             <li><button @click="fnLike(item.gNo)">좋아요</button></li>
             <li><button @click="reportPost1(item.gNo)">신고</button></li>
             <li> 

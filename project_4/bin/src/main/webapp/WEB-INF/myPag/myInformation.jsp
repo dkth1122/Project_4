@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="mypageheader.jsp" %>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.js"></script>
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -12,8 +13,16 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <meta charset="UTF-8">
-
+<title>찜목록</title>
 <style type="text/css">
+    @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+    }
 #container {
     height: 100%;
     width: 100%;
@@ -27,6 +36,7 @@
 	height : 100px;
 }
 .button {
+    margin: 5px 0px;
 	  display: inline-block;
 	  padding: 5px 10px;
 	  font-size: 13px;
@@ -106,7 +116,22 @@
 	 color: inherit;
 	 cursor: pointer;
 }
-.thead th{
+.calenderArea{
+   margin-top: 40px;
+    background-color: #fcfcfc;
+    border: 1px solid #d8d9df;
+    
+}
+.calenderArea ul li {
+    color: #96979e;
+    padding: 0 0 0 25px;
+    height: 33px;
+    line-height: 33px;
+    font-weight: 400;
+    font-size: 14px;
+}
+.calenderArea i {
+   padding-right: 10px;
 }
 </style>
 
@@ -122,7 +147,7 @@
 
 				<div class="a">
 					<div class="left topImgBoxwid">
-						<a href="/mypag/main.do"><div id="profileImg"></div></a>
+						<a href="/mypag/main.do"><div id="profileImg"><img :src="info.profile"></div></a>
 					</div>
 					<div class="topBox">
 						<span class="name">{{infouser.uName}}</span> <span class="nickname">{{infouser.uName2}}</span>
@@ -208,10 +233,16 @@
 
 					<div class="View">
 						<div class="lowerBox">
-							주문 상품 정보</div>
+							찜목록</div>
 						<div class="box-border-bottom"></div>
+						<div class="calenderArea" v-if="wishList.length == 0">
+                           <ul>
+                              <li><i class="fa-regular fa-face-smile"></i> 찜목록이 존재하지 않습니다.</li>
+                              <li><i class="fa-regular fa-face-smile"></i> 위시리스트 담기 후 확인이 가능합니다.</li>
+                           </ul>                                    
+                        </div>
 						<table>
-						<thead class="thead">
+						<thead v-if="wishList.length > 0" class="thead">
 							<tr>
 								<th><input type="checkbox" @click="fnAllCheck" v-model="selectAll"></th>
 								<th></th>
@@ -220,7 +251,6 @@
 								<th>배송비</th>
 								<th>판매가</th>
 								<th>선택</th>
-								
 							</tr>
 						</thead>
 						<tbody>
@@ -311,7 +341,6 @@ var app = new Vue({
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	console.log(data);
                 	self.info = data.findPw; //사용자                	
                 	self.fnProduct();
                 }
@@ -326,8 +355,7 @@ var app = new Vue({
 	            type : "POST", 
 	            data : nparmap,
 	            success : function(data) { 	
-					self.wishList = data.list;
-					console.log(data);	            	
+					self.wishList = data.list;           	
 	            }
 	        }); 
 	    },
@@ -370,12 +398,10 @@ var app = new Vue({
 		},		
 		fnRemoveOne : function(item){		
 			var self = this;
-			console.log(item.wnum)
 				 if(!confirm("정말 삭제할거냐?")){
 					return;
 				} 
 				var param ={wnum : item.wnum};
-				console.log(param);
 				 $.ajax({
 	                url : "/mypag/removeSingleProdeuctWish.dox",
 	                dataType:"json",	
@@ -405,7 +431,6 @@ var app = new Vue({
 		},	   
 		OrderProduct : function(item){
 			var self = this;
-			console.log(item.wnum);
 		},	   
         myInquiry : function(){
    	    	var self = this;
@@ -486,6 +511,7 @@ var app = new Vue({
       self.fnGetInfo();
 		self.fnPoint();
 		self.fnCntList();
+		self.fnProduct();
     }
 });
 </script>
