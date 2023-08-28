@@ -302,7 +302,8 @@ text-align: center;
 					<span v-if="delivery == 0">\ 배송 {{ delivery}}원</span>
 					<span v-else>\ 배송 {{ delivery | numberWithCommas }}원</span>
 					<span >\ 사용포인트 {{usePoint}}</span>
-               		<span class="red">\ 합 {{ calculateTotalPrice()  + delivery - usePoint| numberWithCommas }} </span>
+               		<span class="red" v-if="(calculateTotalPrice()  + delivery - usePoint) > 1">\ 합 {{ calculateTotalPrice()  + delivery - usePoint| numberWithCommas }} </span>
+                     <span class="red" v-else>\ 합 0 </span>
 
 				</div>
 			
