@@ -305,6 +305,7 @@ var app = new Vue({
     	selectAll: false,
     	maxpoint : undefined,
  	 	infouser : "",
+ 	 	quantity: "1"
     	
  
     },
@@ -431,6 +432,9 @@ var app = new Vue({
 		},	   
 		OrderProduct : function(item){
 			var self = this;
+			var param = {pNo : item.pNo, cnt : self.quantity};
+			console.log(item);
+			  $.pageChange("/payment/payment.do", param);  
 		},	   
         myInquiry : function(){
    	    	var self = this;

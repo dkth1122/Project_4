@@ -50,7 +50,7 @@
 		<div>상품번호 : <input v-model="info.pNo"></div>
 		<div>문의고객 : <a href="javascript:;" @click="fnuserInformation">{{info.uId}}</a></div>
 		<div>문의 제목 : {{info.iQtitle}}</div>
-		<div>문의 내용 : {{info.iQcontent}}</div>
+		<div>문의 내용 : <pre v-html="info.iQcontent"></pre></div>
 		
 		<textarea rows="30" cols="50" v-model="info.iAcontent"></textarea>
 		
