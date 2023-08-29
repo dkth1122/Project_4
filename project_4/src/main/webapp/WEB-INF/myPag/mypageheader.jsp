@@ -182,7 +182,7 @@ width : 100px;
 		<div id="headiner">
 			<div class="navWrap">
 			<ul class="menu">
-					<li class="titleLi"><a href="javascript:">ARTIST</a>
+					<li class="titleLi"><a href="/product/artistAll.do">ARTIST</a>
 						<ul class="depths">
 							<li ><a  href="/product/BTS.do">BTS</a></li>
 							<li ><a   href="/product/LSF.do">LE SSERAFIM</a></li>

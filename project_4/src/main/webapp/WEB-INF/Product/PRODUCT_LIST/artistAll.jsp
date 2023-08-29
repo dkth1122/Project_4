@@ -1,11 +1,10 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
   <link href="../css/ProductPag.css" rel="stylesheet" type="text/css">
-  <link href="../../css/header.css" rel="stylesheet" type="text/css">
-   <link href="../../css/footer.css" rel="stylesheet" type="text/css">
+  <link href="../css/header.css" rel="stylesheet" type="text/css">
+   <link href="../css/footer.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.js"></script>  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -101,7 +100,7 @@
 </head>
 <body>
 
- <%@ include file="../../sexyheader.jsp" %> 
+<%@ include file="../sexyheader.jsp" %>
 
 <div id="app">
 
@@ -143,36 +142,61 @@
                 
                 <div class="body2">
 
-                    <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">PRODUCT</a></div>
+                                        <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                       <div class="menu">
-                            <a class="aTitle" href="Javascript:;" @click="fnGetList('A')">ALBUM</a>
+                            <a class="aTitle" href="Javascript:;" @click="fnGetList('BTS')">BTS</a>
                             <ul class="sub">
                             </ul>
                      </div>
 
                      <div class="menu2">
-                        <a class="aTitle" href="Javascript:;" @click="fnGetList('M')">MERCH</a>
+                        <a class="aTitle" href="Javascript:;" @click="fnGetList('TXT')">TXT</a>
                         <ul class="sub2">
                         </ul>
                 	 </div>
 
                  	<div class="menu3">
-	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('D')">DVD</a>
+	                    <a class="aTitle" href="Javascript:;" @click="fnGetList('EHP')">ENHYPEN</a>
 	                    <ul class="sub3">
                     	</ul>
              		</div>
 
 			         <div class="menu4">
-			            <a class="aTitle" href="Javascript:;" @click="fnGetList('P')">PHOTOBOOK</a>
+			            <a class="aTitle" href="Javascript:;" @click="fnGetList('SVT')">SEVENTEEN</a>
 			            <ul class="sub4">
 			            </ul>
 			   		  </div>
 			
 				     <div class="menu5">
-				        <a class="aTitle" href="Javascript:;" @click="fnGetList('Mem')">MEMBERSHIP</a>
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('FMN')">fromis_9</a>
 				        <ul class="sub5">
 				        </ul>
 				 	</div>
+				 	
+				 	<div class="menu6">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('LSF')">LE SSERAFIM</a>
+				        <ul class="sub6">
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu7">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('NJS')">NewJeans</a>
+				        <ul class="sub7">
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu8">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('BND')">BOYNEXTDOOR</a>
+				        <ul class="sub8">
+				        </ul>
+				 	</div>
+				 	
+				 	<div class="menu9">
+				        <a class="aTitle" href="Javascript:;" @click="fnGetList('ZIC')">ZICO</a>
+				        <ul class="sub9">
+				        </ul>
+				 	</div>
+				 	
                 </div>
 					<div class="productPosList">
 						<span @click="productView(item)" v-for="item in list" class="productList">
@@ -187,7 +211,7 @@
     </div>
 </div>
 <div style="width: 100%;">
- <%@ include file="../../page/footer.jsp" %>
+<%@ include file="../../page/footer.jsp" %>
 </div>
 </body>
 </html>
@@ -203,21 +227,10 @@ var app = new Vue({
 		  ctg : ""
     },
     methods: {
-    	fnGetList: function (ctg) {
+    	fnGetList: function (artist) {
             var self = this;
-    		
-    		if(ctg == 'A'){
-    			self.ctg = "ALB";
-    		}else if(ctg == 'M'){
-    			self.ctg = "MER";
-    		}else if(ctg == 'D'){
-    			self.ctg = "DVD";
-    		}else if(ctg == 'P'){
-    			self.ctg = "PTB";
-    		}else if(ctg == 'Mem'){
-    			self.ctg = "MEM";
-    		}
-            var nparmap = {artist: self.artist, selectedOption : self.selectedOption, ctg : self.ctg};
+            self.artist = artist;
+            var nparmap = {selectedOption : self.selectedOption, ctg : self.ctg, artist : self.artist};
             $.ajax({
                 url: "producListMain.dox",
                 dataType: "json",
@@ -227,16 +240,16 @@ var app = new Vue({
                     self.list = data.list;
                 }
             });
-		},
-		fnReload : function(){
+        }, fnReload : function(){
 			location.reload();
-		},
-        productView : function(item){
+			
+		}, productView : function(item){
         	var self = this;
-        	$.pageChange("productView.do", {pNo : item.pNo});        	
-        },
-		formatPrice: function(price) {
-            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        	$.pageChange("productView.do", {pNo : item.pNo});     
+        	
+        }, handleSelectChange(event) {
+            // Vue.js 이벤트 핸들러 내에서 jQuery 사용을 최소화
+            this.fnGetList(this.artist);
         }
     },
     created: function() {

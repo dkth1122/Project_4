@@ -37,10 +37,10 @@ public class ProductPagController {
 	
 //---------------------------------------------------------------------나연 작업-------------		
 	// 아티스트  메인 페이지 
-	@RequestMapping("/artistall.do") 
+	@RequestMapping("/product/artistAll.do") 
 	public String artist(Model model) throws Exception{
 			
-	return "/Product/artistall";
+	return "/Product/PRODUCT_LIST/artistAll";
 	}
 	
 		
