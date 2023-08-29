@@ -239,7 +239,7 @@
               </li>
                <li>{{item.gcDate}}</li>
                <li>{{item.gcContent}}</li>
-               <li><span class="clickThis" @click="CommnetLike(item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
+               <li><span class="clickThis" @click="CommnetLike(item.gcNo, item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
                <li><span class="clickThis" @click="reportPost2(item.gcNo)" v-if="item.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
            			<div class="clickThis" @click="CoRemove(item.gcNo)" v-if="uId == item.uId || uId =='admin'"><span><a href="javascript:">삭제✖</a></span></div>
                <div><span @click="CoCoBefore(item.gNo, item.gcNo)" ><a href="javascript:">댓글✉</a></span><div>
@@ -449,7 +449,10 @@
                    type: "POST",
                    data: nparmap,
                    success: function (data) {
-                      self.fnGetList();
+                	  self.fnGetList();
+                      self.fnCommentAndOpenPopup(gNo);
+                      self.flg = !self.flg;
+                	  
                    }
                });
            },  reportPost : function(gNo) {
@@ -500,7 +503,9 @@
                     type: "POST",
                     data: nparmap,
                     success: function (data) {
-                        self.clist = data.list;
+                        console.log("clist = > ", data.list);
+                    	self.clist = data.list;
+                        
                     }
                 });
                 
@@ -513,6 +518,7 @@
                    type: "POST",
                    data: nparmap,
                    success: function (data) {
+                	   console.log("commentList = > ", data.commentList);
                        self.commentList = data.commentList;
                    }
                });
@@ -590,7 +596,7 @@
                    type: "POST",
                    data: nparmap,
                    success: function (data) {
-                      self.GetComments();
+                      self.GetComments(gcGroup);
                       self.CoCommentView(gcGroup);
                    }
                });
