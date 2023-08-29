@@ -189,6 +189,7 @@ public class UserController {
 	public String removeUser(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		userService.removeUser(map);
+		session.invalidate();
 		return new Gson().toJson(resultMap);
 	}
 	
