@@ -124,14 +124,8 @@ var app = new Vue({
              var top = (window.innerHeight - height) / 2;
              var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
              
-             if(check == 'a'){
-		         var url = "view.do?gNo=" + num + "&artist=" + self.artist;
-		         window.open(url, "gNo", option);
-             }
-             else{
-            	 var url = "view.do?gNo=" + num + "&artist=" + self.artist;
-    	         window.open(url, "gNo", option);
-             }
+		     var url = "view.do?gNo=" + num + "&artist=" + self.artist;
+		     window.open(url, "gNo", option);
         	 
          }
         

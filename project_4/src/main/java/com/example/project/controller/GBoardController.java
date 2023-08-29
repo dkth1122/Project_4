@@ -118,10 +118,35 @@ public class GBoardController {
 			throws Exception {
 		request.setAttribute("map", map);
 		String artist = (String) map.get("artist");
-		String addr = "/GBoard/02artistMain/Main_01_view_BTS";
-		if(artist.equals("NJS")) {
+		String addr = "";
+		if(artist.equals("BTS")) {
+			addr = "/GBoard/02artistMain/Main_01_view_BTS";
+			
+		}else if(artist.equals("TXT")) {
+			addr = "/GBoard/02artistMain/Main_02_view_TXT";
+			
+		}else if(artist.equals("EHP")) {
+			addr = "/GBoard/02artistMain/Main_03_view_EHP";
+			
+		}else if (artist.equals("SVT")){
+			addr = "/GBoard/02artistMain/Main_04_view_SVT";
+			
+		}else if(artist.equals("FMN")) {
+			addr = "/GBoard/02artistMain/Main_05_view_FMN";
+			
+		}else if(artist.equals("LSF")) {
+			addr = "/GBoard/02artistMain/Main_06_view_LSF";
+			
+		}else if(artist.equals("NJS")) {
 			addr = "/GBoard/02artistMain/Main_07_view_NJS";
+			
+		}else if(artist.equals("BND")) {
+			addr = "/GBoard/02artistMain/Main_08_view_BND";
+			
+		}else if(artist.equals("ZIC")) {
+			addr = "/GBoard/02artistMain/Main_09_view_ZIC";
 		}
+			
 		return addr;
 	}
 
