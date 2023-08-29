@@ -748,13 +748,15 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
           }, function (rsp) { // callback
                  if (rsp.success) {               
                   self.fnInsertAll();
-                  alert("결제 성공");
+                  self.fnAddAddrList();
+                  alert("주문 완료");
+                  $.pageChange("nonmemberpayView.do", {oNo : self.oNo});
                   //location.href = "nonmemberpayView.do"; 
                  } else {
                    // 결제 실패 시
                    self.fnAddAddrList();
                    self.fnInsertAll();               
-                   alert("결제 실패");
+                   alert("주문 완료");
                    //비회원결제테스트중
                    //location.href = "nonmemberpayView.do";                                                 
                    $.pageChange("nonmemberpayView.do", {oNo : self.oNo});
