@@ -36,6 +36,14 @@ public class ProductPagController {
 	}
 	
 //---------------------------------------------------------------------나연 작업-------------		
+	// 아티스트  메인 페이지 
+	@RequestMapping("/artistall.do") 
+	public String artist(Model model) throws Exception{
+			
+	return "/Product/artistall";
+	}
+	
+		
 		
 	//BTS 상품 메인 페이지 (전체 상품   정렬)
 	@RequestMapping("/product/BTS.do") 

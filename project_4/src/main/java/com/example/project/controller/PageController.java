@@ -30,15 +30,6 @@ public class PageController {
 	HttpSession session;
 	
 
-	@RequestMapping("/hetest.do") 
-	public String head(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/haedtest";
-	}
-	
-	@RequestMapping("/test.do") 
-    public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/page/test";
-    }
 	@RequestMapping("/header.do") 
 	public String header(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/page/header";
@@ -47,44 +38,12 @@ public class PageController {
 	public String home(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/page/home";
 	}
-	@RequestMapping("/home2.do") 
-	public String home2(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/home2";
-	}
-	@RequestMapping("/home3.do") 
-	public String home3(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/home3";
-	}
-	@RequestMapping("/faq.do") 
-	public String faq(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/faq";
-	}
 	
 	@RequestMapping("/mypage.do") 
 	public String mypage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/page/mypage";
 	}
-	
-	@RequestMapping("/faqlist.do") 
-	public String list(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/faq-list";
-	}
-	
-	@RequestMapping("/faqadd.do") 
-	public String add(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/faq-add";
-	}
-	
-	@RequestMapping("/mypageinclude.do") 
-	public String mypageinclude(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/mypageinclude";
-	}
-	
-	@RequestMapping("/artistpage.do") 
-	public String artistpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/artistpage";
-	}
-	
+
 	@RequestMapping("/productpage.do") 
 	public String productpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/page/productpage";
@@ -95,39 +54,7 @@ public class PageController {
 		return "/page/eventpage";
 	}
 	
-	@RequestMapping("/notifypage.do") 
-	public String notifypage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/notifypage";
-	}
 	
-	
-	@RequestMapping("/search.do") 
-	public String search(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/search";
-	}
-	
-	@RequestMapping("/bookmark.do") 
-	public String bookmark(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/bookmark";
-	}
-	
-	@RequestMapping("/dhpage1.do") 
-	public String dhpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/dhpage";
-	}
-	
-	
-	@RequestMapping("/newitem.do") 
-	public String newitem(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/newitem";
-	}
-	
-
-	
-	@RequestMapping("practice.do") 
-	public String practice(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/page/practice";
-	}
 	
 	//포인트
 	@RequestMapping(value = "/pointList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

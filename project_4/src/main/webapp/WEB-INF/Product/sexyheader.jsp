@@ -207,7 +207,7 @@ margin: 0 auto;
 		<div id="sexyHeadiner">
 			<div class="navWrap" v-bind:class="{ 'translucent': isTranslucent }" >
 			<ul class="menu">
-					<li class="titleLi"><a href="javascript:">ARTIST</a>
+						<li class="titleLi"><a href="/artistall.do">ARTIST</a>
 						<ul class="depths">
 							<li ><a href="/product/BTS.do">BTS</a></li>
 							<li ><a href="/product/LSF.do">LE SSERAFIM</a></li>
