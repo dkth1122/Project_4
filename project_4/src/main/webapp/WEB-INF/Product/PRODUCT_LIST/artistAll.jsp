@@ -71,7 +71,7 @@
 		width: 1200px;
 		float: left;
 		position: relative;
-		top :-350px;
+		top :-600px;
 		left: 350px;
 		
 	}
