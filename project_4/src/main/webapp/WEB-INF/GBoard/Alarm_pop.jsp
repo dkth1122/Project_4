@@ -24,7 +24,7 @@
    }
 	
 	ul{	
-		width:300px;
+		width:500px;
 		margin:5px auto;
 		list-style:none;
 		border: 1px solid black;
