@@ -49,15 +49,18 @@ p{
   display:none;
   padding:15px;
   z-index: 100;
+  
+  
  }
 .popup{
- z-index:9999;
+	z-index:9999;
   width:100%;
-  max-width:800px;
   overflow:hidden;
   background-color:#d0d0d0;
   box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3);
-  
+  position:relative;
+  max-width:500px;
+  max-height:400px;
 }
 
 .popup-body{
@@ -78,8 +81,8 @@ p{
 .body-contentbox{
   word-break:break-word;
   overflow-y:auto;
-  min-height:500;
-  max-height:700px;
+  min-height:300px;
+  max-height:300px;
 }
 .popup-foot{
   width:30px;
