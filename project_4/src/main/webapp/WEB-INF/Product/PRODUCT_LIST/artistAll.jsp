@@ -132,7 +132,7 @@
             
             
             <div class="body" style="margin-top: 80px;">
-                <select class="select" v-model="selectedOption" @change="fnGetList" v-if = "list.length != 0">
+                <select class="select" v-model="selectedOption" v-on:change="handleSelectChange" v-if = "list.length != 0">
                     <option selected>전체</option>
                     <option value="nameList">상품명</option>
                     <option value="minPrice">낮은가격</option>
@@ -142,7 +142,7 @@
                 
                 <div class="body2">
 
-                                        <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
+                   <div id="CategoryTitle" class="CategoryTitle"> <a href="Javascript:;" @click="fnReload">ARTIST</a></div>
                       <div class="menu">
                             <a class="aTitle" href="Javascript:;" @click="fnGetList('BTS')">BTS</a>
                             <ul class="sub">
