@@ -546,7 +546,8 @@
                    success: function (data) {
                        alert("등록되었어요.");
                        self.comment = "";
-                       self.GetCoList(self.gNo);
+                       self.GetComments(self.gNo);
+                       location.reload(true);
                    }
                });
            }, CoRemove: function (gcNo) {
@@ -562,6 +563,7 @@
                    data: nparmap,
                    success: function (data) {
                        alert("삭제되었습니다.");
+                       self.GetComments();
                        window.location.reload();
                    }
                });
@@ -646,7 +648,8 @@
                       alert("댓글 작성 완료");
                       self.cocomment = "";
                       self.CoCommentView();
-                      /* window.location.reload();  */
+                      location.reload(); 
+                      
                    }
                });
                
@@ -666,6 +669,7 @@
                    success: function (data) {
                       alert("삭제완료");
                       self.CoCommentView();
+                      window.location.reload(); 
                    }
                });
            }, reportPost1 : function(gNo) {
