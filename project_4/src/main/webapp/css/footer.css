@@ -5,7 +5,7 @@
 }
 
 pre { 
-font-size: 1.2em;  
+font-size: 1em;  
 }
  
 p{
@@ -65,9 +65,9 @@ p{
 }
 .body-contentbox{
   word-break:break-word;
-  overflow-y:auto;
-  min-height:500;
-  max-height:700px;
+  overflow-y:auto;  
+  min-height:200px;
+  max-height:400px;
 }
 .popup-foot{
   width:30px;

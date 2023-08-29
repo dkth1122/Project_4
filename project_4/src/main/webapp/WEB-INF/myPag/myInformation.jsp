@@ -260,9 +260,9 @@
 								<td><button class="button11" @click="productDetail(item)"><div class="artist">{{item.artist}}</div>
 									{{item.pName}}</button></td>
 								<td>{{item.price*0.005}} P</td>							
-								<td v-if="item.price < 50000">기본배송<div>\3,000</div><div>(조건)</div></td>
+								<td v-if="item.price < 50000">기본배송<div>₩3,000</div><div>(조건)</div></td>
 								<td v-if="item.price >= 50000">무료배송</td>
-								<td><strong>\{{formatPriceWithCommas(item.price)}}</strong></td>
+								<td><strong>₩{{formatPriceWithCommas(item.price)}}</strong></td>
 								<td>
 									<button class="button" @click="OrderProduct(item)"> 주문하기 </button>								
 									<button class="button" @click="insertCart(item)"> 장바구니 </button>								

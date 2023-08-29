@@ -505,7 +505,7 @@ text-align: center;
             </div>
          </div>
       
-      <div id="baybutton"><button @click="fnBeforePay">결제하기</button></div>
+      <div id="baybutton"><button @click="fnBeforePay"><a href="javascript:;">결제하기<a></a></button></div>
       </div>
       <div><button @click="fninsertDelivery">테스트</button></div>
 
@@ -725,8 +725,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                       
                    }
                   }); 
-          }, fnBeforePay : function(){
-               var self = this;
+          }, fnBeforePay : function(){   
+        	  var self = this;
+        	 
                //핸드폰 번호 합치기
                self.user.phone = self.user.phone1+"-" + self.user.phone2 +"-" +self.user.phone3;
 		       self.requestPay();
