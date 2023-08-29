@@ -588,6 +588,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
          zipNoErrorMessage : "",
          dTextErrorMessage : "",
          phoneErrorMessage : "",
+         errorMessage : "",
          
       },
       methods : {
@@ -601,7 +602,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                    data : nparmap,
                    success : function(data) { 
                       self.list = data.list;
-                      console.log("리스트 ==>",self.list);
+                      console.log(self.list);
                    }
                }); 
            },calculateTotal: function (item) {
