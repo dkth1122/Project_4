@@ -579,7 +579,7 @@
                    type: "POST",
                    data: nparmap,
                    success: function (data) {
-                      self.GetCoList(self.gNo);
+                	   self.GetComments();
                    }
                });
                
