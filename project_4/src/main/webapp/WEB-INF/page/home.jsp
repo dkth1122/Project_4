@@ -15,7 +15,9 @@
 
 .popup{
 z-index: -111;}
-
+#app{
+	height: 6800px;
+}
 * {
     padding: 0;
     margin: 0;
@@ -603,13 +605,13 @@ img.topimg{
          </audio>
 
       </section>
-      <%@ include file="footer.jsp" %>
+      
       </nav>
 
    </div> 
      
 </div> <!-- app div -->
-
+<%@ include file="footer.jsp" %>
 </body>
  
 </html>
@@ -622,7 +624,7 @@ Vue.filter('formatPrice', function(value) {
 	  return formatter.format(value);
 	});
 	
-	
+		
 var app = new Vue({
    el : '#app',
    data : {

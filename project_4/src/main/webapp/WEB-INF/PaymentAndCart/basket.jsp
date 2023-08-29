@@ -65,6 +65,7 @@ h3{
 		</div>
 	</div>
 </div>
+<div style="margin-top: 100px;">   <%@ include file="../page/footer.jsp" %> </div>
 </body>
 </html>
 <script>

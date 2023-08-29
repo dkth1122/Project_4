@@ -4,6 +4,7 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -507,9 +508,10 @@ text-align: center;
       
       <div id="baybutton"><button @click="fnBeforePay"><a href="javascript:;">결제하기<a></a></button></div>
       </div>
-      <div><button @click="fninsertDelivery">테스트</button></div>
+    
 
 </div>
+<div style="margin-top: 100px;"><%@ include file="../page/footer.jsp" %> </div>
 </body>
 </html>
 <script>
