@@ -117,7 +117,12 @@ public class GBoardController {
 	public String view(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map)
 			throws Exception {
 		request.setAttribute("map", map);
-		return "/GBoard/02artistMain/Main_01_view_BTS";
+		String artist = (String) map.get("artist");
+		String addr = "/GBoard/02artistMain/Main_01_view_BTS";
+		if(artist.equals("NJS")) {
+			addr = "/GBoard/02artistMain/Main_07_view_NJS";
+		}
+		return addr;
 	}
 
 	// 신고 팝업 페이지
