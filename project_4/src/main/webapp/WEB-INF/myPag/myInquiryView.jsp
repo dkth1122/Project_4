@@ -153,24 +153,24 @@
 					
 							      <div class="View">
 							    	  <div class="lowerBox"> 1:1문의 </div>
-							    	  	<div v-for="item in info">
-								    	  		<div class="tit"><h4>{{item.iQtitle}}</h4></div>
-								    	  		<div class="tspn">작성일<span>{{item.iQtime}}</span>답변여부<span>{{item.state}}</span></div>
+							    	  	<div >
+								    	  		<div class="tit"><h4>{{iQtitle}}</h4></div>
+								    	  		<div class="tspn">작성일<span>{{iQtime}}</span>답변여부<span>{{state}}</span></div>
 								    	  		<hr>
-								    	  		<div class="text2"><pre v-html="item.iQcontent"></pre></div>							    	  	
-								    	  	<div v-if="item.iAcontent == null && iNo == item.iNo">
+								    	  		<div class="text2"><pre v-html="iQcontent"></pre></div>							    	  	
+								    	  	<div v-if="iAcontent == null">
 								    	  		<hr>
 								    	  			<div class="padd">빠른시간내에 답변드리겠습니다. 잠시만 기다려 주세요!</div>
 								    	  		<hr>
 								    	  	</div>
 								    	  	<div v-else>
 								    	  		<hr>
-								    	  		<div>답변날짜 {{item.iAtime}}</div>
+								    	  		<div>답변날짜 {{iAtime}}</div>
 								    	  		<hr>
-								    	  		<div>{{item.iAcontent}}</div>
+								    	  		<div>{{iAcontent}}</div>
 								    	  	</div>
 								    	  	<div>
-								    	  		<img :src="item.path">
+								    	  		<img :src="path">
 								    	  	</div>					
 							    	  <div>
 							    	  	<div id="rr"><button id="목록" @click="fnList"><a href="#">목록</a></button></div>
@@ -201,7 +201,14 @@ var app = new Vue({
     	maxpoint : undefined,
  	    infouser : [],
     	list : [],
-    	iNo : "${map.iNo}"
+    	iNo : "${map.iNo}",
+    	iQtitle : "",
+    	iQtime : "",
+    	iQcontent : "",
+    	state : "",
+    	iAtime : "",
+    	iAcontent : "",
+    	path : ""
     },
     methods: {
     	fnGetInfo : function() { // 사용자 정보 불러오기 이름 , 별명 (닉네임)
@@ -222,12 +229,22 @@ var app = new Vue({
             var nparmap = {uId : self.uId, iNo : self.iNo};
             self.info.uId = self.uId;
             $.ajax({
-                url : "/mypag/userInquiry.dox",
+                url : "/inquiry/info.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	self.info = data.list; //사용자
+                	self.list = data.info; //사용자
+                	self.iQtitle = self.list.iQtitle;
+                	self.iQtime = self.list.iQtime;
+                	self.iQcontent = self.list.iQcontent;
+                	self.state = self.list.state;
+                	self.iAtime = self.list.iAtime;
+                	self.iAcontent = self.list.iAcontent;
+                	self.path = self.list.path;
+                	console.log(self.iNo);                	
+                	console.log(self.iQtitle);
+                	console.log(self.list);
                 }
             }); 
         },
