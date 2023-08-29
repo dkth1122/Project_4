@@ -8,6 +8,14 @@
 <meta charset="UTF-8">
 <title>고객 상세보기</title>
 <style>
+	 @font-face {
+	       font-family: "a타이틀고딕1";
+	        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+	    }
+	    
+	    *{
+	       font-family: a타이틀고딕1;
+	       }
         body{
                background-color: #decfdf;
            }

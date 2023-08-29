@@ -19,6 +19,7 @@
     
     *{
        font-family: a타이틀고딕1;
+       }
     
 	  .nonMember{
 	  margin: 0px 10px;

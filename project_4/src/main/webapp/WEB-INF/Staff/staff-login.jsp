@@ -8,6 +8,14 @@
 <meta charset="UTF-8">
 <title>관리자 로그인 페이지</title>
 <style>
+ @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+       }
 	body {
 		background-color: #eae2eb;
 	}

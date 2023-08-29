@@ -8,6 +8,14 @@
 <meta charset="UTF-8">
 <title>나는 스테프 버튼</title>
     <style>
+     @font-face {
+       font-family: "a타이틀고딕1";
+        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
+    }
+    
+    *{
+       font-family: a타이틀고딕1;
+       }
    
 	#app2 {
 	  /* width: 200px; */
