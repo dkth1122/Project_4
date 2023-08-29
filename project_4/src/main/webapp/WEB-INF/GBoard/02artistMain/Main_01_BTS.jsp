@@ -239,7 +239,7 @@
               </li>
                <li>{{item.gcDate}}</li>
                <li>{{item.gcContent}}</li>
-               <li><span class="clickThis" @click="CommnetLike(item.gcNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
+               <li><span class="clickThis" @click="CommnetLike(item.gcNo, item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
                <li><span class="clickThis" @click="reportPost2(item.gcNo)" v-if="item.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
            			<div class="clickThis" @click="CoRemove(item.gcNo)" v-if="uId == item.uId || uId =='admin'"><span><a href="javascript:">삭제✖</a></span></div>
                <div><span @click="CoCoBefore(item.gNo, item.gcNo)" ><a href="javascript:">댓글✉</a></span><div>
@@ -449,7 +449,10 @@
                    type: "POST",
                    data: nparmap,
                    success: function (data) {
-                      self.fnGetList();
+                	  self.fnGetList();
+                      self.fnCommentAndOpenPopup(gNo);
+                      self.flg = !self.flg;
+                	  
                    }
                });
            },  reportPost : function(gNo) {
@@ -500,7 +503,9 @@
                     type: "POST",
                     data: nparmap,
                     success: function (data) {
-                        self.clist = data.list;
+                        console.log("clist = > ", data.list);
+                    	self.clist = data.list;
+                        
                     }
                 });
                 
@@ -513,6 +518,7 @@
                    type: "POST",
                    data: nparmap,
                    success: function (data) {
+                	   console.log("commentList = > ", data.commentList);
                        self.commentList = data.commentList;
                    }
                });
@@ -546,8 +552,7 @@
                    success: function (data) {
                        alert("등록되었어요.");
                        self.comment = "";
-                       self.GetComments(self.gNo);
-                       location.reload(true);
+                       self.GetCoList(self.gNo);
                    }
                });
            }, CoRemove: function (gcNo) {
@@ -563,7 +568,6 @@
                    data: nparmap,
                    success: function (data) {
                        alert("삭제되었습니다.");
-                       self.GetComments();
                        window.location.reload();
                    }
                });
@@ -579,7 +583,7 @@
                    type: "POST",
                    data: nparmap,
                    success: function (data) {
-                	   self.GetComments();
+                      self.GetCoList(self.gNo);
                    }
                });
                
@@ -592,7 +596,7 @@
                    type: "POST",
                    data: nparmap,
                    success: function (data) {
-                      self.GetComments();
+                      self.GetComments(gcGroup);
                       self.CoCommentView(gcGroup);
                    }
                });
@@ -648,8 +652,7 @@
                       alert("댓글 작성 완료");
                       self.cocomment = "";
                       self.CoCommentView();
-                      location.reload(); 
-                      
+                      /* window.location.reload();  */
                    }
                });
                
@@ -669,7 +672,6 @@
                    success: function (data) {
                       alert("삭제완료");
                       self.CoCommentView();
-                      window.location.reload(); 
                    }
                });
            }, reportPost1 : function(gNo) {
