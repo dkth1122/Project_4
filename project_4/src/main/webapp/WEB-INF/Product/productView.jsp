@@ -4,6 +4,7 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>  
+<link href="../css/footer.css" rel="stylesheet" type="text/css">
 <link href="../css/mypag.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -13,6 +14,9 @@
 <title>상품 상세&구매 페이지</title>
 <%@ include file="../Product/sexyheader.jsp" %>
 <style>
+#app{
+	margin-bottom: 50px;
+}
   .nonMember{
          font-family: "a타이틀고딕1";
         src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
@@ -622,6 +626,7 @@
 <div class="xans-myshop-layerwish ec-base-layer" style="display: none;">
         <!-- 팝업 내용 및 버튼들 -->
     </div>
+    
 <script>
    $(document).ready(function() {
     // 페이지 로드 시 팝업을 초기에 숨김
@@ -652,7 +657,9 @@ function togglePopup(show) {
     }
 }
 </script>
-
+<div style="width: 100%;">
+<%@ include file="../page/footer.jsp" %>
+</div>
 </body>
 </html>
 <script>
