@@ -238,21 +238,21 @@
 	   	SELECT *
 		FROM T4_GBOARD G
 		INNER JOIN T4_USER U ON G.U_ID = U.U_ID 														
-	   	WHERE U.U_ID = #{uId}
+	   	WHERE U.U_ID = #{uId} AND G_BANYN &lt; 5 AND G_DELYN = 'N'
 	</select>
 	
 	<!-- 마이페이지 내 댓글작성 -->
 	<select id="selectMypageComment" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT *
 		FROM T4_GCOMMENTS  																				
-		WHERE U_ID = #{uId} AND GC_GROUP IS NULL
+		WHERE U_ID = #{uId} AND GC_GROUP IS NULL AND GC_BANYN &lt; 5 AND GC_DELYN = 'N'
 	</select>
 	
 	<!-- 마이페이지 내 대댓글작성 -->
 	<select id="selectMypageCoComment" parameterType="hashmap" resultType="com.example.project.model.GBoard">
 		SELECT *
 		FROM T4_GCOMMENTS  																				
-		WHERE U_ID = #{uId} AND GC_GROUP IS NOT NULL
+		WHERE U_ID = #{uId} AND GC_GROUP IS NOT NULL AND GC_BANYN &lt; 5 AND GC_DELYN = 'N'
 	</select>
 	
 	

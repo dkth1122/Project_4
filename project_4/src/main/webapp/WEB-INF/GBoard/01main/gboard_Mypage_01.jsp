@@ -244,8 +244,12 @@
        border-bottom: 1px solid #ccc;       
     }
     #selectedMenu td{
-     border-bottom: 1px solid #ccc;       
+     	border-bottom: 1px solid #ccc;       
     }
+    
+    a{
+    	text-decoration: none;
+    	color:#ggg;
     }
 </style>
 <title>myPage</title>
@@ -303,8 +307,6 @@
                    <div><label for="1" class="menu"><a>내가쓴피드</a></label></div>
                    <input id="2" type="radio" name="Menu" value="내가쓴댓글" v-model="selectedMenu" hidden>
                    <div><label for="2" class="menu"><a>내가쓴댓글</a></label></div>
-                   <input id="3" type="radio" name="Menu" value="내가쓴대댓글" v-model="selectedMenu" hidden>
-                  <div><label for="3" class="menu"><a>내가쓴대댓글</a></label></div>                   
                 </div>
                <div class="minimi3">
                   <div id="selectedMenu">
@@ -318,7 +320,7 @@
                         <tr v-for = "item in list" >
                               <td>{{item.artist}}</td>
                               <td>{{item.gcDate}}</td>
-                              <td>{{item.gContent}}</td>
+                              <td  @click="fnMove(item)"><a href="javascript:">{{item.gContent}}</a></td>
                               <td>{{item.gLike}}</td>
                         </tr>
                      </table>
@@ -332,21 +334,7 @@
                         <tr v-for ="item in list2">
                               <td>{{item.artist}}</td>
                               <td>{{item.gcDate}}</td>
-                              <td>{{item.gcContent}}</td>
-                              <td>{{item.gcLike}}</td>
-                        </tr>
-                     </table>
-                     <table v-if="selectedMenu == '내가쓴대댓글'">
-                        <tr>
-                           <th>아티스트</th>
-                           <th>작성일</th>
-                           <th>댓글 내용</th>
-                           <th>좋아요 수</th>
-                        </tr>
-                        <tr v-for = "item in list3">
-                              <td>{{item.artist}}</td>
-                              <td>{{item.gcDate}}</td>
-                              <td>{{item.gcContent}}</td>
+                              <td @click="fnMove(item)"><a href="javascript:">{{item.gcContent}}</a></td>
                               <td>{{item.gcLike}}</td>
                         </tr>
                      </table>
@@ -414,7 +402,6 @@
          </div>
       </div>      
    </div>
-   <!-- <button @click="fnMove">뒤로가기</button> -->
 </body>
 </html>
 <script>
@@ -459,9 +446,18 @@
                                   
                        }
                    });
-               }, fnMove : function(){
-                  window.history.back();
-                  
+               }, fnMove : function(item){
+	              	 var self = this;
+	            	 var param = {}
+	                 var width = 700;
+	                 var height = 500;
+	                 var left = (window.innerWidth - width) / 2;
+	                 var top = (window.innerHeight - height) / 2;
+	                 var option = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top;
+	                 
+	    		     var url = "view.do?gNo=" + item.gNo + "&artist=" + item.artist;
+	    		     window.open(url, "gNo", option);
+            	 
                }, fnProfile: function(pitem, index) {
                     var self = this;
                     
@@ -504,10 +500,7 @@
                         location.reload();
                      }
                  });
-             },fnMove: function () {
-                  window.history.back();
-                  
-             }, fnImgRemove : function(gpNo){
+               }, fnImgRemove : function(gpNo){
                    var self = this;
                    var nparmap = {gpNo : gpNo};
                    
