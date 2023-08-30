@@ -8,14 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <style>
-    	 @font-face {
-       font-family: "a타이틀고딕1";
-        src: url("../../../font/a타이틀고딕1.ttf") format("truetype");
-    }
-    
-    *{
-       font-family: a타이틀고딕1;
-       }
         body{
             background-color: #decfdf;
             }
@@ -59,7 +51,7 @@
 		<div>문의고객 : <a href="javascript:;" @click="fnuserInformation">{{info.uId}}</a></div>
 		<div>문의 제목 : {{info.iQtitle}}</div>
 		<div>문의 내용 : <pre v-html="info.iQcontent"></pre></div>
-		
+		 0
 		<textarea rows="30" cols="50" v-model="info.iAcontent"></textarea>
 		
 		<div>민원 : 
