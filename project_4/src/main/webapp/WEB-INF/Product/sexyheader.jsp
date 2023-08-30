@@ -26,7 +26,7 @@
 #sexyHeadiner{
 	margin: 0px;
     top: 0px;
-    position: fixed;
+    position: relative;
     width: 100%;
     z-index: 1111;
   
@@ -61,19 +61,14 @@ a {
 } 
 nav {
 	width: 100%;
-	height: 140px;
+	height: 100px;
 	position: relative;
 	z-index: 9999;
 }
-nav{
- width:100%;
- height:135px;
- position:relative;
- z-index:9999;
-}
+
 .navWrap {
    width: 100%;
-    height: 130px;
+    height: 75px;
     overflow: hidden;
     transition: all 0.9s;
     position: relative;
@@ -82,8 +77,8 @@ nav{
     }
     
 .navWrap:hover {
-    height:650px; /* 화占쏙옙占쏙옙 占쏙옙체 占쏙옙占싱뤄옙 확占쏙옙 */
-    background: rgba(245, 235, 236); /* 호占쏙옙 占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙 */
+    height:520px; 
+    background: rgba(245, 235, 236); 
     }
 			
 nav .menu {
@@ -136,9 +131,9 @@ nav .menu .depths li:hover a {
 }
 #sexyLogo {
   margin: 0px auto;
-  width: 152px;
-  height: 139px;
-  top: 21px;
+  width: 90px;
+  height: auto;
+  top: 10px;
   z-index: 11110;
   display: flex;
   justify-content: center;
