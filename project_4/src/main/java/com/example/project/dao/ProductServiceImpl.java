@@ -214,6 +214,12 @@ public List<Product> together(HashMap<String, Object> map) {
 	return productMapper.together(map);
 }
 
+@Override
+public Product selectProductStock(HashMap<String, Object> map) {
+	// TODO Auto-generated method stub
+	return productMapper.selectProductStock(map);
+}
+
 
 		
 }

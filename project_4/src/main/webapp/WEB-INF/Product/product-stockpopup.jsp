@@ -36,14 +36,14 @@ var app = new Vue({
 	data : {
 		info : {},
 		pNo : "${map.pNo}",
-		stock : "" 
+		stock : ""
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
             var nparmap = {pNo : self.pNo};
             $.ajax({
-                url : "/product/selectProductInfo.dox",
+                url : "/product/selectProductStock.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,

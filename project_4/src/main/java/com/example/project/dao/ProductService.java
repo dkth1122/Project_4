@@ -67,4 +67,7 @@ public interface ProductService {
 	List<Product> selectOrderpuductSearch(HashMap<String, Object> map);
 	//함께하기 좋은상품!
 	List<Product> together(HashMap<String, Object> map);
+	
+	//재고 확인 조회
+	Product selectProductStock(HashMap<String, Object> map);
 }

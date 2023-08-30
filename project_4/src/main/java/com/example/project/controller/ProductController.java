@@ -351,6 +351,16 @@ public class ProductController {
 			resultMap.put("together", together);
 			return new Gson().toJson(resultMap);
 		}
+		
+		//상품전체출력
+		 @RequestMapping(value = "/product/selectProductStock.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+			@ResponseBody
+			public String selectProductStock(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+				HashMap<String, Object> resultMap = new HashMap<String, Object>();
+				Product info = productService.selectProductStock(map);
+				resultMap.put("info", info);
+				return new Gson().toJson(resultMap);
+	}
 	
 	
 }

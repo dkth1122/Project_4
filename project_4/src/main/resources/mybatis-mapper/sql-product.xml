@@ -68,6 +68,13 @@
 		WHERE P_NO = #{pNo}
 	</delete>
 	
+	<!-- 상품 재고 조회 화면 -->
+	<select id="selectProductStock" parameterType="hashmap" resultType="com.example.project.model.Product">
+		SELECT *
+		FROM T4_PRODUCT
+		WHERE P_NO = #{pNo}
+	</select>
+	
 	<!-- 상품 재고 추가 -->
 	<update id="productStockPLUS" parameterType="hashmap">
 		UPDATE T4_PRODUCT
