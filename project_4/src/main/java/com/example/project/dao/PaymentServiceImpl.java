@@ -173,11 +173,19 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	@Override
 	public int useUserPoint2(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		
-		paymentMapper.paymentPointUse(map);
-		return paymentMapper.paymentPointInsert(map);
+	    // TODO Auto-generated method stub
+	    Integer uPoint2Value = (Integer) map.get("uPoint2");
+
+	    if (uPoint2Value == null || uPoint2Value == 0) {
+	        // uPoint2가 0원이거나 null인 경우
+	        return paymentMapper.paymentPointInsert(map);
+	    } else {
+	        // uPoint2가 값이 있는 경우
+	        paymentMapper.paymentPointUse(map);
+	        return paymentMapper.paymentPointInsert(map);
+	    }
 	}
+
 
 
 
