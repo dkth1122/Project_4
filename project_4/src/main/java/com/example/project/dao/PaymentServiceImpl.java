@@ -108,15 +108,27 @@ public class PaymentServiceImpl implements PaymentService{
 		return resultMap;
 		
 	}
-
+	
 	//결제 후 배송 테이블 등록 
-	@Override
-	public int addDelivery(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		
-			paymentMapper.paymentPointInsert(map);
-		return paymentMapper.insertDelivery(map);
-	}
+		@Override
+		public int addDelivery(HashMap<String, Object> map) {
+		    // 구매한 상품이 멤버십 상품인지 확인
+		    int isMembershipProduct = paymentMapper.selectMembershipProduct(map);
+
+		    // 기본 배송 상태 설정
+		    String deliveryState = "배송 완료";  // 필요에 따라 이 값을 변경하세요
+
+		    // 멤버십 상품인 경우 배송 상태를 업데이트
+		    if (isMembershipProduct > 0) {
+		        deliveryState = "배송 완료";  // 멤버십 상품의 경우 다른 값으로 변경하세요
+		    }
+
+		    // 맵에 배송 상태 설정
+		    map.put("dState", deliveryState);
+
+		    // T4_DELIVERY 테이블에 삽입
+		    return paymentMapper.insertDelivery(map);
+		}
 
 	@Override
 	public HashMap<String, Object> addProductBuy2(HashMap<String, Object> map) {
