@@ -19,9 +19,13 @@ VERY PERI 팬 커머스샵은 스프링부트를 기반으로 한 온라인 판�
    
 - 언어 : Spring Boot, Mybaits, Html, CSS, Javascript, java, vue.js, jQuery, Mysql
 
+  
 ## 🧡빌드 및 실행 방법🧡
-1. 스프링부트에서 클론합니다.  
+1. 스프링부트에서 클론합니다.
+
+   
 2. import proejct -> Maven 폴더만 체크 후 import
+ 
    
 ## 💛주요 기능 및 화면 샷💛
 아티스트 굿즈 구매: 팬들은 다양한 아티스트 굿즈를 구매할 수 있습니다.  
