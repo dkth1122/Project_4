@@ -102,8 +102,16 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		System.out.println("주문 테이블 업데이트 함");
 		
-		paymentMapper.paymentPointUse(map);
-		System.out.println("포인트 테이블 얹혀갈게요 ㅎㅅㅎ");
+		 Integer uPoint2Value = (Integer) map.get("uPoint2");
+
+		    if (uPoint2Value == null || uPoint2Value == 0) {
+		        // uPoint2가 0원이거나 null인 경우
+		        paymentMapper.paymentPointUse(map);
+		    } else {
+		        // uPoint2가 값이 있는 경우
+		        paymentMapper.paymentPointUse(map);
+		        paymentMapper.paymentPointInsert(map);
+		    }
 		
 		return resultMap;
 		
