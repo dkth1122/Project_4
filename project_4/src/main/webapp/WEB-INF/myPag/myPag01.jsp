@@ -83,6 +83,12 @@
   	margin:  0px;
   	padding: 0xp;
 }
+
+.isPName{
+	font-size: 0.7em;
+	margin-bottom: 10px;
+	line-height: 20px;
+}
 </style>
 </head>
 <body>
@@ -186,9 +192,32 @@
 
 						<div class="View" style="margin-bottom : 30px;">
 							<div class="lowerBox j">주문상품</div>
+							
 							<div v-if="orderlist.length == 0">
 									<div class="nodata">내역이 없습니다</div>							
-								</div> 
+							</div> 
+							
+						<div v-else-if="orderlist.length ==1">
+							<div>
+								<div @click="productDetail(orderlist[0].pNo)">
+								<img class="justimg" :src="orderlist[0].path">
+								</div>
+								<div class="justBox">{{orderlist[0].pName}}</div>
+								  <div class="justpay">{{ Number(orderlist[0].price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>	
+							</div>
+						</div>
+						
+						<div v-else-if="orderlist.length ==2">
+							<template v-for="item in orderlist">
+								<div style="display: inline-block; margin-right: 10px;"@click="productDetail(item.pNo)">
+								<img class="justimg" :src="item.path">
+								<div class="isPName">{{ item.pName.length > 30 ? item.pName.slice(0, 30) + '...' : item.pName }}</div>
+								  <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>	
+							    </div>
+							    </template>
+							    
+						</div>
+							
 							<div v-else class="swiper-container">
 							<swiper
 							    ref="swiperComponent"
@@ -198,7 +227,9 @@
 							>
 								<template v-for="item in orderlist">
 							    	<swiper-slide>
-						    			<div><img class="justimg" :src="item.path"></div>
+						    			<div @click="productDetail(item.pNo)">
+						    			<img class="justimg" :src="item.path">
+						    			</div>
 							            <div class="justBox">{{item.pName}}</div>
 							            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 							    	</swiper-slide>
@@ -216,6 +247,27 @@
 								<div v-if="cartlist.length == 0">
 									<div class="nodata">내역이 없습니다</div>							
 								</div> 
+								
+								<div v-if="cartlist.length == 1">
+									<div @click="productDetail(cartlist[0].pNo)">
+										<img class="justimg" :src="cartlist[0].path">
+									</div>
+									<div class="justBox">{{cartlist[0].pName}}</div>
+									<div class="justpay">{{ Number(cartlist[0].price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>									
+								</div> 
+								
+						<div v-if="cartlist.length == 2">
+    						<template v-for="item in cartlist">
+        						<div style="display: inline-block; margin-right: 10px;" @click="productDetail(item.pNo)">
+            						<img  class="justimg" :src="item.path">
+            						<div class="isPName">{{ item.pName.length > 30 ? item.pName.slice(0, 30) + '...' : item.pName }}</div>
+            						<div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>
+        						</div>
+    						</template>							
+						</div>
+								
+								
+								
 									<div v-else class="swiper-container">
 										<swiper
 										    ref="swiperComponent"
@@ -225,7 +277,9 @@
 										>
 											<template v-for="item in cartlist">
 										    	<swiper-slide>
-									    			<div><img class="justimg" :src="item.path"></div>
+									    			<div @click="productDetail(item.pNo)">
+									    			<img class="justimg" :src="item.path" >
+									    			</div>
 										            <div class="justBox">{{item.pName}}</div>
 										            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
 										    	</swiper-slide>
@@ -235,9 +289,6 @@
 										      <div class="swiper-button-next" slot="button-next"></div>
 										</swiper>
 									</div>
-
-							
-							
 							
 						</div>
 
@@ -255,9 +306,9 @@
 										>
 											<template v-for="item in wishlist">
 										    	<swiper-slide>
-									    			<div><img class="justimg" :src="item.path"></div>
+									    			<div><img class="justimg" :src="item.path" @click="productDetail(item.pNo)"></div>
 										            <div class="justBox">{{item.pName}}</div>
-										            <div class="justpay">{{ Number(item.price).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>		
+										            <div class="justpay">{{ item.price.toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>
 										    	</swiper-slide>
 										    </template>
 									          <div class="swiper-pagination"  slot="pagination"></div>
@@ -414,6 +465,10 @@ Vue.use(VueAwesomeSwiper);
 		            }
 		        }); 
 		    },
+	         productDetail : function(pNo){
+	             var self = this;
+	             $.pageChange("/product/productView.do", {pNo : pNo});
+	          },
 			onSetTranslate() {
 			    /*   console.log('onSetTranslate') */
 		    },

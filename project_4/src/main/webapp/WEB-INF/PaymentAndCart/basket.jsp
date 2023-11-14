@@ -63,6 +63,7 @@ h3{
 				<div class="login">
 					<div><button @click="goToMain">쇼핑 계속하기</button></div>
 				</div>
+				<br>
 			</div>
 		</div>
 	</div>
