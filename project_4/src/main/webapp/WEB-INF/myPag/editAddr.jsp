@@ -323,7 +323,7 @@ var app = new Vue({
                  data : nparmap,
                  success : function(data) { 
                     alert("주소 수정 완료!");
-                    location.href ="http://localhost:8082/mypag/infoAddr.do"
+                    location.href="infoAddr.do"
                  }
              }); 
         
