@@ -1,4 +1,4 @@
-<p align="center"> #** 💗VERY PERI 팬 커머스샵 프로젝트💗**</p>
+###<p align="center"> 💗VERY PERI 팬 커머스샵 프로젝트💗</p>
 
 
 <p align="center">
