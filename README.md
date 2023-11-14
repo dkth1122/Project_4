@@ -7,7 +7,7 @@
 VERY PERI 팬 커머스샵은 스프링부트를 기반으로 한 온라인 판매 플랫폼입니다. 본 프로젝트는 윤나연을 조장으로 하는 팀으로 구성되었으며, 여대현, 김아지, 한나라, 신동환이 참여하였습니다.
 이 프로젝트는 멤버쉽 기능을 중심으로 멤버쉽 전용 게시판을 추가하여 사용자들에게 더 많은 가치를 제공하는 것을 목표로 하였습니다.
 
-## 기술 스택
+## ❤기술 스택❤
 - 툴 : Eclipse, Visual Studio Code, HeidiSql, git
 - 언어 : Spring Boot, Mybaits, Html, CSS, Javascript, java, vue.js, jQuery, Mysql
 
