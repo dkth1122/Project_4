@@ -1,4 +1,4 @@
- ## 💗VERY PERI 팬 커머스샵 프로젝트💗
+## 💗VERY PERI 팬 커머스샵 프로젝트💗
 
 
   <img src="https://github.com/dkth1122/Project_4/assets/134511884/501a3588-d12c-4a8a-a3d1-e6adf30834a7"> 
