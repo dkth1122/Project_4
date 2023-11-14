@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 <script src="../js/jquery.js"></script>
 <style type="text/css">
+
+h1{
+margin-bottom:30px;
+}
 *{
   margin:0;
   padding:0;
@@ -59,8 +63,8 @@ p{
   background-color:#d0d0d0;
   box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3);
   position:relative;
-  max-width:500px;
-  max-height:400px;
+  max-width:800px;
+  max-height:600px;
 }
 
 .popup-body{
