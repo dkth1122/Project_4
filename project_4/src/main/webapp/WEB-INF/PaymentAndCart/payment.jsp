@@ -869,7 +869,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
            var self = this;
            var timestamp =  new Date().getTime(); 
            self.oNo = timestamp;
-                    var nparmap = {uId : self.uId, pNo : self.list[0].pNo, price : self.list[0].price, cnt : self.cnt, artist : self.list[0].artist, oNo : self.oNo, usePoint : self.usePoint};
+                    var nparmap = {uId : self.uId, pNo : self.list[0].pNo, price : self.list[0].price, cnt : self.cnt, artist : self.list[0].artist, oNo : self.oNo, usePoint : self.usePoint, uPoint2 : self.usePoint};
                       $.ajax({
                           url : "insertALL.dox",
                           dataType:"json",      
