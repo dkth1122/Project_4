@@ -335,7 +335,7 @@ var app = new Vue({
                  data : nparmap,
                  success : function(data) { 
                  	alert("배송주소가 추가 되었습니다!");
-                 	 $.pageChange("infoAddr.do", {uId : self.uId});
+                 	 location.href="infoAddr.do"
                  }
              }); 
         

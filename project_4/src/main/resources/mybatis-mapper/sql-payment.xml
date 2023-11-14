@@ -130,7 +130,7 @@
 	    VALUES (#{buyNo}, #{oNo}, #{uId}, 
 	            <choose>
 	                <when test="isMembershipProduct &gt; 0">
-	                    '배송 완료' <!-- 멤버십 상품인 경우 -->
+	                    '배송완료' <!-- 멤버십 상품인 경우 -->
 	                </when>
 	                <otherwise>
 	                    '업체확인중' <!-- 일반 상품인 경우 -->
