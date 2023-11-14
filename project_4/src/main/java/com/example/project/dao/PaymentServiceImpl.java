@@ -102,16 +102,10 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		System.out.println("주문 테이블 업데이트 함");
 		
-	    Integer uPoint2Value = (Integer) map.get("uPoint2");
-
-	    if (uPoint2Value == null || uPoint2Value == 0) {
-	        // uPoint2가 0원이거나 null인 경우
-	    	paymentMapper.paymentPointUse(map);
-	    } else {
-	        // uPoint2가 값이 있는 경우
-	        paymentMapper.paymentPointUse(map);
-	        paymentMapper.paymentPointInsert(map);
-	    }
+		 Integer uPoint2Value = (Integer) map.get("uPoint2");
+		 
+		 
+		 paymentMapper.paymentPointUse(map);
 		
 		return resultMap;
 		
@@ -135,6 +129,7 @@ public class PaymentServiceImpl implements PaymentService{
 		    map.put("dState", deliveryState);
 
 		    // T4_DELIVERY 테이블에 삽입
+			 paymentMapper.paymentPointInsert(map); 
 		    return paymentMapper.insertDelivery(map);
 		}
 
@@ -193,10 +188,17 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	@Override
 	public int useUserPoint2(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		
-		paymentMapper.paymentPointUse(map);
-		return paymentMapper.paymentPointInsert(map);
+	    // TODO Auto-generated method stub
+	    Integer uPoint2Value = (Integer) map.get("uPoint2");
+
+	    if (uPoint2Value == null || uPoint2Value == 0) {
+	        // uPoint2가 0원이거나 null인 경우
+	        return paymentMapper.paymentPointUse(map);
+	    } else {
+	        // uPoint2가 값이 있는 경우
+	        paymentMapper.paymentPointUse(map);
+	        return paymentMapper.paymentPointInsert(map);
+	    }
 	}
 
 

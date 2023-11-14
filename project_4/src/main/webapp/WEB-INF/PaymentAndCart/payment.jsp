@@ -782,7 +782,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
               }
              
              //키트일 경우 확인 후 유저의 멤버쉽 구독 확인 프로세스
-              if(self.list[0].category == 'MEM' && self.list[0].membership == 'Y'){ 
+/*               if(self.list[0].category == 'MEM' && self.list[0].membership == 'Y'){ 
                    var nparmap = {uId : self.uId, artist : self.list[0].artist};
                       $.ajax({
                           url : "memberCheck.dox",
@@ -804,7 +804,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                         }
                           }
                       });  
-                }
+                } */
 			           // 사용할 포인트가 가격보다 높은 경우 제한
 			              if (parseInt(self.usePoint) > parseInt(self.uPoint)) {
 			                  alert("소지한 포인트만 사용할 수 있습니다.");
@@ -834,12 +834,12 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
                         }
                           }
                       });  
-               			 }else if((self.totalPrice - self.usePoint) == 0){
+               	}else if((self.totalPrice - self.usePoint) == 0){
                				 self.fnInsertAll2();
                				 
-               			 }else{
+               	}else{
 		                   self.requestPay();
-		                }
+                }
                 
          }, requestPay : function() {
           var self = this;
