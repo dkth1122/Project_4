@@ -190,7 +190,7 @@ public class PaymentServiceImpl implements PaymentService{
 
 	    if (uPoint2Value == null || uPoint2Value == 0) {
 	        // uPoint2가 0원이거나 null인 경우
-	        return paymentMapper.paymentPointInsert(map);
+	        return paymentMapper.paymentPointUse(map);
 	    } else {
 	        // uPoint2가 값이 있는 경우
 	        paymentMapper.paymentPointUse(map);
