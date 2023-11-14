@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="![veryperiii](https://github.com/dkth1122/Project_4/assets/134511884/501a3588-d12c-4a8a-a3d1-e6adf30834a7)"> 
+  <img src="https://github.com/dkth1122/Project_4/assets/134511884/501a3588-d12c-4a8a-a3d1-e6adf30834a7"> 
 </p>
 
 VERY PERI 팬 커머스샵은 스프링부트를 기반으로 한 온라인 판매 플랫폼입니다. 본 프로젝트는 윤나연을 조장으로 하는 팀으로 구성되었으며, 여대현, 김아지, 한나라, 신동환이 참여하였습니다.
