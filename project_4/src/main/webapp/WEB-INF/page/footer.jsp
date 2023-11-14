@@ -9,7 +9,7 @@
 <style type="text/css">
 
 h1{
-margin-bottom:32px;
+margin-bottom:30px;
 }
 *{
   margin:0;
