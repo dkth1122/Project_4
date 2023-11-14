@@ -241,7 +241,7 @@
                <li>{{item.gcContent}}</li>
                <li><span class="clickThis" @click="CommnetLike(item.gcNo, item.gNo)"><a href="javascript:" style="color: rgb(179, 179, 255);">LIKE ♥ </a>{{item.gcLike}}</span></li>
                <li><span class="clickThis" @click="reportPost2(item.gcNo)" v-if="item.gcArtist != 'Y'"><a href="javascript:">신고🚨<a></span>
-           			<div class="clickThis" @click="CoRemove(item.gcNo)" v-if="uId == item.uId || uId =='admin'"><span><a href="javascript:">삭제✖</a></span></div>
+           			<div class="clickThis" @click="CoRemove(item.gcNo, item.gNo)" v-if="uId == item.uId || uId =='admin'"><span><a href="javascript:">삭제✖</a></span></div>
                <div><span @click="CoCoBefore(item.gNo, item.gcNo)" ><a href="javascript:">댓글✉</a></span><div>
               </li>
                
@@ -509,41 +509,49 @@
                     }
                 });
                 
-            }, GetComments: function(gNo) {
+            }, // GetComments 메서드 수정
+            GetComments: function (gNo) {
+                var self = this;
+                var nparmap = { artist: self.artist, gNo: gNo };
+                $.ajax({
+                    url: "commentList.dox",
+                    dataType: "json",
+                    type: "POST",
+                    data: nparmap,
+                    success: function (data) {
+                        console.log("commentList = > ", data.commentList);
+                        self.commentList = data.commentList;
+                    }
+                });
+            }, CommentAdd: function () {
                var self = this;
-               var nparmap = { artist: self.artist, gNo : gNo };
-               $.ajax({
-                   url: "commentList.dox",
-                   dataType: "json",
-                   type: "POST",
-                   data: nparmap,
-                   success: function (data) {
-                	   console.log("commentList = > ", data.commentList);
-                       self.commentList = data.commentList;
-                   }
-               });
-           },CommentAdd: function () {
-               var self = this;
-               var nparmap = {comment: self.comment, artist: self.artist, uId : self.uId, gNo : self.gNo, artist : self.artist };
-   				
-               if(self.uId == null || self.uId == ''){
+               var nparmap = {
+                   comment: self.comment,
+                   artist: self.artist,
+                   uId: self.uId,
+                   gNo: self.gNo,
+                   artist: self.artist
+               };
+
+               if (self.uId == null || self.uId == '') {
                    alert("로그인 해주세요.");
                    location.href = "main.do";
-                }
-    
-                if(self.comment == null || self.comment == ""){
+               }
+
+               if (self.comment == null || self.comment == "") {
                    alert("내용을 입력해주세요.");
-                    return;
-                }
-  	          
-  	          if (self.comment.length > 500) {
-  	              alert("500자까지만 입력 가능합니다.");
-  	              return;
-  	          }
-                
-                if (!confirm("등록하시겠습니까?")) {
-                    return;
-                }
+                   return;
+               }
+
+               if (self.comment.length > 500) {
+                   alert("500자까지만 입력 가능합니다.");
+                   return;
+               }
+
+               if (!confirm("등록하시겠습니까?")) {
+                   return;
+               }
+
                $.ajax({
                    url: "addComment.dox",
                    dataType: "json",
@@ -552,26 +560,41 @@
                    success: function (data) {
                        alert("등록되었어요.");
                        self.comment = "";
-                       self.GetCoList(self.gNo);
+
+                       // Vue.js 비동기 메서드를 사용하여 댓글 목록 갱신
+                       self.GetComments(self.gNo);
+                     
                    }
                });
-           }, CoRemove: function (gcNo) {
-               var self = this;
-               if (!confirm("삭제하시겠어요?")) {
-                   return;
-               }
-               var nparmap = {gcNo: gcNo};
-               $.ajax({
-                   url: "commentRemove.dox",
-                   dataType: "json",
-                   type: "POST",
-                   data: nparmap,
-                   success: function (data) {
-                       alert("삭제되었습니다.");
-                       window.location.reload();
-                   }
-               });
-           }, CoMove: function () {
+           },CoRemove: function (gcNo, gNo) {
+        	    var self = this;
+
+        	    if (!confirm("삭제하시겠어요?")) {
+        	        return;
+        	    }
+
+        	    var nparmap = { gcNo: gcNo };
+
+        	    $.ajax({
+        	        url: "commentRemove.dox",
+        	        dataType: "json",
+        	        type: "POST",
+        	        data: nparmap,
+        	        success: function (data) {
+        	            alert("삭제되었습니다.");
+        	            
+                	    if (!gNo) {
+                	        // gNo 값이 없을 경우 페이지 리로드
+                	        window.location.reload();
+                	      
+                	    }else{
+            	            // Vue.js 비동기 메서드를 사용하여 댓글 목록 갱신
+            	            self.GetComments(gNo);
+                	    }
+                	  
+        	        }
+        	    });
+        	},  CoMove: function () {
               location.reload();
            
            },CoLike: function(gNo) {
