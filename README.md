@@ -11,18 +11,18 @@ VERY PERI 팬 커머스샵은 스프링부트를 기반으로 한 온라인 판�
 - 툴 : Eclipse, Visual Studio Code, HeidiSql, git
 - 언어 : Spring Boot, Mybaits, Html, CSS, Javascript, java, vue.js, jQuery, Mysql
 
-## 빌드 및 실행 방법
+## 🧡빌드 및 실행 방법🧡
 1. 스프링부트에서 클론합니다.
 2. import proejct -> Maven 폴더만 체크 후 import
    
-## 주요 기능 및 화면 샷
+## 💛주요 기능 및 화면 샷💛
 아티스트 굿즈 구매: 팬들은 다양한 아티스트 굿즈를 구매할 수 있습니다.
 앨범 구매: 팬들은 다양한 앨범을 구매하고 즐길 수 있습니다.
 아티스트 맴버십 구매: 아티스트 맴버십을 유료 구매함으로서 해당 아이돌과 맴버십게시판을 통해 소통이 가능합니다.
 
 
 
-## 팀 소개
+## 💚팀 소개💚
 팀 리더: 윤나연
 팀 멤버: 여대현, 김아지, 한나라, 신동환
 
