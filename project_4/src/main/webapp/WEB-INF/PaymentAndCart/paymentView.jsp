@@ -43,7 +43,7 @@ h3{
 }
 #smile{
 	font-size: 70px;
-	margin-left : 220px;
+	margin-left : 200px;
 }
 .container{
 	position : relative;

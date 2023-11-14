@@ -45,7 +45,8 @@ h3{
 }
 #sad{
 	font-size: 70px;
-	margin-left : 220px;
+	margin-left : 200px;
+	margin-bottom : 30px;
 }
 
 </style>
@@ -57,7 +58,8 @@ h3{
 		<div class="login-box">
 			<div class="login-box2">
 			<i id="sad" class="fa-regular fa-face-sad-tear"></i>
-			<h3>앗! 장바구니가 비어 있어요!</h3>			
+			<h3>앗! 장바구니가 비어 있어요!</h3>	
+			<br>
 				<div class="login">
 					<div><button @click="goToMain">쇼핑 계속하기</button></div>
 				</div>
