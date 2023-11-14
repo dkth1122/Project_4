@@ -1,4 +1,4 @@
-# VERY PERI 팬 커머스샵 프로젝트
+# 💗VERY PERI 팬 커머스샵 프로젝트💗
 
 
 <p align="center">
