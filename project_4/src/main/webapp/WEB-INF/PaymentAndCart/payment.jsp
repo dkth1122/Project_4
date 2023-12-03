@@ -275,6 +275,19 @@ text-align: center;
    margin-left: 300px;
 }
 
+.custom-button {
+    background-color: rgb(102, 103, 171); 
+    color: #ffffff; 
+    padding: 10px 20px;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.custom-button:hover {
+    background-color: rgb(51, 52, 85); /* 마우스 호버 시의 색상 변경 */
+}
 
 </style>
 </head>
@@ -352,7 +365,7 @@ text-align: center;
 								<div class="error-message" v-if="addrDetailErrorMessage">{{ addrDetailErrorMessage }}</div>
 								<input class="addrinput2" type="text" placeholder="우편번호" v-model="zipNo"  @input="validateZipNo">	
 								<div class="error-message" v-if="zipNoErrorMessage">{{ zipNoErrorMessage  }}</div>							
-								<button @click="fnSearchAddr">주소 찾기</button>
+								<button @click="fnSearchAddr" class="custom-button">주소 찾기</button>
 							</td>
 						</tr>
 						
@@ -377,7 +390,7 @@ text-align: center;
 								<textarea rows="7" cols="110" v-model="dText" placeholder="배송메시지는 30자 이내로 입력해주세요."></textarea>
 							</td>
 						</tr>
-							<td><button @click="fnAddAddrList">주소록 등록</button></td>	
+							<td><button @click="fnAddAddrList" class="custom-button">주소록 등록</button></td>	
 						</tr>
 						
 					</table>
@@ -395,7 +408,7 @@ text-align: center;
 								<th> <i class="fa-solid fa-circle fa-2xs" style="color: #ff0000;"></i> 배송주소록 선택 </th>
 								<td>
 									<div id="to" >
-										<button @click="fnAddrList">주소록 보기</button>
+										<button @click="fnAddrList" class="custom-button">주소록 보기</button>
 										<table>
 											<tr v-for = "item in info" v-if="flg">
 				                                <td style="display : none">
@@ -460,7 +473,7 @@ text-align: center;
             <div>현재 포인트: {{ Number(uPoint).toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'}) }}</div>
             <div>사용할 포인트: <input type="number" v-model="usePoint"></div>
             <div v-if ="errorMessage">{{errorMessage}}</div>
-            <div><button @click="allPointUse">전체사용</button></div>
+            <div><button @click="allPointUse" class="custom-button">전체사용</button></div>
            </div>
 
             </div>
